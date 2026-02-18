@@ -2,7 +2,7 @@
 id: SPEC-FE-002
 title: "Authentication Flow"
 version: 2.0.0
-status: draft
+status: completed
 created: 2026-02-19
 updated: 2026-02-19
 author: MoAI
@@ -906,3 +906,63 @@ matcher 설정: api, _next/static, _next/image, favicon.ico를 제외한 모든 
 | REQ-FE-127 ~ REQ-FE-131 | acceptance.md#AC-FE-127 ~ AC-FE-131 |
 | REQ-FE-132 ~ REQ-FE-133 | acceptance.md#AC-FE-132 ~ AC-FE-133 |
 | REQ-FE-N10 ~ REQ-FE-N14 | acceptance.md#AC-FE-N10 ~ AC-FE-N14 |
+
+---
+
+## 6. Implementation Notes
+
+### 6.1 Implementation Summary
+
+- **Completed**: 2026-02-19
+- **Files changed**: 29 total (19 added, 10 modified)
+- **Quality gates**: TypeScript typecheck PASS (0 errors), ESLint PASS (0 warnings/errors)
+
+### 6.2 Files Added (19)
+
+| File | Description |
+|------|-------------|
+| `apps/web/app/(auth)/register/page.tsx` | Registration page |
+| `apps/web/app/(auth)/reset-password/page.tsx` | Password reset request page |
+| `apps/web/app/(auth)/reset-password/confirm/page.tsx` | Password reset confirm page |
+| `apps/web/app/(dashboard)/profile/page.tsx` | Profile settings page |
+| `apps/web/components/auth/AuthCard.tsx` | Auth page card wrapper |
+| `apps/web/components/auth/LoginForm.tsx` | Login form component |
+| `apps/web/components/auth/PasswordResetConfirmForm.tsx` | Password reset confirm form |
+| `apps/web/components/auth/PasswordResetForm.tsx` | Password reset request form |
+| `apps/web/components/auth/RegisterForm.tsx` | Registration form |
+| `apps/web/components/auth/RoleSelector.tsx` | Role selection component |
+| `apps/web/components/auth/SocialLoginButtons.tsx` | Social login buttons |
+| `apps/web/components/profile/AvatarUpload.tsx` | Avatar upload component |
+| `apps/web/components/profile/PasswordChangeForm.tsx` | Password change form |
+| `apps/web/components/profile/ProfileForm.tsx` | Profile form |
+| `apps/web/components/profile/ProfileSection.tsx` | Profile section wrapper (unplanned addition, see 6.4) |
+| `apps/web/hooks/useAuth.ts` | Auth state hook |
+| `apps/web/hooks/useCurrentUser.ts` | Current user data hook |
+| `apps/web/middleware.ts` | Next.js middleware for route protection |
+| `apps/web/types/next-auth.d.ts` | next-auth type augmentation |
+
+### 6.3 Files Modified (10)
+
+| File | Change |
+|------|--------|
+| `apps/web/app/(auth)/login/page.tsx` | Full implementation from SKELETON |
+| `apps/web/app/page.tsx` | Landing page with auth CTAs |
+| `apps/web/hooks/index.ts` | Barrel export update |
+| `apps/web/lib/api.ts` | Auth header injection added |
+| `apps/web/lib/auth.ts` | next-auth v5 full configuration |
+| `apps/web/providers/AuthProvider.tsx` | SessionProvider + Zustand store sync |
+| `apps/web/src/env.ts` | Social login env vars added |
+| `apps/web/stores/auth.store.ts` | role field and clearAuth action added |
+| `packages/shared/src/types/auth.types.ts` | Auth types extended |
+| `packages/shared/src/validators/auth.schema.ts` | Schemas extended |
+
+### 6.4 Divergence from SPEC
+
+| Item | Type | Notes |
+|------|------|-------|
+| `components/profile/ProfileSection.tsx` | Minor addition | Utility wrapper component not in original SPEC. Added to improve layout composition within the profile page. No SPEC requirements affected. |
+| `hooks/index.ts` barrel export | Minor modification | Barrel export file updated to include new hooks. Trivial change not originally listed in SPEC file table. |
+
+### 6.5 Deferred Items
+
+- **Tests**: No test files were created as part of this implementation. Unit and integration tests for the authentication flow are deferred to a dedicated testing SPEC (to be planned separately).

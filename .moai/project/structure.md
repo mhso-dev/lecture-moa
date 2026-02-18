@@ -27,7 +27,8 @@ lecture-moa/
 │   │   │   ├── layout.tsx
 │   │   │   └── page.tsx
 │   │   ├── components/               # React components
-│   │   │   ├── auth/                 # Login, Register forms
+│   │   │   ├── auth/                 # Login, Register, Password Reset forms; AuthCard wrapper; SocialLoginButtons; RoleSelector
+│   │   │   ├── profile/              # ProfileForm, AvatarUpload, PasswordChangeForm, ProfileSection
 │   │   │   ├── course/               # Course cards, lists
 │   │   │   ├── dashboard/            # Dashboard widgets, charts
 │   │   │   ├── editor/               # Markdown editor components
@@ -40,6 +41,11 @@ lecture-moa/
 │   │   │   ├── team/                 # Team management UI
 │   │   │   └── ui/                   # Shared UI primitives
 │   │   ├── hooks/                    # Custom React hooks
+│   │   │   ├── useAuth.ts            # Auth state and actions (signIn, signOut, updateUser)
+│   │   │   └── useCurrentUser.ts     # Current user profile data via TanStack Query
+│   │   ├── middleware.ts             # Next.js middleware for route protection and role-based guards
+│   │   ├── types/
+│   │   │   └── next-auth.d.ts        # next-auth Session and JWT type augmentation
 │   │   ├── lib/                      # Client-side utilities
 │   │   │   ├── api.ts                # API client configuration
 │   │   │   ├── auth.ts               # Auth utilities

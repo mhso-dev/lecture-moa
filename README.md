@@ -93,7 +93,7 @@ lecture-moa/
 
 ## Current Status
 
-This project is in the **active development phase**. The frontend foundation has been implemented.
+This project is in the **active development phase**. The frontend foundation and authentication flow have been implemented.
 
 ### Completed
 
@@ -120,6 +120,13 @@ This project is in the **active development phase**. The frontend foundation has
   - 18 shadcn/ui components
   - Provider infrastructure (Theme, TanStack Query, Auth)
   - Shared TypeScript package with types, validators, and constants
+- **SPEC-FE-002: Authentication Flow** -- Complete authentication system implemented (2026-02-19):
+  - next-auth v5 with CredentialsProvider and optional social login (Google, GitHub)
+  - Login, registration, password reset, and profile settings pages
+  - Role-based route protection middleware (student/instructor)
+  - Zustand auth store with session synchronization
+  - React Hook Form + Zod validation for all forms
+  - WCAG 2.1 AA accessibility compliance
 
 ### SPEC Implementation Status
 
@@ -127,15 +134,22 @@ This project is in the **active development phase**. The frontend foundation has
 |------|-------|--------|
 | SPEC-UI-001 | Frontend Design System | Completed |
 | SPEC-FE-001 | Next.js Frontend Foundation | Completed (2026-02-19) |
-| SPEC-FE-002 | Authentication Flow | Planned |
-| SPEC-FE-003 | Dashboard Screen | Planned |
-| SPEC-FE-004 | Course Screens | Planned |
+| SPEC-FE-002 | Authentication Flow | Completed (2026-02-19) |
+| SPEC-FE-003 | Dashboard Views | Planned |
+| SPEC-FE-004 | Learning Materials and Markdown Engine | Planned |
+| SPEC-FE-005 | Course Management | Planned |
+| SPEC-FE-006 | Q&A System | Planned |
+| SPEC-FE-007 | Quiz System | Planned |
+| SPEC-FE-008 | Team and Memo System | Planned |
 
 ### Next Steps
 
-- Build authentication flow (SPEC-FE-002): login, register, session management
-- Implement dashboard screens (SPEC-FE-003)
-- Implement course listing and detail screens (SPEC-FE-004)
+- Implement dashboard views (SPEC-FE-003): instructor, student, and team dashboards
+- Implement learning materials and markdown engine (SPEC-FE-004): viewer, editor, upload
+- Implement course management screens (SPEC-FE-005): listing, detail, create, settings
+- Implement Q&A system (SPEC-FE-006): inline highlight popup, thread management
+- Implement quiz system (SPEC-FE-007): creation, taking, LLM generation, results
+- Implement team and memo system (SPEC-FE-008): collaboration, shared notes
 - Develop the backend API modules (SPEC-BE-XXX)
 - Set up the Python AI service with LangChain (SPEC-AI-XXX)
 
@@ -173,6 +187,20 @@ pnpm --filter @lecture-moa/web dev
 cp .env.example .env.local
 # Edit .env.local with your configuration
 ```
+
+Required environment variables for authentication:
+
+- `NEXTAUTH_SECRET` -- Encryption key for next-auth sessions (generate with `openssl rand -base64 32`)
+- `NEXTAUTH_URL` -- Application URL (e.g., `http://localhost:3000`)
+- `NEXT_PUBLIC_API_URL` -- Backend API URL (e.g., `http://localhost:4000`)
+
+Optional environment variables for social login:
+
+- `NEXT_PUBLIC_ENABLE_SOCIAL_LOGIN` -- Set to `true` to enable Google and GitHub OAuth
+- `GOOGLE_CLIENT_ID` -- Google OAuth client ID
+- `GOOGLE_CLIENT_SECRET` -- Google OAuth client secret
+- `GITHUB_CLIENT_ID` -- GitHub OAuth client ID
+- `GITHUB_CLIENT_SECRET` -- GitHub OAuth client secret
 
 ## License
 
