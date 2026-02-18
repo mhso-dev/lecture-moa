@@ -1,0 +1,1290 @@
+{
+  "version": "0.0.1",
+  "children": [
+    {
+      "type": "frame",
+      "id": "tablet-collapsed",
+      "name": "Tablet - Collapsed Default (768x960)",
+      "layout": "horizontal",
+      "width": 768,
+      "height": 960,
+      "fill": "#F8FAFC",
+      "x": 0,
+      "y": 0,
+      "children": [
+        {
+          "type": "frame",
+          "id": "tab-col-sidebar",
+          "name": "Collapsed Sidebar (64px)",
+          "layout": "vertical",
+          "width": 64,
+          "height": "fill_container",
+          "fill": "#FFFFFF",
+          "stroke": {
+            "align": "inside",
+            "fill": "#E2E8F0",
+            "thickness": { "right": 1 }
+          },
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "tab-col-logo",
+              "name": "Logo Area",
+              "layout": "horizontal",
+              "width": "fill_container",
+              "height": 56,
+              "alignItems": "center",
+              "justifyContent": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "tab-col-logo-icon",
+                  "name": "App Icon",
+                  "width": 32,
+                  "height": 32,
+                  "fill": "#3B82F6",
+                  "cornerRadius": 8
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "tab-col-icons-1",
+              "name": "Nav Icons - Learning",
+              "layout": "vertical",
+              "width": "fill_container",
+              "padding": [8, 0],
+              "gap": 4,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "tab-col-home",
+                  "name": "Icon - Home (Active)",
+                  "layout": "horizontal",
+                  "width": 40,
+                  "height": 40,
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "fill": "#EFF6FF",
+                  "cornerRadius": 8,
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "tab-col-home-ic",
+                      "iconFontFamily": "lucide",
+                      "iconFontName": "home",
+                      "width": 20,
+                      "height": 20,
+                      "fill": "#3B82F6"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tab-col-courses",
+                  "name": "Icon - Courses",
+                  "layout": "horizontal",
+                  "width": 40,
+                  "height": 40,
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "cornerRadius": 8,
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "tab-col-courses-ic",
+                      "iconFontFamily": "lucide",
+                      "iconFontName": "book-open",
+                      "width": 20,
+                      "height": 20,
+                      "fill": "#64748B"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tab-col-materials",
+                  "name": "Icon - Materials",
+                  "layout": "horizontal",
+                  "width": 40,
+                  "height": 40,
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "cornerRadius": 8,
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "tab-col-materials-ic",
+                      "iconFontFamily": "lucide",
+                      "iconFontName": "file-text",
+                      "width": 20,
+                      "height": 20,
+                      "fill": "#64748B"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tab-col-qa-wrapper",
+                  "name": "Icon - Q&A (with dot)",
+                  "layout": "none",
+                  "width": 40,
+                  "height": 40,
+                  "cornerRadius": 8,
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "tab-col-qa-ic",
+                      "iconFontFamily": "lucide",
+                      "iconFontName": "message-circle",
+                      "width": 20,
+                      "height": 20,
+                      "fill": "#64748B",
+                      "x": 10,
+                      "y": 10
+                    },
+                    {
+                      "type": "ellipse",
+                      "id": "tab-col-qa-dot",
+                      "name": "Notification Dot",
+                      "width": 8,
+                      "height": 8,
+                      "fill": "#EF4444",
+                      "x": 28,
+                      "y": 6
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "tab-col-sep-1",
+              "name": "Separator",
+              "width": 32,
+              "height": 1,
+              "fill": "#E2E8F0"
+            },
+            {
+              "type": "frame",
+              "id": "tab-col-icons-2",
+              "name": "Nav Icons - Activity",
+              "layout": "vertical",
+              "width": "fill_container",
+              "padding": [8, 0],
+              "gap": 4,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "tab-col-quizzes",
+                  "name": "Icon - Quizzes",
+                  "layout": "horizontal",
+                  "width": 40,
+                  "height": 40,
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "cornerRadius": 8,
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "tab-col-quizzes-ic",
+                      "iconFontFamily": "lucide",
+                      "iconFontName": "brain",
+                      "width": 20,
+                      "height": 20,
+                      "fill": "#64748B"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tab-col-memos",
+                  "name": "Icon - Memos",
+                  "layout": "horizontal",
+                  "width": 40,
+                  "height": 40,
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "cornerRadius": 8,
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "tab-col-memos-ic",
+                      "iconFontFamily": "lucide",
+                      "iconFontName": "sticky-note",
+                      "width": 20,
+                      "height": 20,
+                      "fill": "#64748B"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tab-col-dashboard",
+                  "name": "Icon - Dashboard",
+                  "layout": "horizontal",
+                  "width": 40,
+                  "height": 40,
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "cornerRadius": 8,
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "tab-col-dashboard-ic",
+                      "iconFontFamily": "lucide",
+                      "iconFontName": "layout-dashboard",
+                      "width": 20,
+                      "height": 20,
+                      "fill": "#64748B"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "tab-col-sep-2",
+              "name": "Separator",
+              "width": 32,
+              "height": 1,
+              "fill": "#E2E8F0"
+            },
+            {
+              "type": "frame",
+              "id": "tab-col-icons-3",
+              "name": "Nav Icons - Collaboration",
+              "layout": "vertical",
+              "width": "fill_container",
+              "padding": [8, 0],
+              "gap": 4,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "tab-col-teams",
+                  "name": "Icon - Teams",
+                  "layout": "horizontal",
+                  "width": 40,
+                  "height": 40,
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "cornerRadius": 8,
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "tab-col-teams-ic",
+                      "iconFontFamily": "lucide",
+                      "iconFontName": "users",
+                      "width": 20,
+                      "height": 20,
+                      "fill": "#64748B"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tab-col-team-memos",
+                  "name": "Icon - Team Memos",
+                  "layout": "horizontal",
+                  "width": 40,
+                  "height": 40,
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "cornerRadius": 8,
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "tab-col-team-memos-ic",
+                      "iconFontFamily": "lucide",
+                      "iconFontName": "notebook-pen",
+                      "width": 20,
+                      "height": 20,
+                      "fill": "#64748B"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "tab-col-spacer",
+              "name": "Spacer",
+              "width": "fill_container",
+              "height": "fill_container"
+            },
+            {
+              "type": "frame",
+              "id": "tab-col-bottom",
+              "name": "Bottom Area",
+              "layout": "vertical",
+              "width": "fill_container",
+              "padding": [8, 0],
+              "alignItems": "center",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "tab-col-sep-bottom",
+                  "name": "Separator",
+                  "width": 32,
+                  "height": 1,
+                  "fill": "#E2E8F0"
+                },
+                {
+                  "type": "ellipse",
+                  "id": "tab-col-avatar",
+                  "name": "User Avatar",
+                  "width": 32,
+                  "height": 32,
+                  "fill": "#6366F1"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "tab-col-main-content",
+          "name": "Main Content",
+          "layout": "vertical",
+          "width": "fill_container",
+          "height": "fill_container",
+          "padding": 24,
+          "gap": 16,
+          "children": [
+            {
+              "type": "frame",
+              "id": "tab-col-header-bar",
+              "name": "Header Bar",
+              "layout": "horizontal",
+              "width": "fill_container",
+              "height": 40,
+              "alignItems": "center",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "tab-col-hamburger",
+                  "name": "Hamburger Button",
+                  "layout": "horizontal",
+                  "width": 40,
+                  "height": 40,
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "cornerRadius": 8,
+                  "stroke": {
+                    "align": "inside",
+                    "fill": "#E2E8F0",
+                    "thickness": 1
+                  },
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "tab-col-hamburger-ic",
+                      "iconFontFamily": "lucide",
+                      "iconFontName": "menu",
+                      "width": 20,
+                      "height": 20,
+                      "fill": "#64748B"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "tab-col-page-title",
+                  "content": "Home",
+                  "fontFamily": "Inter",
+                  "fontSize": 20,
+                  "fontWeight": "600",
+                  "fill": "#0F172A"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "tab-col-content-placeholder",
+              "name": "Content Placeholder",
+              "layout": "vertical",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 12,
+              "padding": 20,
+              "stroke": {
+                "align": "inside",
+                "fill": "#E2E8F0",
+                "thickness": 1
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "id": "tab-col-placeholder-text",
+                  "content": "Main content area",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal",
+                  "fill": "#94A3B8"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "tablet-expanded",
+      "name": "Tablet - Expanded Overlay (768x960)",
+      "layout": "none",
+      "width": 768,
+      "height": 960,
+      "fill": "#F8FAFC",
+      "x": 868,
+      "y": 0,
+      "children": [
+        {
+          "type": "frame",
+          "id": "tab-exp-bg-sidebar",
+          "name": "Collapsed Sidebar Background",
+          "layout": "vertical",
+          "width": 64,
+          "height": 960,
+          "fill": "#FFFFFF",
+          "stroke": {
+            "align": "inside",
+            "fill": "#E2E8F0",
+            "thickness": { "right": 1 }
+          },
+          "x": 0,
+          "y": 0
+        },
+        {
+          "type": "frame",
+          "id": "tab-exp-main-content",
+          "name": "Main Content (dimmed)",
+          "layout": "vertical",
+          "width": 704,
+          "height": 960,
+          "padding": 24,
+          "gap": 16,
+          "x": 64,
+          "y": 0,
+          "children": [
+            {
+              "type": "frame",
+              "id": "tab-exp-header-bar",
+              "name": "Header Bar",
+              "layout": "horizontal",
+              "width": "fill_container",
+              "height": 40,
+              "alignItems": "center",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "tab-exp-hamburger",
+                  "name": "Hamburger Button",
+                  "layout": "horizontal",
+                  "width": 40,
+                  "height": 40,
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "cornerRadius": 8,
+                  "stroke": {
+                    "align": "inside",
+                    "fill": "#E2E8F0",
+                    "thickness": 1
+                  },
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "tab-exp-hamburger-ic",
+                      "iconFontFamily": "lucide",
+                      "iconFontName": "menu",
+                      "width": 20,
+                      "height": 20,
+                      "fill": "#64748B"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "tab-exp-page-title",
+                  "content": "Home",
+                  "fontFamily": "Inter",
+                  "fontSize": 20,
+                  "fontWeight": "600",
+                  "fill": "#0F172A"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "tab-exp-content-placeholder",
+              "name": "Content Placeholder",
+              "layout": "vertical",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 12,
+              "padding": 20,
+              "stroke": {
+                "align": "inside",
+                "fill": "#E2E8F0",
+                "thickness": 1
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "id": "tab-exp-placeholder-text",
+                  "content": "Main content area",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal",
+                  "fill": "#94A3B8"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "tab-exp-backdrop",
+          "name": "Content Backdrop",
+          "width": 704,
+          "height": 960,
+          "fill": "#00000033",
+          "x": 64,
+          "y": 0
+        },
+        {
+          "type": "frame",
+          "id": "tab-exp-sidebar-overlay",
+          "name": "Expanded Sidebar Overlay (256px)",
+          "layout": "vertical",
+          "width": 256,
+          "height": 960,
+          "fill": "#FFFFFF",
+          "x": 0,
+          "y": 0,
+          "effect": {
+            "type": "shadow",
+            "shadowType": "outer",
+            "offset": { "x": 4, "y": 0 },
+            "blur": 16,
+            "color": "#0000001A"
+          },
+          "children": [
+            {
+              "type": "frame",
+              "id": "tab-exp-logo-area",
+              "name": "Logo Area",
+              "layout": "horizontal",
+              "width": "fill_container",
+              "height": 56,
+              "padding": [0, 16],
+              "alignItems": "center",
+              "justifyContent": "space_between",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "tab-exp-logo-left",
+                  "name": "Logo Left",
+                  "layout": "horizontal",
+                  "alignItems": "center",
+                  "gap": 10,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "tab-exp-app-icon",
+                      "name": "App Icon",
+                      "width": 32,
+                      "height": 32,
+                      "fill": "#3B82F6",
+                      "cornerRadius": 8
+                    },
+                    {
+                      "type": "text",
+                      "id": "tab-exp-app-name",
+                      "content": "lecture-moa",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "600",
+                      "fill": "#0F172A"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tab-exp-close-btn",
+                  "name": "Close Button",
+                  "layout": "horizontal",
+                  "width": 28,
+                  "height": 28,
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "cornerRadius": 6,
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "tab-exp-close-icon",
+                      "iconFontFamily": "lucide",
+                      "iconFontName": "x",
+                      "width": 18,
+                      "height": 18,
+                      "fill": "#64748B"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "tab-exp-search-wrapper",
+              "name": "Search Wrapper",
+              "layout": "vertical",
+              "width": "fill_container",
+              "padding": [0, 12, 12, 12],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "tab-exp-search-bar",
+                  "name": "Search Bar",
+                  "layout": "horizontal",
+                  "width": "fill_container",
+                  "height": 36,
+                  "padding": [0, 12],
+                  "alignItems": "center",
+                  "gap": 8,
+                  "fill": "#F1F5F9",
+                  "cornerRadius": 8,
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "tab-exp-search-icon",
+                      "iconFontFamily": "lucide",
+                      "iconFontName": "search",
+                      "width": 16,
+                      "height": 16,
+                      "fill": "#94A3B8"
+                    },
+                    {
+                      "type": "text",
+                      "id": "tab-exp-search-text",
+                      "content": "Search...",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal",
+                      "fill": "#94A3B8"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "tab-exp-nav-learning",
+              "name": "Nav Section - Learning",
+              "layout": "vertical",
+              "width": "fill_container",
+              "padding": [8, 8],
+              "gap": 2,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "tab-exp-label-learning",
+                  "content": "LEARNING",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "600",
+                  "fill": "#94A3B8",
+                  "letterSpacing": 0.5,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "padding": [4, 8]
+                },
+                {
+                  "type": "frame",
+                  "id": "tab-exp-item-home",
+                  "name": "Nav Item - Home (Active)",
+                  "layout": "horizontal",
+                  "width": "fill_container",
+                  "height": 36,
+                  "padding": [0, 8],
+                  "alignItems": "center",
+                  "gap": 10,
+                  "fill": "#EFF6FF",
+                  "cornerRadius": 6,
+                  "stroke": {
+                    "align": "inside",
+                    "fill": "#3B82F6",
+                    "thickness": { "left": 3 }
+                  },
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "tab-exp-icon-home",
+                      "iconFontFamily": "lucide",
+                      "iconFontName": "home",
+                      "width": 18,
+                      "height": 18,
+                      "fill": "#3B82F6"
+                    },
+                    {
+                      "type": "text",
+                      "id": "tab-exp-text-home",
+                      "content": "Home",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500",
+                      "fill": "#3B82F6"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tab-exp-item-courses",
+                  "name": "Nav Item - My Courses",
+                  "layout": "horizontal",
+                  "width": "fill_container",
+                  "height": 36,
+                  "padding": [0, 8],
+                  "alignItems": "center",
+                  "gap": 10,
+                  "cornerRadius": 6,
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "tab-exp-icon-courses",
+                      "iconFontFamily": "lucide",
+                      "iconFontName": "book-open",
+                      "width": 18,
+                      "height": 18,
+                      "fill": "#64748B"
+                    },
+                    {
+                      "type": "text",
+                      "id": "tab-exp-text-courses",
+                      "content": "My Courses",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500",
+                      "fill": "#64748B"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tab-exp-item-materials",
+                  "name": "Nav Item - Materials",
+                  "layout": "horizontal",
+                  "width": "fill_container",
+                  "height": 36,
+                  "padding": [0, 8],
+                  "alignItems": "center",
+                  "gap": 10,
+                  "cornerRadius": 6,
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "tab-exp-icon-materials",
+                      "iconFontFamily": "lucide",
+                      "iconFontName": "file-text",
+                      "width": 18,
+                      "height": 18,
+                      "fill": "#64748B"
+                    },
+                    {
+                      "type": "text",
+                      "id": "tab-exp-text-materials",
+                      "content": "Materials",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500",
+                      "fill": "#64748B"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tab-exp-item-qa",
+                  "name": "Nav Item - Q&A",
+                  "layout": "horizontal",
+                  "width": "fill_container",
+                  "height": 36,
+                  "padding": [0, 8],
+                  "alignItems": "center",
+                  "justifyContent": "space_between",
+                  "cornerRadius": 6,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "tab-exp-qa-left",
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "gap": 10,
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "tab-exp-icon-qa",
+                          "iconFontFamily": "lucide",
+                          "iconFontName": "message-circle",
+                          "width": 18,
+                          "height": 18,
+                          "fill": "#64748B"
+                        },
+                        {
+                          "type": "text",
+                          "id": "tab-exp-text-qa",
+                          "content": "Q&A",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "500",
+                          "fill": "#64748B"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "tab-exp-qa-badge",
+                      "layout": "horizontal",
+                      "padding": [1, 6],
+                      "cornerRadius": 10,
+                      "fill": "#EF4444",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "tab-exp-qa-badge-text",
+                          "content": "3",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "700",
+                          "fill": "#FFFFFF"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "tab-exp-nav-activity",
+              "name": "Nav Section - Activity",
+              "layout": "vertical",
+              "width": "fill_container",
+              "padding": [8, 8],
+              "gap": 2,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "tab-exp-label-activity",
+                  "content": "ACTIVITY",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "600",
+                  "fill": "#94A3B8",
+                  "letterSpacing": 0.5,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "padding": [4, 8]
+                },
+                {
+                  "type": "frame",
+                  "id": "tab-exp-item-quizzes",
+                  "name": "Nav Item - Quizzes",
+                  "layout": "horizontal",
+                  "width": "fill_container",
+                  "height": 36,
+                  "padding": [0, 8],
+                  "alignItems": "center",
+                  "gap": 10,
+                  "cornerRadius": 6,
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "tab-exp-icon-quizzes",
+                      "iconFontFamily": "lucide",
+                      "iconFontName": "brain",
+                      "width": 18,
+                      "height": 18,
+                      "fill": "#64748B"
+                    },
+                    {
+                      "type": "text",
+                      "id": "tab-exp-text-quizzes",
+                      "content": "Quizzes",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500",
+                      "fill": "#64748B"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tab-exp-item-memos",
+                  "name": "Nav Item - Memos",
+                  "layout": "horizontal",
+                  "width": "fill_container",
+                  "height": 36,
+                  "padding": [0, 8],
+                  "alignItems": "center",
+                  "gap": 10,
+                  "cornerRadius": 6,
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "tab-exp-icon-memos",
+                      "iconFontFamily": "lucide",
+                      "iconFontName": "sticky-note",
+                      "width": 18,
+                      "height": 18,
+                      "fill": "#64748B"
+                    },
+                    {
+                      "type": "text",
+                      "id": "tab-exp-text-memos",
+                      "content": "Memos",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500",
+                      "fill": "#64748B"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tab-exp-item-dashboard",
+                  "name": "Nav Item - Dashboard",
+                  "layout": "horizontal",
+                  "width": "fill_container",
+                  "height": 36,
+                  "padding": [0, 8],
+                  "alignItems": "center",
+                  "gap": 10,
+                  "cornerRadius": 6,
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "tab-exp-icon-dashboard",
+                      "iconFontFamily": "lucide",
+                      "iconFontName": "layout-dashboard",
+                      "width": 18,
+                      "height": 18,
+                      "fill": "#64748B"
+                    },
+                    {
+                      "type": "text",
+                      "id": "tab-exp-text-dashboard",
+                      "content": "Dashboard",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500",
+                      "fill": "#64748B"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "tab-exp-nav-collab",
+              "name": "Nav Section - Collaboration",
+              "layout": "vertical",
+              "width": "fill_container",
+              "padding": [8, 8],
+              "gap": 2,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "tab-exp-label-collab",
+                  "content": "COLLABORATION",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "600",
+                  "fill": "#94A3B8",
+                  "letterSpacing": 0.5,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "padding": [4, 8]
+                },
+                {
+                  "type": "frame",
+                  "id": "tab-exp-item-teams",
+                  "name": "Nav Item - Teams",
+                  "layout": "horizontal",
+                  "width": "fill_container",
+                  "height": 36,
+                  "padding": [0, 8],
+                  "alignItems": "center",
+                  "gap": 10,
+                  "cornerRadius": 6,
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "tab-exp-icon-teams",
+                      "iconFontFamily": "lucide",
+                      "iconFontName": "users",
+                      "width": 18,
+                      "height": 18,
+                      "fill": "#64748B"
+                    },
+                    {
+                      "type": "text",
+                      "id": "tab-exp-text-teams",
+                      "content": "Teams",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500",
+                      "fill": "#64748B"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tab-exp-item-team-memos",
+                  "name": "Nav Item - Team Memos",
+                  "layout": "horizontal",
+                  "width": "fill_container",
+                  "height": 36,
+                  "padding": [0, 8],
+                  "alignItems": "center",
+                  "gap": 10,
+                  "cornerRadius": 6,
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "tab-exp-icon-team-memos",
+                      "iconFontFamily": "lucide",
+                      "iconFontName": "notebook-pen",
+                      "width": 18,
+                      "height": 18,
+                      "fill": "#64748B"
+                    },
+                    {
+                      "type": "text",
+                      "id": "tab-exp-text-team-memos",
+                      "content": "Team Memos",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500",
+                      "fill": "#64748B"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "tab-exp-nav-analytics",
+              "name": "Nav Section - Analytics",
+              "layout": "vertical",
+              "width": "fill_container",
+              "padding": [8, 8],
+              "gap": 2,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "tab-exp-label-row-analytics",
+                  "name": "Label Row",
+                  "layout": "horizontal",
+                  "width": "fill_container",
+                  "alignItems": "center",
+                  "justifyContent": "space_between",
+                  "padding": [4, 8],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "tab-exp-label-analytics",
+                      "content": "ANALYTICS",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "fill": "#94A3B8",
+                      "letterSpacing": 0.5
+                    },
+                    {
+                      "type": "frame",
+                      "id": "tab-exp-instructor-badge",
+                      "layout": "horizontal",
+                      "padding": [2, 6],
+                      "cornerRadius": 4,
+                      "fill": "#EFF6FF",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "tab-exp-instructor-text",
+                          "content": "Instructor",
+                          "fontFamily": "Inter",
+                          "fontSize": 10,
+                          "fontWeight": "600",
+                          "fill": "#3B82F6"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tab-exp-item-inst-dash",
+                  "name": "Nav Item - Instructor Dashboard",
+                  "layout": "horizontal",
+                  "width": "fill_container",
+                  "height": 36,
+                  "padding": [0, 8],
+                  "alignItems": "center",
+                  "gap": 10,
+                  "cornerRadius": 6,
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "tab-exp-icon-inst-dash",
+                      "iconFontFamily": "lucide",
+                      "iconFontName": "bar-chart-2",
+                      "width": 18,
+                      "height": 18,
+                      "fill": "#64748B"
+                    },
+                    {
+                      "type": "text",
+                      "id": "tab-exp-text-inst-dash",
+                      "content": "Instructor Dashboard",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500",
+                      "fill": "#64748B"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tab-exp-item-course-mgmt",
+                  "name": "Nav Item - Course Management",
+                  "layout": "horizontal",
+                  "width": "fill_container",
+                  "height": 36,
+                  "padding": [0, 8],
+                  "alignItems": "center",
+                  "gap": 10,
+                  "cornerRadius": 6,
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "tab-exp-icon-course-mgmt",
+                      "iconFontFamily": "lucide",
+                      "iconFontName": "settings",
+                      "width": 18,
+                      "height": 18,
+                      "fill": "#64748B"
+                    },
+                    {
+                      "type": "text",
+                      "id": "tab-exp-text-course-mgmt",
+                      "content": "Course Management",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500",
+                      "fill": "#64748B"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "tab-exp-spacer",
+              "name": "Spacer",
+              "width": "fill_container",
+              "height": "fill_container"
+            },
+            {
+              "type": "frame",
+              "id": "tab-exp-divider",
+              "name": "Divider",
+              "width": "fill_container",
+              "height": 1,
+              "fill": "#E2E8F0"
+            },
+            {
+              "type": "frame",
+              "id": "tab-exp-user-area",
+              "name": "User Area",
+              "layout": "horizontal",
+              "width": "fill_container",
+              "height": 56,
+              "padding": [0, 12],
+              "alignItems": "center",
+              "gap": 10,
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "tab-exp-avatar",
+                  "name": "User Avatar",
+                  "width": 36,
+                  "height": 36,
+                  "fill": "#6366F1"
+                },
+                {
+                  "type": "frame",
+                  "id": "tab-exp-user-info",
+                  "name": "User Info",
+                  "layout": "vertical",
+                  "width": "fill_container",
+                  "gap": 2,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "tab-exp-user-name",
+                      "content": "John Doe",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "600",
+                      "fill": "#1E293B"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "tab-exp-role-badge",
+                      "layout": "horizontal",
+                      "padding": [1, 6],
+                      "cornerRadius": 4,
+                      "fill": "#F0FDF4",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "tab-exp-role-text",
+                          "content": "Instructor",
+                          "fontFamily": "Inter",
+                          "fontSize": 10,
+                          "fontWeight": "600",
+                          "fill": "#16A34A"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "icon_font",
+                  "id": "tab-exp-settings-icon",
+                  "iconFontFamily": "lucide",
+                  "iconFontName": "settings",
+                  "width": 18,
+                  "height": 18,
+                  "fill": "#94A3B8"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

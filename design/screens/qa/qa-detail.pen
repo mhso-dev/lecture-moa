@@ -1,0 +1,1749 @@
+{
+  "version": "2.8",
+  "children": [
+    {
+      "type": "frame",
+      "id": "gj8CA",
+      "x": 0,
+      "y": 0,
+      "name": "Desktop QA Detail (1280px)",
+      "width": 1280,
+      "height": 960,
+      "fill": "$bg-slate-50",
+      "children": [
+        {
+          "type": "frame",
+          "id": "ofv8R",
+          "name": "Sidebar",
+          "width": 256,
+          "height": "fill_container",
+          "fill": "$bg-white",
+          "layout": "vertical",
+          "gap": 4,
+          "padding": [
+            16,
+            0
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "KvMKI",
+              "name": "logo",
+              "width": "fill_container",
+              "height": 48,
+              "gap": 8,
+              "padding": [
+                0,
+                16
+              ],
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "jt3HW",
+                  "name": "logoI",
+                  "width": 0,
+                  "height": 0,
+                  "iconFontFamily": "Lucide"
+                },
+                {
+                  "type": "text",
+                  "id": "2YjM3",
+                  "name": "logoT",
+                  "content": "LectureMOA",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "nt5wc",
+              "name": "d1",
+              "width": "fill_container",
+              "height": 1,
+              "fill": "$border"
+            },
+            {
+              "type": "frame",
+              "id": "sRSaJ",
+              "name": "nav",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 2,
+              "padding": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "DStzk",
+                  "name": "nD",
+                  "width": "fill_container",
+                  "height": 40,
+                  "cornerRadius": 8,
+                  "gap": 8,
+                  "padding": [
+                    0,
+                    12
+                  ],
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "aQtwA",
+                      "name": "nDI",
+                      "width": 0,
+                      "height": 0,
+                      "iconFontFamily": "Lucide"
+                    },
+                    {
+                      "type": "text",
+                      "id": "B81Iy",
+                      "name": "nDT",
+                      "content": "Dashboard",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ocePq",
+                  "name": "nM",
+                  "width": "fill_container",
+                  "height": 40,
+                  "cornerRadius": 8,
+                  "gap": 8,
+                  "padding": [
+                    0,
+                    12
+                  ],
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "o9rQ6",
+                      "name": "nMI",
+                      "width": 0,
+                      "height": 0,
+                      "iconFontFamily": "Lucide"
+                    },
+                    {
+                      "type": "text",
+                      "id": "doftk",
+                      "name": "nMT",
+                      "content": "Materials",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "3POzy",
+                  "name": "nQ",
+                  "width": "fill_container",
+                  "height": 40,
+                  "fill": "$primary-lighter",
+                  "cornerRadius": 8,
+                  "gap": 8,
+                  "padding": [
+                    0,
+                    12
+                  ],
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "sydQ6",
+                      "name": "nQI",
+                      "width": 0,
+                      "height": 0,
+                      "iconFontFamily": "Lucide"
+                    },
+                    {
+                      "type": "text",
+                      "id": "u3lth",
+                      "name": "nQT",
+                      "content": "Q&A",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "eJueH",
+                  "name": "nS",
+                  "width": "fill_container",
+                  "height": 40,
+                  "cornerRadius": 8,
+                  "gap": 8,
+                  "padding": [
+                    0,
+                    12
+                  ],
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "j285R",
+                      "name": "nSI",
+                      "width": 0,
+                      "height": 0,
+                      "iconFontFamily": "Lucide"
+                    },
+                    {
+                      "type": "text",
+                      "id": "WHRj5",
+                      "name": "nST",
+                      "content": "Settings",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "y8lhO",
+          "name": "Main Content",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [
+            24,
+            40
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "2bSrm",
+              "name": "breadcrumb",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "fNPZp",
+                  "name": "bc1",
+                  "content": "Q&A",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "DCtEC",
+                  "name": "bcSep",
+                  "width": 0,
+                  "height": 0,
+                  "iconFontFamily": "Lucide"
+                },
+                {
+                  "type": "text",
+                  "id": "NWRWU",
+                  "name": "bc2",
+                  "content": "Thread",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "W5B9K",
+              "name": "Question Card",
+              "width": "fill_container",
+              "fill": "$bg-white",
+              "cornerRadius": 12,
+              "layout": "vertical",
+              "gap": 16,
+              "padding": [
+                24,
+                28
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "m0EWB",
+                  "name": "qHeader",
+                  "width": "fill_container",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "uhYdT",
+                      "name": "qHeaderLeft",
+                      "gap": 12,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "m4ldx",
+                          "name": "qAvatar",
+                          "width": 40,
+                          "height": 40,
+                          "fill": "#DBEAFE",
+                          "cornerRadius": 20,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "vFB93",
+                              "name": "qAvatarT",
+                              "content": "JK",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "GG7FN",
+                          "name": "qAuthorInfo",
+                          "layout": "vertical",
+                          "gap": 2,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "EglF3",
+                              "name": "qAuthorName",
+                              "content": "Jin Kim",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "500"
+                            },
+                            {
+                              "type": "text",
+                              "id": "Aarcc",
+                              "name": "qTime",
+                              "content": "2 hours ago - Module 3: Hooks",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Ro3Ql",
+                      "name": "qVotes",
+                      "gap": 8,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "pBHiI",
+                          "name": "qVoteUp",
+                          "width": 32,
+                          "height": 32,
+                          "cornerRadius": 6,
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "mYKeH",
+                              "name": "qVoteUpI",
+                              "width": 0,
+                              "height": 0,
+                              "iconFontFamily": "Lucide"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "LmPcy",
+                          "name": "qVoteCount",
+                          "content": "12",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "BOdgm",
+                          "name": "qVoteDown",
+                          "width": 32,
+                          "height": 32,
+                          "cornerRadius": 6,
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "sHFT9",
+                              "name": "qVoteDownI",
+                              "width": 0,
+                              "height": 0,
+                              "iconFontFamily": "Lucide"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "EztCu",
+                  "name": "qTitle",
+                  "content": "How to properly use useEffect cleanup?",
+                  "fontFamily": "Inter",
+                  "fontSize": 20,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "u4Wdf",
+                  "name": "qBody",
+                  "content": "I'm confused about when to return a cleanup function in useEffect. Can someone explain the best practices for handling subscriptions and timers?",
+                  "lineHeight": 1.6,
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "eIpCG",
+                  "name": "Highlighted Context",
+                  "width": "fill_container",
+                  "fill": "$highlight-yellow",
+                  "cornerRadius": 8,
+                  "gap": 12,
+                  "padding": [
+                    12,
+                    16
+                  ],
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "UgxnO",
+                      "name": "hcIcon",
+                      "width": 0,
+                      "height": 0,
+                      "iconFontFamily": "Lucide"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "4cMj5",
+                      "name": "hcContent",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "HRQLr",
+                          "name": "hcLabel",
+                          "content": "Referenced from: Chapter 3 - useEffect",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "3Izol",
+                          "name": "hcText",
+                          "content": "\"The cleanup function runs before the component unmounts and before every subsequent re-render...\"",
+                          "lineHeight": 1.5,
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal",
+                          "fontStyle": "italic"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "3XTeY",
+                  "name": "qTags",
+                  "width": "fill_container",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "3ioTJ",
+                      "name": "tag1",
+                      "height": 24,
+                      "fill": "$bg-slate-100",
+                      "cornerRadius": 4,
+                      "padding": [
+                        0,
+                        8
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "wJWVP",
+                          "name": "tag1T",
+                          "content": "hooks",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "wU7ik",
+                      "name": "tag2",
+                      "height": 24,
+                      "fill": "$bg-slate-100",
+                      "cornerRadius": 4,
+                      "padding": [
+                        0,
+                        8
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "JYcan",
+                          "name": "tag2T",
+                          "content": "useEffect",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "HnfLj",
+                      "name": "tag3",
+                      "height": 24,
+                      "fill": "$bg-slate-100",
+                      "cornerRadius": 4,
+                      "padding": [
+                        0,
+                        8
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "YxM2I",
+                          "name": "tag3T",
+                          "content": "cleanup",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "gQ5n5",
+              "name": "Responses Section",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "luwvC",
+                  "name": "respHeader",
+                  "width": "fill_container",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "uVhLV",
+                      "name": "respTitle",
+                      "content": "3 Responses",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "8OP0w",
+                  "name": "AI Response",
+                  "width": "fill_container",
+                  "fill": "$bg-white",
+                  "cornerRadius": 12,
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": [
+                    20,
+                    24
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "4U1oe",
+                      "name": "aiRespH",
+                      "width": "fill_container",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "3b96e",
+                          "name": "aiRespHL",
+                          "gap": 10,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "FBAAc",
+                              "name": "aiAv",
+                              "width": 36,
+                              "height": 36,
+                              "fill": "#EDE9FE",
+                              "cornerRadius": 18,
+                              "children": [
+                                {
+                                  "type": "icon_font",
+                                  "id": "Ka92q",
+                                  "name": "aiAvI",
+                                  "width": 0,
+                                  "height": 0,
+                                  "iconFontFamily": "Lucide"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "miWSn",
+                              "name": "aiInfo",
+                              "layout": "vertical",
+                              "gap": 2,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "DKAep",
+                                  "name": "aiName",
+                                  "gap": 6,
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "eZpqN",
+                                      "name": "aiNameT",
+                                      "content": "AI Assistant",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 14,
+                                      "fontWeight": "600"
+                                    },
+                                    {
+                                      "type": "frame",
+                                      "id": "nkaKF",
+                                      "name": "aiBadge",
+                                      "height": 18,
+                                      "fill": "#EDE9FE",
+                                      "cornerRadius": 4,
+                                      "padding": [
+                                        0,
+                                        6
+                                      ],
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "B4rIQ",
+                                          "name": "aiBadgeT",
+                                          "content": "AI",
+                                          "fontFamily": "Inter",
+                                          "fontSize": 9,
+                                          "fontWeight": "700"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "vn1oY",
+                                  "name": "aiTime",
+                                  "content": "Auto-generated - 2 hours ago",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "rNbVp",
+                      "name": "aiBody",
+                      "content": "The cleanup function in useEffect is crucial for preventing memory leaks. You should return a cleanup function when:\n\n1. Setting up subscriptions (WebSocket, event listeners)\n2. Starting timers (setTimeout, setInterval)\n3. Making API calls that need to be cancelled\n\nThe cleanup runs before the component unmounts and before each re-render if dependencies change.",
+                      "lineHeight": 1.6,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "7vclr",
+                      "name": "aiActions",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "ZaPJm",
+                          "name": "aiHelpful",
+                          "gap": 4,
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "nkX3J",
+                              "name": "aiHelpI",
+                              "width": 0,
+                              "height": 0,
+                              "iconFontFamily": "Lucide"
+                            },
+                            {
+                              "type": "text",
+                              "id": "GCLdx",
+                              "name": "aiHelpT",
+                              "content": "Helpful (8)",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "eHH9B",
+                  "name": "Instructor Response",
+                  "width": "fill_container",
+                  "fill": "$bg-white",
+                  "cornerRadius": 12,
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": [
+                    20,
+                    24
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "WqmtU",
+                      "name": "instrH",
+                      "width": "fill_container",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "pZ7QH",
+                          "name": "instrHL",
+                          "gap": 10,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "7kuQI",
+                              "name": "instrAv",
+                              "width": 36,
+                              "height": 36,
+                              "fill": "#DCFCE7",
+                              "cornerRadius": 18,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "J4K5f",
+                                  "name": "instrAvT",
+                                  "content": "PL",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 13,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "KL80M",
+                              "name": "instrInfo",
+                              "layout": "vertical",
+                              "gap": 2,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "jVjsZ",
+                                  "name": "instrName",
+                                  "gap": 6,
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "PXWiu",
+                                      "name": "instrNameT",
+                                      "content": "Prof. Lee",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 14,
+                                      "fontWeight": "600"
+                                    },
+                                    {
+                                      "type": "frame",
+                                      "id": "dmlqu",
+                                      "name": "instrBadge",
+                                      "height": 18,
+                                      "fill": "#ECFDF5",
+                                      "cornerRadius": 4,
+                                      "padding": [
+                                        0,
+                                        6
+                                      ],
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "npZAo",
+                                          "name": "instrBadgeT",
+                                          "content": "Instructor",
+                                          "fontFamily": "Inter",
+                                          "fontSize": 9,
+                                          "fontWeight": "700"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "MU7Da",
+                                  "name": "instrTime",
+                                  "content": "1 hour ago",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "o7Zfq",
+                      "name": "instrBody",
+                      "content": "Great question! The AI response covers the basics well. I'd add that you should think of cleanup as \"undoing\" what the effect set up. A practical rule: if your effect creates something that persists beyond a single render cycle, it needs cleanup.",
+                      "lineHeight": 1.6,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "9vnm8",
+                      "name": "instrActions",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "9jpAn",
+                          "name": "instrHelp",
+                          "gap": 4,
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "etPny",
+                              "name": "instrHelpI",
+                              "width": 0,
+                              "height": 0,
+                              "iconFontFamily": "Lucide"
+                            },
+                            {
+                              "type": "text",
+                              "id": "SicPo",
+                              "name": "instrHelpT",
+                              "content": "Helpful (4)",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "QKLVy",
+              "name": "Reply Editor",
+              "width": "fill_container",
+              "fill": "$bg-white",
+              "cornerRadius": 12,
+              "layout": "vertical",
+              "gap": 12,
+              "padding": [
+                20,
+                24
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Nwohm",
+                  "name": "replyLabel",
+                  "content": "Write a Reply",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "ek9YI",
+                  "name": "Reply Text Area",
+                  "width": "fill_container",
+                  "height": 100,
+                  "fill": "$bg-white",
+                  "cornerRadius": 8,
+                  "layout": "vertical",
+                  "padding": 12,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "eYDp3",
+                      "name": "replyPlaceholder",
+                      "content": "Type your response here... Markdown is supported.",
+                      "lineHeight": 1.5,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "nMDt3",
+                  "name": "replyActions",
+                  "width": "fill_container",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "nwylc",
+                      "name": "replyToolbar",
+                      "gap": 4,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "jsrin",
+                          "name": "rtBold",
+                          "width": 28,
+                          "height": 28,
+                          "cornerRadius": 4,
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "MgFFw",
+                              "name": "rtBoldI",
+                              "width": 0,
+                              "height": 0,
+                              "iconFontFamily": "Lucide"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "bjRsK",
+                          "name": "rtItalic",
+                          "width": 28,
+                          "height": 28,
+                          "cornerRadius": 4,
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "BDzTJ",
+                              "name": "rtItalicI",
+                              "width": 0,
+                              "height": 0,
+                              "iconFontFamily": "Lucide"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "1W3OA",
+                          "name": "rtCode",
+                          "width": 28,
+                          "height": 28,
+                          "cornerRadius": 4,
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "yrY8v",
+                              "name": "rtCodeI",
+                              "width": 0,
+                              "height": 0,
+                              "iconFontFamily": "Lucide"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "lhKsa",
+                      "name": "Submit Button",
+                      "height": 36,
+                      "fill": "$primary",
+                      "cornerRadius": 8,
+                      "gap": 6,
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "aDWSq",
+                          "name": "submitI",
+                          "width": 0,
+                          "height": 0,
+                          "iconFontFamily": "Lucide"
+                        },
+                        {
+                          "type": "text",
+                          "id": "BiVTY",
+                          "name": "submitT",
+                          "content": "Post Reply",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "99Xos",
+      "x": 1380,
+      "y": 0,
+      "name": "Mobile QA Detail (375px)",
+      "width": 375,
+      "height": 812,
+      "fill": "$bg-slate-50",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "SUXtv",
+          "name": "Header",
+          "width": "fill_container",
+          "height": 56,
+          "fill": "$bg-white",
+          "gap": 12,
+          "padding": 16,
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "9RYw0",
+              "name": "backIcon",
+              "width": 20,
+              "height": 20,
+              "iconFontFamily": "Lucide"
+            },
+            {
+              "type": "text",
+              "id": "pk892",
+              "name": "headerTitle",
+              "content": "Q&A Thread",
+              "fontFamily": "Inter",
+              "fontSize": 16,
+              "fontWeight": "600"
+            },
+            {
+              "type": "icon_font",
+              "id": "oZ6n9",
+              "name": "moreIcon",
+              "width": 20,
+              "height": 20,
+              "iconFontFamily": "Lucide"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "HBvKf",
+          "name": "Scroll Content",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 12,
+          "padding": 16,
+          "children": [
+            {
+              "type": "frame",
+              "id": "fPbsY",
+              "name": "Question Card",
+              "width": "fill_container",
+              "fill": "$bg-white",
+              "cornerRadius": 12,
+              "layout": "vertical",
+              "gap": 12,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "rdz8b",
+                  "name": "Author Row",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "o2vKW",
+                      "name": "avatar",
+                      "width": 32,
+                      "height": 32,
+                      "fill": "#3B82F6",
+                      "cornerRadius": 16,
+                      "layout": "vertical",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "7v1Pd",
+                          "name": "avatarText",
+                          "content": "JK",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "XRTmM",
+                      "name": "authorInfo",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "o5mFH",
+                          "name": "authorName",
+                          "content": "Jin Kim",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "MC7tG",
+                          "name": "authorMeta",
+                          "content": "2h ago in Chapter 3 - useEffect",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "msZGe",
+                      "name": "voteBox",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "KuIuH",
+                          "name": "voteUp",
+                          "width": 16,
+                          "height": 16,
+                          "iconFontFamily": "Lucide"
+                        },
+                        {
+                          "type": "text",
+                          "id": "FNZjL",
+                          "name": "voteCount",
+                          "content": "12",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "icon_font",
+                          "id": "cQ4jZ",
+                          "name": "voteDown",
+                          "width": 16,
+                          "height": 16,
+                          "iconFontFamily": "Lucide"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "k8Ayk",
+                  "name": "qTitle",
+                  "content": "How to properly use useEffect cleanup?",
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "TmFs0",
+                  "name": "qBody",
+                  "fill": "$text-secondary",
+                  "content": "I'm confused about when cleanup\nfunctions run in useEffect. Does\nthe cleanup run before every\nre-render or only on unmount?\nWhat's the best pattern for\ncleaning up subscriptions?",
+                  "lineHeight": 1.5,
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "lNCZ4",
+                  "name": "Highlighted Context",
+                  "width": "fill_container",
+                  "fill": "#FEF9C3",
+                  "cornerRadius": 8,
+                  "layout": "vertical",
+                  "gap": 6,
+                  "padding": 12,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "mSkCI",
+                      "name": "hlLabel",
+                      "fill": "#92400E",
+                      "content": "Referenced from Chapter 3 - useEffect",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "text",
+                      "id": "RuoTq",
+                      "name": "hlQuote",
+                      "fill": "#78350F",
+                      "content": "\"The cleanup function runs before the component is removed from the UI to prevent memory leaks...\"",
+                      "lineHeight": 1.4,
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal",
+                      "fontStyle": "italic"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "yp9bn",
+                  "name": "Tags",
+                  "width": "fill_container",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "5ArZg",
+                      "name": "tag1",
+                      "fill": "$primary-lighter",
+                      "cornerRadius": 10,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "NdFcf",
+                          "name": "tag1Text",
+                          "fill": "$primary",
+                          "content": "hooks",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f8RSl",
+                      "name": "tag2",
+                      "fill": "$primary-lighter",
+                      "cornerRadius": 10,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "H7KfY",
+                          "name": "tag2Text",
+                          "fill": "$primary",
+                          "content": "useEffect",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "4PlbQ",
+                      "name": "tag3",
+                      "fill": "$primary-lighter",
+                      "cornerRadius": 10,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "6EkFh",
+                          "name": "tag3Text",
+                          "fill": "$primary",
+                          "content": "cleanup",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "9e6fT",
+              "name": "responsesHeader",
+              "fill": "$text-primary",
+              "content": "3 Responses",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "J5cf9",
+              "name": "AI Response",
+              "width": "fill_container",
+              "fill": "$bg-white",
+              "cornerRadius": 12,
+              "layout": "vertical",
+              "gap": 10,
+              "padding": 14,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "wc3uW",
+                  "name": "aiHeader",
+                  "width": "fill_container",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "t0w66",
+                      "name": "aiAvatar",
+                      "width": 28,
+                      "height": 28,
+                      "fill": "#EDE9FE",
+                      "cornerRadius": 14,
+                      "layout": "vertical",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "7z3wG",
+                          "name": "aiAvatarIcon",
+                          "width": 14,
+                          "height": 14,
+                          "iconFontFamily": "Lucide",
+                          "fill": "#7C3AED"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "3XjO6",
+                      "name": "aiNameCol",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "4gMdV",
+                          "name": "aiNameRow",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "2Mcst",
+                              "name": "aiName",
+                              "fill": "#7C3AED",
+                              "content": "AI Assistant",
+                              "fontFamily": "Inter",
+                              "fontSize": 13,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "q7EpQ",
+                              "name": "aiBadge",
+                              "fill": "#EDE9FE",
+                              "cornerRadius": 4,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "A9k38",
+                                  "name": "aiBadgeText",
+                                  "fill": "#7C3AED",
+                                  "content": "AI",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 10,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "lHbsS",
+                          "name": "aiTime",
+                          "fill": "$text-tertiary",
+                          "content": "2h ago",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "SurKZ",
+                  "name": "aiBody",
+                  "fill": "$text-secondary",
+                  "content": "The cleanup function in useEffect runs:\n\n1. Before the component unmounts\n2. Before the effect re-runs due to dependency changes\n\nThis ensures proper resource cleanup and prevents memory leaks.",
+                  "lineHeight": 1.5,
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "UkiDk",
+                  "name": "aiHelpful",
+                  "fill": "$bg-slate-50",
+                  "cornerRadius": 6,
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "XaTO8",
+                      "name": "aiHelpfulIcon",
+                      "width": 12,
+                      "height": 12,
+                      "iconFontFamily": "Lucide",
+                      "fill": "$text-secondary"
+                    },
+                    {
+                      "type": "text",
+                      "id": "xAjfN",
+                      "name": "aiHelpfulText",
+                      "fill": "$text-secondary",
+                      "content": "Helpful (8)",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "bUWPS",
+              "name": "Instructor Response",
+              "width": "fill_container",
+              "fill": "$bg-white",
+              "cornerRadius": 12,
+              "layout": "vertical",
+              "gap": 10,
+              "padding": 14,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "LpBw9",
+                  "name": "instrHeader",
+                  "width": "fill_container",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "CkXYX",
+                      "name": "instrAvatar",
+                      "width": 28,
+                      "height": 28,
+                      "fill": "#10B981",
+                      "cornerRadius": 14,
+                      "layout": "vertical",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "hlTTW",
+                          "name": "instrAvatarText",
+                          "fill": "#FFFFFF",
+                          "content": "PL",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "lXA2y",
+                      "name": "instrNameCol",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "wccSL",
+                          "name": "instrNameRow",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "mRk1Y",
+                              "name": "instrName",
+                              "fill": "$text-primary",
+                              "content": "Prof. Lee",
+                              "fontFamily": "Inter",
+                              "fontSize": 13,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "ZzFpc",
+                              "name": "instrBadge",
+                              "fill": "#ECFDF5",
+                              "cornerRadius": 4,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "FC7hY",
+                                  "name": "instrBadgeText",
+                                  "fill": "#10B981",
+                                  "content": "Instructor",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 10,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "6V265",
+                          "name": "instrTime",
+                          "fill": "$text-tertiary",
+                          "content": "1h ago",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "e2MsU",
+                  "name": "instrBody",
+                  "fill": "$text-secondary",
+                  "content": "Great question! To add to the AI's response - always think of cleanup as the \"undo\" of your effect. If you set up a subscription, clean it up. If you start a timer, clear it.",
+                  "lineHeight": 1.5,
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "363YK",
+                  "name": "instrHelpful",
+                  "fill": "$bg-slate-50",
+                  "cornerRadius": 6,
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "JPHOn",
+                      "name": "instrHelpfulIcon",
+                      "width": 12,
+                      "height": 12,
+                      "iconFontFamily": "Lucide",
+                      "fill": "$primary"
+                    },
+                    {
+                      "type": "text",
+                      "id": "fNOjh",
+                      "name": "instrHelpfulText",
+                      "fill": "$primary",
+                      "content": "Helpful (4)",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ngQ4H",
+          "name": "Reply Bar",
+          "width": "fill_container",
+          "fill": "$bg-white",
+          "gap": 8,
+          "padding": 12,
+          "children": [
+            {
+              "type": "frame",
+              "id": "Vtdtj",
+              "name": "replyInput",
+              "width": "fill_container",
+              "height": 36,
+              "fill": "$bg-slate-100",
+              "cornerRadius": 18,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "nIvNQ",
+                  "name": "replyPlaceholder",
+                  "fill": "$text-muted",
+                  "content": "Write a reply...",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "zaoXX",
+              "name": "replyBtn",
+              "width": 36,
+              "height": 36,
+              "fill": "$primary",
+              "cornerRadius": 18,
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "UcZIu",
+                  "name": "replyIcon",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontFamily": "Lucide",
+                  "fill": "#FFFFFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "accent-emerald": {
+      "type": "color",
+      "value": "#10B981"
+    },
+    "bg-slate-100": {
+      "type": "color",
+      "value": "#F1F5F9"
+    },
+    "bg-slate-50": {
+      "type": "color",
+      "value": "#F8FAFC"
+    },
+    "bg-white": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "border": {
+      "type": "color",
+      "value": "#E2E8F0"
+    },
+    "border-light": {
+      "type": "color",
+      "value": "#F1F5F9"
+    },
+    "code-bg": {
+      "type": "color",
+      "value": "#1E293B"
+    },
+    "code-text": {
+      "type": "color",
+      "value": "#E2E8F0"
+    },
+    "error": {
+      "type": "color",
+      "value": "#EF4444"
+    },
+    "font-mono": {
+      "type": "string",
+      "value": "Fira Code"
+    },
+    "font-sans": {
+      "type": "string",
+      "value": "Inter"
+    },
+    "highlight-blue": {
+      "type": "color",
+      "value": "#DBEAFE"
+    },
+    "highlight-yellow": {
+      "type": "color",
+      "value": "#FEF9C3"
+    },
+    "primary": {
+      "type": "color",
+      "value": "#3B82F6"
+    },
+    "primary-dark": {
+      "type": "color",
+      "value": "#2563EB"
+    },
+    "primary-light": {
+      "type": "color",
+      "value": "#DBEAFE"
+    },
+    "primary-lighter": {
+      "type": "color",
+      "value": "#EFF6FF"
+    },
+    "text-muted": {
+      "type": "color",
+      "value": "#CBD5E1"
+    },
+    "text-primary": {
+      "type": "color",
+      "value": "#0F172A"
+    },
+    "text-secondary": {
+      "type": "color",
+      "value": "#475569"
+    },
+    "text-tertiary": {
+      "type": "color",
+      "value": "#94A3B8"
+    },
+    "warning": {
+      "type": "color",
+      "value": "#F59E0B"
+    }
+  }
+}

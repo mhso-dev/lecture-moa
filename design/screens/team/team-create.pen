@@ -1,0 +1,700 @@
+{
+  "version": "2.8",
+  "children": [
+    {
+      "type": "frame",
+      "id": "ELSdZ",
+      "x": 0,
+      "y": 0,
+      "name": "Team Create Page",
+      "width": 1280,
+      "fill": "#F8FAFC",
+      "layout": "vertical",
+      "gap": 24,
+      "padding": 32,
+      "children": [
+        {
+          "type": "frame",
+          "id": "YSXVG",
+          "name": "Page Header",
+          "width": "fill_container",
+          "gap": 12,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "16qMp",
+              "name": "hBack",
+              "width": 0,
+              "height": 0,
+              "iconFontFamily": "lucide",
+              "fill": "#64748B"
+            },
+            {
+              "type": "frame",
+              "id": "VMakh",
+              "name": "hInfo",
+              "layout": "vertical",
+              "gap": 4,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "CA5NK",
+                  "name": "hTitle",
+                  "fill": "#1E293B",
+                  "content": "Create New Team",
+                  "fontFamily": "Inter",
+                  "fontSize": 24,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "W2N70",
+                  "name": "hSub",
+                  "fill": "#64748B",
+                  "content": "React Fundamentals - Spring 2026",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "8He7v",
+          "name": "Form Card",
+          "width": 720,
+          "fill": "#FFFFFF",
+          "cornerRadius": 12,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "#E2E8F0"
+          },
+          "layout": "vertical",
+          "gap": 24,
+          "padding": 32,
+          "children": [
+            {
+              "type": "frame",
+              "id": "hBlgv",
+              "name": "Team Info Section",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "R7mis",
+                  "name": "sec1Title",
+                  "fill": "#1E293B",
+                  "content": "Team Information",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "7Lf2G",
+                  "name": "nameField",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "rM95O",
+                      "name": "nameLabel",
+                      "fill": "#374151",
+                      "content": "Team Name *",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "GWW2t",
+                      "name": "nameInput",
+                      "width": "fill_container",
+                      "height": 40,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 8,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#E2E8F0"
+                      },
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "5J20J",
+                          "name": "nameInputTxt",
+                          "fill": "#94A3B8",
+                          "content": "Enter team name...",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "8dxym",
+                  "name": "descField",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "W1po2",
+                      "name": "descLabel",
+                      "fill": "#374151",
+                      "content": "Description",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "9ISEg",
+                      "name": "descInput",
+                      "width": "fill_container",
+                      "height": 80,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 8,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#E2E8F0"
+                      },
+                      "padding": 12,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "sBvRo",
+                          "name": "descInputTxt",
+                          "fill": "#94A3B8",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Describe your team's focus and goals...",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "eQano",
+              "name": "divider1",
+              "width": "fill_container",
+              "height": 1,
+              "fill": "#F1F5F9"
+            },
+            {
+              "type": "frame",
+              "id": "4Ttf8",
+              "name": "Settings Section",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "191wu",
+                  "name": "sec2Title",
+                  "fill": "#1E293B",
+                  "content": "Team Settings",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "UZEuJ",
+                  "name": "maxField",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "gyaVd",
+                      "name": "maxLabel",
+                      "fill": "#374151",
+                      "content": "Maximum Members",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "RNDIU",
+                      "name": "maxInput",
+                      "width": 120,
+                      "height": 40,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 8,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#E2E8F0"
+                      },
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "o3gMD",
+                          "name": "maxInputTxt",
+                          "fill": "#1E293B",
+                          "content": "5",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "hTzxq",
+                  "name": "visField",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "yX4n0",
+                      "name": "visLeft",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "hG3dc",
+                          "name": "visLabel",
+                          "fill": "#374151",
+                          "content": "Open for Join Requests",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "text",
+                          "id": "S4u2V",
+                          "name": "visDesc",
+                          "fill": "#64748B",
+                          "content": "Allow other students to request to join your team",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ZL0jF",
+                      "name": "toggle",
+                      "width": 44,
+                      "height": 24,
+                      "fill": "#3B82F6",
+                      "cornerRadius": 12,
+                      "padding": 2,
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "g3Pow",
+                          "name": "visToggleDot",
+                          "fill": "#FFFFFF",
+                          "width": 20,
+                          "height": 20
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "zrNB2",
+              "name": "divider2",
+              "width": "fill_container",
+              "height": 1,
+              "fill": "#F1F5F9"
+            },
+            {
+              "type": "frame",
+              "id": "bWg44",
+              "name": "Invite Section",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "b2voX",
+                  "name": "sec3Title",
+                  "fill": "#1E293B",
+                  "content": "Invite Members",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "4FNK8",
+                  "name": "sec3Desc",
+                  "fill": "#64748B",
+                  "content": "Add team members by searching for their name or email",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "RnrAf",
+                  "name": "inviteRow",
+                  "width": "fill_container",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "ew5Lg",
+                      "name": "inviteInput",
+                      "width": "fill_container",
+                      "height": 40,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 8,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#E2E8F0"
+                      },
+                      "gap": 8,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "bJ7E3",
+                          "name": "inviteIc",
+                          "width": 0,
+                          "height": 0,
+                          "iconFontFamily": "lucide",
+                          "fill": "#94A3B8"
+                        },
+                        {
+                          "type": "text",
+                          "id": "mHkBA",
+                          "name": "inviteTxt",
+                          "fill": "#94A3B8",
+                          "content": "Search students...",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "H2yXi",
+                      "name": "inviteBtn",
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 8,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#3B82F6"
+                      },
+                      "gap": 6,
+                      "padding": [
+                        8,
+                        16
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Gxe7Z",
+                          "name": "inviteBtnTxt",
+                          "fill": "#3B82F6",
+                          "content": "Add",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "2xAJP",
+                  "name": "invitedList",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "qVIrR",
+                      "name": "Invited 1",
+                      "width": "fill_container",
+                      "fill": "#F8FAFC",
+                      "cornerRadius": 8,
+                      "gap": 10,
+                      "padding": [
+                        8,
+                        12
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "ylO4b",
+                          "name": "inv1avatar",
+                          "width": 32,
+                          "height": 32,
+                          "fill": "#10B981",
+                          "cornerRadius": 9999,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "nM4Cz",
+                              "name": "inv1avatarTxt",
+                              "fill": "#FFFFFF",
+                              "content": "LS",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "bjQus",
+                          "name": "inv1info",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 1,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "RQO7V",
+                              "name": "inv1name",
+                              "fill": "#1E293B",
+                              "content": "Lee Soyeon",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "500"
+                            },
+                            {
+                              "type": "text",
+                              "id": "soH3l",
+                              "name": "inv1email",
+                              "fill": "#94A3B8",
+                              "content": "soyeon@example.com",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "icon_font",
+                          "id": "IYzv0",
+                          "name": "inv1remove",
+                          "width": 0,
+                          "height": 0,
+                          "iconFontFamily": "lucide",
+                          "fill": "#94A3B8"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "NhpNi",
+                      "name": "Invited 2",
+                      "width": "fill_container",
+                      "fill": "#F8FAFC",
+                      "cornerRadius": 8,
+                      "gap": 10,
+                      "padding": [
+                        8,
+                        12
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "a7JwJ",
+                          "name": "inv2avatar",
+                          "width": 32,
+                          "height": 32,
+                          "fill": "#F59E0B",
+                          "cornerRadius": 9999,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "jo5ki",
+                              "name": "inv2avatarTxt",
+                              "fill": "#FFFFFF",
+                              "content": "CY",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "AM6yA",
+                          "name": "inv2info",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 1,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "MwN0F",
+                              "name": "inv2name",
+                              "fill": "#1E293B",
+                              "content": "Choi Yuna",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "500"
+                            },
+                            {
+                              "type": "text",
+                              "id": "RL8SU",
+                              "name": "inv2email",
+                              "fill": "#94A3B8",
+                              "content": "yuna@example.com",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "icon_font",
+                          "id": "o8LLZ",
+                          "name": "inv2remove",
+                          "width": 0,
+                          "height": 0,
+                          "iconFontFamily": "lucide",
+                          "fill": "#94A3B8"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ZSyw5",
+              "name": "Form Actions",
+              "width": "fill_container",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "kzkfV",
+                  "name": "cancelBtn",
+                  "cornerRadius": 8,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E2E8F0"
+                  },
+                  "padding": [
+                    10,
+                    20
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "jUApd",
+                      "name": "cancelTxt",
+                      "fill": "#64748B",
+                      "content": "Cancel",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "9E8zM",
+                  "name": "createBtn",
+                  "fill": "#3B82F6",
+                  "cornerRadius": 8,
+                  "gap": 6,
+                  "padding": [
+                    10,
+                    24
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "hhysO",
+                      "name": "createIc",
+                      "width": 0,
+                      "height": 0,
+                      "iconFontFamily": "lucide",
+                      "fill": "#FFFFFF"
+                    },
+                    {
+                      "type": "text",
+                      "id": "8TTYM",
+                      "name": "createTxt",
+                      "fill": "#FFFFFF",
+                      "content": "Create Team",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

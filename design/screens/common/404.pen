@@ -1,0 +1,255 @@
+{
+  "version": "2.8",
+  "children": [
+    {
+      "type": "frame",
+      "id": "RjPAe",
+      "x": 0,
+      "y": 0,
+      "name": "404 Not Found Page",
+      "width": 1280,
+      "height": 720,
+      "fill": "#F8FAFC",
+      "layout": "vertical",
+      "justifyContent": "center",
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "ggKds",
+          "name": "Content Container",
+          "width": 480,
+          "layout": "vertical",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "6PjHw",
+              "name": "Illustration Area",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "RelVh",
+                  "name": "bigText",
+                  "fill": "#E2E8F0",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "404",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 120,
+                  "fontWeight": "bold"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "QcO6K",
+                  "name": "icon",
+                  "width": 64,
+                  "height": 64,
+                  "iconFontName": "compass",
+                  "iconFontFamily": "lucide",
+                  "fill": "#94A3B8"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "VvR9M",
+              "name": "Error Message",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 8,
+              "padding": [
+                24,
+                0,
+                0,
+                0
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "fcWF3",
+                  "name": "title",
+                  "fill": "#1E293B",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Page Not Found",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 24,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "6N5Co",
+                  "name": "desc",
+                  "fill": "#64748B",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "The page you're looking for doesn't exist or has been moved.",
+                  "lineHeight": 1.5,
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Sa8Xm",
+              "name": "Action Buttons",
+              "gap": 12,
+              "padding": [
+                24,
+                0,
+                0,
+                0
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "jYBWP",
+                  "name": "Go Home Button",
+                  "height": 40,
+                  "fill": "#3B82F6",
+                  "cornerRadius": 8,
+                  "gap": 8,
+                  "padding": [
+                    0,
+                    20
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "hOGQB",
+                      "name": "goHomeText",
+                      "fill": "#FFFFFF",
+                      "content": "Go Home",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "IKeoJ",
+                  "name": "Go Back Button",
+                  "height": 40,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 8,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E2E8F0"
+                  },
+                  "gap": 8,
+                  "padding": [
+                    0,
+                    20
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "0lytY",
+                      "name": "goBackText",
+                      "fill": "#1E293B",
+                      "content": "Go Back",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ARPwD",
+              "name": "Search Suggestion",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "padding": [
+                32,
+                0,
+                0,
+                0
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "6oTxQ",
+                  "name": "searchHint",
+                  "fill": "#64748B",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Try searching for what you need:",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "Urqux",
+                  "name": "Search Input",
+                  "width": 360,
+                  "height": 40,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 8,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E2E8F0"
+                  },
+                  "gap": 8,
+                  "padding": [
+                    0,
+                    12
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "FpHTR",
+                      "name": "searchIcon",
+                      "width": 18,
+                      "height": 18,
+                      "iconFontName": "search",
+                      "iconFontFamily": "lucide",
+                      "fill": "#94A3B8"
+                    },
+                    {
+                      "type": "text",
+                      "id": "CcNTy",
+                      "name": "searchPlaceholder",
+                      "fill": "#94A3B8",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Search pages, courses...",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,951 @@
+{
+  "version": "2.8",
+  "children": [
+    {
+      "type": "frame",
+      "id": "SCrKR",
+      "x": 0,
+      "y": 0,
+      "name": "Desktop QA Popup",
+      "width": 400,
+      "height": 480,
+      "fill": "#FFFFFF",
+      "cornerRadius": 12,
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "bLm7b",
+          "name": "Header",
+          "width": "fill_container",
+          "gap": 8,
+          "padding": [
+            16,
+            20
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "3BWXe",
+              "name": "Header Left",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "fNNmS",
+                  "name": "Icon Container",
+                  "width": 32,
+                  "height": 32,
+                  "fill": "#DBEAFE",
+                  "cornerRadius": 8,
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "Xf0QW",
+                      "name": "popHeaderIconInner",
+                      "width": 0,
+                      "height": 0,
+                      "iconFontFamily": "Material Symbols Rounded",
+                      "fill": "#3B82F6"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "amviX",
+                  "name": "popHeaderTitle",
+                  "fill": "#0F172A",
+                  "content": "Ask a Question",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ovnHY",
+              "name": "Close Button",
+              "width": 28,
+              "height": 28,
+              "cornerRadius": 6,
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "APCWl",
+                  "name": "popCloseIcon",
+                  "width": 0,
+                  "height": 0,
+                  "iconFontFamily": "Material Symbols Rounded",
+                  "fill": "#94A3B8"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f4SFr",
+          "name": "Body",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "padding": [
+            16,
+            20
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "OeI7p",
+              "name": "Selected Text Section",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "TLhOD",
+                  "name": "selectedLabel",
+                  "fill": "#94A3B8",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Selected Text",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "500",
+                  "letterSpacing": 0.5
+                },
+                {
+                  "type": "frame",
+                  "id": "e118C",
+                  "name": "Text Preview",
+                  "width": "fill_container",
+                  "fill": "#F8FAFC",
+                  "cornerRadius": 8,
+                  "layout": "vertical",
+                  "padding": [
+                    12,
+                    14
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "9StL6",
+                      "name": "selectedText",
+                      "fill": "#475569",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "The useState Hook returns an array with exactly two elements: the current state value and a function to update that state.",
+                      "lineHeight": 1.6,
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal",
+                      "fontStyle": "italic"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "e0smM",
+              "name": "Question Section",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "sAFYs",
+                  "name": "questionLabel",
+                  "fill": "#94A3B8",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Your Question",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "500",
+                  "letterSpacing": 0.5
+                },
+                {
+                  "type": "frame",
+                  "id": "jl66c",
+                  "name": "Question Input",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 8,
+                  "layout": "vertical",
+                  "padding": [
+                    12,
+                    14
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "E5O1e",
+                      "name": "questionPlaceholder",
+                      "fill": "#CBD5E1",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "What does this mean? Why is it important?",
+                      "lineHeight": 1.6,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "gMJ59",
+                  "name": "questionHint",
+                  "fill": "#94A3B8",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Supports Markdown formatting",
+                  "fontFamily": "Inter",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "fWGcP",
+          "name": "Footer",
+          "width": "fill_container",
+          "gap": 12,
+          "padding": [
+            12,
+            20,
+            16,
+            20
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "pmsIU",
+              "name": "Cancel Button",
+              "cornerRadius": 8,
+              "padding": [
+                8,
+                16
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "xtvQ4",
+                  "name": "cancelText",
+                  "fill": "#475569",
+                  "content": "Cancel",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "RZwLM",
+              "name": "Submit Button",
+              "fill": "#3B82F6",
+              "cornerRadius": 8,
+              "gap": 6,
+              "padding": [
+                8,
+                16
+              ],
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "zDGO4",
+                  "name": "submitIcon",
+                  "width": 0,
+                  "height": 0,
+                  "iconFontFamily": "Material Symbols Rounded",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "text",
+                  "id": "J4Blr",
+                  "name": "submitText",
+                  "fill": "#FFFFFF",
+                  "content": "Ask Question",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "c7n35",
+      "x": 500,
+      "y": 0,
+      "name": "Mobile QA Bottom Sheet",
+      "width": 375,
+      "height": 812,
+      "fill": "rgba(0,0,0,0.4)",
+      "children": [
+        {
+          "type": "frame",
+          "id": "TzlFg",
+          "name": "Bottom Sheet",
+          "width": 375,
+          "height": 520,
+          "fill": "#FFFFFF",
+          "cornerRadius": [
+            16,
+            16,
+            0,
+            0
+          ],
+          "layout": "vertical",
+          "children": [
+            {
+              "type": "frame",
+              "id": "0w6fs",
+              "name": "Handle Bar",
+              "width": "fill_container",
+              "padding": [
+                12,
+                0,
+                8,
+                0
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "kcINz",
+                  "name": "Handle",
+                  "width": 36,
+                  "height": 4,
+                  "fill": "#CBD5E1",
+                  "cornerRadius": 2
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "NXhYz",
+              "name": "Header",
+              "width": "fill_container",
+              "gap": 8,
+              "padding": [
+                8,
+                20,
+                12,
+                20
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "jprI1",
+                  "name": "Header Left",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "pmmq5",
+                      "name": "Icon",
+                      "width": 32,
+                      "height": 32,
+                      "fill": "#DBEAFE",
+                      "cornerRadius": 8,
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "UHoJR",
+                          "name": "mSheetHeaderIcon",
+                          "width": 0,
+                          "height": 0,
+                          "iconFontFamily": "Material Symbols Rounded",
+                          "fill": "#3B82F6"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "GIrMR",
+                      "name": "mSheetHeaderTitle",
+                      "fill": "#0F172A",
+                      "content": "Ask a Question",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ZJ81P",
+                  "name": "Close",
+                  "width": 28,
+                  "height": 28,
+                  "fill": "#F1F5F9",
+                  "cornerRadius": 14,
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "ctpSc",
+                      "name": "mSheetCloseIcon",
+                      "width": 0,
+                      "height": 0,
+                      "iconFontFamily": "Material Symbols Rounded",
+                      "fill": "#475569"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "0k7qy",
+              "name": "Body",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "padding": [
+                12,
+                20
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "uEgWr",
+                  "name": "Selected Text Section",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "rec3C",
+                      "name": "mSelLabel",
+                      "fill": "#94A3B8",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Selected Text",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "500",
+                      "letterSpacing": 0.5
+                    },
+                    {
+                      "type": "frame",
+                      "id": "lRZU6",
+                      "name": "Preview",
+                      "width": "fill_container",
+                      "fill": "#F8FAFC",
+                      "cornerRadius": 8,
+                      "padding": [
+                        10,
+                        12
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "68y1Z",
+                          "name": "mSelText",
+                          "fill": "#475569",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "The useState Hook returns an array with exactly two elements: the current state value and a function to update that state.",
+                          "lineHeight": 1.5,
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal",
+                          "fontStyle": "italic"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Mg8t6",
+                  "name": "Question Section",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "migNw",
+                      "name": "mQLabel",
+                      "fill": "#94A3B8",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Your Question",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "500",
+                      "letterSpacing": 0.5
+                    },
+                    {
+                      "type": "frame",
+                      "id": "9C8G6",
+                      "name": "Input",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "cornerRadius": 8,
+                      "padding": [
+                        10,
+                        12
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "htqEv",
+                          "name": "mQPlaceholder",
+                          "fill": "#CBD5E1",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Type your question here...",
+                          "lineHeight": 1.5,
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "IoQNb",
+                      "name": "mQHint",
+                      "fill": "#94A3B8",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Supports Markdown",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "EfvuS",
+              "name": "Footer",
+              "width": "fill_container",
+              "gap": 12,
+              "padding": [
+                12,
+                20,
+                24,
+                20
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "5OTuU",
+                  "name": "Cancel",
+                  "cornerRadius": 8,
+                  "padding": [
+                    10,
+                    20
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "TGVNp",
+                      "name": "mCancelText",
+                      "fill": "#475569",
+                      "content": "Cancel",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Qc4OR",
+                  "name": "Submit",
+                  "fill": "#3B82F6",
+                  "cornerRadius": 8,
+                  "gap": 6,
+                  "padding": [
+                    10,
+                    20
+                  ],
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "ID3pP",
+                      "name": "mSubmitIcon",
+                      "width": 0,
+                      "height": 0,
+                      "iconFontFamily": "Material Symbols Rounded",
+                      "fill": "#FFFFFF"
+                    },
+                    {
+                      "type": "text",
+                      "id": "YPGW3",
+                      "name": "mSubmitText",
+                      "fill": "#FFFFFF",
+                      "content": "Ask",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "x6b0B",
+      "x": 975,
+      "y": 0,
+      "name": "QA Markers on Text",
+      "width": 500,
+      "height": 280,
+      "fill": "#FFFFFF",
+      "cornerRadius": 12,
+      "layout": "vertical",
+      "gap": 16,
+      "padding": [
+        24,
+        28
+      ],
+      "children": [
+        {
+          "type": "text",
+          "id": "b8KtE",
+          "name": "markerTitle",
+          "fill": "#94A3B8",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "Q&A Marker States",
+          "fontFamily": "Inter",
+          "fontSize": 14,
+          "fontWeight": "600",
+          "letterSpacing": 0.5
+        },
+        {
+          "type": "frame",
+          "id": "sfleR",
+          "name": "Normal Marker",
+          "width": "fill_container",
+          "fill": "#FEF9C3",
+          "cornerRadius": [
+            0,
+            6,
+            6,
+            0
+          ],
+          "gap": 8,
+          "padding": [
+            8,
+            12
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "caAWX",
+              "name": "markerNormalText",
+              "fill": "#0F172A",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "This highlighted text has Q&A discussions. Click the badge to view answers.",
+              "lineHeight": 1.6,
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "H3P4U",
+              "name": "Badge",
+              "width": 26,
+              "height": 26,
+              "fill": "#3B82F6",
+              "cornerRadius": 13,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "3HBdC",
+                  "name": "markerNormalBadgeNum",
+                  "fill": "#FFFFFF",
+                  "content": "3",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "j9lSm",
+          "name": "Hover Marker",
+          "width": "fill_container",
+          "fill": "#FEF3C7",
+          "cornerRadius": [
+            0,
+            6,
+            6,
+            0
+          ],
+          "gap": 8,
+          "padding": [
+            8,
+            12
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "Ttwwa",
+              "name": "markerHoverText",
+              "fill": "#0F172A",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Hover state: background darkens slightly and cursor changes to pointer.",
+              "lineHeight": 1.6,
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "taFpY",
+              "name": "Badge Hover",
+              "width": 28,
+              "height": 28,
+              "fill": "#2563EB",
+              "cornerRadius": 14,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "3iTrw",
+                  "name": "markerHoverBadgeNum",
+                  "fill": "#FFFFFF",
+                  "content": "3",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "7hkVr",
+          "name": "No Questions Marker",
+          "width": "fill_container",
+          "fill": "#F0F9FF",
+          "cornerRadius": [
+            0,
+            6,
+            6,
+            0
+          ],
+          "gap": 8,
+          "padding": [
+            8,
+            12
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "EyGw2",
+              "name": "markerEmptyText",
+              "fill": "#475569",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Selected text with no existing questions. Badge not shown.",
+              "lineHeight": 1.6,
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "IifBy",
+      "x": 975,
+      "y": 380,
+      "name": "QA Empty State",
+      "width": 400,
+      "height": 280,
+      "fill": "#FFFFFF",
+      "cornerRadius": 12,
+      "layout": "vertical",
+      "gap": 16,
+      "padding": [
+        32,
+        24
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "PBNpx",
+          "name": "Empty Icon",
+          "width": 64,
+          "height": 64,
+          "fill": "#F1F5F9",
+          "cornerRadius": 32,
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "x0t2q",
+              "name": "emptyIcon",
+              "width": 0,
+              "height": 0,
+              "iconFontFamily": "Material Symbols Rounded",
+              "fill": "#94A3B8"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "EpCl1",
+          "name": "emptyTitle",
+          "fill": "#0F172A",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "No questions yet",
+          "fontFamily": "Inter",
+          "fontSize": 18,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "B1VxY",
+          "name": "emptyDesc",
+          "fill": "#94A3B8",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "Select any text in the material to ask a question. Your instructor and classmates will be able to answer.",
+          "lineHeight": 1.6,
+          "fontFamily": "Inter",
+          "fontSize": 14,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "LSPsg",
+          "name": "CTA Button",
+          "fill": "#3B82F6",
+          "cornerRadius": 8,
+          "gap": 6,
+          "padding": [
+            10,
+            20
+          ],
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "HDhgb",
+              "name": "emptyBtnIcon",
+              "width": 0,
+              "height": 0,
+              "iconFontFamily": "Material Symbols Rounded",
+              "fill": "#FFFFFF"
+            },
+            {
+              "type": "text",
+              "id": "ZPNvK",
+              "name": "emptyBtnText",
+              "fill": "#FFFFFF",
+              "content": "Select Text to Ask",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "500"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "accent-emerald": {
+      "type": "color",
+      "value": "#10B981"
+    },
+    "bg-slate-100": {
+      "type": "color",
+      "value": "#F1F5F9"
+    },
+    "bg-slate-50": {
+      "type": "color",
+      "value": "#F8FAFC"
+    },
+    "bg-white": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "border": {
+      "type": "color",
+      "value": "#E2E8F0"
+    },
+    "error-red": {
+      "type": "color",
+      "value": "#EF4444"
+    },
+    "highlight-yellow": {
+      "type": "color",
+      "value": "#FEF9C3"
+    },
+    "primary": {
+      "type": "color",
+      "value": "#3B82F6"
+    },
+    "primary-dark": {
+      "type": "color",
+      "value": "#2563EB"
+    },
+    "primary-light": {
+      "type": "color",
+      "value": "#DBEAFE"
+    },
+    "primary-lighter": {
+      "type": "color",
+      "value": "#EFF6FF"
+    },
+    "text-muted": {
+      "type": "color",
+      "value": "#CBD5E1"
+    },
+    "text-primary": {
+      "type": "color",
+      "value": "#0F172A"
+    },
+    "text-secondary": {
+      "type": "color",
+      "value": "#475569"
+    },
+    "text-tertiary": {
+      "type": "color",
+      "value": "#94A3B8"
+    },
+    "warning-amber": {
+      "type": "color",
+      "value": "#F59E0B"
+    }
+  }
+}

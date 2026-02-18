@@ -1,0 +1,800 @@
+{
+  "version": "2.8",
+  "children": [
+    {
+      "type": "frame",
+      "id": "Psgz1",
+      "x": 0,
+      "y": 0,
+      "name": "Quiz Results Page",
+      "width": 1280,
+      "height": 1100,
+      "fill": "#F8FAFC",
+      "layout": "vertical",
+      "gap": 24,
+      "padding": 32,
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "j2HO1",
+          "name": "header",
+          "width": "fill_container",
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "BXSQ0",
+              "name": "backRow",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "W3xpC",
+                  "name": "backIcon",
+                  "width": 0,
+                  "height": 0,
+                  "iconFontName": "arrow-left",
+                  "iconFontFamily": "lucide",
+                  "fill": "#3B82F6"
+                },
+                {
+                  "type": "text",
+                  "id": "nIxQU",
+                  "name": "backText",
+                  "fill": "#3B82F6",
+                  "content": "Back to Quizzes",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "65ubJ",
+              "name": "pageTitle",
+              "fill": "#0F172A",
+              "content": "Quiz Results",
+              "fontFamily": "Inter",
+              "fontSize": 24,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "rQhAN",
+              "name": "spacer",
+              "width": 150,
+              "height": 1
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "oB29y",
+          "name": "scoreCard",
+          "width": 600,
+          "fill": "#FFFFFF",
+          "cornerRadius": 12,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "#E2E8F0"
+          },
+          "layout": "vertical",
+          "gap": 24,
+          "padding": 32,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "cgrjy",
+              "name": "scoreVisual",
+              "width": 140,
+              "height": 140,
+              "layout": "none",
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "legqU",
+                  "x": 0,
+                  "y": 0,
+                  "name": "circBg",
+                  "fill": "#EFF6FF",
+                  "width": 140,
+                  "height": 140,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 6,
+                    "fill": "#3B82F6"
+                  }
+                },
+                {
+                  "type": "text",
+                  "id": "LIl6L",
+                  "x": 38,
+                  "y": 30,
+                  "name": "scoreNum",
+                  "fill": "#3B82F6",
+                  "content": "85",
+                  "fontFamily": "Inter",
+                  "fontSize": 40,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "text",
+                  "id": "aFEdp",
+                  "x": 48,
+                  "y": 80,
+                  "name": "scoreMax",
+                  "fill": "#64748B",
+                  "content": "/100",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "YbqHE",
+              "name": "gradeBadge",
+              "fill": "#DCFCE7",
+              "cornerRadius": 9999,
+              "padding": [
+                6,
+                16
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "YfDxe",
+                  "name": "gradeText",
+                  "fill": "#16A34A",
+                  "content": "Grade: A",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "aN55i",
+              "name": "quizTitle",
+              "fill": "#0F172A",
+              "content": "React Fundamentals Quiz",
+              "fontFamily": "Inter",
+              "fontSize": 18,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "pVewm",
+              "name": "quizMeta",
+              "fill": "#64748B",
+              "content": "Completed on Feb 15, 2026  |  Time: 18:24 / 30:00",
+              "fontFamily": "Inter",
+              "fontSize": 13
+            },
+            {
+              "type": "frame",
+              "id": "BNYA6",
+              "name": "divider",
+              "width": "fill_container",
+              "height": 1,
+              "fill": "#E2E8F0"
+            },
+            {
+              "type": "frame",
+              "id": "D2gSa",
+              "name": "statsRow",
+              "width": "fill_container",
+              "justifyContent": "space_around",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "5V0tk",
+                  "name": "stat1",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "NbCht",
+                      "name": "stat1val",
+                      "fill": "#10B981",
+                      "content": "12/15",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Vytcf",
+                      "name": "stat1label",
+                      "fill": "#64748B",
+                      "content": "Correct",
+                      "fontFamily": "Inter",
+                      "fontSize": 12
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "am70W",
+                  "name": "stat2",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Qj8vW",
+                      "name": "stat2val",
+                      "fill": "#EF4444",
+                      "content": "3/15",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "SEGo7",
+                      "name": "stat2label",
+                      "fill": "#64748B",
+                      "content": "Incorrect",
+                      "fontFamily": "Inter",
+                      "fontSize": 12
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "PKyyQ",
+                  "name": "stat3",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "uSi6W",
+                      "name": "stat3val",
+                      "fill": "#3B82F6",
+                      "content": "18:24",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "tQyaI",
+                      "name": "stat3label",
+                      "fill": "#64748B",
+                      "content": "Time Spent",
+                      "fontFamily": "Inter",
+                      "fontSize": 12
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "3Chjz",
+                  "name": "stat4",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "ZJgkF",
+                      "name": "stat4val",
+                      "fill": "#8B5CF6",
+                      "content": "Top 15%",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "d3jp0",
+                      "name": "stat4label",
+                      "fill": "#64748B",
+                      "content": "Percentile",
+                      "fontFamily": "Inter",
+                      "fontSize": 12
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "IEXlS",
+          "name": "sectionTitle",
+          "fill": "#0F172A",
+          "content": "Question Analysis",
+          "fontFamily": "Inter",
+          "fontSize": 20,
+          "fontWeight": "700"
+        },
+        {
+          "type": "frame",
+          "id": "OJyac",
+          "name": "qList",
+          "width": 800,
+          "layout": "vertical",
+          "gap": 12,
+          "children": [
+            {
+              "type": "frame",
+              "id": "ucZmY",
+              "name": "q1correct",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 12,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#10B981"
+              },
+              "layout": "vertical",
+              "gap": 12,
+              "padding": 20,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "cuzL2",
+                  "name": "q1header",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "7Nvbn",
+                      "name": "q1left",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "wVTq1",
+                          "name": "q1num",
+                          "fill": "#10B981",
+                          "content": "Q1",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "CeUbq",
+                          "name": "q1text",
+                          "fill": "#334155",
+                          "content": "What is JSX in React?",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "J7ExO",
+                      "name": "q1badge",
+                      "fill": "#DCFCE7",
+                      "cornerRadius": 9999,
+                      "padding": [
+                        4,
+                        12
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "yecgG",
+                          "name": "q1badgeT",
+                          "fill": "#16A34A",
+                          "content": "Correct",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Uw0Xj",
+                  "name": "q1answer",
+                  "width": "fill_container",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "JTuMT",
+                      "name": "q1aIcon",
+                      "width": 0,
+                      "height": 0,
+                      "iconFontName": "check-circle",
+                      "iconFontFamily": "lucide",
+                      "fill": "#10B981"
+                    },
+                    {
+                      "type": "text",
+                      "id": "cU3VL",
+                      "name": "q1aText",
+                      "fill": "#334155",
+                      "content": "Your answer: A syntax extension for JavaScript",
+                      "fontFamily": "Inter",
+                      "fontSize": 13
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "zZnBq",
+              "name": "q2wrong",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 12,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#EF4444"
+              },
+              "layout": "vertical",
+              "gap": 12,
+              "padding": 20,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "koe1j",
+                  "name": "q2header",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "Z7os3",
+                      "name": "q2left",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "3t9Au",
+                          "name": "q2num",
+                          "fill": "#EF4444",
+                          "content": "Q5",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "bXZY8",
+                          "name": "q2text",
+                          "fill": "#334155",
+                          "content": "What is the primary purpose of useEffect?",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "M08F7",
+                      "name": "q2badge",
+                      "fill": "#FEE2E2",
+                      "cornerRadius": 9999,
+                      "padding": [
+                        4,
+                        12
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "1xsKh",
+                          "name": "q2badgeT",
+                          "fill": "#DC2626",
+                          "content": "Incorrect",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "H2US6",
+                  "name": "q2yourAns",
+                  "width": "fill_container",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "vzNb3",
+                      "name": "q2yIcon",
+                      "width": 0,
+                      "height": 0,
+                      "iconFontName": "x-circle",
+                      "iconFontFamily": "lucide",
+                      "fill": "#EF4444"
+                    },
+                    {
+                      "type": "text",
+                      "id": "FUKRA",
+                      "name": "q2yText",
+                      "fill": "#EF4444",
+                      "content": "Your answer: To manage component state directly",
+                      "fontFamily": "Inter",
+                      "fontSize": 13
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "TJzl3",
+                  "name": "q2correctAns",
+                  "width": "fill_container",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "sq9cB",
+                      "name": "q2cIcon",
+                      "width": 0,
+                      "height": 0,
+                      "iconFontName": "circle-check",
+                      "iconFontFamily": "lucide",
+                      "fill": "#10B981"
+                    },
+                    {
+                      "type": "text",
+                      "id": "cICsA",
+                      "name": "q2cText",
+                      "fill": "#10B981",
+                      "content": "Correct answer: To perform side effects after rendering",
+                      "fontFamily": "Inter",
+                      "fontSize": 13
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "0Lsea",
+              "name": "q3correct",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 12,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#10B981"
+              },
+              "layout": "vertical",
+              "gap": 12,
+              "padding": 20,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "9goPU",
+                  "name": "q3header",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "tMJiw",
+                      "name": "q3left",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "ysbqV",
+                          "name": "q3num",
+                          "fill": "#10B981",
+                          "content": "Q2",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "kLMTj",
+                          "name": "q3text",
+                          "fill": "#334155",
+                          "content": "How does virtual DOM improve performance?",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "aYNxE",
+                      "name": "q3badge",
+                      "fill": "#DCFCE7",
+                      "cornerRadius": 9999,
+                      "padding": [
+                        4,
+                        12
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "43RHu",
+                          "name": "q3badgeT",
+                          "fill": "#16A34A",
+                          "content": "Correct",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "LN0ZQ",
+                  "name": "q3answer",
+                  "width": "fill_container",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "PJdnh",
+                      "name": "q3aIcon",
+                      "width": 0,
+                      "height": 0,
+                      "iconFontName": "circle-check",
+                      "iconFontFamily": "lucide",
+                      "fill": "#10B981"
+                    },
+                    {
+                      "type": "text",
+                      "id": "RIOmU",
+                      "name": "q3aText",
+                      "fill": "#334155",
+                      "content": "Your answer: By batching DOM updates and diffing",
+                      "fontFamily": "Inter",
+                      "fontSize": 13
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "IJwZ9",
+              "name": "moreText",
+              "fill": "#3B82F6",
+              "content": "Showing 3 of 15 questions. Click to expand all.",
+              "fontFamily": "Inter",
+              "fontSize": 13
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "51ule",
+          "name": "actionBar",
+          "width": 800,
+          "gap": 16,
+          "padding": [
+            16,
+            0
+          ],
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "KYDtH",
+              "name": "retryBtn",
+              "width": 160,
+              "height": 44,
+              "cornerRadius": 8,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#3B82F6"
+              },
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "wYtnT",
+                  "name": "retryText",
+                  "fill": "#3B82F6",
+                  "content": "Retry Quiz",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "0VX2y",
+              "name": "reviewBtn",
+              "width": 180,
+              "height": 44,
+              "fill": "#3B82F6",
+              "cornerRadius": 8,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "NPPcs",
+                  "name": "reviewText",
+                  "fill": "#FFFFFF",
+                  "content": "Review Answers",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "lXd7v",
+              "name": "backBtn",
+              "width": 160,
+              "height": 44,
+              "cornerRadius": 8,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#E2E8F0"
+              },
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "mqfSb",
+                  "name": "backBtnText",
+                  "fill": "#334155",
+                  "content": "Back to Course",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

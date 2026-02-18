@@ -1,0 +1,1060 @@
+{
+  "version": "2.8",
+  "children": [
+    {
+      "type": "frame",
+      "id": "uI3eK",
+      "x": 0,
+      "y": 0,
+      "name": "Search Results Page",
+      "width": 1280,
+      "fill": "#F8FAFC",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "bMfdN",
+          "name": "Search Header",
+          "width": "fill_container",
+          "fill": "#FFFFFF",
+          "stroke": {
+            "align": "inside",
+            "thickness": {
+              "bottom": 1
+            },
+            "fill": "#E2E8F0"
+          },
+          "layout": "vertical",
+          "gap": 12,
+          "padding": [
+            24,
+            32
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "xenuo",
+              "name": "Search Input",
+              "width": 600,
+              "height": 48,
+              "fill": "#FFFFFF",
+              "cornerRadius": 8,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#E2E8F0"
+              },
+              "gap": 10,
+              "padding": [
+                0,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "kEX18",
+                  "name": "searchIcon",
+                  "width": 20,
+                  "height": 20,
+                  "iconFontName": "search",
+                  "iconFontFamily": "lucide",
+                  "fill": "#94A3B8"
+                },
+                {
+                  "type": "text",
+                  "id": "1chaT",
+                  "name": "searchText",
+                  "fill": "#1E293B",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "react hooks",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "2mGLR",
+              "name": "resultsCount",
+              "fill": "#64748B",
+              "content": "42 results for 'react hooks'",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "XI5Wm",
+          "name": "Category Tabs",
+          "width": "fill_container",
+          "fill": "#FFFFFF",
+          "stroke": {
+            "align": "inside",
+            "thickness": {
+              "bottom": 1
+            },
+            "fill": "#E2E8F0"
+          },
+          "padding": [
+            0,
+            32
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "Gl2Hd",
+              "name": "catAll",
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "bottom": 2
+                },
+                "fill": "#3B82F6"
+              },
+              "padding": [
+                12,
+                16
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "hHya8",
+                  "name": "catAllText",
+                  "fill": "#3B82F6",
+                  "content": "All (42)",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Rnyl9",
+              "name": "catCourses",
+              "padding": [
+                12,
+                16
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "1QzcK",
+                  "name": "catCoursesText",
+                  "fill": "#64748B",
+                  "content": "Courses (5)",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "5XyKF",
+              "name": "catMaterials",
+              "padding": [
+                12,
+                16
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "IdSZR",
+                  "name": "catMaterialsText",
+                  "fill": "#64748B",
+                  "content": "Materials (18)",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "uiMCo",
+              "name": "catQA",
+              "padding": [
+                12,
+                16
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "L0vhw",
+                  "name": "catQAText",
+                  "fill": "#64748B",
+                  "content": "Q&A (12)",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "oURaw",
+              "name": "catMemos",
+              "padding": [
+                12,
+                16
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "TbhcM",
+                  "name": "catMemosText",
+                  "fill": "#64748B",
+                  "content": "Memos (7)",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "APK32",
+          "name": "Filter Bar",
+          "width": "fill_container",
+          "gap": 12,
+          "padding": [
+            12,
+            32
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "JeVKI",
+              "name": "Sort Dropdown",
+              "height": 32,
+              "fill": "#FFFFFF",
+              "cornerRadius": 6,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#E2E8F0"
+              },
+              "gap": 6,
+              "padding": [
+                0,
+                12
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "7AMLt",
+                  "name": "sortText",
+                  "fill": "#1E293B",
+                  "content": "Most Relevant",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "64DFK",
+                  "name": "sortChevron",
+                  "width": 14,
+                  "height": 14,
+                  "iconFontName": "chevron-down",
+                  "iconFontFamily": "lucide",
+                  "fill": "#64748B"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "HH7WV",
+              "name": "Filter Chip",
+              "height": 32,
+              "fill": "#EFF6FF",
+              "cornerRadius": 9999,
+              "gap": 6,
+              "padding": [
+                0,
+                12
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Vgc7B",
+                  "name": "filterChipText",
+                  "fill": "#3B82F6",
+                  "content": "This Course",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "UpH9O",
+                  "name": "filterChipX",
+                  "width": 14,
+                  "height": 14,
+                  "iconFontName": "x",
+                  "iconFontFamily": "lucide",
+                  "fill": "#3B82F6"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "kq1rU",
+          "name": "Results Area",
+          "width": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            0,
+            32
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "wqDcF",
+              "name": "Results List",
+              "width": 800,
+              "layout": "vertical",
+              "gap": 16,
+              "padding": [
+                16,
+                0
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "9KrtK",
+                  "name": "Course Result Card",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E2E8F0"
+                  },
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "ailPg",
+                      "name": "courseBadge",
+                      "fill": "#DBEAFE",
+                      "cornerRadius": 9999,
+                      "padding": [
+                        2,
+                        8
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "VYwAs",
+                          "name": "courseBadgeText",
+                          "fill": "#2563EB",
+                          "content": "Course",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "QKszZ",
+                      "name": "courseTitle",
+                      "fill": "#1E293B",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "React Fundamentals",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "F04hi",
+                      "name": "courseDesc",
+                      "fill": "#64748B",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "A comprehensive course covering React hooks, state management, and component patterns for modern web applications.",
+                      "lineHeight": 1.4,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "qw4JT",
+                      "name": "Meta",
+                      "width": "fill_container",
+                      "gap": 16,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "PpAHC",
+                          "name": "courseAuthor",
+                          "fill": "#64748B",
+                          "content": "Prof. Kim",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "0Jis1",
+                          "name": "courseSep1",
+                          "fill": "#94A3B8",
+                          "content": ".",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "QW6pc",
+                          "name": "courseStudents",
+                          "fill": "#64748B",
+                          "content": "32 students",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "2WhSb",
+                          "name": "courseSep2",
+                          "fill": "#94A3B8",
+                          "content": ".",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Fb4bV",
+                          "name": "courseRating",
+                          "fill": "#64748B",
+                          "content": "4.8 rating",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ounWT",
+                  "name": "Material Result Card",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E2E8F0"
+                  },
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "OlSdj",
+                      "name": "matBadge",
+                      "fill": "#DCFCE7",
+                      "cornerRadius": 9999,
+                      "padding": [
+                        2,
+                        8
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "41F5G",
+                          "name": "matBadgeText",
+                          "fill": "#16A34A",
+                          "content": "Material",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "2d0o7",
+                      "name": "matTitle",
+                      "fill": "#1E293B",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Understanding React Hooks",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "2TmVo",
+                      "name": "matDesc",
+                      "fill": "#64748B",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Learn how React hooks simplify state management and side effects in functional components. This chapter covers useState, useEffect, useContext, and custom hooks.",
+                      "lineHeight": 1.4,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "1tb6Q",
+                      "name": "Meta",
+                      "width": "fill_container",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "R9s5V",
+                          "name": "matBreadcrumb",
+                          "fill": "#64748B",
+                          "content": "React Fundamentals > Chapter 5",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "dDoKz",
+                          "name": "matSep",
+                          "fill": "#94A3B8",
+                          "content": ".",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "EzTL4",
+                          "name": "matDate",
+                          "fill": "#94A3B8",
+                          "content": "Updated 3 days ago",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "4aEDv",
+                  "name": "QA Result Card",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E2E8F0"
+                  },
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "JnF3B",
+                      "name": "qaBadge",
+                      "fill": "#E0E7FF",
+                      "cornerRadius": 9999,
+                      "padding": [
+                        2,
+                        8
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "3JIXA",
+                          "name": "qaBadgeText",
+                          "fill": "#4F46E5",
+                          "content": "Q&A",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "APp4i",
+                      "name": "qaTitle",
+                      "fill": "#1E293B",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "How do React hooks handle state updates?",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "j2HLm",
+                      "name": "qaPreview",
+                      "fill": "#64748B",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "When you call setState, React schedules a re-render with the new state value. The update is batched and applied asynchronously for performance optimization...",
+                      "lineHeight": 1.4,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "rXMzG",
+                      "name": "Meta",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "sfIHP",
+                          "name": "qaAnswers",
+                          "fill": "#64748B",
+                          "content": "3 answers",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Opc5e",
+                          "name": "resolvedBadge",
+                          "fill": "#DCFCE7",
+                          "cornerRadius": 9999,
+                          "padding": [
+                            2,
+                            8
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "YokRE",
+                              "name": "resolvedText",
+                              "fill": "#16A34A",
+                              "content": "Resolved",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "29mvr",
+                          "name": "qaDate",
+                          "fill": "#94A3B8",
+                          "content": "1 week ago",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "R931s",
+                  "name": "Memo Result Card",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E2E8F0"
+                  },
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "SND7Z",
+                      "name": "memoTop",
+                      "width": "fill_container",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "tfpPa",
+                          "name": "memoBadge",
+                          "width": 60,
+                          "fill": "#FEF3C7",
+                          "cornerRadius": 9999,
+                          "padding": [
+                            4,
+                            10
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "Yk3SU",
+                              "name": "memoBadgeText",
+                              "fill": "#92400E",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Memo",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "avwYj",
+                      "name": "memoTitle",
+                      "fill": "#1E293B",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "React Hooks Study Notes",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "160RB",
+                      "name": "memoPreview",
+                      "fill": "#64748B",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Key takeaways from today's lecture on React Hooks: useState for local state management, useEffect for side effects and lifecycle...",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "5JgIa",
+                      "name": "memoMeta",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "BifAx",
+                          "name": "memoIcon",
+                          "width": 0,
+                          "height": 0,
+                          "iconFontFamily": "lucide",
+                          "fill": "#92400E"
+                        },
+                        {
+                          "type": "text",
+                          "id": "3XwrE",
+                          "name": "memoLabel",
+                          "fill": "#64748B",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Personal memo",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "6ajZL",
+                          "name": "memoDot",
+                          "fill": "#94A3B8",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": ".",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "l2wX5",
+                          "name": "memoDate",
+                          "fill": "#94A3B8",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Modified 2 days ago",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "nvCGW",
+              "name": "Pagination",
+              "width": "fill_container",
+              "gap": 4,
+              "padding": [
+                24,
+                0,
+                32,
+                0
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "eJq7a",
+                  "name": "Previous Button",
+                  "width": 110,
+                  "height": 36,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 8,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E2E8F0"
+                  },
+                  "gap": 6,
+                  "padding": [
+                    8,
+                    14
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "aCVvk",
+                      "name": "prevIcon",
+                      "width": 0,
+                      "height": 0,
+                      "iconFontFamily": "lucide",
+                      "fill": "#64748B"
+                    },
+                    {
+                      "type": "text",
+                      "id": "hm0RW",
+                      "name": "prevLabel",
+                      "fill": "#64748B",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Previous",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "3wWAP",
+                  "name": "Page 1",
+                  "width": 36,
+                  "height": 36,
+                  "fill": "#3B82F6",
+                  "cornerRadius": 8,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "ppVfo",
+                      "name": "p1t",
+                      "fill": "#FFFFFF",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "1",
+                      "textAlign": "center",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "jqqDw",
+                  "name": "Page 2",
+                  "width": 36,
+                  "height": 36,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 8,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "1w4CT",
+                      "name": "p2t",
+                      "fill": "#64748B",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "2",
+                      "textAlign": "center",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "uNwDt",
+                  "name": "Page 3",
+                  "width": 36,
+                  "height": 36,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 8,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "mnpaC",
+                      "name": "p3t",
+                      "fill": "#64748B",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "3",
+                      "textAlign": "center",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "en8V8",
+                  "name": "Ellipsis",
+                  "width": 36,
+                  "height": 36,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "KDOVG",
+                      "name": "ellt",
+                      "fill": "#94A3B8",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "...",
+                      "textAlign": "center",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "4PnJX",
+                  "name": "Page 5",
+                  "width": 36,
+                  "height": 36,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 8,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "8aRTb",
+                      "name": "p5t",
+                      "fill": "#64748B",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "5",
+                      "textAlign": "center",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "JqNxP",
+                  "name": "Next Button",
+                  "width": 80,
+                  "height": 36,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 8,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E2E8F0"
+                  },
+                  "gap": 6,
+                  "padding": [
+                    8,
+                    14
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "qe3Fd",
+                      "name": "nextLabel",
+                      "fill": "#64748B",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Next",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "icon_font",
+                      "id": "MHKSt",
+                      "name": "nextIcon",
+                      "width": 0,
+                      "height": 0,
+                      "iconFontFamily": "lucide",
+                      "fill": "#64748B"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

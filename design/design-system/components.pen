@@ -1,0 +1,134 @@
+{
+  "version": "2.8",
+  "children": [],
+  "variables": {
+    "comp-radius-sm": {
+      "type": "number",
+      "value": 4
+    },
+    "comp-radius-md": {
+      "type": "number",
+      "value": 6
+    },
+    "comp-radius-lg": {
+      "type": "number",
+      "value": 8
+    },
+    "comp-radius-xl": {
+      "type": "number",
+      "value": 12
+    },
+    "comp-radius-full": {
+      "type": "number",
+      "value": 9999
+    },
+    "shadow-sm": {
+      "type": "string",
+      "value": "0 1px 2px 0 rgba(0,0,0,0.05)"
+    },
+    "shadow-md": {
+      "type": "string",
+      "value": "0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1)"
+    },
+    "shadow-lg": {
+      "type": "string",
+      "value": "0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1)"
+    },
+    "shadow-xl": {
+      "type": "string",
+      "value": "0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1)"
+    },
+    "btn-height-sm": {
+      "type": "number",
+      "value": 32
+    },
+    "btn-height-md": {
+      "type": "number",
+      "value": 36
+    },
+    "btn-height-lg": {
+      "type": "number",
+      "value": 40
+    },
+    "btn-height-xl": {
+      "type": "number",
+      "value": 44
+    },
+    "btn-padding-x-sm": {
+      "type": "number",
+      "value": 12
+    },
+    "btn-padding-x-md": {
+      "type": "number",
+      "value": 16
+    },
+    "btn-padding-x-lg": {
+      "type": "number",
+      "value": 24
+    },
+    "input-height": {
+      "type": "number",
+      "value": 40
+    },
+    "input-padding-x": {
+      "type": "number",
+      "value": 12
+    },
+    "card-padding": {
+      "type": "number",
+      "value": 24
+    },
+    "card-radius": {
+      "type": "number",
+      "value": 12
+    },
+    "badge-height-sm": {
+      "type": "number",
+      "value": 20
+    },
+    "badge-height-md": {
+      "type": "number",
+      "value": 24
+    },
+    "badge-padding-x": {
+      "type": "number",
+      "value": 8
+    },
+    "avatar-xs": {
+      "type": "number",
+      "value": 24
+    },
+    "avatar-sm": {
+      "type": "number",
+      "value": 32
+    },
+    "avatar-md": {
+      "type": "number",
+      "value": 40
+    },
+    "avatar-lg": {
+      "type": "number",
+      "value": 48
+    },
+    "avatar-xl": {
+      "type": "number",
+      "value": 64
+    },
+    "dialog-sm": {
+      "type": "number",
+      "value": 384
+    },
+    "dialog-md": {
+      "type": "number",
+      "value": 512
+    },
+    "dialog-lg": {
+      "type": "number",
+      "value": 640
+    },
+    "toast-width": {
+      "type": "number",
+      "value": 356
+    }
+  }
+}

@@ -1,0 +1,964 @@
+{
+  "version": "0.1",
+  "variables": {
+    "font-sans": { "type": "string", "value": "Inter, Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif" },
+    "font-mono": { "type": "string", "value": "Fira Code, JetBrains Mono, Menlo, Consolas, monospace" },
+    "font-display": { "type": "string", "value": "Inter, Pretendard, sans-serif" },
+
+    "text-display-xl-size": { "type": "number", "value": 48 },
+    "text-display-xl-line": { "type": "number", "value": 56 },
+    "text-display-xl-tracking": { "type": "number", "value": -1.2 },
+
+    "text-display-size": { "type": "number", "value": 36 },
+    "text-display-line": { "type": "number", "value": 44 },
+    "text-display-tracking": { "type": "number", "value": -0.9 },
+
+    "text-h1-size": { "type": "number", "value": 30 },
+    "text-h1-line": { "type": "number", "value": 38 },
+    "text-h1-tracking": { "type": "number", "value": -0.75 },
+
+    "text-h2-size": { "type": "number", "value": 24 },
+    "text-h2-line": { "type": "number", "value": 32 },
+    "text-h2-tracking": { "type": "number", "value": -0.6 },
+
+    "text-h3-size": { "type": "number", "value": 20 },
+    "text-h3-line": { "type": "number", "value": 28 },
+    "text-h3-tracking": { "type": "number", "value": -0.5 },
+
+    "text-h4-size": { "type": "number", "value": 18 },
+    "text-h4-line": { "type": "number", "value": 26 },
+    "text-h4-tracking": { "type": "number", "value": -0.3 },
+
+    "text-body-lg-size": { "type": "number", "value": 18 },
+    "text-body-lg-line": { "type": "number", "value": 28 },
+
+    "text-body-size": { "type": "number", "value": 16 },
+    "text-body-line": { "type": "number", "value": 24 },
+
+    "text-body-sm-size": { "type": "number", "value": 14 },
+    "text-body-sm-line": { "type": "number", "value": 20 },
+
+    "text-caption-size": { "type": "number", "value": 12 },
+    "text-caption-line": { "type": "number", "value": 16 },
+
+    "text-overline-size": { "type": "number", "value": 11 },
+    "text-overline-line": { "type": "number", "value": 16 },
+    "text-overline-tracking": { "type": "number", "value": 0.8 },
+
+    "text-code-size": { "type": "number", "value": 14 },
+    "text-code-line": { "type": "number", "value": 22 },
+
+    "font-weight-regular": { "type": "number", "value": 400 },
+    "font-weight-medium": { "type": "number", "value": 500 },
+    "font-weight-semibold": { "type": "number", "value": 600 },
+    "font-weight-bold": { "type": "number", "value": 700 },
+    "font-weight-extrabold": { "type": "number", "value": 800 }
+  },
+  "themes": {
+    "mode": ["light", "dark"]
+  },
+  "children": [
+    {
+      "id": "typography-canvas",
+      "type": "frame",
+      "name": "Typography Scale",
+      "width": 1200,
+      "height": 2400,
+      "fill": "#FFFFFF",
+      "layout": "vertical",
+      "padding": 48,
+      "gap": 40,
+      "children": [
+        {
+          "id": "typo-header",
+          "type": "frame",
+          "name": "Header",
+          "width": "fill_container",
+          "height": "fit_content(80)",
+          "layout": "vertical",
+          "gap": 8,
+          "children": [
+            {
+              "id": "typo-title",
+              "type": "text",
+              "textGrowth": "auto-width",
+              "content": "Typography Scale",
+              "fontSize": 32,
+              "fontWeight": "700",
+              "fontFamily": "Inter",
+              "fill": "#0F172A",
+              "letterSpacing": -0.8
+            },
+            {
+              "id": "typo-subtitle",
+              "type": "text",
+              "textGrowth": "auto-width",
+              "content": "Inter (English) + Pretendard (Korean) + Fira Code (Code)",
+              "fontSize": 16,
+              "fontWeight": "400",
+              "fontFamily": "Inter",
+              "fill": "#64748B"
+            }
+          ]
+        },
+        {
+          "id": "typo-divider-top",
+          "type": "rectangle",
+          "name": "Divider",
+          "width": "fill_container",
+          "height": 1,
+          "fill": "#E2E8F0"
+        },
+
+        {
+          "id": "font-families-section",
+          "type": "frame",
+          "name": "Font Families",
+          "width": "fill_container",
+          "height": "fit_content(200)",
+          "layout": "vertical",
+          "gap": 20,
+          "children": [
+            {
+              "id": "font-families-label",
+              "type": "text",
+              "textGrowth": "auto-width",
+              "content": "FONT FAMILIES",
+              "fontSize": 11,
+              "fontWeight": "600",
+              "fontFamily": "Inter",
+              "fill": "#94A3B8",
+              "letterSpacing": 0.8
+            },
+            {
+              "id": "font-family-row",
+              "type": "frame",
+              "name": "Font Family Cards",
+              "width": "fill_container",
+              "height": "fit_content(120)",
+              "layout": "horizontal",
+              "gap": 16,
+              "children": [
+                {
+                  "id": "font-sans-card",
+                  "type": "frame",
+                  "name": "Sans Card",
+                  "width": "fill_container",
+                  "height": "fit_content(120)",
+                  "fill": "#F8FAFC",
+                  "cornerRadius": [8, 8, 8, 8],
+                  "padding": 20,
+                  "layout": "vertical",
+                  "gap": 8,
+                  "stroke": "#E2E8F0",
+                  "strokeThickness": 1,
+                  "children": [
+                    {
+                      "id": "sans-label",
+                      "type": "text",
+                      "textGrowth": "auto-width",
+                      "content": "Sans  /  Primary",
+                      "fontSize": 11,
+                      "fontWeight": "600",
+                      "fontFamily": "Inter",
+                      "fill": "#3B82F6",
+                      "letterSpacing": 0.5
+                    },
+                    {
+                      "id": "sans-sample-en",
+                      "type": "text",
+                      "textGrowth": "auto-width",
+                      "content": "Inter - The quick brown fox jumps",
+                      "fontSize": 20,
+                      "fontWeight": "400",
+                      "fontFamily": "Inter",
+                      "fill": "#0F172A"
+                    },
+                    {
+                      "id": "sans-sample-kr",
+                      "type": "text",
+                      "textGrowth": "auto-width",
+                      "content": "Pretendard - 빠른 갈색 여우가 뛰어넘다",
+                      "fontSize": 20,
+                      "fontWeight": "400",
+                      "fontFamily": "Pretendard",
+                      "fill": "#0F172A"
+                    },
+                    {
+                      "id": "sans-meta",
+                      "type": "text",
+                      "textGrowth": "auto-width",
+                      "content": "Weights: 400 Regular  |  500 Medium  |  600 Semibold  |  700 Bold  |  800 Extrabold",
+                      "fontSize": 12,
+                      "fontWeight": "400",
+                      "fontFamily": "Inter",
+                      "fill": "#94A3B8"
+                    }
+                  ]
+                },
+                {
+                  "id": "font-mono-card",
+                  "type": "frame",
+                  "name": "Mono Card",
+                  "width": "fill_container",
+                  "height": "fit_content(120)",
+                  "fill": "#F8FAFC",
+                  "cornerRadius": [8, 8, 8, 8],
+                  "padding": 20,
+                  "layout": "vertical",
+                  "gap": 8,
+                  "stroke": "#E2E8F0",
+                  "strokeThickness": 1,
+                  "children": [
+                    {
+                      "id": "mono-label",
+                      "type": "text",
+                      "textGrowth": "auto-width",
+                      "content": "Mono  /  Code",
+                      "fontSize": 11,
+                      "fontWeight": "600",
+                      "fontFamily": "Inter",
+                      "fill": "#10B981",
+                      "letterSpacing": 0.5
+                    },
+                    {
+                      "id": "mono-sample",
+                      "type": "text",
+                      "textGrowth": "auto-width",
+                      "content": "Fira Code - const fn = () => {}",
+                      "fontSize": 20,
+                      "fontWeight": "400",
+                      "fontFamily": "Fira Code",
+                      "fill": "#0F172A"
+                    },
+                    {
+                      "id": "mono-ligatures",
+                      "type": "text",
+                      "textGrowth": "auto-width",
+                      "content": "Ligatures: =>  !==  >=  <=  ->  </>",
+                      "fontSize": 16,
+                      "fontWeight": "400",
+                      "fontFamily": "Fira Code",
+                      "fill": "#475569"
+                    },
+                    {
+                      "id": "mono-meta",
+                      "type": "text",
+                      "textGrowth": "auto-width",
+                      "content": "Weights: 400 Regular  |  500 Medium  |  700 Bold",
+                      "fontSize": 12,
+                      "fontWeight": "400",
+                      "fontFamily": "Inter",
+                      "fill": "#94A3B8"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+
+        {
+          "id": "type-scale-section",
+          "type": "frame",
+          "name": "Type Scale",
+          "width": "fill_container",
+          "height": "fit_content(1600)",
+          "layout": "vertical",
+          "gap": 16,
+          "children": [
+            {
+              "id": "type-scale-label",
+              "type": "text",
+              "textGrowth": "auto-width",
+              "content": "TYPE SCALE",
+              "fontSize": 11,
+              "fontWeight": "600",
+              "fontFamily": "Inter",
+              "fill": "#94A3B8",
+              "letterSpacing": 0.8
+            },
+
+            {
+              "id": "scale-display-xl",
+              "type": "frame",
+              "name": "Display XL",
+              "width": "fill_container",
+              "height": "fit_content(100)",
+              "layout": "vertical",
+              "gap": 4,
+              "padding": [16, 0, 16, 0],
+              "children": [
+                {
+                  "id": "display-xl-meta",
+                  "type": "text",
+                  "textGrowth": "auto-width",
+                  "content": "Display XL  /  48px  /  56px line  /  -1.2 tracking  /  Extrabold",
+                  "fontSize": 11,
+                  "fontWeight": "500",
+                  "fontFamily": "Inter",
+                  "fill": "#94A3B8"
+                },
+                {
+                  "id": "display-xl-sample",
+                  "type": "text",
+                  "textGrowth": "auto-width",
+                  "content": "Build Better Together",
+                  "fontSize": 48,
+                  "fontWeight": "800",
+                  "fontFamily": "Inter",
+                  "fill": "#0F172A",
+                  "letterSpacing": -1.2
+                },
+                {
+                  "id": "display-xl-sample-kr",
+                  "type": "text",
+                  "textGrowth": "auto-width",
+                  "content": "함께 더 나은 것을 만들다",
+                  "fontSize": 48,
+                  "fontWeight": "800",
+                  "fontFamily": "Pretendard",
+                  "fill": "#334155",
+                  "letterSpacing": -1.2
+                }
+              ]
+            },
+
+            {
+              "id": "scale-divider-1",
+              "type": "rectangle",
+              "width": "fill_container",
+              "height": 1,
+              "fill": "#F1F5F9"
+            },
+
+            {
+              "id": "scale-display",
+              "type": "frame",
+              "name": "Display",
+              "width": "fill_container",
+              "height": "fit_content(80)",
+              "layout": "vertical",
+              "gap": 4,
+              "padding": [16, 0, 16, 0],
+              "children": [
+                {
+                  "id": "display-meta",
+                  "type": "text",
+                  "textGrowth": "auto-width",
+                  "content": "Display  /  36px  /  44px line  /  -0.9 tracking  /  Bold",
+                  "fontSize": 11,
+                  "fontWeight": "500",
+                  "fontFamily": "Inter",
+                  "fill": "#94A3B8"
+                },
+                {
+                  "id": "display-sample",
+                  "type": "text",
+                  "textGrowth": "auto-width",
+                  "content": "Learning Platform for Teams",
+                  "fontSize": 36,
+                  "fontWeight": "700",
+                  "fontFamily": "Inter",
+                  "fill": "#0F172A",
+                  "letterSpacing": -0.9
+                }
+              ]
+            },
+
+            {
+              "id": "scale-divider-2",
+              "type": "rectangle",
+              "width": "fill_container",
+              "height": 1,
+              "fill": "#F1F5F9"
+            },
+
+            {
+              "id": "scale-h1",
+              "type": "frame",
+              "name": "Heading 1",
+              "width": "fill_container",
+              "height": "fit_content(70)",
+              "layout": "vertical",
+              "gap": 4,
+              "padding": [12, 0, 12, 0],
+              "children": [
+                {
+                  "id": "h1-meta",
+                  "type": "text",
+                  "textGrowth": "auto-width",
+                  "content": "H1  /  30px  /  38px line  /  -0.75 tracking  /  Bold",
+                  "fontSize": 11,
+                  "fontWeight": "500",
+                  "fontFamily": "Inter",
+                  "fill": "#94A3B8"
+                },
+                {
+                  "id": "h1-sample",
+                  "type": "text",
+                  "textGrowth": "auto-width",
+                  "content": "Course Overview Dashboard",
+                  "fontSize": 30,
+                  "fontWeight": "700",
+                  "fontFamily": "Inter",
+                  "fill": "#0F172A",
+                  "letterSpacing": -0.75
+                }
+              ]
+            },
+
+            {
+              "id": "scale-divider-3",
+              "type": "rectangle",
+              "width": "fill_container",
+              "height": 1,
+              "fill": "#F1F5F9"
+            },
+
+            {
+              "id": "scale-h2",
+              "type": "frame",
+              "name": "Heading 2",
+              "width": "fill_container",
+              "height": "fit_content(60)",
+              "layout": "vertical",
+              "gap": 4,
+              "padding": [12, 0, 12, 0],
+              "children": [
+                {
+                  "id": "h2-meta",
+                  "type": "text",
+                  "textGrowth": "auto-width",
+                  "content": "H2  /  24px  /  32px line  /  -0.6 tracking  /  Semibold",
+                  "fontSize": 11,
+                  "fontWeight": "500",
+                  "fontFamily": "Inter",
+                  "fill": "#94A3B8"
+                },
+                {
+                  "id": "h2-sample",
+                  "type": "text",
+                  "textGrowth": "auto-width",
+                  "content": "Module Progress & Analytics",
+                  "fontSize": 24,
+                  "fontWeight": "600",
+                  "fontFamily": "Inter",
+                  "fill": "#0F172A",
+                  "letterSpacing": -0.6
+                }
+              ]
+            },
+
+            {
+              "id": "scale-divider-4",
+              "type": "rectangle",
+              "width": "fill_container",
+              "height": 1,
+              "fill": "#F1F5F9"
+            },
+
+            {
+              "id": "scale-h3",
+              "type": "frame",
+              "name": "Heading 3",
+              "width": "fill_container",
+              "height": "fit_content(56)",
+              "layout": "vertical",
+              "gap": 4,
+              "padding": [12, 0, 12, 0],
+              "children": [
+                {
+                  "id": "h3-meta",
+                  "type": "text",
+                  "textGrowth": "auto-width",
+                  "content": "H3  /  20px  /  28px line  /  -0.5 tracking  /  Semibold",
+                  "fontSize": 11,
+                  "fontWeight": "500",
+                  "fontFamily": "Inter",
+                  "fill": "#94A3B8"
+                },
+                {
+                  "id": "h3-sample",
+                  "type": "text",
+                  "textGrowth": "auto-width",
+                  "content": "Assignment Submission Details",
+                  "fontSize": 20,
+                  "fontWeight": "600",
+                  "fontFamily": "Inter",
+                  "fill": "#0F172A",
+                  "letterSpacing": -0.5
+                }
+              ]
+            },
+
+            {
+              "id": "scale-divider-5",
+              "type": "rectangle",
+              "width": "fill_container",
+              "height": 1,
+              "fill": "#F1F5F9"
+            },
+
+            {
+              "id": "scale-h4",
+              "type": "frame",
+              "name": "Heading 4",
+              "width": "fill_container",
+              "height": "fit_content(50)",
+              "layout": "vertical",
+              "gap": 4,
+              "padding": [12, 0, 12, 0],
+              "children": [
+                {
+                  "id": "h4-meta",
+                  "type": "text",
+                  "textGrowth": "auto-width",
+                  "content": "H4  /  18px  /  26px line  /  -0.3 tracking  /  Semibold",
+                  "fontSize": 11,
+                  "fontWeight": "500",
+                  "fontFamily": "Inter",
+                  "fill": "#94A3B8"
+                },
+                {
+                  "id": "h4-sample",
+                  "type": "text",
+                  "textGrowth": "auto-width",
+                  "content": "Team Member Activity",
+                  "fontSize": 18,
+                  "fontWeight": "600",
+                  "fontFamily": "Inter",
+                  "fill": "#0F172A",
+                  "letterSpacing": -0.3
+                }
+              ]
+            },
+
+            {
+              "id": "scale-divider-6",
+              "type": "rectangle",
+              "width": "fill_container",
+              "height": 1,
+              "fill": "#F1F5F9"
+            },
+
+            {
+              "id": "scale-body-lg",
+              "type": "frame",
+              "name": "Body Large",
+              "width": "fill_container",
+              "height": "fit_content(50)",
+              "layout": "vertical",
+              "gap": 4,
+              "padding": [12, 0, 12, 0],
+              "children": [
+                {
+                  "id": "body-lg-meta",
+                  "type": "text",
+                  "textGrowth": "auto-width",
+                  "content": "Body Large  /  18px  /  28px line  /  Regular",
+                  "fontSize": 11,
+                  "fontWeight": "500",
+                  "fontFamily": "Inter",
+                  "fill": "#94A3B8"
+                },
+                {
+                  "id": "body-lg-sample",
+                  "type": "text",
+                  "textGrowth": "auto-width",
+                  "content": "A comprehensive platform designed for collaborative learning and team development.",
+                  "fontSize": 18,
+                  "fontWeight": "400",
+                  "fontFamily": "Inter",
+                  "fill": "#334155"
+                }
+              ]
+            },
+
+            {
+              "id": "scale-divider-7",
+              "type": "rectangle",
+              "width": "fill_container",
+              "height": 1,
+              "fill": "#F1F5F9"
+            },
+
+            {
+              "id": "scale-body",
+              "type": "frame",
+              "name": "Body",
+              "width": "fill_container",
+              "height": "fit_content(50)",
+              "layout": "vertical",
+              "gap": 4,
+              "padding": [12, 0, 12, 0],
+              "children": [
+                {
+                  "id": "body-meta",
+                  "type": "text",
+                  "textGrowth": "auto-width",
+                  "content": "Body  /  16px  /  24px line  /  Regular  (Default)",
+                  "fontSize": 11,
+                  "fontWeight": "500",
+                  "fontFamily": "Inter",
+                  "fill": "#94A3B8"
+                },
+                {
+                  "id": "body-sample",
+                  "type": "text",
+                  "textGrowth": "auto-width",
+                  "content": "Create courses, track progress, and collaborate with your team members in real time.",
+                  "fontSize": 16,
+                  "fontWeight": "400",
+                  "fontFamily": "Inter",
+                  "fill": "#334155"
+                },
+                {
+                  "id": "body-sample-kr",
+                  "type": "text",
+                  "textGrowth": "auto-width",
+                  "content": "강좌를 만들고, 진행 상황을 추적하고, 팀원들과 실시간으로 협업하세요.",
+                  "fontSize": 16,
+                  "fontWeight": "400",
+                  "fontFamily": "Pretendard",
+                  "fill": "#475569"
+                }
+              ]
+            },
+
+            {
+              "id": "scale-divider-8",
+              "type": "rectangle",
+              "width": "fill_container",
+              "height": 1,
+              "fill": "#F1F5F9"
+            },
+
+            {
+              "id": "scale-body-sm",
+              "type": "frame",
+              "name": "Body Small",
+              "width": "fill_container",
+              "height": "fit_content(44)",
+              "layout": "vertical",
+              "gap": 4,
+              "padding": [12, 0, 12, 0],
+              "children": [
+                {
+                  "id": "body-sm-meta",
+                  "type": "text",
+                  "textGrowth": "auto-width",
+                  "content": "Body Small  /  14px  /  20px line  /  Regular",
+                  "fontSize": 11,
+                  "fontWeight": "500",
+                  "fontFamily": "Inter",
+                  "fill": "#94A3B8"
+                },
+                {
+                  "id": "body-sm-sample",
+                  "type": "text",
+                  "textGrowth": "auto-width",
+                  "content": "Last updated 3 hours ago by team admin. View change history for more details.",
+                  "fontSize": 14,
+                  "fontWeight": "400",
+                  "fontFamily": "Inter",
+                  "fill": "#475569"
+                }
+              ]
+            },
+
+            {
+              "id": "scale-divider-9",
+              "type": "rectangle",
+              "width": "fill_container",
+              "height": 1,
+              "fill": "#F1F5F9"
+            },
+
+            {
+              "id": "scale-caption",
+              "type": "frame",
+              "name": "Caption",
+              "width": "fill_container",
+              "height": "fit_content(40)",
+              "layout": "vertical",
+              "gap": 4,
+              "padding": [12, 0, 12, 0],
+              "children": [
+                {
+                  "id": "caption-meta",
+                  "type": "text",
+                  "textGrowth": "auto-width",
+                  "content": "Caption  /  12px  /  16px line  /  Regular & Medium",
+                  "fontSize": 11,
+                  "fontWeight": "500",
+                  "fontFamily": "Inter",
+                  "fill": "#94A3B8"
+                },
+                {
+                  "id": "caption-sample",
+                  "type": "text",
+                  "textGrowth": "auto-width",
+                  "content": "12 students enrolled  |  4 assignments pending  |  Due: Feb 28, 2026",
+                  "fontSize": 12,
+                  "fontWeight": "400",
+                  "fontFamily": "Inter",
+                  "fill": "#64748B"
+                }
+              ]
+            },
+
+            {
+              "id": "scale-divider-10",
+              "type": "rectangle",
+              "width": "fill_container",
+              "height": 1,
+              "fill": "#F1F5F9"
+            },
+
+            {
+              "id": "scale-overline",
+              "type": "frame",
+              "name": "Overline",
+              "width": "fill_container",
+              "height": "fit_content(40)",
+              "layout": "vertical",
+              "gap": 4,
+              "padding": [12, 0, 12, 0],
+              "children": [
+                {
+                  "id": "overline-meta",
+                  "type": "text",
+                  "textGrowth": "auto-width",
+                  "content": "Overline  /  11px  /  16px line  /  +0.8 tracking  /  Semibold  /  Uppercase",
+                  "fontSize": 11,
+                  "fontWeight": "500",
+                  "fontFamily": "Inter",
+                  "fill": "#94A3B8"
+                },
+                {
+                  "id": "overline-sample",
+                  "type": "text",
+                  "textGrowth": "auto-width",
+                  "content": "COURSE DETAILS  |  TEAM OVERVIEW  |  RECENT ACTIVITY",
+                  "fontSize": 11,
+                  "fontWeight": "600",
+                  "fontFamily": "Inter",
+                  "fill": "#64748B",
+                  "letterSpacing": 0.8
+                }
+              ]
+            },
+
+            {
+              "id": "scale-divider-11",
+              "type": "rectangle",
+              "width": "fill_container",
+              "height": 1,
+              "fill": "#F1F5F9"
+            },
+
+            {
+              "id": "scale-code",
+              "type": "frame",
+              "name": "Code",
+              "width": "fill_container",
+              "height": "fit_content(100)",
+              "layout": "vertical",
+              "gap": 8,
+              "padding": [12, 0, 12, 0],
+              "children": [
+                {
+                  "id": "code-meta",
+                  "type": "text",
+                  "textGrowth": "auto-width",
+                  "content": "Code  /  14px  /  22px line  /  Fira Code  /  Regular",
+                  "fontSize": 11,
+                  "fontWeight": "500",
+                  "fontFamily": "Inter",
+                  "fill": "#94A3B8"
+                },
+                {
+                  "id": "code-block",
+                  "type": "frame",
+                  "name": "Code Block",
+                  "width": "fill_container",
+                  "height": "fit_content(80)",
+                  "fill": "#1E293B",
+                  "cornerRadius": [8, 8, 8, 8],
+                  "padding": 16,
+                  "layout": "vertical",
+                  "gap": 2,
+                  "children": [
+                    {
+                      "id": "code-line-1",
+                      "type": "text",
+                      "textGrowth": "auto-width",
+                      "content": "const course = await getCourse(id);",
+                      "fontSize": 14,
+                      "fontWeight": "400",
+                      "fontFamily": "Fira Code",
+                      "fill": "#E2E8F0"
+                    },
+                    {
+                      "id": "code-line-2",
+                      "type": "text",
+                      "textGrowth": "auto-width",
+                      "content": "const progress = course.getProgress();",
+                      "fontSize": 14,
+                      "fontWeight": "400",
+                      "fontFamily": "Fira Code",
+                      "fill": "#E2E8F0"
+                    },
+                    {
+                      "id": "code-line-3",
+                      "type": "text",
+                      "textGrowth": "auto-width",
+                      "content": "return { ...course, progress };",
+                      "fontSize": 14,
+                      "fontWeight": "400",
+                      "fontFamily": "Fira Code",
+                      "fill": "#E2E8F0"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+
+        {
+          "id": "weight-section",
+          "type": "frame",
+          "name": "Weight Scale",
+          "width": "fill_container",
+          "height": "fit_content(200)",
+          "layout": "vertical",
+          "gap": 16,
+          "children": [
+            {
+              "id": "weight-label",
+              "type": "text",
+              "textGrowth": "auto-width",
+              "content": "WEIGHT SCALE",
+              "fontSize": 11,
+              "fontWeight": "600",
+              "fontFamily": "Inter",
+              "fill": "#94A3B8",
+              "letterSpacing": 0.8
+            },
+            {
+              "id": "weight-row",
+              "type": "frame",
+              "name": "Weight Samples",
+              "width": "fill_container",
+              "height": "fit_content(160)",
+              "layout": "horizontal",
+              "gap": 24,
+              "children": [
+                {
+                  "id": "weight-400",
+                  "type": "frame",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "width": "fill_container",
+                  "height": "fit_content(60)",
+                  "children": [
+                    { "id": "w400-sample", "type": "text", "textGrowth": "auto-width", "content": "Regular", "fontSize": 24, "fontWeight": "400", "fontFamily": "Inter", "fill": "#0F172A" },
+                    { "id": "w400-label", "type": "text", "textGrowth": "auto-width", "content": "400  /  Body text, descriptions", "fontSize": 12, "fontWeight": "400", "fontFamily": "Inter", "fill": "#94A3B8" }
+                  ]
+                },
+                {
+                  "id": "weight-500",
+                  "type": "frame",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "width": "fill_container",
+                  "height": "fit_content(60)",
+                  "children": [
+                    { "id": "w500-sample", "type": "text", "textGrowth": "auto-width", "content": "Medium", "fontSize": 24, "fontWeight": "500", "fontFamily": "Inter", "fill": "#0F172A" },
+                    { "id": "w500-label", "type": "text", "textGrowth": "auto-width", "content": "500  /  Labels, UI elements", "fontSize": 12, "fontWeight": "400", "fontFamily": "Inter", "fill": "#94A3B8" }
+                  ]
+                },
+                {
+                  "id": "weight-600",
+                  "type": "frame",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "width": "fill_container",
+                  "height": "fit_content(60)",
+                  "children": [
+                    { "id": "w600-sample", "type": "text", "textGrowth": "auto-width", "content": "Semibold", "fontSize": 24, "fontWeight": "600", "fontFamily": "Inter", "fill": "#0F172A" },
+                    { "id": "w600-label", "type": "text", "textGrowth": "auto-width", "content": "600  /  Subheadings, emphasis", "fontSize": 12, "fontWeight": "400", "fontFamily": "Inter", "fill": "#94A3B8" }
+                  ]
+                },
+                {
+                  "id": "weight-700",
+                  "type": "frame",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "width": "fill_container",
+                  "height": "fit_content(60)",
+                  "children": [
+                    { "id": "w700-sample", "type": "text", "textGrowth": "auto-width", "content": "Bold", "fontSize": 24, "fontWeight": "700", "fontFamily": "Inter", "fill": "#0F172A" },
+                    { "id": "w700-label", "type": "text", "textGrowth": "auto-width", "content": "700  /  Headings, titles", "fontSize": 12, "fontWeight": "400", "fontFamily": "Inter", "fill": "#94A3B8" }
+                  ]
+                },
+                {
+                  "id": "weight-800",
+                  "type": "frame",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "width": "fill_container",
+                  "height": "fit_content(60)",
+                  "children": [
+                    { "id": "w800-sample", "type": "text", "textGrowth": "auto-width", "content": "Extrabold", "fontSize": 24, "fontWeight": "800", "fontFamily": "Inter", "fill": "#0F172A" },
+                    { "id": "w800-label", "type": "text", "textGrowth": "auto-width", "content": "800  /  Display, hero text", "fontSize": 12, "fontWeight": "400", "fontFamily": "Inter", "fill": "#94A3B8" }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+
+        {
+          "id": "typo-note",
+          "type": "frame",
+          "name": "Note",
+          "width": "fill_container",
+          "height": "fit_content(60)",
+          "fill": "#F0F9FF",
+          "cornerRadius": [8, 8, 8, 8],
+          "padding": 16,
+          "stroke": "#BAE6FD",
+          "strokeThickness": 1,
+          "layout": "vertical",
+          "gap": 4,
+          "children": [
+            {
+              "id": "note-title",
+              "type": "text",
+              "textGrowth": "auto-width",
+              "content": "Usage Notes",
+              "fontSize": 13,
+              "fontWeight": "600",
+              "fontFamily": "Inter",
+              "fill": "#0369A1"
+            },
+            {
+              "id": "note-body",
+              "type": "text",
+              "textGrowth": "auto-width",
+              "content": "Inter serves English content. Pretendard provides Korean text support with matching metrics. Fira Code is used exclusively for code blocks and inline code. All sizes use rem units in implementation (1rem = 16px).",
+              "fontSize": 13,
+              "fontWeight": "400",
+              "fontFamily": "Inter",
+              "fill": "#0C4A6E",
+              "width": 1060
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

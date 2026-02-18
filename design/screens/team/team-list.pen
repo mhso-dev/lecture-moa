@@ -1,0 +1,820 @@
+{
+  "version": "2.8",
+  "children": [
+    {
+      "type": "frame",
+      "id": "Gc7zS",
+      "x": 0,
+      "y": 0,
+      "name": "Team List Page",
+      "width": 1280,
+      "fill": "#F8FAFC",
+      "layout": "vertical",
+      "gap": 24,
+      "padding": 32,
+      "children": [
+        {
+          "type": "frame",
+          "id": "g8vOh",
+          "name": "Page Header",
+          "width": "fill_container",
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "GUsWd",
+              "name": "hLeft",
+              "layout": "vertical",
+              "gap": 4,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "4bNx2",
+                  "name": "hTitle",
+                  "fill": "#1E293B",
+                  "content": "Teams",
+                  "fontFamily": "Inter",
+                  "fontSize": 24,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "v63rV",
+                  "name": "hSub",
+                  "fill": "#64748B",
+                  "content": "React Fundamentals - Spring 2026",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "IhjOc",
+              "name": "hRight",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "CPNN2",
+                  "name": "createBtn",
+                  "fill": "#3B82F6",
+                  "cornerRadius": 8,
+                  "gap": 6,
+                  "padding": [
+                    10,
+                    16
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "4zREX",
+                      "name": "hCreateIc",
+                      "width": 0,
+                      "height": 0,
+                      "iconFontFamily": "lucide",
+                      "fill": "#FFFFFF"
+                    },
+                    {
+                      "type": "text",
+                      "id": "R21we",
+                      "name": "hCreateTxt",
+                      "fill": "#FFFFFF",
+                      "content": "Create Team",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ugJhQ",
+          "name": "My Teams Section",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 12,
+          "children": [
+            {
+              "type": "frame",
+              "id": "5XkKo",
+              "name": "myHeader",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "HWTNC",
+                  "name": "myIc",
+                  "width": 0,
+                  "height": 0,
+                  "iconFontFamily": "lucide",
+                  "fill": "#3B82F6"
+                },
+                {
+                  "type": "text",
+                  "id": "hZaGK",
+                  "name": "myTxt",
+                  "fill": "#1E293B",
+                  "content": "My Teams",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "pBgRu",
+                  "name": "myBadge",
+                  "fill": "#EFF6FF",
+                  "cornerRadius": 9999,
+                  "padding": [
+                    2,
+                    8
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "ieod0",
+                      "name": "myBadgeTxt",
+                      "fill": "#3B82F6",
+                      "content": "2 teams",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Iada1",
+              "name": "myRow",
+              "width": "fill_container",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "R37Jl",
+                  "name": "My Team 1",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E2E8F0"
+                  },
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "bIG5M",
+                      "name": "mt1top",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "ebeIM",
+                          "name": "mt1name",
+                          "fill": "#1E293B",
+                          "content": "Team Alpha",
+                          "fontFamily": "Inter",
+                          "fontSize": 18,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "wqedq",
+                          "name": "mt1badge",
+                          "fill": "#F0FDF4",
+                          "cornerRadius": 9999,
+                          "padding": [
+                            4,
+                            10
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "jFo6V",
+                              "name": "mt1badgeTxt",
+                              "fill": "#10B981",
+                              "content": "Active",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "DRYrh",
+                      "name": "mt1desc",
+                      "fill": "#64748B",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Frontend development team focusing on React and Next.js projects",
+                      "lineHeight": 1.4,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "0ALUe",
+                      "name": "mt1info",
+                      "width": "fill_container",
+                      "gap": 16,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "vMCWL",
+                          "name": "mt1members",
+                          "gap": 6,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "bNTM0",
+                              "name": "mt1memIc",
+                              "width": 0,
+                              "height": 0,
+                              "iconFontFamily": "lucide",
+                              "fill": "#94A3B8"
+                            },
+                            {
+                              "type": "text",
+                              "id": "nsVNV",
+                              "name": "mt1memTxt",
+                              "fill": "#64748B",
+                              "content": "4 members",
+                              "fontFamily": "Inter",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "KGzEb",
+                          "name": "mt1memos",
+                          "gap": 6,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "CYfL8",
+                              "name": "mt1memosIc",
+                              "width": 0,
+                              "height": 0,
+                              "iconFontFamily": "lucide",
+                              "fill": "#94A3B8"
+                            },
+                            {
+                              "type": "text",
+                              "id": "psQR6",
+                              "name": "mt1memosTxt",
+                              "fill": "#64748B",
+                              "content": "12 memos",
+                              "fontFamily": "Inter",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "4JKzu",
+                  "name": "My Team 2",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E2E8F0"
+                  },
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "VfpRu",
+                      "name": "mt2top",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "23gQW",
+                          "name": "mt2name",
+                          "fill": "#1E293B",
+                          "content": "Team Beta",
+                          "fontFamily": "Inter",
+                          "fontSize": 18,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "6lAPv",
+                          "name": "mt2badge",
+                          "fill": "#F0FDF4",
+                          "cornerRadius": 9999,
+                          "padding": [
+                            4,
+                            10
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "YAjO5",
+                              "name": "mt2badgeTxt",
+                              "fill": "#10B981",
+                              "content": "Active",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "xWOsx",
+                      "name": "mt2desc",
+                      "fill": "#64748B",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Backend architecture team working on API design and database optimization",
+                      "lineHeight": 1.4,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "7HKmc",
+                      "name": "mt2info",
+                      "width": "fill_container",
+                      "gap": 16,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "BoIr8",
+                          "name": "mt2members",
+                          "gap": 6,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "wLlZq",
+                              "name": "mt2memIc",
+                              "width": 0,
+                              "height": 0,
+                              "iconFontFamily": "lucide",
+                              "fill": "#94A3B8"
+                            },
+                            {
+                              "type": "text",
+                              "id": "khHbe",
+                              "name": "mt2memTxt",
+                              "fill": "#64748B",
+                              "content": "3 members",
+                              "fontFamily": "Inter",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Bxp9R",
+                          "name": "mt2memos",
+                          "gap": 6,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "lQDIj",
+                              "name": "mt2memosIc",
+                              "width": 0,
+                              "height": 0,
+                              "iconFontFamily": "lucide",
+                              "fill": "#94A3B8"
+                            },
+                            {
+                              "type": "text",
+                              "id": "3PuF8",
+                              "name": "mt2memosTxt",
+                              "fill": "#64748B",
+                              "content": "8 memos",
+                              "fontFamily": "Inter",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "udDwx",
+          "name": "All Teams Section",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 12,
+          "children": [
+            {
+              "type": "frame",
+              "id": "e4fGB",
+              "name": "allHeader",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "knzEI",
+                  "name": "allIc",
+                  "width": 0,
+                  "height": 0,
+                  "iconFontFamily": "lucide",
+                  "fill": "#64748B"
+                },
+                {
+                  "type": "text",
+                  "id": "r4G0Y",
+                  "name": "allTxt",
+                  "fill": "#1E293B",
+                  "content": "All Teams",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "i3HrN",
+                  "name": "allBadge",
+                  "fill": "#F1F5F9",
+                  "cornerRadius": 9999,
+                  "padding": [
+                    2,
+                    8
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "i3FIG",
+                      "name": "allBadgeTxt",
+                      "fill": "#64748B",
+                      "content": "5 teams",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "kzWoZ",
+              "name": "allRow",
+              "width": "fill_container",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "OPIOP",
+                  "name": "All Team 1",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E2E8F0"
+                  },
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "hMMiF",
+                      "name": "at1top",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "vqhlI",
+                          "name": "at1name",
+                          "fill": "#1E293B",
+                          "content": "Team Gamma",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "5f1s1",
+                          "name": "at1badge",
+                          "fill": "#FFF7ED",
+                          "cornerRadius": 9999,
+                          "padding": [
+                            4,
+                            10
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "Wgge9",
+                              "name": "at1badgeTxt",
+                              "fill": "#F59E0B",
+                              "content": "3/5 members",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "OYdb1",
+                      "name": "at1desc",
+                      "fill": "#64748B",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Full-stack team building a course management system",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ZKn1H",
+                      "name": "at1btn",
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 8,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#3B82F6"
+                      },
+                      "padding": [
+                        8,
+                        16
+                      ],
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "7ui0b",
+                          "name": "at1btnTxt",
+                          "fill": "#3B82F6",
+                          "content": "Request to Join",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "iox4n",
+                  "name": "All Team 2",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E2E8F0"
+                  },
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "eQcc1",
+                      "name": "at2top",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "ubyT2",
+                          "name": "at2name",
+                          "fill": "#1E293B",
+                          "content": "Team Delta",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "CWkLY",
+                          "name": "at2badge",
+                          "fill": "#FEF2F2",
+                          "cornerRadius": 9999,
+                          "padding": [
+                            4,
+                            10
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "umRFI",
+                              "name": "at2badgeTxt",
+                              "fill": "#EF4444",
+                              "content": "Full",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "oytMr",
+                      "name": "at2desc",
+                      "fill": "#64748B",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Mobile development team using React Native for cross-platform apps",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Z8da2",
+                      "name": "at2btn",
+                      "fill": "#F1F5F9",
+                      "cornerRadius": 8,
+                      "padding": [
+                        8,
+                        16
+                      ],
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "F5hyg",
+                          "name": "at2btnTxt",
+                          "fill": "#94A3B8",
+                          "content": "Team Full",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "8mMMs",
+                  "name": "All Team 3",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E2E8F0"
+                  },
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "XAQvc",
+                      "name": "at3top",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "IGTbo",
+                          "name": "at3name",
+                          "fill": "#1E293B",
+                          "content": "Team Epsilon",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "4Z2fv",
+                          "name": "at3badge",
+                          "fill": "#F5F3FF",
+                          "cornerRadius": 9999,
+                          "padding": [
+                            4,
+                            10
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "ggtvE",
+                              "name": "at3badgeTxt",
+                              "fill": "#6366F1",
+                              "content": "Pending",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "WlmqB",
+                      "name": "at3desc",
+                      "fill": "#64748B",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "DevOps and CI/CD team focused on deployment automation",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "TitWK",
+                      "name": "at3btn",
+                      "fill": "#F5F3FF",
+                      "cornerRadius": 8,
+                      "padding": [
+                        8,
+                        16
+                      ],
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Oy8oC",
+                          "name": "at3btnTxt",
+                          "fill": "#6366F1",
+                          "content": "Request Pending",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
