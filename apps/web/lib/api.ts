@@ -10,6 +10,7 @@ import { env } from "~/src/env";
  * - Type-safe responses using generics
  * - Error handling with typed error responses
  * - Automatic JSON parsing
+ * - Auth token injection via module-level setter
  */
 
 interface RequestConfig {
@@ -32,6 +33,24 @@ const DEFAULT_ERROR: ApiError = {
   code: "NETWORK_ERROR",
   message: "Network error occurred",
 };
+
+// Module-level auth token storage
+let _authToken: string | null = null;
+
+/**
+ * Set the auth token for API requests.
+ * Called by AuthProvider when session changes.
+ */
+export function setApiAuthToken(token: string | null): void {
+  _authToken = token;
+}
+
+/**
+ * Get the current auth token.
+ */
+export function getApiAuthToken(): string | null {
+  return _authToken;
+}
 
 /**
  * Type guard to check if an object is an ErrorResponse
@@ -57,13 +76,10 @@ class ApiClient {
   }
 
   /**
-   * Get authentication token from session
-   * This will be integrated with next-auth in FE-002
+   * Get authentication token from module-level storage
    */
   private getAuthToken(): string | null {
-    // TODO: Get token from next-auth session
-    // For now, return null as auth is not implemented
-    return null;
+    return _authToken;
   }
 
   /**

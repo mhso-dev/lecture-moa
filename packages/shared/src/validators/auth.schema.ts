@@ -44,6 +44,9 @@ export const registerSchema = z
       .min(1, "Name is required")
       .min(2, "Name must be at least 2 characters")
       .max(50, "Name must be less than 50 characters"),
+    role: z.enum(["instructor", "student"], {
+      required_error: "Role is required",
+    }),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords do not match",
@@ -86,3 +89,42 @@ export const passwordResetSchema = z
   });
 
 export type PasswordResetSchema = z.infer<typeof passwordResetSchema>;
+
+/**
+ * Update profile validation schema
+ */
+export const updateProfileSchema = z.object({
+  name: z
+    .string()
+    .min(2, "Name must be at least 2 characters")
+    .max(50, "Name must be less than 50 characters")
+    .optional(),
+  image: z.string().url("Invalid image URL").optional(),
+});
+
+export type UpdateProfileSchema = z.infer<typeof updateProfileSchema>;
+
+/**
+ * Change password validation schema
+ */
+export const changePasswordSchema = z
+  .object({
+    currentPassword: z.string().min(1, "Current password is required"),
+    newPassword: z
+      .string()
+      .min(1, "New password is required")
+      .min(8, "Password must be at least 8 characters")
+      .regex(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
+        "Password must contain at least one uppercase letter, one lowercase letter, and one number"
+      ),
+    confirmNewPassword: z
+      .string()
+      .min(1, "Please confirm your new password"),
+  })
+  .refine((data) => data.newPassword === data.confirmNewPassword, {
+    message: "Passwords do not match",
+    path: ["confirmNewPassword"],
+  });
+
+export type ChangePasswordSchema = z.infer<typeof changePasswordSchema>;

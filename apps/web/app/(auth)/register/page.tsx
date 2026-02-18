@@ -1,39 +1,36 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Suspense } from "react";
 import { AuthCard } from "~/components/auth/AuthCard";
-import { LoginForm } from "~/components/auth/LoginForm";
+import { RegisterForm } from "~/components/auth/RegisterForm";
 import { SocialLoginButtons } from "~/components/auth/SocialLoginButtons";
 
 export const metadata: Metadata = {
-  title: "Login | Lecture Moa",
-  description: "Sign in to your account",
+  title: "Create Account | Lecture Moa",
+  description: "Create your account to start learning or teaching",
 };
 
 /**
- * Login Page
- * REQ-FE-115: Email/password login with social login support
+ * Register Page
+ * REQ-FE-119: User registration with role selection
  */
-export default function LoginPage() {
+export default function RegisterPage() {
   return (
     <AuthCard
-      title="Welcome back"
-      description="Sign in to your account"
+      title="Create account"
+      description="Get started with Lecture MoA"
       footer={
         <p className="text-sm text-[var(--color-muted-foreground)]">
-          Don&apos;t have an account?{" "}
+          Already have an account?{" "}
           <Link
-            href="/register"
+            href="/login"
             className="font-medium text-[var(--color-primary-600)] hover:underline"
           >
-            Sign up
+            Sign in
           </Link>
         </p>
       }
     >
-      <Suspense>
-        <LoginForm />
-      </Suspense>
+      <RegisterForm />
       <SocialLoginButtons />
     </AuthCard>
   );

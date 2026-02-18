@@ -1,9 +1,10 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
-import type { User } from "@shared";
+import type { User, UserRole } from "@shared";
 
 interface AuthState {
   user: User | null;
+  role: UserRole | null;
   isAuthenticated: boolean;
   isLoading: boolean;
 }
@@ -13,12 +14,14 @@ interface AuthActions {
   login: (user: User) => void;
   logout: () => void;
   setLoading: (isLoading: boolean) => void;
+  clearAuth: () => void;
 }
 
 type AuthStore = AuthState & AuthActions;
 
 const initialState: AuthState = {
   user: null,
+  role: null,
   isAuthenticated: false,
   isLoading: true,
 };
@@ -28,14 +31,16 @@ const initialState: AuthState = {
  *
  * State:
  * - user: Current authenticated user or null
+ * - role: Current user role (student, instructor, admin) or null
  * - isAuthenticated: Boolean flag for auth status
  * - isLoading: Loading state for auth checks
  *
  * Actions:
- * - setUser: Update user state directly
- * - login: Set user and mark as authenticated
- * - logout: Clear user and mark as unauthenticated
+ * - setUser: Update user and role state directly
+ * - login: Set user, role, and mark as authenticated
+ * - logout: Clear user/role and mark as unauthenticated
  * - setLoading: Update loading state
+ * - clearAuth: Reset all auth state to initial values
  *
  * Persistence:
  * - Only user preference is persisted (not sensitive data)
@@ -49,27 +54,48 @@ export const useAuthStore = create<AuthStore>()(
 
         setUser: (user) =>
           set(
-            { user, isAuthenticated: !!user },
+            {
+              user,
+              role: user?.role ?? null,
+              isAuthenticated: !!user,
+            },
             false,
             "auth/setUser"
           ),
 
         login: (user) =>
           set(
-            { user, isAuthenticated: true, isLoading: false },
+            {
+              user,
+              role: user.role,
+              isAuthenticated: true,
+              isLoading: false,
+            },
             false,
             "auth/login"
           ),
 
         logout: () =>
           set(
-            { user: null, isAuthenticated: false, isLoading: false },
+            {
+              user: null,
+              role: null,
+              isAuthenticated: false,
+              isLoading: false,
+            },
             false,
             "auth/logout"
           ),
 
         setLoading: (isLoading) =>
           set({ isLoading }, false, "auth/setLoading"),
+
+        clearAuth: () =>
+          set(
+            { ...initialState, isLoading: false },
+            false,
+            "auth/clearAuth"
+          ),
       }),
       {
         name: "lecture-moa-auth",

@@ -17,6 +17,7 @@ export interface User {
   name: string;
   role: UserRole;
   avatar?: string;
+  image?: string;
   createdAt: Date;
   updatedAt?: Date;
 }
@@ -45,6 +46,7 @@ export interface RegisterRequest {
   email: string;
   password: string;
   name: string;
+  role: UserRole;
 }
 
 /**
@@ -80,3 +82,34 @@ export type Permission =
  * Role permission mapping
  */
 export type RolePermissions = Record<UserRole, Permission[]>;
+
+/**
+ * Reset password request payload
+ */
+export interface ResetPasswordRequest {
+  email: string;
+}
+
+/**
+ * Reset password confirm payload
+ */
+export interface ResetPasswordConfirmRequest {
+  token: string;
+  password: string;
+}
+
+/**
+ * Update profile request payload
+ */
+export interface UpdateProfileRequest {
+  name?: string;
+  image?: string;
+}
+
+/**
+ * Change password request payload
+ */
+export interface ChangePasswordRequest {
+  currentPassword: string;
+  newPassword: string;
+}
