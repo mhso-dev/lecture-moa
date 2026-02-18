@@ -2,9 +2,10 @@
 id: SPEC-FE-001
 title: "Next.js Frontend Foundation"
 version: 1.0.0
-status: draft
+status: completed
 created: 2026-02-19
 updated: 2026-02-19
+completed: 2026-02-19
 author: MoAI
 priority: critical
 tags: [frontend, nextjs, design-tokens, layout, shadcn-ui, providers, monorepo, foundation]
@@ -668,3 +669,110 @@ shadcn/ui compatibility variables use the `--` prefix convention as required by 
 | REQ-FE-034 (Dialog, Toast) | REQ-UI-004 | design/design-system/components.pen |
 | REQ-FE-007 (Error Boundaries) | REQ-UI-090, REQ-UI-091 | design/screens/common/404.pen, 500.pen |
 | REQ-FE-008 (Loading States) | REQ-UI-094 | design/screens/common/loading-states.pen |
+
+---
+
+## 5. Implementation Notes
+
+### 5.1 Implementation Summary
+
+- **Implementation Date**: 2026-02-19
+- **Commit**: `4c5a6d2`
+- **Branch**: `feature/SPEC-FE-001`
+- **Status**: All requirements implemented
+
+### 5.2 Implemented Components
+
+The following components and files were created as part of this SPEC implementation:
+
+**Monorepo Setup (REQ-FE-001 ~ REQ-FE-005)**
+- `pnpm-workspace.yaml` - workspace package definition
+- `turbo.json` - Turborepo pipeline configuration
+- `tsconfig.base.json` - base TypeScript strict config
+- `package.json` - root workspace scripts
+- `eslint.config.mjs` - ESLint flat config
+- `.prettierrc`, `.prettierignore`, `.eslintignore`, `.npmrc`
+- `.moai/manifest.json` - project manifest
+
+**Next.js App Scaffolding (REQ-FE-006 ~ REQ-FE-009)**
+- `apps/web/app/layout.tsx` - root layout with providers and fonts
+- `apps/web/app/page.tsx` - landing page entry point
+- `apps/web/app/(auth)/layout.tsx` - auth route group layout
+- `apps/web/app/(auth)/login/page.tsx` - login page placeholder
+- `apps/web/app/(dashboard)/layout.tsx` - dashboard layout
+- `apps/web/app/(dashboard)/page.tsx` - dashboard page placeholder
+- `apps/web/app/error.tsx` - global error boundary
+- `apps/web/app/global-error.tsx` - root error boundary
+- `apps/web/app/loading.tsx` - global loading state
+- `apps/web/app/not-found.tsx` - 404 page
+- `apps/web/app/api/auth/[...nextauth]/route.ts` - NextAuth API route
+- `apps/web/next.config.ts`, `apps/web/tsconfig.json`, `apps/web/package.json`
+
+**Design Token System (REQ-FE-010 ~ REQ-FE-015)**
+- `apps/web/styles/tokens/colors.css` - HSL color CSS variables (light/dark)
+- `apps/web/styles/tokens/typography.css` - font family/size/weight tokens
+- `apps/web/styles/tokens/spacing.css` - spacing scale and layout tokens
+- `apps/web/styles/tokens/components.css` - component-level tokens
+- `apps/web/styles/globals.css` - global styles with @theme directive
+- `apps/web/tailwind.config.ts` - Tailwind CSS 4 theme extension
+
+**Layout & Navigation (REQ-FE-020 ~ REQ-FE-025)**
+- `apps/web/components/layout/AppLayout.tsx` - responsive layout wrapper
+- `apps/web/components/layout/Sidebar.tsx` - desktop/tablet sidebar (206 lines)
+- `apps/web/components/layout/BottomTab.tsx` - mobile bottom navigation
+- `apps/web/components/layout/ContentLayout.tsx` - content area layout
+- `apps/web/components/theme-toggle.tsx` - light/dark toggle
+- `apps/web/stores/navigation.store.ts` - sidebar/route state (Zustand)
+
+**shadcn/ui Component Library (REQ-FE-030 ~ REQ-FE-035)**
+- 18 UI components in `apps/web/components/ui/`:
+  `avatar`, `badge`, `button`, `card`, `checkbox`, `dialog`, `dropdown-menu`,
+  `form`, `input`, `label`, `radio-group`, `select`, `sheet`, `skeleton`,
+  `sonner` (toast), `switch`, `textarea`, `tooltip`
+- `apps/web/components.json` - shadcn/ui configuration
+- `apps/web/lib/utils.ts` - `cn()` utility
+
+**Provider Infrastructure (REQ-FE-040 ~ REQ-FE-045)**
+- `apps/web/providers/ThemeProvider.tsx` - next-themes wrapper
+- `apps/web/providers/QueryProvider.tsx` - TanStack Query v5 provider
+- `apps/web/providers/AuthProvider.tsx` - NextAuth SessionProvider skeleton
+- `apps/web/providers/index.tsx` - provider composition
+- `apps/web/stores/auth.store.ts` - auth session state
+- `apps/web/stores/ui.store.ts` - global UI state
+- `apps/web/lib/api.ts` - API client with interceptors
+- `apps/web/lib/auth.ts` - NextAuth config placeholder
+- `apps/web/src/env.ts` - @t3-oss/env-nextjs type-safe env
+
+**Shared Package (REQ-FE-050 ~ REQ-FE-055)**
+- `packages/shared/src/types/auth.types.ts` - User, UserRole, Session types
+- `packages/shared/src/types/api.types.ts` - ApiResponse, ApiError, PaginatedResponse
+- `packages/shared/src/validators/auth.schema.ts` - Zod login/register schemas
+- `packages/shared/src/constants/roles.ts`, `permissions.ts`, `events.ts`
+- `packages/shared/src/utils/date.ts` - date formatting utilities
+
+**Hooks**
+- `apps/web/hooks/useMediaQuery.ts` - responsive breakpoint hook
+- `apps/web/hooks/useScrollPosition.ts` - scroll tracking hook
+
+### 5.3 Divergences from Original Plan
+
+| Divergence | Description |
+|-----------|-------------|
+| Additional files | `apps/web/app/(auth)/login/page.tsx` and `apps/web/app/(dashboard)/page.tsx` were added as implementation placeholders beyond the SPEC scope, to enable immediate UI verification |
+| Sonner over shadcn toast | `sonner.tsx` was used instead of `toast.tsx` for toast notifications, as Sonner provides better Next.js App Router compatibility |
+| Theme provider location | `apps/web/components/theme-provider.tsx` was also created alongside `apps/web/providers/ThemeProvider.tsx` for shadcn/ui convention compatibility |
+
+### 5.4 Quality Verification
+
+- **ESLint**: 0 errors, 0 warnings (Next.js lint passed)
+- **TypeScript**: Strict mode enabled, `noUncheckedIndexedAccess: true`
+- **Dependencies**: pnpm lockfile committed with 127 files, 13,689 insertions
+- **Coverage**: Foundation layer only (screens are separate SPECs per REQ-FE scope)
+
+### 5.5 Next Steps
+
+The following SPECs should be implemented next:
+- `SPEC-FE-002`: Authentication Flow (login, register, session management)
+- `SPEC-FE-003`: Dashboard screen implementation
+- `SPEC-FE-004`: Course listing and detail screens
+- `SPEC-UI-001` design files should be verified against implemented tokens

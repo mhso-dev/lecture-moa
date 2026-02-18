@@ -93,7 +93,7 @@ lecture-moa/
 
 ## Current Status
 
-This project is in the **design phase**. No source code has been implemented yet.
+This project is in the **active development phase**. The frontend foundation has been implemented.
 
 ### Completed
 
@@ -113,29 +113,66 @@ This project is in the **design phase**. No source code has been implemented yet
   - 3 dashboard screens (instructor, student, team)
   - 4 common screens (search results, notifications, 404, 500, loading states)
   - 3 navigation patterns (desktop sidebar, tablet sidebar, mobile bottom tab)
+- **SPEC-FE-001: Next.js Frontend Foundation** -- Complete frontend scaffolding implemented (2026-02-19):
+  - Monorepo setup with pnpm workspaces and Turborepo
+  - Design token system (CSS variables, Tailwind CSS 4)
+  - Responsive layout and navigation (Sidebar, BottomTab, ContentLayout)
+  - 18 shadcn/ui components
+  - Provider infrastructure (Theme, TanStack Query, Auth)
+  - Shared TypeScript package with types, validators, and constants
+
+### SPEC Implementation Status
+
+| SPEC | Title | Status |
+|------|-------|--------|
+| SPEC-UI-001 | Frontend Design System | Completed |
+| SPEC-FE-001 | Next.js Frontend Foundation | Completed (2026-02-19) |
+| SPEC-FE-002 | Authentication Flow | Planned |
+| SPEC-FE-003 | Dashboard Screen | Planned |
+| SPEC-FE-004 | Course Screens | Planned |
 
 ### Next Steps
 
-- Implement the design system as React components with shadcn/ui
-- Set up the monorepo with pnpm workspaces and Turborepo
-- Build the authentication module
-- Implement the Markdown-based material viewer with text highlighting
-- Develop the backend API modules
-- Set up the Python AI service with LangChain
+- Build authentication flow (SPEC-FE-002): login, register, session management
+- Implement dashboard screens (SPEC-FE-003)
+- Implement course listing and detail screens (SPEC-FE-004)
+- Develop the backend API modules (SPEC-BE-XXX)
+- Set up the Python AI service with LangChain (SPEC-AI-XXX)
 
 ## Getting Started
-
-> Implementation has not started yet. Setup instructions will be added once the codebase is initialized.
 
 ### Prerequisites
 
 - Node.js 20.x LTS or later
 - pnpm 9.x or later
-- Python 3.13 or later
-- PostgreSQL 16.x
-- Redis 7.x
+- Python 3.13 or later (for AI service, when implemented)
+- PostgreSQL 16.x (when backend is implemented)
+- Redis 7.x (when backend is implemented)
 - Docker 24.x or later (recommended)
-- An OpenAI API key (or alternative LLM provider key) for AI features
+- An OpenAI API key (for AI features, when implemented)
+
+### Installation
+
+```bash
+pnpm install
+```
+
+### Development
+
+```bash
+# Run all apps in development mode
+pnpm dev
+
+# Run specific app
+pnpm --filter @lecture-moa/web dev
+```
+
+### Environment Setup
+
+```bash
+cp .env.example .env.local
+# Edit .env.local with your configuration
+```
 
 ## License
 
