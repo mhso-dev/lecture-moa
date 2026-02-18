@@ -1,0 +1,234 @@
+/**
+ * Design Tokens - Spacing
+ * REQ-FE-012: Design Token System (Spacing & Layout)
+ *
+ * Based on 4px base unit scale
+ */
+
+@theme {
+  /* ========================================
+   * Base Spacing Scale (4px unit)
+   * ======================================== */
+  --spacing-0: 0;
+  --spacing-px: 1px;
+  --spacing-0-5: 2px;    /* 0.5 unit */
+  --spacing-1: 4px;      /* 1 unit */
+  --spacing-1-5: 6px;    /* 1.5 units */
+  --spacing-2: 8px;      /* 2 units */
+  --spacing-2-5: 10px;   /* 2.5 units */
+  --spacing-3: 12px;     /* 3 units */
+  --spacing-3-5: 14px;   /* 3.5 units */
+  --spacing-4: 16px;     /* 4 units */
+  --spacing-5: 20px;     /* 5 units */
+  --spacing-6: 24px;     /* 6 units */
+  --spacing-7: 28px;     /* 7 units */
+  --spacing-8: 32px;     /* 8 units */
+  --spacing-9: 36px;     /* 9 units */
+  --spacing-10: 40px;    /* 10 units */
+  --spacing-11: 44px;    /* 11 units */
+  --spacing-12: 48px;    /* 12 units */
+  --spacing-14: 56px;    /* 14 units */
+  --spacing-16: 64px;    /* 16 units */
+  --spacing-20: 80px;    /* 20 units */
+  --spacing-24: 96px;    /* 24 units */
+  --spacing-28: 112px;   /* 28 units */
+  --spacing-32: 128px;   /* 32 units */
+  --spacing-36: 144px;   /* 36 units */
+  --spacing-40: 160px;   /* 40 units */
+  --spacing-44: 176px;   /* 44 units */
+  --spacing-48: 192px;   /* 48 units */
+  --spacing-52: 208px;   /* 52 units */
+  --spacing-56: 224px;   /* 56 units */
+  --spacing-60: 240px;   /* 60 units */
+  --spacing-64: 256px;   /* 64 units */
+  --spacing-72: 288px;   /* 72 units */
+  --spacing-80: 320px;   /* 80 units */
+  --spacing-96: 384px;   /* 96 units */
+
+  /* ========================================
+   * Layout Dimensions
+   * ======================================== */
+  /* Container */
+  --container-xs: 480px;
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+  --container-2xl: 1400px;
+  --container-max: 1280px;
+
+  /* Sidebar widths */
+  --sidebar-width: 256px;
+  --sidebar-width-collapsed: 64px;
+  --sidebar-width-tablet: 240px;
+
+  /* Navigation heights */
+  --header-height: 64px;
+  --header-height-mobile: 56px;
+  --footer-height: 64px;
+
+  /* Mobile bottom tab */
+  --bottom-tab-height: 64px;
+  --bottom-tab-safe-area: env(safe-area-inset-bottom, 0px);
+
+  /* ========================================
+   * Grid System
+   * ======================================== */
+  /* Column counts per breakpoint */
+  --grid-columns-sm: 4;
+  --grid-columns-md: 8;
+  --grid-columns-lg: 12;
+
+  /* Gutter sizes */
+  --grid-gutter: 16px;
+  --grid-gutter-sm: 12px;
+  --grid-gutter-lg: 24px;
+
+  /* Container padding */
+  --container-padding: 16px;
+  --container-padding-sm: 12px;
+  --container-padding-lg: 24px;
+
+  /* ========================================
+   * Component Spacing
+   * ======================================== */
+  /* Card spacing */
+  --card-padding: 16px;
+  --card-padding-sm: 12px;
+  --card-padding-lg: 24px;
+  --card-gap: 16px;
+
+  /* Section spacing */
+  --section-padding: 24px;
+  --section-padding-sm: 16px;
+  --section-padding-lg: 32px;
+  --section-gap: 32px;
+
+  /* Form spacing */
+  --form-label-gap: 8px;
+  --form-field-gap: 16px;
+  --form-section-gap: 24px;
+
+  /* List spacing */
+  --list-item-gap: 8px;
+  --list-section-gap: 16px;
+
+  /* Table spacing */
+  --table-cell-padding: 12px 16px;
+  --table-cell-padding-sm: 8px 12px;
+  --table-cell-padding-lg: 16px 24px;
+
+  /* ========================================
+   * Component Dimensions
+   * ======================================== */
+  /* Button heights */
+  --button-height-sm: 32px;
+  --button-height: 40px;
+  --button-height-lg: 48px;
+  --button-height-xl: 56px;
+
+  /* Input heights */
+  --input-height-sm: 32px;
+  --input-height: 40px;
+  --input-height-lg: 48px;
+
+  /* Icon sizes */
+  --icon-size-xs: 12px;
+  --icon-size-sm: 16px;
+  --icon-size: 20px;
+  --icon-size-lg: 24px;
+  --icon-size-xl: 32px;
+  --icon-size-2xl: 48px;
+
+  /* Avatar sizes */
+  --avatar-size-xs: 24px;
+  --avatar-size-sm: 32px;
+  --avatar-size: 40px;
+  --avatar-size-lg: 48px;
+  --avatar-size-xl: 64px;
+  --avatar-size-2xl: 96px;
+
+  /* ========================================
+   * Z-Index Scale
+   * ======================================== */
+  --z-base: 0;
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-fixed: 30;
+  --z-modal-backdrop: 40;
+  --z-modal: 50;
+  --z-popover: 60;
+  --z-tooltip: 70;
+  --z-toast: 80;
+  --z-max: 999;
+
+  /* ========================================
+   * Breakpoints (for reference, used in JS/CSS)
+   * ======================================== */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}
+
+/* ========================================
+ * Container Utilities
+ * ======================================== */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-left: var(--container-padding-lg);
+    padding-right: var(--container-padding-lg);
+  }
+}
+
+/* ========================================
+ * Grid Utilities
+ * ======================================== */
+.grid-cols-responsive {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns-sm), 1fr);
+  gap: var(--grid-gutter);
+}
+
+@media (min-width: 768px) {
+  .grid-cols-responsive {
+    grid-template-columns: repeat(var(--grid-columns-md), 1fr);
+    gap: var(--grid-gutter);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-cols-responsive {
+    grid-template-columns: repeat(var(--grid-columns-lg), 1fr);
+    gap: var(--grid-gutter-lg);
+  }
+}
+
+/* ========================================
+ * Section Spacing Utilities
+ * ======================================== */
+.section {
+  padding: var(--section-padding);
+}
+
+.section-sm {
+  padding: var(--section-padding-sm);
+}
+
+.section-lg {
+  padding: var(--section-padding-lg);
+}
+
+.section-gap {
+  margin-bottom: var(--section-gap);
+}

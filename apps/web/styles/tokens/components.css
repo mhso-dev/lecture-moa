@@ -1,0 +1,243 @@
+/**
+ * Design Tokens - Components
+ * REQ-FE-013: Design Token System (Component Styling)
+ *
+ * Border radius, shadows, transitions, and component-specific tokens
+ */
+
+@theme {
+  /* ========================================
+   * Border Radius
+   * ======================================== */
+  --radius-none: 0;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+
+  /* Component-specific radius */
+  --radius-button: var(--radius-md);
+  --radius-button-sm: var(--radius-sm);
+  --radius-button-lg: var(--radius-lg);
+  --radius-input: var(--radius-md);
+  --radius-card: var(--radius-lg);
+  --radius-dialog: var(--radius-xl);
+  --radius-dropdown: var(--radius-md);
+  --radius-tooltip: var(--radius-sm);
+  --radius-badge: var(--radius-full);
+  --radius-avatar: var(--radius-full);
+
+  /* ========================================
+   * Shadows
+   * ======================================== */
+  /* Light mode shadows */
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+
+  /* Component-specific shadows */
+  --shadow-card: var(--shadow-sm);
+  --shadow-card-hover: var(--shadow-md);
+  --shadow-dropdown: var(--shadow-lg);
+  --shadow-dialog: var(--shadow-xl);
+  --shadow-tooltip: var(--shadow-md);
+  --shadow-float: 0 8px 32px -4px rgb(0 0 0 / 0.12);
+  --shadow-nav: 0 1px 3px 0 rgb(0 0 0 / 0.08);
+
+  /* Focus ring */
+  --shadow-focus: 0 0 0 3px oklch(0.65 0.20 270 / 0.3);
+  --shadow-focus-error: 0 0 0 3px oklch(0.65 0.20 25 / 0.3);
+
+  /* ========================================
+   * Transitions
+   * ======================================== */
+  /* Durations */
+  --duration-instant: 0ms;
+  --duration-fast: 100ms;
+  --duration-normal: 200ms;
+  --duration-slow: 300ms;
+  --duration-slower: 400ms;
+  --duration-slowest: 500ms;
+
+  /* Easing functions */
+  --ease-linear: linear;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* Transition presets */
+  --transition-colors: color var(--duration-fast) var(--ease-in-out),
+                      background-color var(--duration-fast) var(--ease-in-out),
+                      border-color var(--duration-fast) var(--ease-in-out);
+  --transition-opacity: opacity var(--duration-fast) var(--ease-in-out);
+  --transition-shadow: box-shadow var(--duration-fast) var(--ease-in-out);
+  --transition-transform: transform var(--duration-normal) var(--ease-out);
+  --transition-all: all var(--duration-normal) var(--ease-out);
+
+  /* ========================================
+   * Button Tokens
+   * ======================================== */
+  --button-padding-sm: var(--spacing-2) var(--spacing-3);
+  --button-padding: var(--spacing-2-5) var(--spacing-4);
+  --button-padding-lg: var(--spacing-3) var(--spacing-6);
+  --button-padding-xl: var(--spacing-4) var(--spacing-8);
+
+  --button-font-sm: var(--font-weight-medium) var(--font-size-body-sm) / 1 var(--font-sans);
+  --button-font: var(--font-weight-medium) var(--font-size-body) / 1 var(--font-sans);
+  --button-font-lg: var(--font-weight-medium) var(--font-size-body-lg) / 1 var(--font-sans);
+
+  --button-gap: var(--spacing-2);
+
+  /* Button color variants */
+  --button-primary-bg: var(--color-primary-600);
+  --button-primary-bg-hover: var(--color-primary-700);
+  --button-primary-bg-active: var(--color-primary-800);
+  --button-primary-fg: oklch(1.0 0.0 0);
+  --button-primary-fg-hover: oklch(1.0 0.0 0);
+
+  --button-secondary-bg: var(--color-neutral-100);
+  --button-secondary-bg-hover: var(--color-neutral-200);
+  --button-secondary-bg-active: var(--color-neutral-300);
+  --button-secondary-fg: var(--color-neutral-900);
+  --button-secondary-fg-hover: var(--color-neutral-950);
+
+  --button-outline-bg: transparent;
+  --button-outline-bg-hover: var(--color-neutral-100);
+  --button-outline-border: var(--color-neutral-300);
+  --button-outline-border-hover: var(--color-neutral-400);
+  --button-outline-fg: var(--color-neutral-900);
+
+  --button-ghost-bg: transparent;
+  --button-ghost-bg-hover: var(--color-neutral-100);
+  --button-ghost-fg: var(--color-neutral-700);
+  --button-ghost-fg-hover: var(--color-neutral-900);
+
+  --button-destructive-bg: var(--color-error-600);
+  --button-destructive-bg-hover: var(--color-error-700);
+  --button-destructive-bg-active: var(--color-error-800);
+  --button-destructive-fg: oklch(1.0 0.0 0);
+
+  /* ========================================
+   * Input Tokens
+   * ======================================== */
+  --input-padding-sm: var(--spacing-1-5) var(--spacing-2-5);
+  --input-padding: var(--spacing-2) var(--spacing-3);
+  --input-padding-lg: var(--spacing-3) var(--spacing-4);
+
+  --input-font-sm: var(--font-size-body-sm);
+  --input-font: var(--font-size-body);
+  --input-font-lg: var(--font-size-body-lg);
+
+  --input-border-width: 1px;
+  --input-border-color: var(--color-input-border);
+  --input-border-color-hover: var(--color-neutral-400);
+  --input-border-color-focus: var(--color-primary-500);
+  --input-border-color-error: var(--color-error-500);
+
+  /* ========================================
+   * Card Tokens
+   * ======================================== */
+  --card-padding: var(--spacing-4);
+  --card-padding-sm: var(--spacing-3);
+  --card-padding-lg: var(--spacing-6);
+
+  --card-border-width: 1px;
+  --card-border-color: var(--color-card-border);
+
+  /* ========================================
+   * Dialog/Modal Tokens
+   * ======================================== */
+  --dialog-padding: var(--spacing-6);
+  --dialog-padding-sm: var(--spacing-4);
+  --dialog-padding-lg: var(--spacing-8);
+
+  --dialog-max-width: 480px;
+  --dialog-max-width-sm: 360px;
+  --dialog-max-width-lg: 640px;
+  --dialog-max-width-xl: 800px;
+  --dialog-max-width-full: 100vw;
+
+  /* ========================================
+   * Badge Tokens
+   * ======================================== */
+  --badge-height: 20px;
+  --badge-height-sm: 16px;
+  --badge-height-lg: 24px;
+
+  --badge-padding: var(--spacing-1) var(--spacing-2);
+  --badge-padding-sm: var(--spacing-0-5) var(--spacing-1-5);
+  --badge-padding-lg: var(--spacing-1-5) var(--spacing-2-5);
+
+  --badge-font: var(--font-weight-medium) var(--font-size-caption) / 1 var(--font-sans);
+  --badge-font-sm: var(--font-weight-medium) var(--font-size-overline) / 1 var(--font-sans);
+  --badge-font-lg: var(--font-weight-medium) var(--font-size-body-sm) / 1 var(--font-sans);
+
+  /* ========================================
+   * Tooltip Tokens
+   * ======================================== */
+  --tooltip-padding: var(--spacing-1-5) var(--spacing-2-5);
+  --tooltip-font: var(--font-size-caption);
+  --tooltip-max-width: 240px;
+  --tooltip-offset: 8px;
+
+  /* ========================================
+   * Progress Tokens
+   * ======================================== */
+  --progress-height: 8px;
+  --progress-height-sm: 4px;
+  --progress-height-lg: 12px;
+  --progress-radius: var(--radius-full);
+
+  /* ========================================
+   * Divider Tokens
+   * ======================================== */
+  --divider-color: var(--color-border);
+  --divider-thickness: 1px;
+  --divider-spacing: var(--spacing-4);
+}
+
+/* ========================================
+ * Dark Mode Shadow Adjustments
+ * ======================================== */
+.dark {
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.2);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.3), 0 1px 2px -1px rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.3), 0 8px 10px -6px rgb(0 0 0 / 0.3);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.5);
+  --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.2);
+
+  --shadow-card: var(--shadow-sm);
+  --shadow-card-hover: var(--shadow-md);
+  --shadow-dropdown: 0 10px 25px -5px rgb(0 0 0 / 0.4);
+  --shadow-dialog: 0 20px 40px -10px rgb(0 0 0 / 0.5);
+  --shadow-float: 0 8px 32px -4px rgb(0 0 0 / 0.3);
+  --shadow-nav: 0 1px 3px 0 rgb(0 0 0 / 0.2);
+
+  /* Button dark mode adjustments */
+  --button-secondary-bg: var(--color-neutral-800);
+  --button-secondary-bg-hover: var(--color-neutral-700);
+  --button-secondary-bg-active: var(--color-neutral-600);
+  --button-secondary-fg: var(--color-neutral-100);
+  --button-secondary-fg-hover: var(--color-neutral-50);
+
+  --button-outline-bg: transparent;
+  --button-outline-bg-hover: var(--color-neutral-800);
+  --button-outline-border: var(--color-neutral-600);
+  --button-outline-border-hover: var(--color-neutral-500);
+  --button-outline-fg: var(--color-neutral-100);
+
+  --button-ghost-bg: transparent;
+  --button-ghost-bg-hover: var(--color-neutral-800);
+  --button-ghost-fg: var(--color-neutral-300);
+  --button-ghost-fg-hover: var(--color-neutral-100);
+}
