@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import { cn } from "~/lib/utils";
 import { useScrollSpy, useReadingProgress, useMaterial } from "~/hooks/materials";
 import { useMaterialStore, useFontSize, useIsFullscreen } from "~/stores/material.store";
+import { useQAStore } from "~/stores/qa.store";
 import { MarkdownRenderer } from "~/components/markdown/MarkdownRenderer";
 import { MaterialToolbar } from "~/components/materials/MaterialToolbar";
 import { TableOfContents } from "~/components/materials/TableOfContents";
@@ -13,17 +14,14 @@ import { MaterialMetadata } from "~/components/materials/MaterialMetadata";
 import { MaterialNavigation } from "~/components/materials/MaterialNavigation";
 import { QaSelectionTrigger } from "~/components/materials/QaSelectionTrigger";
 import { MaterialViewerSkeleton } from "~/components/materials/MaterialViewerSkeleton";
+import { QAInlinePopup, QAInlinePopupMobile } from "~/components/qa";
 import { extractHeadings } from "~/lib/markdown";
 
-// Placeholder for Q&A popup opener - will be implemented in SPEC-FE-006
-const openQaPopupPlaceholder = (
-  _selectedText: string,
-  _anchorRect: DOMRect,
-  _materialId: string,
-  _headingId: string | null
-) => {
-  console.log("Q&A popup will be implemented in SPEC-FE-006");
-};
+/**
+ * Minimum text length required to open Q&A popup
+ * Prevents accidental triggers on very short selections
+ */
+const MIN_SELECTION_LENGTH = 5;
 
 /**
  * Material Viewer Page
@@ -34,6 +32,7 @@ const openQaPopupPlaceholder = (
  * - TanStack Query integration
  * - Font size adjustment via CSS custom property
  * - Keyboard shortcuts: [ / ] (prev/next section), t (toggle ToC), f (fullscreen)
+ * - Q&A inline popup integration (REQ-FE-321)
  * - WCAG 2.1 AA compliance
  */
 export default function MaterialViewerPage() {
@@ -44,6 +43,7 @@ export default function MaterialViewerPage() {
   const fontSize = useFontSize();
   const isFullscreen = useIsFullscreen();
   const { toggleToc, toggleFullscreen } = useMaterialStore();
+  const { openInlinePopup } = useQAStore();
 
   // Fetch material data
   const { data: material, isLoading, error } = useMaterial(courseId, materialId);
@@ -76,6 +76,30 @@ export default function MaterialViewerPage() {
 
   // Reading progress
   const readingProgress = useReadingProgress();
+
+  // Q&A popup handler (TASK-034)
+  const handleOpenQaPopup = useCallback(
+    (
+      selectedText: string,
+      anchorRect: DOMRect,
+      materialId: string,
+      headingId: string | null
+    ) => {
+      // Validate minimum length
+      if (selectedText.length < MIN_SELECTION_LENGTH) {
+        return;
+      }
+
+      // Open the inline popup with context
+      openInlinePopup(anchorRect, {
+        courseId,
+        materialId,
+        headingId,
+        selectedText,
+      });
+    },
+    [courseId, openInlinePopup]
+  );
 
   // Keyboard shortcuts
   const handleKeyDown = useCallback(
@@ -250,8 +274,12 @@ export default function MaterialViewerPage() {
       <QaSelectionTrigger
         materialId={materialId}
         activeHeadingId={activeHeadingId}
-        onOpenQaPopup={openQaPopupPlaceholder}
+        onOpenQaPopup={handleOpenQaPopup}
       />
+
+      {/* Q&A Inline Popups (Desktop & Mobile) */}
+      <QAInlinePopup />
+      <QAInlinePopupMobile />
     </div>
   );
 }

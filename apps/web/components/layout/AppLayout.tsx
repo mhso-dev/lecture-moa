@@ -8,6 +8,7 @@ import { useMediaQuery } from "~/hooks/useMediaQuery";
 import { Sidebar } from "./Sidebar";
 import { BottomTab } from "./BottomTab";
 import { ContentLayout } from "./ContentLayout";
+import { QANotificationProvider } from "~/components/qa/QANotificationProvider";
 
 /**
  * AppLayout Props
@@ -86,22 +87,25 @@ export function AppLayout({
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Sidebar - Hidden on mobile */}
-      {!isMobile && <Sidebar />}
+      {/* Q&A Notification Provider - Handles WebSocket notifications */}
+      <QANotificationProvider>
+        {/* Sidebar - Hidden on mobile */}
+        {!isMobile && <Sidebar />}
 
-      {/* Bottom Tab - Visible on mobile only */}
-      {isMobile && <BottomTab />}
+        {/* Bottom Tab - Visible on mobile only */}
+        {isMobile && <BottomTab />}
 
-      {/* Main Content */}
-      <ContentLayout
-        title={title}
-        description={description}
-        actions={actions}
-        fullWidth={fullWidth}
-        noPadding={noPadding}
-      >
-        {children}
-      </ContentLayout>
+        {/* Main Content */}
+        <ContentLayout
+          title={title}
+          description={description}
+          actions={actions}
+          fullWidth={fullWidth}
+          noPadding={noPadding}
+        >
+          {children}
+        </ContentLayout>
+      </QANotificationProvider>
     </div>
   );
 }
