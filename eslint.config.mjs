@@ -58,6 +58,8 @@ export default tseslint.config(
       "**/.next/**",
       "**/coverage/**",
       "**/*.config.{js,ts,mjs,cjs}",
+      ".turbo",
+      "pnpm-lock.yaml",
     ],
   },
   prettier,

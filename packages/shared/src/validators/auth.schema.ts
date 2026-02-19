@@ -9,10 +9,7 @@ import { z } from "zod";
  * Login validation schema
  */
 export const loginSchema = z.object({
-  email: z
-    .string()
-    .min(1, "Email is required")
-    .email("Invalid email address"),
+  email: z.email("Invalid email address"),
   password: z
     .string()
     .min(1, "Password is required")
@@ -26,10 +23,7 @@ export type LoginSchema = z.infer<typeof loginSchema>;
  */
 export const registerSchema = z
   .object({
-    email: z
-      .string()
-      .min(1, "Email is required")
-      .email("Invalid email address"),
+    email: z.email("Invalid email address"),
     password: z
       .string()
       .min(1, "Password is required")
@@ -59,10 +53,7 @@ export type RegisterSchema = z.infer<typeof registerSchema>;
  * Password reset request schema
  */
 export const passwordResetRequestSchema = z.object({
-  email: z
-    .string()
-    .min(1, "Email is required")
-    .email("Invalid email address"),
+  email: z.email("Invalid email address"),
 });
 
 export type PasswordResetRequestSchema = z.infer<typeof passwordResetRequestSchema>;
@@ -99,7 +90,7 @@ export const updateProfileSchema = z.object({
     .min(2, "Name must be at least 2 characters")
     .max(50, "Name must be less than 50 characters")
     .optional(),
-  image: z.string().url("Invalid image URL").optional(),
+  image: z.url("Invalid image URL").optional(),
 });
 
 export type UpdateProfileSchema = z.infer<typeof updateProfileSchema>;
