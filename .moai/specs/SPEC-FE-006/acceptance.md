@@ -1,13 +1,13 @@
 ---
 id: SPEC-FE-006
 title: "Q&A System - Acceptance Criteria"
-version: 1.0.0
+version: 2.0.0
 status: draft
 created: 2026-02-19
 updated: 2026-02-19
 ---
 
-# SPEC-FE-006: Q&A System — Acceptance Criteria
+# SPEC-FE-006: Q&A System -- Acceptance Criteria
 
 ## Quality Gate Criteria
 
@@ -30,6 +30,7 @@ When TypeScript compiler runs on packages/shared
 Then compilation succeeds with zero errors
 And QAQuestion, QAAnswer, QAListItem, QAStatus, QAAuthorInfo, QAListFilter types are exported
 And qa.types.ts imports UserRole from auth.types.ts without circular dependency
+And QAQuestionContext uses headingId (not sectionAnchor)
 ```
 
 ### AC-500-02: Zod Schema Validation
@@ -51,9 +52,10 @@ Then safeParse returns success: false with error on the content field
 ### AC-500-03: WebSocket Event Constants
 
 ```gherkin
-Given events.ts is updated with QA_EVENTS constants
-When QA_EVENTS.NEW_ANSWER, QA_EVENTS.AI_SUGGESTION_READY, QA_EVENTS.QUESTION_RESOLVED are accessed
-Then each returns a unique string constant
+Given events.ts is updated with new Q&A event constants
+When EVENTS.QA_AI_SUGGESTION_READY and EVENTS.QA_QUESTION_RESOLVED are accessed
+Then each returns a unique string constant ("qa:ai_suggestion_ready" and "qa:question_resolved")
+And existing EVENTS.QA_QUESTION_POSTED and EVENTS.QA_ANSWER_POSTED are unchanged
 And no existing event constant is overwritten
 ```
 
@@ -65,10 +67,11 @@ And no existing event constant is overwritten
 
 ```gherkin
 Given the qa.store is initialized with inlinePopup.isOpen = false
-When openInlinePopup(anchorRect, context) is called
+When openInlinePopup(anchorRect, context) is called with context containing headingId
 Then inlinePopup.isOpen becomes true
 And inlinePopup.anchorRect equals the provided DOMRect
-And inlinePopup.context.selectedText equals the provided context
+And inlinePopup.context.selectedText equals the provided context.selectedText
+And inlinePopup.context.headingId equals the provided context.headingId
 
 Given inlinePopup.isOpen is true
 When closeInlinePopup() is called
@@ -90,30 +93,41 @@ Then pendingNotifications becomes empty
 
 ---
 
-## AC-510: Text Selection Trigger
+## AC-510: Text Selection Trigger (2-Step Flow)
 
-### AC-510-01: Popup Opens on Valid Selection
+### AC-510-01: Floating Button Appears on Text Selection
 
 ```gherkin
-Given a student is viewing a material page
-And the material viewer exposes onSelectionIntent callback
-When the student selects 10 characters of text and releases the mouse
-Then onSelectionIntent is called with the selection context
-And the Q&A inline popup opens anchored to the selection
+Given a student is viewing a material page at /courses/[courseId]/materials/[materialId]
+And the QaSelectionTrigger component is rendered (student role)
+When the student selects 10 characters of text in the material content
+Then the QaSelectionTrigger floating "Ask" button appears near the selection end
+And the button is positioned using the selection bounding rect
+```
+
+### AC-510-02: Popup Opens on Button Click
+
+```gherkin
+Given the QaSelectionTrigger floating button is visible after text selection
+When the student clicks the "Ask" button
+Then the onOpenQaPopup callback fires with (selectedText, anchorRect, materialId, headingId)
+And the handleOpenQaPopup handler validates selectedText.length >= 5
+And qa.store.openInlinePopup is called with the anchorRect and context
+And the QAInlinePopup component renders anchored to the selection
 And focus moves to the question title input field
 ```
 
-### AC-510-02: Short Selection Does Not Open Popup
+### AC-510-03: Short Selection Does Not Open Popup
 
 ```gherkin
 Given a student is viewing a material page
-When the student selects fewer than 5 characters
-And releases the mouse
+And the student selects fewer than 5 characters
+When the student clicks the QaSelectionTrigger button
 Then the Q&A popup does not open
 And no error is shown
 ```
 
-### AC-510-03: Popup Dismissed by Escape Key
+### AC-510-04: Popup Dismissed by Escape Key
 
 ```gherkin
 Given the Q&A inline popup is open
@@ -123,13 +137,22 @@ And focus returns to the material viewer
 And no question is submitted
 ```
 
-### AC-510-04: Popup Dismissed by Click Outside
+### AC-510-05: Popup Dismissed by Click Outside
 
 ```gherkin
 Given the Q&A inline popup is open
 When the user clicks outside the popup bounds
 Then the popup closes
 And the form content is not saved
+```
+
+### AC-510-06: Trigger Hidden for Instructor
+
+```gherkin
+Given an instructor is viewing a material page
+When the instructor selects text in the material content
+Then the QaSelectionTrigger floating button does NOT appear
+And the QaSelectionTrigger component returns null
 ```
 
 ---
@@ -140,7 +163,7 @@ And the form content is not saved
 
 ```gherkin
 Given the viewport width is >= 768px
-And the inline popup is triggered by text selection
+And the inline popup is triggered by clicking the QaSelectionTrigger button
 When the popup renders
 Then the popup has width of 480px
 And the popup appears below the selected text when there is sufficient space
@@ -178,7 +201,7 @@ Given the Q&A popup is open
 When the popup DOM is inspected
 Then the popup container has role="dialog"
 And role="dialog" element has aria-modal="true"
-And the dialog has aria-label or aria-labelledby referencing "질문하기"
+And the dialog has aria-label or aria-labelledby referencing a label
 ```
 
 ### AC-512-02: Focus Trap
@@ -200,12 +223,13 @@ And focus does not escape to the background page
 Given the Q&A popup is open
 And the student enters a title of at least 10 characters
 And the student enters content of at least 20 characters
-When the student clicks "제출" (Submit)
+When the student clicks Submit
 Then useCreateQuestion mutation is called with { courseId, materialId, title, content, context }
+And context contains { materialId, headingId, selectedText }
 And a loading spinner appears on the Submit button
 And the form fields are disabled during submission
 And on success the popup closes
-And a success Toast appears: "질문이 등록되었습니다"
+And a success Toast appears
 And the Q&A list query is invalidated
 ```
 
@@ -227,6 +251,40 @@ Given the Q&A popup form is being submitted (loading state)
 When the user clicks Submit again
 Then the mutation is not called a second time
 And the Submit button remains disabled until the first call completes
+```
+
+---
+
+## AC-514: Markdown Editor Reuse
+
+### AC-514-01: EditorWithPreview in Popup
+
+```gherkin
+Given the Q&A popup is open with the content editor visible
+When the user inspects the content editor component
+Then it is an instance of EditorWithPreview from components/markdown/EditorWithPreview.tsx
+And no separate MarkdownEditor exists in components/qa/
+```
+
+### AC-514-02: Write/Preview Toggle
+
+```gherkin
+Given EditorWithPreview is rendered in the popup with initial value "**Hello**"
+When the user switches to the "Preview" tab/view
+Then the rendered output shows bold "Hello" text (not raw asterisks)
+And the preview uses MarkdownRenderer from components/markdown/
+When the user switches back to the "Editor" tab/view
+Then the textarea is shown again with the raw Markdown value
+```
+
+### AC-514-03: Markdown Rendering in Read-Only Display
+
+```gherkin
+Given a question or answer content contains Markdown syntax
+When QuestionCard or AnswerCard renders the content
+Then it uses MarkdownRenderer from components/markdown/MarkdownRenderer.tsx
+And all markdown features are rendered (GFM, math, syntax highlighting)
+And content is sanitized via rehype-sanitize
 ```
 
 ---
@@ -287,8 +345,8 @@ And newly loaded items are appended to the list
 ```gherkin
 Given no questions match the active filters
 When the list renders
-Then an empty state illustration and "아직 질문이 없습니다" message are shown
-And for students, a "첫 번째 질문하기" button is visible
+Then an empty state illustration and appropriate message are shown
+And for students, a CTA button to create first question is visible
 ```
 
 ---
@@ -324,7 +382,7 @@ Given a user navigates to /qa/[questionId]
 When the page loads
 Then the full question title is shown as the page heading
 And the context block shows the source material link and selected text quote
-And the question body is rendered as Markdown (not raw text)
+And the question body is rendered as Markdown via MarkdownRenderer (not raw text)
 And the author avatar, name, role badge, and timestamp are shown
 And the status badge is shown
 ```
@@ -350,7 +408,7 @@ When the detail page renders
 Then an AIAnswerCard is shown above human answers
 And the card has a visual AI indicator (sparkle icon or gradient border)
 And "AI 제안 답변" label is visible
-And the AI answer content is rendered as Markdown
+And the AI answer content is rendered via MarkdownRenderer
 ```
 
 ### AC-532-02: AI Suggestion Pending State
@@ -367,7 +425,7 @@ Then a pulsing skeleton with "AI가 답변을 생성 중..." label is shown wher
 Given an instructor is viewing a question with an available AI suggestion
 When the instructor clicks "채택하기" on the AI answer card
 Then useAcceptAnswer mutation is called with the AI answer's ID
-And the AI answer card shows the "채택된 답변" badge
+And the AI answer card shows the accepted badge
 And question status updates to RESOLVED
 And a success Toast appears
 ```
@@ -377,7 +435,7 @@ And a success Toast appears
 ```gherkin
 Given a student is viewing a question with an available AI suggestion
 When the AIAnswerCard renders
-Then the "채택하기" button is not visible
+Then the accept button is not visible
 And the student sees the AI answer as read-only content
 ```
 
@@ -413,7 +471,6 @@ And the button returns to "not upvoted" state
 Given a student is viewing an answer they authored
 When the answer card renders
 Then the upvote button is disabled
-And no tooltip explanation is required (UI convention)
 ```
 
 ---
@@ -424,8 +481,8 @@ And no tooltip explanation is required (UI convention)
 
 ```gherkin
 Given an authenticated user is viewing an open question
-When the user types a valid answer (>= 10 chars) in MarkdownEditor
-And clicks "답변 등록"
+When the user types a valid answer (>= 10 chars) in the EditorWithPreview component
+And clicks the submit button
 Then useCreateAnswer mutation is called with the content
 And on success the answer appears in the thread
 And the form resets to empty
@@ -438,7 +495,7 @@ And the viewport scrolls to the new answer
 Given a question has status CLOSED
 When the detail page renders
 Then the answer form is displayed as read-only (all fields disabled)
-And a notice "이 질문은 종료되었습니다" is shown above the form
+And a notice about the question being closed is shown above the form
 ```
 
 ### AC-534-03: Unauthenticated User Cannot Submit
@@ -447,7 +504,16 @@ And a notice "이 질문은 종료되었습니다" is shown above the form
 Given the user is not authenticated
 When the Q&A detail page renders
 Then the answer form is not rendered
-And instead a "로그인하면 답변할 수 있습니다" message with a login link is shown
+And instead a message with a login link is shown
+```
+
+### AC-534-04: Form Uses Existing EditorWithPreview
+
+```gherkin
+Given the AnswerForm component renders
+When the user inspects the content editor
+Then it is an instance of EditorWithPreview from components/markdown/
+And no separate markdown editor exists in components/qa/
 ```
 
 ---
@@ -460,9 +526,9 @@ And instead a "로그인하면 답변할 수 있습니다" message with a login 
 Given an instructor is viewing a question with unaccepted answers
 When the instructor clicks "채택하기" on an answer
 Then useAcceptAnswer mutation is called
-And the answer card shows "채택된 답변" badge immediately (optimistic)
+And the answer card shows the accepted badge immediately (optimistic)
 And the question status updates to RESOLVED
-And a success Toast "답변이 채택되었습니다" appears
+And a success Toast appears
 ```
 
 ### AC-535-02: Question Author Accepts Answer
@@ -478,7 +544,7 @@ Then the same accept flow executes as for an instructor
 ```gherkin
 Given a student is viewing a question they did not author
 When the answer thread renders
-Then no "채택하기" button is visible on any answer card
+Then no accept button is visible on any answer card
 ```
 
 ---
@@ -490,7 +556,7 @@ Then no "채택하기" button is visible on any answer card
 ```gherkin
 Given User A is viewing a question detail page
 And User B posts an answer to the same question
-When the WebSocket event QA_EVENTS.NEW_ANSWER is received
+When the WebSocket event EVENTS.QA_ANSWER_POSTED is received
 Then the new answer appears in User A's answer thread without page refresh
 And the answer count increments
 ```
@@ -530,8 +596,8 @@ Then no status change control is visible
 
 ```gherkin
 Given an instructor is viewing a question detail page
-When the instructor selects "삭제" from the action menu
-Then a confirmation dialog appears: "질문과 모든 답변이 삭제됩니다"
+When the instructor selects delete from the action menu
+Then a confirmation dialog appears warning about deletion of question and all answers
 When the instructor confirms deletion
 Then the question and all answers are deleted
 And the user is navigated back to /qa
@@ -547,8 +613,8 @@ And the Q&A list query is invalidated
 ```gherkin
 Given User A authored a question
 And User A is authenticated and on any page
-When User B posts an answer and the server sends QA_EVENTS.NEW_ANSWER
-Then User A sees a Toast notification: "[User B 이름]님이 답변했습니다"
+When User B posts an answer and the server sends EVENTS.QA_ANSWER_POSTED
+Then User A sees a Toast notification with the answerer's name
 And the Toast includes a link to the question
 And clicking the Toast navigates to /qa/[questionId]
 ```
@@ -557,8 +623,8 @@ And clicking the Toast navigates to /qa/[questionId]
 
 ```gherkin
 Given a user requested an AI suggestion for a question
-When the server sends QA_EVENTS.AI_SUGGESTION_READY
-Then a Toast appears: "AI가 [질문 제목]에 답변을 제안했습니다"
+When the server sends EVENTS.QA_AI_SUGGESTION_READY
+Then a Toast appears indicating the AI has suggested an answer
 And clicking navigates to /qa/[questionId] and scrolls to AIAnswerCard
 ```
 
@@ -571,36 +637,13 @@ Then pendingNotifications is cleared
 And the Q&A navigation badge disappears
 ```
 
----
-
-## AC-514: MarkdownEditor Component
-
-### AC-514-01: Write/Preview Toggle
+### AC-545-04: WebSocket Follows Dashboard Hook Pattern
 
 ```gherkin
-Given MarkdownEditor is rendered with initial value "**Hello**"
-When the user clicks the "Preview" tab
-Then the rendered output shows bold "Hello" text (not raw asterisks)
-When the user clicks the "Write" tab
-Then the textarea is shown again with the raw Markdown value
-```
-
-### AC-514-02: Toolbar Bold Shortcut
-
-```gherkin
-Given the user has selected the word "test" in the MarkdownEditor textarea
-When the user clicks the Bold toolbar button
-Then the textarea value changes to "**test**"
-And the cursor is positioned after the closing asterisks
-```
-
-### AC-514-03: Disabled State
-
-```gherkin
-Given MarkdownEditor is rendered with disabled=true
-When the user attempts to type in the textarea
-Then no input is accepted
-And the toolbar buttons are not interactive
+Given useQAWebSocket hook is implemented
+When the hook source code is inspected
+Then it follows the same pattern as hooks in apps/web/hooks/dashboard/
+And it does NOT reference a lib/ws-client.ts or lib/websocket.ts file
 ```
 
 ---
@@ -611,7 +654,8 @@ And the toolbar buttons are not interactive
 
 ```gherkin
 Given a user selects exactly 3 characters in the material viewer
-When the selection ends
+And clicks the QaSelectionTrigger button (if visible)
+When the handleOpenQaPopup handler runs
 Then the Q&A popup does not open
 And qa.store.inlinePopup.isOpen remains false
 ```
@@ -623,15 +667,15 @@ Given a student is viewing a question detail page
 When the page renders
 Then the following are NOT present in the DOM:
   - Status change dropdown
-  - "채택하기" button on AI answer card
-  - "이 질문 닫기" action
+  - Accept button on AI answer card
+  - Close question action
 ```
 
 ### AC-N505-01: No Raw Markdown Display
 
 ```gherkin
 Given a question content contains "**bold** text and `code`"
-When QuestionCard renders the content
+When QuestionCard renders the content using MarkdownRenderer
 Then the user sees bold text and code formatting
 And the raw asterisks and backticks are not visible
 ```
@@ -643,7 +687,7 @@ Given a question has status CLOSED
 When AnswerForm renders
 Then all form fields are disabled
 And the submit button is disabled
-And the notice "이 질문은 종료되었습니다" is present
+And a notice about the question being closed is present
 ```
 
 ---
@@ -664,7 +708,7 @@ And list items display without horizontal overflow
 
 ```gherkin
 Given viewport width is 375px
-When a student triggers the Q&A popup
+When a student triggers the Q&A popup by clicking QaSelectionTrigger button
 Then a Sheet slides up from the bottom (not a floating popup)
 And the Sheet contains the context snippet, title input, and content editor
 ```
@@ -675,5 +719,39 @@ And the Sheet contains the context snippet, title input, and content editor
 Given viewport width is 768px
 When the Q&A detail page renders
 Then all content (QuestionCard, AIAnswerCard, AnswerThread, AnswerForm) renders without horizontal overflow
-And the answer form Markdown editor is usable with a visible toolbar
+And the answer form EditorWithPreview is usable with a visible toolbar
+```
+
+---
+
+## Material Page Integration Acceptance Criteria
+
+### AC-INTEG-01: Placeholder Replaced
+
+```gherkin
+Given the material page at apps/web/app/(dashboard)/courses/[courseId]/materials/[materialId]/page.tsx
+When the page source is inspected
+Then the openQaPopupPlaceholder function no longer exists
+And a handleOpenQaPopup function exists that calls qa.store.openInlinePopup
+And the QAInlinePopup component is rendered conditioned on qa.store.inlinePopup.isOpen
+```
+
+### AC-INTEG-02: No New Files in Existing Directories
+
+```gherkin
+Given the implementation is complete
+When the components/materials/ directory is inspected
+Then no new files have been added (QaSelectionTrigger.tsx is unchanged)
+When the components/markdown/ directory is inspected
+Then no new files have been added (all existing components are reused as-is)
+```
+
+### AC-INTEG-03: Events Object Extension
+
+```gherkin
+Given the implementation is complete
+When packages/shared/src/constants/events.ts is inspected
+Then the EVENTS object contains QA_AI_SUGGESTION_READY and QA_QUESTION_RESOLVED
+And no QA_EVENTS namespace exists
+And all existing event constants remain unchanged
 ```
