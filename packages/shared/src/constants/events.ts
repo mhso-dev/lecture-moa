@@ -39,6 +39,15 @@ export const EVENTS = {
   USER_ONLINE: "user:online",
   USER_OFFLINE: "user:offline",
   USER_TYPING: "user:typing",
+
+  // Team Memo events (REQ-FE-704)
+  TEAM_MEMO_CREATED: "team_memo:created",
+  TEAM_MEMO_UPDATED: "team_memo:updated",
+  TEAM_MEMO_DELETED: "team_memo:deleted",
+
+  // Team Member events (REQ-FE-704)
+  TEAM_MEMBER_JOINED: "team:member_joined",
+  TEAM_MEMBER_LEFT: "team:member_left",
 } as const;
 
 /**
@@ -52,4 +61,7 @@ export const EVENT_CATEGORIES = {
   QA: "qa",
   NOTIFICATION: "notification",
   PRESENCE: "presence",
+  // Team and Memo categories (REQ-FE-704)
+  TEAM: "team",
+  MEMO: "memo",
 } as const;
