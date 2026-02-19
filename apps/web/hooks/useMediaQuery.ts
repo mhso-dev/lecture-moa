@@ -71,7 +71,7 @@ export function useMediaQuery(): UseMediaQueryReturn {
     handleResize();
 
     // Throttled resize handler
-    let timeoutId: ReturnType<typeof setTimeout>;
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
     const throttledResize = () => {
       if (timeoutId) {
         clearTimeout(timeoutId);

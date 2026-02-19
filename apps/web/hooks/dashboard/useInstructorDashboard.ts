@@ -170,7 +170,7 @@ export function useActivityFeed({ page = 1 }: { page?: number } = {}) {
     queryKey: instructorDashboardKeys.activityFeed(page),
     queryFn: async () => {
       const response = await api.get<PaginatedResponse<ActivityFeedItem>>(
-        `${INSTRUCTOR_DASHBOARD_ENDPOINTS.activityFeed}?page=${page}`
+        `${INSTRUCTOR_DASHBOARD_ENDPOINTS.activityFeed}?page=${String(page)}`
       );
       return response.data;
     },

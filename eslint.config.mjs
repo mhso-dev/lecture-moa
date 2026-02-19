@@ -52,12 +52,20 @@ export default tseslint.config(
     },
   },
   {
+    // Allow unbound-method in test files for vi.mocked() patterns
+    files: ["**/__tests__/**/*.{ts,tsx}", "**/*.test.{ts,tsx}", "**/*.spec.{ts,tsx}"],
+    rules: {
+      "@typescript-eslint/unbound-method": "off",
+    },
+  },
+  {
     ignores: [
       "**/node_modules/**",
       "**/dist/**",
       "**/.next/**",
       "**/coverage/**",
       "**/*.config.{js,ts,mjs,cjs}",
+      "**/next-env.d.ts",
     ],
   },
   prettier,

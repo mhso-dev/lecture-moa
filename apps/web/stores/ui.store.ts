@@ -73,7 +73,7 @@ export const useUIStore = create<UIStore>()(
         ); },
 
       addToast: (toast) => {
-        const id = `toast-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+        const id = `toast-${String(Date.now())}-${Math.random().toString(36).slice(2, 9)}`;
         set(
           { toasts: [...get().toasts, { ...toast, id }] },
           false,
