@@ -106,41 +106,47 @@ export const useQAStore = create<QAStore>()(
       ...initialState,
 
       // Actions - Inline Popup
-      openInlinePopup: (anchorRect, context) =>
+      openInlinePopup: (anchorRect, context) => {
         set(
           { inlinePopup: { isOpen: true, anchorRect, context } },
           false,
           "qa/openInlinePopup"
-        ),
+        );
+      },
 
-      closeInlinePopup: () =>
+      closeInlinePopup: () => {
         set(
           { inlinePopup: { isOpen: false, anchorRect: null, context: null } },
           false,
           "qa/closeInlinePopup"
-        ),
+        );
+      },
 
       // Actions - Navigation
-      setActiveQuestion: (id) =>
-        set({ activeQuestionId: id }, false, "qa/setActiveQuestion"),
+      setActiveQuestion: (id) => {
+        set({ activeQuestionId: id }, false, "qa/setActiveQuestion");
+      },
 
-      clearActiveQuestion: () =>
-        set({ activeQuestionId: null }, false, "qa/clearActiveQuestion"),
+      clearActiveQuestion: () => {
+        set({ activeQuestionId: null }, false, "qa/clearActiveQuestion");
+      },
 
       // Actions - Real-time
-      setWsConnected: (connected) =>
-        set({ wsConnected: connected }, false, "qa/setWsConnected"),
+      setWsConnected: (connected) => {
+        set({ wsConnected: connected }, false, "qa/setWsConnected");
+      },
 
-      addNotification: (notification) =>
+      addNotification: (notification) => {
         set(
           (state) => ({
             pendingNotifications: [...state.pendingNotifications, notification],
           }),
           false,
           "qa/addNotification"
-        ),
+        );
+      },
 
-      clearNotification: (id) =>
+      clearNotification: (id) => {
         set(
           (state) => ({
             pendingNotifications: state.pendingNotifications.filter(
@@ -149,10 +155,12 @@ export const useQAStore = create<QAStore>()(
           }),
           false,
           "qa/clearNotification"
-        ),
+        );
+      },
 
-      clearAllNotifications: () =>
-        set({ pendingNotifications: [] }, false, "qa/clearAllNotifications"),
+      clearAllNotifications: () => {
+        set({ pendingNotifications: [] }, false, "qa/clearAllNotifications");
+      },
     }),
     {
       name: "QAStore",

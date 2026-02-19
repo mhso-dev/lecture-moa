@@ -82,7 +82,7 @@ export function useUpvoteQuestion(
 
     // Always refetch after success or error to ensure sync
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey });
+      void queryClient.invalidateQueries({ queryKey });
     },
   });
 }
