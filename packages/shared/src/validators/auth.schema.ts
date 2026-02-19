@@ -9,10 +9,8 @@ import { z } from "zod";
  * Login validation schema
  */
 export const loginSchema = z.object({
-  email: z
-    .string()
-    .min(1, "Email is required")
-    .email("Invalid email address"),
+  // eslint-disable-next-line @typescript-eslint/no-deprecated -- Zod 4 new syntax (.email()) breaks @hookform/resolvers compatibility
+  email: z.string().email("Invalid email address"),
   password: z
     .string()
     .min(1, "Password is required")
@@ -26,10 +24,8 @@ export type LoginSchema = z.infer<typeof loginSchema>;
  */
 export const registerSchema = z
   .object({
-    email: z
-      .string()
-      .min(1, "Email is required")
-      .email("Invalid email address"),
+    // eslint-disable-next-line @typescript-eslint/no-deprecated -- Zod 4 new syntax (.email()) breaks @hookform/resolvers compatibility
+    email: z.string().email("Invalid email address"),
     password: z
       .string()
       .min(1, "Password is required")
@@ -44,9 +40,7 @@ export const registerSchema = z
       .min(1, "Name is required")
       .min(2, "Name must be at least 2 characters")
       .max(50, "Name must be less than 50 characters"),
-    role: z.enum(["instructor", "student"], {
-      required_error: "Role is required",
-    }),
+    role: z.enum(["instructor", "student"]),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords do not match",
@@ -59,10 +53,8 @@ export type RegisterSchema = z.infer<typeof registerSchema>;
  * Password reset request schema
  */
 export const passwordResetRequestSchema = z.object({
-  email: z
-    .string()
-    .min(1, "Email is required")
-    .email("Invalid email address"),
+  // eslint-disable-next-line @typescript-eslint/no-deprecated -- Zod 4 new syntax (.email()) breaks @hookform/resolvers compatibility
+  email: z.string().email("Invalid email address"),
 });
 
 export type PasswordResetRequestSchema = z.infer<typeof passwordResetRequestSchema>;
@@ -99,6 +91,7 @@ export const updateProfileSchema = z.object({
     .min(2, "Name must be at least 2 characters")
     .max(50, "Name must be less than 50 characters")
     .optional(),
+  // eslint-disable-next-line @typescript-eslint/no-deprecated -- Zod 4 new syntax (.url()) breaks @hookform/resolvers compatibility
   image: z.string().url("Invalid image URL").optional(),
 });
 

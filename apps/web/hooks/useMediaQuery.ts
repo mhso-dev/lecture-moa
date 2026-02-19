@@ -71,7 +71,7 @@ export function useMediaQuery(): UseMediaQueryReturn {
     handleResize();
 
     // Throttled resize handler
-    let timeoutId: ReturnType<typeof setTimeout>;
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
     const throttledResize = () => {
       if (timeoutId) {
         clearTimeout(timeoutId);
@@ -155,7 +155,7 @@ export function useMatchMedia(query: string): boolean {
 
     // Listen for changes
     media.addEventListener("change", updateMatch);
-    return () => media.removeEventListener("change", updateMatch);
+    return () => { media.removeEventListener("change", updateMatch); };
   }, [query]);
 
   // SSR: return false

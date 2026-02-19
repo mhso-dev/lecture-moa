@@ -28,20 +28,24 @@ function AuthSync({ children }: { children: ReactNode }) {
       return;
     }
 
-    if (status === "authenticated" && session?.user) {
-      // Sync session user to Zustand store
-      setUser({
-        id: session.user.id,
-        email: session.user.email ?? "",
-        name: session.user.name ?? "",
-        role: session.user.role,
-        image: session.user.image ?? undefined,
-        createdAt: new Date(),
-      });
-      setLoading(false);
+    if (status === "authenticated") {
+      // When status is authenticated, session is guaranteed to exist
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+      if (session) {
+        // Sync session user to Zustand store
+        setUser({
+          id: session.user.id,
+          email: session.user.email ?? "",
+          name: session.user.name ?? "",
+          role: session.user.role,
+          image: session.user.image ?? undefined,
+          createdAt: new Date(),
+        });
+        setLoading(false);
 
-      // Sync access token to API client
-      setApiAuthToken(session.accessToken);
+        // Sync access token to API client
+        setApiAuthToken(session.accessToken);
+      }
     }
 
     if (status === "unauthenticated") {

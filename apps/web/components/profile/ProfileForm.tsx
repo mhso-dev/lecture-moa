@@ -2,6 +2,7 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import type { ZodType } from "zod";
 import { useSession } from "next-auth/react";
 import { toast } from "sonner";
 import { updateProfileSchema, type UpdateProfileSchema, type User } from "@shared";
@@ -37,7 +38,8 @@ export function ProfileForm({ initialData }: ProfileFormProps) {
   const setUser = useAuthStore((state) => state.setUser);
 
   const form = useForm<UpdateProfileSchema>({
-    resolver: zodResolver(updateProfileSchema),
+    // Zod 3.25.x type system changes require assertion for hookform resolvers compatibility
+    resolver: zodResolver(updateProfileSchema as unknown as ZodType<UpdateProfileSchema>),
     defaultValues: {
       name: initialData.name,
     },

@@ -60,20 +60,20 @@ export const useUIStore = create<UIStore>()(
       ...initialState,
 
       openModal: (modal) =>
-        set({ activeModal: modal }, false, "ui/openModal"),
+        { set({ activeModal: modal }, false, "ui/openModal"); },
 
       closeModal: () =>
-        set({ activeModal: null }, false, "ui/closeModal"),
+        { set({ activeModal: null }, false, "ui/closeModal"); },
 
       setLoading: (isLoading, message = "") =>
-        set(
+        { set(
           { isLoading, loadingMessage: message },
           false,
           "ui/setLoading"
-        ),
+        ); },
 
       addToast: (toast) => {
-        const id = `toast-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+        const id = `toast-${String(Date.now())}-${Math.random().toString(36).slice(2, 9)}`;
         set(
           { toasts: [...get().toasts, { ...toast, id }] },
           false,
@@ -83,14 +83,14 @@ export const useUIStore = create<UIStore>()(
       },
 
       removeToast: (id) =>
-        set(
+        { set(
           { toasts: get().toasts.filter((t) => t.id !== id) },
           false,
           "ui/removeToast"
-        ),
+        ); },
 
       clearToasts: () =>
-        set({ toasts: [] }, false, "ui/clearToasts"),
+        { set({ toasts: [] }, false, "ui/clearToasts"); },
     }),
     {
       name: "UIStore",

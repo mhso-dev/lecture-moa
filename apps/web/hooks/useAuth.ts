@@ -57,7 +57,7 @@ export function useAuth() {
           redirect: false,
         });
 
-        if (result?.error) {
+        if (result.error) {
           return {
             success: false,
             error: result.error === "CredentialsSignin"
