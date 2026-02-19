@@ -4,15 +4,15 @@ import { z } from "zod";
 export const env = createEnv({
   server: {
     NEXTAUTH_SECRET: z.string().min(1),
-    NEXTAUTH_URL: z.string().url(),
+    NEXTAUTH_URL: z.url(),
     GOOGLE_CLIENT_ID: z.string().optional(),
     GOOGLE_CLIENT_SECRET: z.string().optional(),
     GITHUB_CLIENT_ID: z.string().optional(),
     GITHUB_CLIENT_SECRET: z.string().optional(),
   },
   client: {
-    NEXT_PUBLIC_API_URL: z.string().url(),
-    NEXT_PUBLIC_APP_URL: z.string().url().optional(),
+    NEXT_PUBLIC_API_URL: z.url(),
+    NEXT_PUBLIC_APP_URL: z.url().optional(),
     NEXT_PUBLIC_ENABLE_SOCIAL_LOGIN: z.string().optional().default("false"),
   },
   runtimeEnv: {
