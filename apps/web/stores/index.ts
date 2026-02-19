@@ -36,3 +36,11 @@ export {
   useCourseSelectedCategory,
   useCourseSortOption,
 } from "./course.store";
+
+export {
+  useQAStore,
+  useInlinePopup,
+  useActiveQuestionId,
+  useWsConnected,
+  usePendingNotifications,
+} from "./qa.store";
