@@ -98,7 +98,7 @@ export function CourseFilter({
               aria-selected={isSelected}
               variant={isSelected ? "default" : "ghost"}
               size="sm"
-              onClick={() => handleCategoryChange(category.value)}
+              onClick={() => { handleCategoryChange(category.value); }}
               className="text-sm"
             >
               {category.label}

@@ -97,14 +97,14 @@ export function CourseSyllabus({
         const isExpanded = expandedSections.has(section.id);
 
         return (
-          <Card key={section.id} data-testid={`syllabus-section-${section.order}`}>
-            <Collapsible open={isExpanded} onOpenChange={() => toggleSection(section.id)}>
+          <Card key={section.id} data-testid={`syllabus-section-${String(section.order)}`}>
+            <Collapsible open={isExpanded} onOpenChange={() => { toggleSection(section.id); }}>
               <CardHeader className="py-3">
                 <CollapsibleTrigger asChild>
                   <Button
                     variant="ghost"
                     className="w-full flex items-center justify-between px-0 hover:bg-transparent"
-                    aria-label={`Toggle section ${section.order}`}
+                    aria-label={`Toggle section ${String(section.order)}`}
                     aria-expanded={isExpanded}
                   >
                     <div className="flex items-center gap-3">

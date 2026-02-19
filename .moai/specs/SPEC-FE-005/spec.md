@@ -2,7 +2,7 @@
 id: SPEC-FE-005
 title: "Course Management"
 version: 2.0.0
-status: draft
+status: completed
 created: 2026-02-19
 updated: 2026-02-19
 author: MoAI

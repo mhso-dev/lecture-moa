@@ -288,7 +288,7 @@ export function CourseCreateForm({ onSuccess }: CourseCreateFormProps) {
           <Button
             type="button"
             variant="outline"
-            onClick={() => router.back()}
+            onClick={() => { router.back(); }}
           >
             Cancel
           </Button>

@@ -27,7 +27,7 @@ export default function CourseCreatePage() {
 
   // Redirect non-instructors to courses list
   useEffect(() => {
-    if (status === "authenticated" && session?.user?.role !== "instructor") {
+    if (status === "authenticated" && session.user.role !== "instructor") {
       router.push("/courses");
     }
   }, [session, status, router]);
@@ -42,7 +42,7 @@ export default function CourseCreatePage() {
   }
 
   // Don't render form for non-instructors
-  if (session?.user?.role !== "instructor") {
+  if (session?.user.role !== "instructor") {
     return null;
   }
 
@@ -57,7 +57,7 @@ export default function CourseCreatePage() {
         <Button
           variant="ghost"
           size="icon"
-          onClick={() => router.back()}
+          onClick={() => { router.back(); }}
           aria-label="Go back"
         >
           <ArrowLeft className="h-5 w-5" />

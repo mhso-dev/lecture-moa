@@ -45,7 +45,7 @@ export default function CourseSettingsPage() {
     if (
       status === "authenticated" &&
       course &&
-      course.instructor.id !== session?.user?.id
+      course.instructor.id !== session.user.id
     ) {
       router.push(`/courses/${courseId}`);
     }
@@ -79,7 +79,7 @@ export default function CourseSettingsPage() {
   }
 
   // Don't render for non-owners
-  if (course.instructor.id !== session?.user?.id) {
+  if (course.instructor.id !== session?.user.id) {
     return null;
   }
 
@@ -90,7 +90,7 @@ export default function CourseSettingsPage() {
         <Button
           variant="ghost"
           size="icon"
-          onClick={() => router.push(`/courses/${courseId}`)}
+          onClick={() => { router.push(`/courses/${courseId}`); }}
           aria-label="Go back to course"
         >
           <ArrowLeft className="h-5 w-5" />
@@ -142,8 +142,8 @@ export default function CourseSettingsPage() {
         <CourseDangerZone
           courseId={courseId}
           courseTitle={course.title}
-          onArchive={() => router.push("/courses")}
-          onDelete={() => router.push("/courses")}
+          onArchive={() => { router.push("/courses"); }}
+          onDelete={() => { router.push("/courses"); }}
         />
       </section>
     </div>

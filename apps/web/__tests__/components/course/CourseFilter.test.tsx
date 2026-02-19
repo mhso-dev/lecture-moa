@@ -6,7 +6,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { CourseFilter } from '../../../components/course/CourseFilter';
-import type { CourseCategory, CourseSortOption } from '@shared';
+import type { CourseCategory } from '@shared';
 
 // Mock Next.js router
 const mockReplace = vi.fn();

@@ -40,7 +40,7 @@ export function CourseInviteCode({
   expiresAt,
   onCodeGenerated,
 }: CourseInviteCodeProps) {
-  const [code, setCode] = useState(initialCode || "");
+  const [code, setCode] = useState(initialCode ?? "");
   const [copied, setCopied] = useState(false);
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
 
@@ -53,7 +53,7 @@ export function CourseInviteCode({
       toast.success("Invite code copied to clipboard");
 
       // Reset copied state after 2 seconds
-      setTimeout(() => setCopied(false), 2000);
+      void setTimeout(() => { setCopied(false); }, 2000);
     } catch (err) {
       toast.error("Failed to copy. Please try again.");
       console.error("Copy error:", err);

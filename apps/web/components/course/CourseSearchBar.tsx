@@ -32,7 +32,7 @@ export function CourseSearchBar({
   const searchParams = useSearchParams();
   const pathname = usePathname();
 
-  const initialQuery = searchParams.get("q") || "";
+  const initialQuery = searchParams.get("q") ?? "";
   const [value, setValue] = useState(initialQuery);
   const [showClear, setShowClear] = useState(!!initialQuery);
   const debounceRef = useRef<NodeJS.Timeout | null>(null);
@@ -40,7 +40,7 @@ export function CourseSearchBar({
 
   // Sync with URL params
   useEffect(() => {
-    const urlQuery = searchParams.get("q") || "";
+    const urlQuery = searchParams.get("q") ?? "";
     if (urlQuery !== value) {
       setValue(urlQuery);
       setShowClear(!!urlQuery);

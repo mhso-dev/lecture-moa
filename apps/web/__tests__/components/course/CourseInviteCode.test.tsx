@@ -136,7 +136,7 @@ describe('CourseInviteCode Component', () => {
       // Dialog may appear - if it does, check for it
       // If not implemented yet, the button should at least exist
       await waitFor(() => {
-        const dialog = screen.queryByRole('alertdialog');
+        screen.queryByRole('alertdialog');
         // Either dialog appears or button was clicked
         expect(generateButton).toBeInTheDocument();
       }, { timeout: 100 });

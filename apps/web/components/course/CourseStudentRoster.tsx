@@ -145,7 +145,7 @@ export function CourseStudentRoster({ courseId }: CourseStudentRosterProps) {
       {
         onSuccess: () => {
           toast.success("Student removed successfully");
-          refetch();
+          void refetch();
           setStudentToRemove(null);
         },
         onError: () => {
@@ -192,7 +192,7 @@ export function CourseStudentRoster({ courseId }: CourseStudentRosterProps) {
             <StudentRow
               key={student.userId}
               student={student}
-              onRemove={() => setStudentToRemove(student)}
+              onRemove={() => { setStudentToRemove(student); }}
             />
           ))}
         </TableBody>
@@ -201,7 +201,7 @@ export function CourseStudentRoster({ courseId }: CourseStudentRosterProps) {
       {/* Confirmation Dialog */}
       <AlertDialog
         open={!!studentToRemove}
-        onOpenChange={() => setStudentToRemove(null)}
+        onOpenChange={() => { setStudentToRemove(null); }}
       >
         <AlertDialogContent>
           <AlertDialogHeader>

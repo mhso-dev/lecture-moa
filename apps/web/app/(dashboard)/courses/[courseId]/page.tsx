@@ -19,7 +19,7 @@ import {
 } from "~/components/course";
 import { Button } from "~/components/ui/button";
 import { CourseProgressBar } from "~/components/course/CourseProgressBar";
-import type { Course } from "@shared";
+import type { Course, CourseEnrollment } from "@shared";
 
 export default function CourseDetailPage() {
   const params = useParams();
@@ -34,8 +34,8 @@ export default function CourseDetailPage() {
   const { data: enrollment } = useCourseProgress(courseId);
 
   // Role checks
-  const isInstructor = session?.user?.role === "instructor";
-  const isOwner = isInstructor && course?.instructor.id === session?.user?.id;
+  const isInstructor = session?.user.role === "instructor";
+  const isOwner = isInstructor && course?.instructor.id === session.user.id;
   const isEnrolled = !!enrollment;
 
   // Loading state
@@ -71,14 +71,14 @@ export default function CourseDetailPage() {
         <div className="flex gap-2">
           <Button
             variant="outline"
-            onClick={() => router.push(`/courses/${courseId}/settings`)}
+            onClick={() => { router.push(`/courses/${courseId}/settings`); }}
           >
             <Settings className="mr-2 h-4 w-4" />
             Course Settings
           </Button>
           <Button
             variant="outline"
-            onClick={() => router.push(`/courses/${courseId}/materials`)}
+            onClick={() => { router.push(`/courses/${courseId}/materials`); }}
           >
             <BookOpen className="mr-2 h-4 w-4" />
             Manage Materials
@@ -146,7 +146,7 @@ function CourseHeader({ course }: CourseHeaderProps) {
 
 interface EnrollmentStatusProps {
   isEnrolled: boolean;
-  enrollment?: any;
+  enrollment?: CourseEnrollment;
   course: Course;
 }
 

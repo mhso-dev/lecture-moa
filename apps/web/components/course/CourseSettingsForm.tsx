@@ -64,7 +64,7 @@ export function CourseSettingsForm({
   onSuccess,
 }: CourseSettingsFormProps) {
   const [thumbnailPreview, setThumbnailPreview] = useState<string | null>(
-    defaultValues.thumbnailUrl || null
+    defaultValues.thumbnailUrl ?? null
   );
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -76,7 +76,7 @@ export function CourseSettingsForm({
       title: defaultValues.title,
       description: defaultValues.description,
       category: defaultValues.category,
-      thumbnailUrl: defaultValues.thumbnailUrl || "",
+      thumbnailUrl: defaultValues.thumbnailUrl ?? "",
       visibility: defaultValues.visibility,
       status: defaultValues.status,
     },
@@ -88,11 +88,11 @@ export function CourseSettingsForm({
       title: defaultValues.title,
       description: defaultValues.description,
       category: defaultValues.category,
-      thumbnailUrl: defaultValues.thumbnailUrl || "",
+      thumbnailUrl: defaultValues.thumbnailUrl ?? "",
       visibility: defaultValues.visibility,
       status: defaultValues.status,
     });
-    setThumbnailPreview(defaultValues.thumbnailUrl || null);
+    setThumbnailPreview(defaultValues.thumbnailUrl ?? null);
   }, [defaultValues, form]);
 
   const handleThumbnailChange = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -21,7 +21,7 @@ import {
   CoursePagination,
 } from "~/components/course";
 import { Button } from "~/components/ui/button";
-import type { CourseListParams } from "@shared";
+import type { CourseListParams, CourseListItem } from "@shared";
 
 /**
  * CourseListPage - Main course catalog page
@@ -42,9 +42,9 @@ export default function CourseListPage() {
   // Extract URL params for query
   const params = useMemo<CourseListParams>(() => {
     const page = Number(searchParams.get("page")) || 1;
-    const search = searchParams.get("search") || undefined;
-    const category = searchParams.get("category") || undefined;
-    const sort = (searchParams.get("sort") as CourseListParams["sort"]) || "recent";
+    const search = searchParams.get("search") ?? undefined;
+    const category = searchParams.get("category") ?? undefined;
+    const sort = (searchParams.get("sort") as CourseListParams["sort"]) ?? "recent";
 
     return {
       page,
@@ -83,11 +83,11 @@ export default function CourseListPage() {
   };
 
   // Role check
-  const isInstructor = session?.user?.role === "instructor";
+  const isInstructor = session?.user.role === "instructor";
 
   // Data extraction
-  const courses = data?.data || [];
-  const total = data?.total || 0;
+  const courses = data?.data ?? [];
+  const total = data?.total ?? 0;
 
   // Early return for loading state
   if (isLoading) {
@@ -136,7 +136,7 @@ export default function CourseListPage() {
 
       {total > 20 && (
         <CoursePagination
-          currentPage={params.page || 1}
+          currentPage={params.page ?? 1}
           totalPages={Math.ceil(total / 20)}
         />
       )}
@@ -197,7 +197,7 @@ function PageHeader({
 
 interface CourseLayoutProps {
   viewMode: "grid" | "list";
-  courses?: any[];
+  courses?: CourseListItem[];
   isLoading: boolean;
 }
 

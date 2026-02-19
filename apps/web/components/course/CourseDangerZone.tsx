@@ -173,11 +173,11 @@ export function CourseDangerZone({
                 id="confirm-title"
                 placeholder={courseTitle}
                 value={confirmTitle}
-                onChange={(e) => setConfirmTitle(e.target.value)}
+                onChange={(e) => { setConfirmTitle(e.target.value); }}
               />
             </div>
             <AlertDialogFooter>
-              <AlertDialogCancel onClick={() => setConfirmTitle("")}>
+              <AlertDialogCancel onClick={() => { setConfirmTitle(""); }}>
                 Cancel
               </AlertDialogCancel>
               <AlertDialogAction
