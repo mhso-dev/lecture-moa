@@ -31,7 +31,7 @@ export function PasswordResetForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const form = useForm<PasswordResetRequestSchema>({
-    resolver: zodResolver(passwordResetRequestSchema),
+    resolver: zodResolver(passwordResetRequestSchema as any),
     defaultValues: {
       email: "",
     },

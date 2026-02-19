@@ -111,7 +111,7 @@ export function RegisterForm() {
   const { signIn } = useAuth();
 
   const form = useForm<RegisterSchema>({
-    resolver: zodResolver(registerSchema),
+    resolver: zodResolver(registerSchema as any),
     defaultValues: {
       name: "",
       email: "",

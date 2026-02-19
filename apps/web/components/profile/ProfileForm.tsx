@@ -37,7 +37,7 @@ export function ProfileForm({ initialData }: ProfileFormProps) {
   const setUser = useAuthStore((state) => state.setUser);
 
   const form = useForm<UpdateProfileSchema>({
-    resolver: zodResolver(updateProfileSchema),
+    resolver: zodResolver(updateProfileSchema as any),
     defaultValues: {
       name: initialData.name,
     },

@@ -45,7 +45,7 @@ export const registerSchema = z
       .min(2, "Name must be at least 2 characters")
       .max(50, "Name must be less than 50 characters"),
     role: z.enum(["instructor", "student"], {
-      required_error: "Role is required",
+      message: "Role is required",
     }),
   })
   .refine((data) => data.password === data.confirmPassword, {

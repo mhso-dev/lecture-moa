@@ -6,9 +6,6 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: false,
   },
-  eslint: {
-    ignoreDuringBuilds: false,
-  },
   typedRoutes: true,
   outputFileTracingRoot: new URL("../..", import.meta.url).pathname,
 };

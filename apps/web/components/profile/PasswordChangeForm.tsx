@@ -26,7 +26,7 @@ import {
  */
 export function PasswordChangeForm() {
   const form = useForm<ChangePasswordSchema>({
-    resolver: zodResolver(changePasswordSchema),
+    resolver: zodResolver(changePasswordSchema as any),
     defaultValues: {
       currentPassword: "",
       newPassword: "",
