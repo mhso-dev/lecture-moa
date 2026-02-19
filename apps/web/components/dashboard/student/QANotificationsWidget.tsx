@@ -3,6 +3,7 @@
  * REQ-FE-216: Q&A Notifications Widget
  */
 
+import type { Route } from "next";
 import Link from "next/link";
 import { Bell, ChevronRight, CheckCheck } from "lucide-react";
 import { DashboardWidget } from "../DashboardWidget";
@@ -73,7 +74,7 @@ export function QANotificationsWidget() {
               </Button>
             )}
             <Link
-              href="/qa"
+              href={"/qa" as Route}
               className="text-sm text-primary hover:underline flex items-center gap-1"
             >
               View all
@@ -92,7 +93,7 @@ export function QANotificationsWidget() {
           {displayedNotifications.map((notification) => (
             <Link
               key={notification.id}
-              href={`/qa/${notification.id}`}
+              href={`/qa/${notification.id}` as Route}
               className={cn(
                 "block group p-2 -mx-2 rounded-lg hover:bg-muted/50 transition-colors",
                 !notification.isRead && "border-l-2 border-blue-500 pl-3 bg-blue-50/50 dark:bg-blue-950/20"
@@ -125,7 +126,7 @@ export function QANotificationsWidget() {
 
           {hasMore && notifications && (
             <Link
-              href="/qa"
+              href={"/qa" as Route}
               className="block text-sm text-center text-primary hover:underline pt-2"
             >
               View {notifications.length - MAX_DISPLAYED_NOTIFICATIONS} more

@@ -4,6 +4,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import type { Route } from "next";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import type { ZodType } from "zod";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
 import { toast } from "sonner";
@@ -36,7 +37,8 @@ export function LoginForm() {
   const { signIn } = useAuth();
 
   const form = useForm<LoginSchema>({
-    resolver: zodResolver(loginSchema),
+    // Zod 3.25.x type system changes require assertion for hookform resolvers compatibility
+    resolver: zodResolver(loginSchema as unknown as ZodType<LoginSchema>),
     defaultValues: {
       email: "",
       password: "",

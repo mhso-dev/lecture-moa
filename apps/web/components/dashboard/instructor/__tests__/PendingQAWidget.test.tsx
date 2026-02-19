@@ -80,8 +80,16 @@ describe("PendingQAWidget", () => {
 
   describe("empty state", () => {
     it("shows empty state when no pending questions", () => {
+      const emptyItems: {
+        id: string;
+        questionExcerpt: string;
+        studentName: string;
+        courseName: string;
+        askedAt: Date;
+        isUrgent: boolean;
+      }[] = [];
       vi.mocked(hooksModule.usePendingQA).mockReturnValue({
-        data: [],
+        data: emptyItems,
         isLoading: false,
         isError: false,
         error: null,
@@ -95,13 +103,20 @@ describe("PendingQAWidget", () => {
 
   describe("data state", () => {
     it("displays pending questions", () => {
-      const mockItems = [
+      const mockItems: {
+        id: string;
+        questionExcerpt: string;
+        studentName: string;
+        courseName: string;
+        askedAt: Date;
+        isUrgent: boolean;
+      }[] = [
         {
           id: "1",
           questionExcerpt: "How do I use useEffect properly?",
           studentName: "John Doe",
           courseName: "Introduction to React",
-          askedAt: "2026-02-18T10:00:00Z",
+          askedAt: new Date("2026-02-18T10:00:00Z"),
           isUrgent: false,
         },
         {
@@ -109,7 +124,7 @@ describe("PendingQAWidget", () => {
           questionExcerpt: "What is the difference between interface and type?",
           studentName: "Jane Smith",
           courseName: "Advanced TypeScript",
-          askedAt: "2026-02-15T08:00:00Z",
+          askedAt: new Date("2026-02-15T08:00:00Z"),
           isUrgent: true,
         },
       ];
@@ -130,13 +145,20 @@ describe("PendingQAWidget", () => {
     });
 
     it("shows urgent badge for questions older than 48 hours", () => {
-      const mockItems = [
+      const mockItems: {
+        id: string;
+        questionExcerpt: string;
+        studentName: string;
+        courseName: string;
+        askedAt: Date;
+        isUrgent: boolean;
+      }[] = [
         {
           id: "1",
           questionExcerpt: "Old question",
           studentName: "John Doe",
           courseName: "Introduction to React",
-          askedAt: "2026-02-15T08:00:00Z",
+          askedAt: new Date("2026-02-15T08:00:00Z"),
           isUrgent: true,
         },
       ];
@@ -154,13 +176,20 @@ describe("PendingQAWidget", () => {
     });
 
     it("shows answer button linking to Q&A detail", () => {
-      const mockItems = [
+      const mockItems: {
+        id: string;
+        questionExcerpt: string;
+        studentName: string;
+        courseName: string;
+        askedAt: Date;
+        isUrgent: boolean;
+      }[] = [
         {
           id: "1",
           questionExcerpt: "Test question",
           studentName: "John Doe",
           courseName: "Introduction to React",
-          askedAt: "2026-02-18T10:00:00Z",
+          askedAt: new Date("2026-02-18T10:00:00Z"),
           isUrgent: false,
         },
       ];
@@ -179,12 +208,19 @@ describe("PendingQAWidget", () => {
     });
 
     it("limits display to 5 items maximum", () => {
-      const mockItems = Array.from({ length: 7 }, (_, i) => ({
+      const mockItems: {
+        id: string;
+        questionExcerpt: string;
+        studentName: string;
+        courseName: string;
+        askedAt: Date;
+        isUrgent: boolean;
+      }[] = Array.from({ length: 7 }, (_, i) => ({
         id: String(i + 1),
         questionExcerpt: `Question ${String(i + 1)}`,
         studentName: `Student ${String(i + 1)}`,
         courseName: "Test Course",
-        askedAt: "2026-02-18T10:00:00Z",
+        askedAt: new Date("2026-02-18T10:00:00Z"),
         isUrgent: false,
       }));
 
@@ -211,7 +247,7 @@ describe("PendingQAWidget", () => {
             questionExcerpt: "Test question",
             studentName: "John Doe",
             courseName: "Introduction to React",
-            askedAt: "2026-02-18T10:00:00Z",
+            askedAt: new Date("2026-02-18T10:00:00Z"),
             isUrgent: false,
           },
         ],

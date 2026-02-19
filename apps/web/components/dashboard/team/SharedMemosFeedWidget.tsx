@@ -5,6 +5,7 @@
  * REQ-FE-233: Shared Memos Feed Widget
  */
 
+import type { Route } from "next";
 import Link from "next/link";
 import { FileText, ChevronRight, Plus } from "lucide-react";
 import { DashboardWidget } from "../DashboardWidget";
@@ -64,7 +65,7 @@ export function SharedMemosFeedWidget() {
       headerAction={
         memos && memos.length > 0 ? (
           <Link
-            href={`/teams/${overview?.id ?? ""}/memos`}
+            href={`/teams/${overview?.id ?? ""}/memos` as Route}
             className="text-sm text-primary hover:underline flex items-center gap-1"
           >
             View all memos
@@ -82,7 +83,7 @@ export function SharedMemosFeedWidget() {
           {displayedMemos.map((memo) => (
             <Link
               key={memo.id}
-              href={`/teams/${overview?.id ?? ""}/memos/${memo.id}`}
+              href={`/teams/${overview?.id ?? ""}/memos/${memo.id}` as Route}
               className="block group"
             >
               <div className="space-y-1">
@@ -103,7 +104,7 @@ export function SharedMemosFeedWidget() {
 
           {hasMore && memos && (
             <Link
-              href={`/teams/${overview?.id ?? ""}/memos`}
+              href={`/teams/${overview?.id ?? ""}/memos` as Route}
               className="block text-sm text-center text-primary hover:underline pt-2"
             >
               View {memos.length - MAX_DISPLAYED_MEMOS} more memos
@@ -112,7 +113,7 @@ export function SharedMemosFeedWidget() {
 
           {/* Create Memo Button */}
           <Link
-            href={`/teams/${overview?.id ?? ""}/memos/new`}
+            href={`/teams/${overview?.id ?? ""}/memos/new` as Route}
             className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 w-full mt-2"
           >
             <Plus className="h-4 w-4" />
@@ -127,7 +128,7 @@ export function SharedMemosFeedWidget() {
             description="Create a memo to share notes with your team."
           />
           <Link
-            href={`/teams/${overview?.id ?? ""}/memos/new`}
+            href={`/teams/${overview?.id ?? ""}/memos/new` as Route}
             className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-4 py-2 w-full"
           >
             <Plus className="h-4 w-4" />

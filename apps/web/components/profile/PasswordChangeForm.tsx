@@ -2,6 +2,7 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import type { ZodType } from "zod";
 import { toast } from "sonner";
 import { changePasswordSchema, type ChangePasswordSchema } from "@shared";
 import { api, ApiClientError } from "~/lib/api";
@@ -26,7 +27,8 @@ import {
  */
 export function PasswordChangeForm() {
   const form = useForm<ChangePasswordSchema>({
-    resolver: zodResolver(changePasswordSchema),
+    // Zod 3.25.x type system changes require assertion for hookform resolvers compatibility
+    resolver: zodResolver(changePasswordSchema as unknown as ZodType<ChangePasswordSchema>),
     defaultValues: {
       currentPassword: "",
       newPassword: "",

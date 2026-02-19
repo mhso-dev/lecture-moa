@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import type { Route } from "next";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import type { ZodType } from "zod";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { registerSchema, type RegisterSchema } from "@shared";
@@ -111,7 +112,8 @@ export function RegisterForm() {
   const { signIn } = useAuth();
 
   const form = useForm<RegisterSchema>({
-    resolver: zodResolver(registerSchema),
+    // Zod 3.25.x type system changes require assertion for hookform resolvers compatibility
+    resolver: zodResolver(registerSchema as unknown as ZodType<RegisterSchema>),
     defaultValues: {
       name: "",
       email: "",

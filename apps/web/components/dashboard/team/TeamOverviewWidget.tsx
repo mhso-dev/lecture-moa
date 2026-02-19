@@ -5,6 +5,7 @@
  * REQ-FE-231: Team Overview Widget
  */
 
+import type { Route } from "next";
 import Link from "next/link";
 import { Users, ChevronRight, Calendar, BookOpen } from "lucide-react";
 import { DashboardWidget } from "../DashboardWidget";
@@ -37,7 +38,7 @@ export function TeamOverviewWidget() {
       headerAction={
         overview ? (
           <Link
-            href={`/teams/${overview.id}`}
+            href={`/teams/${overview.id}` as Route}
             className="text-sm text-primary hover:underline flex items-center gap-1"
           >
             Manage Team
@@ -89,7 +90,7 @@ export function TeamOverviewWidget() {
           icon={Users}
           title="No team yet"
           description="You are not a member of any team."
-          action={{ label: "Browse Teams", href: "/teams" }}
+          action={{ label: "Browse Teams", href: "/teams" as Route }}
         />
       )}
     </DashboardWidget>

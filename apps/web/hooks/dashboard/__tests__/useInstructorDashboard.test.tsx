@@ -117,7 +117,7 @@ describe("Instructor Dashboard Hooks", () => {
         wrapper: Wrapper,
       });
 
-      await waitFor(() => expect(result.current.isSuccess).toBe(true));
+      await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(result.current.data).toEqual(mockCourses);
       expect(apiModule.api.get).toHaveBeenCalledWith(
@@ -155,7 +155,7 @@ describe("Instructor Dashboard Hooks", () => {
         wrapper: Wrapper,
       });
 
-      await waitFor(() => expect(result.current.isSuccess).toBe(true));
+      await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       // Verify data is available
       expect(result.current.data).toEqual([]);
@@ -168,7 +168,7 @@ describe("Instructor Dashboard Hooks", () => {
         wrapper: Wrapper,
       });
 
-      await waitFor(() => expect(result.current.isError).toBe(true));
+      await waitFor(() => { expect(result.current.isError).toBe(true); });
 
       expect(result.current.error).toBeInstanceOf(Error);
     });
@@ -192,7 +192,7 @@ describe("Instructor Dashboard Hooks", () => {
         wrapper: Wrapper,
       });
 
-      await waitFor(() => expect(result.current.isSuccess).toBe(true));
+      await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(result.current.data).toEqual(mockStats);
       expect(apiModule.api.get).toHaveBeenCalledWith(
@@ -240,7 +240,7 @@ describe("Instructor Dashboard Hooks", () => {
         wrapper: Wrapper,
       });
 
-      await waitFor(() => expect(result.current.isSuccess).toBe(true));
+      await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(result.current.data).toBeDefined();
     });
@@ -276,7 +276,7 @@ describe("Instructor Dashboard Hooks", () => {
         wrapper: Wrapper,
       });
 
-      await waitFor(() => expect(result.current.isSuccess).toBe(true));
+      await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(result.current.data).toEqual(mockItems);
       expect(apiModule.api.get).toHaveBeenCalledWith(
@@ -314,7 +314,7 @@ describe("Instructor Dashboard Hooks", () => {
         wrapper: Wrapper,
       });
 
-      await waitFor(() => expect(result.current.isSuccess).toBe(true));
+      await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(result.current.data).toEqual([]);
     });
@@ -350,7 +350,7 @@ describe("Instructor Dashboard Hooks", () => {
         wrapper: Wrapper,
       });
 
-      await waitFor(() => expect(result.current.isSuccess).toBe(true));
+      await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(result.current.data).toEqual(mockSummaries);
       expect(apiModule.api.get).toHaveBeenCalledWith(
@@ -388,7 +388,7 @@ describe("Instructor Dashboard Hooks", () => {
         wrapper: Wrapper,
       });
 
-      await waitFor(() => expect(result.current.isSuccess).toBe(true));
+      await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(result.current.data).toEqual([]);
     });
@@ -430,7 +430,7 @@ describe("Instructor Dashboard Hooks", () => {
         wrapper: Wrapper,
       });
 
-      await waitFor(() => expect(result.current.isSuccess).toBe(true));
+      await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(result.current.data).toEqual(mockFeed);
       expect(apiModule.api.get).toHaveBeenCalledWith(
@@ -486,9 +486,9 @@ describe("Instructor Dashboard Hooks", () => {
       });
 
       await waitFor(() =>
-        expect(apiModule.api.get).toHaveBeenCalledWith(
+        { expect(apiModule.api.get).toHaveBeenCalledWith(
           "/api/v1/dashboard/instructor/activity?page=1"
-        )
+        ); }
       );
     });
 
@@ -510,7 +510,7 @@ describe("Instructor Dashboard Hooks", () => {
         wrapper: Wrapper,
       });
 
-      await waitFor(() => expect(result.current.isSuccess).toBe(true));
+      await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(result.current.data).toBeDefined();
     });

@@ -3,6 +3,7 @@
  * REQ-FE-212: Recent Q&A Activity Widget
  */
 
+import type { Route } from "next";
 import Link from "next/link";
 import { MessageCircleQuestion, ChevronRight } from "lucide-react";
 import { DashboardWidget } from "../DashboardWidget";
@@ -63,7 +64,7 @@ export function RecentQAWidget() {
       headerAction={
         qaItems && qaItems.length > 0 ? (
           <Link
-            href="/qa"
+            href={"/qa" as Route}
             className="text-sm text-primary hover:underline flex items-center gap-1"
           >
             View all
@@ -83,7 +84,7 @@ export function RecentQAWidget() {
             return (
               <Link
                 key={item.id}
-                href={`/qa/${item.id}`}
+                href={`/qa/${item.id}` as Route}
                 className="block group"
               >
                 <div className="flex items-start justify-between gap-2">
@@ -114,7 +115,7 @@ export function RecentQAWidget() {
 
           {hasMore && qaItems && (
             <Link
-              href="/qa"
+              href={"/qa" as Route}
               className="block text-sm text-center text-primary hover:underline pt-2"
             >
               View {qaItems.length - MAX_DISPLAYED_ITEMS} more questions
@@ -126,7 +127,7 @@ export function RecentQAWidget() {
           icon={MessageCircleQuestion}
           title="No Q&A activity"
           description="No Q&A activity yet."
-          action={{ label: "Browse Materials", href: "/materials" }}
+          action={{ label: "Browse Materials", href: "/materials" as Route }}
         />
       )}
     </DashboardWidget>

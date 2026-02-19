@@ -80,16 +80,16 @@ export const useDashboardStore = create<DashboardStore>()(
       ...initialState,
 
       setActiveTab: (tab) =>
-        set({ activeTab: tab }, false, "dashboard/setActiveTab"),
+        { set({ activeTab: tab }, false, "dashboard/setActiveTab"); },
 
       setNotificationCount: (count) =>
-        set({ notificationCount: count }, false, "dashboard/setNotificationCount"),
+        { set({ notificationCount: count }, false, "dashboard/setNotificationCount"); },
 
       setIsRefreshing: (isRefreshing) =>
-        set({ isRefreshing }, false, "dashboard/setIsRefreshing"),
+        { set({ isRefreshing }, false, "dashboard/setIsRefreshing"); },
 
       markAllNotificationsRead: () =>
-        set({ notificationCount: 0 }, false, "dashboard/markAllNotificationsRead"),
+        { set({ notificationCount: 0 }, false, "dashboard/markAllNotificationsRead"); },
     }),
     {
       name: "DashboardStore",

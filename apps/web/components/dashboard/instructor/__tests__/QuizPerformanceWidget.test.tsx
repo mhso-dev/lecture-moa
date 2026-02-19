@@ -80,8 +80,16 @@ describe("QuizPerformanceWidget", () => {
 
   describe("empty state", () => {
     it("shows empty state when no quizzes", () => {
+      const emptySummaries: {
+        id: string;
+        quizTitle: string;
+        courseName: string;
+        averageScore: number;
+        submissionCount: number;
+        passRate: number;
+      }[] = [];
       vi.mocked(hooksModule.useQuizPerformance).mockReturnValue({
-        data: [],
+        data: emptySummaries,
         isLoading: false,
         isError: false,
         error: null,
@@ -93,8 +101,16 @@ describe("QuizPerformanceWidget", () => {
     });
 
     it("shows create quiz link in empty state", () => {
+      const emptySummaries: {
+        id: string;
+        quizTitle: string;
+        courseName: string;
+        averageScore: number;
+        submissionCount: number;
+        passRate: number;
+      }[] = [];
       vi.mocked(hooksModule.useQuizPerformance).mockReturnValue({
-        data: [],
+        data: emptySummaries,
         isLoading: false,
         isError: false,
         error: null,
@@ -109,7 +125,14 @@ describe("QuizPerformanceWidget", () => {
 
   describe("data state", () => {
     it("displays quiz performance summaries", () => {
-      const mockSummaries = [
+      const mockSummaries: {
+        id: string;
+        quizTitle: string;
+        courseName: string;
+        averageScore: number;
+        submissionCount: number;
+        passRate: number;
+      }[] = [
         {
           id: "1",
           quizTitle: "React Basics Quiz",
@@ -142,7 +165,14 @@ describe("QuizPerformanceWidget", () => {
     });
 
     it("shows average score for each quiz", () => {
-      const mockSummaries = [
+      const mockSummaries: {
+        id: string;
+        quizTitle: string;
+        courseName: string;
+        averageScore: number;
+        submissionCount: number;
+        passRate: number;
+      }[] = [
         {
           id: "1",
           quizTitle: "React Basics Quiz",
@@ -166,7 +196,14 @@ describe("QuizPerformanceWidget", () => {
     });
 
     it("shows submission count for each quiz", () => {
-      const mockSummaries = [
+      const mockSummaries: {
+        id: string;
+        quizTitle: string;
+        courseName: string;
+        averageScore: number;
+        submissionCount: number;
+        passRate: number;
+      }[] = [
         {
           id: "1",
           quizTitle: "React Basics Quiz",
@@ -190,7 +227,14 @@ describe("QuizPerformanceWidget", () => {
     });
 
     it("shows pass rate for each quiz", () => {
-      const mockSummaries = [
+      const mockSummaries: {
+        id: string;
+        quizTitle: string;
+        courseName: string;
+        averageScore: number;
+        submissionCount: number;
+        passRate: number;
+      }[] = [
         {
           id: "1",
           quizTitle: "React Basics Quiz",
@@ -214,7 +258,14 @@ describe("QuizPerformanceWidget", () => {
     });
 
     it("limits display to 5 quizzes maximum", () => {
-      const mockSummaries = Array.from({ length: 7 }, (_, i) => ({
+      const mockSummaries: {
+        id: string;
+        quizTitle: string;
+        courseName: string;
+        averageScore: number;
+        submissionCount: number;
+        passRate: number;
+      }[] = Array.from({ length: 7 }, (_, i) => ({
         id: String(i + 1),
         quizTitle: `Quiz ${String(i + 1)}`,
         courseName: "Test Course",

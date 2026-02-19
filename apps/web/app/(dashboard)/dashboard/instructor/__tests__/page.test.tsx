@@ -7,7 +7,28 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import type { ReactNode } from "react";
+import type { Session } from "next-auth";
 import InstructorDashboardPage from "../page";
+
+// Helper to create mock session with proper typing
+function createMockSession(overrides: {
+  id: string;
+  name: string;
+  email: string;
+  role: "student" | "instructor" | "admin";
+}): Session {
+  return {
+    user: {
+      id: overrides.id,
+      name: overrides.name,
+      email: overrides.email,
+      role: overrides.role,
+      image: null,
+    } as Session["user"],
+    expires: new Date(Date.now() + 86400000).toISOString(),
+    accessToken: "test-token",
+  };
+}
 
 // Mock next/navigation
 const mockRedirect = vi.fn();
@@ -19,9 +40,12 @@ vi.mock("next/navigation", () => ({
   },
 }));
 
-// Mock auth
+// Mock auth with proper typing
+const mockAuth = vi.fn<() => Promise<Session | null>>();
 vi.mock("~/lib/auth", () => ({
-  auth: vi.fn(),
+  get auth() {
+    return mockAuth;
+  },
 }));
 
 // Mock all widgets
@@ -73,11 +97,14 @@ describe("InstructorDashboardPage", () => {
 
   describe("role protection", () => {
     it("redirects to student dashboard when user is not instructor", async () => {
-      const { auth } = await import("~/lib/auth");
-      vi.mocked(auth).mockResolvedValueOnce({
-        user: { id: "1", name: "Student", email: "student@test.com", role: "student" },
-        expires: new Date(Date.now() + 86400000).toISOString(),
-      });
+      mockAuth.mockResolvedValueOnce(
+        createMockSession({
+          id: "1",
+          name: "Student",
+          email: "student@test.com",
+          role: "student",
+        })
+      );
 
       try {
         await InstructorDashboardPage();
@@ -89,8 +116,7 @@ describe("InstructorDashboardPage", () => {
     });
 
     it("redirects to login when not authenticated", async () => {
-      const { auth } = await import("~/lib/auth");
-      vi.mocked(auth).mockResolvedValueOnce(null);
+      mockAuth.mockResolvedValueOnce(null);
 
       try {
         await InstructorDashboardPage();
@@ -104,11 +130,14 @@ describe("InstructorDashboardPage", () => {
 
   describe("rendering", () => {
     it("renders all 6 widgets", async () => {
-      const { auth } = await import("~/lib/auth");
-      vi.mocked(auth).mockResolvedValueOnce({
-        user: { id: "1", name: "Instructor", email: "instructor@test.com", role: "instructor" },
-        expires: new Date(Date.now() + 86400000).toISOString(),
-      });
+      mockAuth.mockResolvedValueOnce(
+        createMockSession({
+          id: "1",
+          name: "Instructor",
+          email: "instructor@test.com",
+          role: "instructor",
+        })
+      );
 
       const result = await InstructorDashboardPage();
 
@@ -123,11 +152,14 @@ describe("InstructorDashboardPage", () => {
     });
 
     it("displays welcome message with user name", async () => {
-      const { auth } = await import("~/lib/auth");
-      vi.mocked(auth).mockResolvedValueOnce({
-        user: { id: "1", name: "Test Instructor", email: "instructor@test.com", role: "instructor" },
-        expires: new Date(Date.now() + 86400000).toISOString(),
-      });
+      mockAuth.mockResolvedValueOnce(
+        createMockSession({
+          id: "1",
+          name: "Test Instructor",
+          email: "instructor@test.com",
+          role: "instructor",
+        })
+      );
 
       const result = await InstructorDashboardPage();
 
@@ -137,11 +169,14 @@ describe("InstructorDashboardPage", () => {
     });
 
     it("displays dashboard heading", async () => {
-      const { auth } = await import("~/lib/auth");
-      vi.mocked(auth).mockResolvedValueOnce({
-        user: { id: "1", name: "Instructor", email: "instructor@test.com", role: "instructor" },
-        expires: new Date(Date.now() + 86400000).toISOString(),
-      });
+      mockAuth.mockResolvedValueOnce(
+        createMockSession({
+          id: "1",
+          name: "Instructor",
+          email: "instructor@test.com",
+          role: "instructor",
+        })
+      );
 
       const result = await InstructorDashboardPage();
 

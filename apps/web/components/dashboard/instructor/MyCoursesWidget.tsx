@@ -3,6 +3,7 @@
  * REQ-FE-221: My Courses Overview Widget
  */
 
+import type { Route } from "next";
 import Link from "next/link";
 import { BookOpen, Plus, ChevronRight, Users, FileText, MessageCircle } from "lucide-react";
 import { DashboardWidget } from "../DashboardWidget";
@@ -47,7 +48,7 @@ export function MyCoursesWidget() {
       headerAction={
         hasCourses ? (
           <Link
-            href="/courses"
+            href={"/courses" as Route}
             className="text-sm text-primary hover:underline flex items-center gap-1"
           >
             View all
@@ -55,7 +56,7 @@ export function MyCoursesWidget() {
           </Link>
         ) : (
           <Link
-            href="/courses/new"
+            href={"/courses/new" as Route}
             className="text-sm text-primary hover:underline flex items-center gap-1"
           >
             <Plus className="h-4 w-4" />
@@ -73,7 +74,7 @@ export function MyCoursesWidget() {
           {displayedCourses.map((course) => (
             <Link
               key={course.id}
-              href={`/courses/${course.id}`}
+              href={`/courses/${course.id}` as Route}
               className="block group"
             >
               <div className="flex items-start justify-between gap-3">
@@ -107,7 +108,7 @@ export function MyCoursesWidget() {
 
           {hasMore && courses && (
             <Link
-              href="/courses"
+              href={"/courses" as Route}
               className="block text-sm text-center text-primary hover:underline pt-2"
             >
               View {courses.length - MAX_DISPLAYED_COURSES} more courses
@@ -119,7 +120,7 @@ export function MyCoursesWidget() {
           icon={BookOpen}
           title="No courses yet"
           description="You haven't created any courses yet."
-          action={{ label: "Create Course", href: "/courses/new" }}
+          action={{ label: "Create Course", href: "/courses/new" as Route }}
         />
       )}
     </DashboardWidget>

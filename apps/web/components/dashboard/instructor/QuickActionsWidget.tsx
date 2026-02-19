@@ -3,6 +3,7 @@
  * REQ-FE-226: Quick Actions Widget
  */
 
+import type { Route } from "next";
 import Link from "next/link";
 import {
   Upload,
@@ -72,7 +73,7 @@ export function QuickActionsWidget() {
           return (
             <Link
               key={action.href}
-              href={action.href}
+              href={action.href as Route}
               className="flex flex-col items-center justify-center p-4 rounded-lg border border-border hover:border-primary hover:bg-accent transition-colors group"
             >
               <Icon className="h-6 w-6 text-muted-foreground group-hover:text-primary transition-colors mb-2" />

@@ -3,6 +3,7 @@
  * REQ-FE-211: Enrolled Courses Progress Widget
  */
 
+import type { Route } from "next";
 import Link from "next/link";
 import { BookOpen, ChevronRight } from "lucide-react";
 import { DashboardWidget } from "../DashboardWidget";
@@ -44,7 +45,7 @@ export function EnrolledCoursesWidget() {
       headerAction={
         courses && courses.length > 0 ? (
           <Link
-            href="/courses"
+            href={"/courses" as Route}
             className="text-sm text-primary hover:underline flex items-center gap-1"
           >
             View all
@@ -62,7 +63,7 @@ export function EnrolledCoursesWidget() {
           {displayedCourses.map((course) => (
             <Link
               key={course.id}
-              href={`/courses/${course.id}`}
+              href={`/courses/${course.id}` as Route}
               className="block group"
             >
               <div className="flex items-start justify-between gap-3">
@@ -89,7 +90,7 @@ export function EnrolledCoursesWidget() {
 
           {hasMore && courses && (
             <Link
-              href="/courses"
+              href={"/courses" as Route}
               className="block text-sm text-center text-primary hover:underline pt-2"
             >
               View {courses.length - MAX_DISPLAYED_COURSES} more courses
@@ -101,7 +102,7 @@ export function EnrolledCoursesWidget() {
           icon={BookOpen}
           title="No courses yet"
           description="You haven't enrolled in any courses yet."
-          action={{ label: "Browse Courses", href: "/courses" }}
+          action={{ label: "Browse Courses", href: "/courses" as Route }}
         />
       )}
     </DashboardWidget>

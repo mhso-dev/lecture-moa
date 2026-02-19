@@ -6,6 +6,27 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import type { ReactNode } from "react";
+import type { Session } from "next-auth";
+
+// Helper to create mock session with proper typing
+function createMockSession(overrides: {
+  id: string;
+  name: string;
+  email: string;
+  role: "student" | "instructor" | "admin";
+}): Session {
+  return {
+    user: {
+      id: overrides.id,
+      name: overrides.name,
+      email: overrides.email,
+      role: overrides.role,
+      image: null,
+    } as Session["user"],
+    expires: new Date(Date.now() + 86400000).toISOString(),
+    accessToken: "test-token",
+  };
+}
 
 // Mock next/navigation
 const mockRedirect = vi.fn();
@@ -16,9 +37,12 @@ vi.mock("next/navigation", () => ({
   },
 }));
 
-// Mock auth
+// Mock auth with proper typing
+const mockAuth = vi.fn<() => Promise<Session | null>>();
 vi.mock("~/lib/auth", () => ({
-  auth: vi.fn(),
+  get auth() {
+    return mockAuth;
+  },
 }));
 
 // Mock the widgets
@@ -38,11 +62,9 @@ vi.mock("~/components/dashboard/team/TeamActivityWidget", () => ({
   TeamActivityWidget: () => <div data-testid="team-activity-widget">Team Activity</div>,
 }));
 
-import { auth } from "~/lib/auth";
-
 // Import the page component after mocks are set up
 const TeamDashboardPage = vi.fn().mockImplementation(async () => {
-  const session = await auth();
+  const session = await mockAuth();
 
   if (!session?.user || session.user.role !== "student") {
     const { redirect } = await import("next/navigation");
@@ -75,10 +97,14 @@ describe("Team Dashboard Page", () => {
 
   describe("Role Protection", () => {
     it("redirects to instructor dashboard for non-student users", async () => {
-      vi.mocked(auth).mockResolvedValueOnce({
-        user: { id: "1", name: "Instructor", role: "instructor" },
-        expires: new Date(Date.now() + 86400000).toISOString(),
-      });
+      mockAuth.mockResolvedValueOnce(
+        createMockSession({
+          id: "1",
+          name: "Instructor",
+          email: "instructor@test.com",
+          role: "instructor",
+        })
+      );
 
       try {
         await TeamDashboardPage();
@@ -90,7 +116,7 @@ describe("Team Dashboard Page", () => {
     });
 
     it("redirects to instructor dashboard for unauthenticated users", async () => {
-      vi.mocked(auth).mockResolvedValueOnce(null);
+      mockAuth.mockResolvedValueOnce(null);
 
       try {
         await TeamDashboardPage();
@@ -102,10 +128,14 @@ describe("Team Dashboard Page", () => {
     });
 
     it("renders dashboard for student users", async () => {
-      vi.mocked(auth).mockResolvedValueOnce({
-        user: { id: "1", name: "Student", role: "student" },
-        expires: new Date(Date.now() + 86400000).toISOString(),
-      });
+      mockAuth.mockResolvedValueOnce(
+        createMockSession({
+          id: "1",
+          name: "Student",
+          email: "student@test.com",
+          role: "student",
+        })
+      );
 
       const result = (await TeamDashboardPage()) as ReactNode;
 
@@ -116,10 +146,14 @@ describe("Team Dashboard Page", () => {
 
   describe("Widget Composition", () => {
     beforeEach(() => {
-      vi.mocked(auth).mockResolvedValue({
-        user: { id: "1", name: "Test Student", role: "student" },
-        expires: new Date(Date.now() + 86400000).toISOString(),
-      });
+      mockAuth.mockResolvedValue(
+        createMockSession({
+          id: "1",
+          name: "Test Student",
+          email: "student@test.com",
+          role: "student",
+        })
+      );
     });
 
     it("renders all 4 team widgets", async () => {

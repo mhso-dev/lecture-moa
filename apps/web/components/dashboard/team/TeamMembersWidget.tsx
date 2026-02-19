@@ -5,6 +5,7 @@
  * REQ-FE-232: Team Members Widget
  */
 
+import type { Route } from "next";
 import Link from "next/link";
 import { ChevronRight, Crown } from "lucide-react";
 import { DashboardWidget } from "../DashboardWidget";
@@ -84,7 +85,7 @@ export function TeamMembersWidget() {
       headerAction={
         members && members.length > 0 ? (
           <Link
-            href={`/teams/${overview?.id ?? ""}/members`}
+            href={`/teams/${overview?.id ?? ""}/members` as Route}
             className="text-sm text-primary hover:underline flex items-center gap-1"
           >
             View all
@@ -145,7 +146,7 @@ export function TeamMembersWidget() {
 
           {hasMore && members && (
             <Link
-              href={`/teams/${overview?.id ?? ""}/members`}
+              href={`/teams/${overview?.id ?? ""}/members` as Route}
               className="block text-sm text-center text-primary hover:underline pt-2"
             >
               View {members.length - MAX_DISPLAYED_MEMBERS} more members

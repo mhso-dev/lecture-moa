@@ -81,8 +81,15 @@ describe("EnrolledCoursesWidget", () => {
 
   describe("empty state", () => {
     it("shows empty state when no courses", () => {
+      const emptyCourses: {
+        id: string;
+        title: string;
+        instructorName: string;
+        progressPercent: number;
+        lastAccessedAt: Date;
+      }[] = [];
       vi.mocked(hooksModule.useEnrolledCourses).mockReturnValue({
-        data: [],
+        data: emptyCourses,
         isLoading: false,
         isError: false,
         error: null,
@@ -94,8 +101,15 @@ describe("EnrolledCoursesWidget", () => {
     });
 
     it("shows browse courses link in empty state", () => {
+      const emptyCourses: {
+        id: string;
+        title: string;
+        instructorName: string;
+        progressPercent: number;
+        lastAccessedAt: Date;
+      }[] = [];
       vi.mocked(hooksModule.useEnrolledCourses).mockReturnValue({
-        data: [],
+        data: emptyCourses,
         isLoading: false,
         isError: false,
         error: null,
@@ -110,20 +124,26 @@ describe("EnrolledCoursesWidget", () => {
 
   describe("data state", () => {
     it("displays enrolled courses with progress", () => {
-      const mockCourses = [
+      const mockCourses: {
+        id: string;
+        title: string;
+        instructorName: string;
+        progressPercent: number;
+        lastAccessedAt: Date;
+      }[] = [
         {
           id: "1",
           title: "Introduction to React",
           instructorName: "John Doe",
           progressPercent: 75,
-          lastAccessedAt: "2026-02-18T10:00:00Z",
+          lastAccessedAt: new Date("2026-02-18T10:00:00Z"),
         },
         {
           id: "2",
           title: "Advanced TypeScript",
           instructorName: "Jane Smith",
           progressPercent: 50,
-          lastAccessedAt: "2026-02-17T15:30:00Z",
+          lastAccessedAt: new Date("2026-02-17T15:30:00Z"),
         },
       ];
 
@@ -143,13 +163,19 @@ describe("EnrolledCoursesWidget", () => {
     });
 
     it("shows progress percentage for each course", () => {
-      const mockCourses = [
+      const mockCourses: {
+        id: string;
+        title: string;
+        instructorName: string;
+        progressPercent: number;
+        lastAccessedAt: Date;
+      }[] = [
         {
           id: "1",
           title: "Introduction to React",
           instructorName: "John Doe",
           progressPercent: 75,
-          lastAccessedAt: "2026-02-18T10:00:00Z",
+          lastAccessedAt: new Date("2026-02-18T10:00:00Z"),
         },
       ];
 
@@ -166,12 +192,18 @@ describe("EnrolledCoursesWidget", () => {
     });
 
     it("limits display to 5 courses maximum", () => {
-      const mockCourses = Array.from({ length: 7 }, (_, i) => ({
+      const mockCourses: {
+        id: string;
+        title: string;
+        instructorName: string;
+        progressPercent: number;
+        lastAccessedAt: Date;
+      }[] = Array.from({ length: 7 }, (_, i) => ({
         id: String(i + 1),
         title: `Course ${String(i + 1)}`,
         instructorName: `Instructor ${String(i + 1)}`,
         progressPercent: (i + 1) * 10,
-        lastAccessedAt: "2026-02-18T10:00:00Z",
+        lastAccessedAt: new Date("2026-02-18T10:00:00Z"),
       }));
 
       vi.mocked(hooksModule.useEnrolledCourses).mockReturnValue({
@@ -198,7 +230,7 @@ describe("EnrolledCoursesWidget", () => {
             title: "Test Course",
             instructorName: "Instructor",
             progressPercent: 50,
-            lastAccessedAt: "2026-02-18T10:00:00Z",
+            lastAccessedAt: new Date("2026-02-18T10:00:00Z"),
           },
         ],
         isLoading: false,

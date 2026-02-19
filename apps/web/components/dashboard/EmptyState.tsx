@@ -4,6 +4,7 @@
  */
 
 import type { LucideIcon } from "lucide-react";
+import type { Route } from "next";
 import Link from "next/link";
 import { cn } from "~/lib/utils";
 
@@ -93,7 +94,7 @@ export function EmptyState({
         <div>
           {action.href ? (
             <Link
-              href={action.href}
+              href={action.href as Route}
               className="text-sm text-primary hover:underline"
             >
               {action.label}

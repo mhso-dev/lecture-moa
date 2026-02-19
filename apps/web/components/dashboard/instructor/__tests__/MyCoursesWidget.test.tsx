@@ -80,8 +80,16 @@ describe("MyCoursesWidget", () => {
 
   describe("empty state", () => {
     it("shows empty state when no courses", () => {
+      const emptyCourses: {
+        id: string;
+        title: string;
+        enrolledCount: number;
+        materialsCount: number;
+        pendingQACount: number;
+        isPublished: boolean;
+      }[] = [];
       vi.mocked(hooksModule.useInstructorCourses).mockReturnValue({
-        data: [],
+        data: emptyCourses,
         isLoading: false,
         isError: false,
         error: null,
@@ -93,8 +101,16 @@ describe("MyCoursesWidget", () => {
     });
 
     it("shows create course link in empty state", () => {
+      const emptyCourses: {
+        id: string;
+        title: string;
+        enrolledCount: number;
+        materialsCount: number;
+        pendingQACount: number;
+        isPublished: boolean;
+      }[] = [];
       vi.mocked(hooksModule.useInstructorCourses).mockReturnValue({
-        data: [],
+        data: emptyCourses,
         isLoading: false,
         isError: false,
         error: null,
@@ -109,7 +125,14 @@ describe("MyCoursesWidget", () => {
 
   describe("data state", () => {
     it("displays courses with metrics", () => {
-      const mockCourses = [
+      const mockCourses: {
+        id: string;
+        title: string;
+        enrolledCount: number;
+        materialsCount: number;
+        pendingQACount: number;
+        isPublished: boolean;
+      }[] = [
         {
           id: "1",
           title: "Introduction to React",
@@ -142,7 +165,14 @@ describe("MyCoursesWidget", () => {
     });
 
     it("shows student count and materials count for each course", () => {
-      const mockCourses = [
+      const mockCourses: {
+        id: string;
+        title: string;
+        enrolledCount: number;
+        materialsCount: number;
+        pendingQACount: number;
+        isPublished: boolean;
+      }[] = [
         {
           id: "1",
           title: "Introduction to React",
@@ -167,7 +197,14 @@ describe("MyCoursesWidget", () => {
     });
 
     it("shows pending Q&A count", () => {
-      const mockCourses = [
+      const mockCourses: {
+        id: string;
+        title: string;
+        enrolledCount: number;
+        materialsCount: number;
+        pendingQACount: number;
+        isPublished: boolean;
+      }[] = [
         {
           id: "1",
           title: "Introduction to React",
@@ -191,7 +228,14 @@ describe("MyCoursesWidget", () => {
     });
 
     it("shows published status badge for published courses", () => {
-      const mockCourses = [
+      const mockCourses: {
+        id: string;
+        title: string;
+        enrolledCount: number;
+        materialsCount: number;
+        pendingQACount: number;
+        isPublished: boolean;
+      }[] = [
         {
           id: "1",
           title: "Introduction to React",
@@ -215,7 +259,14 @@ describe("MyCoursesWidget", () => {
     });
 
     it("shows draft badge for unpublished courses", () => {
-      const mockCourses = [
+      const mockCourses: {
+        id: string;
+        title: string;
+        enrolledCount: number;
+        materialsCount: number;
+        pendingQACount: number;
+        isPublished: boolean;
+      }[] = [
         {
           id: "1",
           title: "Introduction to React",
@@ -239,7 +290,14 @@ describe("MyCoursesWidget", () => {
     });
 
     it("limits display to 5 courses maximum", () => {
-      const mockCourses = Array.from({ length: 7 }, (_, i) => ({
+      const mockCourses: {
+        id: string;
+        title: string;
+        enrolledCount: number;
+        materialsCount: number;
+        pendingQACount: number;
+        isPublished: boolean;
+      }[] = Array.from({ length: 7 }, (_, i) => ({
         id: String(i + 1),
         title: `Course ${String(i + 1)}`,
         enrolledCount: (i + 1) * 10,
@@ -289,8 +347,16 @@ describe("MyCoursesWidget", () => {
     });
 
     it("shows create new course button in header", () => {
+      const emptyCourses: {
+        id: string;
+        title: string;
+        enrolledCount: number;
+        materialsCount: number;
+        pendingQACount: number;
+        isPublished: boolean;
+      }[] = [];
       vi.mocked(hooksModule.useInstructorCourses).mockReturnValue({
-        data: [],
+        data: emptyCourses,
         isLoading: false,
         isError: false,
         error: null,

@@ -3,6 +3,7 @@
  * REQ-FE-224: Quiz Performance Summary Widget
  */
 
+import type { Route } from "next";
 import Link from "next/link";
 import { BarChart3, ChevronRight, ClipboardList, Users, Percent } from "lucide-react";
 import { DashboardWidget } from "../DashboardWidget";
@@ -44,7 +45,7 @@ export function QuizPerformanceWidget() {
       headerAction={
         quizzes && quizzes.length > 0 ? (
           <Link
-            href="/quizzes"
+            href={"/quizzes" as Route}
             className="text-sm text-primary hover:underline flex items-center gap-1"
           >
             View all
@@ -62,7 +63,7 @@ export function QuizPerformanceWidget() {
           {displayedQuizzes.map((quiz) => (
             <Link
               key={quiz.id}
-              href={`/quizzes/${quiz.id}`}
+              href={`/quizzes/${quiz.id}` as Route}
               className="block group"
             >
               <div className="space-y-2">
@@ -97,7 +98,7 @@ export function QuizPerformanceWidget() {
 
           {hasMore && quizzes && (
             <Link
-              href="/quizzes"
+              href={"/quizzes" as Route}
               className="block text-sm text-center text-primary hover:underline pt-2"
             >
               View {quizzes.length - MAX_DISPLAYED_QUIZZES} more quizzes
@@ -109,7 +110,7 @@ export function QuizPerformanceWidget() {
           icon={ClipboardList}
           title="No quiz data yet"
           description="Create a quiz to see performance statistics."
-          action={{ label: "Create Quiz", href: "/quizzes/create" }}
+          action={{ label: "Create Quiz", href: "/quizzes/create" as Route }}
         />
       )}
     </DashboardWidget>

@@ -83,7 +83,7 @@ describe("Student Dashboard Hooks", () => {
         wrapper: Wrapper,
       });
 
-      await waitFor(() => expect(result.current.isSuccess).toBe(true));
+      await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(result.current.data).toEqual(mockCourses);
       expect(apiModule.api.get).toHaveBeenCalledWith(
@@ -118,7 +118,7 @@ describe("Student Dashboard Hooks", () => {
         wrapper: Wrapper,
       });
 
-      await waitFor(() => expect(result.current.isError).toBe(true));
+      await waitFor(() => { expect(result.current.isError).toBe(true); });
 
       expect(result.current.error).toBeInstanceOf(Error);
     });
@@ -152,7 +152,7 @@ describe("Student Dashboard Hooks", () => {
         wrapper: Wrapper,
       });
 
-      await waitFor(() => expect(result.current.isSuccess).toBe(true));
+      await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(result.current.data).toEqual(mockQA);
       expect(apiModule.api.get).toHaveBeenCalledWith(
@@ -211,7 +211,7 @@ describe("Student Dashboard Hooks", () => {
         wrapper: Wrapper,
       });
 
-      await waitFor(() => expect(result.current.isSuccess).toBe(true));
+      await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(result.current.data).toEqual(mockResults);
       expect(apiModule.api.get).toHaveBeenCalledWith(
@@ -258,7 +258,7 @@ describe("Student Dashboard Hooks", () => {
         wrapper: Wrapper,
       });
 
-      await waitFor(() => expect(result.current.isSuccess).toBe(true));
+      await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(result.current.data).toEqual(mockProgress);
       expect(apiModule.api.get).toHaveBeenCalledWith(
@@ -319,7 +319,7 @@ describe("Student Dashboard Hooks", () => {
         wrapper: Wrapper,
       });
 
-      await waitFor(() => expect(result.current.isSuccess).toBe(true));
+      await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(result.current.data).toEqual(mockQuizzes);
       expect(apiModule.api.get).toHaveBeenCalledWith(
@@ -378,7 +378,7 @@ describe("Student Dashboard Hooks", () => {
         wrapper: Wrapper,
       });
 
-      await waitFor(() => expect(result.current.isSuccess).toBe(true));
+      await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(result.current.data).toEqual(mockNotifications);
       expect(apiModule.api.get).toHaveBeenCalledWith(
@@ -416,7 +416,7 @@ describe("Student Dashboard Hooks", () => {
         wrapper: Wrapper,
       });
 
-      await waitFor(() => expect(result.current.isSuccess).toBe(true));
+      await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       // Verify the hook returns data (staleTime is an internal detail)
       expect(result.current.data).toEqual([]);

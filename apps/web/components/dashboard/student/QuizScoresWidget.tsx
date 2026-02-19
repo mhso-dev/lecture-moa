@@ -3,6 +3,7 @@
  * REQ-FE-213: Quiz Scores Summary Widget
  */
 
+import type { Route } from "next";
 import Link from "next/link";
 import { Award, ChevronRight } from "lucide-react";
 import { DashboardWidget } from "../DashboardWidget";
@@ -70,7 +71,7 @@ export function QuizScoresWidget() {
       headerAction={
         results && results.length > 0 ? (
           <Link
-            href="/quizzes"
+            href={"/quizzes" as Route}
             className="text-sm text-primary hover:underline flex items-center gap-1"
           >
             View all
@@ -92,7 +93,7 @@ export function QuizScoresWidget() {
             return (
               <Link
                 key={result.id}
-                href={`/quizzes/${result.id}/results`}
+                href={`/quizzes/${result.id}/results` as Route}
                 className="block group"
               >
                 <div className="flex items-center justify-between gap-2">
@@ -123,7 +124,7 @@ export function QuizScoresWidget() {
 
           {hasMore && results && (
             <Link
-              href="/quizzes"
+              href={"/quizzes" as Route}
               className="block text-sm text-center text-primary hover:underline pt-2"
             >
               View {results.length - MAX_DISPLAYED_RESULTS} more results

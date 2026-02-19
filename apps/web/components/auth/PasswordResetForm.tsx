@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import type { ZodType } from "zod";
 import { Loader2, MailCheck } from "lucide-react";
 import Link from "next/link";
 import { toast } from "sonner";
@@ -31,7 +32,8 @@ export function PasswordResetForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const form = useForm<PasswordResetRequestSchema>({
-    resolver: zodResolver(passwordResetRequestSchema),
+    // Zod 3.25.x type system changes require assertion for hookform resolvers compatibility
+    resolver: zodResolver(passwordResetRequestSchema as unknown as ZodType<PasswordResetRequestSchema>),
     defaultValues: {
       email: "",
     },

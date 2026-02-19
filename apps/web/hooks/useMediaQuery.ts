@@ -155,7 +155,7 @@ export function useMatchMedia(query: string): boolean {
 
     // Listen for changes
     media.addEventListener("change", updateMatch);
-    return () => media.removeEventListener("change", updateMatch);
+    return () => { media.removeEventListener("change", updateMatch); };
   }, [query]);
 
   // SSR: return false

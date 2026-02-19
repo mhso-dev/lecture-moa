@@ -80,16 +80,24 @@ describe("ActivityFeedWidget", () => {
 
   describe("empty state", () => {
     it("shows empty state when no activity", () => {
-      vi.mocked(hooksModule.useActivityFeed).mockReturnValue({
-        data: {
-          items: [],
-          pagination: {
-            page: 1,
-            totalPages: 1,
-            totalItems: 0,
-            hasNextPage: false,
-          },
+      const mockFeed = {
+        items: [] as {
+          id: string;
+          type: "enrolled" | "studied" | "asked" | "quiz_completed";
+          actorName: string;
+          courseName: string;
+          createdAt: Date;
+        }[],
+        pagination: {
+          page: 1,
+          totalPages: 1,
+          totalItems: 0,
+          hasNextPage: false,
         },
+      };
+
+      vi.mocked(hooksModule.useActivityFeed).mockReturnValue({
+        data: mockFeed,
         isLoading: false,
         isError: false,
         error: null,
@@ -110,14 +118,14 @@ describe("ActivityFeedWidget", () => {
             type: "enrolled" as const,
             actorName: "John Doe",
             courseName: "Introduction to React",
-            createdAt: "2026-02-18T10:00:00Z",
+            createdAt: new Date("2026-02-18T10:00:00Z"),
           },
           {
             id: "2",
             type: "quiz_completed" as const,
             actorName: "Jane Smith",
             courseName: "Advanced TypeScript",
-            createdAt: "2026-02-18T09:30:00Z",
+            createdAt: new Date("2026-02-18T09:30:00Z"),
           },
         ],
         pagination: {
@@ -151,28 +159,28 @@ describe("ActivityFeedWidget", () => {
             type: "enrolled" as const,
             actorName: "John Doe",
             courseName: "Introduction to React",
-            createdAt: "2026-02-18T10:00:00Z",
+            createdAt: new Date("2026-02-18T10:00:00Z"),
           },
           {
             id: "2",
             type: "studied" as const,
             actorName: "Jane Smith",
             courseName: "Advanced TypeScript",
-            createdAt: "2026-02-18T09:30:00Z",
+            createdAt: new Date("2026-02-18T09:30:00Z"),
           },
           {
             id: "3",
             type: "asked" as const,
             actorName: "Bob Johnson",
             courseName: "Database Design",
-            createdAt: "2026-02-18T08:00:00Z",
+            createdAt: new Date("2026-02-18T08:00:00Z"),
           },
           {
             id: "4",
             type: "quiz_completed" as const,
             actorName: "Alice Williams",
             courseName: "API Development",
-            createdAt: "2026-02-18T07:00:00Z",
+            createdAt: new Date("2026-02-18T07:00:00Z"),
           },
         ],
         pagination: {
@@ -206,7 +214,7 @@ describe("ActivityFeedWidget", () => {
           type: "enrolled" as const,
           actorName: `Student ${String(i + 1)}`,
           courseName: "Test Course",
-          createdAt: "2026-02-18T10:00:00Z",
+          createdAt: new Date("2026-02-18T10:00:00Z"),
         })),
         pagination: {
           page: 1,
@@ -236,7 +244,7 @@ describe("ActivityFeedWidget", () => {
           type: "enrolled" as const,
           actorName: `Student ${String(i + 1)}`,
           courseName: "Test Course",
-          createdAt: "2026-02-18T10:00:00Z",
+          createdAt: new Date("2026-02-18T10:00:00Z"),
         })),
         pagination: {
           page: 1,
@@ -266,7 +274,7 @@ describe("ActivityFeedWidget", () => {
             type: "enrolled" as const,
             actorName: "Student 1",
             courseName: "Test Course",
-            createdAt: "2026-02-18T10:00:00Z",
+            createdAt: new Date("2026-02-18T10:00:00Z"),
           },
         ],
         pagination: {
@@ -296,7 +304,7 @@ describe("ActivityFeedWidget", () => {
           type: "enrolled" as const,
           actorName: `Student ${String(i + 1)}`,
           courseName: "Test Course",
-          createdAt: "2026-02-18T10:00:00Z",
+          createdAt: new Date("2026-02-18T10:00:00Z"),
         })),
         pagination: {
           page: 1,

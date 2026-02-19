@@ -3,6 +3,7 @@
  * REQ-FE-215: Upcoming Quizzes Widget
  */
 
+import type { Route } from "next";
 import Link from "next/link";
 import { ClipboardList, ChevronRight, Clock } from "lucide-react";
 import { DashboardWidget } from "../DashboardWidget";
@@ -45,7 +46,7 @@ export function UpcomingQuizzesWidget() {
       headerAction={
         quizzes && quizzes.length > 0 ? (
           <Link
-            href="/quizzes"
+            href={"/quizzes" as Route}
             className="text-sm text-primary hover:underline flex items-center gap-1"
           >
             View all
@@ -63,7 +64,7 @@ export function UpcomingQuizzesWidget() {
           {displayedQuizzes.map((quiz) => (
             <Link
               key={quiz.id}
-              href={`/quizzes/${quiz.id}`}
+              href={`/quizzes/${quiz.id}` as Route}
               className="block group"
             >
               <div className="flex items-start justify-between gap-2">
@@ -96,7 +97,7 @@ export function UpcomingQuizzesWidget() {
 
           {hasMore && quizzes && (
             <Link
-              href="/quizzes"
+              href={"/quizzes" as Route}
               className="block text-sm text-center text-primary hover:underline pt-2"
             >
               View {quizzes.length - MAX_DISPLAYED_QUIZZES} more quizzes

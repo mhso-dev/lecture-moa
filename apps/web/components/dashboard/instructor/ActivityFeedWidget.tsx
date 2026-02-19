@@ -6,6 +6,7 @@
  */
 
 import { useState } from "react";
+import type { Route } from "next";
 import Link from "next/link";
 import {
   UserPlus,
@@ -90,7 +91,7 @@ export function ActivityFeedWidget() {
       headerAction={
         data?.items && data.items.length > 0 ? (
           <Link
-            href="/activity"
+            href={"/activity" as Route}
             className="text-sm text-primary hover:underline flex items-center gap-1"
           >
             View all

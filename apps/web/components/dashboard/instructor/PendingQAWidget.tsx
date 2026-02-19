@@ -3,6 +3,7 @@
  * REQ-FE-223: Pending Q&A Widget
  */
 
+import type { Route } from "next";
 import Link from "next/link";
 import { CheckCircle, ChevronRight, AlertTriangle } from "lucide-react";
 import { DashboardWidget } from "../DashboardWidget";
@@ -47,7 +48,7 @@ export function PendingQAWidget() {
       headerAction={
         items && items.length > 0 ? (
           <Link
-            href="/qa"
+            href={"/qa" as Route}
             className="text-sm text-primary hover:underline flex items-center gap-1"
           >
             View all
@@ -83,7 +84,7 @@ export function PendingQAWidget() {
                 </div>
               </div>
               <Link
-                href={`/qa/${item.id}`}
+                href={`/qa/${item.id}` as Route}
                 className="text-sm text-primary hover:underline shrink-0"
               >
                 Answer
@@ -93,7 +94,7 @@ export function PendingQAWidget() {
 
           {hasMore && items && (
             <Link
-              href="/qa"
+              href={"/qa" as Route}
               className="block text-sm text-center text-primary hover:underline pt-2"
             >
               View {items.length - MAX_DISPLAYED_ITEMS} more questions

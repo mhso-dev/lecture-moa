@@ -73,7 +73,7 @@ describe("Team Dashboard Hooks", () => {
         wrapper: Wrapper,
       });
 
-      await waitFor(() => expect(result.current.isSuccess).toBe(true));
+      await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(result.current.data).toEqual(mockOverview);
       expect(apiModule.api.get).toHaveBeenCalledWith("/api/v1/dashboard/team");
@@ -121,7 +121,7 @@ describe("Team Dashboard Hooks", () => {
         wrapper: Wrapper,
       });
 
-      await waitFor(() => expect(result.current.isSuccess).toBe(true));
+      await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       // Verify the hook returns data
       expect(result.current.data).toBeDefined();
@@ -134,7 +134,7 @@ describe("Team Dashboard Hooks", () => {
         wrapper: Wrapper,
       });
 
-      await waitFor(() => expect(result.current.isError).toBe(true));
+      await waitFor(() => { expect(result.current.isError).toBe(true); });
 
       expect(result.current.error).toBeInstanceOf(Error);
     });
@@ -168,7 +168,7 @@ describe("Team Dashboard Hooks", () => {
         wrapper: Wrapper,
       });
 
-      await waitFor(() => expect(result.current.isSuccess).toBe(true));
+      await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(result.current.data).toEqual(mockMembers);
       expect(apiModule.api.get).toHaveBeenCalledWith("/api/v1/dashboard/team/members");
@@ -223,7 +223,7 @@ describe("Team Dashboard Hooks", () => {
         wrapper: Wrapper,
       });
 
-      await waitFor(() => expect(result.current.isSuccess).toBe(true));
+      await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(result.current.data).toEqual(mockMemos);
       expect(apiModule.api.get).toHaveBeenCalledWith(
@@ -263,7 +263,7 @@ describe("Team Dashboard Hooks", () => {
         wrapper: Wrapper,
       });
 
-      await waitFor(() => expect(result.current.isSuccess).toBe(true));
+      await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(apiModule.api.get).toHaveBeenCalledWith(
         "/api/v1/dashboard/team/memos",
@@ -300,7 +300,7 @@ describe("Team Dashboard Hooks", () => {
         wrapper: Wrapper,
       });
 
-      await waitFor(() => expect(result.current.isSuccess).toBe(true));
+      await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(result.current.data).toEqual(mockActivity);
       expect(apiModule.api.get).toHaveBeenCalledWith(
@@ -340,7 +340,7 @@ describe("Team Dashboard Hooks", () => {
         wrapper: Wrapper,
       });
 
-      await waitFor(() => expect(result.current.isSuccess).toBe(true));
+      await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       // Verify the hook returns data
       expect(result.current.data).toEqual([]);
@@ -356,7 +356,7 @@ describe("Team Dashboard Hooks", () => {
         wrapper: Wrapper,
       });
 
-      await waitFor(() => expect(result.current.isSuccess).toBe(true));
+      await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(apiModule.api.get).toHaveBeenCalledWith(
         "/api/v1/dashboard/team/activity",
