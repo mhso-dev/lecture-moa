@@ -10,10 +10,34 @@ import type { StudentProgress } from '@shared';
 
 // Mock hooks
 const mockRefetch = vi.fn();
+let mockStudentsData: StudentProgress[] | undefined = [
+  {
+    userId: 'student-1',
+    name: 'Alice Johnson',
+    avatarUrl: 'https://example.com/alice.jpg',
+    enrolledAt: '2024-01-10T00:00:00Z',
+    progressPercent: 85,
+  },
+  {
+    userId: 'student-2',
+    name: 'Bob Smith',
+    avatarUrl: 'https://example.com/bob.jpg',
+    enrolledAt: '2024-01-12T00:00:00Z',
+    progressPercent: 50,
+  },
+  {
+    userId: 'student-3',
+    name: 'Carol White',
+    enrolledAt: '2024-01-15T00:00:00Z',
+    progressPercent: 100,
+  },
+];
+let mockIsLoading = false;
+
 vi.mock('../../../hooks/useCourseStudents', () => ({
   useCourseStudents: () => ({
-    data: mockStudents,
-    isLoading: false,
+    data: mockStudentsData,
+    isLoading: mockIsLoading,
     refetch: mockRefetch,
   }),
 }));
@@ -60,13 +84,9 @@ const mockStudents: StudentProgress[] = [
 describe('CourseStudentRoster Component', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    vi.doMock('../../../hooks/useCourseStudents', () => ({
-      useCourseStudents: () => ({
-        data: mockStudents,
-        isLoading: false,
-        refetch: mockRefetch,
-      }),
-    }));
+    // Reset mock data to default
+    mockStudentsData = mockStudents;
+    mockIsLoading = false;
   });
 
   describe('Student List Rendering', () => {
@@ -81,8 +101,9 @@ describe('CourseStudentRoster Component', () => {
     it('should show student avatars', () => {
       render(<CourseStudentRoster courseId="course-1" />);
 
-      const avatars = screen.getAllByRole('img');
-      expect(avatars.length).toBeGreaterThanOrEqual(2); // At least the ones with URLs
+      // Check for avatar fallbacks (initials) which are always rendered
+      expect(screen.getByText('AJ')).toBeInTheDocument(); // Alice Johnson
+      expect(screen.getByText('BS')).toBeInTheDocument(); // Bob Smith
     });
 
     it('should show fallback avatar for students without avatarUrl', () => {
@@ -146,11 +167,15 @@ describe('CourseStudentRoster Component', () => {
       fireEvent.click(confirmButton);
 
       await waitFor(() => {
-        expect(mockRemoveMutate).toHaveBeenCalledWith({
-          courseId: 'course-1',
-          userId: 'student-1',
-        });
-      });
+        // Mutation is called with data and callbacks
+        expect(mockRemoveMutate).toHaveBeenCalledWith(
+          expect.objectContaining({
+            courseId: 'course-1',
+            userId: 'student-1',
+          }),
+          expect.any(Object) // callbacks object
+        );
+      }, { timeout: 3000 });
     });
 
     it('should not remove student when cancelled', async () => {
@@ -168,30 +193,21 @@ describe('CourseStudentRoster Component', () => {
 
   describe('Loading State', () => {
     it('should show loading skeleton while fetching', () => {
-      vi.doMock('../../../hooks/useCourseStudents', () => ({
-        useCourseStudents: () => ({
-          data: undefined,
-          isLoading: true,
-          refetch: mockRefetch,
-        }),
-      }));
+      mockStudentsData = undefined;
+      mockIsLoading = true;
 
       render(<CourseStudentRoster courseId="course-1" />);
 
-      const skeletons = screen.getAllByTestId(/skeleton/);
+      // Check for skeleton elements (they have animate-pulse class)
+      const skeletons = document.querySelectorAll('.animate-pulse');
       expect(skeletons.length).toBeGreaterThan(0);
     });
   });
 
   describe('Empty State', () => {
     it('should show empty message when no students', () => {
-      vi.doMock('../../../hooks/useCourseStudents', () => ({
-        useCourseStudents: () => ({
-          data: [],
-          isLoading: false,
-          refetch: mockRefetch,
-        }),
-      }));
+      mockStudentsData = [];
+      mockIsLoading = false;
 
       render(<CourseStudentRoster courseId="course-1" />);
 

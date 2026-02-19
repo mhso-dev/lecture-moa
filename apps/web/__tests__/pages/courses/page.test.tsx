@@ -81,6 +81,11 @@ vi.mock("~/components/course", () => ({
       </div>
     );
   }),
+  CoursePagination: vi.fn(({ currentPage, totalPages }) => (
+    <nav role="navigation" aria-label="Pagination">
+      <span>Page {currentPage} of {totalPages}</span>
+    </nav>
+  )),
 }));
 
 // Import after mocks

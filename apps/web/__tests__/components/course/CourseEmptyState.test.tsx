@@ -26,13 +26,13 @@ describe('CourseEmptyState Component', () => {
     it('should render empty message', () => {
       render(<CourseEmptyState />);
 
-      expect(screen.getByText(/no courses found/i)).toBeInTheDocument();
+      expect(screen.getByText(/No courses yet/i)).toBeInTheDocument();
     });
 
     it('should render default description', () => {
       render(<CourseEmptyState />);
 
-      expect(screen.getByText(/try adjusting your search/i)).toBeInTheDocument();
+      expect(screen.getByText(/There are no courses available at the moment/i)).toBeInTheDocument();
     });
   });
 

@@ -25,7 +25,8 @@ describe('CourseProgressBar Component', () => {
       render(<CourseProgressBar percent={60} />);
 
       const progressFill = screen.getByTestId('progress-fill');
-      expect(progressFill).toHaveStyle({ width: '60%' });
+      // Progress uses transform translateX, not width
+      expect(progressFill).toHaveStyle({ transform: 'translateX(-40%)' });
     });
   });
 
@@ -34,7 +35,7 @@ describe('CourseProgressBar Component', () => {
       render(<CourseProgressBar percent={0} />);
 
       const progressFill = screen.getByTestId('progress-fill');
-      expect(progressFill).toHaveStyle({ width: '0%' });
+      expect(progressFill).toHaveStyle({ transform: 'translateX(-100%)' });
       expect(screen.getByText('0%')).toBeInTheDocument();
     });
 
@@ -42,7 +43,7 @@ describe('CourseProgressBar Component', () => {
       render(<CourseProgressBar percent={100} />);
 
       const progressFill = screen.getByTestId('progress-fill');
-      expect(progressFill).toHaveStyle({ width: '100%' });
+      expect(progressFill).toHaveStyle({ transform: 'translateX(-0%)' });
       expect(screen.getByText('100%')).toBeInTheDocument();
     });
 
@@ -50,14 +51,14 @@ describe('CourseProgressBar Component', () => {
       render(<CourseProgressBar percent={-10} />);
 
       const progressFill = screen.getByTestId('progress-fill');
-      expect(progressFill).toHaveStyle({ width: '0%' });
+      expect(progressFill).toHaveStyle({ transform: 'translateX(-100%)' });
     });
 
     it('should clamp values above 100', () => {
       render(<CourseProgressBar percent={150} />);
 
       const progressFill = screen.getByTestId('progress-fill');
-      expect(progressFill).toHaveStyle({ width: '100%' });
+      expect(progressFill).toHaveStyle({ transform: 'translateX(-0%)' });
     });
   });
 

@@ -22,6 +22,13 @@ vi.mock('next/image', () => ({
   ),
 }));
 
+// Mock next/navigation for useRouter in CourseEmptyState
+vi.mock('next/navigation', () => ({
+  useRouter: () => ({
+    push: vi.fn(),
+  }),
+}));
+
 const mockCourses: CourseListItem[] = [
   {
     id: 'course-1',
@@ -76,7 +83,7 @@ describe('CourseGrid Component', () => {
   it('should render empty state when no courses', () => {
     render(<CourseGrid courses={[]} />);
 
-    expect(screen.getByText(/no courses/i)).toBeInTheDocument();
+    expect(screen.getByText(/No courses yet/i)).toBeInTheDocument();
   });
 
   it('should apply responsive grid classes', () => {
