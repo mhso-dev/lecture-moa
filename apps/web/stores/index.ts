@@ -18,3 +18,11 @@ export {
   useIsLoading,
   useLoadingMessage,
 } from "./ui.store";
+
+export {
+  useCourseStore,
+  useCourseViewMode,
+  useCourseSearchQuery,
+  useCourseSelectedCategory,
+  useCourseSortOption,
+} from "./course.store";
