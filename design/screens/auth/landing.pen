@@ -93,6 +93,7 @@
                   "id": "M8lSp",
                   "name": "Sign In Button",
                   "height": 40,
+                  "fill": "#FFFFFF",
                   "cornerRadius": 8,
                   "layout": "vertical",
                   "padding": [
@@ -911,6 +912,1951 @@
           ]
         }
       ]
+    },
+    {
+      "type": "frame",
+      "id": "OvxIz",
+      "x": 1380,
+      "y": 0,
+      "name": "Landing Page - Tablet",
+      "width": 768,
+      "fill": "#FFFFFF",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "iefNh",
+          "name": "Header",
+          "width": "fill_container",
+          "height": 72,
+          "fill": "#FFFFFF",
+          "stroke": {
+            "align": "inside",
+            "thickness": {
+              "bottom": 1
+            },
+            "fill": "#F1F5F9"
+          },
+          "padding": [
+            0,
+            24
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "uxOhx",
+              "name": "logoT",
+              "fill": "#0F172A",
+              "content": "lecture-moa",
+              "fontFamily": "Inter",
+              "fontSize": 22,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "sjFmM",
+              "name": "Nav Links",
+              "enabled": false,
+              "gap": 32,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "IU9aB",
+                  "name": "nl1",
+                  "fill": "#64748B",
+                  "content": "Features",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "OeeB8",
+                  "name": "nl2",
+                  "fill": "#64748B",
+                  "content": "About",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "j9T3e",
+                  "name": "nl3",
+                  "fill": "#64748B",
+                  "content": "Contact",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "d1bmM",
+              "name": "Auth Buttons",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "xj4Iv",
+                  "name": "Sign In Button",
+                  "height": 40,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 8,
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    20
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "XaBm6",
+                      "name": "signInT",
+                      "fill": "#64748B",
+                      "content": "Sign In",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "kSW6J",
+                  "name": "Get Started Button",
+                  "height": 40,
+                  "fill": "#3B82F6",
+                  "cornerRadius": 8,
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    20
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "HQW1W",
+                      "name": "gsT",
+                      "fill": "#FFFFFF",
+                      "content": "Get Started",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "HiUmL",
+          "name": "Hero Section",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 32,
+          "padding": [
+            48,
+            24
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "Lh8tn",
+              "name": "Badge",
+              "fill": "#EFF6FF",
+              "cornerRadius": 20,
+              "gap": 8,
+              "padding": [
+                8,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "NOoIS",
+                  "name": "badgeI",
+                  "width": 14,
+                  "height": 14,
+                  "iconFontName": "sparkles",
+                  "iconFontFamily": "lucide",
+                  "fill": "#3B82F6"
+                },
+                {
+                  "type": "text",
+                  "id": "85NsM",
+                  "name": "badgeT",
+                  "fill": "#3B82F6",
+                  "content": "AI-Powered Learning Platform",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "pbxbW",
+              "name": "Hero Title",
+              "fill": "#0F172A",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Enhance Your Learning Experience",
+              "lineHeight": 1.1,
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 40,
+              "fontWeight": "800"
+            },
+            {
+              "type": "text",
+              "id": "B66Nm",
+              "name": "Hero Subtitle",
+              "fill": "#64748B",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Upload course materials, generate contextual quizzes, and engage in AI-powered discussions. Transform how you teach and learn.",
+              "lineHeight": 1.6,
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 16,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "cvvws",
+              "name": "CTA Buttons",
+              "gap": 16,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "62BY8",
+                  "name": "Start Free",
+                  "height": 48,
+                  "fill": "#3B82F6",
+                  "cornerRadius": 10,
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    28
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "KRpu1",
+                      "name": "cta1t",
+                      "fill": "#FFFFFF",
+                      "content": "Start Free",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "LxB9B",
+                  "name": "View Demo",
+                  "height": 48,
+                  "cornerRadius": 10,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E2E8F0"
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    28
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "6OZEX",
+                      "name": "cta2t",
+                      "fill": "#0F172A",
+                      "content": "View Demo",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "pxxPE",
+              "name": "Hero Illustration",
+              "width": "fill_container",
+              "height": 320,
+              "fill": "#F1F5F9",
+              "cornerRadius": 16
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "dugrk",
+          "name": "Features Section",
+          "width": "fill_container",
+          "fill": "#F8FAFC",
+          "layout": "vertical",
+          "gap": 32,
+          "padding": [
+            48,
+            24
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "dSmV8",
+              "name": "featT",
+              "fill": "#0F172A",
+              "content": "Everything You Need to Learn Better",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 26,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "mWZBh",
+              "name": "Feature Grid",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "iSqy3",
+                  "name": "Row 1",
+                  "width": "fill_container",
+                  "gap": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "g0gEr",
+                      "name": "Feature Card 1",
+                      "width": "fill_container",
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#E2E8F0"
+                      },
+                      "layout": "vertical",
+                      "gap": 16,
+                      "padding": 24,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "WktOk",
+                          "name": "fc1icon",
+                          "width": 44,
+                          "height": 44,
+                          "fill": "#EFF6FF",
+                          "cornerRadius": 10,
+                          "layout": "vertical",
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "25wB8",
+                              "name": "fc1i",
+                              "width": 22,
+                              "height": 22,
+                              "iconFontName": "book-open",
+                              "iconFontFamily": "lucide",
+                              "fill": "#3B82F6"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "Z33Kw",
+                          "name": "fc1title",
+                          "fill": "#0F172A",
+                          "content": "Interactive Materials",
+                          "fontFamily": "Inter",
+                          "fontSize": 18,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "pxAIg",
+                          "name": "fc1desc",
+                          "fill": "#64748B",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Upload PDFs, slides, and documents. AI processes them for instant contextual learning.",
+                          "lineHeight": 1.5,
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "aJWlr",
+                      "name": "Feature Card 2",
+                      "width": "fill_container",
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#E2E8F0"
+                      },
+                      "layout": "vertical",
+                      "gap": 16,
+                      "padding": 24,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "HRG2F",
+                          "name": "fc2ic",
+                          "width": 44,
+                          "height": 44,
+                          "fill": "#F0FDF4",
+                          "cornerRadius": 10,
+                          "layout": "vertical",
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "FHRG6",
+                              "name": "fc2i",
+                              "width": 22,
+                              "height": 22,
+                              "iconFontName": "message-circle",
+                              "iconFontFamily": "lucide",
+                              "fill": "#10B981"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "8tJRB",
+                          "name": "fc2t",
+                          "fill": "#0F172A",
+                          "content": "Contextual Q&A",
+                          "fontFamily": "Inter",
+                          "fontSize": 18,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "W7voV",
+                          "name": "fc2d",
+                          "fill": "#64748B",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Ask questions about your course materials and get AI-powered answers with source references.",
+                          "lineHeight": 1.5,
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "F0UG5",
+                  "name": "Row 2",
+                  "width": "fill_container",
+                  "gap": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "ymkwF",
+                      "name": "Feature Card 3",
+                      "width": "fill_container",
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#E2E8F0"
+                      },
+                      "layout": "vertical",
+                      "gap": 16,
+                      "padding": 24,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "je272",
+                          "name": "fc3ic",
+                          "width": 44,
+                          "height": 44,
+                          "fill": "#FEF3C7",
+                          "cornerRadius": 10,
+                          "layout": "vertical",
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "le9gY",
+                              "name": "fc3i",
+                              "width": 22,
+                              "height": 22,
+                              "iconFontName": "brain",
+                              "iconFontFamily": "lucide",
+                              "fill": "#F59E0B"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "ikhcS",
+                          "name": "fc3t",
+                          "fill": "#0F172A",
+                          "content": "Smart Quizzes",
+                          "fontFamily": "Inter",
+                          "fontSize": 18,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "M8xXh",
+                          "name": "fc3d",
+                          "fill": "#64748B",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Auto-generated quizzes from your materials. Adaptive difficulty based on performance.",
+                          "lineHeight": 1.5,
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "kWtkT",
+                      "name": "Feature Card 4",
+                      "width": "fill_container",
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#E2E8F0"
+                      },
+                      "layout": "vertical",
+                      "gap": 16,
+                      "padding": 24,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "64KbA",
+                          "name": "fc4ic",
+                          "width": 44,
+                          "height": 44,
+                          "fill": "#EDE9FE",
+                          "cornerRadius": 10,
+                          "layout": "vertical",
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "1Gm8l",
+                              "name": "fc4i",
+                              "width": 22,
+                              "height": 22,
+                              "iconFontName": "users",
+                              "iconFontFamily": "lucide",
+                              "fill": "#6366F1"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "3IoFk",
+                          "name": "fc4t",
+                          "fill": "#0F172A",
+                          "content": "Team Learning",
+                          "fontFamily": "Inter",
+                          "fontSize": 18,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Lx1ta",
+                          "name": "fc4d",
+                          "fill": "#64748B",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Collaborate with classmates, share notes, and learn together in real-time study groups.",
+                          "lineHeight": 1.5,
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "uYIJX",
+          "name": "Stats Section",
+          "width": "fill_container",
+          "height": 160,
+          "fill": "#0F172A",
+          "padding": [
+            0,
+            24
+          ],
+          "justifyContent": "space_around",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "QCZYM",
+              "name": "s1",
+              "layout": "vertical",
+              "gap": 4,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "D0hTr",
+                  "name": "s1v",
+                  "fill": "#FFFFFF",
+                  "content": "10,000+",
+                  "fontFamily": "Inter",
+                  "fontSize": 36,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "g70Qv",
+                  "name": "s1l",
+                  "fill": "#94A3B8",
+                  "content": "Students",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "C8ipt",
+              "name": "s2",
+              "layout": "vertical",
+              "gap": 4,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "X7kfX",
+                  "name": "s2v",
+                  "fill": "#FFFFFF",
+                  "content": "500+",
+                  "fontFamily": "Inter",
+                  "fontSize": 36,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "ylrEN",
+                  "name": "s2l",
+                  "fill": "#94A3B8",
+                  "content": "Courses",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "eDyvH",
+              "name": "s3",
+              "layout": "vertical",
+              "gap": 4,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "V47Le",
+                  "name": "s3v",
+                  "fill": "#FFFFFF",
+                  "content": "50,000+",
+                  "fontFamily": "Inter",
+                  "fontSize": 36,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "n2hV1",
+                  "name": "s3l",
+                  "fill": "#94A3B8",
+                  "content": "Questions Answered",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "A28wX",
+          "name": "Footer",
+          "width": "fill_container",
+          "fill": "#FFFFFF",
+          "layout": "vertical",
+          "gap": 32,
+          "padding": 24,
+          "children": [
+            {
+              "type": "frame",
+              "id": "iOjBL",
+              "name": "Footer Top",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 24,
+              "justifyContent": "space_between",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "kVHtH",
+                  "name": "fbrand",
+                  "width": 240,
+                  "layout": "vertical",
+                  "gap": 12,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "lWa1w",
+                      "name": "fblogo",
+                      "fill": "#0F172A",
+                      "content": "lecture-moa",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "fGI73",
+                      "name": "fbdesc",
+                      "fill": "#64748B",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "AI-powered learning platform for modern education.",
+                      "lineHeight": 1.5,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "yhek4",
+                  "name": "c1",
+                  "layout": "vertical",
+                  "gap": 12,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "GinIW",
+                      "name": "c1h",
+                      "fill": "#0F172A",
+                      "content": "Product",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "PEkLx",
+                      "name": "c1a",
+                      "fill": "#64748B",
+                      "content": "Features",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "723WD",
+                      "name": "c1b",
+                      "fill": "#64748B",
+                      "content": "Pricing",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "WwpD7",
+                      "name": "c1c",
+                      "fill": "#64748B",
+                      "content": "Changelog",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "unyBU",
+                  "name": "c2",
+                  "layout": "vertical",
+                  "gap": 12,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "4Z5fs",
+                      "name": "c2h",
+                      "fill": "#0F172A",
+                      "content": "Legal",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "LLIgJ",
+                      "name": "c2a",
+                      "fill": "#64748B",
+                      "content": "Privacy",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "qcLSV",
+                      "name": "c2b",
+                      "fill": "#64748B",
+                      "content": "Terms",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "c3EMb",
+                  "name": "c3",
+                  "layout": "vertical",
+                  "gap": 12,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "mYlGq",
+                      "name": "c3h",
+                      "fill": "#0F172A",
+                      "content": "Company",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "SOvkK",
+                      "name": "c3a",
+                      "fill": "#64748B",
+                      "content": "About",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "toqZA",
+                      "name": "c3b",
+                      "fill": "#64748B",
+                      "content": "Blog",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "mztk5",
+                      "name": "c3c",
+                      "fill": "#64748B",
+                      "content": "Careers",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "jYsI1",
+              "name": "div",
+              "width": "fill_container",
+              "height": 1,
+              "fill": "#E2E8F0"
+            },
+            {
+              "type": "text",
+              "id": "RodN1",
+              "name": "copy",
+              "fill": "#94A3B8",
+              "content": "2025 lecture-moa. All rights reserved.",
+              "fontFamily": "Inter",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "Va6W8",
+      "x": 2248,
+      "y": 0,
+      "name": "Landing Page - Mobile",
+      "width": 375,
+      "fill": "#FFFFFF",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "lIVSF",
+          "name": "Header",
+          "width": "fill_container",
+          "height": 72,
+          "fill": "#FFFFFF",
+          "stroke": {
+            "align": "inside",
+            "thickness": {
+              "bottom": 1
+            },
+            "fill": "#F1F5F9"
+          },
+          "padding": [
+            0,
+            16
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "g9Ido",
+              "name": "logoT",
+              "fill": "#0F172A",
+              "content": "lecture-moa",
+              "fontFamily": "Inter",
+              "fontSize": 22,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "s2c4T",
+              "name": "Nav Links",
+              "enabled": false,
+              "gap": 32,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "wlPSS",
+                  "name": "nl1",
+                  "fill": "#64748B",
+                  "content": "Features",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "IXf2i",
+                  "name": "nl2",
+                  "fill": "#64748B",
+                  "content": "About",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "BB9oe",
+                  "name": "nl3",
+                  "fill": "#64748B",
+                  "content": "Contact",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "85DUI",
+              "name": "Auth Buttons",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "BlLhD",
+                  "name": "Sign In Button",
+                  "height": 40,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 8,
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    20
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "im980",
+                      "name": "signInT",
+                      "fill": "#64748B",
+                      "content": "Sign In",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "C8yB9",
+                  "name": "Get Started Button",
+                  "height": 40,
+                  "fill": "#3B82F6",
+                  "cornerRadius": 8,
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    20
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "GUKO7",
+                      "name": "gsT",
+                      "fill": "#FFFFFF",
+                      "content": "Get Started",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ChfBL",
+          "name": "Hero Section",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [
+            48,
+            16
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "dVC7H",
+              "name": "Badge",
+              "fill": "#EFF6FF",
+              "cornerRadius": 20,
+              "gap": 8,
+              "padding": [
+                8,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "RZiSG",
+                  "name": "badgeI",
+                  "width": 14,
+                  "height": 14,
+                  "iconFontName": "sparkles",
+                  "iconFontFamily": "lucide",
+                  "fill": "#3B82F6"
+                },
+                {
+                  "type": "text",
+                  "id": "h0TMV",
+                  "name": "badgeT",
+                  "fill": "#3B82F6",
+                  "content": "AI-Powered Learning Platform",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "IGGZU",
+              "name": "Hero Title",
+              "fill": "#0F172A",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Enhance Your Learning Experience",
+              "lineHeight": 1.1,
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 32,
+              "fontWeight": "800"
+            },
+            {
+              "type": "text",
+              "id": "bfJQo",
+              "name": "Hero Subtitle",
+              "fill": "#64748B",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Upload course materials, generate contextual quizzes, and engage in AI-powered discussions. Transform how you teach and learn.",
+              "lineHeight": 1.5,
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "F8NAv",
+              "name": "CTA Buttons",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "2R5cT",
+                  "name": "Start Free",
+                  "width": "fill_container",
+                  "height": 48,
+                  "fill": "#3B82F6",
+                  "cornerRadius": 10,
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    28
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "ZFIVc",
+                      "name": "cta1t",
+                      "fill": "#FFFFFF",
+                      "content": "Start Free",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "k2aCY",
+                  "name": "View Demo",
+                  "width": "fill_container",
+                  "height": 48,
+                  "cornerRadius": 10,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E2E8F0"
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    28
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "0nQCn",
+                      "name": "cta2t",
+                      "fill": "#0F172A",
+                      "content": "View Demo",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "nuQEm",
+              "name": "Hero Illustration",
+              "width": "fill_container",
+              "height": 200,
+              "fill": "#F1F5F9",
+              "cornerRadius": 16
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "93BBC",
+          "name": "Features Section",
+          "width": "fill_container",
+          "fill": "#F8FAFC",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [
+            48,
+            16
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "m4Y5V",
+              "name": "featT",
+              "fill": "#0F172A",
+              "content": "Everything You Need to Learn Better",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 22,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "sMC9s",
+              "name": "Feature Grid",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "n24aw",
+                  "name": "Feature Card 1",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E2E8F0"
+                  },
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "uoKSP",
+                      "name": "fc1icon",
+                      "width": 44,
+                      "height": 44,
+                      "fill": "#EFF6FF",
+                      "cornerRadius": 10,
+                      "layout": "vertical",
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "G5FEC",
+                          "name": "fc1i",
+                          "width": 22,
+                          "height": 22,
+                          "iconFontName": "book-open",
+                          "iconFontFamily": "lucide",
+                          "fill": "#3B82F6"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "nbUms",
+                      "name": "fc1title",
+                      "fill": "#0F172A",
+                      "content": "Interactive Materials",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "6Flyd",
+                      "name": "fc1desc",
+                      "fill": "#64748B",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Upload PDFs, slides, and documents. AI processes them for instant contextual learning.",
+                      "lineHeight": 1.5,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "qFrbv",
+                  "name": "Feature Card 2",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E2E8F0"
+                  },
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "p538a",
+                      "name": "fc2ic",
+                      "width": 44,
+                      "height": 44,
+                      "fill": "#F0FDF4",
+                      "cornerRadius": 10,
+                      "layout": "vertical",
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "a1eGp",
+                          "name": "fc2i",
+                          "width": 22,
+                          "height": 22,
+                          "iconFontName": "message-circle",
+                          "iconFontFamily": "lucide",
+                          "fill": "#10B981"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "toaFH",
+                      "name": "fc2t",
+                      "fill": "#0F172A",
+                      "content": "Contextual Q&A",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "a03X1",
+                      "name": "fc2d",
+                      "fill": "#64748B",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Ask questions about your course materials and get AI-powered answers with source references.",
+                      "lineHeight": 1.5,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "nrLCI",
+                  "name": "Feature Card 3",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E2E8F0"
+                  },
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "R1RmA",
+                      "name": "fc3ic",
+                      "width": 44,
+                      "height": 44,
+                      "fill": "#FEF3C7",
+                      "cornerRadius": 10,
+                      "layout": "vertical",
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "6G8qP",
+                          "name": "fc3i",
+                          "width": 22,
+                          "height": 22,
+                          "iconFontName": "brain",
+                          "iconFontFamily": "lucide",
+                          "fill": "#F59E0B"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "Az1tw",
+                      "name": "fc3t",
+                      "fill": "#0F172A",
+                      "content": "Smart Quizzes",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "PINuR",
+                      "name": "fc3d",
+                      "fill": "#64748B",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Auto-generated quizzes from your materials. Adaptive difficulty based on performance.",
+                      "lineHeight": 1.5,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "a8GvI",
+                  "name": "Feature Card 4",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E2E8F0"
+                  },
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "65oi0",
+                      "name": "fc4ic",
+                      "width": 44,
+                      "height": 44,
+                      "fill": "#EDE9FE",
+                      "cornerRadius": 10,
+                      "layout": "vertical",
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "HU4bf",
+                          "name": "fc4i",
+                          "width": 22,
+                          "height": 22,
+                          "iconFontName": "users",
+                          "iconFontFamily": "lucide",
+                          "fill": "#6366F1"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "OtExs",
+                      "name": "fc4t",
+                      "fill": "#0F172A",
+                      "content": "Team Learning",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "JA4ss",
+                      "name": "fc4d",
+                      "fill": "#64748B",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Collaborate with classmates, share notes, and learn together in real-time study groups.",
+                      "lineHeight": 1.5,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "UiaOC",
+          "name": "Stats Section",
+          "width": "fill_container",
+          "fill": "#0F172A",
+          "layout": "vertical",
+          "gap": 20,
+          "padding": [
+            32,
+            16
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "6IaSD",
+              "name": "s1",
+              "layout": "vertical",
+              "gap": 4,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "tQ1nC",
+                  "name": "s1v",
+                  "fill": "#FFFFFF",
+                  "content": "10,000+",
+                  "fontFamily": "Inter",
+                  "fontSize": 36,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "MwmHH",
+                  "name": "s1l",
+                  "fill": "#94A3B8",
+                  "content": "Students",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ksrRl",
+              "name": "s2",
+              "layout": "vertical",
+              "gap": 4,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "QWeBD",
+                  "name": "s2v",
+                  "fill": "#FFFFFF",
+                  "content": "500+",
+                  "fontFamily": "Inter",
+                  "fontSize": 36,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "0kfRd",
+                  "name": "s2l",
+                  "fill": "#94A3B8",
+                  "content": "Courses",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "sDlhQ",
+              "name": "s3",
+              "layout": "vertical",
+              "gap": 4,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "YTG8s",
+                  "name": "s3v",
+                  "fill": "#FFFFFF",
+                  "content": "50,000+",
+                  "fontFamily": "Inter",
+                  "fontSize": 36,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "8mVCl",
+                  "name": "s3l",
+                  "fill": "#94A3B8",
+                  "content": "Questions Answered",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "AqDiV",
+          "name": "Footer",
+          "width": "fill_container",
+          "fill": "#FFFFFF",
+          "layout": "vertical",
+          "gap": 16,
+          "padding": 16,
+          "children": [
+            {
+              "type": "frame",
+              "id": "6t6gX",
+              "name": "Footer Top",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "justifyContent": "space_between",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "bsXjm",
+                  "name": "fbrand",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 12,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "rIkDl",
+                      "name": "fblogo",
+                      "fill": "#0F172A",
+                      "content": "lecture-moa",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "i6Kxc",
+                      "name": "fbdesc",
+                      "fill": "#64748B",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "AI-powered learning platform for modern education.",
+                      "lineHeight": 1.5,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "TcjYS",
+                  "name": "c1",
+                  "layout": "vertical",
+                  "gap": 12,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "s3dyM",
+                      "name": "c1h",
+                      "fill": "#0F172A",
+                      "content": "Product",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "nX4Mt",
+                      "name": "c1a",
+                      "fill": "#64748B",
+                      "content": "Features",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "AycaE",
+                      "name": "c1b",
+                      "fill": "#64748B",
+                      "content": "Pricing",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "sVDbc",
+                      "name": "c1c",
+                      "fill": "#64748B",
+                      "content": "Changelog",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "SuXvl",
+                  "name": "c2",
+                  "layout": "vertical",
+                  "gap": 12,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "9pIQN",
+                      "name": "c2h",
+                      "fill": "#0F172A",
+                      "content": "Legal",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "XKvdx",
+                      "name": "c2a",
+                      "fill": "#64748B",
+                      "content": "Privacy",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "MLfgr",
+                      "name": "c2b",
+                      "fill": "#64748B",
+                      "content": "Terms",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "D4MKz",
+                  "name": "c3",
+                  "layout": "vertical",
+                  "gap": 12,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "b3KFv",
+                      "name": "c3h",
+                      "fill": "#0F172A",
+                      "content": "Company",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "IVdNV",
+                      "name": "c3a",
+                      "fill": "#64748B",
+                      "content": "About",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "mrWUz",
+                      "name": "c3b",
+                      "fill": "#64748B",
+                      "content": "Blog",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "aSKVy",
+                      "name": "c3c",
+                      "fill": "#64748B",
+                      "content": "Careers",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "28cXG",
+              "name": "div",
+              "width": "fill_container",
+              "height": 1,
+              "fill": "#E2E8F0"
+            },
+            {
+              "type": "text",
+              "id": "mFTiw",
+              "name": "copy",
+              "fill": "#94A3B8",
+              "content": "2025 lecture-moa. All rights reserved.",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
     }
-  ]
+  ],
+  "variables": {
+    "accent-purple": {
+      "type": "color",
+      "value": "#6366F1"
+    },
+    "accent-purple-light": {
+      "type": "color",
+      "value": "#EDE9FE"
+    },
+    "bg-card": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "bg-dark": {
+      "type": "color",
+      "value": "#0F172A"
+    },
+    "bg-page": {
+      "type": "color",
+      "value": "#F8FAFC"
+    },
+    "border": {
+      "type": "color",
+      "value": "#E2E8F0"
+    },
+    "border-light": {
+      "type": "color",
+      "value": "#F1F5F9"
+    },
+    "primary": {
+      "type": "color",
+      "value": "#3B82F6"
+    },
+    "primary-dark": {
+      "type": "color",
+      "value": "#2563EB"
+    },
+    "primary-light": {
+      "type": "color",
+      "value": "#EFF6FF"
+    },
+    "radius-lg": {
+      "type": "number",
+      "value": 12
+    },
+    "radius-md": {
+      "type": "number",
+      "value": 8
+    },
+    "radius-pill": {
+      "type": "number",
+      "value": 20
+    },
+    "radius-xl": {
+      "type": "number",
+      "value": 16
+    },
+    "success": {
+      "type": "color",
+      "value": "#10B981"
+    },
+    "success-light": {
+      "type": "color",
+      "value": "#F0FDF4"
+    },
+    "text-muted": {
+      "type": "color",
+      "value": "#94A3B8"
+    },
+    "text-primary": {
+      "type": "color",
+      "value": "#0F172A"
+    },
+    "text-secondary": {
+      "type": "color",
+      "value": "#64748B"
+    },
+    "text-white": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "warning": {
+      "type": "color",
+      "value": "#F59E0B"
+    },
+    "warning-light": {
+      "type": "color",
+      "value": "#FEF3C7"
+    }
+  }
 }

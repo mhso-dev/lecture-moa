@@ -6,9 +6,9 @@
       "id": "kPJ25",
       "x": 0,
       "y": 0,
-      "name": "Team Memo Board",
+      "name": "Team Memo Board - Desktop",
       "width": 1280,
-      "fill": "#F8FAFC",
+      "fill": "$bg-page",
       "layout": "vertical",
       "gap": 24,
       "padding": 32,
@@ -32,7 +32,7 @@
                   "type": "text",
                   "id": "bneI2",
                   "name": "hTitle",
-                  "fill": "#1E293B",
+                  "fill": "$text-heading",
                   "content": "Team Alpha - Shared Memos",
                   "fontFamily": "Inter",
                   "fontSize": 24,
@@ -42,7 +42,7 @@
                   "type": "text",
                   "id": "3O0Um",
                   "name": "hSub",
-                  "fill": "#64748B",
+                  "fill": "$text-secondary",
                   "content": "Collaborate on study notes with your team",
                   "fontFamily": "Inter",
                   "fontSize": 14,
@@ -61,7 +61,7 @@
                   "type": "frame",
                   "id": "elpuP",
                   "name": "newBtn",
-                  "fill": "#3B82F6",
+                  "fill": "$primary",
                   "cornerRadius": 8,
                   "gap": 6,
                   "padding": [
@@ -74,16 +74,17 @@
                       "type": "icon_font",
                       "id": "ZQAi5",
                       "name": "hNewIc",
-                      "width": 0,
-                      "height": 0,
+                      "width": 16,
+                      "height": 16,
+                      "iconFontName": "plus",
                       "iconFontFamily": "lucide",
-                      "fill": "#FFFFFF"
+                      "fill": "$text-white"
                     },
                     {
                       "type": "text",
                       "id": "SUCeC",
                       "name": "hNewTxt",
-                      "fill": "#FFFFFF",
+                      "fill": "$text-white",
                       "content": "New Team Memo",
                       "fontFamily": "Inter",
                       "fontSize": 14,
@@ -114,16 +115,17 @@
                   "type": "icon_font",
                   "id": "V5lSU",
                   "name": "pinIc",
-                  "width": 0,
-                  "height": 0,
+                  "width": 18,
+                  "height": 18,
+                  "iconFontName": "pin",
                   "iconFontFamily": "lucide",
-                  "fill": "#F59E0B"
+                  "fill": "$warning"
                 },
                 {
                   "type": "text",
                   "id": "2C6cV",
                   "name": "pinTxt",
-                  "fill": "#1E293B",
+                  "fill": "$text-heading",
                   "content": "Pinned Memos",
                   "fontFamily": "Inter",
                   "fontSize": 16,
@@ -166,7 +168,7 @@
                           "type": "text",
                           "id": "7o80r",
                           "name": "pin1title",
-                          "fill": "#1E293B",
+                          "fill": "$text-heading",
                           "content": "Team Study Guide",
                           "fontFamily": "Inter",
                           "fontSize": 16,
@@ -176,10 +178,11 @@
                           "type": "icon_font",
                           "id": "2GCKi",
                           "name": "pin1ic",
-                          "width": 0,
-                          "height": 0,
+                          "width": 16,
+                          "height": 16,
+                          "iconFontName": "pin",
                           "iconFontFamily": "lucide",
-                          "fill": "#F59E0B"
+                          "fill": "$warning"
                         }
                       ]
                     },
@@ -187,7 +190,7 @@
                       "type": "text",
                       "id": "HTmFY",
                       "name": "pin1p",
-                      "fill": "#64748B",
+                      "fill": "$text-secondary",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
                       "content": "Comprehensive study guide covering all topics for the midterm exam. Please review and add your notes...",
@@ -208,7 +211,7 @@
                           "type": "text",
                           "id": "t26Qh",
                           "name": "pin1author",
-                          "fill": "#94A3B8",
+                          "fill": "$text-muted",
                           "content": "By Kim Minjun",
                           "fontFamily": "Inter",
                           "fontSize": 12,
@@ -218,7 +221,7 @@
                           "type": "text",
                           "id": "ChcWf",
                           "name": "pin1date",
-                          "fill": "#94A3B8",
+                          "fill": "$text-muted",
                           "content": "Updated 1 hour ago",
                           "fontFamily": "Inter",
                           "fontSize": 12,
@@ -256,7 +259,7 @@
                           "type": "text",
                           "id": "OoiI9",
                           "name": "pin2title",
-                          "fill": "#1E293B",
+                          "fill": "$text-heading",
                           "content": "Project Requirements",
                           "fontFamily": "Inter",
                           "fontSize": 16,
@@ -266,10 +269,11 @@
                           "type": "icon_font",
                           "id": "giiUe",
                           "name": "pin2ic",
-                          "width": 0,
-                          "height": 0,
+                          "width": 16,
+                          "height": 16,
+                          "iconFontName": "pin",
                           "iconFontFamily": "lucide",
-                          "fill": "#F59E0B"
+                          "fill": "$warning"
                         }
                       ]
                     },
@@ -277,7 +281,7 @@
                       "type": "text",
                       "id": "YM3RV",
                       "name": "pin2p",
-                      "fill": "#64748B",
+                      "fill": "$text-secondary",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
                       "content": "Final project requirements and deadlines. Each team member should choose their module by Friday...",
@@ -298,7 +302,7 @@
                           "type": "text",
                           "id": "CA5Q1",
                           "name": "pin2author",
-                          "fill": "#94A3B8",
+                          "fill": "$text-muted",
                           "content": "By Lee Soyeon",
                           "fontFamily": "Inter",
                           "fontSize": 12,
@@ -308,7 +312,7 @@
                           "type": "text",
                           "id": "3QHku",
                           "name": "pin2date",
-                          "fill": "#94A3B8",
+                          "fill": "$text-muted",
                           "content": "Updated 3 hours ago",
                           "fontFamily": "Inter",
                           "fontSize": 12,
@@ -341,16 +345,17 @@
                   "type": "icon_font",
                   "id": "dOd0o",
                   "name": "memoIc",
-                  "width": 0,
-                  "height": 0,
+                  "width": 18,
+                  "height": 18,
+                  "iconFontName": "file-text",
                   "iconFontFamily": "lucide",
-                  "fill": "#64748B"
+                  "fill": "$text-secondary"
                 },
                 {
                   "type": "text",
                   "id": "Rd2tC",
                   "name": "memoTxt",
-                  "fill": "#1E293B",
+                  "fill": "$text-heading",
                   "content": "Recent Memos",
                   "fontFamily": "Inter",
                   "fontSize": 16,
@@ -370,12 +375,12 @@
                   "id": "ytift",
                   "name": "Team Memo 1",
                   "width": "fill_container",
-                  "fill": "#FFFFFF",
+                  "fill": "$bg-white",
                   "cornerRadius": 12,
                   "stroke": {
                     "align": "inside",
                     "thickness": 1,
-                    "fill": "#E2E8F0"
+                    "fill": "$border"
                   },
                   "layout": "vertical",
                   "gap": 12,
@@ -393,7 +398,7 @@
                           "type": "text",
                           "id": "Ocr1F",
                           "name": "mc1title",
-                          "fill": "#1E293B",
+                          "fill": "$text-heading",
                           "content": "API Design Notes",
                           "fontFamily": "Inter",
                           "fontSize": 16,
@@ -410,7 +415,7 @@
                               "type": "ellipse",
                               "id": "gmbtp",
                               "name": "mc1dot",
-                              "fill": "#10B981",
+                              "fill": "$success",
                               "width": 8,
                               "height": 8
                             },
@@ -418,7 +423,7 @@
                               "type": "text",
                               "id": "dDCH6",
                               "name": "mc1liveTxt",
-                              "fill": "#10B981",
+                              "fill": "$success",
                               "content": "Editing",
                               "fontFamily": "Inter",
                               "fontSize": 11,
@@ -432,7 +437,7 @@
                       "type": "text",
                       "id": "2L1iu",
                       "name": "mc1p",
-                      "fill": "#64748B",
+                      "fill": "$text-secondary",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
                       "content": "REST API design patterns and best practices for our team project. Covers endpoint naming, versioning...",
@@ -453,7 +458,7 @@
                           "type": "text",
                           "id": "qCs6K",
                           "name": "mc1author",
-                          "fill": "#94A3B8",
+                          "fill": "$text-muted",
                           "content": "By Park Jiwon",
                           "fontFamily": "Inter",
                           "fontSize": 12,
@@ -463,7 +468,7 @@
                           "type": "text",
                           "id": "wuDec",
                           "name": "mc1date",
-                          "fill": "#94A3B8",
+                          "fill": "$text-muted",
                           "content": "Modified 30 min ago",
                           "fontFamily": "Inter",
                           "fontSize": 12,
@@ -478,12 +483,12 @@
                   "id": "dRj20",
                   "name": "Team Memo 2",
                   "width": "fill_container",
-                  "fill": "#FFFFFF",
+                  "fill": "$bg-white",
                   "cornerRadius": 12,
                   "stroke": {
                     "align": "inside",
                     "thickness": 1,
-                    "fill": "#E2E8F0"
+                    "fill": "$border"
                   },
                   "layout": "vertical",
                   "gap": 12,
@@ -501,7 +506,7 @@
                           "type": "text",
                           "id": "k3ByF",
                           "name": "mc2title",
-                          "fill": "#1E293B",
+                          "fill": "$text-heading",
                           "content": "Database Schema Draft",
                           "fontFamily": "Inter",
                           "fontSize": 16,
@@ -513,7 +518,7 @@
                       "type": "text",
                       "id": "gG31c",
                       "name": "mc2p",
-                      "fill": "#64748B",
+                      "fill": "$text-secondary",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
                       "content": "Draft schema for our project database. Includes user, course, and enrollment tables with relationships...",
@@ -534,7 +539,7 @@
                           "type": "text",
                           "id": "FeHzU",
                           "name": "mc2author",
-                          "fill": "#94A3B8",
+                          "fill": "$text-muted",
                           "content": "By Choi Yuna",
                           "fontFamily": "Inter",
                           "fontSize": 12,
@@ -544,7 +549,7 @@
                           "type": "text",
                           "id": "sC1EZ",
                           "name": "mc2date",
-                          "fill": "#94A3B8",
+                          "fill": "$text-muted",
                           "content": "Modified 2 hours ago",
                           "fontFamily": "Inter",
                           "fontSize": 12,
@@ -568,12 +573,12 @@
                   "id": "ar721",
                   "name": "Team Memo 3",
                   "width": "fill_container",
-                  "fill": "#FFFFFF",
+                  "fill": "$bg-white",
                   "cornerRadius": 12,
                   "stroke": {
                     "align": "inside",
                     "thickness": 1,
-                    "fill": "#E2E8F0"
+                    "fill": "$border"
                   },
                   "layout": "vertical",
                   "gap": 12,
@@ -591,7 +596,7 @@
                           "type": "text",
                           "id": "IMxOw",
                           "name": "mc3title",
-                          "fill": "#1E293B",
+                          "fill": "$text-heading",
                           "content": "Testing Strategy",
                           "fontFamily": "Inter",
                           "fontSize": 16,
@@ -603,7 +608,7 @@
                       "type": "text",
                       "id": "Jg2DI",
                       "name": "mc3p",
-                      "fill": "#64748B",
+                      "fill": "$text-secondary",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
                       "content": "Unit testing and integration testing approach for the project. Using Jest and React Testing Library...",
@@ -624,7 +629,7 @@
                           "type": "text",
                           "id": "1q5qY",
                           "name": "mc3author",
-                          "fill": "#94A3B8",
+                          "fill": "$text-muted",
                           "content": "By Kim Minjun",
                           "fontFamily": "Inter",
                           "fontSize": 12,
@@ -634,7 +639,7 @@
                           "type": "text",
                           "id": "FkXpO",
                           "name": "mc3date",
-                          "fill": "#94A3B8",
+                          "fill": "$text-muted",
                           "content": "Modified yesterday",
                           "fontFamily": "Inter",
                           "fontSize": 12,
@@ -649,12 +654,12 @@
                   "id": "zsuRt",
                   "name": "Team Memo 4",
                   "width": "fill_container",
-                  "fill": "#FFFFFF",
+                  "fill": "$bg-white",
                   "cornerRadius": 12,
                   "stroke": {
                     "align": "inside",
                     "thickness": 1,
-                    "fill": "#E2E8F0"
+                    "fill": "$border"
                   },
                   "layout": "vertical",
                   "gap": 12,
@@ -672,7 +677,7 @@
                           "type": "text",
                           "id": "HVmZg",
                           "name": "mc4title",
-                          "fill": "#1E293B",
+                          "fill": "$text-heading",
                           "content": "UI Component Library",
                           "fontFamily": "Inter",
                           "fontSize": 16,
@@ -689,7 +694,7 @@
                               "type": "ellipse",
                               "id": "LFGy3",
                               "name": "mc4dot",
-                              "fill": "#10B981",
+                              "fill": "$success",
                               "width": 8,
                               "height": 8
                             },
@@ -697,7 +702,7 @@
                               "type": "text",
                               "id": "JCS2R",
                               "name": "mc4liveTxt",
-                              "fill": "#10B981",
+                              "fill": "$success",
                               "content": "Editing",
                               "fontFamily": "Inter",
                               "fontSize": 11,
@@ -711,7 +716,7 @@
                       "type": "text",
                       "id": "nKM8u",
                       "name": "mc4p",
-                      "fill": "#64748B",
+                      "fill": "$text-secondary",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
                       "content": "Shared component library documentation. Button, Input, Card, Modal components with usage examples...",
@@ -732,7 +737,7 @@
                           "type": "text",
                           "id": "AHttr",
                           "name": "mc4author",
-                          "fill": "#94A3B8",
+                          "fill": "$text-muted",
                           "content": "By Lee Soyeon",
                           "fontFamily": "Inter",
                           "fontSize": 12,
@@ -742,7 +747,1538 @@
                           "type": "text",
                           "id": "J4wyt",
                           "name": "mc4date",
-                          "fill": "#94A3B8",
+                          "fill": "$text-muted",
+                          "content": "Modified 2 days ago",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "U9kr3",
+      "x": 1380,
+      "y": 0,
+      "name": "Team Memo Board - Tablet",
+      "width": 768,
+      "fill": "$bg-page",
+      "layout": "vertical",
+      "gap": 24,
+      "padding": 24,
+      "children": [
+        {
+          "type": "frame",
+          "id": "dxPvL",
+          "name": "Page Header",
+          "width": "fill_container",
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "kxNGu",
+              "name": "hLeft",
+              "layout": "vertical",
+              "gap": 4,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ylLLt",
+                  "name": "hTitle",
+                  "fill": "$text-heading",
+                  "content": "Team Alpha - Shared Memos",
+                  "fontFamily": "Inter",
+                  "fontSize": 24,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "hP2La",
+                  "name": "hSub",
+                  "fill": "$text-secondary",
+                  "content": "Collaborate on study notes with your team",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "XRje6",
+              "name": "hRight",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "14gjI",
+                  "name": "newBtn",
+                  "fill": "$primary",
+                  "cornerRadius": 8,
+                  "gap": 6,
+                  "padding": [
+                    10,
+                    16
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "idaOv",
+                      "name": "hNewIc",
+                      "width": 16,
+                      "height": 16,
+                      "iconFontName": "plus",
+                      "iconFontFamily": "lucide",
+                      "fill": "$text-white"
+                    },
+                    {
+                      "type": "text",
+                      "id": "rhk2E",
+                      "name": "hNewTxt",
+                      "fill": "$text-white",
+                      "content": "New Team Memo",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "UzC1e",
+          "name": "Pinned Section",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 12,
+          "children": [
+            {
+              "type": "frame",
+              "id": "S7j6F",
+              "name": "pinHeader",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "oDZ0x",
+                  "name": "pinIc",
+                  "width": 18,
+                  "height": 18,
+                  "iconFontName": "pin",
+                  "iconFontFamily": "lucide",
+                  "fill": "$warning"
+                },
+                {
+                  "type": "text",
+                  "id": "v67OT",
+                  "name": "pinTxt",
+                  "fill": "$text-heading",
+                  "content": "Pinned Memos",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "XlBbY",
+              "name": "pinRow",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "hndOR",
+                  "name": "Pinned Card 1",
+                  "width": "fill_container",
+                  "fill": "#FFFBEB",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#FDE68A"
+                  },
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "2fo6F",
+                      "name": "pin1top",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "RygR9",
+                          "name": "pin1title",
+                          "fill": "$text-heading",
+                          "content": "Team Study Guide",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "icon_font",
+                          "id": "JJwYE",
+                          "name": "pin1ic",
+                          "width": 16,
+                          "height": 16,
+                          "iconFontName": "pin",
+                          "iconFontFamily": "lucide",
+                          "fill": "$warning"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "jGupP",
+                      "name": "pin1p",
+                      "fill": "$text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Comprehensive study guide covering all topics for the midterm exam. Please review and add your notes...",
+                      "lineHeight": 1.4,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ZtBrJ",
+                      "name": "pin1f",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "iFIOX",
+                          "name": "pin1author",
+                          "fill": "$text-muted",
+                          "content": "By Kim Minjun",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "q9YpG",
+                          "name": "pin1date",
+                          "fill": "$text-muted",
+                          "content": "Updated 1 hour ago",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "yEVhr",
+                  "name": "Pinned Card 2",
+                  "width": "fill_container",
+                  "fill": "#FFFBEB",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#FDE68A"
+                  },
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "lJTLE",
+                      "name": "pin2top",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "rjVWO",
+                          "name": "pin2title",
+                          "fill": "$text-heading",
+                          "content": "Project Requirements",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "icon_font",
+                          "id": "67ecA",
+                          "name": "pin2ic",
+                          "width": 16,
+                          "height": 16,
+                          "iconFontName": "pin",
+                          "iconFontFamily": "lucide",
+                          "fill": "$warning"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "lX9Mu",
+                      "name": "pin2p",
+                      "fill": "$text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Final project requirements and deadlines. Each team member should choose their module by Friday...",
+                      "lineHeight": 1.4,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "sjE9p",
+                      "name": "pin2f",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "aJRZa",
+                          "name": "pin2author",
+                          "fill": "$text-muted",
+                          "content": "By Lee Soyeon",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "lsW9J",
+                          "name": "pin2date",
+                          "fill": "$text-muted",
+                          "content": "Updated 3 hours ago",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "MXfNj",
+          "name": "Recent Memos Section",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 12,
+          "children": [
+            {
+              "type": "frame",
+              "id": "VDQhk",
+              "name": "memoHeader",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "kpnax",
+                  "name": "memoIc",
+                  "width": 18,
+                  "height": 18,
+                  "iconFontName": "file-text",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-secondary"
+                },
+                {
+                  "type": "text",
+                  "id": "7zJIo",
+                  "name": "memoTxt",
+                  "fill": "$text-heading",
+                  "content": "Recent Memos",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Jlqx1",
+              "name": "memoRow1",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Q0eZl",
+                  "name": "Team Memo 1",
+                  "width": "fill_container",
+                  "fill": "$bg-white",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$border"
+                  },
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "SrqLg",
+                      "name": "mc1top",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "sXV9K",
+                          "name": "mc1title",
+                          "fill": "$text-heading",
+                          "content": "API Design Notes",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Nrmmn",
+                          "name": "mc1live",
+                          "gap": 4,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "ellipse",
+                              "id": "01YUB",
+                              "name": "mc1dot",
+                              "fill": "$success",
+                              "width": 8,
+                              "height": 8
+                            },
+                            {
+                              "type": "text",
+                              "id": "wjLyR",
+                              "name": "mc1liveTxt",
+                              "fill": "$success",
+                              "content": "Editing",
+                              "fontFamily": "Inter",
+                              "fontSize": 11,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "j8kRq",
+                      "name": "mc1p",
+                      "fill": "$text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "REST API design patterns and best practices for our team project. Covers endpoint naming, versioning...",
+                      "lineHeight": 1.4,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Wdzep",
+                      "name": "mc1f",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "K7D7I",
+                          "name": "mc1author",
+                          "fill": "$text-muted",
+                          "content": "By Park Jiwon",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Oqbgp",
+                          "name": "mc1date",
+                          "fill": "$text-muted",
+                          "content": "Modified 30 min ago",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "COt5X",
+                  "name": "Team Memo 2",
+                  "width": "fill_container",
+                  "fill": "$bg-white",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$border"
+                  },
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "Q84oD",
+                      "name": "mc2top",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "zdFwt",
+                          "name": "mc2title",
+                          "fill": "$text-heading",
+                          "content": "Database Schema Draft",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "LgnGJ",
+                      "name": "mc2p",
+                      "fill": "$text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Draft schema for our project database. Includes user, course, and enrollment tables with relationships...",
+                      "lineHeight": 1.4,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "iQcqS",
+                      "name": "mc2f",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "JWJjU",
+                          "name": "mc2author",
+                          "fill": "$text-muted",
+                          "content": "By Choi Yuna",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "e3pSz",
+                          "name": "mc2date",
+                          "fill": "$text-muted",
+                          "content": "Modified 2 hours ago",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "xAVH4",
+              "name": "memoRow2",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "oi5E2",
+                  "name": "Team Memo 3",
+                  "width": "fill_container",
+                  "fill": "$bg-white",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$border"
+                  },
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "v9sgf",
+                      "name": "mc3top",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "eMqAX",
+                          "name": "mc3title",
+                          "fill": "$text-heading",
+                          "content": "Testing Strategy",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "IMvlm",
+                      "name": "mc3p",
+                      "fill": "$text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Unit testing and integration testing approach for the project. Using Jest and React Testing Library...",
+                      "lineHeight": 1.4,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "WGW9X",
+                      "name": "mc3f",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "W8jrJ",
+                          "name": "mc3author",
+                          "fill": "$text-muted",
+                          "content": "By Kim Minjun",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "l1lRn",
+                          "name": "mc3date",
+                          "fill": "$text-muted",
+                          "content": "Modified yesterday",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Ah7am",
+                  "name": "Team Memo 4",
+                  "width": "fill_container",
+                  "fill": "$bg-white",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$border"
+                  },
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "t4ttl",
+                      "name": "mc4top",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "4eUhV",
+                          "name": "mc4title",
+                          "fill": "$text-heading",
+                          "content": "UI Component Library",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "qdZFa",
+                          "name": "mc4live",
+                          "gap": 4,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "ellipse",
+                              "id": "zlgb3",
+                              "name": "mc4dot",
+                              "fill": "$success",
+                              "width": 8,
+                              "height": 8
+                            },
+                            {
+                              "type": "text",
+                              "id": "LmmiF",
+                              "name": "mc4liveTxt",
+                              "fill": "$success",
+                              "content": "Editing",
+                              "fontFamily": "Inter",
+                              "fontSize": 11,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "mlXds",
+                      "name": "mc4p",
+                      "fill": "$text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Shared component library documentation. Button, Input, Card, Modal components with usage examples...",
+                      "lineHeight": 1.4,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "fUH6S",
+                      "name": "mc4f",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "3ISJt",
+                          "name": "mc4author",
+                          "fill": "$text-muted",
+                          "content": "By Lee Soyeon",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Idi8m",
+                          "name": "mc4date",
+                          "fill": "$text-muted",
+                          "content": "Modified 2 days ago",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "xuVKP",
+      "x": 2248,
+      "y": 0,
+      "name": "Team Memo Board - Mobile",
+      "width": 375,
+      "fill": "$bg-page",
+      "layout": "vertical",
+      "gap": 20,
+      "padding": 16,
+      "children": [
+        {
+          "type": "frame",
+          "id": "MMZJJ",
+          "name": "Page Header",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 12,
+          "justifyContent": "space_between",
+          "children": [
+            {
+              "type": "frame",
+              "id": "tSjtJ",
+              "name": "hLeft",
+              "layout": "vertical",
+              "gap": 4,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "QZWbT",
+                  "name": "hTitle",
+                  "fill": "$text-heading",
+                  "content": "Team Alpha - Shared Memos",
+                  "fontFamily": "Inter",
+                  "fontSize": 24,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "s9zhp",
+                  "name": "hSub",
+                  "fill": "$text-secondary",
+                  "content": "Collaborate on study notes with your team",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "L0lHU",
+              "name": "hRight",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Wz7NO",
+                  "name": "newBtn",
+                  "fill": "$primary",
+                  "cornerRadius": 8,
+                  "gap": 6,
+                  "padding": [
+                    10,
+                    16
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "p22Hh",
+                      "name": "hNewIc",
+                      "width": 16,
+                      "height": 16,
+                      "iconFontName": "plus",
+                      "iconFontFamily": "lucide",
+                      "fill": "$text-white"
+                    },
+                    {
+                      "type": "text",
+                      "id": "hd2bR",
+                      "name": "hNewTxt",
+                      "fill": "$text-white",
+                      "content": "New Team Memo",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "s7fPf",
+          "name": "Pinned Section",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 12,
+          "children": [
+            {
+              "type": "frame",
+              "id": "js7cE",
+              "name": "pinHeader",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "VeLz3",
+                  "name": "pinIc",
+                  "width": 18,
+                  "height": 18,
+                  "iconFontName": "pin",
+                  "iconFontFamily": "lucide",
+                  "fill": "$warning"
+                },
+                {
+                  "type": "text",
+                  "id": "51TFP",
+                  "name": "pinTxt",
+                  "fill": "$text-heading",
+                  "content": "Pinned Memos",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "JkIBj",
+              "name": "pinRow",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "oaE1L",
+                  "name": "Pinned Card 1",
+                  "width": "fill_container",
+                  "fill": "#FFFBEB",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#FDE68A"
+                  },
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "ZLwV3",
+                      "name": "pin1top",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "H22g5",
+                          "name": "pin1title",
+                          "fill": "$text-heading",
+                          "content": "Team Study Guide",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "icon_font",
+                          "id": "3tHNy",
+                          "name": "pin1ic",
+                          "width": 16,
+                          "height": 16,
+                          "iconFontName": "pin",
+                          "iconFontFamily": "lucide",
+                          "fill": "$warning"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "mccTN",
+                      "name": "pin1p",
+                      "fill": "$text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Comprehensive study guide covering all topics for the midterm exam. Please review and add your notes...",
+                      "lineHeight": 1.4,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f5wB2",
+                      "name": "pin1f",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "0EkwV",
+                          "name": "pin1author",
+                          "fill": "$text-muted",
+                          "content": "By Kim Minjun",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "b0eZB",
+                          "name": "pin1date",
+                          "fill": "$text-muted",
+                          "content": "Updated 1 hour ago",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "KQx8l",
+                  "name": "Pinned Card 2",
+                  "width": "fill_container",
+                  "fill": "#FFFBEB",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#FDE68A"
+                  },
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "chcgP",
+                      "name": "pin2top",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "71PY9",
+                          "name": "pin2title",
+                          "fill": "$text-heading",
+                          "content": "Project Requirements",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "icon_font",
+                          "id": "pFWXh",
+                          "name": "pin2ic",
+                          "width": 16,
+                          "height": 16,
+                          "iconFontName": "pin",
+                          "iconFontFamily": "lucide",
+                          "fill": "$warning"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "ajBYF",
+                      "name": "pin2p",
+                      "fill": "$text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Final project requirements and deadlines. Each team member should choose their module by Friday...",
+                      "lineHeight": 1.4,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "3kSFq",
+                      "name": "pin2f",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "tknBO",
+                          "name": "pin2author",
+                          "fill": "$text-muted",
+                          "content": "By Lee Soyeon",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "9ife2",
+                          "name": "pin2date",
+                          "fill": "$text-muted",
+                          "content": "Updated 3 hours ago",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "grGHB",
+          "name": "Recent Memos Section",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 12,
+          "children": [
+            {
+              "type": "frame",
+              "id": "0P5H0",
+              "name": "memoHeader",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "VElJ9",
+                  "name": "memoIc",
+                  "width": 18,
+                  "height": 18,
+                  "iconFontName": "file-text",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-secondary"
+                },
+                {
+                  "type": "text",
+                  "id": "WkjtX",
+                  "name": "memoTxt",
+                  "fill": "$text-heading",
+                  "content": "Recent Memos",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "4inl7",
+              "name": "memoRow1",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "wSsYP",
+                  "name": "Team Memo 1",
+                  "width": "fill_container",
+                  "fill": "$bg-white",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$border"
+                  },
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "kkqTs",
+                      "name": "mc1top",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "wtVfQ",
+                          "name": "mc1title",
+                          "fill": "$text-heading",
+                          "content": "API Design Notes",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "ayeze",
+                          "name": "mc1live",
+                          "gap": 4,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "ellipse",
+                              "id": "0OVq6",
+                              "name": "mc1dot",
+                              "fill": "$success",
+                              "width": 8,
+                              "height": 8
+                            },
+                            {
+                              "type": "text",
+                              "id": "z3bgz",
+                              "name": "mc1liveTxt",
+                              "fill": "$success",
+                              "content": "Editing",
+                              "fontFamily": "Inter",
+                              "fontSize": 11,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "S51jm",
+                      "name": "mc1p",
+                      "fill": "$text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "REST API design patterns and best practices for our team project. Covers endpoint naming, versioning...",
+                      "lineHeight": 1.4,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "1a2Br",
+                      "name": "mc1f",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "OhQvn",
+                          "name": "mc1author",
+                          "fill": "$text-muted",
+                          "content": "By Park Jiwon",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "XQnEg",
+                          "name": "mc1date",
+                          "fill": "$text-muted",
+                          "content": "Modified 30 min ago",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "NfZ4o",
+                  "name": "Team Memo 2",
+                  "width": "fill_container",
+                  "fill": "$bg-white",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$border"
+                  },
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "ldsCn",
+                      "name": "mc2top",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "MHZ3B",
+                          "name": "mc2title",
+                          "fill": "$text-heading",
+                          "content": "Database Schema Draft",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "csTV3",
+                      "name": "mc2p",
+                      "fill": "$text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Draft schema for our project database. Includes user, course, and enrollment tables with relationships...",
+                      "lineHeight": 1.4,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "pC8kG",
+                      "name": "mc2f",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Zhgey",
+                          "name": "mc2author",
+                          "fill": "$text-muted",
+                          "content": "By Choi Yuna",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "KM03Z",
+                          "name": "mc2date",
+                          "fill": "$text-muted",
+                          "content": "Modified 2 hours ago",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "F4kDY",
+              "name": "memoRow2",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "lJOSq",
+                  "name": "Team Memo 3",
+                  "width": "fill_container",
+                  "fill": "$bg-white",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$border"
+                  },
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "9Xr4H",
+                      "name": "mc3top",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "0LN8d",
+                          "name": "mc3title",
+                          "fill": "$text-heading",
+                          "content": "Testing Strategy",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "WxI6X",
+                      "name": "mc3p",
+                      "fill": "$text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Unit testing and integration testing approach for the project. Using Jest and React Testing Library...",
+                      "lineHeight": 1.4,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "LJMbU",
+                      "name": "mc3f",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "zVKdi",
+                          "name": "mc3author",
+                          "fill": "$text-muted",
+                          "content": "By Kim Minjun",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "92W1E",
+                          "name": "mc3date",
+                          "fill": "$text-muted",
+                          "content": "Modified yesterday",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "xb8Em",
+                  "name": "Team Memo 4",
+                  "width": "fill_container",
+                  "fill": "$bg-white",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$border"
+                  },
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "8B21D",
+                      "name": "mc4top",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "0PTgC",
+                          "name": "mc4title",
+                          "fill": "$text-heading",
+                          "content": "UI Component Library",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "L7mBt",
+                          "name": "mc4live",
+                          "gap": 4,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "ellipse",
+                              "id": "XFgwq",
+                              "name": "mc4dot",
+                              "fill": "$success",
+                              "width": 8,
+                              "height": 8
+                            },
+                            {
+                              "type": "text",
+                              "id": "rwZKt",
+                              "name": "mc4liveTxt",
+                              "fill": "$success",
+                              "content": "Editing",
+                              "fontFamily": "Inter",
+                              "fontSize": 11,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "i7qxi",
+                      "name": "mc4p",
+                      "fill": "$text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Shared component library documentation. Button, Input, Card, Modal components with usage examples...",
+                      "lineHeight": 1.4,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Clsge",
+                      "name": "mc4f",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "884CU",
+                          "name": "mc4author",
+                          "fill": "$text-muted",
+                          "content": "By Lee Soyeon",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "uXwLs",
+                          "name": "mc4date",
+                          "fill": "$text-muted",
                           "content": "Modified 2 days ago",
                           "fontFamily": "Inter",
                           "fontSize": 12,
@@ -758,5 +2294,163 @@
         }
       ]
     }
-  ]
+  ],
+  "variables": {
+    "accent-purple": {
+      "type": "color",
+      "value": "#6366F1"
+    },
+    "accent-purple-light": {
+      "type": "color",
+      "value": "#EDE9FE"
+    },
+    "bg-card": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "bg-dark": {
+      "type": "color",
+      "value": "#0F172A"
+    },
+    "bg-page": {
+      "type": "color",
+      "value": "#F8FAFC"
+    },
+    "border": {
+      "type": "color",
+      "value": "#E2E8F0"
+    },
+    "border-light": {
+      "type": "color",
+      "value": "#F1F5F9"
+    },
+    "error": {
+      "type": "color",
+      "value": "#EF4444"
+    },
+    "error-light": {
+      "type": "color",
+      "value": "#FEF2F2"
+    },
+    "primary": {
+      "type": "color",
+      "value": "#3B82F6"
+    },
+    "primary-dark": {
+      "type": "color",
+      "value": "#2563EB"
+    },
+    "primary-light": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#EFF6FF"
+        },
+        {
+          "value": "#DBEAFE"
+        }
+      ]
+    },
+    "radius-lg": {
+      "type": "number",
+      "value": 12
+    },
+    "radius-md": {
+      "type": "number",
+      "value": 8
+    },
+    "radius-xl": {
+      "type": "number",
+      "value": 16
+    },
+    "success": {
+      "type": "color",
+      "value": "#10B981"
+    },
+    "success-light": {
+      "type": "color",
+      "value": "#F0FDF4"
+    },
+    "text-heading": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#1E293B"
+        },
+        {
+          "value": "#0F172A"
+        }
+      ]
+    },
+    "text-muted": {
+      "type": "color",
+      "value": "#94A3B8"
+    },
+    "text-primary": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#0F172A"
+        },
+        {
+          "value": "#1E293B"
+        }
+      ]
+    },
+    "text-secondary": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#64748B"
+        },
+        {
+          "value": "#475569"
+        }
+      ]
+    },
+    "text-white": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "warning": {
+      "type": "color",
+      "value": "#F59E0B"
+    },
+    "warning-bg": {
+      "type": "color",
+      "value": "#FFFBEB"
+    },
+    "warning-border": {
+      "type": "color",
+      "value": "#FDE68A"
+    },
+    "warning-light": {
+      "type": "color",
+      "value": "#FEF3C7"
+    },
+    "bg-slate-100": {
+      "type": "color",
+      "value": "#F1F5F9"
+    },
+    "bg-slate-50": {
+      "type": "color",
+      "value": "#F8FAFC"
+    },
+    "bg-white": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "font-sans": {
+      "type": "string",
+      "value": "Inter, Pretendard, sans-serif"
+    },
+    "primary-lighter": {
+      "type": "color",
+      "value": "#EFF6FF"
+    },
+    "text-tertiary": {
+      "type": "color",
+      "value": "#64748B"
+    }
+  }
 }

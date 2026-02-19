@@ -9,7 +9,7 @@
       "name": "Skeleton Loading Patterns",
       "width": 800,
       "height": 900,
-      "fill": "#FFFFFF",
+      "fill": "$bg-white",
       "layout": "vertical",
       "gap": 32,
       "padding": 32,
@@ -18,7 +18,7 @@
           "type": "text",
           "id": "MzvOQ",
           "name": "skTitle",
-          "fill": "#0F172A",
+          "fill": "$text-primary",
           "textGrowth": "fixed-width",
           "width": "fill_container",
           "content": "Skeleton Loading Patterns",
@@ -38,7 +38,7 @@
               "type": "text",
               "id": "y1V84",
               "name": "cardSkLabel",
-              "fill": "#94A3B8",
+              "fill": "$text-tertiary",
               "textGrowth": "fixed-width",
               "width": "fill_container",
               "content": "Card Skeleton",
@@ -75,7 +75,7 @@
                       "name": "Image Skeleton",
                       "width": "fill_container",
                       "height": 120,
-                      "fill": "#E2E8F0"
+                      "fill": "$skeleton-base"
                     },
                     {
                       "type": "frame",
@@ -95,7 +95,7 @@
                           "name": "Title Line",
                           "width": "fill_container",
                           "height": 16,
-                          "fill": "#E2E8F0",
+                          "fill": "$skeleton-base",
                           "cornerRadius": 4
                         },
                         {
@@ -104,7 +104,7 @@
                           "name": "Desc Line 1",
                           "width": "fill_container",
                           "height": 12,
-                          "fill": "#F1F5F9",
+                          "fill": "$skeleton-shimmer",
                           "cornerRadius": 4
                         },
                         {
@@ -113,7 +113,7 @@
                           "name": "Desc Line 2",
                           "width": 180,
                           "height": 12,
-                          "fill": "#F1F5F9",
+                          "fill": "$skeleton-shimmer",
                           "cornerRadius": 4
                         },
                         {
@@ -129,7 +129,7 @@
                               "name": "Tag",
                               "width": 60,
                               "height": 20,
-                              "fill": "#F1F5F9",
+                              "fill": "$skeleton-shimmer",
                               "cornerRadius": 10
                             },
                             {
@@ -138,7 +138,7 @@
                               "name": "Tag",
                               "width": 48,
                               "height": 20,
-                              "fill": "#F1F5F9",
+                              "fill": "$skeleton-shimmer",
                               "cornerRadius": 10
                             }
                           ]
@@ -168,7 +168,7 @@
                       "name": "Image Skeleton",
                       "width": "fill_container",
                       "height": 120,
-                      "fill": "#E2E8F0"
+                      "fill": "$skeleton-base"
                     },
                     {
                       "type": "frame",
@@ -188,7 +188,7 @@
                           "name": "Title Line",
                           "width": "fill_container",
                           "height": 16,
-                          "fill": "#E2E8F0",
+                          "fill": "$skeleton-base",
                           "cornerRadius": 4
                         },
                         {
@@ -197,7 +197,7 @@
                           "name": "Desc Line 1",
                           "width": "fill_container",
                           "height": 12,
-                          "fill": "#F1F5F9",
+                          "fill": "$skeleton-shimmer",
                           "cornerRadius": 4
                         },
                         {
@@ -206,7 +206,7 @@
                           "name": "Desc Line 2",
                           "width": 140,
                           "height": 12,
-                          "fill": "#F1F5F9",
+                          "fill": "$skeleton-shimmer",
                           "cornerRadius": 4
                         },
                         {
@@ -222,7 +222,7 @@
                               "name": "Tag",
                               "width": 72,
                               "height": 20,
-                              "fill": "#F1F5F9",
+                              "fill": "$skeleton-shimmer",
                               "cornerRadius": 10
                             }
                           ]
@@ -247,7 +247,7 @@
               "type": "text",
               "id": "IWfM3",
               "name": "listSkLabel",
-              "fill": "#94A3B8",
+              "fill": "$text-tertiary",
               "textGrowth": "fixed-width",
               "width": "fill_container",
               "content": "List Skeleton",
@@ -281,7 +281,7 @@
                       "name": "Avatar",
                       "width": 40,
                       "height": 40,
-                      "fill": "#E2E8F0",
+                      "fill": "$skeleton-base",
                       "cornerRadius": 20
                     },
                     {
@@ -298,7 +298,7 @@
                           "name": "Title",
                           "width": 200,
                           "height": 14,
-                          "fill": "#E2E8F0",
+                          "fill": "$skeleton-base",
                           "cornerRadius": 4
                         },
                         {
@@ -307,7 +307,7 @@
                           "name": "Desc",
                           "width": "fill_container",
                           "height": 12,
-                          "fill": "#F1F5F9",
+                          "fill": "$skeleton-shimmer",
                           "cornerRadius": 4
                         }
                       ]
@@ -331,7 +331,7 @@
                       "name": "Avatar",
                       "width": 40,
                       "height": 40,
-                      "fill": "#E2E8F0",
+                      "fill": "$skeleton-base",
                       "cornerRadius": 20
                     },
                     {
@@ -348,7 +348,7 @@
                           "name": "Title",
                           "width": 160,
                           "height": 14,
-                          "fill": "#E2E8F0",
+                          "fill": "$skeleton-base",
                           "cornerRadius": 4
                         },
                         {
@@ -357,7 +357,7 @@
                           "name": "Desc",
                           "width": 280,
                           "height": 12,
-                          "fill": "#F1F5F9",
+                          "fill": "$skeleton-shimmer",
                           "cornerRadius": 4
                         }
                       ]
@@ -381,7 +381,7 @@
                       "name": "Avatar",
                       "width": 40,
                       "height": 40,
-                      "fill": "#E2E8F0",
+                      "fill": "$skeleton-base",
                       "cornerRadius": 20
                     },
                     {
@@ -398,7 +398,7 @@
                           "name": "Title",
                           "width": 180,
                           "height": 14,
-                          "fill": "#E2E8F0",
+                          "fill": "$skeleton-base",
                           "cornerRadius": 4
                         },
                         {
@@ -407,7 +407,7 @@
                           "name": "Desc",
                           "width": "fill_container",
                           "height": 12,
-                          "fill": "#F1F5F9",
+                          "fill": "$skeleton-shimmer",
                           "cornerRadius": 4
                         }
                       ]
@@ -430,7 +430,7 @@
               "type": "text",
               "id": "LD5hf",
               "name": "textSkLabel",
-              "fill": "#94A3B8",
+              "fill": "$text-tertiary",
               "textGrowth": "fixed-width",
               "width": "fill_container",
               "content": "Material Viewer Skeleton",
@@ -458,7 +458,7 @@
                   "name": "H1 Skeleton",
                   "width": 320,
                   "height": 24,
-                  "fill": "#E2E8F0",
+                  "fill": "$skeleton-base",
                   "cornerRadius": 4
                 },
                 {
@@ -467,7 +467,7 @@
                   "name": "Line 1",
                   "width": "fill_container",
                   "height": 14,
-                  "fill": "#F1F5F9",
+                  "fill": "$skeleton-shimmer",
                   "cornerRadius": 4
                 },
                 {
@@ -476,7 +476,7 @@
                   "name": "Line 2",
                   "width": "fill_container",
                   "height": 14,
-                  "fill": "#F1F5F9",
+                  "fill": "$skeleton-shimmer",
                   "cornerRadius": 4
                 },
                 {
@@ -485,7 +485,7 @@
                   "name": "Line 3",
                   "width": 400,
                   "height": 14,
-                  "fill": "#F1F5F9",
+                  "fill": "$skeleton-shimmer",
                   "cornerRadius": 4
                 },
                 {
@@ -501,7 +501,7 @@
                   "name": "H2 Skeleton",
                   "width": 200,
                   "height": 18,
-                  "fill": "#E2E8F0",
+                  "fill": "$skeleton-base",
                   "cornerRadius": 4
                 },
                 {
@@ -510,7 +510,7 @@
                   "name": "Line 4",
                   "width": "fill_container",
                   "height": 14,
-                  "fill": "#F1F5F9",
+                  "fill": "$skeleton-shimmer",
                   "cornerRadius": 4
                 },
                 {
@@ -519,7 +519,7 @@
                   "name": "Line 5",
                   "width": 500,
                   "height": 14,
-                  "fill": "#F1F5F9",
+                  "fill": "$skeleton-shimmer",
                   "cornerRadius": 4
                 },
                 {
@@ -528,7 +528,7 @@
                   "name": "Code Skeleton",
                   "width": "fill_container",
                   "height": 80,
-                  "fill": "#E2E8F0",
+                  "fill": "$skeleton-base",
                   "cornerRadius": 8
                 }
               ]
@@ -545,7 +545,7 @@
       "name": "Empty States",
       "width": 800,
       "height": 1100,
-      "fill": "#FFFFFF",
+      "fill": "$bg-white",
       "layout": "vertical",
       "gap": 32,
       "padding": 32,
@@ -554,7 +554,7 @@
           "type": "text",
           "id": "Vi5CB",
           "name": "emptyTitle",
-          "fill": "#0F172A",
+          "fill": "$text-primary",
           "textGrowth": "fixed-width",
           "width": "fill_container",
           "content": "Empty States",
@@ -574,7 +574,7 @@
               "type": "text",
               "id": "zSm20",
               "name": "courseEmptyLabel",
-              "fill": "#94A3B8",
+              "fill": "$text-tertiary",
               "textGrowth": "fixed-width",
               "width": "fill_container",
               "content": "Course List Empty",
@@ -602,7 +602,7 @@
                   "name": "Icon",
                   "width": 56,
                   "height": 56,
-                  "fill": "#F1F5F9",
+                  "fill": "$bg-slate-100",
                   "cornerRadius": 28,
                   "children": [
                     {
@@ -611,8 +611,9 @@
                       "name": "ceIcon",
                       "width": 0,
                       "height": 0,
-                      "iconFontFamily": "Material Symbols Rounded",
-                      "fill": "#94A3B8"
+                      "iconFontName": "book-open",
+                      "iconFontFamily": "Lucide",
+                      "fill": "$text-tertiary"
                     }
                   ]
                 },
@@ -620,7 +621,7 @@
                   "type": "text",
                   "id": "1hXn5",
                   "name": "ceTitle",
-                  "fill": "#0F172A",
+                  "fill": "$text-primary",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
                   "content": "No courses enrolled",
@@ -632,7 +633,7 @@
                   "type": "text",
                   "id": "vjJHo",
                   "name": "ceDesc",
-                  "fill": "#94A3B8",
+                  "fill": "$text-tertiary",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
                   "content": "Browse available courses and enroll to start learning.",
@@ -645,7 +646,7 @@
                   "type": "frame",
                   "id": "fFhB0",
                   "name": "CTA",
-                  "fill": "#3B82F6",
+                  "fill": "$primary",
                   "cornerRadius": 8,
                   "gap": 6,
                   "padding": [
@@ -657,7 +658,7 @@
                       "type": "text",
                       "id": "ed2MR",
                       "name": "ceBtnText",
-                      "fill": "#FFFFFF",
+                      "fill": "$bg-white",
                       "content": "Browse Courses",
                       "fontFamily": "Inter",
                       "fontSize": 14,
@@ -681,7 +682,7 @@
               "type": "text",
               "id": "MUZvN",
               "name": "qaEmptyLabel",
-              "fill": "#94A3B8",
+              "fill": "$text-tertiary",
               "textGrowth": "fixed-width",
               "width": "fill_container",
               "content": "Q&A Empty",
@@ -718,8 +719,9 @@
                       "name": "qaIcon",
                       "width": 0,
                       "height": 0,
-                      "iconFontFamily": "Material Symbols Rounded",
-                      "fill": "#F59E0B"
+                      "iconFontName": "message-circle-question",
+                      "iconFontFamily": "Lucide",
+                      "fill": "$warning-amber"
                     }
                   ]
                 },
@@ -727,7 +729,7 @@
                   "type": "text",
                   "id": "OMFhU",
                   "name": "qaTitle",
-                  "fill": "#0F172A",
+                  "fill": "$text-primary",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
                   "content": "No questions yet",
@@ -739,7 +741,7 @@
                   "type": "text",
                   "id": "6Re8i",
                   "name": "qaDesc",
-                  "fill": "#94A3B8",
+                  "fill": "$text-tertiary",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
                   "content": "Select text in the material to ask the first question.",
@@ -764,7 +766,7 @@
               "type": "text",
               "id": "plVvK",
               "name": "searchEmptyLabel",
-              "fill": "#94A3B8",
+              "fill": "$text-tertiary",
               "textGrowth": "fixed-width",
               "width": "fill_container",
               "content": "Search No Results",
@@ -792,7 +794,7 @@
                   "name": "Icon",
                   "width": 56,
                   "height": 56,
-                  "fill": "#F1F5F9",
+                  "fill": "$bg-slate-100",
                   "cornerRadius": 28,
                   "children": [
                     {
@@ -801,8 +803,9 @@
                       "name": "seIcon",
                       "width": 0,
                       "height": 0,
-                      "iconFontFamily": "Material Symbols Rounded",
-                      "fill": "#94A3B8"
+                      "iconFontName": "search",
+                      "iconFontFamily": "Lucide",
+                      "fill": "$text-tertiary"
                     }
                   ]
                 },
@@ -810,7 +813,7 @@
                   "type": "text",
                   "id": "hgCVc",
                   "name": "seTitle",
-                  "fill": "#0F172A",
+                  "fill": "$text-primary",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
                   "content": "No results found",
@@ -822,7 +825,7 @@
                   "type": "text",
                   "id": "jozY1",
                   "name": "seDesc",
-                  "fill": "#94A3B8",
+                  "fill": "$text-tertiary",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
                   "content": "Try adjusting your search terms or filters.",
@@ -846,7 +849,7 @@
                       "type": "text",
                       "id": "DE0TD",
                       "name": "seBtnText",
-                      "fill": "#475569",
+                      "fill": "$text-secondary",
                       "content": "Clear Search",
                       "fontFamily": "Inter",
                       "fontSize": 14,
@@ -868,7 +871,7 @@
       "name": "Error States",
       "width": 800,
       "height": 900,
-      "fill": "#FFFFFF",
+      "fill": "$bg-white",
       "layout": "vertical",
       "gap": 32,
       "padding": 32,
@@ -877,7 +880,7 @@
           "type": "text",
           "id": "ceFs3",
           "name": "errorTitle",
-          "fill": "#0F172A",
+          "fill": "$text-primary",
           "textGrowth": "fixed-width",
           "width": "fill_container",
           "content": "Error States",
@@ -897,7 +900,7 @@
               "type": "text",
               "id": "9vY1W",
               "name": "networkLabel",
-              "fill": "#94A3B8",
+              "fill": "$text-tertiary",
               "textGrowth": "fixed-width",
               "width": "fill_container",
               "content": "Network Error",
@@ -911,7 +914,7 @@
               "id": "Rngoz",
               "name": "Error Card",
               "width": "fill_container",
-              "fill": "#FEF2F2",
+              "fill": "$error-bg",
               "cornerRadius": 12,
               "layout": "vertical",
               "gap": 12,
@@ -935,8 +938,9 @@
                       "name": "netIcon",
                       "width": 0,
                       "height": 0,
-                      "iconFontFamily": "Material Symbols Rounded",
-                      "fill": "#EF4444"
+                      "iconFontName": "wifi-off",
+                      "iconFontFamily": "Lucide",
+                      "fill": "$error-red"
                     }
                   ]
                 },
@@ -944,7 +948,7 @@
                   "type": "text",
                   "id": "ph82K",
                   "name": "netTitle",
-                  "fill": "#0F172A",
+                  "fill": "$text-primary",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
                   "content": "Connection lost",
@@ -956,7 +960,7 @@
                   "type": "text",
                   "id": "W4GaO",
                   "name": "netDesc",
-                  "fill": "#475569",
+                  "fill": "$text-secondary",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
                   "content": "Please check your internet connection and try again.",
@@ -969,7 +973,7 @@
                   "type": "frame",
                   "id": "O91q5",
                   "name": "Retry",
-                  "fill": "#EF4444",
+                  "fill": "$error-red",
                   "cornerRadius": 8,
                   "gap": 6,
                   "padding": [
@@ -983,14 +987,15 @@
                       "name": "netBtnIcon",
                       "width": 0,
                       "height": 0,
-                      "iconFontFamily": "Material Symbols Rounded",
-                      "fill": "#FFFFFF"
+                      "iconFontName": "refresh-cw",
+                      "iconFontFamily": "Lucide",
+                      "fill": "$bg-white"
                     },
                     {
                       "type": "text",
                       "id": "zHRLp",
                       "name": "netBtnText",
-                      "fill": "#FFFFFF",
+                      "fill": "$bg-white",
                       "content": "Retry",
                       "fontFamily": "Inter",
                       "fontSize": 14,
@@ -1014,7 +1019,7 @@
               "type": "text",
               "id": "fFHoX",
               "name": "serverLabel",
-              "fill": "#94A3B8",
+              "fill": "$text-tertiary",
               "textGrowth": "fixed-width",
               "width": "fill_container",
               "content": "Server Error (500)",
@@ -1028,7 +1033,7 @@
               "id": "u24Xp",
               "name": "Error Card",
               "width": "fill_container",
-              "fill": "#FEF2F2",
+              "fill": "$error-bg",
               "cornerRadius": 12,
               "layout": "vertical",
               "gap": 12,
@@ -1052,8 +1057,9 @@
                       "name": "svIcon",
                       "width": 0,
                       "height": 0,
-                      "iconFontFamily": "Material Symbols Rounded",
-                      "fill": "#EF4444"
+                      "iconFontName": "server-crash",
+                      "iconFontFamily": "Lucide",
+                      "fill": "$error-red"
                     }
                   ]
                 },
@@ -1061,7 +1067,7 @@
                   "type": "text",
                   "id": "SAQA6",
                   "name": "svTitle",
-                  "fill": "#0F172A",
+                  "fill": "$text-primary",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
                   "content": "Something went wrong",
@@ -1073,7 +1079,7 @@
                   "type": "text",
                   "id": "Zc7Kf",
                   "name": "svDesc",
-                  "fill": "#475569",
+                  "fill": "$text-secondary",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
                   "content": "We are experiencing technical difficulties. Please try again later.",
@@ -1092,7 +1098,7 @@
                       "type": "frame",
                       "id": "gOe97",
                       "name": "Retry",
-                      "fill": "#EF4444",
+                      "fill": "$error-red",
                       "cornerRadius": 8,
                       "gap": 6,
                       "padding": [
@@ -1104,7 +1110,7 @@
                           "type": "text",
                           "id": "GcMRX",
                           "name": "svRetryText",
-                          "fill": "#FFFFFF",
+                          "fill": "$bg-white",
                           "content": "Try Again",
                           "fontFamily": "Inter",
                           "fontSize": 14,
@@ -1127,7 +1133,7 @@
                           "type": "text",
                           "id": "pWrKl",
                           "name": "svHomeText",
-                          "fill": "#475569",
+                          "fill": "$text-secondary",
                           "content": "Go Home",
                           "fontFamily": "Inter",
                           "fontSize": 14,
@@ -1153,7 +1159,7 @@
               "type": "text",
               "id": "A6BHk",
               "name": "notFoundLabel",
-              "fill": "#94A3B8",
+              "fill": "$text-tertiary",
               "textGrowth": "fixed-width",
               "width": "fill_container",
               "content": "Page Not Found (404)",
@@ -1181,7 +1187,7 @@
                   "name": "Icon",
                   "width": 56,
                   "height": 56,
-                  "fill": "#F1F5F9",
+                  "fill": "$bg-slate-100",
                   "cornerRadius": 28,
                   "children": [
                     {
@@ -1190,8 +1196,9 @@
                       "name": "nfIcon",
                       "width": 0,
                       "height": 0,
-                      "iconFontFamily": "Material Symbols Rounded",
-                      "fill": "#94A3B8"
+                      "iconFontName": "file-question",
+                      "iconFontFamily": "Lucide",
+                      "fill": "$text-tertiary"
                     }
                   ]
                 },
@@ -1199,7 +1206,7 @@
                   "type": "text",
                   "id": "f9YZd",
                   "name": "nf404",
-                  "fill": "#E2E8F0",
+                  "fill": "$skeleton-base",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
                   "content": "404",
@@ -1211,7 +1218,7 @@
                   "type": "text",
                   "id": "FPiGU",
                   "name": "nfTitle",
-                  "fill": "#0F172A",
+                  "fill": "$text-primary",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
                   "content": "Page not found",
@@ -1223,7 +1230,7 @@
                   "type": "text",
                   "id": "trZ7U",
                   "name": "nfDesc",
-                  "fill": "#94A3B8",
+                  "fill": "$text-tertiary",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
                   "content": "The page you are looking for does not exist or has been moved.",
@@ -1236,7 +1243,7 @@
                   "type": "frame",
                   "id": "X0iWi",
                   "name": "CTA",
-                  "fill": "#3B82F6",
+                  "fill": "$primary",
                   "cornerRadius": 8,
                   "gap": 6,
                   "padding": [
@@ -1248,7 +1255,7 @@
                       "type": "text",
                       "id": "9MR6p",
                       "name": "nfBtnText",
-                      "fill": "#FFFFFF",
+                      "fill": "$bg-white",
                       "content": "Back to Home",
                       "fontFamily": "Inter",
                       "fontSize": 14,
@@ -1270,7 +1277,7 @@
       "name": "Loading Indicators",
       "width": 800,
       "height": 500,
-      "fill": "#FFFFFF",
+      "fill": "$bg-white",
       "layout": "vertical",
       "gap": 32,
       "padding": 32,
@@ -1279,7 +1286,7 @@
           "type": "text",
           "id": "8JcVu",
           "name": "loadingTitle",
-          "fill": "#0F172A",
+          "fill": "$text-primary",
           "textGrowth": "fixed-width",
           "width": "fill_container",
           "content": "Loading Indicators",
@@ -1306,7 +1313,7 @@
                   "type": "text",
                   "id": "crAXD",
                   "name": "fpLabel",
-                  "fill": "#94A3B8",
+                  "fill": "$text-tertiary",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
                   "content": "Full Page",
@@ -1337,7 +1344,7 @@
                       "type": "text",
                       "id": "kmTrr",
                       "name": "fpText",
-                      "fill": "#94A3B8",
+                      "fill": "$text-tertiary",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
                       "content": "Loading...",
@@ -1361,7 +1368,7 @@
                   "type": "text",
                   "id": "cmUkl",
                   "name": "btLabel",
-                  "fill": "#94A3B8",
+                  "fill": "$text-tertiary",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
                   "content": "Button Loading",
@@ -1384,7 +1391,7 @@
                       "type": "frame",
                       "id": "4G0SE",
                       "name": "Normal Button",
-                      "fill": "#3B82F6",
+                      "fill": "$primary",
                       "cornerRadius": 8,
                       "gap": 8,
                       "padding": [
@@ -1396,7 +1403,7 @@
                           "type": "text",
                           "id": "swxGY",
                           "name": "btNormalText",
-                          "fill": "#FFFFFF",
+                          "fill": "$bg-white",
                           "content": "Submit",
                           "fontFamily": "Inter",
                           "fontSize": 14,
@@ -1428,7 +1435,7 @@
                           "type": "text",
                           "id": "IAmLL",
                           "name": "btLoadingText",
-                          "fill": "#FFFFFF",
+                          "fill": "$bg-white",
                           "content": "Submitting...",
                           "fontFamily": "Inter",
                           "fontSize": 14,
@@ -1452,7 +1459,7 @@
                   "type": "text",
                   "id": "WdMXx",
                   "name": "inLabel",
-                  "fill": "#94A3B8",
+                  "fill": "$text-tertiary",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
                   "content": "Inline / Infinite Scroll",
@@ -1489,7 +1496,7 @@
                           "name": "Av",
                           "width": 32,
                           "height": 32,
-                          "fill": "#E2E8F0",
+                          "fill": "$skeleton-base",
                           "cornerRadius": 16
                         },
                         {
@@ -1506,7 +1513,7 @@
                               "name": "L1",
                               "width": 120,
                               "height": 12,
-                              "fill": "#E2E8F0",
+                              "fill": "$skeleton-base",
                               "cornerRadius": 4
                             },
                             {
@@ -1515,7 +1522,7 @@
                               "name": "L2",
                               "width": "fill_container",
                               "height": 10,
-                              "fill": "#F1F5F9",
+                              "fill": "$skeleton-shimmer",
                               "cornerRadius": 4
                             }
                           ]
@@ -1528,7 +1535,7 @@
                       "name": "Divider",
                       "width": "fill_container",
                       "height": 1,
-                      "fill": "#F1F5F9"
+                      "fill": "$skeleton-shimmer"
                     },
                     {
                       "type": "frame",
@@ -1553,7 +1560,7 @@
                           "type": "text",
                           "id": "FAwt3",
                           "name": "inLoadText",
-                          "fill": "#94A3B8",
+                          "fill": "$text-tertiary",
                           "content": "Loading more...",
                           "fontFamily": "Inter",
                           "fontSize": 13,
@@ -1567,7 +1574,7 @@
                       "name": "Divider",
                       "width": "fill_container",
                       "height": 1,
-                      "fill": "#F1F5F9"
+                      "fill": "$skeleton-shimmer"
                     },
                     {
                       "type": "frame",
@@ -1586,7 +1593,7 @@
                           "name": "Av",
                           "width": 32,
                           "height": 32,
-                          "fill": "#E2E8F0",
+                          "fill": "$skeleton-base",
                           "cornerRadius": 16
                         },
                         {
@@ -1603,7 +1610,7 @@
                               "name": "L1",
                               "width": 100,
                               "height": 12,
-                              "fill": "#E2E8F0",
+                              "fill": "$skeleton-base",
                               "cornerRadius": 4
                             },
                             {
@@ -1612,7 +1619,7 @@
                               "name": "L2",
                               "width": 160,
                               "height": 10,
-                              "fill": "#F1F5F9",
+                              "fill": "$skeleton-shimmer",
                               "cornerRadius": 4
                             }
                           ]

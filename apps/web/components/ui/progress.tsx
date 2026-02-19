@@ -4,6 +4,10 @@ import * as React from "react";
 import * as ProgressPrimitive from "@radix-ui/react-progress";
 import { cn } from "~/lib/utils";
 
+/**
+ * Progress Component
+ * REQ-FE-443: Course progress display
+ */
 const Progress = React.forwardRef<
   React.ComponentRef<typeof ProgressPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>
@@ -11,13 +15,14 @@ const Progress = React.forwardRef<
   <ProgressPrimitive.Root
     ref={ref}
     className={cn(
-      "relative h-2 w-full overflow-hidden rounded-full bg-primary/20",
+      "relative h-2 w-full overflow-hidden rounded-full bg-[var(--color-neutral-200)] dark:bg-[var(--color-neutral-800)]",
       className
     )}
     {...props}
   >
     <ProgressPrimitive.Indicator
-      className="h-full w-full flex-1 bg-primary transition-all"
+      data-testid="progress-fill"
+      className="h-full w-full flex-1 bg-[var(--color-primary-600)] transition-all"
       style={{ transform: `translateX(-${String(100 - (value ?? 0))}%)` }}
     />
   </ProgressPrimitive.Root>

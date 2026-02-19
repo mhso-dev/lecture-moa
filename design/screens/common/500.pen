@@ -237,6 +237,580 @@
           ]
         }
       ]
+    },
+    {
+      "type": "frame",
+      "id": "nSdLm",
+      "x": 1380,
+      "y": 0,
+      "name": "500 Server Error Page - Tablet",
+      "width": 768,
+      "height": 720,
+      "fill": "#F8FAFC",
+      "layout": "vertical",
+      "justifyContent": "center",
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "lf734",
+          "name": "Content Container",
+          "width": 420,
+          "layout": "vertical",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "3FRwU",
+              "name": "Illustration Area",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "GzW96",
+                  "name": "bigText",
+                  "fill": "#FEE2E2",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "500",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 96,
+                  "fontWeight": "bold"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "uXlxV",
+                  "name": "errorIcon",
+                  "width": 48,
+                  "height": 48,
+                  "iconFontName": "triangle-alert",
+                  "iconFontFamily": "lucide",
+                  "fill": "#EF4444"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "VoVJP",
+              "name": "Error Message",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 8,
+              "padding": [
+                24,
+                0,
+                0,
+                0
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ilxHZ",
+                  "name": "titleText",
+                  "fill": "#1E293B",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Something Went Wrong",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 22,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "jhUpF",
+                  "name": "descText",
+                  "fill": "#64748B",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "We're experiencing technical difficulties. Please try again in a moment.",
+                  "lineHeight": 1.5,
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "haqov",
+              "name": "Action Buttons",
+              "gap": 12,
+              "padding": [
+                24,
+                0,
+                0,
+                0
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "GNIeL",
+                  "name": "Try Again Button",
+                  "height": 40,
+                  "fill": "#3B82F6",
+                  "cornerRadius": 8,
+                  "padding": [
+                    0,
+                    20
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "NkpeU",
+                      "name": "tryAgainText",
+                      "fill": "#FFFFFF",
+                      "content": "Try Again",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "u0B8h",
+                  "name": "Go Home Button",
+                  "height": 40,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 8,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E2E8F0"
+                  },
+                  "padding": [
+                    0,
+                    20
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Zsifh",
+                      "name": "goHomeText",
+                      "fill": "#1E293B",
+                      "content": "Go Home",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ZxKX1",
+              "name": "Error Report Section",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 12,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#E2E8F0"
+              },
+              "layout": "vertical",
+              "gap": 8,
+              "padding": [
+                32,
+                16,
+                16,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "GB5zA",
+                  "name": "reportText",
+                  "fill": "#64748B",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "If the problem persists, please report this issue.",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "2urbK",
+                  "name": "reportLink",
+                  "fill": "#3B82F6",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Report Issue",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "MaPI7",
+                  "name": "errorId",
+                  "fill": "#94A3B8",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Error ID: ERR-2024-0215",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "D201t",
+      "x": 2248,
+      "y": 0,
+      "name": "500 Server Error Page - Mobile",
+      "width": 375,
+      "height": 720,
+      "fill": "#F8FAFC",
+      "layout": "vertical",
+      "padding": 20,
+      "justifyContent": "center",
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "C7TEX",
+          "name": "Content Container",
+          "width": "fill_container",
+          "layout": "vertical",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "JWfej",
+              "name": "Illustration Area",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "FZu9o",
+                  "name": "bigText",
+                  "fill": "#FEE2E2",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "500",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 72,
+                  "fontWeight": "bold"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "qfVta",
+                  "name": "errorIcon",
+                  "width": 40,
+                  "height": 40,
+                  "iconFontName": "triangle-alert",
+                  "iconFontFamily": "lucide",
+                  "fill": "#EF4444"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "4G9NA",
+              "name": "Error Message",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 8,
+              "padding": [
+                24,
+                0,
+                0,
+                0
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "3CiVd",
+                  "name": "titleText",
+                  "fill": "#1E293B",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Something Went Wrong",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 20,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "ELQ9N",
+                  "name": "descText",
+                  "fill": "#64748B",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "We're experiencing technical difficulties. Please try again in a moment.",
+                  "lineHeight": 1.5,
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "P2CjC",
+              "name": "Action Buttons",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "padding": [
+                24,
+                0,
+                0,
+                0
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "2MN8g",
+                  "name": "Try Again Button",
+                  "width": "fill_container",
+                  "height": 40,
+                  "fill": "#3B82F6",
+                  "cornerRadius": 8,
+                  "padding": [
+                    0,
+                    20
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "y3X6v",
+                      "name": "tryAgainText",
+                      "fill": "#FFFFFF",
+                      "content": "Try Again",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "FY7rH",
+                  "name": "Go Home Button",
+                  "width": "fill_container",
+                  "height": 40,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 8,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E2E8F0"
+                  },
+                  "padding": [
+                    0,
+                    20
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "cgwKt",
+                      "name": "goHomeText",
+                      "fill": "#1E293B",
+                      "content": "Go Home",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "wphPp",
+              "name": "Error Report Section",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 12,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#E2E8F0"
+              },
+              "layout": "vertical",
+              "gap": 8,
+              "padding": [
+                24,
+                12,
+                12,
+                12
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "2ZSDc",
+                  "name": "reportText",
+                  "fill": "#64748B",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "If the problem persists, please report this issue.",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "VUkXx",
+                  "name": "reportLink",
+                  "fill": "#3B82F6",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Report Issue",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "vwWME",
+                  "name": "errorId",
+                  "fill": "#94A3B8",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Error ID: ERR-2024-0215",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
-  ]
+  ],
+  "variables": {
+    "$bg-card": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "$bg-page": {
+      "type": "color",
+      "value": "#F8FAFC"
+    },
+    "$bg-slate-100": {
+      "type": "color",
+      "value": "#F1F5F9"
+    },
+    "$bg-slate-50": {
+      "type": "color",
+      "value": "#F8FAFC"
+    },
+    "$bg-white": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "$border": {
+      "type": "color",
+      "value": "#E2E8F0"
+    },
+    "$border-light": {
+      "type": "color",
+      "value": "#F1F5F9"
+    },
+    "$error": {
+      "type": "color",
+      "value": "#EF4444"
+    },
+    "$font-sans": {
+      "type": "string",
+      "value": "Inter, Pretendard, sans-serif"
+    },
+    "$primary": {
+      "type": "color",
+      "value": "#3B82F6"
+    },
+    "$primary-dark": {
+      "type": "color",
+      "value": "#2563EB"
+    },
+    "$primary-light": {
+      "type": "color",
+      "value": "#DBEAFE"
+    },
+    "$primary-lighter": {
+      "type": "color",
+      "value": "#EFF6FF"
+    },
+    "$radius-lg": {
+      "type": "number",
+      "value": 12
+    },
+    "$radius-md": {
+      "type": "number",
+      "value": 8
+    },
+    "$success": {
+      "type": "color",
+      "value": "#10B981"
+    },
+    "$text-heading": {
+      "type": "color",
+      "value": "#0F172A"
+    },
+    "$text-muted": {
+      "type": "color",
+      "value": "#94A3B8"
+    },
+    "$text-primary": {
+      "type": "color",
+      "value": "#1E293B"
+    },
+    "$text-secondary": {
+      "type": "color",
+      "value": "#475569"
+    },
+    "$text-tertiary": {
+      "type": "color",
+      "value": "#64748B"
+    },
+    "$text-white": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "$warning": {
+      "type": "color",
+      "value": "#F59E0B"
+    }
+  }
 }

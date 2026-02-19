@@ -235,7 +235,8 @@
                           "fill": "$text-tertiary",
                           "content": "Basic Usage",
                           "fontFamily": "$font-sans",
-                          "fontSize": 11
+                          "fontSize": 11,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -935,7 +936,7 @@
                               "height": 12,
                               "iconFontName": "message-square",
                               "iconFontFamily": "lucide",
-                              "fill": "#FFFFFF"
+                              "fill": "$bg-white"
                             },
                             {
                               "type": "text",
@@ -1061,6 +1062,491 @@
                           "content": "Figure 1: React Component Lifecycle",
                           "fontFamily": "Inter",
                           "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "UnfDI",
+                      "name": "Blockquote",
+                      "width": "fill_container",
+                      "fill": "$bg-slate-100",
+                      "cornerRadius": 4,
+                      "padding": [
+                        12,
+                        16
+                      ],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "IxqPk",
+                          "name": "Border",
+                          "width": 3,
+                          "height": "fill_container",
+                          "fill": "$primary",
+                          "cornerRadius": 2
+                        },
+                        {
+                          "type": "text",
+                          "id": "qxXxh",
+                          "name": "Quote Text",
+                          "fill": "$text-secondary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Hooks don't work inside classes. But you can use them instead of writing classes. - React Documentation",
+                          "lineHeight": 1.7,
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal",
+                          "fontStyle": "italic"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "GJV82",
+                      "name": "H3 Heading",
+                      "fill": "$text-primary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "1.3 Rules of Hooks",
+                      "lineHeight": 1.3,
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "JmIEe",
+                      "name": "Unordered List",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "mPjLg",
+                          "name": "List Item 1",
+                          "width": "fill_container",
+                          "gap": 8,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "H2G6n",
+                              "name": "Bullet",
+                              "fill": "$text-secondary",
+                              "content": "•",
+                              "fontFamily": "Inter",
+                              "fontSize": 15,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "ergcH",
+                              "name": "Text",
+                              "fill": "$text-secondary",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Only call Hooks at the top level of your component",
+                              "lineHeight": 1.7,
+                              "fontFamily": "Inter",
+                              "fontSize": 15,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "1rYcN",
+                          "name": "List Item 2",
+                          "width": "fill_container",
+                          "gap": 8,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "5hEkp",
+                              "name": "Bullet",
+                              "fill": "$text-secondary",
+                              "content": "•",
+                              "fontFamily": "Inter",
+                              "fontSize": 15,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "LZR7M",
+                              "name": "Text",
+                              "fill": "$text-secondary",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Only call Hooks from React function components or custom Hooks",
+                              "lineHeight": 1.7,
+                              "fontFamily": "Inter",
+                              "fontSize": 15,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Z5wO7",
+                          "name": "List Item 3",
+                          "width": "fill_container",
+                          "gap": 8,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "HHicv",
+                              "name": "Bullet",
+                              "fill": "$text-secondary",
+                              "content": "•",
+                              "fontFamily": "Inter",
+                              "fontSize": 15,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "EudtP",
+                              "name": "Text",
+                              "fill": "$text-secondary",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Don't call Hooks inside loops, conditions, or nested functions",
+                              "lineHeight": 1.7,
+                              "fontFamily": "Inter",
+                              "fontSize": 15,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "jow8t",
+                      "name": "Table",
+                      "clip": true,
+                      "width": "fill_container",
+                      "cornerRadius": 8,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "$border"
+                      },
+                      "layout": "vertical",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "byGc1",
+                          "name": "Header Row",
+                          "width": "fill_container",
+                          "fill": "$bg-slate-100",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "Y94jw",
+                              "name": "Header Cell 1",
+                              "width": "fill_container",
+                              "padding": [
+                                10,
+                                12
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "pHxTD",
+                                  "name": "Header Text",
+                                  "fill": "$text-primary",
+                                  "content": "Hook",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 13,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "uzmGp",
+                              "name": "Header Cell 2",
+                              "width": "fill_container",
+                              "padding": [
+                                10,
+                                12
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "9G9UT",
+                                  "name": "Header Text",
+                                  "fill": "$text-primary",
+                                  "content": "Purpose",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 13,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "ekdUh",
+                              "name": "Header Cell 3",
+                              "width": "fill_container",
+                              "padding": [
+                                10,
+                                12
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "luNWw",
+                                  "name": "Header Text",
+                                  "fill": "$text-primary",
+                                  "content": "Returns",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 13,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "DMxqG",
+                          "name": "Row 1",
+                          "width": "fill_container",
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": {
+                              "top": 1
+                            },
+                            "fill": "$border"
+                          },
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "Bi7TC",
+                              "name": "Cell 1",
+                              "width": "fill_container",
+                              "padding": [
+                                10,
+                                12
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "gqX0w",
+                                  "name": "Code",
+                                  "fill": "$primary",
+                                  "content": "useState",
+                                  "fontFamily": "Fira Code",
+                                  "fontSize": 13,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "9Gbse",
+                              "name": "Cell 2",
+                              "width": "fill_container",
+                              "padding": [
+                                10,
+                                12
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "NDh5J",
+                                  "name": "Text",
+                                  "fill": "$text-secondary",
+                                  "content": "State management",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 13,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "TdVOa",
+                              "name": "Cell 3",
+                              "width": "fill_container",
+                              "padding": [
+                                10,
+                                12
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "uaLmC",
+                                  "name": "Code",
+                                  "fill": "$text-secondary",
+                                  "content": "[value, setter]",
+                                  "fontFamily": "Fira Code",
+                                  "fontSize": 13,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "SHnEJ",
+                          "name": "Row 2",
+                          "width": "fill_container",
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": {
+                              "top": 1
+                            },
+                            "fill": "$border"
+                          },
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "BAIRm",
+                              "name": "Cell 1",
+                              "width": "fill_container",
+                              "padding": [
+                                10,
+                                12
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "0kiKu",
+                                  "name": "Code",
+                                  "fill": "$primary",
+                                  "content": "useEffect",
+                                  "fontFamily": "Fira Code",
+                                  "fontSize": 13,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "ROCoH",
+                              "name": "Cell 2",
+                              "width": "fill_container",
+                              "padding": [
+                                10,
+                                12
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "5T6Ff",
+                                  "name": "Text",
+                                  "fill": "$text-secondary",
+                                  "content": "Side effects",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 13,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "h7zHN",
+                              "name": "Cell 3",
+                              "width": "fill_container",
+                              "padding": [
+                                10,
+                                12
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "0EEG7",
+                                  "name": "Code",
+                                  "fill": "$text-secondary",
+                                  "content": "void",
+                                  "fontFamily": "Fira Code",
+                                  "fontSize": 13,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "XUqe2",
+                      "name": "Paragraph with Link and Inline Code",
+                      "width": "fill_container",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "YYXSW",
+                          "name": "Text",
+                          "fill": "$text-secondary",
+                          "content": "For more details, see the ",
+                          "lineHeight": 1.7,
+                          "fontFamily": "Inter",
+                          "fontSize": 15,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "ptoVw",
+                          "name": "Link",
+                          "fill": "$primary",
+                          "content": "official React docs",
+                          "lineHeight": 1.7,
+                          "fontFamily": "Inter",
+                          "fontSize": 15,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "FWlz6",
+                          "name": "Text",
+                          "fill": "$text-secondary",
+                          "content": " about the ",
+                          "lineHeight": 1.7,
+                          "fontFamily": "Inter",
+                          "fontSize": 15,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "7oAqS",
+                          "name": "Inline Code",
+                          "fill": "$bg-slate-100",
+                          "cornerRadius": 4,
+                          "padding": [
+                            2,
+                            6
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "hOLGJ",
+                              "name": "Code Text",
+                              "fill": "$primary-dark",
+                              "content": "useReducer",
+                              "fontFamily": "Fira Code",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "7yATn",
+                          "name": "Text",
+                          "fill": "$text-secondary",
+                          "content": " Hook.",
+                          "lineHeight": 1.7,
+                          "fontFamily": "Inter",
+                          "fontSize": 15,
                           "fontWeight": "normal"
                         }
                       ]
@@ -1262,9 +1748,10 @@
                   "type": "icon_font",
                   "id": "HLqlb",
                   "name": "tabletBackIcon",
-                  "width": 0,
-                  "height": 0,
-                  "iconFontFamily": "Material Symbols Rounded",
+                  "width": 18,
+                  "height": 18,
+                  "iconFontName": "arrow-left",
+                  "iconFontFamily": "lucide",
                   "fill": "$text-secondary"
                 }
               ]
@@ -1273,7 +1760,7 @@
               "type": "text",
               "id": "TfQbv",
               "name": "tabletTitle",
-              "fill": "#0F172A",
+              "fill": "$text-primary",
               "textGrowth": "fixed-width",
               "width": "fill_container",
               "content": "Introduction to React Hooks",
@@ -1293,9 +1780,10 @@
                   "type": "icon_font",
                   "id": "nHWlL",
                   "name": "tabletTocIcon",
-                  "width": 0,
-                  "height": 0,
-                  "iconFontFamily": "Material Symbols Rounded",
+                  "width": 18,
+                  "height": 18,
+                  "iconFontName": "panel-left",
+                  "iconFontFamily": "lucide",
                   "fill": "$text-secondary"
                 }
               ]
@@ -1312,9 +1800,10 @@
                   "type": "icon_font",
                   "id": "29abg",
                   "name": "tabletBookmarkIcon",
-                  "width": 0,
-                  "height": 0,
-                  "iconFontFamily": "Material Symbols Rounded",
+                  "width": 18,
+                  "height": 18,
+                  "iconFontName": "bookmark",
+                  "iconFontFamily": "lucide",
                   "fill": "$text-secondary"
                 }
               ]
@@ -1331,9 +1820,10 @@
                   "type": "icon_font",
                   "id": "b8N4z",
                   "name": "tabletMoreIcon",
-                  "width": 0,
-                  "height": 0,
-                  "iconFontFamily": "Material Symbols Rounded",
+                  "width": 18,
+                  "height": 18,
+                  "iconFontName": "ellipsis",
+                  "iconFontFamily": "lucide",
                   "fill": "$text-secondary"
                 }
               ]
@@ -1365,7 +1855,7 @@
                   "type": "text",
                   "id": "tEenX",
                   "name": "tbc1",
-                  "fill": "#94A3B8",
+                  "fill": "$text-tertiary",
                   "content": "React Fundamentals",
                   "fontFamily": "Inter",
                   "fontSize": 13,
@@ -1375,7 +1865,7 @@
                   "type": "text",
                   "id": "uLXPC",
                   "name": "tbc2",
-                  "fill": "#CBD5E1",
+                  "fill": "$text-muted",
                   "content": ">",
                   "fontFamily": "Inter",
                   "fontSize": 13,
@@ -1385,7 +1875,7 @@
                   "type": "text",
                   "id": "cp2KL",
                   "name": "tbc3",
-                  "fill": "#475569",
+                  "fill": "$text-secondary",
                   "content": "Introduction to React Hooks",
                   "fontFamily": "Inter",
                   "fontSize": 13,
@@ -1404,7 +1894,7 @@
                   "type": "text",
                   "id": "3D2hl",
                   "name": "tmr1",
-                  "fill": "#94A3B8",
+                  "fill": "$text-tertiary",
                   "content": "10 minutes",
                   "fontFamily": "Inter",
                   "fontSize": 13,
@@ -1414,7 +1904,7 @@
                   "type": "text",
                   "id": "G66hE",
                   "name": "tmr2",
-                  "fill": "#CBD5E1",
+                  "fill": "$text-muted",
                   "content": "|",
                   "fontFamily": "Inter",
                   "fontSize": 13,
@@ -1424,7 +1914,7 @@
                   "type": "text",
                   "id": "a7670",
                   "name": "tmr3",
-                  "fill": "#3B82F6",
+                  "fill": "$primary",
                   "content": "Bookmark",
                   "fontFamily": "Inter",
                   "fontSize": 13,
@@ -1436,7 +1926,7 @@
               "type": "text",
               "id": "AmQ46",
               "name": "th1",
-              "fill": "#0F172A",
+              "fill": "$text-primary",
               "textGrowth": "fixed-width",
               "width": "fill_container",
               "content": "1. Introduction to React Hooks",
@@ -1448,7 +1938,7 @@
               "type": "text",
               "id": "YHJKa",
               "name": "tp1",
-              "fill": "#475569",
+              "fill": "$text-secondary",
               "textGrowth": "fixed-width",
               "width": "fill_container",
               "content": "React Hooks are functions that let you use state and other React features without writing a class. They were introduced in React 16.8 and have since become the standard way to write React components.",
@@ -1461,7 +1951,7 @@
               "type": "text",
               "id": "7ZdrJ",
               "name": "th2",
-              "fill": "#0F172A",
+              "fill": "$text-primary",
               "textGrowth": "fixed-width",
               "width": "fill_container",
               "content": "1.2 useState Hook",
@@ -1473,7 +1963,7 @@
               "type": "text",
               "id": "JAkIz",
               "name": "tp2",
-              "fill": "#475569",
+              "fill": "$text-secondary",
               "textGrowth": "fixed-width",
               "width": "fill_container",
               "content": "useState is the most basic Hook. It allows you to manage state in functional components, create updates, and track changes.",
@@ -1500,7 +1990,7 @@
                   "type": "text",
                   "id": "Raant",
                   "name": "tCodeLang",
-                  "fill": "#94A3B8",
+                  "fill": "$text-tertiary",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
                   "content": "javascript",
@@ -1512,7 +2002,7 @@
                   "type": "text",
                   "id": "CtDAz",
                   "name": "tCodeLine1",
-                  "fill": "#E2E8F0",
+                  "fill": "$code-text",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
                   "content": "const [count, setCount] = useState(0);",
@@ -1525,7 +2015,7 @@
                   "type": "text",
                   "id": "L5VDe",
                   "name": "tCodeLine2",
-                  "fill": "#E2E8F0",
+                  "fill": "$code-text",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
                   "content": "const [name, setName] = useBlock('');",
@@ -1538,7 +2028,7 @@
                   "type": "text",
                   "id": "5vgFz",
                   "name": "tCodeLine3",
-                  "fill": "#E2E8F0",
+                  "fill": "$code-text",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
                   "content": "const [loading, setLoading] = useMetaState();",
@@ -1571,7 +2061,7 @@
                   "type": "text",
                   "id": "Zo3wh",
                   "name": "tQaText",
-                  "fill": "#0F172A",
+                  "fill": "$text-primary",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
                   "content": "The useState Hook returns an array with exactly two elements: the current state value and a function to update that state. This pattern is known as array destructuring.",
@@ -1607,7 +2097,7 @@
               "type": "text",
               "id": "IUpNq",
               "name": "tHint",
-              "fill": "#94A3B8",
+              "fill": "$text-tertiary",
               "textGrowth": "fixed-width",
               "width": "fill_container",
               "content": "Select text to ask a question",
@@ -1643,9 +2133,10 @@
                       "type": "icon_font",
                       "id": "4OHmJ",
                       "name": "tPrevIcon",
-                      "width": 0,
-                      "height": 0,
-                      "iconFontFamily": "Material Symbols Rounded",
+                      "width": 16,
+                      "height": 16,
+                      "iconFontName": "arrow-left",
+                      "iconFontFamily": "lucide",
                       "fill": "$text-secondary"
                     },
                     {
@@ -1686,9 +2177,10 @@
                       "type": "icon_font",
                       "id": "bbne3",
                       "name": "tNextIcon",
-                      "width": 0,
-                      "height": 0,
-                      "iconFontFamily": "Material Symbols Rounded",
+                      "width": 16,
+                      "height": 16,
+                      "iconFontName": "arrow-right",
+                      "iconFontFamily": "lucide",
                       "fill": "$bg-white"
                     }
                   ]
@@ -1707,7 +2199,7 @@
       "name": "Mobile Material Viewer",
       "width": 375,
       "height": 812,
-      "fill": "#FFFFFF",
+      "fill": "$bg-white",
       "layout": "vertical",
       "children": [
         {
@@ -1716,7 +2208,7 @@
           "name": "Reading Progress",
           "width": "fill_container",
           "height": 3,
-          "fill": "#F1F5F9",
+          "fill": "$bg-slate-100",
           "children": [
             {
               "type": "frame",
@@ -1724,7 +2216,7 @@
               "name": "Progress Fill",
               "width": 140,
               "height": 3,
-              "fill": "#3B82F6"
+              "fill": "$primary"
             }
           ]
         },
@@ -1734,7 +2226,7 @@
           "name": "Top Bar",
           "width": "fill_container",
           "height": 48,
-          "fill": "#FFFFFF",
+          "fill": "$bg-white",
           "gap": 8,
           "padding": [
             0,
@@ -1753,10 +2245,11 @@
                   "type": "icon_font",
                   "id": "dEZAb",
                   "name": "mBackIcon",
-                  "width": 0,
-                  "height": 0,
-                  "iconFontFamily": "Material Symbols Rounded",
-                  "fill": "#475569"
+                  "width": 18,
+                  "height": 18,
+                  "iconFontName": "arrow-left",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-secondary"
                 }
               ]
             },
@@ -1764,7 +2257,7 @@
               "type": "text",
               "id": "FpQU8",
               "name": "mTitle",
-              "fill": "#0F172A",
+              "fill": "$text-primary",
               "textGrowth": "fixed-width",
               "width": "fill_container",
               "content": "React Hooks",
@@ -1784,10 +2277,11 @@
                   "type": "icon_font",
                   "id": "iGiyX",
                   "name": "mTocIcon",
-                  "width": 0,
-                  "height": 0,
-                  "iconFontFamily": "Material Symbols Rounded",
-                  "fill": "#475569"
+                  "width": 18,
+                  "height": 18,
+                  "iconFontName": "list",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-secondary"
                 }
               ]
             },
@@ -1803,10 +2297,11 @@
                   "type": "icon_font",
                   "id": "SQnlL",
                   "name": "mBookIcon",
-                  "width": 0,
-                  "height": 0,
-                  "iconFontFamily": "Material Symbols Rounded",
-                  "fill": "#475569"
+                  "width": 18,
+                  "height": 18,
+                  "iconFontName": "bookmark",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-secondary"
                 }
               ]
             }
@@ -1818,7 +2313,7 @@
           "name": "Content Area",
           "width": "fill_container",
           "height": "fill_container",
-          "fill": "#F8FAFC",
+          "fill": "$bg-slate-50",
           "layout": "vertical",
           "gap": 16,
           "padding": 16,
@@ -1827,7 +2322,7 @@
               "type": "text",
               "id": "40C4b",
               "name": "mH1",
-              "fill": "#0F172A",
+              "fill": "$text-primary",
               "textGrowth": "fixed-width",
               "width": "fill_container",
               "content": "1. Introduction to React Hooks",
@@ -1840,7 +2335,7 @@
               "type": "text",
               "id": "bRnSJ",
               "name": "mP1",
-              "fill": "#475569",
+              "fill": "$text-secondary",
               "textGrowth": "fixed-width",
               "width": "fill_container",
               "content": "React Hooks are functions that let you use state and other React features without writing a class. They were introduced in React 16.8.",
@@ -1853,7 +2348,7 @@
               "type": "text",
               "id": "Vkjso",
               "name": "mH2",
-              "fill": "#0F172A",
+              "fill": "$text-primary",
               "textGrowth": "fixed-width",
               "width": "fill_container",
               "content": "1.2 useState Hook",
@@ -1866,7 +2361,7 @@
               "type": "text",
               "id": "pu01h",
               "name": "mP2",
-              "fill": "#475569",
+              "fill": "$text-secondary",
               "textGrowth": "fixed-width",
               "width": "fill_container",
               "content": "useState allows you to manage state in functional components, create updates, and track changes.",
@@ -1880,7 +2375,7 @@
               "id": "H1xRV",
               "name": "Code Block",
               "width": "fill_container",
-              "fill": "#1E293B",
+              "fill": "$code-bg",
               "cornerRadius": 8,
               "layout": "vertical",
               "gap": 4,
@@ -1893,7 +2388,7 @@
                   "type": "text",
                   "id": "byf6H",
                   "name": "mCodeLang",
-                  "fill": "#94A3B8",
+                  "fill": "$text-tertiary",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
                   "content": "javascript",
@@ -1905,7 +2400,7 @@
                   "type": "text",
                   "id": "MWGvX",
                   "name": "mCodeL1",
-                  "fill": "#E2E8F0",
+                  "fill": "$code-text",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
                   "content": "const [count, setCount] = useState(0);",
@@ -1918,7 +2413,7 @@
                   "type": "text",
                   "id": "KzXf3",
                   "name": "mCodeL2",
-                  "fill": "#E2E8F0",
+                  "fill": "$code-text",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
                   "content": "const [name, setName] = useBlock('');",
@@ -1934,7 +2429,7 @@
               "id": "GjYlF",
               "name": "QA Highlight",
               "width": "fill_container",
-              "fill": "#FEF9C3",
+              "fill": "$highlight-yellow",
               "cornerRadius": [
                 0,
                 6,
@@ -1951,7 +2446,7 @@
                   "type": "text",
                   "id": "S4ps6",
                   "name": "mQaText",
-                  "fill": "#0F172A",
+                  "fill": "$text-primary",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
                   "content": "The useState Hook returns an array with exactly two elements: the current state value and a function to update that state.",
@@ -1966,14 +2461,14 @@
                   "name": "Badge",
                   "width": 24,
                   "height": 24,
-                  "fill": "#3B82F6",
+                  "fill": "$primary",
                   "cornerRadius": 12,
                   "children": [
                     {
                       "type": "text",
                       "id": "5YJIA",
                       "name": "mQaBadgeNum",
-                      "fill": "#FFFFFF",
+                      "fill": "$bg-white",
                       "content": "2",
                       "fontFamily": "Inter",
                       "fontSize": 11,
@@ -1987,7 +2482,7 @@
               "type": "text",
               "id": "ZLH7l",
               "name": "mHint",
-              "fill": "#94A3B8",
+              "fill": "$text-tertiary",
               "textGrowth": "fixed-width",
               "width": "fill_container",
               "content": "Select text to ask a question",
@@ -2003,7 +2498,7 @@
           "name": "Bottom Navigation",
           "width": "fill_container",
           "height": 56,
-          "fill": "#FFFFFF",
+          "fill": "$bg-white",
           "gap": 8,
           "padding": [
             0,
@@ -2025,16 +2520,17 @@
                   "type": "icon_font",
                   "id": "UCnGP",
                   "name": "mPrevIcon",
-                  "width": 0,
-                  "height": 0,
-                  "iconFontFamily": "Material Symbols Rounded",
-                  "fill": "#475569"
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "arrow-left",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-secondary"
                 },
                 {
                   "type": "text",
                   "id": "WHNug",
                   "name": "mPrevText",
-                  "fill": "#475569",
+                  "fill": "$text-secondary",
                   "content": "Previous",
                   "fontFamily": "Inter",
                   "fontSize": 13,
@@ -2046,7 +2542,7 @@
               "type": "frame",
               "id": "RYehj",
               "name": "Next",
-              "fill": "#3B82F6",
+              "fill": "$primary",
               "cornerRadius": 8,
               "gap": 6,
               "padding": [
@@ -2058,7 +2554,7 @@
                   "type": "text",
                   "id": "lHZC2",
                   "name": "mNextText",
-                  "fill": "#FFFFFF",
+                  "fill": "$bg-white",
                   "content": "Next",
                   "fontFamily": "Inter",
                   "fontSize": 13,
@@ -2068,10 +2564,11 @@
                   "type": "icon_font",
                   "id": "hT9OB",
                   "name": "mNextIcon",
-                  "width": 0,
-                  "height": 0,
-                  "iconFontFamily": "Material Symbols Rounded",
-                  "fill": "#FFFFFF"
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "arrow-right",
+                  "iconFontFamily": "lucide",
+                  "fill": "$bg-white"
                 }
               ]
             }
@@ -2103,7 +2600,7 @@
           "name": "Bottom Sheet",
           "width": 375,
           "height": 520,
-          "fill": "#FFFFFF",
+          "fill": "$bg-white",
           "cornerRadius": [
             16,
             16,
@@ -2123,7 +2620,7 @@
               "name": "Handle",
               "width": 36,
               "height": 4,
-              "fill": "#CBD5E1",
+              "fill": "$text-muted",
               "cornerRadius": 2
             },
             {
@@ -2159,10 +2656,11 @@
                       "type": "icon_font",
                       "id": "kmtOW",
                       "name": "mSheetCloseIcon",
-                      "width": 0,
-                      "height": 0,
-                      "iconFontFamily": "Material Symbols Rounded",
-                      "fill": "#475569"
+                      "width": 18,
+                      "height": 18,
+                      "iconFontName": "x",
+                      "iconFontFamily": "lucide",
+                      "fill": "$text-secondary"
                     }
                   ]
                 }

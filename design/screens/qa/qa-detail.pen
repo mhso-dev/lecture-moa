@@ -285,7 +285,7 @@
                           "name": "qAvatar",
                           "width": 40,
                           "height": 40,
-                          "fill": "#DBEAFE",
+                          "fill": "$primary-light",
                           "cornerRadius": 20,
                           "children": [
                             {
@@ -593,7 +593,7 @@
                               "name": "aiAv",
                               "width": 36,
                               "height": 36,
-                              "fill": "#EDE9FE",
+                              "fill": "$ai-badge-bg",
                               "cornerRadius": 18,
                               "children": [
                                 {
@@ -633,7 +633,7 @@
                                       "id": "nkaKF",
                                       "name": "aiBadge",
                                       "height": 18,
-                                      "fill": "#EDE9FE",
+                                      "fill": "$ai-badge-bg",
                                       "cornerRadius": 4,
                                       "padding": [
                                         0,
@@ -746,7 +746,7 @@
                               "name": "instrAv",
                               "width": 36,
                               "height": 36,
-                              "fill": "#DCFCE7",
+                              "fill": "$status-success-light",
                               "cornerRadius": 18,
                               "children": [
                                 {
@@ -787,7 +787,7 @@
                                       "id": "dmlqu",
                                       "name": "instrBadge",
                                       "height": 18,
-                                      "fill": "#ECFDF5",
+                                      "fill": "$status-success-bg",
                                       "cornerRadius": 4,
                                       "padding": [
                                         0,
@@ -1026,8 +1026,800 @@
     },
     {
       "type": "frame",
-      "id": "99Xos",
+      "id": "tQD01",
       "x": 1380,
+      "y": 0,
+      "name": "Tablet QA Detail (768px)",
+      "width": 768,
+      "height": 960,
+      "fill": "$bg-slate-50",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "tQD02",
+          "name": "Tablet Header",
+          "width": "fill_container",
+          "height": 56,
+          "fill": "$bg-white",
+          "padding": [0, 24],
+          "alignItems": "center",
+          "gap": 12,
+          "stroke": {
+            "align": "inside",
+            "fill": "$border",
+            "thickness": { "bottom": 1 }
+          },
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "tQD03",
+              "name": "backIcon",
+              "iconFontFamily": "lucide",
+              "iconFontName": "arrow-left",
+              "width": 22,
+              "height": 22,
+              "fill": "$text-primary"
+            },
+            {
+              "type": "text",
+              "id": "tQD04",
+              "content": "Q&A Thread",
+              "fontFamily": "Inter",
+              "fontSize": 18,
+              "fontWeight": "600",
+              "fill": "$text-primary"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "tQD05",
+          "name": "Content Scroll",
+          "width": "fill_container",
+          "layout": "vertical",
+          "padding": [20, 24],
+          "gap": 20,
+          "children": [
+            {
+              "type": "frame",
+              "id": "tQD06",
+              "name": "Question Card",
+              "width": "fill_container",
+              "cornerRadius": 12,
+              "fill": "$bg-white",
+              "layout": "vertical",
+              "padding": 20,
+              "gap": 14,
+              "stroke": {
+                "align": "inside",
+                "fill": "$border",
+                "thickness": 1
+              },
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "tQD07",
+                  "name": "qHeader",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "tQD08",
+                      "name": "qHeaderLeft",
+                      "gap": 10,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "tQD09",
+                          "name": "avatar",
+                          "width": 36,
+                          "height": 36,
+                          "cornerRadius": 18,
+                          "fill": "$primary-light",
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "tQD10",
+                              "content": "JK",
+                              "fontFamily": "Inter",
+                              "fontSize": 13,
+                              "fontWeight": "600",
+                              "fill": "$primary"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "tQD11",
+                          "name": "authorInfo",
+                          "layout": "vertical",
+                          "gap": 1,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "tQD12",
+                              "content": "Jimin Kim",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "600",
+                              "fill": "$text-primary"
+                            },
+                            {
+                              "type": "text",
+                              "id": "tQD13",
+                              "content": "2 hours ago",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fill": "$text-tertiary"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "tQD14",
+                      "name": "votes",
+                      "layout": "vertical",
+                      "alignItems": "center",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "tQD15",
+                          "name": "voteUp",
+                          "iconFontFamily": "lucide",
+                          "iconFontName": "chevron-up",
+                          "width": 20,
+                          "height": 20,
+                          "fill": "$primary"
+                        },
+                        {
+                          "type": "text",
+                          "id": "tQD16",
+                          "content": "12",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "600",
+                          "fill": "$text-primary"
+                        },
+                        {
+                          "type": "icon_font",
+                          "id": "tQD17",
+                          "name": "voteDown",
+                          "iconFontFamily": "lucide",
+                          "iconFontName": "chevron-down",
+                          "width": 20,
+                          "height": 20,
+                          "fill": "$text-muted"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "tQD18",
+                  "name": "qTitle",
+                  "content": "How to handle state in nested components?",
+                  "fontFamily": "Inter",
+                  "fontSize": 20,
+                  "fontWeight": "700",
+                  "fill": "$text-primary"
+                },
+                {
+                  "type": "text",
+                  "id": "tQD19",
+                  "name": "qBody",
+                  "content": "I'm building a dashboard with multiple nested components that all need access to the same state. Currently using prop drilling but it's becoming unmanageable. What are the best approaches for managing shared state in React?",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "lineHeight": 1.7,
+                  "fill": "$text-secondary"
+                },
+                {
+                  "type": "frame",
+                  "id": "tQD20",
+                  "name": "Highlighted Context",
+                  "width": "fill_container",
+                  "cornerRadius": 8,
+                  "fill": "$highlight-yellow",
+                  "padding": 14,
+                  "gap": 10,
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "tQD21",
+                      "name": "hcIcon",
+                      "iconFontFamily": "lucide",
+                      "iconFontName": "book-open",
+                      "width": 16,
+                      "height": 16,
+                      "fill": "$status-warning-text"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "tQD22",
+                      "name": "hcContent",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "width": "fill_container",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "tQD23",
+                          "content": "Related Material: Module 2, Lesson 3",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "600",
+                          "fill": "$status-warning-text"
+                        },
+                        {
+                          "type": "text",
+                          "id": "tQD24",
+                          "content": "\"State management is crucial when components need to share data across different levels of the component tree.\"",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "lineHeight": 1.5,
+                          "fill": "$text-secondary"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tQD25",
+                  "name": "tags",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "tQD26",
+                      "name": "tag1",
+                      "cornerRadius": 12,
+                      "fill": "$primary-light",
+                      "padding": [4, 10],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "tQD27",
+                          "content": "react",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "500",
+                          "fill": "$primary"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "tQD28",
+                      "name": "tag2",
+                      "cornerRadius": 12,
+                      "fill": "$status-success-light",
+                      "padding": [4, 10],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "tQD29",
+                          "content": "state-management",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "500",
+                          "fill": "$accent-emerald"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "tQD30",
+                      "name": "tag3",
+                      "cornerRadius": 12,
+                      "fill": "$ai-badge-bg",
+                      "padding": [4, 10],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "tQD31",
+                          "content": "hooks",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "500",
+                          "fill": "$ai-badge-text"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "tQD32",
+              "name": "Responses Section",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 14,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "tQD33",
+                  "name": "respHeader",
+                  "width": "fill_container",
+                  "alignItems": "center",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "tQD34",
+                      "content": "2 Responses",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "600",
+                      "fill": "$text-primary"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tQD35",
+                  "name": "AI Response",
+                  "width": "fill_container",
+                  "cornerRadius": 12,
+                  "fill": "$bg-white",
+                  "layout": "vertical",
+                  "padding": 18,
+                  "gap": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "fill": "$ai-badge-bg",
+                    "thickness": 1
+                  },
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "tQD36",
+                      "name": "aiHeader",
+                      "width": "fill_container",
+                      "gap": 10,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "tQD37",
+                          "name": "aiAvatar",
+                          "width": 32,
+                          "height": 32,
+                          "cornerRadius": 16,
+                          "fill": "$ai-badge-bg",
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "tQD38",
+                              "name": "sparkles",
+                              "iconFontFamily": "lucide",
+                              "iconFontName": "sparkles",
+                              "width": 16,
+                              "height": 16,
+                              "fill": "$ai-badge-text"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "tQD39",
+                          "name": "aiInfo",
+                          "layout": "vertical",
+                          "gap": 1,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "tQD40",
+                              "name": "aiNameRow",
+                              "gap": 6,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "tQD41",
+                                  "content": "AI Assistant",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "600",
+                                  "fill": "$text-primary"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "tQD42",
+                                  "name": "aiBadge",
+                                  "cornerRadius": 8,
+                                  "fill": "$ai-badge-bg",
+                                  "padding": [2, 6],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "tQD43",
+                                      "content": "AI",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 10,
+                                      "fontWeight": "700",
+                                      "fill": "$ai-badge-text"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "tQD44",
+                              "content": "2 hours ago",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fill": "$text-tertiary"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "tQD45",
+                      "name": "aiBody",
+                      "content": "There are several approaches to manage shared state in React: 1) Context API for simple shared state, 2) Redux or Zustand for complex global state, 3) React Query for server state. For your dashboard use case, I'd recommend starting with Context API and upgrading to Zustand if the state becomes more complex.",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "lineHeight": 1.7,
+                      "fill": "$text-secondary"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "tQD46",
+                      "name": "aiActions",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "tQD47",
+                          "name": "helpful",
+                          "gap": 4,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "tQD48",
+                              "name": "thumbsUp",
+                              "iconFontFamily": "lucide",
+                              "iconFontName": "thumbs-up",
+                              "width": 14,
+                              "height": 14,
+                              "fill": "$primary"
+                            },
+                            {
+                              "type": "text",
+                              "id": "tQD49",
+                              "content": "Helpful (8)",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "500",
+                              "fill": "$primary"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tQD50",
+                  "name": "Instructor Response",
+                  "width": "fill_container",
+                  "cornerRadius": 12,
+                  "fill": "$bg-white",
+                  "layout": "vertical",
+                  "padding": 18,
+                  "gap": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "fill": "$status-success-light",
+                    "thickness": 1
+                  },
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "tQD51",
+                      "name": "instrHeader",
+                      "width": "fill_container",
+                      "gap": 10,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "tQD52",
+                          "name": "instrAvatar",
+                          "width": 32,
+                          "height": 32,
+                          "cornerRadius": 16,
+                          "fill": "$status-success-light",
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "tQD53",
+                              "content": "PL",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "600",
+                              "fill": "$accent-emerald"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "tQD54",
+                          "name": "instrInfo",
+                          "layout": "vertical",
+                          "gap": 1,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "tQD55",
+                              "name": "instrNameRow",
+                              "gap": 6,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "tQD56",
+                                  "content": "Prof. Lee",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "600",
+                                  "fill": "$text-primary"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "tQD57",
+                                  "name": "instrBadge",
+                                  "cornerRadius": 8,
+                                  "fill": "$status-success-bg",
+                                  "padding": [2, 6],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "tQD58",
+                                      "content": "Instructor",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 10,
+                                      "fontWeight": "700",
+                                      "fill": "$accent-emerald"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "tQD59",
+                              "content": "1 hour ago",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fill": "$text-tertiary"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "tQD60",
+                      "name": "instrBody",
+                      "content": "Great question! The AI response covers the key approaches well. I'd add that for our course project, Context API with useReducer would be the ideal combination. Check Module 2, Lesson 3 for the detailed walkthrough.",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "lineHeight": 1.7,
+                      "fill": "$text-secondary"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "tQD61",
+                      "name": "instrActions",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "tQD62",
+                          "name": "helpful",
+                          "gap": 4,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "tQD63",
+                              "name": "thumbsUp",
+                              "iconFontFamily": "lucide",
+                              "iconFontName": "thumbs-up",
+                              "width": 14,
+                              "height": 14,
+                              "fill": "$accent-emerald"
+                            },
+                            {
+                              "type": "text",
+                              "id": "tQD64",
+                              "content": "Helpful (15)",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "500",
+                              "fill": "$accent-emerald"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "tQD65",
+              "name": "Reply Editor",
+              "width": "fill_container",
+              "cornerRadius": 12,
+              "fill": "$bg-white",
+              "layout": "vertical",
+              "padding": 18,
+              "gap": 12,
+              "stroke": {
+                "align": "inside",
+                "fill": "$border",
+                "thickness": 1
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "id": "tQD66",
+                  "content": "Your Reply",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                  "fill": "$text-primary"
+                },
+                {
+                  "type": "frame",
+                  "id": "tQD67",
+                  "name": "textArea",
+                  "width": "fill_container",
+                  "height": 100,
+                  "cornerRadius": 8,
+                  "fill": "$bg-slate-50",
+                  "padding": 12,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "tQD68",
+                      "content": "Write your reply...",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fill": "$text-muted"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tQD69",
+                  "name": "replyActions",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "tQD70",
+                      "name": "toolbar",
+                      "gap": 4,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "tQD71",
+                          "name": "tbBold",
+                          "width": 28,
+                          "height": 28,
+                          "cornerRadius": 4,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "tQD72",
+                              "name": "boldIcon",
+                              "iconFontFamily": "lucide",
+                              "iconFontName": "bold",
+                              "width": 14,
+                              "height": 14,
+                              "fill": "$text-secondary"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "tQD73",
+                          "name": "tbCode",
+                          "width": 28,
+                          "height": 28,
+                          "cornerRadius": 4,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "tQD74",
+                              "name": "codeIcon",
+                              "iconFontFamily": "lucide",
+                              "iconFontName": "code",
+                              "width": 14,
+                              "height": 14,
+                              "fill": "$text-secondary"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "tQD75",
+                      "name": "Submit Button",
+                      "cornerRadius": 8,
+                      "fill": "$primary",
+                      "padding": [8, 16],
+                      "gap": 6,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "tQD76",
+                          "name": "sendIcon",
+                          "iconFontFamily": "lucide",
+                          "iconFontName": "send",
+                          "width": 14,
+                          "height": 14,
+                          "fill": "$bg-white"
+                        },
+                        {
+                          "type": "text",
+                          "id": "tQD77",
+                          "content": "Submit Reply",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "600",
+                          "fill": "$bg-white"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "99Xos",
+      "x": 2248,
       "y": 0,
       "name": "Mobile QA Detail (375px)",
       "width": 375,
@@ -1106,7 +1898,7 @@
                       "name": "avatar",
                       "width": 32,
                       "height": 32,
-                      "fill": "#3B82F6",
+                      "fill": "$primary",
                       "cornerRadius": 16,
                       "layout": "vertical",
                       "children": [
@@ -1209,7 +2001,7 @@
                   "id": "lNCZ4",
                   "name": "Highlighted Context",
                   "width": "fill_container",
-                  "fill": "#FEF9C3",
+                  "fill": "$highlight-yellow",
                   "cornerRadius": 8,
                   "layout": "vertical",
                   "gap": 6,
@@ -1219,7 +2011,7 @@
                       "type": "text",
                       "id": "mSkCI",
                       "name": "hlLabel",
-                      "fill": "#92400E",
+                      "fill": "$status-warning-text",
                       "content": "Referenced from Chapter 3 - useEffect",
                       "fontFamily": "Inter",
                       "fontSize": 11,
@@ -1229,7 +2021,7 @@
                       "type": "text",
                       "id": "RuoTq",
                       "name": "hlQuote",
-                      "fill": "#78350F",
+                      "fill": "$status-warning-text",
                       "content": "\"The cleanup function runs before the component is removed from the UI to prevent memory leaks...\"",
                       "lineHeight": 1.4,
                       "fontFamily": "Inter",
@@ -1341,7 +2133,7 @@
                       "name": "aiAvatar",
                       "width": 28,
                       "height": 28,
-                      "fill": "#EDE9FE",
+                      "fill": "$ai-badge-bg",
                       "cornerRadius": 14,
                       "layout": "vertical",
                       "children": [
@@ -1352,7 +2144,7 @@
                           "width": 14,
                           "height": 14,
                           "iconFontFamily": "Lucide",
-                          "fill": "#7C3AED"
+                          "fill": "$ai-badge-text"
                         }
                       ]
                     },
@@ -1374,7 +2166,7 @@
                               "type": "text",
                               "id": "2Mcst",
                               "name": "aiName",
-                              "fill": "#7C3AED",
+                              "fill": "$ai-badge-text",
                               "content": "AI Assistant",
                               "fontFamily": "Inter",
                               "fontSize": 13,
@@ -1384,14 +2176,14 @@
                               "type": "frame",
                               "id": "q7EpQ",
                               "name": "aiBadge",
-                              "fill": "#EDE9FE",
+                              "fill": "$ai-badge-bg",
                               "cornerRadius": 4,
                               "children": [
                                 {
                                   "type": "text",
                                   "id": "A9k38",
                                   "name": "aiBadgeText",
-                                  "fill": "#7C3AED",
+                                  "fill": "$ai-badge-text",
                                   "content": "AI",
                                   "fontFamily": "Inter",
                                   "fontSize": 10,
@@ -1481,7 +2273,7 @@
                       "name": "instrAvatar",
                       "width": 28,
                       "height": 28,
-                      "fill": "#10B981",
+                      "fill": "$accent-emerald",
                       "cornerRadius": 14,
                       "layout": "vertical",
                       "children": [
@@ -1489,7 +2281,7 @@
                           "type": "text",
                           "id": "hlTTW",
                           "name": "instrAvatarText",
-                          "fill": "#FFFFFF",
+                          "fill": "$bg-white",
                           "content": "PL",
                           "fontFamily": "Inter",
                           "fontSize": 11,
@@ -1525,14 +2317,14 @@
                               "type": "frame",
                               "id": "ZzFpc",
                               "name": "instrBadge",
-                              "fill": "#ECFDF5",
+                              "fill": "$status-success-bg",
                               "cornerRadius": 4,
                               "children": [
                                 {
                                   "type": "text",
                                   "id": "FC7hY",
                                   "name": "instrBadgeText",
-                                  "fill": "#10B981",
+                                  "fill": "$accent-emerald",
                                   "content": "Instructor",
                                   "fontFamily": "Inter",
                                   "fontSize": 10,
@@ -1647,7 +2439,7 @@
                   "width": 16,
                   "height": 16,
                   "iconFontFamily": "Lucide",
-                  "fill": "#FFFFFF"
+                  "fill": "$bg-white"
                 }
               ]
             }

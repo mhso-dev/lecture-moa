@@ -28,3 +28,11 @@ export {
   useIsFullscreen,
   useTextSelection,
 } from "./material.store";
+
+export {
+  useCourseStore,
+  useCourseViewMode,
+  useCourseSearchQuery,
+  useCourseSelectedCategory,
+  useCourseSortOption,
+} from "./course.store";

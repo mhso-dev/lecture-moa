@@ -179,7 +179,7 @@
                 {
                   "type": "frame",
                   "id": "mob-tab-alerts",
-                  "name": "Tab - Alerts (with badge)",
+                  "name": "Tab - Notifications (with badge)",
                   "layout": "vertical",
                   "width": "fill_container",
                   "alignItems": "center",
@@ -188,7 +188,7 @@
                     {
                       "type": "frame",
                       "id": "mob-tab-alerts-icon-wrapper",
-                      "name": "Alerts Icon Wrapper",
+                      "name": "Notifications Icon Wrapper",
                       "layout": "none",
                       "width": 30,
                       "height": 22,
@@ -207,7 +207,7 @@
                         {
                           "type": "frame",
                           "id": "mob-tab-alerts-badge",
-                          "name": "Alert Badge",
+                          "name": "Notification Badge",
                           "layout": "horizontal",
                           "padding": [1, 4],
                           "cornerRadius": 8,
@@ -233,7 +233,7 @@
                     {
                       "type": "text",
                       "id": "mob-tab-alerts-text",
-                      "content": "Alerts",
+                      "content": "Notifications",
                       "fontFamily": "Inter",
                       "fontSize": 11,
                       "fontWeight": "500",

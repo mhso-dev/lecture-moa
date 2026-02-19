@@ -452,7 +452,7 @@
                           "name": "t1Avatar",
                           "width": 36,
                           "height": 36,
-                          "fill": "#DBEAFE",
+                          "fill": "$primary-light",
                           "cornerRadius": 18,
                           "children": [
                             {
@@ -495,7 +495,7 @@
                                   "id": "cLLMw",
                                   "name": "t1AIBadge",
                                   "height": 20,
-                                  "fill": "#EDE9FE",
+                                  "fill": "$ai-badge-bg",
                                   "cornerRadius": 4,
                                   "gap": 4,
                                   "padding": [
@@ -678,7 +678,7 @@
                           "name": "t2Avatar",
                           "width": 36,
                           "height": 36,
-                          "fill": "#DCFCE7",
+                          "fill": "$status-success-light",
                           "cornerRadius": 18,
                           "children": [
                             {
@@ -721,7 +721,7 @@
                                   "id": "bSAA5",
                                   "name": "t2Badge",
                                   "height": 20,
-                                  "fill": "#FEF3C7",
+                                  "fill": "$status-warning-bg",
                                   "cornerRadius": 4,
                                   "padding": [
                                     0,
@@ -903,7 +903,7 @@
                           "name": "t3Avatar",
                           "width": 36,
                           "height": 36,
-                          "fill": "#FEE2E2",
+                          "fill": "$status-error-light",
                           "cornerRadius": 18,
                           "children": [
                             {
@@ -946,7 +946,7 @@
                                   "id": "FsR0x",
                                   "name": "t3Badge",
                                   "height": 20,
-                                  "fill": "#ECFDF5",
+                                  "fill": "$status-success-bg",
                                   "cornerRadius": 4,
                                   "padding": [
                                     0,
@@ -1109,8 +1109,718 @@
     },
     {
       "type": "frame",
-      "id": "47U9U",
+      "id": "tQL01",
       "x": 1380,
+      "y": 0,
+      "name": "Tablet QA List (768px)",
+      "width": 768,
+      "height": 900,
+      "fill": "$bg-slate-50",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "tQL02",
+          "name": "Tablet Header",
+          "width": "fill_container",
+          "height": 56,
+          "fill": "$bg-white",
+          "padding": [0, 24],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "stroke": {
+            "align": "inside",
+            "fill": "$border",
+            "thickness": { "bottom": 1 }
+          },
+          "children": [
+            {
+              "type": "frame",
+              "id": "tQL03",
+              "name": "Left",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "tQL04",
+                  "name": "menuIcon",
+                  "iconFontFamily": "lucide",
+                  "iconFontName": "menu",
+                  "width": 22,
+                  "height": 22,
+                  "fill": "$text-primary"
+                },
+                {
+                  "type": "frame",
+                  "id": "tQL05",
+                  "name": "titleArea",
+                  "layout": "vertical",
+                  "gap": 1,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "tQL06",
+                      "content": "Q&A Forum",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "600",
+                      "fill": "$text-primary"
+                    },
+                    {
+                      "type": "text",
+                      "id": "tQL07",
+                      "content": "24 threads",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fill": "$text-tertiary"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "tQL08",
+              "name": "Ask Btn",
+              "cornerRadius": 8,
+              "fill": "$primary",
+              "padding": [0, 14],
+              "height": 36,
+              "gap": 6,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "tQL09",
+                  "name": "plusIcon",
+                  "iconFontFamily": "lucide",
+                  "iconFontName": "plus",
+                  "width": 16,
+                  "height": 16,
+                  "fill": "$bg-white"
+                },
+                {
+                  "type": "text",
+                  "id": "tQL10",
+                  "content": "Ask Question",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "600",
+                  "fill": "$bg-white"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "tQL11",
+          "name": "Filter Bar",
+          "width": "fill_container",
+          "fill": "$bg-white",
+          "padding": [8, 24],
+          "gap": 8,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "tQL12",
+              "name": "filterAll",
+              "cornerRadius": 16,
+              "fill": "$primary",
+              "padding": [6, 14],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "tQL13",
+                  "content": "All",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "600",
+                  "fill": "$bg-white"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "tQL14",
+              "name": "filterUnanswered",
+              "cornerRadius": 16,
+              "padding": [6, 14],
+              "stroke": {
+                "align": "inside",
+                "fill": "$border",
+                "thickness": 1
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "id": "tQL15",
+                  "content": "Unanswered",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "500",
+                  "fill": "$text-secondary"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "tQL16",
+              "name": "filterAnswered",
+              "cornerRadius": 16,
+              "padding": [6, 14],
+              "stroke": {
+                "align": "inside",
+                "fill": "$border",
+                "thickness": 1
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "id": "tQL17",
+                  "content": "Answered",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "500",
+                  "fill": "$text-secondary"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "tQL18",
+              "name": "filterMyQ",
+              "cornerRadius": 16,
+              "padding": [6, 14],
+              "stroke": {
+                "align": "inside",
+                "fill": "$border",
+                "thickness": 1
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "id": "tQL19",
+                  "content": "My Questions",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "500",
+                  "fill": "$text-secondary"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "tQL20",
+              "name": "searchBar",
+              "width": "fill_container",
+              "height": 36,
+              "cornerRadius": 8,
+              "padding": [0, 10],
+              "gap": 6,
+              "alignItems": "center",
+              "fill": "$bg-slate-50",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "tQL21",
+                  "name": "searchIcon",
+                  "iconFontFamily": "lucide",
+                  "iconFontName": "search",
+                  "width": 16,
+                  "height": 16,
+                  "fill": "$text-tertiary"
+                },
+                {
+                  "type": "text",
+                  "id": "tQL22",
+                  "content": "Search threads...",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fill": "$text-muted"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "tQL23",
+          "name": "Thread List",
+          "width": "fill_container",
+          "layout": "vertical",
+          "padding": [16, 24],
+          "gap": 12,
+          "children": [
+            {
+              "type": "frame",
+              "id": "tQL24",
+              "name": "Thread Card 1",
+              "width": "fill_container",
+              "cornerRadius": 12,
+              "fill": "$bg-white",
+              "layout": "vertical",
+              "padding": 16,
+              "gap": 10,
+              "stroke": {
+                "align": "inside",
+                "fill": "$border",
+                "thickness": 1
+              },
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "tQL25",
+                  "name": "t1Top",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "tQL26",
+                      "name": "avatar",
+                      "width": 36,
+                      "height": 36,
+                      "cornerRadius": 18,
+                      "fill": "$primary-light",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "tQL27",
+                          "content": "JK",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "600",
+                          "fill": "$primary"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "tQL28",
+                      "name": "content",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "tQL29",
+                          "name": "titleRow",
+                          "width": "fill_container",
+                          "gap": 8,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "tQL30",
+                              "content": "How to handle state in nested components?",
+                              "fontFamily": "Inter",
+                              "fontSize": 15,
+                              "fontWeight": "600",
+                              "fill": "$text-primary"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "tQL31",
+                              "name": "aiBadge",
+                              "cornerRadius": 10,
+                              "fill": "$ai-badge-bg",
+                              "padding": [2, 8],
+                              "gap": 4,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon_font",
+                                  "id": "tQL32",
+                                  "name": "sparkles",
+                                  "iconFontFamily": "lucide",
+                                  "iconFontName": "sparkles",
+                                  "width": 11,
+                                  "height": 11,
+                                  "fill": "$ai-badge-text"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "tQL33",
+                                  "content": "AI",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 10,
+                                  "fontWeight": "600",
+                                  "fill": "$ai-badge-text"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "tQL34",
+                          "content": "I'm trying to manage state across deeply nested components and prop drilling is becoming unmanageable...",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "lineHeight": 1.5,
+                          "fill": "$text-secondary"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tQL35",
+                  "name": "t1Meta",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "tQL36",
+                      "name": "metaLeft",
+                      "gap": 6,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "tQL37",
+                          "content": "Jimin Kim",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "500",
+                          "fill": "$text-tertiary"
+                        },
+                        {
+                          "type": "text",
+                          "id": "tQL38",
+                          "content": "2h ago",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fill": "$text-muted"
+                        },
+                        {
+                          "type": "text",
+                          "id": "tQL39",
+                          "content": "Module 2",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fill": "$text-muted"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "tQL40",
+                      "name": "metaRight",
+                      "gap": 10,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "tQL41",
+                          "name": "answers",
+                          "gap": 4,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "tQL42",
+                              "name": "msgIcon",
+                              "iconFontFamily": "lucide",
+                              "iconFontName": "message-circle",
+                              "width": 14,
+                              "height": 14,
+                              "fill": "$text-tertiary"
+                            },
+                            {
+                              "type": "text",
+                              "id": "tQL43",
+                              "content": "3",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fill": "$text-tertiary"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "tQL44",
+                          "name": "upvotes",
+                          "gap": 4,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "tQL45",
+                              "name": "upIcon",
+                              "iconFontFamily": "lucide",
+                              "iconFontName": "thumbs-up",
+                              "width": 14,
+                              "height": 14,
+                              "fill": "$text-tertiary"
+                            },
+                            {
+                              "type": "text",
+                              "id": "tQL46",
+                              "content": "12",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fill": "$text-tertiary"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "tQL47",
+                          "name": "resolvedBadge",
+                          "cornerRadius": 10,
+                          "fill": "$status-success-bg",
+                          "padding": [3, 8],
+                          "gap": 4,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "tQL48",
+                              "name": "checkIcon",
+                              "iconFontFamily": "lucide",
+                              "iconFontName": "check-circle",
+                              "width": 12,
+                              "height": 12,
+                              "fill": "$accent-emerald"
+                            },
+                            {
+                              "type": "text",
+                              "id": "tQL49",
+                              "content": "Resolved",
+                              "fontFamily": "Inter",
+                              "fontSize": 11,
+                              "fontWeight": "600",
+                              "fill": "$accent-emerald"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "tQL50",
+              "name": "Thread Card 2",
+              "width": "fill_container",
+              "cornerRadius": 12,
+              "fill": "$bg-white",
+              "layout": "vertical",
+              "padding": 16,
+              "gap": 10,
+              "stroke": {
+                "align": "inside",
+                "fill": "$border",
+                "thickness": 1
+              },
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "tQL51",
+                  "name": "t2Top",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "tQL52",
+                      "name": "avatar",
+                      "width": 36,
+                      "height": 36,
+                      "cornerRadius": 18,
+                      "fill": "$status-success-light",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "tQL53",
+                          "content": "SH",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "600",
+                          "fill": "$accent-emerald"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "tQL54",
+                      "name": "content",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "tQL55",
+                          "content": "useEffect cleanup function not working",
+                          "fontFamily": "Inter",
+                          "fontSize": 15,
+                          "fontWeight": "600",
+                          "fill": "$text-primary"
+                        },
+                        {
+                          "type": "text",
+                          "id": "tQL56",
+                          "content": "My cleanup function in useEffect doesn't seem to run when the component unmounts...",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "lineHeight": 1.5,
+                          "fill": "$text-secondary"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tQL57",
+                  "name": "t2Meta",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "tQL58",
+                      "name": "metaLeft",
+                      "gap": 6,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "tQL59",
+                          "content": "Suyeon Ha",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "500",
+                          "fill": "$text-tertiary"
+                        },
+                        {
+                          "type": "text",
+                          "id": "tQL60",
+                          "content": "5h ago",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fill": "$text-muted"
+                        },
+                        {
+                          "type": "text",
+                          "id": "tQL61",
+                          "content": "Module 1",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fill": "$text-muted"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "tQL62",
+                      "name": "metaRight",
+                      "gap": 10,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "tQL63",
+                          "name": "answers",
+                          "gap": 4,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "tQL64",
+                              "name": "msgIcon",
+                              "iconFontFamily": "lucide",
+                              "iconFontName": "message-circle",
+                              "width": 14,
+                              "height": 14,
+                              "fill": "$text-tertiary"
+                            },
+                            {
+                              "type": "text",
+                              "id": "tQL65",
+                              "content": "0",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fill": "$text-tertiary"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "tQL66",
+                          "name": "upvotes",
+                          "gap": 4,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "tQL67",
+                              "name": "upIcon",
+                              "iconFontFamily": "lucide",
+                              "iconFontName": "thumbs-up",
+                              "width": 14,
+                              "height": 14,
+                              "fill": "$text-tertiary"
+                            },
+                            {
+                              "type": "text",
+                              "id": "tQL68",
+                              "content": "5",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fill": "$text-tertiary"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "tQL69",
+                          "name": "unansweredBadge",
+                          "cornerRadius": 10,
+                          "fill": "$status-warning-bg",
+                          "padding": [3, 8],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "tQL70",
+                              "content": "Unanswered",
+                              "fontFamily": "Inter",
+                              "fontSize": 11,
+                              "fontWeight": "600",
+                              "fill": "$status-warning-text"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "47U9U",
+      "x": 2248,
       "y": 0,
       "name": "Mobile QA List (375px)",
       "width": 375,
@@ -1306,7 +2016,7 @@
                       "name": "mt1Av",
                       "width": 28,
                       "height": 28,
-                      "fill": "#DBEAFE",
+                      "fill": "$primary-light",
                       "cornerRadius": 14,
                       "children": [
                         {
@@ -1343,7 +2053,7 @@
                       "id": "QI0Ss",
                       "name": "mt1AI",
                       "height": 18,
-                      "fill": "#EDE9FE",
+                      "fill": "$ai-badge-bg",
                       "cornerRadius": 4,
                       "padding": [
                         0,
@@ -1473,7 +2183,7 @@
                       "name": "mt2Av",
                       "width": 28,
                       "height": 28,
-                      "fill": "#DCFCE7",
+                      "fill": "$status-success-light",
                       "cornerRadius": 14,
                       "children": [
                         {
@@ -1510,7 +2220,7 @@
                       "id": "hUK3i",
                       "name": "mt2Badge",
                       "height": 18,
-                      "fill": "#FEF3C7",
+                      "fill": "$status-warning-bg",
                       "cornerRadius": 4,
                       "padding": [
                         0,
@@ -1640,7 +2350,7 @@
                       "name": "mt3Av",
                       "width": 28,
                       "height": 28,
-                      "fill": "#FEE2E2",
+                      "fill": "$status-error-light",
                       "cornerRadius": 14,
                       "children": [
                         {

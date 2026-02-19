@@ -490,7 +490,8 @@
                               "fill": "$text-tertiary",
                               "content": "4 materials",
                               "fontFamily": "Inter",
-                              "fontSize": 13
+                              "fontSize": 13,
+                              "fontWeight": "normal"
                             },
                             {
                               "type": "frame",
@@ -648,7 +649,8 @@
                               "fill": "$text-tertiary",
                               "content": "15 min",
                               "fontFamily": "Inter",
-                              "fontSize": 12
+                              "fontSize": 12,
+                              "fontWeight": "normal"
                             },
                             {
                               "type": "icon_font",
@@ -714,7 +716,7 @@
                               "id": "YEeCH",
                               "name": "Badge Video",
                               "height": 22,
-                              "fill": "#EDE9FE",
+                              "fill": "\\$ai-badge-bg",
                               "cornerRadius": 4,
                               "padding": [
                                 0,
@@ -741,7 +743,8 @@
                               "fill": "$text-tertiary",
                               "content": "25 min",
                               "fontFamily": "Inter",
-                              "fontSize": 12
+                              "fontSize": 12,
+                              "fontWeight": "normal"
                             },
                             {
                               "type": "icon_font",
@@ -806,7 +809,7 @@
                               "id": "ufxto",
                               "name": "Badge Code",
                               "height": 22,
-                              "fill": "#FEF3C7",
+                              "fill": "\\$status-warning-bg",
                               "cornerRadius": 4,
                               "padding": [
                                 0,
@@ -833,7 +836,8 @@
                               "fill": "$text-tertiary",
                               "content": "30 min",
                               "fontFamily": "Inter",
-                              "fontSize": 12
+                              "fontSize": 12,
+                              "fontWeight": "normal"
                             },
                             {
                               "type": "icon_font",
@@ -925,7 +929,8 @@
                               "fill": "$text-tertiary",
                               "content": "20 min",
                               "fontFamily": "Inter",
-                              "fontSize": 12
+                              "fontSize": 12,
+                              "fontWeight": "normal"
                             },
                             {
                               "type": "icon_font",
@@ -1024,7 +1029,8 @@
                               "fill": "$text-tertiary",
                               "content": "5 materials",
                               "fontFamily": "Inter",
-                              "fontSize": 13
+                              "fontSize": 13,
+                              "fontWeight": "normal"
                             },
                             {
                               "type": "frame",
@@ -1133,7 +1139,8 @@
                               "fill": "$text-tertiary",
                               "content": "3 materials",
                               "fontFamily": "Inter",
-                              "fontSize": 13
+                              "fontSize": 13,
+                              "fontWeight": "normal"
                             },
                             {
                               "type": "frame",
@@ -1747,6 +1754,38 @@
     "text-tertiary": {
       "type": "color",
       "value": "#94A3B8"
+    },
+    "ai-badge-bg": {
+      "type": "color",
+      "value": "#EDE9FE"
+    },
+    "ai-badge-text": {
+      "type": "color",
+      "value": "#7C3AED"
+    },
+    "status-error-bg": {
+      "type": "color",
+      "value": "#FEF2F2"
+    },
+    "status-error-light": {
+      "type": "color",
+      "value": "#FEE2E2"
+    },
+    "status-success-bg": {
+      "type": "color",
+      "value": "#ECFDF5"
+    },
+    "status-success-light": {
+      "type": "color",
+      "value": "#DCFCE7"
+    },
+    "status-warning-bg": {
+      "type": "color",
+      "value": "#FEF3C7"
+    },
+    "status-warning-text": {
+      "type": "color",
+      "value": "#B45309"
     }
   }
 }

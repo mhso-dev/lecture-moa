@@ -328,6 +328,28 @@
               "children": [
                 {
                   "type": "frame",
+                  "id": "tab-col-icon-settings",
+                  "name": "Icon Button - Settings",
+                  "layout": "horizontal",
+                  "width": 40,
+                  "height": 40,
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "cornerRadius": 8,
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "tab-col-icon-settings-ic",
+                      "iconFontFamily": "lucide",
+                      "iconFontName": "settings",
+                      "width": 20,
+                      "height": 20,
+                      "fill": "#64748B"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
                   "id": "tab-col-sep-bottom",
                   "name": "Separator",
                   "width": 32,
@@ -1195,6 +1217,38 @@
                       "fill": "#64748B"
                     }
                   ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "tab-exp-nav-settings",
+              "name": "Nav Item - Settings",
+              "layout": "horizontal",
+              "width": "fill_container",
+              "height": 36,
+              "padding": [0, 16],
+              "alignItems": "center",
+              "gap": 10,
+              "cornerRadius": 6,
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "tab-exp-icon-settings-nav",
+                  "iconFontFamily": "lucide",
+                  "iconFontName": "settings",
+                  "width": 18,
+                  "height": 18,
+                  "fill": "#64748B"
+                },
+                {
+                  "type": "text",
+                  "id": "tab-exp-text-settings-nav",
+                  "content": "Settings",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                  "fill": "#64748B"
                 }
               ]
             },

@@ -1,964 +1,876 @@
 {
-  "version": "0.1",
-  "variables": {
-    "font-sans": { "type": "string", "value": "Inter, Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif" },
-    "font-mono": { "type": "string", "value": "Fira Code, JetBrains Mono, Menlo, Consolas, monospace" },
-    "font-display": { "type": "string", "value": "Inter, Pretendard, sans-serif" },
-
-    "text-display-xl-size": { "type": "number", "value": 48 },
-    "text-display-xl-line": { "type": "number", "value": 56 },
-    "text-display-xl-tracking": { "type": "number", "value": -1.2 },
-
-    "text-display-size": { "type": "number", "value": 36 },
-    "text-display-line": { "type": "number", "value": 44 },
-    "text-display-tracking": { "type": "number", "value": -0.9 },
-
-    "text-h1-size": { "type": "number", "value": 30 },
-    "text-h1-line": { "type": "number", "value": 38 },
-    "text-h1-tracking": { "type": "number", "value": -0.75 },
-
-    "text-h2-size": { "type": "number", "value": 24 },
-    "text-h2-line": { "type": "number", "value": 32 },
-    "text-h2-tracking": { "type": "number", "value": -0.6 },
-
-    "text-h3-size": { "type": "number", "value": 20 },
-    "text-h3-line": { "type": "number", "value": 28 },
-    "text-h3-tracking": { "type": "number", "value": -0.5 },
-
-    "text-h4-size": { "type": "number", "value": 18 },
-    "text-h4-line": { "type": "number", "value": 26 },
-    "text-h4-tracking": { "type": "number", "value": -0.3 },
-
-    "text-body-lg-size": { "type": "number", "value": 18 },
-    "text-body-lg-line": { "type": "number", "value": 28 },
-
-    "text-body-size": { "type": "number", "value": 16 },
-    "text-body-line": { "type": "number", "value": 24 },
-
-    "text-body-sm-size": { "type": "number", "value": 14 },
-    "text-body-sm-line": { "type": "number", "value": 20 },
-
-    "text-caption-size": { "type": "number", "value": 12 },
-    "text-caption-line": { "type": "number", "value": 16 },
-
-    "text-overline-size": { "type": "number", "value": 11 },
-    "text-overline-line": { "type": "number", "value": 16 },
-    "text-overline-tracking": { "type": "number", "value": 0.8 },
-
-    "text-code-size": { "type": "number", "value": 14 },
-    "text-code-line": { "type": "number", "value": 22 },
-
-    "font-weight-regular": { "type": "number", "value": 400 },
-    "font-weight-medium": { "type": "number", "value": 500 },
-    "font-weight-semibold": { "type": "number", "value": 600 },
-    "font-weight-bold": { "type": "number", "value": 700 },
-    "font-weight-extrabold": { "type": "number", "value": 800 }
-  },
-  "themes": {
-    "mode": ["light", "dark"]
-  },
+  "version": "2.8",
   "children": [
     {
-      "id": "typography-canvas",
       "type": "frame",
+      "id": "qsEDF",
+      "x": 0,
+      "y": 0,
       "name": "Typography Scale",
       "width": 1200,
-      "height": 2400,
       "fill": "#FFFFFF",
       "layout": "vertical",
+      "gap": 32,
       "padding": 48,
-      "gap": 40,
       "children": [
         {
-          "id": "typo-header",
-          "type": "frame",
-          "name": "Header",
-          "width": "fill_container",
-          "height": "fit_content(80)",
-          "layout": "vertical",
-          "gap": 8,
-          "children": [
-            {
-              "id": "typo-title",
-              "type": "text",
-              "textGrowth": "auto-width",
-              "content": "Typography Scale",
-              "fontSize": 32,
-              "fontWeight": "700",
-              "fontFamily": "Inter",
-              "fill": "#0F172A",
-              "letterSpacing": -0.8
-            },
-            {
-              "id": "typo-subtitle",
-              "type": "text",
-              "textGrowth": "auto-width",
-              "content": "Inter (English) + Pretendard (Korean) + Fira Code (Code)",
-              "fontSize": 16,
-              "fontWeight": "400",
-              "fontFamily": "Inter",
-              "fill": "#64748B"
-            }
-          ]
+          "type": "text",
+          "id": "KF9bU",
+          "name": "title",
+          "fill": "#0F172A",
+          "content": "Typography Scale",
+          "fontFamily": "Inter",
+          "fontSize": 36,
+          "fontWeight": "700"
         },
         {
-          "id": "typo-divider-top",
-          "type": "rectangle",
-          "name": "Divider",
+          "type": "text",
+          "id": "b0vwj",
+          "name": "subtitle",
+          "fill": "#64748B",
+          "content": "Inter + Pretendard / Fira Code",
+          "fontFamily": "Inter",
+          "fontSize": 16,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "HOtTD",
+          "name": "divider",
           "width": "fill_container",
           "height": 1,
           "fill": "#E2E8F0"
         },
-
         {
-          "id": "font-families-section",
           "type": "frame",
-          "name": "Font Families",
+          "id": "SCpFb",
+          "name": "dxl",
           "width": "fill_container",
-          "height": "fit_content(200)",
-          "layout": "vertical",
-          "gap": 20,
+          "gap": 24,
           "children": [
             {
-              "id": "font-families-label",
               "type": "text",
-              "textGrowth": "auto-width",
-              "content": "FONT FAMILIES",
-              "fontSize": 11,
-              "fontWeight": "600",
-              "fontFamily": "Inter",
+              "id": "15Nhl",
+              "name": "dxlLabel",
               "fill": "#94A3B8",
-              "letterSpacing": 0.8
+              "content": "Display XL",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
             },
             {
-              "id": "font-family-row",
-              "type": "frame",
-              "name": "Font Family Cards",
-              "width": "fill_container",
-              "height": "fit_content(120)",
-              "layout": "horizontal",
-              "gap": 16,
-              "children": [
-                {
-                  "id": "font-sans-card",
-                  "type": "frame",
-                  "name": "Sans Card",
-                  "width": "fill_container",
-                  "height": "fit_content(120)",
-                  "fill": "#F8FAFC",
-                  "cornerRadius": [8, 8, 8, 8],
-                  "padding": 20,
-                  "layout": "vertical",
-                  "gap": 8,
-                  "stroke": "#E2E8F0",
-                  "strokeThickness": 1,
-                  "children": [
-                    {
-                      "id": "sans-label",
-                      "type": "text",
-                      "textGrowth": "auto-width",
-                      "content": "Sans  /  Primary",
-                      "fontSize": 11,
-                      "fontWeight": "600",
-                      "fontFamily": "Inter",
-                      "fill": "#3B82F6",
-                      "letterSpacing": 0.5
-                    },
-                    {
-                      "id": "sans-sample-en",
-                      "type": "text",
-                      "textGrowth": "auto-width",
-                      "content": "Inter - The quick brown fox jumps",
-                      "fontSize": 20,
-                      "fontWeight": "400",
-                      "fontFamily": "Inter",
-                      "fill": "#0F172A"
-                    },
-                    {
-                      "id": "sans-sample-kr",
-                      "type": "text",
-                      "textGrowth": "auto-width",
-                      "content": "Pretendard - 빠른 갈색 여우가 뛰어넘다",
-                      "fontSize": 20,
-                      "fontWeight": "400",
-                      "fontFamily": "Pretendard",
-                      "fill": "#0F172A"
-                    },
-                    {
-                      "id": "sans-meta",
-                      "type": "text",
-                      "textGrowth": "auto-width",
-                      "content": "Weights: 400 Regular  |  500 Medium  |  600 Semibold  |  700 Bold  |  800 Extrabold",
-                      "fontSize": 12,
-                      "fontWeight": "400",
-                      "fontFamily": "Inter",
-                      "fill": "#94A3B8"
-                    }
-                  ]
-                },
-                {
-                  "id": "font-mono-card",
-                  "type": "frame",
-                  "name": "Mono Card",
-                  "width": "fill_container",
-                  "height": "fit_content(120)",
-                  "fill": "#F8FAFC",
-                  "cornerRadius": [8, 8, 8, 8],
-                  "padding": 20,
-                  "layout": "vertical",
-                  "gap": 8,
-                  "stroke": "#E2E8F0",
-                  "strokeThickness": 1,
-                  "children": [
-                    {
-                      "id": "mono-label",
-                      "type": "text",
-                      "textGrowth": "auto-width",
-                      "content": "Mono  /  Code",
-                      "fontSize": 11,
-                      "fontWeight": "600",
-                      "fontFamily": "Inter",
-                      "fill": "#10B981",
-                      "letterSpacing": 0.5
-                    },
-                    {
-                      "id": "mono-sample",
-                      "type": "text",
-                      "textGrowth": "auto-width",
-                      "content": "Fira Code - const fn = () => {}",
-                      "fontSize": 20,
-                      "fontWeight": "400",
-                      "fontFamily": "Fira Code",
-                      "fill": "#0F172A"
-                    },
-                    {
-                      "id": "mono-ligatures",
-                      "type": "text",
-                      "textGrowth": "auto-width",
-                      "content": "Ligatures: =>  !==  >=  <=  ->  </>",
-                      "fontSize": 16,
-                      "fontWeight": "400",
-                      "fontFamily": "Fira Code",
-                      "fill": "#475569"
-                    },
-                    {
-                      "id": "mono-meta",
-                      "type": "text",
-                      "textGrowth": "auto-width",
-                      "content": "Weights: 400 Regular  |  500 Medium  |  700 Bold",
-                      "fontSize": 12,
-                      "fontWeight": "400",
-                      "fontFamily": "Inter",
-                      "fill": "#94A3B8"
-                    }
-                  ]
-                }
-              ]
+              "type": "text",
+              "id": "uHZFE",
+              "name": "dxlSample",
+              "fill": "#0F172A",
+              "content": "The quick brown fox",
+              "lineHeight": 56,
+              "fontFamily": "Inter",
+              "fontSize": 48,
+              "fontWeight": "700",
+              "letterSpacing": -1.2
+            },
+            {
+              "type": "text",
+              "id": "6K77d",
+              "name": "dxlMeta",
+              "fill": "#94A3B8",
+              "content": "48px / 56px / -1.2",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "normal"
             }
           ]
         },
-
         {
-          "id": "type-scale-section",
           "type": "frame",
-          "name": "Type Scale",
+          "id": "nywt6",
+          "name": "d",
           "width": "fill_container",
-          "height": "fit_content(1600)",
-          "layout": "vertical",
-          "gap": 16,
+          "gap": 24,
           "children": [
             {
-              "id": "type-scale-label",
               "type": "text",
-              "textGrowth": "auto-width",
-              "content": "TYPE SCALE",
+              "id": "blpRW",
+              "name": "dLabel",
+              "fill": "#94A3B8",
+              "content": "Display",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "T57BI",
+              "name": "dSample",
+              "fill": "#0F172A",
+              "content": "The quick brown fox",
+              "lineHeight": 44,
+              "fontFamily": "Inter",
+              "fontSize": 36,
+              "fontWeight": "700",
+              "letterSpacing": -0.9
+            },
+            {
+              "type": "text",
+              "id": "O4tsq",
+              "name": "dMeta",
+              "fill": "#94A3B8",
+              "content": "36px / 44px / -0.9",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "LJzav",
+          "name": "h1",
+          "width": "fill_container",
+          "gap": 24,
+          "children": [
+            {
+              "type": "text",
+              "id": "HTrNx",
+              "name": "h1Label",
+              "fill": "#94A3B8",
+              "content": "H1",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "twHTs",
+              "name": "h1Sample",
+              "fill": "#0F172A",
+              "content": "The quick brown fox jumps",
+              "lineHeight": 38,
+              "fontFamily": "Inter",
+              "fontSize": 30,
+              "fontWeight": "700",
+              "letterSpacing": -0.75
+            },
+            {
+              "type": "text",
+              "id": "RL9Aw",
+              "name": "h1Meta",
+              "fill": "#94A3B8",
+              "content": "30px / 38px / -0.75",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "OrX1Y",
+          "name": "h2",
+          "width": "fill_container",
+          "gap": 24,
+          "children": [
+            {
+              "type": "text",
+              "id": "mL1qr",
+              "name": "h2Label",
+              "fill": "#94A3B8",
+              "content": "H2",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "EB9Me",
+              "name": "h2Sample",
+              "fill": "#0F172A",
+              "content": "The quick brown fox jumps over",
+              "lineHeight": 32,
+              "fontFamily": "Inter",
+              "fontSize": 24,
+              "fontWeight": "600",
+              "letterSpacing": -0.6
+            },
+            {
+              "type": "text",
+              "id": "M6HSH",
+              "name": "h2Meta",
+              "fill": "#94A3B8",
+              "content": "24px / 32px / -0.6",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "PdF1C",
+          "name": "h3",
+          "width": "fill_container",
+          "gap": 24,
+          "children": [
+            {
+              "type": "text",
+              "id": "ItsoQ",
+              "name": "h3Label",
+              "fill": "#94A3B8",
+              "content": "H3",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "oJQfv",
+              "name": "h3Sample",
+              "fill": "#0F172A",
+              "content": "The quick brown fox jumps over the lazy dog",
+              "lineHeight": 28,
+              "fontFamily": "Inter",
+              "fontSize": 20,
+              "fontWeight": "600",
+              "letterSpacing": -0.5
+            },
+            {
+              "type": "text",
+              "id": "ZHwK2",
+              "name": "h3Meta",
+              "fill": "#94A3B8",
+              "content": "20px / 28px / -0.5",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "JIOZQ",
+          "name": "h4",
+          "width": "fill_container",
+          "gap": 24,
+          "children": [
+            {
+              "type": "text",
+              "id": "huMKk",
+              "name": "h4Label",
+              "fill": "#94A3B8",
+              "content": "H4",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "Mi0cO",
+              "name": "h4Sample",
+              "fill": "#0F172A",
+              "content": "The quick brown fox jumps over the lazy dog",
+              "lineHeight": 26,
+              "fontFamily": "Inter",
+              "fontSize": 18,
+              "fontWeight": "600",
+              "letterSpacing": -0.3
+            },
+            {
+              "type": "text",
+              "id": "xPVQE",
+              "name": "h4Meta",
+              "fill": "#94A3B8",
+              "content": "18px / 26px / -0.3",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "h1yFf",
+          "name": "blg",
+          "width": "fill_container",
+          "gap": 24,
+          "children": [
+            {
+              "type": "text",
+              "id": "zMrIk",
+              "name": "blgLabel",
+              "fill": "#94A3B8",
+              "content": "Body Large",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "PK7gt",
+              "name": "blgSample",
+              "fill": "#0F172A",
+              "content": "The quick brown fox jumps over the lazy dog and runs through the meadow",
+              "lineHeight": 28,
+              "fontFamily": "Inter",
+              "fontSize": 18
+            },
+            {
+              "type": "text",
+              "id": "wHU9u",
+              "name": "blgMeta",
+              "fill": "#94A3B8",
+              "content": "18px / 28px",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "241bs",
+          "name": "body",
+          "width": "fill_container",
+          "gap": 24,
+          "children": [
+            {
+              "type": "text",
+              "id": "zK7zZ",
+              "name": "bodyLabel",
+              "fill": "#94A3B8",
+              "content": "Body",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "rZaBj",
+              "name": "bodySample",
+              "fill": "#0F172A",
+              "content": "The quick brown fox jumps over the lazy dog and runs through the meadow",
+              "lineHeight": 24,
+              "fontFamily": "Inter",
+              "fontSize": 16
+            },
+            {
+              "type": "text",
+              "id": "MonAJ",
+              "name": "bodyMeta",
+              "fill": "#94A3B8",
+              "content": "16px / 24px",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "mWnEm",
+          "name": "bsm",
+          "width": "fill_container",
+          "gap": 24,
+          "children": [
+            {
+              "type": "text",
+              "id": "L7Gti",
+              "name": "bsmLabel",
+              "fill": "#94A3B8",
+              "content": "Body Small",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "vMvVO",
+              "name": "bsmSample",
+              "fill": "#0F172A",
+              "content": "The quick brown fox jumps over the lazy dog and runs through the meadow",
+              "lineHeight": 20,
+              "fontFamily": "Inter",
+              "fontSize": 14
+            },
+            {
+              "type": "text",
+              "id": "AMqhY",
+              "name": "bsmMeta",
+              "fill": "#94A3B8",
+              "content": "14px / 20px",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "VIRTP",
+          "name": "cap",
+          "width": "fill_container",
+          "gap": 24,
+          "children": [
+            {
+              "type": "text",
+              "id": "vb6Rr",
+              "name": "capLabel",
+              "fill": "#94A3B8",
+              "content": "Caption",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "AiusN",
+              "name": "capSample",
+              "fill": "#64748B",
+              "content": "The quick brown fox jumps over the lazy dog and runs through the meadow",
+              "lineHeight": 16,
+              "fontFamily": "Inter",
+              "fontSize": 12
+            },
+            {
+              "type": "text",
+              "id": "tjGME",
+              "name": "capMeta",
+              "fill": "#94A3B8",
+              "content": "12px / 16px",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "1TcXV",
+          "name": "over",
+          "width": "fill_container",
+          "gap": 24,
+          "children": [
+            {
+              "type": "text",
+              "id": "1QJs7",
+              "name": "overLabel",
+              "fill": "#94A3B8",
+              "content": "Overline",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "U1wCQ",
+              "name": "overSample",
+              "fill": "#64748B",
+              "content": "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG",
+              "lineHeight": 16,
+              "fontFamily": "Inter",
               "fontSize": 11,
               "fontWeight": "600",
-              "fontFamily": "Inter",
-              "fill": "#94A3B8",
               "letterSpacing": 0.8
             },
-
             {
-              "id": "scale-display-xl",
+              "type": "text",
+              "id": "EXli6",
+              "name": "overMeta",
+              "fill": "#94A3B8",
+              "content": "11px / 16px / 0.8",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "oAtEV",
+          "name": "div2",
+          "width": "fill_container",
+          "height": 1,
+          "fill": "#E2E8F0"
+        },
+        {
+          "type": "frame",
+          "id": "Ps8dw",
+          "name": "codeRow",
+          "width": "fill_container",
+          "gap": 24,
+          "children": [
+            {
+              "type": "text",
+              "id": "9Xm6h",
+              "name": "codeLabel",
+              "fill": "#94A3B8",
+              "content": "Code",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "nCzYo",
+              "name": "codeSample",
+              "fill": "#0F172A",
+              "content": "const greeting = 'Hello, World!';",
+              "lineHeight": 22,
+              "fontFamily": "Fira Code",
+              "fontSize": 14
+            },
+            {
+              "type": "text",
+              "id": "KYRoJ",
+              "name": "codeMeta",
+              "fill": "#94A3B8",
+              "content": "14px / 22px / Fira Code",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "DHc5U",
+          "name": "div3",
+          "width": "fill_container",
+          "height": 1,
+          "fill": "#E2E8F0"
+        },
+        {
+          "type": "text",
+          "id": "UaXA5",
+          "name": "wTitle",
+          "fill": "#0F172A",
+          "content": "Font Weights",
+          "fontFamily": "Inter",
+          "fontSize": 20,
+          "fontWeight": "600"
+        },
+        {
+          "type": "frame",
+          "id": "8ouQN",
+          "name": "wRow",
+          "width": "fill_container",
+          "gap": 24,
+          "children": [
+            {
               "type": "frame",
-              "name": "Display XL",
+              "id": "qapTj",
+              "name": "w400",
               "width": "fill_container",
-              "height": "fit_content(100)",
               "layout": "vertical",
               "gap": 4,
-              "padding": [16, 0, 16, 0],
+              "alignItems": "center",
               "children": [
                 {
-                  "id": "display-xl-meta",
                   "type": "text",
-                  "textGrowth": "auto-width",
-                  "content": "Display XL  /  48px  /  56px line  /  -1.2 tracking  /  Extrabold",
-                  "fontSize": 11,
-                  "fontWeight": "500",
-                  "fontFamily": "Inter",
-                  "fill": "#94A3B8"
-                },
-                {
-                  "id": "display-xl-sample",
-                  "type": "text",
-                  "textGrowth": "auto-width",
-                  "content": "Build Better Together",
-                  "fontSize": 48,
-                  "fontWeight": "800",
-                  "fontFamily": "Inter",
+                  "id": "slrxP",
+                  "name": "w400t",
                   "fill": "#0F172A",
-                  "letterSpacing": -1.2
+                  "content": "Regular",
+                  "fontFamily": "Inter",
+                  "fontSize": 18
                 },
                 {
-                  "id": "display-xl-sample-kr",
                   "type": "text",
-                  "textGrowth": "auto-width",
-                  "content": "함께 더 나은 것을 만들다",
-                  "fontSize": 48,
-                  "fontWeight": "800",
-                  "fontFamily": "Pretendard",
-                  "fill": "#334155",
-                  "letterSpacing": -1.2
-                }
-              ]
-            },
-
-            {
-              "id": "scale-divider-1",
-              "type": "rectangle",
-              "width": "fill_container",
-              "height": 1,
-              "fill": "#F1F5F9"
-            },
-
-            {
-              "id": "scale-display",
-              "type": "frame",
-              "name": "Display",
-              "width": "fill_container",
-              "height": "fit_content(80)",
-              "layout": "vertical",
-              "gap": 4,
-              "padding": [16, 0, 16, 0],
-              "children": [
-                {
-                  "id": "display-meta",
-                  "type": "text",
-                  "textGrowth": "auto-width",
-                  "content": "Display  /  36px  /  44px line  /  -0.9 tracking  /  Bold",
-                  "fontSize": 11,
-                  "fontWeight": "500",
+                  "id": "nEsln",
+                  "name": "w400n",
+                  "fill": "#94A3B8",
+                  "content": "400",
                   "fontFamily": "Inter",
-                  "fill": "#94A3B8"
-                },
-                {
-                  "id": "display-sample",
-                  "type": "text",
-                  "textGrowth": "auto-width",
-                  "content": "Learning Platform for Teams",
-                  "fontSize": 36,
-                  "fontWeight": "700",
-                  "fontFamily": "Inter",
-                  "fill": "#0F172A",
-                  "letterSpacing": -0.9
-                }
-              ]
-            },
-
-            {
-              "id": "scale-divider-2",
-              "type": "rectangle",
-              "width": "fill_container",
-              "height": 1,
-              "fill": "#F1F5F9"
-            },
-
-            {
-              "id": "scale-h1",
-              "type": "frame",
-              "name": "Heading 1",
-              "width": "fill_container",
-              "height": "fit_content(70)",
-              "layout": "vertical",
-              "gap": 4,
-              "padding": [12, 0, 12, 0],
-              "children": [
-                {
-                  "id": "h1-meta",
-                  "type": "text",
-                  "textGrowth": "auto-width",
-                  "content": "H1  /  30px  /  38px line  /  -0.75 tracking  /  Bold",
-                  "fontSize": 11,
-                  "fontWeight": "500",
-                  "fontFamily": "Inter",
-                  "fill": "#94A3B8"
-                },
-                {
-                  "id": "h1-sample",
-                  "type": "text",
-                  "textGrowth": "auto-width",
-                  "content": "Course Overview Dashboard",
-                  "fontSize": 30,
-                  "fontWeight": "700",
-                  "fontFamily": "Inter",
-                  "fill": "#0F172A",
-                  "letterSpacing": -0.75
-                }
-              ]
-            },
-
-            {
-              "id": "scale-divider-3",
-              "type": "rectangle",
-              "width": "fill_container",
-              "height": 1,
-              "fill": "#F1F5F9"
-            },
-
-            {
-              "id": "scale-h2",
-              "type": "frame",
-              "name": "Heading 2",
-              "width": "fill_container",
-              "height": "fit_content(60)",
-              "layout": "vertical",
-              "gap": 4,
-              "padding": [12, 0, 12, 0],
-              "children": [
-                {
-                  "id": "h2-meta",
-                  "type": "text",
-                  "textGrowth": "auto-width",
-                  "content": "H2  /  24px  /  32px line  /  -0.6 tracking  /  Semibold",
-                  "fontSize": 11,
-                  "fontWeight": "500",
-                  "fontFamily": "Inter",
-                  "fill": "#94A3B8"
-                },
-                {
-                  "id": "h2-sample",
-                  "type": "text",
-                  "textGrowth": "auto-width",
-                  "content": "Module Progress & Analytics",
-                  "fontSize": 24,
-                  "fontWeight": "600",
-                  "fontFamily": "Inter",
-                  "fill": "#0F172A",
-                  "letterSpacing": -0.6
-                }
-              ]
-            },
-
-            {
-              "id": "scale-divider-4",
-              "type": "rectangle",
-              "width": "fill_container",
-              "height": 1,
-              "fill": "#F1F5F9"
-            },
-
-            {
-              "id": "scale-h3",
-              "type": "frame",
-              "name": "Heading 3",
-              "width": "fill_container",
-              "height": "fit_content(56)",
-              "layout": "vertical",
-              "gap": 4,
-              "padding": [12, 0, 12, 0],
-              "children": [
-                {
-                  "id": "h3-meta",
-                  "type": "text",
-                  "textGrowth": "auto-width",
-                  "content": "H3  /  20px  /  28px line  /  -0.5 tracking  /  Semibold",
-                  "fontSize": 11,
-                  "fontWeight": "500",
-                  "fontFamily": "Inter",
-                  "fill": "#94A3B8"
-                },
-                {
-                  "id": "h3-sample",
-                  "type": "text",
-                  "textGrowth": "auto-width",
-                  "content": "Assignment Submission Details",
-                  "fontSize": 20,
-                  "fontWeight": "600",
-                  "fontFamily": "Inter",
-                  "fill": "#0F172A",
-                  "letterSpacing": -0.5
-                }
-              ]
-            },
-
-            {
-              "id": "scale-divider-5",
-              "type": "rectangle",
-              "width": "fill_container",
-              "height": 1,
-              "fill": "#F1F5F9"
-            },
-
-            {
-              "id": "scale-h4",
-              "type": "frame",
-              "name": "Heading 4",
-              "width": "fill_container",
-              "height": "fit_content(50)",
-              "layout": "vertical",
-              "gap": 4,
-              "padding": [12, 0, 12, 0],
-              "children": [
-                {
-                  "id": "h4-meta",
-                  "type": "text",
-                  "textGrowth": "auto-width",
-                  "content": "H4  /  18px  /  26px line  /  -0.3 tracking  /  Semibold",
-                  "fontSize": 11,
-                  "fontWeight": "500",
-                  "fontFamily": "Inter",
-                  "fill": "#94A3B8"
-                },
-                {
-                  "id": "h4-sample",
-                  "type": "text",
-                  "textGrowth": "auto-width",
-                  "content": "Team Member Activity",
-                  "fontSize": 18,
-                  "fontWeight": "600",
-                  "fontFamily": "Inter",
-                  "fill": "#0F172A",
-                  "letterSpacing": -0.3
-                }
-              ]
-            },
-
-            {
-              "id": "scale-divider-6",
-              "type": "rectangle",
-              "width": "fill_container",
-              "height": 1,
-              "fill": "#F1F5F9"
-            },
-
-            {
-              "id": "scale-body-lg",
-              "type": "frame",
-              "name": "Body Large",
-              "width": "fill_container",
-              "height": "fit_content(50)",
-              "layout": "vertical",
-              "gap": 4,
-              "padding": [12, 0, 12, 0],
-              "children": [
-                {
-                  "id": "body-lg-meta",
-                  "type": "text",
-                  "textGrowth": "auto-width",
-                  "content": "Body Large  /  18px  /  28px line  /  Regular",
-                  "fontSize": 11,
-                  "fontWeight": "500",
-                  "fontFamily": "Inter",
-                  "fill": "#94A3B8"
-                },
-                {
-                  "id": "body-lg-sample",
-                  "type": "text",
-                  "textGrowth": "auto-width",
-                  "content": "A comprehensive platform designed for collaborative learning and team development.",
-                  "fontSize": 18,
-                  "fontWeight": "400",
-                  "fontFamily": "Inter",
-                  "fill": "#334155"
-                }
-              ]
-            },
-
-            {
-              "id": "scale-divider-7",
-              "type": "rectangle",
-              "width": "fill_container",
-              "height": 1,
-              "fill": "#F1F5F9"
-            },
-
-            {
-              "id": "scale-body",
-              "type": "frame",
-              "name": "Body",
-              "width": "fill_container",
-              "height": "fit_content(50)",
-              "layout": "vertical",
-              "gap": 4,
-              "padding": [12, 0, 12, 0],
-              "children": [
-                {
-                  "id": "body-meta",
-                  "type": "text",
-                  "textGrowth": "auto-width",
-                  "content": "Body  /  16px  /  24px line  /  Regular  (Default)",
-                  "fontSize": 11,
-                  "fontWeight": "500",
-                  "fontFamily": "Inter",
-                  "fill": "#94A3B8"
-                },
-                {
-                  "id": "body-sample",
-                  "type": "text",
-                  "textGrowth": "auto-width",
-                  "content": "Create courses, track progress, and collaborate with your team members in real time.",
-                  "fontSize": 16,
-                  "fontWeight": "400",
-                  "fontFamily": "Inter",
-                  "fill": "#334155"
-                },
-                {
-                  "id": "body-sample-kr",
-                  "type": "text",
-                  "textGrowth": "auto-width",
-                  "content": "강좌를 만들고, 진행 상황을 추적하고, 팀원들과 실시간으로 협업하세요.",
-                  "fontSize": 16,
-                  "fontWeight": "400",
-                  "fontFamily": "Pretendard",
-                  "fill": "#475569"
-                }
-              ]
-            },
-
-            {
-              "id": "scale-divider-8",
-              "type": "rectangle",
-              "width": "fill_container",
-              "height": 1,
-              "fill": "#F1F5F9"
-            },
-
-            {
-              "id": "scale-body-sm",
-              "type": "frame",
-              "name": "Body Small",
-              "width": "fill_container",
-              "height": "fit_content(44)",
-              "layout": "vertical",
-              "gap": 4,
-              "padding": [12, 0, 12, 0],
-              "children": [
-                {
-                  "id": "body-sm-meta",
-                  "type": "text",
-                  "textGrowth": "auto-width",
-                  "content": "Body Small  /  14px  /  20px line  /  Regular",
-                  "fontSize": 11,
-                  "fontWeight": "500",
-                  "fontFamily": "Inter",
-                  "fill": "#94A3B8"
-                },
-                {
-                  "id": "body-sm-sample",
-                  "type": "text",
-                  "textGrowth": "auto-width",
-                  "content": "Last updated 3 hours ago by team admin. View change history for more details.",
-                  "fontSize": 14,
-                  "fontWeight": "400",
-                  "fontFamily": "Inter",
-                  "fill": "#475569"
-                }
-              ]
-            },
-
-            {
-              "id": "scale-divider-9",
-              "type": "rectangle",
-              "width": "fill_container",
-              "height": 1,
-              "fill": "#F1F5F9"
-            },
-
-            {
-              "id": "scale-caption",
-              "type": "frame",
-              "name": "Caption",
-              "width": "fill_container",
-              "height": "fit_content(40)",
-              "layout": "vertical",
-              "gap": 4,
-              "padding": [12, 0, 12, 0],
-              "children": [
-                {
-                  "id": "caption-meta",
-                  "type": "text",
-                  "textGrowth": "auto-width",
-                  "content": "Caption  /  12px  /  16px line  /  Regular & Medium",
-                  "fontSize": 11,
-                  "fontWeight": "500",
-                  "fontFamily": "Inter",
-                  "fill": "#94A3B8"
-                },
-                {
-                  "id": "caption-sample",
-                  "type": "text",
-                  "textGrowth": "auto-width",
-                  "content": "12 students enrolled  |  4 assignments pending  |  Due: Feb 28, 2026",
                   "fontSize": 12,
-                  "fontWeight": "400",
-                  "fontFamily": "Inter",
-                  "fill": "#64748B"
+                  "fontWeight": "normal"
                 }
               ]
             },
-
             {
-              "id": "scale-divider-10",
-              "type": "rectangle",
-              "width": "fill_container",
-              "height": 1,
-              "fill": "#F1F5F9"
-            },
-
-            {
-              "id": "scale-overline",
               "type": "frame",
-              "name": "Overline",
+              "id": "MsqYV",
+              "name": "w500",
               "width": "fill_container",
-              "height": "fit_content(40)",
               "layout": "vertical",
               "gap": 4,
-              "padding": [12, 0, 12, 0],
+              "alignItems": "center",
               "children": [
                 {
-                  "id": "overline-meta",
                   "type": "text",
-                  "textGrowth": "auto-width",
-                  "content": "Overline  /  11px  /  16px line  /  +0.8 tracking  /  Semibold  /  Uppercase",
-                  "fontSize": 11,
-                  "fontWeight": "500",
+                  "id": "Quubi",
+                  "name": "w500t",
+                  "fill": "#0F172A",
+                  "content": "Medium",
                   "fontFamily": "Inter",
-                  "fill": "#94A3B8"
+                  "fontSize": 18,
+                  "fontWeight": "500"
                 },
                 {
-                  "id": "overline-sample",
                   "type": "text",
-                  "textGrowth": "auto-width",
-                  "content": "COURSE DETAILS  |  TEAM OVERVIEW  |  RECENT ACTIVITY",
-                  "fontSize": 11,
-                  "fontWeight": "600",
+                  "id": "yzwNS",
+                  "name": "w500n",
+                  "fill": "#94A3B8",
+                  "content": "500",
                   "fontFamily": "Inter",
-                  "fill": "#64748B",
-                  "letterSpacing": 0.8
+                  "fontSize": 12,
+                  "fontWeight": "normal"
                 }
               ]
             },
-
             {
-              "id": "scale-divider-11",
-              "type": "rectangle",
-              "width": "fill_container",
-              "height": 1,
-              "fill": "#F1F5F9"
-            },
-
-            {
-              "id": "scale-code",
               "type": "frame",
-              "name": "Code",
+              "id": "krJdI",
+              "name": "w600",
               "width": "fill_container",
-              "height": "fit_content(100)",
               "layout": "vertical",
-              "gap": 8,
-              "padding": [12, 0, 12, 0],
+              "gap": 4,
+              "alignItems": "center",
               "children": [
                 {
-                  "id": "code-meta",
                   "type": "text",
-                  "textGrowth": "auto-width",
-                  "content": "Code  /  14px  /  22px line  /  Fira Code  /  Regular",
-                  "fontSize": 11,
-                  "fontWeight": "500",
+                  "id": "TJ3Fp",
+                  "name": "w600t",
+                  "fill": "#0F172A",
+                  "content": "Semibold",
                   "fontFamily": "Inter",
-                  "fill": "#94A3B8"
+                  "fontSize": 18,
+                  "fontWeight": "600"
                 },
                 {
-                  "id": "code-block",
-                  "type": "frame",
-                  "name": "Code Block",
-                  "width": "fill_container",
-                  "height": "fit_content(80)",
-                  "fill": "#1E293B",
-                  "cornerRadius": [8, 8, 8, 8],
-                  "padding": 16,
-                  "layout": "vertical",
-                  "gap": 2,
-                  "children": [
-                    {
-                      "id": "code-line-1",
-                      "type": "text",
-                      "textGrowth": "auto-width",
-                      "content": "const course = await getCourse(id);",
-                      "fontSize": 14,
-                      "fontWeight": "400",
-                      "fontFamily": "Fira Code",
-                      "fill": "#E2E8F0"
-                    },
-                    {
-                      "id": "code-line-2",
-                      "type": "text",
-                      "textGrowth": "auto-width",
-                      "content": "const progress = course.getProgress();",
-                      "fontSize": 14,
-                      "fontWeight": "400",
-                      "fontFamily": "Fira Code",
-                      "fill": "#E2E8F0"
-                    },
-                    {
-                      "id": "code-line-3",
-                      "type": "text",
-                      "textGrowth": "auto-width",
-                      "content": "return { ...course, progress };",
-                      "fontSize": 14,
-                      "fontWeight": "400",
-                      "fontFamily": "Fira Code",
-                      "fill": "#E2E8F0"
-                    }
-                  ]
+                  "type": "text",
+                  "id": "DC88A",
+                  "name": "w600n",
+                  "fill": "#94A3B8",
+                  "content": "600",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
                 }
               ]
-            }
-          ]
-        },
-
-        {
-          "id": "weight-section",
-          "type": "frame",
-          "name": "Weight Scale",
-          "width": "fill_container",
-          "height": "fit_content(200)",
-          "layout": "vertical",
-          "gap": 16,
-          "children": [
-            {
-              "id": "weight-label",
-              "type": "text",
-              "textGrowth": "auto-width",
-              "content": "WEIGHT SCALE",
-              "fontSize": 11,
-              "fontWeight": "600",
-              "fontFamily": "Inter",
-              "fill": "#94A3B8",
-              "letterSpacing": 0.8
             },
             {
-              "id": "weight-row",
               "type": "frame",
-              "name": "Weight Samples",
+              "id": "KJSVF",
+              "name": "w700",
               "width": "fill_container",
-              "height": "fit_content(160)",
-              "layout": "horizontal",
-              "gap": 24,
+              "layout": "vertical",
+              "gap": 4,
+              "alignItems": "center",
               "children": [
                 {
-                  "id": "weight-400",
-                  "type": "frame",
-                  "layout": "vertical",
-                  "gap": 4,
-                  "width": "fill_container",
-                  "height": "fit_content(60)",
-                  "children": [
-                    { "id": "w400-sample", "type": "text", "textGrowth": "auto-width", "content": "Regular", "fontSize": 24, "fontWeight": "400", "fontFamily": "Inter", "fill": "#0F172A" },
-                    { "id": "w400-label", "type": "text", "textGrowth": "auto-width", "content": "400  /  Body text, descriptions", "fontSize": 12, "fontWeight": "400", "fontFamily": "Inter", "fill": "#94A3B8" }
-                  ]
+                  "type": "text",
+                  "id": "4HXnA",
+                  "name": "w700t",
+                  "fill": "#0F172A",
+                  "content": "Bold",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "700"
                 },
                 {
-                  "id": "weight-500",
-                  "type": "frame",
-                  "layout": "vertical",
-                  "gap": 4,
-                  "width": "fill_container",
-                  "height": "fit_content(60)",
-                  "children": [
-                    { "id": "w500-sample", "type": "text", "textGrowth": "auto-width", "content": "Medium", "fontSize": 24, "fontWeight": "500", "fontFamily": "Inter", "fill": "#0F172A" },
-                    { "id": "w500-label", "type": "text", "textGrowth": "auto-width", "content": "500  /  Labels, UI elements", "fontSize": 12, "fontWeight": "400", "fontFamily": "Inter", "fill": "#94A3B8" }
-                  ]
-                },
-                {
-                  "id": "weight-600",
-                  "type": "frame",
-                  "layout": "vertical",
-                  "gap": 4,
-                  "width": "fill_container",
-                  "height": "fit_content(60)",
-                  "children": [
-                    { "id": "w600-sample", "type": "text", "textGrowth": "auto-width", "content": "Semibold", "fontSize": 24, "fontWeight": "600", "fontFamily": "Inter", "fill": "#0F172A" },
-                    { "id": "w600-label", "type": "text", "textGrowth": "auto-width", "content": "600  /  Subheadings, emphasis", "fontSize": 12, "fontWeight": "400", "fontFamily": "Inter", "fill": "#94A3B8" }
-                  ]
-                },
-                {
-                  "id": "weight-700",
-                  "type": "frame",
-                  "layout": "vertical",
-                  "gap": 4,
-                  "width": "fill_container",
-                  "height": "fit_content(60)",
-                  "children": [
-                    { "id": "w700-sample", "type": "text", "textGrowth": "auto-width", "content": "Bold", "fontSize": 24, "fontWeight": "700", "fontFamily": "Inter", "fill": "#0F172A" },
-                    { "id": "w700-label", "type": "text", "textGrowth": "auto-width", "content": "700  /  Headings, titles", "fontSize": 12, "fontWeight": "400", "fontFamily": "Inter", "fill": "#94A3B8" }
-                  ]
-                },
-                {
-                  "id": "weight-800",
-                  "type": "frame",
-                  "layout": "vertical",
-                  "gap": 4,
-                  "width": "fill_container",
-                  "height": "fit_content(60)",
-                  "children": [
-                    { "id": "w800-sample", "type": "text", "textGrowth": "auto-width", "content": "Extrabold", "fontSize": 24, "fontWeight": "800", "fontFamily": "Inter", "fill": "#0F172A" },
-                    { "id": "w800-label", "type": "text", "textGrowth": "auto-width", "content": "800  /  Display, hero text", "fontSize": 12, "fontWeight": "400", "fontFamily": "Inter", "fill": "#94A3B8" }
-                  ]
+                  "type": "text",
+                  "id": "LMc4P",
+                  "name": "w700n",
+                  "fill": "#94A3B8",
+                  "content": "700",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
                 }
               ]
-            }
-          ]
-        },
-
-        {
-          "id": "typo-note",
-          "type": "frame",
-          "name": "Note",
-          "width": "fill_container",
-          "height": "fit_content(60)",
-          "fill": "#F0F9FF",
-          "cornerRadius": [8, 8, 8, 8],
-          "padding": 16,
-          "stroke": "#BAE6FD",
-          "strokeThickness": 1,
-          "layout": "vertical",
-          "gap": 4,
-          "children": [
-            {
-              "id": "note-title",
-              "type": "text",
-              "textGrowth": "auto-width",
-              "content": "Usage Notes",
-              "fontSize": 13,
-              "fontWeight": "600",
-              "fontFamily": "Inter",
-              "fill": "#0369A1"
             },
             {
-              "id": "note-body",
-              "type": "text",
-              "textGrowth": "auto-width",
-              "content": "Inter serves English content. Pretendard provides Korean text support with matching metrics. Fira Code is used exclusively for code blocks and inline code. All sizes use rem units in implementation (1rem = 16px).",
-              "fontSize": 13,
-              "fontWeight": "400",
-              "fontFamily": "Inter",
-              "fill": "#0C4A6E",
-              "width": 1060
+              "type": "frame",
+              "id": "7IiAn",
+              "name": "w800",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 4,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "7RsRw",
+                  "name": "w800t",
+                  "fill": "#0F172A",
+                  "content": "Extrabold",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "text",
+                  "id": "QU9ah",
+                  "name": "w800n",
+                  "fill": "#94A3B8",
+                  "content": "800",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
             }
           ]
         }
       ]
     }
-  ]
+  ],
+  "variables": {
+    "font-sans": {
+      "type": "string",
+      "value": "Inter, Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif"
+    },
+    "font-mono": {
+      "type": "string",
+      "value": "Fira Code, JetBrains Mono, Menlo, Consolas, monospace"
+    },
+    "font-display": {
+      "type": "string",
+      "value": "Inter, Pretendard, sans-serif"
+    },
+    "text-display-xl-size": {
+      "type": "number",
+      "value": 48
+    },
+    "text-display-xl-line": {
+      "type": "number",
+      "value": 56
+    },
+    "text-display-xl-tracking": {
+      "type": "number",
+      "value": -1.2
+    },
+    "text-display-size": {
+      "type": "number",
+      "value": 36
+    },
+    "text-display-line": {
+      "type": "number",
+      "value": 44
+    },
+    "text-display-tracking": {
+      "type": "number",
+      "value": -0.9
+    },
+    "text-h1-size": {
+      "type": "number",
+      "value": 30
+    },
+    "text-h1-line": {
+      "type": "number",
+      "value": 38
+    },
+    "text-h1-tracking": {
+      "type": "number",
+      "value": -0.75
+    },
+    "text-h2-size": {
+      "type": "number",
+      "value": 24
+    },
+    "text-h2-line": {
+      "type": "number",
+      "value": 32
+    },
+    "text-h2-tracking": {
+      "type": "number",
+      "value": -0.6
+    },
+    "text-h3-size": {
+      "type": "number",
+      "value": 20
+    },
+    "text-h3-line": {
+      "type": "number",
+      "value": 28
+    },
+    "text-h3-tracking": {
+      "type": "number",
+      "value": -0.5
+    },
+    "text-h4-size": {
+      "type": "number",
+      "value": 18
+    },
+    "text-h4-line": {
+      "type": "number",
+      "value": 26
+    },
+    "text-h4-tracking": {
+      "type": "number",
+      "value": -0.3
+    },
+    "text-body-lg-size": {
+      "type": "number",
+      "value": 18
+    },
+    "text-body-lg-line": {
+      "type": "number",
+      "value": 28
+    },
+    "text-body-size": {
+      "type": "number",
+      "value": 16
+    },
+    "text-body-line": {
+      "type": "number",
+      "value": 24
+    },
+    "text-body-sm-size": {
+      "type": "number",
+      "value": 14
+    },
+    "text-body-sm-line": {
+      "type": "number",
+      "value": 20
+    },
+    "text-caption-size": {
+      "type": "number",
+      "value": 12
+    },
+    "text-caption-line": {
+      "type": "number",
+      "value": 16
+    },
+    "text-overline-size": {
+      "type": "number",
+      "value": 11
+    },
+    "text-overline-line": {
+      "type": "number",
+      "value": 16
+    },
+    "text-overline-tracking": {
+      "type": "number",
+      "value": 0.8
+    },
+    "text-code-size": {
+      "type": "number",
+      "value": 14
+    },
+    "text-code-line": {
+      "type": "number",
+      "value": 22
+    },
+    "font-weight-regular": {
+      "type": "number",
+      "value": 400
+    },
+    "font-weight-medium": {
+      "type": "number",
+      "value": 500
+    },
+    "font-weight-semibold": {
+      "type": "number",
+      "value": 600
+    },
+    "font-weight-bold": {
+      "type": "number",
+      "value": 700
+    },
+    "font-weight-extrabold": {
+      "type": "number",
+      "value": 800
+    }
+  }
 }

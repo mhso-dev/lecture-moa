@@ -10,7 +10,7 @@
       "clip": true,
       "width": 1280,
       "height": 1100,
-      "fill": "#F8FAFC",
+      "fill": "$bg-subtle",
       "children": [
         {
           "type": "frame",
@@ -18,11 +18,11 @@
           "name": "Sidebar",
           "width": 256,
           "height": "fill_container",
-          "fill": "#FFFFFF",
+          "fill": "$bg-white",
           "stroke": {
             "align": "inside",
             "thickness": 1,
-            "fill": "#E2E8F0"
+            "fill": "$border"
           },
           "layout": "vertical",
           "children": [
@@ -47,13 +47,13 @@
                   "height": 28,
                   "iconFontName": "graduation-cap",
                   "iconFontFamily": "lucide",
-                  "fill": "#3B82F6"
+                  "fill": "$primary"
                 },
                 {
                   "type": "text",
                   "id": "EJ6VI",
                   "name": "logoText",
-                  "fill": "#0F172A",
+                  "fill": "$text-primary",
                   "content": "lecture-moa",
                   "fontFamily": "Inter",
                   "fontSize": 18,
@@ -77,7 +77,7 @@
                   "type": "text",
                   "id": "hDTBA",
                   "name": "menuLabelTxt",
-                  "fill": "#94A3B8",
+                  "fill": "\\$text-tertiary",
                   "content": "MENU",
                   "fontFamily": "Inter",
                   "fontSize": 11,
@@ -120,13 +120,13 @@
                       "height": 20,
                       "iconFontName": "layout-dashboard",
                       "iconFontFamily": "lucide",
-                      "fill": "#64748B"
+                      "fill": "$text-secondary"
                     },
                     {
                       "type": "text",
                       "id": "qrcQB",
                       "name": "n1t",
-                      "fill": "#64748B",
+                      "fill": "$text-secondary",
                       "content": "Dashboard",
                       "fontFamily": "Inter",
                       "fontSize": 14,
@@ -140,7 +140,7 @@
                   "name": "n2",
                   "width": "fill_container",
                   "height": 40,
-                  "fill": "#EFF6FF",
+                  "fill": "#000000",
                   "cornerRadius": 8,
                   "gap": 12,
                   "padding": [
@@ -157,13 +157,13 @@
                       "height": 20,
                       "iconFontName": "book-open",
                       "iconFontFamily": "lucide",
-                      "fill": "#3B82F6"
+                      "fill": "$primary"
                     },
                     {
                       "type": "text",
                       "id": "4PKbV",
                       "name": "n2t",
-                      "fill": "#3B82F6",
+                      "fill": "$primary",
                       "content": "Courses",
                       "fontFamily": "Inter",
                       "fontSize": 14,
@@ -193,13 +193,13 @@
                       "height": 20,
                       "iconFontName": "file-text",
                       "iconFontFamily": "lucide",
-                      "fill": "#64748B"
+                      "fill": "$text-secondary"
                     },
                     {
                       "type": "text",
                       "id": "xT9DQ",
                       "name": "n3t",
-                      "fill": "#64748B",
+                      "fill": "$text-secondary",
                       "content": "Materials",
                       "fontFamily": "Inter",
                       "fontSize": 14,
@@ -229,13 +229,13 @@
                       "height": 20,
                       "iconFontName": "message-circle",
                       "iconFontFamily": "lucide",
-                      "fill": "#64748B"
+                      "fill": "$text-secondary"
                     },
                     {
                       "type": "text",
                       "id": "wG1wv",
                       "name": "n4t",
-                      "fill": "#64748B",
+                      "fill": "$text-secondary",
                       "content": "Q&A",
                       "fontFamily": "Inter",
                       "fontSize": 14,
@@ -265,13 +265,13 @@
                       "height": 20,
                       "iconFontName": "help-circle",
                       "iconFontFamily": "lucide",
-                      "fill": "#64748B"
+                      "fill": "$text-secondary"
                     },
                     {
                       "type": "text",
                       "id": "lS5LO",
                       "name": "n5t",
-                      "fill": "#64748B",
+                      "fill": "$text-secondary",
                       "content": "Quizzes",
                       "fontFamily": "Inter",
                       "fontSize": 14,
@@ -301,13 +301,13 @@
                       "height": 20,
                       "iconFontName": "settings",
                       "iconFontFamily": "lucide",
-                      "fill": "#64748B"
+                      "fill": "$text-secondary"
                     },
                     {
                       "type": "text",
                       "id": "TArdp",
                       "name": "n6t",
-                      "fill": "#64748B",
+                      "fill": "$text-secondary",
                       "content": "Settings",
                       "fontFamily": "Inter",
                       "fontSize": 14,
@@ -325,7 +325,7 @@
           "name": "Main Content",
           "width": "fill_container",
           "height": "fill_container",
-          "fill": "#F8FAFC",
+          "fill": "$bg-subtle",
           "layout": "vertical",
           "children": [
             {
@@ -334,11 +334,11 @@
               "name": "Top Bar",
               "width": "fill_container",
               "height": 64,
-              "fill": "#FFFFFF",
+              "fill": "$bg-white",
               "stroke": {
                 "align": "inside",
                 "thickness": 1,
-                "fill": "#E2E8F0"
+                "fill": "$border"
               },
               "padding": [
                 0,
@@ -361,13 +361,13 @@
                       "height": 18,
                       "iconFontName": "arrow-left",
                       "iconFontFamily": "lucide",
-                      "fill": "#3B82F6"
+                      "fill": "$text-tertiary"
                     },
                     {
                       "type": "text",
                       "id": "v63mM",
                       "name": "backText",
-                      "fill": "#3B82F6",
+                      "fill": "$text-secondary",
                       "content": "Back to Courses",
                       "fontFamily": "Inter",
                       "fontSize": 14,
@@ -392,12 +392,12 @@
                   "id": "aByZG",
                   "name": "Header Section",
                   "width": "fill_container",
-                  "fill": "#FFFFFF",
+                  "fill": "\\$bg-white",
                   "cornerRadius": 12,
                   "stroke": {
                     "align": "inside",
                     "thickness": 1,
-                    "fill": "#E2E8F0"
+                    "fill": "\\$border"
                   },
                   "gap": 24,
                   "padding": 24,
@@ -408,7 +408,7 @@
                       "name": "Thumbnail",
                       "width": 400,
                       "height": 240,
-                      "fill": "#DBEAFE",
+                      "fill": "$primary-light",
                       "cornerRadius": 8,
                       "justifyContent": "center",
                       "alignItems": "center",
@@ -421,7 +421,7 @@
                           "height": 48,
                           "iconFontName": "brain",
                           "iconFontFamily": "lucide",
-                          "fill": "#3B82F6"
+                          "fill": "$primary"
                         }
                       ]
                     },
@@ -437,7 +437,7 @@
                           "type": "text",
                           "id": "UddI1",
                           "name": "courseTitle",
-                          "fill": "#0F172A",
+                          "fill": "$text-primary",
                           "textGrowth": "fixed-width",
                           "width": "fill_container",
                           "content": "Introduction to Machine Learning",
@@ -460,13 +460,13 @@
                               "height": 16,
                               "iconFontName": "user",
                               "iconFontFamily": "lucide",
-                              "fill": "#94A3B8"
+                              "fill": "$text-tertiary"
                             },
                             {
                               "type": "text",
                               "id": "Qxdir",
                               "name": "instrText",
-                              "fill": "#64748B",
+                              "fill": "$text-secondary",
                               "content": "Dr. Kim Sunghwan",
                               "fontFamily": "Inter",
                               "fontSize": 14,
@@ -478,6 +478,7 @@
                           "type": "frame",
                           "id": "Pt8Tv",
                           "name": "Stats Row",
+                          "fill": "$text-secondary",
                           "gap": 20,
                           "alignItems": "center",
                           "children": [
@@ -496,13 +497,13 @@
                                   "height": 16,
                                   "iconFontName": "users",
                                   "iconFontFamily": "lucide",
-                                  "fill": "#94A3B8"
+                                  "fill": "\\$text-tertiary"
                                 },
                                 {
                                   "type": "text",
                                   "id": "8NWsH",
                                   "name": "stat1t",
-                                  "fill": "#64748B",
+                                  "fill": "\\$text-secondary",
                                   "content": "156 students",
                                   "fontFamily": "Inter",
                                   "fontSize": 13,
@@ -525,13 +526,13 @@
                                   "height": 16,
                                   "iconFontName": "file-text",
                                   "iconFontFamily": "lucide",
-                                  "fill": "#94A3B8"
+                                  "fill": "\\$text-tertiary"
                                 },
                                 {
                                   "type": "text",
                                   "id": "k3U02",
                                   "name": "stat2t",
-                                  "fill": "#64748B",
+                                  "fill": "\\$text-secondary",
                                   "content": "24 materials",
                                   "fontFamily": "Inter",
                                   "fontSize": 13,
@@ -554,13 +555,13 @@
                                   "height": 16,
                                   "iconFontName": "star",
                                   "iconFontFamily": "lucide",
-                                  "fill": "#F59E0B"
+                                  "fill": "\\$accent-amber"
                                 },
                                 {
                                   "type": "text",
                                   "id": "UPxX2",
                                   "name": "stat3t",
-                                  "fill": "#64748B",
+                                  "fill": "\\$text-secondary",
                                   "content": "4.8 (28 reviews)",
                                   "fontFamily": "Inter",
                                   "fontSize": 13,
@@ -576,7 +577,7 @@
                           "name": "Enroll Button",
                           "width": 180,
                           "height": 44,
-                          "fill": "#3B82F6",
+                          "fill": "$primary",
                           "cornerRadius": 8,
                           "gap": 8,
                           "justifyContent": "center",
@@ -590,13 +591,13 @@
                               "height": 18,
                               "iconFontName": "user-plus",
                               "iconFontFamily": "lucide",
-                              "fill": "#FFFFFF"
+                              "fill": "$bg-white"
                             },
                             {
                               "type": "text",
                               "id": "EjGNs",
                               "name": "enrollText",
-                              "fill": "#FFFFFF",
+                              "fill": "$bg-white",
                               "content": "Enroll Now",
                               "fontFamily": "Inter",
                               "fontSize": 15,
@@ -617,23 +618,23 @@
                   "children": [
                     {
                       "type": "frame",
-                      "id": "apISj",
-                      "name": "Left Column",
+                      "id": "h6Lhc",
+                      "name": "Curriculum",
                       "width": "fill_container",
                       "layout": "vertical",
                       "gap": 24,
                       "children": [
                         {
                           "type": "frame",
-                          "id": "Pm6xM",
+                          "id": "ndZk2",
                           "name": "Curriculum Card",
                           "width": "fill_container",
-                          "fill": "#FFFFFF",
+                          "fill": "$bg-white",
                           "cornerRadius": 12,
                           "stroke": {
                             "align": "inside",
                             "thickness": 1,
-                            "fill": "#E2E8F0"
+                            "fill": "$border"
                           },
                           "layout": "vertical",
                           "gap": 16,
@@ -641,9 +642,9 @@
                           "children": [
                             {
                               "type": "text",
-                              "id": "1t76F",
+                              "id": "Army6",
                               "name": "currTitle",
-                              "fill": "#0F172A",
+                              "fill": "$text-primary",
                               "content": "Curriculum",
                               "fontFamily": "Inter",
                               "fontSize": 18,
@@ -651,19 +652,19 @@
                             },
                             {
                               "type": "frame",
-                              "id": "9iiPp",
-                              "name": "Module 1",
+                              "id": "offoK",
+                              "name": "mod1-probe",
                               "width": "fill_container",
                               "layout": "vertical",
                               "gap": 8,
                               "children": [
                                 {
                                   "type": "frame",
-                                  "id": "MKkLo",
+                                  "id": "nFcQy",
                                   "name": "Module 1 Header",
                                   "width": "fill_container",
                                   "height": 48,
-                                  "fill": "#F8FAFC",
+                                  "fill": "$bg-subtle",
                                   "cornerRadius": 8,
                                   "gap": 12,
                                   "padding": [
@@ -674,19 +675,19 @@
                                   "children": [
                                     {
                                       "type": "icon_font",
-                                      "id": "MftbD",
+                                      "id": "WtrKy",
                                       "name": "mod1Chev",
                                       "width": 16,
                                       "height": 16,
                                       "iconFontName": "chevron-down",
                                       "iconFontFamily": "lucide",
-                                      "fill": "#64748B"
+                                      "fill": "$text-secondary"
                                     },
                                     {
                                       "type": "text",
-                                      "id": "cGwhJ",
+                                      "id": "d2iw6",
                                       "name": "mod1Title",
-                                      "fill": "#0F172A",
+                                      "fill": "$text-primary",
                                       "content": "Module 1: Introduction to ML",
                                       "fontFamily": "Inter",
                                       "fontSize": 14,
@@ -694,16 +695,16 @@
                                     },
                                     {
                                       "type": "frame",
-                                      "id": "lWvJf",
+                                      "id": "Urdyw",
                                       "name": "mod1Spacer",
                                       "width": "fill_container",
                                       "height": 1
                                     },
                                     {
                                       "type": "text",
-                                      "id": "jH4hQ",
+                                      "id": "G1oaV",
                                       "name": "mod1Count",
-                                      "fill": "#94A3B8",
+                                      "fill": "$text-tertiary",
                                       "content": "4 lessons",
                                       "fontFamily": "Inter",
                                       "fontSize": 12,
@@ -713,7 +714,7 @@
                                 },
                                 {
                                   "type": "frame",
-                                  "id": "1yRJq",
+                                  "id": "b9izo",
                                   "name": "Lesson 1",
                                   "width": "fill_container",
                                   "height": 40,
@@ -728,19 +729,19 @@
                                   "children": [
                                     {
                                       "type": "icon_font",
-                                      "id": "MFtov",
+                                      "id": "wlbZA",
                                       "name": "l1icon",
                                       "width": 16,
                                       "height": 16,
                                       "iconFontName": "play-circle",
                                       "iconFontFamily": "lucide",
-                                      "fill": "#94A3B8"
+                                      "fill": "$text-tertiary"
                                     },
                                     {
                                       "type": "text",
-                                      "id": "KmmnF",
+                                      "id": "KW6pM",
                                       "name": "l1text",
-                                      "fill": "#64748B",
+                                      "fill": "$text-secondary",
                                       "content": "What is Machine Learning?",
                                       "fontFamily": "Inter",
                                       "fontSize": 14,
@@ -748,16 +749,16 @@
                                     },
                                     {
                                       "type": "frame",
-                                      "id": "8jYZq",
+                                      "id": "hiJ1Q",
                                       "name": "l1sp",
                                       "width": "fill_container",
                                       "height": 1
                                     },
                                     {
                                       "type": "text",
-                                      "id": "fdjYI",
+                                      "id": "QXKC6",
                                       "name": "l1dur",
-                                      "fill": "#94A3B8",
+                                      "fill": "$text-tertiary",
                                       "content": "15 min",
                                       "fontFamily": "Inter",
                                       "fontSize": 12,
@@ -767,7 +768,7 @@
                                 },
                                 {
                                   "type": "frame",
-                                  "id": "UwsFC",
+                                  "id": "YbzoV",
                                   "name": "Lesson 2",
                                   "width": "fill_container",
                                   "height": 40,
@@ -782,19 +783,19 @@
                                   "children": [
                                     {
                                       "type": "icon_font",
-                                      "id": "Oibv5",
+                                      "id": "uR1J4",
                                       "name": "l2icon",
                                       "width": 16,
                                       "height": 16,
                                       "iconFontName": "circle-play",
                                       "iconFontFamily": "lucide",
-                                      "fill": "#94A3B8"
+                                      "fill": "$text-tertiary"
                                     },
                                     {
                                       "type": "text",
-                                      "id": "h1kGb",
+                                      "id": "k4jNA",
                                       "name": "l2text",
-                                      "fill": "#64748B",
+                                      "fill": "$text-secondary",
                                       "content": "Types of ML Algorithms",
                                       "fontFamily": "Inter",
                                       "fontSize": 14,
@@ -802,16 +803,16 @@
                                     },
                                     {
                                       "type": "frame",
-                                      "id": "sEdPb",
+                                      "id": "QTg8F",
                                       "name": "l2sp",
                                       "width": "fill_container",
                                       "height": 1
                                     },
                                     {
                                       "type": "text",
-                                      "id": "Rpv99",
+                                      "id": "V7rpe",
                                       "name": "l2dur",
-                                      "fill": "#94A3B8",
+                                      "fill": "$text-tertiary",
                                       "content": "20 min",
                                       "fontFamily": "Inter",
                                       "fontSize": 12,
@@ -821,7 +822,7 @@
                                 },
                                 {
                                   "type": "frame",
-                                  "id": "DofwT",
+                                  "id": "PQJKA",
                                   "name": "Lesson 3",
                                   "width": "fill_container",
                                   "height": 40,
@@ -836,19 +837,19 @@
                                   "children": [
                                     {
                                       "type": "icon_font",
-                                      "id": "XpgDs",
+                                      "id": "hhm7D",
                                       "name": "l3icon",
                                       "width": 16,
                                       "height": 16,
                                       "iconFontName": "circle-play",
                                       "iconFontFamily": "lucide",
-                                      "fill": "#94A3B8"
+                                      "fill": "$text-tertiary"
                                     },
                                     {
                                       "type": "text",
-                                      "id": "jURSg",
+                                      "id": "rHFzD",
                                       "name": "l3text",
-                                      "fill": "#64748B",
+                                      "fill": "$text-secondary",
                                       "content": "Setting Up Your Environment",
                                       "fontFamily": "Inter",
                                       "fontSize": 14,
@@ -856,16 +857,16 @@
                                     },
                                     {
                                       "type": "frame",
-                                      "id": "OEVZc",
+                                      "id": "LqcAV",
                                       "name": "l3sp",
                                       "width": "fill_container",
                                       "height": 1
                                     },
                                     {
                                       "type": "text",
-                                      "id": "lry6u",
+                                      "id": "VqZVZ",
                                       "name": "l3dur",
-                                      "fill": "#94A3B8",
+                                      "fill": "$text-tertiary",
                                       "content": "25 min",
                                       "fontFamily": "Inter",
                                       "fontSize": 12,
@@ -877,19 +878,19 @@
                             },
                             {
                               "type": "frame",
-                              "id": "FKVrY",
-                              "name": "Module 2",
+                              "id": "p4D4r",
+                              "name": "mod2-probe",
                               "width": "fill_container",
                               "layout": "vertical",
                               "gap": 8,
                               "children": [
                                 {
                                   "type": "frame",
-                                  "id": "VP6GK",
+                                  "id": "OfN8T",
                                   "name": "Module 2 Header",
                                   "width": "fill_container",
                                   "height": 48,
-                                  "fill": "#F8FAFC",
+                                  "fill": "$bg-subtle",
                                   "cornerRadius": 8,
                                   "gap": 12,
                                   "padding": [
@@ -900,19 +901,19 @@
                                   "children": [
                                     {
                                       "type": "icon_font",
-                                      "id": "KzB6a",
+                                      "id": "FYxCN",
                                       "name": "mod2Chev",
                                       "width": 16,
                                       "height": 16,
                                       "iconFontName": "chevron-right",
                                       "iconFontFamily": "lucide",
-                                      "fill": "#64748B"
+                                      "fill": "$text-secondary"
                                     },
                                     {
                                       "type": "text",
-                                      "id": "HFd5w",
+                                      "id": "S8Urt",
                                       "name": "mod2Title",
-                                      "fill": "#0F172A",
+                                      "fill": "$text-primary",
                                       "content": "Module 2: Supervised Learning",
                                       "fontFamily": "Inter",
                                       "fontSize": 14,
@@ -920,16 +921,16 @@
                                     },
                                     {
                                       "type": "frame",
-                                      "id": "2GnBO",
+                                      "id": "vFCYl",
                                       "name": "mod2Sp",
                                       "width": "fill_container",
                                       "height": 1
                                     },
                                     {
                                       "type": "text",
-                                      "id": "uGeY7",
+                                      "id": "mBBJe",
                                       "name": "mod2Count",
-                                      "fill": "#94A3B8",
+                                      "fill": "$text-tertiary",
                                       "content": "6 lessons",
                                       "fontFamily": "Inter",
                                       "fontSize": 12,
@@ -943,15 +944,15 @@
                         },
                         {
                           "type": "frame",
-                          "id": "uBTSb",
+                          "id": "QHtAe",
                           "name": "About Card",
                           "width": "fill_container",
-                          "fill": "#FFFFFF",
+                          "fill": "$bg-white",
                           "cornerRadius": 12,
                           "stroke": {
                             "align": "inside",
                             "thickness": 1,
-                            "fill": "#E2E8F0"
+                            "fill": "$border"
                           },
                           "layout": "vertical",
                           "gap": 12,
@@ -959,9 +960,9 @@
                           "children": [
                             {
                               "type": "text",
-                              "id": "J2iRl",
+                              "id": "QILaG",
                               "name": "aboutTitle",
-                              "fill": "#0F172A",
+                              "fill": "$text-primary",
                               "content": "About This Course",
                               "fontFamily": "Inter",
                               "fontSize": 18,
@@ -969,9 +970,9 @@
                             },
                             {
                               "type": "text",
-                              "id": "vDoZ0",
+                              "id": "15HBF",
                               "name": "aboutText",
-                              "fill": "#64748B",
+                              "fill": "$text-secondary",
                               "textGrowth": "fixed-width",
                               "width": "fill_container",
                               "content": "This comprehensive course covers the fundamentals of machine learning, from basic concepts to advanced techniques. You'll learn supervised and unsupervised learning, neural networks, and practical applications using Python and popular ML libraries.",
@@ -986,23 +987,23 @@
                     },
                     {
                       "type": "frame",
-                      "id": "vvZPT",
-                      "name": "Right Column",
+                      "id": "QSaWB",
+                      "name": "Sidebar",
                       "width": 280,
                       "layout": "vertical",
                       "gap": 24,
                       "children": [
                         {
                           "type": "frame",
-                          "id": "rYA96",
+                          "id": "mAq2D",
                           "name": "Instructor Card",
                           "width": "fill_container",
-                          "fill": "#FFFFFF",
+                          "fill": "$bg-white",
                           "cornerRadius": 12,
                           "stroke": {
                             "align": "inside",
                             "thickness": 1,
-                            "fill": "#E2E8F0"
+                            "fill": "$border"
                           },
                           "layout": "vertical",
                           "gap": 16,
@@ -1011,9 +1012,9 @@
                           "children": [
                             {
                               "type": "text",
-                              "id": "yZjO2",
+                              "id": "LheCs",
                               "name": "instrCardTitle",
-                              "fill": "#0F172A",
+                              "fill": "$text-primary",
                               "content": "Instructor",
                               "fontFamily": "Inter",
                               "fontSize": 16,
@@ -1021,20 +1022,20 @@
                             },
                             {
                               "type": "frame",
-                              "id": "7AjZC",
+                              "id": "PnVDz",
                               "name": "Avatar",
                               "width": 80,
                               "height": 80,
-                              "fill": "#DBEAFE",
+                              "fill": "$primary-light",
                               "cornerRadius": 40,
                               "justifyContent": "center",
                               "alignItems": "center",
                               "children": [
                                 {
                                   "type": "text",
-                                  "id": "7YHyS",
+                                  "id": "ZJIpU",
                                   "name": "avatarText",
-                                  "fill": "#3B82F6",
+                                  "fill": "\\$primary",
                                   "content": "KS",
                                   "fontFamily": "Inter",
                                   "fontSize": 24,
@@ -1044,9 +1045,9 @@
                             },
                             {
                               "type": "text",
-                              "id": "Qh2mU",
+                              "id": "wEIik",
                               "name": "instrName",
-                              "fill": "#0F172A",
+                              "fill": "$text-primary",
                               "content": "Dr. Kim Sunghwan",
                               "fontFamily": "Inter",
                               "fontSize": 16,
@@ -1054,9 +1055,9 @@
                             },
                             {
                               "type": "text",
-                              "id": "gXU21",
+                              "id": "9oqsV",
                               "name": "instrBio",
-                              "fill": "#64748B",
+                              "fill": "$text-secondary",
                               "textGrowth": "fixed-width",
                               "width": "fill_container",
                               "content": "Associate Professor of Computer Science at Seoul National University. Specializes in Machine Learning and AI.",
@@ -1068,26 +1069,26 @@
                             },
                             {
                               "type": "frame",
-                              "id": "ai0kD",
-                              "name": "emailRow",
+                              "id": "jBOJh",
+                              "name": "email-probe",
                               "gap": 8,
                               "alignItems": "center",
                               "children": [
                                 {
                                   "type": "icon_font",
-                                  "id": "MJEL0",
+                                  "id": "H0gw2",
                                   "name": "emailIcon",
                                   "width": 14,
                                   "height": 14,
                                   "iconFontName": "mail",
                                   "iconFontFamily": "lucide",
-                                  "fill": "#94A3B8"
+                                  "fill": "$text-tertiary"
                                 },
                                 {
                                   "type": "text",
-                                  "id": "D7qn5",
+                                  "id": "pKVg7",
                                   "name": "emailText",
-                                  "fill": "#3B82F6",
+                                  "fill": "$primary",
                                   "content": "kim@snu.ac.kr",
                                   "fontFamily": "Inter",
                                   "fontSize": 13,
@@ -1106,6 +1107,1148 @@
           ]
         }
       ]
+    },
+    {
+      "type": "frame",
+      "id": "H4cnD",
+      "x": 1380,
+      "y": 0,
+      "name": "Course Detail - Tablet (768px)",
+      "clip": true,
+      "width": 768,
+      "height": 1200,
+      "fill": "$bg-subtle",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "LUafg",
+          "name": "Top Bar",
+          "width": "fill_container",
+          "height": 56,
+          "fill": "$bg-white",
+          "stroke": {
+            "align": "inside",
+            "thickness": {
+              "bottom": 1
+            },
+            "fill": "$border"
+          },
+          "padding": [
+            0,
+            16
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "nCrQm",
+              "name": "menuIcon",
+              "width": 0,
+              "height": 0,
+              "iconFontFamily": "lucide",
+              "fill": "$text-primary"
+            },
+            {
+              "type": "text",
+              "id": "hTpZs",
+              "name": "logoText",
+              "fill": "$text-primary",
+              "content": "lecture-moa",
+              "fontFamily": "Inter",
+              "fontSize": 16,
+              "fontWeight": "bold"
+            },
+            {
+              "type": "ellipse",
+              "id": "WfVQX",
+              "name": "avatar",
+              "fill": "$primary",
+              "width": 32,
+              "height": 32
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "xQdLj",
+          "name": "Back Nav",
+          "width": "fill_container",
+          "gap": 6,
+          "padding": [
+            12,
+            16
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "2ZfTV",
+              "name": "backIcon",
+              "width": 0,
+              "height": 0,
+              "iconFontFamily": "lucide",
+              "fill": "$primary"
+            },
+            {
+              "type": "text",
+              "id": "wSKgM",
+              "name": "backText",
+              "fill": "$primary",
+              "content": "Back to Courses",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "JrHyo",
+          "name": "Scroll Area",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 20,
+          "padding": [
+            0,
+            16,
+            24,
+            16
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "dAiHT",
+              "name": "Header Section",
+              "width": "fill_container",
+              "fill": "$bg-white",
+              "cornerRadius": 12,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$border"
+              },
+              "layout": "vertical",
+              "gap": 16,
+              "padding": 20,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "OApcE",
+                  "name": "Thumbnail",
+                  "width": "fill_container",
+                  "height": 200,
+                  "fill": "$primary-bg",
+                  "cornerRadius": 8,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "9u4su",
+                      "name": "thumbIcon",
+                      "width": 0,
+                      "height": 0,
+                      "iconFontFamily": "lucide",
+                      "fill": "$primary"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "Wyjkm",
+                  "name": "titleText",
+                  "fill": "$text-primary",
+                  "content": "Introduction to Machine Learning",
+                  "fontFamily": "Inter",
+                  "fontSize": 22,
+                  "fontWeight": "bold"
+                },
+                {
+                  "type": "frame",
+                  "id": "RzatF",
+                  "name": "Meta",
+                  "width": "fill_container",
+                  "gap": 16,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "W2VHS",
+                      "name": "instrIcon",
+                      "width": 0,
+                      "height": 0,
+                      "iconFontFamily": "lucide",
+                      "fill": "$text-tertiary"
+                    },
+                    {
+                      "type": "text",
+                      "id": "3hWg3",
+                      "name": "instrText",
+                      "fill": "$text-secondary",
+                      "content": "Dr. Kim Sunghwan",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "icon_font",
+                      "id": "bokxS",
+                      "name": "studIcon",
+                      "width": 0,
+                      "height": 0,
+                      "iconFontFamily": "lucide",
+                      "fill": "$text-tertiary"
+                    },
+                    {
+                      "type": "text",
+                      "id": "mf1xU",
+                      "name": "studText",
+                      "fill": "$text-secondary",
+                      "content": "96 students",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "icon_font",
+                      "id": "vFLzu",
+                      "name": "rateIcon",
+                      "width": 0,
+                      "height": 0,
+                      "iconFontFamily": "lucide",
+                      "fill": "$accent-amber"
+                    },
+                    {
+                      "type": "text",
+                      "id": "oVpYf",
+                      "name": "rateText",
+                      "fill": "$text-secondary",
+                      "content": "4.9 (24 reviews)",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "alOiA",
+                  "name": "Enroll Button",
+                  "width": "fill_container",
+                  "height": 44,
+                  "fill": "$primary",
+                  "cornerRadius": 8,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "5vb4t",
+                      "name": "enrollText",
+                      "fill": "$bg-white",
+                      "content": "Enroll Now",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "4t0s4",
+              "name": "Curriculum",
+              "width": "fill_container",
+              "fill": "$bg-white",
+              "cornerRadius": 12,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$border"
+              },
+              "layout": "vertical",
+              "gap": 16,
+              "padding": 20,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "fNgwh",
+                  "name": "currTitle",
+                  "fill": "$text-primary",
+                  "content": "Curriculum",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "bold"
+                },
+                {
+                  "type": "frame",
+                  "id": "Khn6A",
+                  "name": "Module 1",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "c0L28",
+                      "name": "mod1Left",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "8uksb",
+                          "name": "mod1Icon",
+                          "width": 0,
+                          "height": 0,
+                          "iconFontFamily": "lucide",
+                          "fill": "$primary"
+                        },
+                        {
+                          "type": "text",
+                          "id": "dXXLz",
+                          "name": "mod1Text",
+                          "fill": "$text-primary",
+                          "content": "Module 1: Introduction to ML",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "R5FSJ",
+                      "name": "mod1Count",
+                      "fill": "$text-tertiary",
+                      "content": "4 lectures",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "HyJED",
+                  "name": "Lecture 1",
+                  "width": "fill_container",
+                  "padding": [
+                    0,
+                    0,
+                    0,
+                    32
+                  ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "DGKBT",
+                      "name": "lec1Left",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "bDYAl",
+                          "name": "lec1Icon",
+                          "width": 0,
+                          "height": 0,
+                          "iconFontFamily": "lucide",
+                          "fill": "$text-tertiary"
+                        },
+                        {
+                          "type": "text",
+                          "id": "yRK7J",
+                          "name": "lec1Text",
+                          "fill": "$text-secondary",
+                          "content": "What is Machine Learning?",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "xkAC5",
+                      "name": "lec1Dur",
+                      "fill": "$text-tertiary",
+                      "content": "15 min",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "OmhyW",
+                  "name": "Lecture 2",
+                  "width": "fill_container",
+                  "padding": [
+                    0,
+                    0,
+                    0,
+                    32
+                  ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "a7Ig9",
+                      "name": "lec2Left",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "SLHpr",
+                          "name": "lec2Icon",
+                          "width": 0,
+                          "height": 0,
+                          "iconFontFamily": "lucide",
+                          "fill": "$text-tertiary"
+                        },
+                        {
+                          "type": "text",
+                          "id": "N88eY",
+                          "name": "lec2Text",
+                          "fill": "$text-secondary",
+                          "content": "Types of ML Algorithms",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "TNhmU",
+                      "name": "lec2Dur",
+                      "fill": "$text-tertiary",
+                      "content": "20 min",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "KqqCt",
+              "name": "Instructor",
+              "width": "fill_container",
+              "fill": "$bg-white",
+              "cornerRadius": 12,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$border"
+              },
+              "layout": "vertical",
+              "gap": 12,
+              "padding": 20,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "HLu4l",
+                  "name": "instrLabel",
+                  "fill": "$text-primary",
+                  "content": "Instructor",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "bold"
+                },
+                {
+                  "type": "frame",
+                  "id": "MC6Nl",
+                  "name": "instrAvatar",
+                  "width": 64,
+                  "height": 64,
+                  "fill": "$primary-light",
+                  "cornerRadius": 32,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "UC8CE",
+                      "name": "instrInitials",
+                      "fill": "$primary",
+                      "content": "KS",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "bold"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "oWAis",
+                  "name": "instrName",
+                  "fill": "$text-primary",
+                  "content": "Dr. Kim Sunghwan",
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "H8oze",
+                  "name": "instrBio",
+                  "fill": "$text-secondary",
+                  "content": "Associate Professor of Computer Science at Seoul National University, specializing in Machine Learning and AI.",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "23pLS",
+                  "name": "instrEmail",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "5RQWE",
+                      "name": "instrEIcon",
+                      "width": 0,
+                      "height": 0,
+                      "iconFontFamily": "lucide",
+                      "fill": "$primary"
+                    },
+                    {
+                      "type": "text",
+                      "id": "PoHeC",
+                      "name": "instrEText",
+                      "fill": "$primary",
+                      "content": "ks@snu.ac.kr",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "n7hQL",
+              "name": "About This Course",
+              "width": "fill_container",
+              "fill": "$bg-white",
+              "cornerRadius": 12,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$border"
+              },
+              "layout": "vertical",
+              "gap": 12,
+              "padding": 20,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Z5pja",
+                  "name": "aboutTitle",
+                  "fill": "$text-primary",
+                  "content": "About This Course",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "bold"
+                },
+                {
+                  "type": "text",
+                  "id": "MSrk9",
+                  "name": "aboutBody",
+                  "fill": "$text-secondary",
+                  "content": "This comprehensive course covers the fundamentals of machine learning, from basic concepts to advanced techniques. You'll learn supervised and unsupervised learning, neural networks, and practical applications using Python and popular ML libraries.",
+                  "lineHeight": 1.6,
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "jn0NQ",
+      "x": 2248,
+      "y": 0,
+      "name": "Course Detail - Mobile (375px)",
+      "clip": true,
+      "width": 375,
+      "height": 812,
+      "fill": "$bg-subtle",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "Kvu3Q",
+          "name": "Top Bar",
+          "width": "fill_container",
+          "height": 52,
+          "fill": "$bg-white",
+          "stroke": {
+            "align": "inside",
+            "thickness": {
+              "bottom": 1
+            },
+            "fill": "$border"
+          },
+          "padding": [
+            0,
+            16
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "hIoQ9",
+              "name": "mMenuIcon",
+              "width": 0,
+              "height": 0,
+              "iconFontFamily": "lucide",
+              "fill": "$text-primary"
+            },
+            {
+              "type": "text",
+              "id": "BSRET",
+              "name": "mLogoText",
+              "fill": "$text-primary",
+              "content": "lecture-moa",
+              "fontFamily": "Inter",
+              "fontSize": 15,
+              "fontWeight": "bold"
+            },
+            {
+              "type": "ellipse",
+              "id": "4xsRN",
+              "name": "mAvatar",
+              "fill": "$primary",
+              "width": 28,
+              "height": 28
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "X6Z5P",
+          "name": "Back Nav",
+          "width": "fill_container",
+          "gap": 6,
+          "padding": [
+            10,
+            16
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "Gu6qX",
+              "name": "mBackIcon",
+              "width": 0,
+              "height": 0,
+              "iconFontFamily": "lucide",
+              "fill": "$primary"
+            },
+            {
+              "type": "text",
+              "id": "YoW5M",
+              "name": "mBackText",
+              "fill": "$primary",
+              "content": "Back",
+              "fontFamily": "Inter",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "E1fVC",
+          "name": "Scroll Area",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "padding": [
+            0,
+            12,
+            16,
+            12
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "bbRmo",
+              "name": "Header",
+              "width": "fill_container",
+              "fill": "$bg-white",
+              "cornerRadius": 10,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$border"
+              },
+              "layout": "vertical",
+              "gap": 12,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "2WVBN",
+                  "name": "mThumb",
+                  "width": "fill_container",
+                  "height": 160,
+                  "fill": "$primary-bg",
+                  "cornerRadius": 8,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "BXVqO",
+                      "name": "mThumbIcon",
+                      "width": 0,
+                      "height": 0,
+                      "iconFontFamily": "lucide",
+                      "fill": "$primary"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "1dF5X",
+                  "name": "mTitle",
+                  "fill": "$text-primary",
+                  "content": "Introduction to Machine Learning",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "bold"
+                },
+                {
+                  "type": "frame",
+                  "id": "408Ja",
+                  "name": "mMeta1",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "42ybw",
+                      "name": "mMI1",
+                      "width": 0,
+                      "height": 0,
+                      "iconFontFamily": "lucide",
+                      "fill": "$text-tertiary"
+                    },
+                    {
+                      "type": "text",
+                      "id": "e1FiG",
+                      "name": "mMT1",
+                      "fill": "$text-secondary",
+                      "content": "Dr. Kim Sunghwan",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "zH7uR",
+                  "name": "mMeta2",
+                  "gap": 12,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "W3u3i",
+                      "name": "mMI2",
+                      "width": 0,
+                      "height": 0,
+                      "iconFontFamily": "lucide",
+                      "fill": "$text-tertiary"
+                    },
+                    {
+                      "type": "text",
+                      "id": "lss3o",
+                      "name": "mMT2",
+                      "fill": "$text-secondary",
+                      "content": "96 students",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "icon_font",
+                      "id": "OTnlG",
+                      "name": "mMI3",
+                      "width": 0,
+                      "height": 0,
+                      "iconFontFamily": "lucide",
+                      "fill": "$accent-amber"
+                    },
+                    {
+                      "type": "text",
+                      "id": "lu8GB",
+                      "name": "mMT3",
+                      "fill": "$text-secondary",
+                      "content": "4.9",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Zc5lx",
+                  "name": "mEnroll",
+                  "width": "fill_container",
+                  "height": 40,
+                  "fill": "$primary",
+                  "cornerRadius": 8,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "kYfVZ",
+                      "name": "mEnrollText",
+                      "fill": "$bg-white",
+                      "content": "Enroll Now",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "MtK9K",
+              "name": "Curriculum",
+              "width": "fill_container",
+              "fill": "$bg-white",
+              "cornerRadius": 10,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$border"
+              },
+              "layout": "vertical",
+              "gap": 12,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "s0lqL",
+                  "name": "mCurrTitle",
+                  "fill": "$text-primary",
+                  "content": "Curriculum",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "bold"
+                },
+                {
+                  "type": "frame",
+                  "id": "2pVnA",
+                  "name": "mMod1",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "eNdzw",
+                      "name": "mMod1L",
+                      "gap": 6,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "kwVt8",
+                          "name": "mMod1I",
+                          "width": 0,
+                          "height": 0,
+                          "iconFontFamily": "lucide",
+                          "fill": "$primary"
+                        },
+                        {
+                          "type": "text",
+                          "id": "BaL36",
+                          "name": "mMod1T",
+                          "fill": "$text-primary",
+                          "content": "Module 1: Introduction to ML",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "q43yL",
+                      "name": "mMod1C",
+                      "fill": "$text-tertiary",
+                      "content": "4 lectures",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "l5za1",
+                  "name": "mLec1",
+                  "width": "fill_container",
+                  "padding": [
+                    0,
+                    0,
+                    0,
+                    24
+                  ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "RNcVM",
+                      "name": "mLec1L",
+                      "gap": 6,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "h37mx",
+                          "name": "mLec1I",
+                          "width": 0,
+                          "height": 0,
+                          "iconFontFamily": "lucide",
+                          "fill": "$text-tertiary"
+                        },
+                        {
+                          "type": "text",
+                          "id": "pFxk6",
+                          "name": "mLec1T",
+                          "fill": "$text-secondary",
+                          "content": "What is Machine Learning?",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "VVgUG",
+                      "name": "mLec1D",
+                      "fill": "$text-tertiary",
+                      "content": "15 min",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Gn3El",
+              "name": "Instructor",
+              "width": "fill_container",
+              "fill": "$bg-white",
+              "cornerRadius": 10,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$border"
+              },
+              "gap": 10,
+              "padding": 16,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "HvjpY",
+                  "name": "mInstrAvatar",
+                  "width": 48,
+                  "height": 48,
+                  "fill": "$primary-light",
+                  "cornerRadius": 24,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "0uQbK",
+                      "name": "mInstrInit",
+                      "fill": "$primary",
+                      "content": "KS",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "bold"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "seWVW",
+                  "name": "mInstrInfo",
+                  "layout": "vertical",
+                  "gap": 2,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "I0Hzu",
+                      "name": "mInstrName",
+                      "fill": "$text-primary",
+                      "content": "Dr. Kim Sunghwan",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "VwArb",
+                      "name": "mInstrRole",
+                      "fill": "$text-secondary",
+                      "content": "Associate Professor, Seoul National University",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
-  ]
+  ],
+  "variables": {
+    "accent-amber": {
+      "type": "color",
+      "value": "#f59e0b"
+    },
+    "accent-amber-bg": {
+      "type": "color",
+      "value": "#fef9c3"
+    },
+    "accent-amber-light": {
+      "type": "color",
+      "value": "#fef3c7"
+    },
+    "accent-green": {
+      "type": "color",
+      "value": "#10b981"
+    },
+    "accent-green-bg": {
+      "type": "color",
+      "value": "#f0fdf4"
+    },
+    "accent-green-light": {
+      "type": "color",
+      "value": "#dcfce7"
+    },
+    "accent-pink": {
+      "type": "color",
+      "value": "#ec4899"
+    },
+    "accent-pink-light": {
+      "type": "color",
+      "value": "#fce7f3"
+    },
+    "accent-purple": {
+      "type": "color",
+      "value": "#8b5cf6"
+    },
+    "accent-purple-light": {
+      "type": "color",
+      "value": "#ede9fe"
+    },
+    "accent-red": {
+      "type": "color",
+      "value": "#ef4444"
+    },
+    "accent-red-bg": {
+      "type": "color",
+      "value": "#fef2f2"
+    },
+    "accent-red-light": {
+      "type": "color",
+      "value": "#fee2e2"
+    },
+    "accent-sky": {
+      "type": "color",
+      "value": "#0ea5e9"
+    },
+    "accent-sky-light": {
+      "type": "color",
+      "value": "#e0f2fe"
+    },
+    "bg-muted": {
+      "type": "color",
+      "value": "#f1f5f9"
+    },
+    "bg-subtle": {
+      "type": "color",
+      "value": "#f8fafc"
+    },
+    "bg-white": {
+      "type": "color",
+      "value": "#ffffff"
+    },
+    "border": {
+      "type": "color",
+      "value": "#e2e8f0"
+    },
+    "primary": {
+      "type": "color",
+      "value": "#3b82f6"
+    },
+    "primary-bg": {
+      "type": "color",
+      "value": "#dbeafe"
+    },
+    "primary-light": {
+      "type": "color",
+      "value": "#eff6ff"
+    },
+    "text-primary": {
+      "type": "color",
+      "value": "#0f172a"
+    },
+    "text-secondary": {
+      "type": "color",
+      "value": "#64748b"
+    },
+    "text-tertiary": {
+      "type": "color",
+      "value": "#94a3b8"
+    }
+  }
 }

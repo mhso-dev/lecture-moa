@@ -857,7 +857,7 @@
                       "id": "pbLhH",
                       "name": "Line 9 Active",
                       "width": "fill_container",
-                      "fill": "#2D3A4E",
+                      "fill": "\\$code-bg",
                       "gap": 16,
                       "padding": [
                         2,
@@ -1863,7 +1863,7 @@
               "id": "Pw4OM",
               "name": "mLine8",
               "width": "fill_container",
-              "fill": "#2D3A4E",
+              "fill": "\\$code-bg",
               "gap": 12,
               "padding": [
                 2,
@@ -2062,6 +2062,38 @@
     "text-tertiary": {
       "type": "color",
       "value": "#94A3B8"
+    },
+    "ai-badge-bg": {
+      "type": "color",
+      "value": "#EDE9FE"
+    },
+    "ai-badge-text": {
+      "type": "color",
+      "value": "#7C3AED"
+    },
+    "status-error-bg": {
+      "type": "color",
+      "value": "#FEF2F2"
+    },
+    "status-error-light": {
+      "type": "color",
+      "value": "#FEE2E2"
+    },
+    "status-success-bg": {
+      "type": "color",
+      "value": "#ECFDF5"
+    },
+    "status-success-light": {
+      "type": "color",
+      "value": "#DCFCE7"
+    },
+    "status-warning-bg": {
+      "type": "color",
+      "value": "#FEF3C7"
+    },
+    "status-warning-text": {
+      "type": "color",
+      "value": "#B45309"
     }
   }
 }

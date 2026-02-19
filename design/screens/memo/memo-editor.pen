@@ -3,82 +3,139 @@
   "children": [
     {
       "type": "frame",
-      "id": "203By",
+      "id": "eoOgd",
       "x": 0,
       "y": 0,
-      "name": "Memo Editor Page",
+      "name": "Memo Editor - Desktop",
       "width": 1280,
-      "fill": "#F8FAFC",
+      "fill": "$bg-page",
       "layout": "vertical",
       "children": [
         {
           "type": "frame",
-          "id": "yNn4c",
-          "name": "Top Bar",
+          "id": "Rpp5D",
+          "name": "Editor Header",
           "width": "fill_container",
-          "fill": "#FFFFFF",
+          "fill": "$bg-white",
           "stroke": {
             "align": "inside",
-            "thickness": 1,
-            "fill": "#E2E8F0"
+            "thickness": {
+              "bottom": 1
+            },
+            "fill": "$border"
           },
           "padding": [
-            12,
-            24
+            16,
+            32
           ],
           "justifyContent": "space_between",
           "alignItems": "center",
           "children": [
             {
               "type": "frame",
-              "id": "eauxn",
-              "name": "tbLeft",
+              "id": "6ydaJ",
+              "name": "headerLeft",
               "gap": 12,
               "alignItems": "center",
               "children": [
                 {
                   "type": "icon_font",
-                  "id": "RP1qw",
-                  "name": "tbBack",
-                  "width": 0,
-                  "height": 0,
+                  "id": "joWUt",
+                  "name": "backIcon",
+                  "width": 20,
+                  "height": 20,
+                  "iconFontName": "arrow-left",
                   "iconFontFamily": "lucide",
-                  "fill": "#64748B"
+                  "fill": "$text-secondary"
                 },
                 {
                   "type": "text",
-                  "id": "xDj3R",
-                  "name": "tbTitle",
-                  "fill": "#1E293B",
-                  "content": "Understanding useState Hook",
+                  "id": "CGumv",
+                  "name": "headerTitle",
+                  "fill": "$text-primary",
+                  "content": "Edit Memo",
                   "fontFamily": "Inter",
-                  "fontSize": 16,
+                  "fontSize": 18,
                   "fontWeight": "600"
                 }
               ]
             },
             {
               "type": "frame",
-              "id": "cMICw",
-              "name": "tbRight",
+              "id": "nsjbh",
+              "name": "headerRight",
               "gap": 12,
               "alignItems": "center",
               "children": [
                 {
-                  "type": "text",
-                  "id": "sMam9",
-                  "name": "tbSaved",
-                  "fill": "#94A3B8",
-                  "content": "Saved 2 min ago",
-                  "fontFamily": "Inter",
-                  "fontSize": 13,
-                  "fontWeight": "normal"
+                  "type": "frame",
+                  "id": "KXpnv",
+                  "name": "autoSave",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "jzqPV",
+                      "name": "saveIcon",
+                      "width": 14,
+                      "height": 14,
+                      "iconFontName": "circle-check",
+                      "iconFontFamily": "lucide",
+                      "fill": "$success"
+                    },
+                    {
+                      "type": "text",
+                      "id": "4C4mq",
+                      "name": "saveText",
+                      "fill": "$success",
+                      "content": "Auto-saved",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    }
+                  ]
                 },
                 {
                   "type": "frame",
-                  "id": "Rp6fL",
+                  "id": "mij2P",
+                  "name": "splitBtn",
+                  "fill": "$primary-light",
+                  "cornerRadius": 8,
+                  "gap": 6,
+                  "padding": [
+                    8,
+                    12
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "EWGea",
+                      "name": "splitIcon",
+                      "width": 16,
+                      "height": 16,
+                      "iconFontName": "columns-2",
+                      "iconFontFamily": "lucide",
+                      "fill": "$primary"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Bwt0F",
+                      "name": "splitText",
+                      "fill": "$primary",
+                      "content": "Split View",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "6AUrf",
                   "name": "saveBtn",
-                  "fill": "#3B82F6",
+                  "fill": "$primary",
                   "cornerRadius": 8,
                   "gap": 6,
                   "padding": [
@@ -89,18 +146,19 @@
                   "children": [
                     {
                       "type": "icon_font",
-                      "id": "EExbw",
-                      "name": "tbSaveIc",
-                      "width": 0,
-                      "height": 0,
+                      "id": "ms3Gq",
+                      "name": "saveBtnIcon",
+                      "width": 16,
+                      "height": 16,
+                      "iconFontName": "save",
                       "iconFontFamily": "lucide",
-                      "fill": "#FFFFFF"
+                      "fill": "$text-white"
                     },
                     {
                       "type": "text",
-                      "id": "Ooggo",
-                      "name": "tbSaveTxt",
-                      "fill": "#FFFFFF",
+                      "id": "0DhXW",
+                      "name": "saveBtnText",
+                      "fill": "$text-white",
                       "content": "Save",
                       "fontFamily": "Inter",
                       "fontSize": 14,
@@ -114,339 +172,72 @@
         },
         {
           "type": "frame",
-          "id": "l7oIF",
-          "name": "Editor Toolbar",
+          "id": "b8Ocn",
+          "name": "Meta Bar",
           "width": "fill_container",
-          "fill": "#FFFFFF",
+          "fill": "$bg-white",
           "stroke": {
             "align": "inside",
-            "thickness": 1,
-            "fill": "#F1F5F9"
+            "thickness": {
+              "bottom": 1
+            },
+            "fill": "$border"
           },
-          "gap": 4,
+          "gap": 16,
           "padding": [
-            8,
-            24
+            12,
+            32
           ],
           "alignItems": "center",
           "children": [
             {
-              "type": "frame",
-              "id": "tT8GD",
-              "name": "tbBold",
-              "cornerRadius": 6,
-              "padding": [
-                6,
-                8
-              ],
-              "children": [
-                {
-                  "type": "icon_font",
-                  "id": "1nar3",
-                  "name": "tbBoldIc",
-                  "width": 0,
-                  "height": 0,
-                  "iconFontFamily": "lucide",
-                  "fill": "#475569"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "3oiO7",
-              "name": "tbItalic",
-              "cornerRadius": 6,
-              "padding": [
-                6,
-                8
-              ],
-              "children": [
-                {
-                  "type": "icon_font",
-                  "id": "NGK4j",
-                  "name": "tbItalicIc",
-                  "width": 0,
-                  "height": 0,
-                  "iconFontFamily": "lucide",
-                  "fill": "#475569"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "O3IS5",
-              "name": "tbCode",
-              "cornerRadius": 6,
-              "padding": [
-                6,
-                8
-              ],
-              "children": [
-                {
-                  "type": "icon_font",
-                  "id": "Vij2f",
-                  "name": "tbCodeIc",
-                  "width": 0,
-                  "height": 0,
-                  "iconFontFamily": "lucide",
-                  "fill": "#475569"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "OBLaG",
-              "name": "tbLink",
-              "cornerRadius": 6,
-              "padding": [
-                6,
-                8
-              ],
-              "children": [
-                {
-                  "type": "icon_font",
-                  "id": "iUxat",
-                  "name": "tbLinkIc",
-                  "width": 0,
-                  "height": 0,
-                  "iconFontFamily": "lucide",
-                  "fill": "#475569"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "ZA9PY",
-              "name": "tbList",
-              "cornerRadius": 6,
-              "padding": [
-                6,
-                8
-              ],
-              "children": [
-                {
-                  "type": "icon_font",
-                  "id": "RTCVt",
-                  "name": "tbListIc",
-                  "width": 0,
-                  "height": 0,
-                  "iconFontFamily": "lucide",
-                  "fill": "#475569"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "71DWl",
-              "name": "tbImg",
-              "cornerRadius": 6,
-              "padding": [
-                6,
-                8
-              ],
-              "children": [
-                {
-                  "type": "icon_font",
-                  "id": "JktoV",
-                  "name": "tbImgIc",
-                  "width": 0,
-                  "height": 0,
-                  "iconFontFamily": "lucide",
-                  "fill": "#475569"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "jBOi5",
-              "name": "sep",
-              "width": 1,
-              "height": 20,
-              "fill": "#E2E8F0"
-            },
-            {
-              "type": "frame",
-              "id": "pg3OI",
-              "name": "tbHead",
-              "cornerRadius": 6,
-              "padding": [
-                6,
-                8
-              ],
-              "children": [
-                {
-                  "type": "icon_font",
-                  "id": "DJwie",
-                  "name": "tbHeadIc",
-                  "width": 0,
-                  "height": 0,
-                  "iconFontFamily": "lucide",
-                  "fill": "#475569"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "dtYap",
-          "name": "Split Pane",
-          "width": "fill_container",
-          "height": 580,
-          "children": [
-            {
-              "type": "frame",
-              "id": "CrZEv",
-              "name": "Editor Pane",
+              "type": "text",
+              "id": "4eoMF",
+              "name": "titleInput",
+              "fill": "$text-primary",
+              "textGrowth": "fixed-width",
               "width": "fill_container",
-              "height": "fill_container",
-              "fill": "#FFFFFF",
-              "layout": "vertical",
-              "gap": 16,
-              "padding": 24,
+              "content": "Understanding useState Hook",
+              "fontFamily": "Inter",
+              "fontSize": 20,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "lek7T",
+              "name": "metaInfo",
+              "gap": 12,
+              "alignItems": "center",
               "children": [
-                {
-                  "type": "text",
-                  "id": "LKbPa",
-                  "name": "edH1",
-                  "fill": "#1E293B",
-                  "textGrowth": "fixed-width",
-                  "width": "fill_container",
-                  "content": "# Understanding useState Hook",
-                  "fontFamily": "Fira Code",
-                  "fontSize": 15,
-                  "fontWeight": "600"
-                },
-                {
-                  "type": "text",
-                  "id": "QuMdc",
-                  "name": "edP1",
-                  "fill": "#475569",
-                  "textGrowth": "fixed-width",
-                  "width": "fill_container",
-                  "content": "The `useState` hook is the most fundamental React hook for managing component state. It returns a pair of values: the current state and a function to update it.",
-                  "lineHeight": 1.6,
-                  "fontFamily": "Fira Code",
-                  "fontSize": 14,
-                  "fontWeight": "normal"
-                },
-                {
-                  "type": "text",
-                  "id": "X7ZDE",
-                  "name": "edH2",
-                  "fill": "#1E293B",
-                  "textGrowth": "fixed-width",
-                  "width": "fill_container",
-                  "content": "## Basic Usage",
-                  "fontFamily": "Fira Code",
-                  "fontSize": 14,
-                  "fontWeight": "600"
-                },
                 {
                   "type": "frame",
-                  "id": "nlU6S",
-                  "name": "Code Block",
-                  "width": "fill_container",
-                  "fill": "#1E293B",
-                  "cornerRadius": 8,
-                  "layout": "vertical",
+                  "id": "ZAO89",
+                  "name": "courseTag",
+                  "fill": "$primary-light",
+                  "cornerRadius": 6,
                   "gap": 4,
-                  "padding": 16,
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "kNyAN",
-                      "name": "edCodeL1",
-                      "fill": "#93C5FD",
-                      "textGrowth": "fixed-width",
-                      "width": "fill_container",
-                      "content": "const [count, setCount] = useState(0);",
-                      "fontFamily": "Fira Code",
-                      "fontSize": 13,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "text",
-                      "id": "bPQw5",
-                      "name": "edCodeL2",
-                      "fill": "#93C5FD",
-                      "textGrowth": "fixed-width",
-                      "width": "fill_container",
-                      "content": "const [name, setName] = useState('');",
-                      "fontFamily": "Fira Code",
-                      "fontSize": 13,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "text",
-                      "id": "fWCca",
-                      "name": "edCodeL3",
-                      "fill": "#93C5FD",
-                      "textGrowth": "fixed-width",
-                      "width": "fill_container",
-                      "content": "const [items, setItems] = useState([]);",
-                      "fontFamily": "Fira Code",
-                      "fontSize": 13,
-                      "fontWeight": "normal"
-                    }
-                  ]
-                },
-                {
-                  "type": "text",
-                  "id": "MbkUL",
-                  "name": "edP2",
-                  "fill": "#475569",
-                  "textGrowth": "fixed-width",
-                  "width": "fill_container",
-                  "content": "## Key Concepts\n\n- State is preserved between renders\n- Updating state triggers a re-render\n- State updates may be batched",
-                  "lineHeight": 1.6,
-                  "fontFamily": "Fira Code",
-                  "fontSize": 14,
-                  "fontWeight": "normal"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "8ruPA",
-              "name": "Divider",
-              "width": 1,
-              "height": "fill_container",
-              "fill": "#E2E8F0"
-            },
-            {
-              "type": "frame",
-              "id": "DFElV",
-              "name": "Preview Pane",
-              "width": "fill_container",
-              "height": "fill_container",
-              "fill": "#FFFFFF",
-              "layout": "vertical",
-              "gap": 16,
-              "padding": 24,
-              "children": [
-                {
-                  "type": "frame",
-                  "id": "myQqp",
-                  "name": "pvLabel",
-                  "gap": 6,
+                  "padding": [
+                    4,
+                    8
+                  ],
                   "alignItems": "center",
                   "children": [
                     {
                       "type": "icon_font",
-                      "id": "8NRgO",
-                      "name": "pvLabelIc",
-                      "width": 0,
-                      "height": 0,
+                      "id": "NoXfb",
+                      "name": "courseIcon",
+                      "width": 12,
+                      "height": 12,
+                      "iconFontName": "book-open",
                       "iconFontFamily": "lucide",
-                      "fill": "#94A3B8"
+                      "fill": "$primary"
                     },
                     {
                       "type": "text",
-                      "id": "VF5Dw",
-                      "name": "pvLabelTxt",
-                      "fill": "#94A3B8",
-                      "content": "Preview",
+                      "id": "00zEx",
+                      "name": "courseText",
+                      "fill": "$primary",
+                      "content": "React Fundamentals",
                       "fontFamily": "Inter",
                       "fontSize": 12,
                       "fontWeight": "500"
@@ -454,160 +245,96 @@
                   ]
                 },
                 {
-                  "type": "text",
-                  "id": "mHYpc",
-                  "name": "pvH1",
-                  "fill": "#1E293B",
-                  "textGrowth": "fixed-width",
-                  "width": "fill_container",
-                  "content": "Understanding useState Hook",
-                  "fontFamily": "Inter",
-                  "fontSize": 24,
-                  "fontWeight": "bold"
-                },
-                {
-                  "type": "text",
-                  "id": "NnqZw",
-                  "name": "pvP1",
-                  "fill": "#475569",
-                  "textGrowth": "fixed-width",
-                  "width": "fill_container",
-                  "content": "The useState hook is the most fundamental React hook for managing component state. It returns a pair of values: the current state and a function to update it.",
-                  "lineHeight": 1.6,
-                  "fontFamily": "Inter",
-                  "fontSize": 15,
-                  "fontWeight": "normal"
-                },
-                {
-                  "type": "text",
-                  "id": "LJbGa",
-                  "name": "pvH2",
-                  "fill": "#1E293B",
-                  "textGrowth": "fixed-width",
-                  "width": "fill_container",
-                  "content": "Basic Usage",
-                  "fontFamily": "Inter",
-                  "fontSize": 20,
-                  "fontWeight": "600"
-                },
-                {
                   "type": "frame",
-                  "id": "TVVYM",
-                  "name": "Preview Code",
-                  "width": "fill_container",
-                  "fill": "#F8FAFC",
-                  "cornerRadius": 8,
-                  "stroke": {
-                    "align": "inside",
-                    "thickness": 1,
-                    "fill": "#E2E8F0"
-                  },
-                  "layout": "vertical",
-                  "gap": 4,
-                  "padding": 16,
+                  "id": "NODbM",
+                  "name": "tagGroup",
+                  "gap": 6,
+                  "alignItems": "center",
                   "children": [
                     {
-                      "type": "text",
-                      "id": "VqnXJ",
-                      "name": "pvCL1",
-                      "fill": "#1E293B",
-                      "textGrowth": "fixed-width",
-                      "width": "fill_container",
-                      "content": "const [count, setCount] = useState(0);",
-                      "fontFamily": "Fira Code",
-                      "fontSize": 13,
-                      "fontWeight": "normal"
+                      "type": "frame",
+                      "id": "qiOjy",
+                      "name": "tag1",
+                      "fill": "$success-light",
+                      "cornerRadius": 9999,
+                      "padding": [
+                        3,
+                        8
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "QdpiE",
+                          "name": "tag1t",
+                          "fill": "$success",
+                          "content": "hooks",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "500"
+                        }
+                      ]
                     },
                     {
-                      "type": "text",
-                      "id": "Ihx4W",
-                      "name": "pvCL2",
-                      "fill": "#1E293B",
-                      "textGrowth": "fixed-width",
-                      "width": "fill_container",
-                      "content": "const [name, setName] = useState('');",
-                      "fontFamily": "Fira Code",
-                      "fontSize": 13,
-                      "fontWeight": "normal"
+                      "type": "frame",
+                      "id": "cjVzu",
+                      "name": "tag2",
+                      "fill": "$warning-light",
+                      "cornerRadius": 9999,
+                      "padding": [
+                        3,
+                        8
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "4sVDc",
+                          "name": "tag2t",
+                          "fill": "$warning",
+                          "content": "state",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "500"
+                        }
+                      ]
                     },
                     {
-                      "type": "text",
-                      "id": "WYr3z",
-                      "name": "pvCL3",
-                      "fill": "#1E293B",
-                      "textGrowth": "fixed-width",
-                      "width": "fill_container",
-                      "content": "const [items, setItems] = useState([]);",
-                      "fontFamily": "Fira Code",
-                      "fontSize": 13,
-                      "fontWeight": "normal"
-                    }
-                  ]
-                },
-                {
-                  "type": "text",
-                  "id": "029gU",
-                  "name": "pvH3",
-                  "fill": "#1E293B",
-                  "textGrowth": "fixed-width",
-                  "width": "fill_container",
-                  "content": "Key Concepts",
-                  "fontFamily": "Inter",
-                  "fontSize": 20,
-                  "fontWeight": "600"
-                },
-                {
-                  "type": "frame",
-                  "id": "nhS8M",
-                  "name": "pvBullets",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "gap": 8,
-                  "padding": [
-                    0,
-                    0,
-                    0,
-                    16
-                  ],
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "ITpmS",
-                      "name": "pvB1",
-                      "fill": "#475569",
-                      "textGrowth": "fixed-width",
-                      "width": "fill_container",
-                      "content": "- State is preserved between renders",
-                      "lineHeight": 1.5,
-                      "fontFamily": "Inter",
-                      "fontSize": 15,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "text",
-                      "id": "7qFUF",
-                      "name": "pvB2",
-                      "fill": "#475569",
-                      "textGrowth": "fixed-width",
-                      "width": "fill_container",
-                      "content": "- Updating state triggers a re-render",
-                      "lineHeight": 1.5,
-                      "fontFamily": "Inter",
-                      "fontSize": 15,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "text",
-                      "id": "DbUT5",
-                      "name": "pvB3",
-                      "fill": "#475569",
-                      "textGrowth": "fixed-width",
-                      "width": "fill_container",
-                      "content": "- State updates may be batched",
-                      "lineHeight": 1.5,
-                      "fontFamily": "Inter",
-                      "fontSize": 15,
-                      "fontWeight": "normal"
+                      "type": "frame",
+                      "id": "M2vuL",
+                      "name": "addTag",
+                      "cornerRadius": 9999,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "$border"
+                      },
+                      "gap": 4,
+                      "padding": [
+                        3,
+                        8
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "w9yuC",
+                          "name": "addTagIcon",
+                          "width": 12,
+                          "height": 12,
+                          "iconFontName": "plus",
+                          "iconFontFamily": "lucide",
+                          "fill": "$text-muted"
+                        },
+                        {
+                          "type": "text",
+                          "id": "YL9lP",
+                          "name": "addTagText",
+                          "fill": "$text-muted",
+                          "content": "Add Tag",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "500"
+                        }
+                      ]
                     }
                   ]
                 }
@@ -617,51 +344,339 @@
         },
         {
           "type": "frame",
-          "id": "qJ7Eh",
-          "name": "Metadata Bar",
+          "id": "dVjSC",
+          "name": "Markdown Toolbar",
           "width": "fill_container",
-          "fill": "#FFFFFF",
+          "fill": "$bg-white",
           "stroke": {
             "align": "inside",
-            "thickness": 1,
-            "fill": "#E2E8F0"
+            "thickness": {
+              "bottom": 1
+            },
+            "fill": "$border"
           },
+          "gap": 4,
           "padding": [
-            12,
-            24
+            8,
+            32
           ],
-          "justifyContent": "space_between",
           "alignItems": "center",
           "children": [
             {
               "type": "frame",
-              "id": "2qQvv",
-              "name": "metaLeft",
-              "gap": 16,
-              "alignItems": "center",
+              "id": "3cY19",
+              "name": "tb1",
+              "cornerRadius": 6,
+              "padding": 6,
               "children": [
                 {
+                  "type": "icon_font",
+                  "id": "yGciP",
+                  "name": "tb1i",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "bold",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-secondary"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "BsjLO",
+              "name": "tb2",
+              "cornerRadius": 6,
+              "padding": 6,
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "SpoVO",
+                  "name": "tb2i",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "italic",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-secondary"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "FwyQS",
+              "name": "tb3",
+              "cornerRadius": 6,
+              "padding": 6,
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "SFEeS",
+                  "name": "tb3i",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "heading",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-secondary"
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "KxQ6V",
+              "name": "divider1",
+              "fill": "$border",
+              "width": 1,
+              "height": 20
+            },
+            {
+              "type": "frame",
+              "id": "KmP7E",
+              "name": "tb4",
+              "cornerRadius": 6,
+              "padding": 6,
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "8Rqyw",
+                  "name": "tb4i",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "list",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-secondary"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "DVaIh",
+              "name": "tb5",
+              "cornerRadius": 6,
+              "padding": 6,
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "W3jev",
+                  "name": "tb5i",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "list-ordered",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-secondary"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "1VLx2",
+              "name": "tb6",
+              "cornerRadius": 6,
+              "padding": 6,
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "iK4Io",
+                  "name": "tb6i",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "code",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-secondary"
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "m3hSK",
+              "name": "divider2",
+              "fill": "$border",
+              "width": 1,
+              "height": 20
+            },
+            {
+              "type": "frame",
+              "id": "2sgF4",
+              "name": "tb7",
+              "cornerRadius": 6,
+              "padding": 6,
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "CYR5r",
+                  "name": "tb7i",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "link",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-secondary"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "GtIWP",
+              "name": "tb8",
+              "cornerRadius": 6,
+              "padding": 6,
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "TEgV3",
+                  "name": "tb8i",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "image",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-secondary"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "YqJYr",
+          "name": "Editor Area",
+          "width": "fill_container",
+          "height": 600,
+          "children": [
+            {
+              "type": "frame",
+              "id": "Xs4pO",
+              "name": "Source Pane",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "$bg-white",
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "right": 1
+                },
+                "fill": "$border"
+              },
+              "layout": "vertical",
+              "gap": 16,
+              "padding": 24,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "kG6GK",
+                  "name": "sourceLabel",
+                  "fill": "$text-muted",
+                  "content": "Markdown Source",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "Xur47",
+                  "name": "sourceLine1",
+                  "fill": "$text-primary",
+                  "content": "# Understanding useState Hook",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "6BDlj",
+                  "name": "sourceLine2",
+                  "fill": "$text-secondary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "The useState hook is the most fundamental React hook for managing component state. It returns a pair of values:",
+                  "lineHeight": 1.6,
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "A6GV3",
+                  "name": "sourceLine3",
+                  "fill": "$text-primary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "```javascript\nconst [count, setCount] = useState(0);\n```",
+                  "lineHeight": 1.5,
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "0qIA6",
+                  "name": "sourceLine4",
+                  "fill": "$text-secondary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "## Key Concepts\n\n- **Initial State**: The argument passed to useState\n- **State Variable**: The current state value\n- **Setter Function**: Updates the state",
+                  "lineHeight": 1.6,
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ruyil",
+              "name": "Preview Pane",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "$bg-page",
+              "layout": "vertical",
+              "gap": 16,
+              "padding": 24,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "i8Sfn",
+                  "name": "previewLabel",
+                  "fill": "$text-muted",
+                  "content": "Preview",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "3M49X",
+                  "name": "previewH1",
+                  "fill": "$text-primary",
+                  "content": "Understanding useState Hook",
+                  "fontFamily": "Inter",
+                  "fontSize": 22,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "kgWoJ",
+                  "name": "previewP1",
+                  "fill": "$text-secondary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "The useState hook is the most fundamental React hook for managing component state. It returns a pair of values:",
+                  "lineHeight": 1.6,
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
                   "type": "frame",
-                  "id": "7oWpF",
-                  "name": "metaCourse",
-                  "gap": 6,
-                  "alignItems": "center",
+                  "id": "Adujs",
+                  "name": "codeBlock",
+                  "width": "fill_container",
+                  "fill": "$bg-dark",
+                  "cornerRadius": 8,
+                  "padding": 16,
                   "children": [
                     {
-                      "type": "icon_font",
-                      "id": "cb8M2",
-                      "name": "metaCourseIc",
-                      "width": 0,
-                      "height": 0,
-                      "iconFontFamily": "lucide",
-                      "fill": "#64748B"
-                    },
-                    {
                       "type": "text",
-                      "id": "9Z9c2",
-                      "name": "metaCourseTxt",
-                      "fill": "#64748B",
-                      "content": "React Fundamentals",
+                      "id": "uaQcN",
+                      "name": "codeText",
+                      "fill": "$border",
+                      "content": "const [count, setCount] = useState(0);",
                       "fontFamily": "Inter",
                       "fontSize": 13,
                       "fontWeight": "normal"
@@ -669,96 +684,1291 @@
                   ]
                 },
                 {
+                  "type": "text",
+                  "id": "u8K3D",
+                  "name": "previewH2",
+                  "fill": "$text-primary",
+                  "content": "Key Concepts",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "f1CvO",
+      "x": 1380,
+      "y": 0,
+      "name": "Memo Editor - Tablet",
+      "width": 768,
+      "fill": "$bg-page",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "kyYwp",
+          "name": "Editor Header",
+          "width": "fill_container",
+          "fill": "$bg-white",
+          "stroke": {
+            "align": "inside",
+            "thickness": {
+              "bottom": 1
+            },
+            "fill": "$border"
+          },
+          "padding": [
+            16,
+            20
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "Z5mcQ",
+              "name": "headerLeft",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "ELxAw",
+                  "name": "backIcon",
+                  "width": 20,
+                  "height": 20,
+                  "iconFontName": "arrow-left",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-secondary"
+                },
+                {
+                  "type": "text",
+                  "id": "W1g44",
+                  "name": "headerTitle",
+                  "fill": "$text-primary",
+                  "content": "Edit Memo",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "r9Dez",
+              "name": "headerRight",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
                   "type": "frame",
-                  "id": "1Snel",
-                  "name": "metaTags",
+                  "id": "ievpO",
+                  "name": "autoSave",
                   "gap": 6,
                   "alignItems": "center",
                   "children": [
                     {
                       "type": "icon_font",
-                      "id": "LIjxK",
-                      "name": "metaTagIc",
-                      "width": 0,
-                      "height": 0,
+                      "id": "ypc3C",
+                      "name": "saveIcon",
+                      "width": 14,
+                      "height": 14,
+                      "iconFontName": "circle-check",
                       "iconFontFamily": "lucide",
-                      "fill": "#64748B"
+                      "fill": "$success"
                     },
                     {
+                      "type": "text",
+                      "id": "5Aj3b",
+                      "name": "saveText",
+                      "fill": "$success",
+                      "content": "Auto-saved",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "PqAAZ",
+                  "name": "splitBtn",
+                  "fill": "$primary-light",
+                  "cornerRadius": 8,
+                  "gap": 6,
+                  "padding": [
+                    8,
+                    12
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "c3pan",
+                      "name": "splitIcon",
+                      "width": 16,
+                      "height": 16,
+                      "iconFontName": "columns-2",
+                      "iconFontFamily": "lucide",
+                      "fill": "$primary"
+                    },
+                    {
+                      "type": "text",
+                      "id": "5D0m9",
+                      "name": "splitText",
+                      "fill": "$primary",
+                      "content": "Split View",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "sZYsN",
+                  "name": "saveBtn",
+                  "fill": "$primary",
+                  "cornerRadius": 8,
+                  "gap": 6,
+                  "padding": [
+                    8,
+                    16
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "6RyDQ",
+                      "name": "saveBtnIcon",
+                      "width": 16,
+                      "height": 16,
+                      "iconFontName": "save",
+                      "iconFontFamily": "lucide",
+                      "fill": "$text-white"
+                    },
+                    {
+                      "type": "text",
+                      "id": "BCwko",
+                      "name": "saveBtnText",
+                      "fill": "$text-white",
+                      "content": "Save",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "JJUXR",
+          "name": "Meta Bar",
+          "width": "fill_container",
+          "fill": "$bg-white",
+          "stroke": {
+            "align": "inside",
+            "thickness": {
+              "bottom": 1
+            },
+            "fill": "$border"
+          },
+          "layout": "vertical",
+          "gap": 8,
+          "padding": [
+            12,
+            20
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "ux7VB",
+              "name": "titleInput",
+              "fill": "$text-primary",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Understanding useState Hook",
+              "fontFamily": "Inter",
+              "fontSize": 20,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "50DoT",
+              "name": "metaInfo",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "6FQIQ",
+                  "name": "courseTag",
+                  "fill": "$primary-light",
+                  "cornerRadius": 6,
+                  "gap": 4,
+                  "padding": [
+                    4,
+                    8
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "D3lj2",
+                      "name": "courseIcon",
+                      "width": 12,
+                      "height": 12,
+                      "iconFontName": "book-open",
+                      "iconFontFamily": "lucide",
+                      "fill": "$primary"
+                    },
+                    {
+                      "type": "text",
+                      "id": "JgTX7",
+                      "name": "courseText",
+                      "fill": "$primary",
+                      "content": "React Fundamentals",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "vippe",
+                  "name": "tagGroup",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
                       "type": "frame",
-                      "id": "DOZTy",
-                      "name": "mtag1",
-                      "fill": "#EFF6FF",
+                      "id": "fv8D8",
+                      "name": "tag1",
+                      "fill": "$success-light",
                       "cornerRadius": 9999,
                       "padding": [
-                        2,
+                        3,
                         8
                       ],
                       "children": [
                         {
                           "type": "text",
-                          "id": "iNRAT",
-                          "name": "mtag1t",
-                          "fill": "#3B82F6",
+                          "id": "3f891",
+                          "name": "tag1t",
+                          "fill": "$success",
                           "content": "hooks",
                           "fontFamily": "Inter",
-                          "fontSize": 12,
-                          "fontWeight": "normal"
+                          "fontSize": 11,
+                          "fontWeight": "500"
                         }
                       ]
                     },
                     {
                       "type": "frame",
-                      "id": "xCrI2",
-                      "name": "mtag2",
-                      "fill": "#F0FDF4",
+                      "id": "oD3Cu",
+                      "name": "tag2",
+                      "fill": "$warning-light",
                       "cornerRadius": 9999,
                       "padding": [
-                        2,
+                        3,
                         8
                       ],
                       "children": [
                         {
                           "type": "text",
-                          "id": "UsBIR",
-                          "name": "mtag2t",
-                          "fill": "#10B981",
+                          "id": "exsVU",
+                          "name": "tag2t",
+                          "fill": "$warning",
                           "content": "state",
                           "fontFamily": "Inter",
-                          "fontSize": 12,
-                          "fontWeight": "normal"
+                          "fontSize": 11,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "MYH2p",
+                      "name": "addTag",
+                      "cornerRadius": 9999,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "$border"
+                      },
+                      "gap": 4,
+                      "padding": [
+                        3,
+                        8
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "fNUZH",
+                          "name": "addTagIcon",
+                          "width": 12,
+                          "height": 12,
+                          "iconFontName": "plus",
+                          "iconFontFamily": "lucide",
+                          "fill": "$text-muted"
+                        },
+                        {
+                          "type": "text",
+                          "id": "nKwq5",
+                          "name": "addTagText",
+                          "fill": "$text-muted",
+                          "content": "Add Tag",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "500"
                         }
                       ]
                     }
                   ]
                 }
               ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "NlXin",
+          "name": "Markdown Toolbar",
+          "width": "fill_container",
+          "fill": "$bg-white",
+          "stroke": {
+            "align": "inside",
+            "thickness": {
+              "bottom": 1
+            },
+            "fill": "$border"
+          },
+          "gap": 4,
+          "padding": [
+            8,
+            20
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "S7OYi",
+              "name": "tb1",
+              "cornerRadius": 6,
+              "padding": 6,
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "XRMvR",
+                  "name": "tb1i",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "bold",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-secondary"
+                }
+              ]
             },
             {
               "type": "frame",
-              "id": "QRc8i",
-              "name": "metaRight",
-              "gap": 12,
-              "alignItems": "center",
+              "id": "b2Ba5",
+              "name": "tb2",
+              "cornerRadius": 6,
+              "padding": 6,
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "es7j5",
+                  "name": "tb2i",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "italic",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-secondary"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "5MVE8",
+              "name": "tb3",
+              "cornerRadius": 6,
+              "padding": 6,
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "mzihd",
+                  "name": "tb3i",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "heading",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-secondary"
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "CKBhy",
+              "name": "divider1",
+              "fill": "$border",
+              "width": 1,
+              "height": 20
+            },
+            {
+              "type": "frame",
+              "id": "kEwmV",
+              "name": "tb4",
+              "cornerRadius": 6,
+              "padding": 6,
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "YqlsJ",
+                  "name": "tb4i",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "list",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-secondary"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "HjwBw",
+              "name": "tb5",
+              "cornerRadius": 6,
+              "padding": 6,
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "1CgpS",
+                  "name": "tb5i",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "list-ordered",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-secondary"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "U3Tlp",
+              "name": "tb6",
+              "cornerRadius": 6,
+              "padding": 6,
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "1kilD",
+                  "name": "tb6i",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "code",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-secondary"
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "RMclT",
+              "name": "divider2",
+              "fill": "$border",
+              "width": 1,
+              "height": 20
+            },
+            {
+              "type": "frame",
+              "id": "Pclmb",
+              "name": "tb7",
+              "cornerRadius": 6,
+              "padding": 6,
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "pWIWm",
+                  "name": "tb7i",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "link",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-secondary"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ZPRnX",
+              "name": "tb8",
+              "cornerRadius": 6,
+              "padding": 6,
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "tz5uV",
+                  "name": "tb8i",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "image",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-secondary"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "S1g4C",
+          "name": "Editor Area",
+          "width": "fill_container",
+          "height": 600,
+          "children": [
+            {
+              "type": "frame",
+              "id": "bzwoq",
+              "name": "Source Pane",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "$bg-white",
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "right": 1
+                },
+                "fill": "$border"
+              },
+              "layout": "vertical",
+              "gap": 16,
+              "padding": 16,
               "children": [
                 {
                   "type": "text",
-                  "id": "F1PSG",
-                  "name": "metaWordCount",
-                  "fill": "#94A3B8",
-                  "content": "324 words",
+                  "id": "EOKfl",
+                  "name": "sourceLabel",
+                  "fill": "$text-muted",
+                  "content": "Markdown Source",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "ZApY3",
+                  "name": "sourceLine1",
+                  "fill": "$text-primary",
+                  "content": "# Understanding useState Hook",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "CKKAL",
+                  "name": "sourceLine2",
+                  "fill": "$text-secondary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "The useState hook is the most fundamental React hook for managing component state. It returns a pair of values:",
+                  "lineHeight": 1.6,
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "GnwFi",
+                  "name": "sourceLine3",
+                  "fill": "$text-primary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "```javascript\nconst [count, setCount] = useState(0);\n```",
+                  "lineHeight": 1.5,
                   "fontFamily": "Inter",
                   "fontSize": 13,
                   "fontWeight": "normal"
                 },
                 {
                   "type": "text",
-                  "id": "w96My",
-                  "name": "metaReadTime",
-                  "fill": "#94A3B8",
-                  "content": "2 min read",
+                  "id": "FzoKW",
+                  "name": "sourceLine4",
+                  "fill": "$text-secondary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "## Key Concepts\n\n- **Initial State**: The argument passed to useState\n- **State Variable**: The current state value\n- **Setter Function**: Updates the state",
+                  "lineHeight": 1.6,
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "jiKUa",
+              "name": "Preview Pane",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "$bg-page",
+              "layout": "vertical",
+              "gap": 16,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "pcINA",
+                  "name": "previewLabel",
+                  "fill": "$text-muted",
+                  "content": "Preview",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "ieJN8",
+                  "name": "previewH1",
+                  "fill": "$text-primary",
+                  "content": "Understanding useState Hook",
+                  "fontFamily": "Inter",
+                  "fontSize": 22,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "MLHKY",
+                  "name": "previewP1",
+                  "fill": "$text-secondary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "The useState hook is the most fundamental React hook for managing component state. It returns a pair of values:",
+                  "lineHeight": 1.6,
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "Wk1fG",
+                  "name": "codeBlock",
+                  "width": "fill_container",
+                  "fill": "$bg-dark",
+                  "cornerRadius": 8,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "hzqd3",
+                      "name": "codeText",
+                      "fill": "$border",
+                      "content": "const [count, setCount] = useState(0);",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "NTcDe",
+                  "name": "previewH2",
+                  "fill": "$text-primary",
+                  "content": "Key Concepts",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "SeDKb",
+      "x": 2248,
+      "y": 0,
+      "name": "Memo Editor - Mobile",
+      "width": 375,
+      "fill": "$bg-page",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "yJHN9",
+          "name": "Editor Header",
+          "width": "fill_container",
+          "fill": "$bg-white",
+          "stroke": {
+            "align": "inside",
+            "thickness": {
+              "bottom": 1
+            },
+            "fill": "$border"
+          },
+          "padding": [
+            12,
+            16
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "in4Go",
+              "name": "headerLeft",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "YspJv",
+                  "name": "backIcon",
+                  "width": 20,
+                  "height": 20,
+                  "iconFontName": "arrow-left",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-secondary"
+                },
+                {
+                  "type": "text",
+                  "id": "W6Meu",
+                  "name": "headerTitle",
+                  "fill": "$text-primary",
+                  "content": "Edit Memo",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "WfLtk",
+              "name": "headerRight",
+              "gap": 6,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "yisSI",
+                  "name": "autoSave",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "PjQ90",
+                      "name": "saveIcon",
+                      "width": 14,
+                      "height": 14,
+                      "iconFontName": "circle-check",
+                      "iconFontFamily": "lucide",
+                      "fill": "$success"
+                    },
+                    {
+                      "type": "text",
+                      "id": "upAJQ",
+                      "name": "saveText",
+                      "fill": "$success",
+                      "content": "Auto-saved",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "mfBJ9",
+                  "name": "saveBtn",
+                  "fill": "$primary",
+                  "cornerRadius": 8,
+                  "gap": 6,
+                  "padding": [
+                    8,
+                    16
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "im78w",
+                      "name": "saveBtnIcon",
+                      "width": 16,
+                      "height": 16,
+                      "iconFontName": "save",
+                      "iconFontFamily": "lucide",
+                      "fill": "$text-white"
+                    },
+                    {
+                      "type": "text",
+                      "id": "X6VVb",
+                      "name": "saveBtnText",
+                      "fill": "$text-white",
+                      "content": "Save",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "6Bcgx",
+          "name": "Meta Bar",
+          "width": "fill_container",
+          "fill": "$bg-white",
+          "stroke": {
+            "align": "inside",
+            "thickness": {
+              "bottom": 1
+            },
+            "fill": "$border"
+          },
+          "layout": "vertical",
+          "gap": 8,
+          "padding": [
+            10,
+            16
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "23BwE",
+              "name": "titleInput",
+              "fill": "$text-primary",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Understanding useState Hook",
+              "fontFamily": "Inter",
+              "fontSize": 16,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "3v9Mp",
+              "name": "metaInfo",
+              "layout": "vertical",
+              "gap": 6,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "0QNAr",
+                  "name": "courseTag",
+                  "fill": "$primary-light",
+                  "cornerRadius": 6,
+                  "gap": 4,
+                  "padding": [
+                    4,
+                    8
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "qaBY7",
+                      "name": "courseIcon",
+                      "width": 12,
+                      "height": 12,
+                      "iconFontName": "book-open",
+                      "iconFontFamily": "lucide",
+                      "fill": "$primary"
+                    },
+                    {
+                      "type": "text",
+                      "id": "rWOZh",
+                      "name": "courseText",
+                      "fill": "$primary",
+                      "content": "React Fundamentals",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Fr6lx",
+                  "name": "tagGroup",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "v3jDe",
+                      "name": "tag1",
+                      "fill": "$success-light",
+                      "cornerRadius": 9999,
+                      "padding": [
+                        3,
+                        8
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "3T9Rs",
+                          "name": "tag1t",
+                          "fill": "$success",
+                          "content": "hooks",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "uVURD",
+                      "name": "tag2",
+                      "fill": "$warning-light",
+                      "cornerRadius": 9999,
+                      "padding": [
+                        3,
+                        8
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "3iQls",
+                          "name": "tag2t",
+                          "fill": "$warning",
+                          "content": "state",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "tyIeG",
+                      "name": "addTag",
+                      "cornerRadius": 9999,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "$border"
+                      },
+                      "gap": 4,
+                      "padding": [
+                        3,
+                        8
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "mCmf7",
+                          "name": "addTagIcon",
+                          "width": 12,
+                          "height": 12,
+                          "iconFontName": "plus",
+                          "iconFontFamily": "lucide",
+                          "fill": "$text-muted"
+                        },
+                        {
+                          "type": "text",
+                          "id": "NqMD3",
+                          "name": "addTagText",
+                          "fill": "$text-muted",
+                          "content": "Add Tag",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "pXS5S",
+          "name": "Markdown Toolbar",
+          "width": "fill_container",
+          "fill": "$bg-white",
+          "stroke": {
+            "align": "inside",
+            "thickness": {
+              "bottom": 1
+            },
+            "fill": "$border"
+          },
+          "gap": 6,
+          "padding": [
+            6,
+            12
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "r6ijj",
+              "name": "tb1",
+              "cornerRadius": 6,
+              "padding": 6,
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "4f3ry",
+                  "name": "tb1i",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "bold",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-secondary"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "z2Bs3",
+              "name": "tb2",
+              "cornerRadius": 6,
+              "padding": 6,
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "vIW4q",
+                  "name": "tb2i",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "italic",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-secondary"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "rYBnY",
+              "name": "tb3",
+              "cornerRadius": 6,
+              "padding": 6,
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "7XQIm",
+                  "name": "tb3i",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "heading",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-secondary"
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "1lYkk",
+              "name": "divider1",
+              "fill": "$border",
+              "width": 1,
+              "height": 20
+            },
+            {
+              "type": "frame",
+              "id": "pU0e3",
+              "name": "tb4",
+              "cornerRadius": 6,
+              "padding": 6,
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "l9DXU",
+                  "name": "tb4i",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "list",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-secondary"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "bpZvK",
+              "name": "tb5",
+              "cornerRadius": 6,
+              "padding": 6,
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "WhAWk",
+                  "name": "tb5i",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "list-ordered",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-secondary"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "mWyAo",
+              "name": "tb6",
+              "cornerRadius": 6,
+              "padding": 6,
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "PMv4b",
+                  "name": "tb6i",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "code",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-secondary"
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "tytL4",
+              "name": "divider2",
+              "fill": "$border",
+              "width": 1,
+              "height": 20
+            },
+            {
+              "type": "frame",
+              "id": "dveiR",
+              "name": "tb7",
+              "cornerRadius": 6,
+              "padding": 6,
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "w8q1G",
+                  "name": "tb7i",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "link",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-secondary"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "qekI9",
+              "name": "tb8",
+              "cornerRadius": 6,
+              "padding": 6,
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "V65VQ",
+                  "name": "tb8i",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "image",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-secondary"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "IbPbc",
+          "name": "Editor Area",
+          "width": "fill_container",
+          "height": 600,
+          "layout": "vertical",
+          "children": [
+            {
+              "type": "frame",
+              "id": "6CKhs",
+              "name": "Source Pane",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "$bg-white",
+              "layout": "vertical",
+              "gap": 16,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "k9nHS",
+                  "name": "sourceLabel",
+                  "fill": "$text-muted",
+                  "content": "Markdown Source",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "Oss7E",
+                  "name": "sourceLine1",
+                  "fill": "$text-primary",
+                  "content": "# Understanding useState Hook",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "9n1Oy",
+                  "name": "sourceLine2",
+                  "fill": "$text-secondary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "The useState hook is the most fundamental React hook for managing component state. It returns a pair of values:",
+                  "lineHeight": 1.6,
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "UZh4B",
+                  "name": "sourceLine3",
+                  "fill": "$text-primary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "```javascript\nconst [count, setCount] = useState(0);\n```",
+                  "lineHeight": 1.5,
                   "fontFamily": "Inter",
                   "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "1ZCo5",
+                  "name": "sourceLine4",
+                  "fill": "$text-secondary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "## Key Concepts\n\n- **Initial State**: The argument passed to useState\n- **State Variable**: The current state value\n- **Setter Function**: Updates the state",
+                  "lineHeight": 1.6,
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
                   "fontWeight": "normal"
                 }
               ]
@@ -767,5 +1977,148 @@
         }
       ]
     }
-  ]
+  ],
+  "variables": {
+    "accent-purple": {
+      "type": "color",
+      "value": "#6366F1"
+    },
+    "accent-purple-light": {
+      "type": "color",
+      "value": "#EDE9FE"
+    },
+    "bg-card": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "bg-dark": {
+      "type": "color",
+      "value": "#0F172A"
+    },
+    "bg-page": {
+      "type": "color",
+      "value": "#F8FAFC"
+    },
+    "border": {
+      "type": "color",
+      "value": "#E2E8F0"
+    },
+    "border-light": {
+      "type": "color",
+      "value": "#F1F5F9"
+    },
+    "error": {
+      "type": "color",
+      "value": "#EF4444"
+    },
+    "error-light": {
+      "type": "color",
+      "value": "#FEF2F2"
+    },
+    "primary": {
+      "type": "color",
+      "value": "#3B82F6"
+    },
+    "primary-dark": {
+      "type": "color",
+      "value": "#2563EB"
+    },
+    "primary-light": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#EFF6FF"
+        },
+        {
+          "value": "#DBEAFE"
+        }
+      ]
+    },
+    "radius-lg": {
+      "type": "number",
+      "value": 12
+    },
+    "radius-md": {
+      "type": "number",
+      "value": 8
+    },
+    "radius-xl": {
+      "type": "number",
+      "value": 16
+    },
+    "success": {
+      "type": "color",
+      "value": "#10B981"
+    },
+    "success-light": {
+      "type": "color",
+      "value": "#F0FDF4"
+    },
+    "text-muted": {
+      "type": "color",
+      "value": "#94A3B8"
+    },
+    "text-primary": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#0F172A"
+        },
+        {
+          "value": "#1E293B"
+        }
+      ]
+    },
+    "text-secondary": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#64748B"
+        },
+        {
+          "value": "#475569"
+        }
+      ]
+    },
+    "text-white": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "warning": {
+      "type": "color",
+      "value": "#F59E0B"
+    },
+    "warning-light": {
+      "type": "color",
+      "value": "#FEF3C7"
+    },
+    "bg-slate-100": {
+      "type": "color",
+      "value": "#F1F5F9"
+    },
+    "bg-slate-50": {
+      "type": "color",
+      "value": "#F8FAFC"
+    },
+    "bg-white": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "font-sans": {
+      "type": "string",
+      "value": "Inter, Pretendard, sans-serif"
+    },
+    "primary-lighter": {
+      "type": "color",
+      "value": "#EFF6FF"
+    },
+    "text-heading": {
+      "type": "color",
+      "value": "#0F172A"
+    },
+    "text-tertiary": {
+      "type": "color",
+      "value": "#64748B"
+    }
+  }
 }

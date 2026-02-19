@@ -179,7 +179,8 @@
               "fill": "#64748B",
               "content": "Completed on Feb 15, 2026  |  Time: 18:24 / 30:00",
               "fontFamily": "Inter",
-              "fontSize": 13
+              "fontSize": 13,
+              "fontWeight": "normal"
             },
             {
               "type": "frame",
@@ -222,7 +223,8 @@
                       "fill": "#64748B",
                       "content": "Correct",
                       "fontFamily": "Inter",
-                      "fontSize": 12
+                      "fontSize": 12,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -251,7 +253,8 @@
                       "fill": "#64748B",
                       "content": "Incorrect",
                       "fontFamily": "Inter",
-                      "fontSize": 12
+                      "fontSize": 12,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -280,7 +283,8 @@
                       "fill": "#64748B",
                       "content": "Time Spent",
                       "fontFamily": "Inter",
-                      "fontSize": 12
+                      "fontSize": 12,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -309,7 +313,8 @@
                       "fill": "#64748B",
                       "content": "Percentile",
                       "fontFamily": "Inter",
-                      "fontSize": 12
+                      "fontSize": 12,
+                      "fontWeight": "normal"
                     }
                   ]
                 }
@@ -438,7 +443,8 @@
                       "fill": "#334155",
                       "content": "Your answer: A syntax extension for JavaScript",
                       "fontFamily": "Inter",
-                      "fontSize": 13
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 }
@@ -547,7 +553,8 @@
                       "fill": "#EF4444",
                       "content": "Your answer: To manage component state directly",
                       "fontFamily": "Inter",
-                      "fontSize": 13
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -576,7 +583,8 @@
                       "fill": "#10B981",
                       "content": "Correct answer: To perform side effects after rendering",
                       "fontFamily": "Inter",
-                      "fontSize": 13
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 }
@@ -685,7 +693,8 @@
                       "fill": "#334155",
                       "content": "Your answer: By batching DOM updates and diffing",
                       "fontFamily": "Inter",
-                      "fontSize": 13
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 }
@@ -698,7 +707,8 @@
               "fill": "#3B82F6",
               "content": "Showing 3 of 15 questions. Click to expand all.",
               "fontFamily": "Inter",
-              "fontSize": 13
+              "fontSize": 13,
+              "fontWeight": "normal"
             }
           ]
         },
@@ -795,6 +805,1246 @@
           ]
         }
       ]
+    },
+    {
+      "type": "frame",
+      "id": "MssMy",
+      "x": 1380,
+      "y": 0,
+      "name": "Quiz Results - Tablet",
+      "width": 768,
+      "fill": "#F8FAFC",
+      "layout": "vertical",
+      "gap": 20,
+      "padding": 24,
+      "children": [
+        {
+          "type": "frame",
+          "id": "wXMwR",
+          "name": "header",
+          "width": "fill_container",
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "lh8l1",
+              "name": "backRow",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "1TUvp",
+                  "name": "backIcon",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "arrow-left",
+                  "iconFontFamily": "lucide",
+                  "fill": "#3B82F6"
+                },
+                {
+                  "type": "text",
+                  "id": "nQmlJ",
+                  "name": "backText",
+                  "fill": "#3B82F6",
+                  "content": "Back to Quizzes",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "8zogr",
+              "name": "pageTitle",
+              "fill": "#0F172A",
+              "content": "Quiz Results",
+              "fontFamily": "Inter",
+              "fontSize": 22,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "z9cYx",
+              "name": "spacer",
+              "width": 120,
+              "height": 1
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "mmZJQ",
+          "name": "scoreCard",
+          "width": "fill_container",
+          "fill": "#FFFFFF",
+          "cornerRadius": 12,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "#E2E8F0"
+          },
+          "layout": "vertical",
+          "gap": 20,
+          "padding": 24,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "K4Z0k",
+              "name": "scoreVisual",
+              "width": 120,
+              "height": 120,
+              "layout": "none",
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "1wGrq",
+                  "x": 0,
+                  "y": 0,
+                  "name": "circBg",
+                  "fill": "#EFF6FF",
+                  "width": 120,
+                  "height": 120,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 5,
+                    "fill": "#3B82F6"
+                  }
+                },
+                {
+                  "type": "text",
+                  "id": "QWfxA",
+                  "x": 30,
+                  "y": 24,
+                  "name": "scoreNum",
+                  "fill": "#3B82F6",
+                  "content": "85",
+                  "fontFamily": "Inter",
+                  "fontSize": 36,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "text",
+                  "id": "4mOcW",
+                  "x": 40,
+                  "y": 68,
+                  "name": "scoreMax",
+                  "fill": "#64748B",
+                  "content": "/100",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "CNNpr",
+              "name": "gradeBadge",
+              "fill": "#DCFCE7",
+              "cornerRadius": 9999,
+              "padding": [
+                6,
+                16
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "tvFt9",
+                  "name": "gradeText",
+                  "fill": "#16A34A",
+                  "content": "Grade: A",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "p34T6",
+              "name": "quizTitle",
+              "fill": "#0F172A",
+              "content": "React Fundamentals Quiz",
+              "fontFamily": "Inter",
+              "fontSize": 16,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "9q7UO",
+              "name": "quizMeta",
+              "fill": "#64748B",
+              "content": "Completed Feb 15, 2026 | Time: 18:24 / 30:00",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "qo8Yv",
+              "name": "divider",
+              "width": "fill_container",
+              "height": 1,
+              "fill": "#E2E8F0"
+            },
+            {
+              "type": "frame",
+              "id": "V6ibE",
+              "name": "statsRow",
+              "width": "fill_container",
+              "justifyContent": "space_around",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "INnwO",
+                  "name": "stat1",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "J2FtR",
+                      "name": "s1v",
+                      "fill": "#0F172A",
+                      "content": "13/15",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "pv56J",
+                      "name": "s1l",
+                      "fill": "#64748B",
+                      "content": "Correct",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "E1k5I",
+                  "name": "stat2",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "iWKBC",
+                      "name": "s2v",
+                      "fill": "#10B981",
+                      "content": "85%",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "DU1Sq",
+                      "name": "s2l",
+                      "fill": "#64748B",
+                      "content": "Score",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "JeIzI",
+                  "name": "stat3",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "lRJDl",
+                      "name": "s3v",
+                      "fill": "#0F172A",
+                      "content": "18:24",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "C69BN",
+                      "name": "s3l",
+                      "fill": "#64748B",
+                      "content": "Time",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ydcOS",
+                  "name": "stat4",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "FRtZm",
+                      "name": "s4v",
+                      "fill": "#16A34A",
+                      "content": "A",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "NCeL5",
+                      "name": "s4l",
+                      "fill": "#64748B",
+                      "content": "Grade",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "A5xWA",
+          "name": "sectionTitle",
+          "fill": "#0F172A",
+          "content": "Question Analysis",
+          "fontFamily": "Inter",
+          "fontSize": 18,
+          "fontWeight": "700"
+        },
+        {
+          "type": "frame",
+          "id": "t6cp6",
+          "name": "qList",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 12,
+          "children": [
+            {
+              "type": "frame",
+              "id": "xu7wJ",
+              "name": "q1correct",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 12,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#10B981"
+              },
+              "layout": "vertical",
+              "gap": 10,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "qV0t1",
+                  "name": "q1header",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "YGo5R",
+                      "name": "q1t",
+                      "fill": "#0F172A",
+                      "content": "Q1. What is JSX?",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "icon_font",
+                      "id": "E1z34",
+                      "name": "q1icon",
+                      "width": 18,
+                      "height": 18,
+                      "iconFontName": "circle-check",
+                      "iconFontFamily": "lucide",
+                      "fill": "#10B981"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "DfnlW",
+                  "name": "q1answer",
+                  "width": "fill_container",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Hw0ZR",
+                      "name": "q1al",
+                      "fill": "#64748B",
+                      "content": "Your answer:",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Kkgah",
+                      "name": "q1av",
+                      "fill": "#10B981",
+                      "content": "A JavaScript syntax extension",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "av8eG",
+              "name": "q2wrong",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 12,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#EF4444"
+              },
+              "layout": "vertical",
+              "gap": 10,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "pe0Tw",
+                  "name": "q2header",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "u5VPP",
+                      "name": "q2t",
+                      "fill": "#0F172A",
+                      "content": "Q2. What triggers a re-render?",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "icon_font",
+                      "id": "wVptn",
+                      "name": "q2icon",
+                      "width": 18,
+                      "height": 18,
+                      "iconFontName": "x-circle",
+                      "iconFontFamily": "lucide",
+                      "fill": "#EF4444"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ltEfb",
+                  "name": "q2yourAns",
+                  "width": "fill_container",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "XThdI",
+                      "name": "q2yl",
+                      "fill": "#64748B",
+                      "content": "Your answer:",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "v81TM",
+                      "name": "q2yv",
+                      "fill": "#EF4444",
+                      "content": "Using useRef",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "U7vPR",
+                  "name": "q2correctAns",
+                  "width": "fill_container",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "dMrj5",
+                      "name": "q2cl",
+                      "fill": "#64748B",
+                      "content": "Correct:",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "gE3wq",
+                      "name": "q2cv",
+                      "fill": "#10B981",
+                      "content": "Calling setState",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "Xq5WX",
+              "name": "moreText",
+              "fill": "#3B82F6",
+              "content": "Showing 2 of 15 questions",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "hQfQ1",
+          "name": "actionBar",
+          "width": "fill_container",
+          "gap": 12,
+          "padding": [
+            12,
+            0
+          ],
+          "justifyContent": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "MeKW5",
+              "name": "retryBtn",
+              "width": 140,
+              "height": 40,
+              "cornerRadius": 8,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#3B82F6"
+              },
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "V2OvY",
+                  "name": "retryText",
+                  "fill": "#3B82F6",
+                  "content": "Retry Quiz",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "IUDlL",
+              "name": "reviewBtn",
+              "width": 160,
+              "height": 40,
+              "fill": "#3B82F6",
+              "cornerRadius": 8,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "z2EXm",
+                  "name": "reviewText",
+                  "fill": "#FFFFFF",
+                  "content": "Review Answers",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "gtVfd",
+              "name": "backBtn",
+              "width": 140,
+              "height": 40,
+              "cornerRadius": 8,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#E2E8F0"
+              },
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "6HlXz",
+                  "name": "backBtnText",
+                  "fill": "#334155",
+                  "content": "Back to Course",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "500"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "oMyVe",
+      "x": 2248,
+      "y": 0,
+      "name": "Quiz Results - Mobile",
+      "width": 375,
+      "fill": "#F8FAFC",
+      "layout": "vertical",
+      "gap": 16,
+      "padding": 16,
+      "children": [
+        {
+          "type": "frame",
+          "id": "eAHTX",
+          "name": "header",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 8,
+          "children": [
+            {
+              "type": "frame",
+              "id": "fhcOu",
+              "name": "backRow",
+              "gap": 6,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "4XzTL",
+                  "name": "mBackIcon",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "arrow-left",
+                  "iconFontFamily": "lucide",
+                  "fill": "#3B82F6"
+                },
+                {
+                  "type": "text",
+                  "id": "BBhBd",
+                  "name": "mBackText",
+                  "fill": "#3B82F6",
+                  "content": "Back",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "hNK13",
+              "name": "mTitle",
+              "fill": "#0F172A",
+              "content": "Quiz Results",
+              "fontFamily": "Inter",
+              "fontSize": 20,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "spWkB",
+          "name": "scoreCard",
+          "width": "fill_container",
+          "fill": "#FFFFFF",
+          "cornerRadius": 12,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "#E2E8F0"
+          },
+          "layout": "vertical",
+          "gap": 16,
+          "padding": 20,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "mrCK1",
+              "name": "scoreVisual",
+              "width": 100,
+              "height": 100,
+              "layout": "none",
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "9R3sr",
+                  "x": 0,
+                  "y": 0,
+                  "name": "mCirc",
+                  "fill": "#EFF6FF",
+                  "width": 100,
+                  "height": 100,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 4,
+                    "fill": "#3B82F6"
+                  }
+                },
+                {
+                  "type": "text",
+                  "id": "X28EW",
+                  "x": 22,
+                  "y": 20,
+                  "name": "mScoreNum",
+                  "fill": "#3B82F6",
+                  "content": "85",
+                  "fontFamily": "Inter",
+                  "fontSize": 30,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "text",
+                  "id": "bYUvl",
+                  "x": 32,
+                  "y": 56,
+                  "name": "mScoreMax",
+                  "fill": "#64748B",
+                  "content": "/100",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "es7kE",
+              "name": "mGrade",
+              "fill": "#DCFCE7",
+              "cornerRadius": 9999,
+              "padding": [
+                4,
+                12
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "mznU7",
+                  "name": "mGradeText",
+                  "fill": "#16A34A",
+                  "content": "Grade: A",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "ff0lm",
+              "name": "mQuizTitle",
+              "fill": "#0F172A",
+              "content": "React Fundamentals Quiz",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "dbLMw",
+              "name": "mMeta",
+              "fill": "#64748B",
+              "content": "Feb 15, 2026 | 18:24 / 30:00",
+              "fontFamily": "Inter",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "uX9m2",
+              "name": "mDiv",
+              "width": "fill_container",
+              "height": 1,
+              "fill": "#E2E8F0"
+            },
+            {
+              "type": "frame",
+              "id": "7n9Ru",
+              "name": "statsRow",
+              "width": "fill_container",
+              "justifyContent": "space_around",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Jh0nx",
+                  "name": "ms1",
+                  "layout": "vertical",
+                  "gap": 2,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "koCSH",
+                      "name": "ms1v",
+                      "fill": "#0F172A",
+                      "content": "13/15",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "pBvQx",
+                      "name": "ms1l",
+                      "fill": "#64748B",
+                      "content": "Correct",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "BXsCv",
+                  "name": "ms2",
+                  "layout": "vertical",
+                  "gap": 2,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "tPypQ",
+                      "name": "ms2v",
+                      "fill": "#10B981",
+                      "content": "85%",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "w3Xwj",
+                      "name": "ms2l",
+                      "fill": "#64748B",
+                      "content": "Score",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "8QNmZ",
+                  "name": "ms3",
+                  "layout": "vertical",
+                  "gap": 2,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "F1bCy",
+                      "name": "ms3v",
+                      "fill": "#0F172A",
+                      "content": "18:24",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "2Ia0A",
+                      "name": "ms3l",
+                      "fill": "#64748B",
+                      "content": "Time",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "NzA0I",
+                  "name": "ms4",
+                  "layout": "vertical",
+                  "gap": 2,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "zWGY8",
+                      "name": "ms4v",
+                      "fill": "#16A34A",
+                      "content": "A",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "D4ASj",
+                      "name": "ms4l",
+                      "fill": "#64748B",
+                      "content": "Grade",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "j5EYE",
+          "name": "mSecTitle",
+          "fill": "#0F172A",
+          "content": "Question Analysis",
+          "fontFamily": "Inter",
+          "fontSize": 16,
+          "fontWeight": "700"
+        },
+        {
+          "type": "frame",
+          "id": "PyHno",
+          "name": "qList",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 10,
+          "children": [
+            {
+              "type": "frame",
+              "id": "FMuxX",
+              "name": "mq1",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 10,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#10B981"
+              },
+              "layout": "vertical",
+              "gap": 8,
+              "padding": 12,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "C7uLH",
+                  "name": "mq1h",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "7C1nq",
+                      "name": "mq1t",
+                      "fill": "#0F172A",
+                      "content": "Q1. What is JSX?",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "icon_font",
+                      "id": "5wZCA",
+                      "name": "mq1i",
+                      "width": 16,
+                      "height": 16,
+                      "iconFontName": "circle-check",
+                      "iconFontFamily": "lucide",
+                      "fill": "#10B981"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "EI6By",
+                  "name": "mq1a",
+                  "fill": "#10B981",
+                  "content": "A JavaScript syntax extension",
+                  "fontFamily": "Inter",
+                  "fontSize": 11,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Ht8PF",
+              "name": "mq2",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 10,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#EF4444"
+              },
+              "layout": "vertical",
+              "gap": 8,
+              "padding": 12,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "gZoQr",
+                  "name": "mq2h",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "TriZR",
+                      "name": "mq2t",
+                      "fill": "#0F172A",
+                      "content": "Q2. What triggers a re-render?",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "icon_font",
+                      "id": "TIV9B",
+                      "name": "mq2i",
+                      "width": 16,
+                      "height": 16,
+                      "iconFontName": "x-circle",
+                      "iconFontFamily": "lucide",
+                      "fill": "#EF4444"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "sOCbV",
+                  "name": "mq2y",
+                  "fill": "#EF4444",
+                  "content": "Yours: Using useRef",
+                  "fontFamily": "Inter",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "ZYMLm",
+                  "name": "mq2c",
+                  "fill": "#10B981",
+                  "content": "Correct: Calling setState",
+                  "fontFamily": "Inter",
+                  "fontSize": 11,
+                  "fontWeight": "500"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "EU4o3",
+          "name": "actionBar",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 8,
+          "children": [
+            {
+              "type": "frame",
+              "id": "KdM59",
+              "name": "mRetry",
+              "width": "fill_container",
+              "height": 40,
+              "fill": "#3B82F6",
+              "cornerRadius": 8,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "IEp3A",
+                  "name": "mRetryT",
+                  "fill": "#FFFFFF",
+                  "content": "Review Answers",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "cU0Vh",
+              "name": "mBack",
+              "width": "fill_container",
+              "height": 40,
+              "cornerRadius": 8,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#E2E8F0"
+              },
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "3BEfX",
+                  "name": "mBackT",
+                  "fill": "#334155",
+                  "content": "Back to Course",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "500"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
-  ]
+  ],
+  "variables": {
+    "accent-purple": {
+      "type": "color",
+      "value": "#6366F1"
+    },
+    "accent-purple-light": {
+      "type": "color",
+      "value": "#EDE9FE"
+    },
+    "bg-card": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "bg-dark": {
+      "type": "color",
+      "value": "#0F172A"
+    },
+    "bg-page": {
+      "type": "color",
+      "value": "#F8FAFC"
+    },
+    "border": {
+      "type": "color",
+      "value": "#E2E8F0"
+    },
+    "border-light": {
+      "type": "color",
+      "value": "#F1F5F9"
+    },
+    "error": {
+      "type": "color",
+      "value": "#EF4444"
+    },
+    "error-light": {
+      "type": "color",
+      "value": "#FEE2E2"
+    },
+    "primary": {
+      "type": "color",
+      "value": "#3B82F6"
+    },
+    "primary-dark": {
+      "type": "color",
+      "value": "#2563EB"
+    },
+    "primary-light": {
+      "type": "color",
+      "value": "#EFF6FF"
+    },
+    "success": {
+      "type": "color",
+      "value": "#10B981"
+    },
+    "success-light": {
+      "type": "color",
+      "value": "#DCFCE7"
+    },
+    "success-text": {
+      "type": "color",
+      "value": "#16A34A"
+    },
+    "text-heading": {
+      "type": "color",
+      "value": "#1E293B"
+    },
+    "text-muted": {
+      "type": "color",
+      "value": "#94A3B8"
+    },
+    "text-primary": {
+      "type": "color",
+      "value": "#0F172A"
+    },
+    "text-secondary": {
+      "type": "color",
+      "value": "#64748B"
+    },
+    "text-white": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "warning": {
+      "type": "color",
+      "value": "#F59E0B"
+    },
+    "warning-light": {
+      "type": "color",
+      "value": "#FEF3C7"
+    },
+    "warning-text": {
+      "type": "color",
+      "value": "#D97706"
+    }
+  }
 }
