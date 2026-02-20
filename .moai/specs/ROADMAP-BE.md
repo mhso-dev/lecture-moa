@@ -20,11 +20,11 @@ Supabase 기반 백엔드 구현 로드맵. 의존성 분석 및 병렬 처리 �
   - [x] run: `/moai run SPEC-BE-001`
   - [x] sync: `/moai sync SPEC-BE-001`
   - [x] main 머지 완료
-- [ ] **SPEC-BE-002** 인증 전환
-  - [ ] plan: `/moai plan "인증 시스템 전환: NextAuth를 Supabase Auth로 교체, @supabase/ssr 미들웨어, 프론트엔드 인증 레이어 수정"`
-  - [ ] run: `/moai run SPEC-BE-002`
-  - [ ] sync: `/moai sync SPEC-BE-002`
-  - [ ] main 머지 완료
+- [x] **SPEC-BE-002** 인증 전환 (SPEC-AUTH-001로 구현 완료)
+  - [x] plan: SPEC-AUTH-001 spec.md/plan.md/acceptance.md 작성 완료
+  - [x] run: `/moai run SPEC-AUTH-001` (8cabd18, 700b5d4)
+  - [x] sync: `/moai sync SPEC-AUTH-001` (6d691b8)
+  - [x] main 커밋 완료 (main_direct)
 - [ ] **SPEC-BE-003** 강좌 + 학습자료
   - [ ] plan: `/moai plan "강좌 및 학습자료 백엔드 연동: Course/Material CRUD를 Supabase DB로 연결, Storage로 이미지 업로드, API 클라이언트 전환"`
   - [ ] run: `/moai run SPEC-BE-003`
