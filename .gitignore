@@ -196,3 +196,8 @@ dist-ssr/
 .vercel/
 .netlify/
 .firebase/
+
+# ===========================================
+# Supabase Local Development
+# ===========================================
+.supabase/

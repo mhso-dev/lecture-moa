@@ -10,7 +10,13 @@
     "test": "turbo test",
     "clean": "turbo clean",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,css}\"",
-    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md,css}\""
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md,css}\"",
+    "db:start": "supabase start",
+    "db:stop": "supabase stop",
+    "db:reset": "supabase db reset",
+    "db:types": "supabase gen types typescript --local > apps/web/types/supabase.ts",
+    "db:migration:new": "supabase migration new",
+    "db:push": "supabase db push"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",

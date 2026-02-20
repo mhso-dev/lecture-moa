@@ -2,12 +2,12 @@
 
 ## Overview
 
-lecture-moa is built as a TypeScript monorepo with a Next.js frontend, a Node.js backend API, a Python FastAPI AI microservice, and a shared types/utilities package. The stack prioritizes developer experience, type safety, real-time capabilities, and extensibility for AI features through a dedicated Python service.
+lecture-moa is built as a TypeScript monorepo with a Next.js frontend, Supabase as the backend platform, a Python FastAPI AI microservice, and a shared types/utilities package. The stack prioritizes developer experience, type safety, real-time capabilities, and extensibility for AI features. Rather than building and operating a custom backend server, the project leverages Supabase as a fully managed Backend-as-a-Service platform that provides authentication, a PostgreSQL database, real-time subscriptions, file storage, and serverless edge functions in a single integrated offering.
 
 ## Frontend
 
 ### Next.js 15 (App Router)
-**Rationale**: Next.js provides server-side rendering for SEO and initial load performance, file-system-based routing for intuitive page organization, React Server Components for optimized data fetching, and built-in API routes useful for authentication callbacks and backend-for-frontend patterns.
+**Rationale**: Next.js provides server-side rendering for SEO and initial load performance, file-system-based routing for intuitive page organization, React Server Components for optimized data fetching, and built-in API routes useful for backend-for-frontend patterns and webhook handling.
 
 ### React 19
 **Rationale**: The dominant UI library with the largest ecosystem. React 19 brings improved server component support and concurrent features that benefit the interactive highlighting and Q&A popup experiences.
@@ -28,70 +28,81 @@ Key plugins:
 - Custom rehype plugin: Text selection and highlight anchor support
 
 ### State Management: Zustand
-**Rationale**: Lightweight, TypeScript-friendly state management with minimal boilerplate. Suitable for managing client-side state such as active highlights, popup visibility, memo drafts, and WebSocket connection state. Simpler than Redux for the scope of this application.
+**Rationale**: Lightweight, TypeScript-friendly state management with minimal boilerplate. Suitable for managing client-side state such as active highlights, popup visibility, memo drafts, and Supabase Realtime subscription state. Simpler than Redux for the scope of this application.
 
 ### Data Fetching: TanStack Query (React Query) v5
-**Rationale**: Provides caching, background refetching, optimistic updates, and pagination support for API interactions. Reduces boilerplate compared to manual fetch management and integrates well with the real-time WebSocket updates.
+**Rationale**: Provides caching, background refetching, optimistic updates, and pagination support for API interactions. Reduces boilerplate compared to manual fetch management and integrates well with Supabase Realtime for live data updates.
 
 ### Form Handling: React Hook Form + Zod
-**Rationale**: React Hook Form provides performant form management with minimal re-renders. Zod schemas from the shared package are reused for client-side validation, ensuring consistency with server-side validation.
+**Rationale**: React Hook Form provides performant form management with minimal re-renders. Zod schemas from the shared package are reused for client-side validation, ensuring consistency with server-side validation enforced by Supabase Edge Functions.
 
-## Backend
+## Backend Platform: Supabase
 
-### Node.js with TypeScript
-**Rationale**: Full-stack TypeScript enables shared types and validation between frontend and backend. Node.js provides excellent async I/O performance for the real-time features and LLM API calls.
+Supabase is a fully managed open-source Firebase alternative built on PostgreSQL. Rather than maintaining a custom Node.js backend, the project delegates authentication, database access, real-time communication, file storage, and serverless compute to Supabase. This eliminates the operational overhead of running and scaling a backend server while providing enterprise-grade infrastructure.
 
-### Fastify
-**Rationale**: High-performance HTTP framework with built-in TypeScript support, schema-based validation, plugin architecture, and excellent developer experience. Faster than Express with better TypeScript integration. Supports WebSocket through @fastify/websocket plugin.
-
-### Prisma ORM
-**Rationale**: Type-safe database access with auto-generated TypeScript types from the schema. Provides an intuitive schema definition language, migration management, and a powerful query builder. The generated types integrate well with the shared types package.
-
-### Authentication: NextAuth.js (Auth.js) v5
-**Rationale**: Handles authentication flows including credential-based login, session management, and JWT/session token handling. Supports role-based access control through custom session callbacks. Runs on the Next.js side with session data accessible to the backend API via shared JWT tokens.
-
-Alternative consideration: Custom JWT implementation with jose library if more control is needed over the authentication flow.
-
-## Database
-
-### PostgreSQL 16
-**Rationale**: Robust relational database with excellent support for complex queries, full-text search (useful for searching lecture materials and Q&A), JSON/JSONB columns (useful for flexible memo content and quiz configurations), and strong data integrity through foreign keys and constraints.
+### PostgreSQL Database
+**Rationale**: Supabase provides a fully managed PostgreSQL 16 database. PostgreSQL supports complex queries, full-text search (useful for searching lecture materials and Q&A), JSON/JSONB columns (useful for flexible memo content and quiz configurations), and strong data integrity through foreign keys and constraints. Database schema changes are managed via SQL migrations tracked in the supabase/migrations/ directory.
 
 Key features leveraged:
 - Full-text search for lecture material and Q&A search
 - JSONB columns for flexible quiz question formats and memo metadata
-- Row-level security potential for multi-tenant course isolation
-- Excellent Prisma ORM support
+- Row Level Security (RLS) policies for multi-tenant authorization
+- Excellent Supabase client library support with auto-generated TypeScript types
 
-### Redis
-**Rationale**: In-memory data store used for:
-- Session storage and caching
-- WebSocket pub/sub for scaling real-time features across multiple server instances
-- Rate limiting for LLM API calls
-- Caching frequently accessed lecture materials and dashboard aggregations
+### Authentication: Supabase Auth
+**Rationale**: Supabase Auth replaces NextAuth.js as the authentication provider. It handles credential-based login, session management, and JWT token issuance natively integrated with the database. Role-based access control is enforced through custom JWT claims and Row Level Security policies, eliminating the need for a separate authentication middleware layer. The @supabase/ssr package provides helper utilities for session management in Next.js App Router environments, including server components, API routes, and middleware.
 
-## Real-Time Communication
+### Row Level Security (RLS)
+**Rationale**: PostgreSQL Row Level Security policies, enabled and managed through Supabase, enforce authorization rules at the database layer rather than in application code. This ensures that even if application logic is bypassed, database rows are never exposed to unauthorized users. RLS policies leverage the authenticated user's JWT claims to filter data automatically on every query.
 
-### WebSocket via @fastify/websocket
-**Rationale**: Native WebSocket support through Fastify's plugin system. Provides bidirectional communication for:
+### Supabase Realtime
+**Rationale**: Supabase Realtime replaces the custom WebSocket server by providing managed WebSocket channels backed by PostgreSQL's logical replication. Clients subscribe to channels and receive updates when database rows change. This eliminates the need for a separate Redis pub/sub layer to scale WebSocket connections across multiple server instances.
+
+Use cases:
 - Q&A notification delivery to instructors when new questions are posted
 - Live comment and thread updates for students viewing the same material
 - Team collaboration synchronization for shared memo editing
 - Dashboard data live refresh
 
-### Socket.io (Alternative)
-If more advanced features are needed (automatic reconnection, room management, fallback to long-polling), Socket.io can replace the native WebSocket implementation. It adds complexity but provides a more robust client library.
+### Supabase Storage
+**Rationale**: Supabase Storage provides an S3-compatible object storage service integrated with Supabase Auth for access control. Storage bucket policies use the same RLS concepts as the database, ensuring that file access is governed by the same authorization rules. Eliminates the need for a separate file storage service.
+
+Use cases:
+- Lecture material attachments and uploaded files
+- User avatar images
+- Course cover images
+
+### Supabase Edge Functions
+**Rationale**: Edge Functions are Deno-based TypeScript serverless functions deployed to Supabase's global edge network. They handle complex business logic that cannot be expressed as database queries or RLS policies, and serve as the secure proxy layer between the frontend and the Python AI service. Edge Functions validate Supabase Auth JWTs, apply rate limiting, and then call the FastAPI service using an internal API key, preventing the AI service from being exposed publicly.
+
+Key use cases:
+- AI feature proxy: Validates user authentication, forwards requests to the Python FastAPI service with an internal API key, and returns results to the client
+- Complex business logic: Operations requiring transactional behavior across multiple tables
+- Webhook handlers: Processing external events from third-party services
+
+### Communication Pattern
+The frontend communicates directly with Supabase for all standard operations (data reads, writes, authentication, real-time subscriptions, and file uploads). For AI-powered features, the frontend calls a Supabase Edge Function, which validates the request and proxies it to the Python FastAPI AI service using an internal API key. This keeps the FastAPI service off the public internet and centralizes authentication enforcement in the Edge Function layer.
+
+```
+Client → Supabase (Auth, DB, Realtime, Storage)
+Client → Supabase Edge Function → FastAPI AI Service (internal, API key protected)
+```
+
+### Client Libraries
+- **@supabase/supabase-js**: The primary JavaScript client for all Supabase services. Provides typed clients for database queries, authentication, realtime subscriptions, and storage operations.
+- **@supabase/ssr**: Server-Side Rendering helpers for Next.js App Router. Provides utilities for creating Supabase clients in Server Components, API Route Handlers, Server Actions, and Next.js Middleware with proper cookie-based session management.
 
 ## AI Service
 
 ### Python FastAPI Microservice
-**Rationale**: AI/ML features are served by a separate Python FastAPI microservice rather than being embedded in the Node.js backend. Python provides access to the richest AI/ML ecosystem, including LangChain, Hugging Face, and other advanced libraries. This separation enables independent scaling, deployment, and development of AI features without impacting the core application server.
+**Rationale**: AI/ML features are served by a separate Python FastAPI microservice rather than being embedded in Edge Functions. Python provides access to the richest AI/ML ecosystem, including LangChain, Hugging Face, and other advanced libraries. This separation enables independent scaling, deployment, and development of AI features.
 
 Key architecture decisions:
-- **Separate process**: The AI service runs as its own Docker container, communicating with the Node.js backend via REST API
+- **Separate process**: The AI service runs as its own Docker container, not directly accessible from the public internet
 - **Python 3.13+**: Leverages the latest Python features and performance improvements
 - **FastAPI**: High-performance async web framework with automatic OpenAPI documentation, request validation via Pydantic, and native async/await support
 - **LangChain (Python)**: The Python version of LangChain provides the most comprehensive LLM orchestration capabilities, including chain composition, prompt management, output parsers, and memory management
+- **Internal API key**: The AI service requires an internal API key for all requests, ensuring only Edge Functions can call it
 
 ### Use Cases
 - **Quiz Generation**: Takes lecture material as input, generates quiz questions with answers
@@ -100,9 +111,6 @@ Key architecture decisions:
 
 ### LLM Provider: OpenAI API (default, configurable)
 **Rationale**: Widely available, well-documented, and supported by LangChain. The provider is abstracted through LangChain so it can be swapped for Anthropic Claude, Google Gemini, or local models without code changes.
-
-### Communication Pattern
-The Node.js backend acts as a gateway for AI features, forwarding requests to the Python AI service via internal REST API calls. This keeps the frontend unaware of the microservice architecture and allows the backend to handle authentication, rate limiting, and request validation before forwarding to the AI service.
 
 ## Build and Development Tools
 
@@ -117,21 +125,27 @@ The Node.js backend acts as a gateway for AI features, forwarding requests to th
 - Incremental builds that only rebuild changed packages
 
 ### TypeScript 5.x
-**Rationale**: Strict type checking across the entire codebase with shared type definitions. Project references in tsconfig enable efficient incremental compilation across packages.
+**Rationale**: Strict type checking across the entire codebase with shared type definitions. Supabase auto-generates TypeScript types from the database schema via `supabase gen types typescript`, providing end-to-end type safety from database to frontend. Project references in tsconfig enable efficient incremental compilation across packages.
 
 ### ESLint + Prettier
 **Rationale**: ESLint for code quality rules and Prettier for consistent formatting. Shared configuration at the root level ensures consistency across all packages.
 
 ### Vitest
-**Rationale**: Fast, TypeScript-native testing framework compatible with the Vite ecosystem. Provides Jest-compatible API with better performance and ESM support. Used for both frontend component testing and backend unit/integration testing.
+**Rationale**: Fast, TypeScript-native testing framework compatible with the Vite ecosystem. Provides Jest-compatible API with better performance and ESM support. Used for frontend component testing and Edge Function unit testing.
 
 ### Playwright
 **Rationale**: End-to-end testing framework for testing critical user flows including the text highlighting and Q&A popup interaction, which requires precise DOM interaction testing.
 
+### Supabase CLI
+**Rationale**: The Supabase CLI provides local development with a full Supabase stack running in Docker (PostgreSQL, Auth, Storage, Realtime, Edge Functions). It manages database migrations, generates TypeScript types from the schema, and handles Edge Function deployment. This replaces the need for manual Docker Compose orchestration of individual backend services.
+
 ## Infrastructure and Deployment
 
-### Docker + Docker Compose
-**Rationale**: Containerization for consistent development and deployment environments. Docker Compose orchestrates the multi-service architecture: Node.js backend, Python AI service, PostgreSQL, and Redis containers for local development. Each service has its own Dockerfile for independent building and deployment.
+### Supabase Hosted Platform
+**Rationale**: The Supabase cloud platform provides managed hosting for the PostgreSQL database, authentication service, realtime engine, storage service, and edge function runtime. No infrastructure provisioning or server management is required. Supabase handles backups, scaling, and availability.
+
+### Docker (AI Service Only)
+**Rationale**: Docker is used exclusively for the Python FastAPI AI service, which requires a containerized Python environment with its dependencies. The Docker container is deployed to a container hosting service and communicates with Supabase Edge Functions via internal API key authentication.
 
 ### Environment Management: dotenv + @t3-oss/env-nextjs
 **Rationale**: Type-safe environment variable validation using Zod schemas. Prevents runtime errors from missing or malformed environment variables. The @t3-oss/env package provides build-time validation.
@@ -150,18 +164,8 @@ The Node.js backend acts as a gateway for AI features, forwarding requests to th
 - @tanstack/react-query: Data fetching
 - react-hook-form: Form management
 - zod: Validation (shared)
-- next-auth: Authentication
-
-### Backend (apps/api)
-- fastify: HTTP framework
-- @fastify/websocket: WebSocket support
-- @fastify/cors: CORS handling
-- @fastify/rate-limit: Rate limiting
-- @prisma/client: Database client
-- prisma: ORM CLI and migration tool
-- ioredis: Redis client
-- zod: Validation (shared)
-- jose: JWT utilities
+- @supabase/supabase-js: Supabase client library
+- @supabase/ssr: Supabase SSR helpers for Next.js
 
 ### AI Service (apps/ai)
 - fastapi: Async web framework
@@ -183,7 +187,7 @@ The Node.js backend acts as a gateway for AI features, forwarding requests to th
 - vitest: Unit/integration testing
 - @testing-library/react: Component testing
 - playwright: E2E testing
-- docker-compose: Local environment orchestration
+- supabase: Supabase CLI for local development and migrations
 
 ## Development Environment Requirements
 
@@ -191,9 +195,9 @@ The Node.js backend acts as a gateway for AI features, forwarding requests to th
 - pnpm: 9.x or later
 - Python: 3.13 or later
 - uv or pip: Python package management (uv recommended for speed)
-- PostgreSQL: 16.x (via Docker or local installation)
-- Redis: 7.x (via Docker or local installation)
-- Docker: 24.x or later (recommended for all services)
+- Docker: 24.x or later (required for Supabase local stack and AI service)
+- Supabase CLI: Latest version (for local development, migrations, and type generation)
 - Git: 2.x or later
 - OS: macOS, Linux, or Windows (WSL2 recommended)
 - LLM API Key: OpenAI API key (or alternative provider key) for AI features
+- Supabase Project: A Supabase project for staging/production environments
