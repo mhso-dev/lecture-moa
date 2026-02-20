@@ -50,11 +50,11 @@ export function useChangeQuestionStatus(
     },
     onSuccess: () => {
       // Invalidate question detail
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: qaKeys.detail(questionId),
       });
       // Invalidate list to update status badge
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: qaKeys.lists(),
       });
       toast.success('상태가 변경되었습니다');

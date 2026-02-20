@@ -10,6 +10,7 @@ import '@testing-library/jest-dom/vitest';
 process.env.NEXT_PUBLIC_API_URL = 'http://localhost:3001/api/v1';
 process.env.NEXTAUTH_SECRET = 'test-secret-key-for-testing';
 process.env.NEXTAUTH_URL = 'http://localhost:3000';
+process.env.SKIP_ENV_VALIDATION = 'true';
 
 // Properly mock localStorage for zustand persist middleware
 const localStorageMock = (() => {
@@ -20,6 +21,7 @@ const localStorageMock = (() => {
       store[key] = value;
     }),
     removeItem: vi.fn((key: string) => {
+      // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
       delete store[key];
     }),
     clear: vi.fn(() => {
@@ -38,13 +40,21 @@ Object.defineProperty(global, 'localStorage', {
   configurable: true,
 });
 
-// Mock ResizeObserver for Radix UI components
-class ResizeObserverMock {
-  observe = vi.fn();
-  unobserve = vi.fn();
-  disconnect = vi.fn();
-}
+// Also define on window for zustand's createJSONStorage
+Object.defineProperty(window, 'localStorage', {
+  value: localStorageMock,
+  writable: true,
+  configurable: true,
+});
 
+// Mock ResizeObserver for Radix UI components
+// Use plain function constructor to avoid Vite SSR transform issues
+// with class syntax and vi.fn() which get converted to arrow functions
+function ResizeObserverMock(this: Record<string, unknown>) {
+  this.observe = vi.fn();
+  this.unobserve = vi.fn();
+  this.disconnect = vi.fn();
+}
 global.ResizeObserver = ResizeObserverMock as unknown as typeof ResizeObserver;
 
 // Mock pointer capture for Radix UI

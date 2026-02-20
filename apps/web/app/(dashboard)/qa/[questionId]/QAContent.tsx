@@ -83,7 +83,9 @@ export function QADetailContent({ questionId }: QAContentProps) {
   useEffect(() => {
     pendingNotifications
       .filter((n) => n.questionId === questionId)
-      .forEach((n) => clearNotification(n.id));
+      .forEach((n) => {
+        clearNotification(n.id);
+      });
   }, [questionId, pendingNotifications, clearNotification]);
 
   // Loading state
@@ -161,7 +163,7 @@ export function QADetailContent({ questionId }: QAContentProps) {
       />
 
       {/* AI Suggestion section */}
-      {(question.aiSuggestion || question.aiSuggestionPending) && (
+      {(question.aiSuggestion ?? question.aiSuggestionPending) && (
         <div className="mb-6">
           <AIAnswerCard
             answer={question.aiSuggestion}

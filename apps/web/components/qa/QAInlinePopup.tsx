@@ -114,11 +114,11 @@ export function QAInlinePopup() {
       title: "",
       content: "",
       courseId: "",
-      materialId: context?.materialId || "",
+      materialId: context?.materialId ?? "",
       context: {
-        materialId: context?.materialId || "",
-        headingId: context?.headingId || null,
-        selectedText: context?.selectedText || "",
+        materialId: context?.materialId ?? "",
+        headingId: context?.headingId ?? null,
+        selectedText: context?.selectedText ?? "",
       },
     },
   });
@@ -137,7 +137,7 @@ export function QAInlinePopup() {
       form.setValue("courseId", context.courseId);
       form.setValue("materialId", context.materialId);
       form.setValue("context.materialId", context.materialId);
-      form.setValue("context.headingId", context.headingId || null);
+      form.setValue("context.headingId", context.headingId ?? null);
       form.setValue("context.selectedText", context.selectedText);
     }
   }, [context, form]);
@@ -148,7 +148,7 @@ export function QAInlinePopup() {
       const timer = setTimeout(() => {
         form.setFocus("title");
       }, 100);
-      return () => clearTimeout(timer);
+      return () => { clearTimeout(timer); };
     }
   }, [isOpen, form]);
 
@@ -160,7 +160,7 @@ export function QAInlinePopup() {
       }
     };
     window.addEventListener("keydown", handleEscape);
-    return () => window.removeEventListener("keydown", handleEscape);
+    return () => { window.removeEventListener("keydown", handleEscape); };
   }, [isOpen, closeInlinePopup]);
 
   // Click outside handler
@@ -218,7 +218,7 @@ export function QAInlinePopup() {
     };
 
     popup.addEventListener("keydown", handleTabKey);
-    return () => popup.removeEventListener("keydown", handleTabKey);
+    return () => { popup.removeEventListener("keydown", handleTabKey); };
   }, [isOpen]);
 
   const onSubmit = useCallback(

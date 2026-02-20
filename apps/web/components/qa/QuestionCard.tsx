@@ -73,9 +73,9 @@ function formatRelativeTime(dateString: string): string {
   const diffHours = Math.floor(diffMinutes / 60);
   const diffDays = Math.floor(diffHours / 24);
 
-  if (diffMinutes < 60) return `${diffMinutes}분 전`;
-  if (diffHours < 24) return `${diffHours}시간 전`;
-  if (diffDays < 7) return `${diffDays}일 전`;
+  if (diffMinutes < 60) return `${diffMinutes.toString()}분 전`;
+  if (diffHours < 24) return `${diffHours.toString()}시간 전`;
+  if (diffDays < 7) return `${diffDays.toString()}일 전`;
 
   return date.toLocaleDateString("ko-KR", {
     year: "numeric",
@@ -284,13 +284,13 @@ export function QuestionCard({
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
-                  <DropdownMenuItem onClick={() => onStatusChange("OPEN")}>
+                  <DropdownMenuItem onClick={() => { onStatusChange("OPEN"); }}>
                     진행 중
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => onStatusChange("RESOLVED")}>
+                  <DropdownMenuItem onClick={() => { onStatusChange("RESOLVED"); }}>
                     해결됨
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => onStatusChange("CLOSED")}>
+                  <DropdownMenuItem onClick={() => { onStatusChange("CLOSED"); }}>
                     종료
                   </DropdownMenuItem>
                 </DropdownMenuContent>

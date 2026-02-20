@@ -92,7 +92,7 @@ export function useReadingProgress(
     calculateProgress();
 
     // Add scroll listener
-    const target = containerRef?.current || window;
+    const target = containerRef?.current ?? window;
     target.addEventListener("scroll", onScroll, { passive: true });
 
     // Also listen for resize events

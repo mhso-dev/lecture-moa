@@ -37,6 +37,7 @@ export function useBeforeUnload(shouldWarn: boolean): void {
         // Standard way to trigger the browser's native confirmation dialog
         event.preventDefault();
         // Chrome requires returnValue to be set
+        // eslint-disable-next-line @typescript-eslint/no-deprecated
         event.returnValue = "";
         return "";
       }

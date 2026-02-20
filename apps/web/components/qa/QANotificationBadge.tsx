@@ -46,7 +46,7 @@ export function QANotificationBadge({ className }: QANotificationBadgeProps) {
         "flex items-center justify-center",
         className
       )}
-      aria-label={`${count}개의 읽지 않은 알림`}
+      aria-label={`${count.toString()}개의 읽지 않은 알림`}
     >
       {count > 99 ? "99+" : count}
     </Badge>

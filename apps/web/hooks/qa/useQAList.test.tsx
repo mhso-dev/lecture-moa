@@ -102,10 +102,10 @@ describe('useQAList', () => {
       params: expect.objectContaining({
         page: 1,
         limit: 20,
-      }),
+      }) as Record<string, unknown>,
     });
 
-    // Verify response data
+    // Verify response data (useInfiniteQuery wraps in pages/pageParams)
     expect(result.current.data?.pages[0]).toEqual(mockPaginatedResponse);
   });
 
@@ -131,7 +131,7 @@ describe('useQAList', () => {
     expect(api.get).toHaveBeenCalledWith('/api/v1/qa/questions', {
       params: expect.objectContaining({
         courseId: 'c1',
-      }),
+      }) as Record<string, unknown>,
     });
   });
 
@@ -157,7 +157,7 @@ describe('useQAList', () => {
     expect(api.get).toHaveBeenCalledWith('/api/v1/qa/questions', {
       params: expect.objectContaining({
         status: 'OPEN',
-      }),
+      }) as Record<string, unknown>,
     });
   });
 

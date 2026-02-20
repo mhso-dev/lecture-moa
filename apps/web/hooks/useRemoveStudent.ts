@@ -22,6 +22,7 @@ interface RemoveStudentVariables {
 export function useRemoveStudent(): UseMutationResult<void, Error, RemoveStudentVariables> {
   const queryClient = useQueryClient();
 
+  // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
   return useMutation<void, Error, RemoveStudentVariables>({
     mutationFn: async ({ courseId, userId }: RemoveStudentVariables) => {
       await api.delete(`/api/v1/courses/${courseId}/students/${userId}`);
@@ -29,7 +30,7 @@ export function useRemoveStudent(): UseMutationResult<void, Error, RemoveStudent
 
     onSuccess: (_data, { courseId }: RemoveStudentVariables) => {
       // Invalidate students query to refresh the roster
-      queryClient.invalidateQueries({ queryKey: ['course-students', courseId] });
+      void queryClient.invalidateQueries({ queryKey: ['course-students', courseId] });
     },
   });
 }

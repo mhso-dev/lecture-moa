@@ -19,10 +19,10 @@ import type { Course } from "@shared";
  * Note: Query is disabled when courseId is empty or undefined
  * to prevent unnecessary API calls.
  */
-export function useCourse(courseId: string): UseQueryResult<Course, Error> {
-  return useQuery<Course, Error>({
+export function useCourse(courseId: string): UseQueryResult<Course> {
+  return useQuery({
     queryKey: ["course", courseId],
-    queryFn: async () => {
+    queryFn: async (): Promise<Course> => {
       const response = await api.get<Course>(`/api/v1/courses/${courseId}`);
       return response.data;
     },

@@ -79,7 +79,7 @@ export function useAcceptAnswer(
 
     // Always refetch after success or error
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey });
+      void queryClient.invalidateQueries({ queryKey });
     },
 
     onSuccess: () => {

@@ -61,7 +61,7 @@ interface QAActions {
   clearAllNotifications: () => void;
 }
 
-type QAStore = QAState & QAActions;
+export type QAStore = QAState & QAActions;
 
 /**
  * Initial state for Q&A store

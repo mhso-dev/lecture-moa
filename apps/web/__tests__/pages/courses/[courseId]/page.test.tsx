@@ -225,11 +225,12 @@ describe("Course Detail Page", () => {
 
   describe("REQ-FE-418: Not Found Handling", () => {
     it("should call notFound when course not found", () => {
-      const { notFound } = require("next/navigation");
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const { notFound } = require("next/navigation") as { notFound: ReturnType<typeof vi.fn> };
       const mockNotFound = vi.fn().mockImplementation(() => {
         throw new Error("notFound() called");
       });
-      (notFound as ReturnType<typeof vi.fn>).mockImplementation = mockNotFound;
+      notFound.mockImplementation = mockNotFound;
 
       (useCourse as ReturnType<typeof vi.fn>).mockReturnValue({
         data: undefined,

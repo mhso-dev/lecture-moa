@@ -26,7 +26,7 @@ vi.mock("next/navigation", () => ({
 }));
 
 vi.mock("~/stores/qa.store", () => ({
-  useQAStore: vi.fn((selector) => {
+  useQAStore: vi.fn((selector: (state: { addNotification: ReturnType<typeof vi.fn>; activeQuestionId: null }) => unknown) => {
     const state = {
       addNotification: vi.fn(),
       activeQuestionId: null,
@@ -60,7 +60,7 @@ describe("QANotificationProvider", () => {
     );
 
     expect(mockUseQAWebSocket).toHaveBeenCalled();
-    const options = mockUseQAWebSocket.mock.calls[0][0];
+    const options = mockUseQAWebSocket.mock.calls[0]?.[0];
     expect(options).toHaveProperty("onNewAnswer");
     expect(options).toHaveProperty("onAiSuggestionReady");
     expect(options).toHaveProperty("onQuestionResolved");
@@ -73,7 +73,7 @@ describe("QANotificationProvider", () => {
       </QANotificationProvider>
     );
 
-    const options = mockUseQAWebSocket.mock.calls[0][0];
+    const options = mockUseQAWebSocket.mock.calls[0]?.[0];
 
     // Verify callbacks are functions
     expect(typeof options?.onNewAnswer).toBe("function");

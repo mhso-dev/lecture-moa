@@ -15,7 +15,7 @@ import type { PaginatedResponse, QAListFilter, QAListItem } from '@shared';
 /**
  * Parameters for useQAList hook
  */
-export interface UseQAListParams extends Omit<QAListFilter, 'page'> {}
+export type UseQAListParams = Omit<QAListFilter, 'page'>;
 
 /**
  * Response type for QA list query
@@ -48,10 +48,10 @@ export type QAListResponse = PaginatedResponse<QAListItem>;
  */
 export function useQAList(
   filter: UseQAListParams
-): UseInfiniteQueryResult<QAListResponse, Error> {
+): UseInfiniteQueryResult<QAListResponse> {
   return useInfiniteQuery({
     queryKey: qaKeys.list(filter),
-    queryFn: async ({ pageParam = 1 }) => {
+    queryFn: async ({ pageParam }): Promise<QAListResponse> => {
       const response = await api.get<QAListResponse>('/api/v1/qa/questions', {
         params: {
           ...filter,

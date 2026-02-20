@@ -298,6 +298,7 @@ describe('useCourse Hook', () => {
   describe('Loading States', () => {
     it('should start with loading state', () => {
       vi.mocked(api.get).mockImplementation(
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
         () => new Promise(() => {}) // Never resolves
       );
 
@@ -409,7 +410,7 @@ describe('useCourse Hook', () => {
 
       expect(result.current.data?.syllabus).toBeDefined();
       expect(result.current.data?.syllabus).toHaveLength(1);
-      expect(result.current.data?.syllabus?.[0]?.title).toBe('Introduction');
+      expect(result.current.data?.syllabus[0]?.title).toBe('Introduction');
     });
 
     it('should include instructor info', async () => {

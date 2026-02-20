@@ -32,8 +32,8 @@ export function useUpdateCourse(): UseMutationResult<Course, Error, UpdateCourse
 
     onSuccess: (_data, { courseId }: UpdateCourseParams) => {
       // Invalidate both the specific course and the course list
-      queryClient.invalidateQueries({ queryKey: ['course', courseId] });
-      queryClient.invalidateQueries({ queryKey: ['courses'] });
+      void queryClient.invalidateQueries({ queryKey: ['course', courseId] });
+      void queryClient.invalidateQueries({ queryKey: ['courses'] });
     },
   });
 }

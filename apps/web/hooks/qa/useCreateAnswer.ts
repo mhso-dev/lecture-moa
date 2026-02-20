@@ -46,7 +46,7 @@ export function useCreateAnswer(
     },
     onSuccess: () => {
       // Invalidate question detail to refresh answers
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: qaKeys.detail(questionId),
       });
       toast.success('답변이 등록되었습니다');

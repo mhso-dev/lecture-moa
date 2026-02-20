@@ -99,7 +99,7 @@ export function AnswerThread({
         {/* Sort dropdown */}
         <Select
           value={sortBy}
-          onValueChange={(value) => setSortBy(value as SortOption)}
+          onValueChange={(value) => { setSortBy(value as SortOption); }}
         >
           <SelectTrigger className="w-[160px]">
             <ArrowUpDown className="h-4 w-4 mr-2" />

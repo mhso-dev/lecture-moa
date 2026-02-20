@@ -73,7 +73,7 @@ export function QuestionEditForm({
         content: content,
       });
       onSave?.();
-    } catch (error) {
+    } catch {
       // Error is handled by mutation
     }
   };

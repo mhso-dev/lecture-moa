@@ -100,19 +100,37 @@ export function useQAWebSocket(
   const activeQuestionId = useQAStore((state) => state.activeQuestionId);
 
   /**
+   * Type guard for QAWebSocketEvent
+   */
+  function isQAWebSocketEvent(value: unknown): value is QAWebSocketEvent {
+    return (
+      typeof value === "object" &&
+      value !== null &&
+      "type" in value &&
+      "questionId" in value
+    );
+  }
+
+  /**
    * Handle WebSocket messages
    */
   const handleMessage = useCallback(
     (event: MessageEvent) => {
       try {
-        const data = JSON.parse(event.data) as QAWebSocketEvent;
+        // WebSocket message data is always a string
+        const eventData = event.data as string;
+        const parsed: unknown = JSON.parse(eventData);
+        if (!isQAWebSocketEvent(parsed)) {
+          return;
+        }
+        const data = parsed;
 
         switch (data.type) {
           case EVENTS.QA_ANSWER_POSTED: {
             const payload = data as NewAnswerEvent;
 
             // Invalidate question detail to refetch
-            queryClient.invalidateQueries({
+            void queryClient.invalidateQueries({
               queryKey: qaKeys.detail(payload.questionId),
             });
 
@@ -142,7 +160,7 @@ export function useQAWebSocket(
             const payload = data as AISuggestionReadyEvent;
 
             // Invalidate question detail to refetch
-            queryClient.invalidateQueries({
+            void queryClient.invalidateQueries({
               queryKey: qaKeys.detail(payload.questionId),
             });
 
@@ -155,7 +173,7 @@ export function useQAWebSocket(
             // Add notification if not viewing this question
             if (activeQuestionId !== payload.questionId) {
               addNotification({
-                id: `ai-${payload.questionId}-${Date.now()}`,
+                id: `ai-${payload.questionId}-${Date.now().toString()}`,
                 type: 'AI_SUGGESTION_READY',
                 questionId: payload.questionId,
                 questionTitle: payload.questionTitle,
@@ -169,10 +187,10 @@ export function useQAWebSocket(
             const payload = data as QuestionResolvedEvent;
 
             // Invalidate both detail and list
-            queryClient.invalidateQueries({
+            void queryClient.invalidateQueries({
               queryKey: qaKeys.detail(payload.questionId),
             });
-            queryClient.invalidateQueries({ queryKey: qaKeys.lists() });
+            void queryClient.invalidateQueries({ queryKey: qaKeys.lists() });
 
             // Call callback if provided
             onQuestionResolved?.({ questionId: payload.questionId });

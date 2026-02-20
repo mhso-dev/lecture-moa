@@ -10,15 +10,29 @@ import { renderHook } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { ReactNode } from 'react';
 import { useQAWebSocket } from './useQAWebSocket';
+import type { QAStore } from '~/stores/qa.store';
 
 // Mock the QA store
 vi.mock('~/stores/qa.store', () => ({
-  useQAStore: vi.fn((selector) => {
-    const state = {
+  useQAStore: vi.fn((selector: (state: QAStore) => unknown) => {
+    const state: QAStore = {
       wsConnected: false,
       setWsConnected: vi.fn(),
       addNotification: vi.fn(),
       activeQuestionId: null,
+      inlinePopup: {
+        isOpen: false,
+        anchorRect: null,
+        context: null,
+      },
+      pendingNotifications: [],
+      // Missing QAActions
+      openInlinePopup: vi.fn(),
+      closeInlinePopup: vi.fn(),
+      setActiveQuestion: vi.fn(),
+      clearActiveQuestion: vi.fn(),
+      clearNotification: vi.fn(),
+      clearAllNotifications: vi.fn(),
     };
     return selector(state);
   }),
@@ -62,12 +76,25 @@ describe('useQAWebSocket', () => {
   });
 
   it('should return connection status from store', () => {
-    vi.mocked(useQAStore).mockImplementation((selector) => {
-      const state = {
+    vi.mocked(useQAStore).mockImplementation((selector: (state: QAStore) => unknown) => {
+      const state: QAStore = {
         wsConnected: false,
         setWsConnected: vi.fn(),
         addNotification: vi.fn(),
         activeQuestionId: null,
+        inlinePopup: {
+          isOpen: false,
+          anchorRect: null,
+          context: null,
+        },
+        pendingNotifications: [],
+        // Missing QAActions
+        openInlinePopup: vi.fn(),
+        closeInlinePopup: vi.fn(),
+        setActiveQuestion: vi.fn(),
+        clearActiveQuestion: vi.fn(),
+        clearNotification: vi.fn(),
+        clearAllNotifications: vi.fn(),
       };
       return selector(state);
     });
@@ -123,6 +150,6 @@ describe('useQAWebSocket', () => {
     );
 
     // Should not throw on unmount
-    expect(() => unmount()).not.toThrow();
+    expect(() => { unmount(); }).not.toThrow();
   });
 });

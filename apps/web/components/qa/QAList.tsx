@@ -27,11 +27,11 @@ export function QAList() {
 
   // Build filter from URL params
   const filter: QAListFilter = {
-    courseId: searchParams.get("courseId") || undefined,
-    materialId: searchParams.get("materialId") || undefined,
-    status: (searchParams.get("status") as QAListFilter["status"]) || "ALL",
-    q: searchParams.get("q") || undefined,
-    sort: (searchParams.get("sort") as QAListFilter["sort"]) || "newest",
+    courseId: searchParams.get("courseId") ?? undefined,
+    materialId: searchParams.get("materialId") ?? undefined,
+    status: (searchParams.get("status") as QAListFilter["status"]) ?? "ALL",
+    q: searchParams.get("q") ?? undefined,
+    sort: (searchParams.get("sort") as QAListFilter["sort"]) ?? "newest",
     page: 1,
     limit: 20,
   };
@@ -56,7 +56,7 @@ export function QAList() {
     observerRef.current = new IntersectionObserver(
       (entries) => {
         if (entries[0]?.isIntersecting) {
-          fetchNextPage();
+          void fetchNextPage();
         }
       },
       { threshold: 0.1 }
@@ -83,7 +83,7 @@ export function QAList() {
         <p className="text-muted-foreground mb-4">
           Q&A 목록을 불러오는 중 오류가 발생했습니다.
         </p>
-        <p className="text-sm text-destructive">{error?.message}</p>
+        <p className="text-sm text-destructive">{error.message}</p>
       </div>
     );
   }
@@ -114,7 +114,7 @@ export function QAList() {
     <div className="space-y-4">
       {/* Question count */}
       <div className="text-sm text-muted-foreground">
-        총 {pages[0]?.pagination?.total ?? questions.length}개의 질문
+        총 {pages[0]?.pagination.total ?? questions.length}개의 질문
       </div>
 
       {/* Question list */}

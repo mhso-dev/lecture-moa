@@ -63,11 +63,6 @@ export function QaSelectionTrigger({
 
   const buttonRef = useRef<HTMLButtonElement>(null);
 
-  // Hide for instructors
-  if (role === "instructor") {
-    return null;
-  }
-
   // Handle text selection
   const handleSelectionChange = useCallback(() => {
     const selection = window.getSelection();
@@ -152,6 +147,9 @@ export function QaSelectionTrigger({
 
   // Set up selection listener
   useEffect(() => {
+    // Skip for instructors
+    if (role === "instructor") return;
+
     // Debounce the selection handler
     let timeoutId: ReturnType<typeof setTimeout>;
 
@@ -166,10 +164,13 @@ export function QaSelectionTrigger({
       document.removeEventListener("selectionchange", debouncedHandler);
       clearTimeout(timeoutId);
     };
-  }, [handleSelectionChange]);
+  }, [handleSelectionChange, role]);
 
   // Handle click outside to hide
   useEffect(() => {
+    // Skip for instructors
+    if (role === "instructor") return;
+
     const handleClickOutside = (e: MouseEvent) => {
       if (
         buttonRef.current &&
@@ -180,8 +181,13 @@ export function QaSelectionTrigger({
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+    return () => { document.removeEventListener("mousedown", handleClickOutside); };
+  }, [role]);
+
+  // Hide for instructors
+  if (role === "instructor") {
+    return null;
+  }
 
   // Don't render if no selection or no position
   if (!selectedText || !buttonPosition) {
@@ -199,8 +205,8 @@ export function QaSelectionTrigger({
         className
       )}
       style={{
-        top: `${buttonPosition.top}px`,
-        left: `${buttonPosition.left}px`,
+        top: `${buttonPosition.top.toString()}px`,
+        left: `${buttonPosition.left.toString()}px`,
       }}
       onClick={handleClick}
       aria-label="Ask a question about the selected text"

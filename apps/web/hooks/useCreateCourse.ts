@@ -27,7 +27,7 @@ export function useCreateCourse(): UseMutationResult<Course, Error, CreateCourse
 
     onSuccess: () => {
       // Invalidate courses query to refresh the list
-      queryClient.invalidateQueries({ queryKey: ['courses'] });
+      void queryClient.invalidateQueries({ queryKey: ['courses'] });
     },
   });
 }

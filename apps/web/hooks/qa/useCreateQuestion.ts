@@ -44,7 +44,7 @@ export function useCreateQuestion(): UseMutationResult<
     },
     onSuccess: () => {
       // Invalidate all list queries to refresh the list
-      queryClient.invalidateQueries({ queryKey: qaKeys.lists() });
+      void queryClient.invalidateQueries({ queryKey: qaKeys.lists() });
       toast.success('질문이 등록되었습니다');
     },
     onError: (error) => {

@@ -137,7 +137,7 @@ describe('CourseEnrollButton Component', () => {
         />
       );
 
-      const input = screen.getByPlaceholderText(/invite code/i) as HTMLInputElement;
+      const input = screen.getByPlaceholderText(/invite code/i);
       const submitButton = screen.getByRole('button', { name: /join/i });
 
       // Enter short code
@@ -158,7 +158,7 @@ describe('CourseEnrollButton Component', () => {
         />
       );
 
-      const input = screen.getByPlaceholderText(/invite code/i) as HTMLInputElement;
+      const input = screen.getByPlaceholderText(/invite code/i);
       const submitButton = screen.getByRole('button', { name: /join/i });
 
       fireEvent.change(input, { target: { value: 'ABC123' } });
@@ -180,16 +180,16 @@ describe('CourseEnrollButton Component', () => {
         />
       );
 
-      const input = screen.getByPlaceholderText(/invite code/i) as HTMLInputElement;
+      const input = screen.getByPlaceholderText(/invite code/i);
 
       fireEvent.change(input, { target: { value: 'abc123' } });
 
-      expect(input.value).toBe('ABC123');
+      expect((input as HTMLInputElement).value).toBe('ABC123');
     });
   });
 
   describe('Optimistic UI Update', () => {
-    it('should update UI optimistically on enroll', async () => {
+    it('should update UI optimistically on enroll', () => {
       const onEnrollSuccess = vi.fn();
 
       render(

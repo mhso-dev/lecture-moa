@@ -30,7 +30,7 @@ import { materialKeys } from "./useMaterial";
 export function useDeleteMaterial(courseId: string) {
   const queryClient = useQueryClient();
 
-  return useMutation<void, Error, string>({
+  return useMutation<unknown, Error, string>({
     mutationFn: (materialId: string) => deleteMaterial(courseId, materialId),
     onSuccess: (_, materialId) => {
       // Remove the material from cache
@@ -39,7 +39,7 @@ export function useDeleteMaterial(courseId: string) {
       });
 
       // Invalidate materials list
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: materialKeys.lists(courseId),
       });
     },

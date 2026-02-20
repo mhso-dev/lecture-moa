@@ -44,7 +44,7 @@ export function useUpvoteAnswer(
     },
     onSuccess: () => {
       // Invalidate question detail to refresh answer list
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: qaKeys.detail(questionId),
       });
     },

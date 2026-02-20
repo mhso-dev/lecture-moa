@@ -34,10 +34,10 @@ import type { QAQuestion } from '@shared';
  */
 export function useQADetail(
   questionId: string
-): UseQueryResult<QAQuestion, Error> {
+): UseQueryResult<QAQuestion> {
   return useQuery({
     queryKey: qaKeys.detail(questionId),
-    queryFn: async () => {
+    queryFn: async (): Promise<QAQuestion> => {
       const response = await api.get<QAQuestion>(
         `/api/v1/qa/questions/${questionId}`
       );

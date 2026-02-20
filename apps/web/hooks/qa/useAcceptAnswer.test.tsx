@@ -156,7 +156,7 @@ describe('useAcceptAnswer', () => {
       materialId: 'm1',
       materialTitle: 'Test Material',
       authorId: 'u1',
-      author: { id: 'u1', name: 'Test', avatarUrl: null, role: 'STUDENT' },
+      author: { id: 'u1', name: 'Test', avatarUrl: null, role: 'student' },
       title: 'Test',
       content: 'Content',
       context: { materialId: 'm1', headingId: null, selectedText: 'text' },

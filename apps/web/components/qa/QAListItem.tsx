@@ -43,9 +43,9 @@ function formatRelativeTime(dateString: string): string {
   const diffDays = Math.floor(diffHours / 24);
 
   if (diffSeconds < 60) return "방금 전";
-  if (diffMinutes < 60) return `${diffMinutes}분 전`;
-  if (diffHours < 24) return `${diffHours}시간 전`;
-  if (diffDays < 7) return `${diffDays}일 전`;
+  if (diffMinutes < 60) return `${diffMinutes.toString()}분 전`;
+  if (diffHours < 24) return `${diffHours.toString()}시간 전`;
+  if (diffDays < 7) return `${diffDays.toString()}일 전`;
 
   // Format as date for older items
   return date.toLocaleDateString("ko-KR", {

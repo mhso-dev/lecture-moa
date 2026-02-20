@@ -39,7 +39,7 @@ vi.mock("~/hooks/useCourses", () => ({
 
 // Mock components
 vi.mock("~/components/course", () => ({
-  CourseSearchBar: vi.fn(({ onSearch }) => (
+  CourseSearchBar: vi.fn(({ onSearch }: { onSearch?: (value: string) => void }) => (
     <input
       data-testid="course-search-bar"
       placeholder="Search courses..."

@@ -83,7 +83,7 @@ describe('CourseFilter Component', () => {
       expect(sortSelect).toBeInTheDocument();
 
       // Options are available in the select (checking via DOM query for select options)
-      const selectElement = sortSelect.closest('select') || document.querySelector('select');
+      const selectElement = sortSelect.closest('select') ?? document.querySelector('select');
       if (selectElement) {
         const options = selectElement.querySelectorAll('option');
         expect(options.length).toBeGreaterThan(0);

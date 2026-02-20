@@ -47,7 +47,7 @@ export function useRequestAISuggestion(
     },
     onSuccess: () => {
       // Invalidate question detail to refresh with pending state
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: qaKeys.detail(questionId),
       });
       toast.success('AI 답변 요청이 접수되었습니다');

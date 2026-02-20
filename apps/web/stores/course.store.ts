@@ -7,7 +7,7 @@
  */
 
 import { create } from 'zustand';
-import { devtools, persist } from 'zustand/middleware';
+import { devtools, persist, createJSONStorage } from 'zustand/middleware';
 import type { CourseCategory, CourseSortOption } from '@shared';
 
 interface CourseUIState {
@@ -72,6 +72,7 @@ export const useCourseStore = create<CourseStore>()(
       }),
       {
         name: 'lecture-moa-course-ui',
+        storage: createJSONStorage(() => localStorage),
         // Only persist viewMode preference, not filter state
         // Filter state is managed via URL params for shareability
         partialize: (state) => ({

@@ -145,7 +145,7 @@ describe('QA Store', () => {
       const { closeInlinePopup } = useQAStore.getState();
 
       // Should not throw when called on already closed popup
-      expect(() => closeInlinePopup()).not.toThrow();
+      expect(() => { closeInlinePopup(); }).not.toThrow();
       expect(useQAStore.getState().inlinePopup.isOpen).toBe(false);
     });
   });
@@ -185,7 +185,7 @@ describe('QA Store', () => {
     it('should be safe to call when no active question', () => {
       const { clearActiveQuestion } = useQAStore.getState();
 
-      expect(() => clearActiveQuestion()).not.toThrow();
+      expect(() => { clearActiveQuestion(); }).not.toThrow();
       expect(useQAStore.getState().activeQuestionId).toBeNull();
     });
   });
@@ -282,9 +282,9 @@ describe('QA Store', () => {
 
       const state = useQAStore.getState();
       expect(state.pendingNotifications).toHaveLength(3);
-      expect(state.pendingNotifications[0]!.type).toBe('NEW_ANSWER');
-      expect(state.pendingNotifications[1]!.type).toBe('AI_SUGGESTION_READY');
-      expect(state.pendingNotifications[2]!.type).toBe('QUESTION_RESOLVED');
+      expect(state.pendingNotifications[0]?.type).toBe('NEW_ANSWER');
+      expect(state.pendingNotifications[1]?.type).toBe('AI_SUGGESTION_READY');
+      expect(state.pendingNotifications[2]?.type).toBe('QUESTION_RESOLVED');
     });
   });
 
@@ -314,14 +314,14 @@ describe('QA Store', () => {
       addNotification(createMockNotification('notif-1'));
 
       // Should not throw and should not modify existing notifications
-      expect(() => clearNotification('non-existent')).not.toThrow();
+      expect(() => { clearNotification('non-existent'); }).not.toThrow();
       expect(useQAStore.getState().pendingNotifications).toHaveLength(1);
     });
 
     it('should handle clearing from empty array', () => {
       const { clearNotification } = useQAStore.getState();
 
-      expect(() => clearNotification('any-id')).not.toThrow();
+      expect(() => { clearNotification('any-id'); }).not.toThrow();
       expect(useQAStore.getState().pendingNotifications).toHaveLength(0);
     });
   });
@@ -345,7 +345,7 @@ describe('QA Store', () => {
     it('should be safe to call on empty array', () => {
       const { clearAllNotifications } = useQAStore.getState();
 
-      expect(() => clearAllNotifications()).not.toThrow();
+      expect(() => { clearAllNotifications(); }).not.toThrow();
       expect(useQAStore.getState().pendingNotifications).toEqual([]);
     });
   });
@@ -418,7 +418,7 @@ describe('QA Store', () => {
       });
 
       expect(result.current).toHaveLength(1);
-      expect(result.current[0]!.id).toBe('notif-1');
+      expect(result.current[0]?.id).toBe('notif-1');
     });
   });
 

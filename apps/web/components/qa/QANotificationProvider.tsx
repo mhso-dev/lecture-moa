@@ -48,17 +48,17 @@ export function QANotificationProvider({
         id: `answer-${payload.answerId}`,
         type: "NEW_ANSWER",
         questionId: payload.questionId,
-        questionTitle: payload.questionTitle || "",
+        questionTitle: payload.questionTitle ?? "",
         actorName: payload.actorName,
         receivedAt: new Date().toISOString(),
       });
 
       // Show toast notification with navigation action
-      toast.success(`${payload.actorName}님이 답변했습니다`, {
+      toast.success(`${payload.actorName ?? ""}님이 답변했습니다`, {
         description: payload.questionTitle,
         action: {
           label: "보기",
-          onClick: () => router.push(`/qa/${payload.questionId}`),
+          onClick: () => { router.push(`/qa/${payload.questionId}`); },
         },
         duration: 6000,
       });
@@ -69,10 +69,10 @@ export function QANotificationProvider({
 
       // Add notification to store for badge display
       addNotification({
-        id: `ai-${payload.questionId}-${Date.now()}`,
+        id: `ai-${payload.questionId}-${Date.now().toString()}`,
         type: "AI_SUGGESTION_READY",
         questionId: payload.questionId,
-        questionTitle: payload.questionTitle || "",
+        questionTitle: payload.questionTitle ?? "",
         receivedAt: new Date().toISOString(),
       });
 
@@ -81,7 +81,7 @@ export function QANotificationProvider({
         description: payload.questionTitle,
         action: {
           label: "보기",
-          onClick: () => router.push(`/qa/${payload.questionId}`),
+          onClick: () => { router.push(`/qa/${payload.questionId}`); },
         },
         duration: 8000,
       });

@@ -36,6 +36,7 @@ function validateCode(code: string): Error | null {
 export function useEnrollWithCode(): UseMutationResult<void, Error, EnrollWithCodeVariables> {
   const queryClient = useQueryClient();
 
+  // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
   return useMutation<void, Error, EnrollWithCodeVariables>({
     mutationFn: async ({ courseId, code }: EnrollWithCodeVariables) => {
       // Validate code length before calling API
@@ -50,7 +51,7 @@ export function useEnrollWithCode(): UseMutationResult<void, Error, EnrollWithCo
 
     onSuccess: (_data, { courseId }: EnrollWithCodeVariables) => {
       // Invalidate course query to refetch enrollment status
-      queryClient.invalidateQueries({ queryKey: ['course', courseId] });
+      void queryClient.invalidateQueries({ queryKey: ['course', courseId] });
     },
   });
 }

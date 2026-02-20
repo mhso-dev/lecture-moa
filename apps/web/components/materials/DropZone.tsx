@@ -1,7 +1,8 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import { useDropzone, type FileRejection } from "react-dropzone";
+import { useDropzone } from "react-dropzone";
+import type { FileRejection, FileError } from "react-dropzone";
 import { Upload, X, AlertCircle, FileText } from "lucide-react";
 import { cn } from "~/lib/utils";
 
@@ -199,7 +200,7 @@ export function DropZone({
                     <li key={file.name}>
                       <span className="font-medium">{file.name}</span>
                       <ul className="ml-4 list-disc list-inside">
-                        {errors.map((error) => (
+                        {errors.map((error: FileError) => (
                           <li key={error.code}>
                             {error.code === "file-too-large"
                               ? `File is too large (max ${formatSize(maxSize)})`

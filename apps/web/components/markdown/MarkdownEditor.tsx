@@ -45,7 +45,7 @@ function EditorLoading({ height }: { height?: number | string }) {
   return (
     <div
       className="flex items-center justify-center border border-[var(--color-border)] rounded-[var(--radius-md)] bg-[var(--color-background)]"
-      style={{ height: typeof height === "number" ? `${height}px` : height }}
+      style={{ height: typeof height === "number" ? `${height.toString()}px` : height }}
     >
       <Loader2 className="h-6 w-6 animate-spin text-[var(--color-muted-foreground)]" />
     </div>
@@ -199,7 +199,9 @@ const MarkdownEditor = forwardRef<MarkdownEditorRef, MarkdownEditorProps>(
 
     useEffect(() => {
       document.addEventListener("keydown", handleKeyDown);
-      return () => document.removeEventListener("keydown", handleKeyDown);
+      return () => {
+        document.removeEventListener("keydown", handleKeyDown);
+      };
     }, [handleKeyDown]);
 
     // Handle paste event for images
@@ -254,7 +256,9 @@ const MarkdownEditor = forwardRef<MarkdownEditorRef, MarkdownEditorProps>(
       const container = containerRef.current;
       if (container) {
         container.addEventListener("paste", handlePaste);
-        return () => container.removeEventListener("paste", handlePaste);
+        return () => {
+          container.removeEventListener("paste", handlePaste);
+        };
       }
     }, [handlePaste]);
 
@@ -328,7 +332,9 @@ const MarkdownEditor = forwardRef<MarkdownEditorRef, MarkdownEditorProps>(
 
         <MDEditorDynamic
           value={value}
-          onChange={(val) => onChange(val || "")}
+          onChange={(val) => {
+            onChange(val ?? "");
+          }}
           preview={preview ? "live" : "edit"}
           height={isFullscreen ? "calc(100vh - 120px)" : height}
           visibleDragbar={false}
@@ -352,7 +358,9 @@ const MarkdownEditor = forwardRef<MarkdownEditorRef, MarkdownEditorProps>(
           <div className="flex items-center gap-2">
             <button
               type="button"
-              onClick={() => setIsFullscreen(!isFullscreen)}
+              onClick={() => {
+                setIsFullscreen(!isFullscreen);
+              }}
               className="hover:text-[var(--color-foreground)] transition-colors"
               title={isFullscreen ? "Exit fullscreen" : "Fullscreen"}
             >

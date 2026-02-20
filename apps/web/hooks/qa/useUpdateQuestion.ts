@@ -54,11 +54,11 @@ export function useUpdateQuestion(
     },
     onSuccess: () => {
       // Invalidate question detail to refresh
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: qaKeys.detail(questionId),
       });
       // Also invalidate list queries
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: qaKeys.lists(),
       });
       toast.success("질문이 수정되었습니다");

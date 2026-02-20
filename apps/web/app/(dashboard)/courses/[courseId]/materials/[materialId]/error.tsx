@@ -29,9 +29,9 @@ export default function MaterialViewerError({ error, reset }: ErrorProps) {
   }, [error]);
 
   // Determine error type
-  const isAccessDenied = error.message?.toLowerCase().includes("access") ||
-    error.message?.toLowerCase().includes("forbidden") ||
-    error.message?.toLowerCase().includes("unauthorized");
+  const isAccessDenied = error.message.toLowerCase().includes("access") ||
+    error.message.toLowerCase().includes("forbidden") ||
+    error.message.toLowerCase().includes("unauthorized");
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] px-4 text-center">

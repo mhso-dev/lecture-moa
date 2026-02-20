@@ -59,11 +59,11 @@ export function QAInlinePopupMobile() {
       title: "",
       content: "",
       courseId: "",
-      materialId: context?.materialId || "",
+      materialId: context?.materialId ?? "",
       context: {
-        materialId: context?.materialId || "",
-        headingId: context?.headingId || null,
-        selectedText: context?.selectedText || "",
+        materialId: context?.materialId ?? "",
+        headingId: context?.headingId ?? null,
+        selectedText: context?.selectedText ?? "",
       },
     },
   });
@@ -76,7 +76,7 @@ export function QAInlinePopupMobile() {
 
     checkMobile();
     window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+    return () => { window.removeEventListener("resize", checkMobile); };
   }, []);
 
   // Update form context when popup context changes
@@ -85,7 +85,7 @@ export function QAInlinePopupMobile() {
       form.setValue("courseId", context.courseId);
       form.setValue("materialId", context.materialId);
       form.setValue("context.materialId", context.materialId);
-      form.setValue("context.headingId", context.headingId || null);
+      form.setValue("context.headingId", context.headingId ?? null);
       form.setValue("context.selectedText", context.selectedText);
     }
   }, [context, form]);
@@ -96,7 +96,7 @@ export function QAInlinePopupMobile() {
       const timer = setTimeout(() => {
         form.setFocus("title");
       }, 300); // Wait for sheet animation
-      return () => clearTimeout(timer);
+      return () => { clearTimeout(timer); };
     }
   }, [isOpen, form]);
 
@@ -211,7 +211,7 @@ export function QAInlinePopupMobile() {
               <Button
                 type="button"
                 variant="outline"
-                onClick={() => handleOpenChange(false)}
+                onClick={() => { handleOpenChange(false); }}
                 disabled={isPending}
                 className="w-full sm:w-auto h-12 sm:h-10"
               >

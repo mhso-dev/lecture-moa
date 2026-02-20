@@ -29,7 +29,7 @@ function generateSlug(text: string): string {
  */
 export function extractHeadings(content: string): TocItem[] {
   const headingRegex = /^(#{2,4})\s+(.+)$/gm;
-  const matches: Array<{ level: 2 | 3 | 4; text: string; slug: string }> = [];
+  const matches: { level: 2 | 3 | 4; text: string; slug: string }[] = [];
 
   let match: RegExpExecArray | null;
   while ((match = headingRegex.exec(content)) !== null) {
@@ -42,7 +42,7 @@ export function extractHeadings(content: string): TocItem[] {
 
   // Build nested structure
   const result: TocItem[] = [];
-  const stack: Array<{ item: TocItem; level: number }> = [];
+  const stack: { item: TocItem; level: number }[] = [];
 
   for (const heading of matches) {
     const item: TocItem = {

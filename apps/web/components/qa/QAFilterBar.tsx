@@ -70,11 +70,14 @@ export function QAFilterBar({ className }: QAFilterBarProps) {
   const searchParams = useSearchParams();
 
   // Current filter values from URL
-  const courseId = searchParams.get("courseId") || undefined;
-  const materialId = searchParams.get("materialId") || undefined;
-  const status = (searchParams.get("status") as QAStatus | "ALL") || "ALL";
-  const q = searchParams.get("q") || "";
-  const sort = searchParams.get("sort") || "newest";
+  const courseId = searchParams.get("courseId") ?? undefined;
+  const materialId = searchParams.get("materialId") ?? undefined;
+  const statusParam = searchParams.get("status");
+  const status: QAStatus | "ALL" = statusParam === "OPEN" || statusParam === "RESOLVED" || statusParam === "CLOSED"
+    ? statusParam
+    : "ALL";
+  const q = searchParams.get("q") ?? "";
+  const sort = searchParams.get("sort") ?? "newest";
 
   // Local search state with debounce
   const [searchInput, setSearchInput] = useState(q);
@@ -123,7 +126,7 @@ export function QAFilterBar({ className }: QAFilterBarProps) {
     router.push(pathname);
   };
 
-  const hasActiveFilters = courseId || materialId || status !== "ALL" || q || sort !== "newest";
+  const hasActiveFilters = courseId !== undefined || materialId !== undefined || status !== "ALL" || q !== "" || sort !== "newest";
 
   // Filter content (shared between desktop and mobile)
   const FilterContent = ({ inSheet = false }: { inSheet?: boolean }) => (
@@ -134,7 +137,7 @@ export function QAFilterBar({ className }: QAFilterBarProps) {
         <Input
           placeholder="질문 검색..."
           value={searchInput}
-          onChange={(e) => handleSearchChange(e.target.value)}
+          onChange={(e) => { handleSearchChange(e.target.value); }}
           className="pl-9"
         />
         {searchInput && (
@@ -142,7 +145,7 @@ export function QAFilterBar({ className }: QAFilterBarProps) {
             variant="ghost"
             size="sm"
             className="absolute right-1 top-1/2 h-7 w-7 -translate-y-1/2 p-0"
-            onClick={() => handleSearchChange("")}
+            onClick={() => { handleSearchChange("") }}
           >
             <X className="h-4 w-4" />
           </Button>
@@ -152,12 +155,12 @@ export function QAFilterBar({ className }: QAFilterBarProps) {
       {/* Course and Material dropdowns */}
       <div className="flex flex-col sm:flex-row gap-3">
         <Select
-          value={courseId || "all"}
+          value={courseId ?? "all"}
           onValueChange={(value) =>
-            updateParams({
+            { updateParams({
               courseId: value === "all" ? undefined : value,
               materialId: undefined, // Reset material when course changes
-            })
+            }); }
           }
         >
           <SelectTrigger className="w-full sm:w-[180px]">
@@ -174,9 +177,9 @@ export function QAFilterBar({ className }: QAFilterBarProps) {
         </Select>
 
         <Select
-          value={materialId || "all"}
+          value={materialId ?? "all"}
           onValueChange={(value) =>
-            updateParams({ materialId: value === "all" ? undefined : value })
+            { updateParams({ materialId: value === "all" ? undefined : value }); }
           }
           disabled={!courseId}
         >
@@ -196,7 +199,7 @@ export function QAFilterBar({ className }: QAFilterBarProps) {
         {/* Sort */}
         <Select
           value={sort}
-          onValueChange={(value) => updateParams({ sort: value })}
+          onValueChange={(value) => { updateParams({ sort: value }); }}
         >
           <SelectTrigger className="w-full sm:w-[120px]">
             <SelectValue />
@@ -214,7 +217,7 @@ export function QAFilterBar({ className }: QAFilterBarProps) {
       {/* Status tabs */}
       <Tabs
         value={status}
-        onValueChange={(value: string) => updateParams({ status: value })}
+        onValueChange={(value: string) => { updateParams({ status: value }); }}
       >
         <TabsList>
           {statusOptions.map((option) => (
@@ -251,7 +254,7 @@ export function QAFilterBar({ className }: QAFilterBarProps) {
             <Input
               placeholder="질문 검색..."
               value={searchInput}
-              onChange={(e) => handleSearchChange(e.target.value)}
+              onChange={(e) => { handleSearchChange(e.target.value); }}
               className="pl-9"
             />
           </div>
@@ -287,7 +290,7 @@ export function QAFilterBar({ className }: QAFilterBarProps) {
                   variant="ghost"
                   size="sm"
                   className="h-auto p-0 ml-1"
-                  onClick={() => updateParams({ courseId: undefined, materialId: undefined })}
+                  onClick={() => { updateParams({ courseId: undefined, materialId: undefined }); }}
                 >
                   <X className="h-3 w-3" />
                 </Button>
@@ -300,7 +303,7 @@ export function QAFilterBar({ className }: QAFilterBarProps) {
                   variant="ghost"
                   size="sm"
                   className="h-auto p-0 ml-1"
-                  onClick={() => updateParams({ status: undefined })}
+                  onClick={() => { updateParams({ status: undefined }); }}
                 >
                   <X className="h-3 w-3" />
                 </Button>

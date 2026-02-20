@@ -47,7 +47,7 @@ export function AnswerForm({
   const isResolved = questionStatus === "RESOLVED";
   const canSubmit = content.trim().length >= 10 && !createMutation.isPending;
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
 
     if (!canSubmit) return;

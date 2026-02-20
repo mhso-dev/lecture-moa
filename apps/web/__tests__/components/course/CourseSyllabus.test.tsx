@@ -117,7 +117,9 @@ describe('CourseSyllabus Component', () => {
       // Click to collapse
       const triggers = screen.getAllByRole('button', { name: /toggle section/i });
       const firstTrigger = triggers[0];
-      fireEvent.click(firstTrigger!);
+      if (firstTrigger) {
+        fireEvent.click(firstTrigger);
+      }
 
       // After collapse, the content may be removed from DOM or hidden
       // Check that clicking toggles the state (aria-expanded changes)
@@ -179,7 +181,9 @@ describe('CourseSyllabus Component', () => {
       expect(document.activeElement).toBe(firstTrigger);
 
       // Enter/Space should toggle
-      fireEvent.keyDown(firstTrigger!, { key: 'Enter' });
+      if (firstTrigger) {
+        fireEvent.keyDown(firstTrigger, { key: 'Enter' });
+      }
     });
   });
 });
