@@ -2,7 +2,7 @@
 id: SPEC-BE-001
 type: plan
 version: "1.0.0"
-status: draft
+status: completed
 created: "2026-02-20"
 updated: "2026-02-20"
 author: mhso-dev
