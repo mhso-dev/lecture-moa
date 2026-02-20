@@ -88,7 +88,7 @@ function getAnnouncement(seconds: number): string | null {
  */
 export function QuizTimer({
   remainingSeconds: propRemainingSeconds,
-  status: _propStatus,
+  status: propStatus,
   onExpire,
   className,
   testId,
@@ -99,7 +99,7 @@ export function QuizTimer({
   // Use hook values when available, fall back to props for testing
   // Note: Props are used when the hook is mocked in tests
   const displaySeconds = hookValues.remainingSeconds ?? propRemainingSeconds;
-  const displayStatus = hookValues.timerStatus;
+  const displayStatus = hookValues.timerStatus ?? propStatus;
   const formattedTime = hookValues.formattedTime;
 
   // Don't render if no timer

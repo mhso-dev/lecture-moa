@@ -39,7 +39,7 @@ export default async function InstructorQuizzesPage() {
   }
 
   // REQ-FE-N602: Role protection - instructors only
-  if ((user.user_metadata?.role as string) !== "instructor") {
+  if ((user.user_metadata.role as string) !== "instructor") {
     redirect("/quizzes");
   }
 

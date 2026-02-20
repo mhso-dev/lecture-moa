@@ -49,7 +49,7 @@ export default async function InstructorResultPage({ params }: InstructorResultP
   }
 
   // Role protection - instructors only
-  if ((user.user_metadata?.role as string) !== "instructor") {
+  if ((user.user_metadata.role as string) !== "instructor") {
     redirect("/quizzes");
   }
 

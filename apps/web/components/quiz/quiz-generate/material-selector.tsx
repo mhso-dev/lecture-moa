@@ -12,6 +12,7 @@
 "use client";
 
 import { useState } from "react";
+import type { Route } from "next";
 import Link from "next/link";
 import { Checkbox } from "~/components/ui/checkbox";
 import { Label } from "~/components/ui/label";
@@ -103,7 +104,7 @@ export function MaterialSelector({
         <p className="text-sm text-muted-foreground mb-4">
           Upload course materials first to generate quiz questions.
         </p>
-        <Link href="/instructor/materials">
+        <Link href={"/instructor/materials" as Route}>
           <Button>
             <Plus className="h-4 w-4 mr-2" />
             Upload Materials

@@ -43,7 +43,7 @@ export default async function CourseQuizzesPage({
   }
 
   // Instructors should use their management view
-  if ((user.user_metadata?.role as string) === "instructor") {
+  if ((user.user_metadata.role as string) === "instructor") {
     redirect("/instructor/quizzes");
   }
 

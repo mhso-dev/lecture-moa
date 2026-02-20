@@ -106,7 +106,7 @@ describe('useQAList', () => {
     });
 
     // Verify response data (useInfiniteQuery wraps in pages/pageParams)
-    expect(result.current.data?.pages[0]).toEqual(mockPaginatedResponse);
+    expect((result.current.data as { pages: unknown[] } | undefined)?.pages[0]).toEqual(mockPaginatedResponse);
   });
 
   it('should fetch Q&A list with course filter', async () => {

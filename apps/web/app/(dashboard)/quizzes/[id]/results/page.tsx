@@ -57,7 +57,7 @@ export default async function QuizResultsPage({
   }
 
   // REQ-FE-N605: Instructors view results through instructor routes
-  if ((user.user_metadata?.role as string) === "instructor") {
+  if ((user.user_metadata.role as string) === "instructor") {
     redirect("/instructor/quizzes");
   }
 

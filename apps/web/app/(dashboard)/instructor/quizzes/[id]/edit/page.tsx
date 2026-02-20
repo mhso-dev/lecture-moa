@@ -51,7 +51,7 @@ export default async function QuizEditPage({ params }: QuizEditPageProps) {
   }
 
   // Role protection - instructors only
-  if ((user.user_metadata?.role as string) !== "instructor") {
+  if ((user.user_metadata.role as string) !== "instructor") {
     redirect("/quizzes");
   }
 

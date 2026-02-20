@@ -6,26 +6,26 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import type { ReactNode } from "react";
-import type { Session } from "next-auth";
+import type { User } from "@supabase/supabase-js";
 
-// Helper to create mock session with proper typing
-function createMockSession(overrides: {
+// Helper to create mock Supabase User
+function createMockUser(overrides: {
   id: string;
   name: string;
   email: string;
   role: "student" | "instructor" | "admin";
-}): Session {
+}): User {
   return {
-    user: {
-      id: overrides.id,
+    id: overrides.id,
+    email: overrides.email,
+    app_metadata: {},
+    user_metadata: {
       name: overrides.name,
-      email: overrides.email,
       role: overrides.role,
-      image: null,
-    } as Session["user"],
-    expires: new Date(Date.now() + 86400000).toISOString(),
-    accessToken: "test-token",
-  };
+    },
+    aud: "authenticated",
+    created_at: new Date().toISOString(),
+  } as User;
 }
 
 // Mock next/navigation
@@ -37,11 +37,11 @@ vi.mock("next/navigation", () => ({
   },
 }));
 
-// Mock auth with proper typing
-const mockAuth = vi.fn<() => Promise<Session | null>>();
+// Mock getUser with proper typing
+const mockGetUser = vi.fn<() => Promise<User | null>>();
 vi.mock("~/lib/auth", () => ({
-  get auth() {
-    return mockAuth;
+  get getUser() {
+    return mockGetUser;
   },
 }));
 
@@ -64,20 +64,23 @@ vi.mock("~/components/dashboard/team/TeamActivityWidget", () => ({
 
 // Import the page component after mocks are set up
 const TeamDashboardPage = vi.fn().mockImplementation(async () => {
-  const session = await mockAuth();
+  const user = await mockGetUser();
 
-  if (!session?.user || session.user.role !== "student") {
+  const role = user?.user_metadata.role as string | undefined;
+  if (!user || role !== "student") {
     const { redirect } = await import("next/navigation");
     redirect("/dashboard/instructor");
     return null;
   }
+
+  const name = (user.user_metadata.name as string | undefined) ?? "Student";
 
   return (
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-bold tracking-tight">Team Dashboard</h1>
         <p className="text-muted-foreground">
-          Welcome back, {session.user.name ?? "Student"}! Here&apos;s your team activity.
+          Welcome back, {name}! Here&apos;s your team activity.
         </p>
       </div>
       <div data-testid="dashboard-grid">
@@ -97,8 +100,8 @@ describe("Team Dashboard Page", () => {
 
   describe("Role Protection", () => {
     it("redirects to instructor dashboard for non-student users", async () => {
-      mockAuth.mockResolvedValueOnce(
-        createMockSession({
+      mockGetUser.mockResolvedValueOnce(
+        createMockUser({
           id: "1",
           name: "Instructor",
           email: "instructor@test.com",
@@ -116,7 +119,7 @@ describe("Team Dashboard Page", () => {
     });
 
     it("redirects to instructor dashboard for unauthenticated users", async () => {
-      mockAuth.mockResolvedValueOnce(null);
+      mockGetUser.mockResolvedValueOnce(null);
 
       try {
         await TeamDashboardPage();
@@ -128,8 +131,8 @@ describe("Team Dashboard Page", () => {
     });
 
     it("renders dashboard for student users", async () => {
-      mockAuth.mockResolvedValueOnce(
-        createMockSession({
+      mockGetUser.mockResolvedValueOnce(
+        createMockUser({
           id: "1",
           name: "Student",
           email: "student@test.com",
@@ -146,8 +149,8 @@ describe("Team Dashboard Page", () => {
 
   describe("Widget Composition", () => {
     beforeEach(() => {
-      mockAuth.mockResolvedValue(
-        createMockSession({
+      mockGetUser.mockResolvedValue(
+        createMockUser({
           id: "1",
           name: "Test Student",
           email: "student@test.com",

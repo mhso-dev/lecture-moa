@@ -72,7 +72,6 @@ export const useCourseStore = create<CourseStore>()(
       }),
       {
         name: 'lecture-moa-course-ui',
-        storage: createJSONStorage(() => localStorage),
         // Only persist viewMode preference, not filter state
         // Filter state is managed via URL params for shareability
         partialize: (state) => ({

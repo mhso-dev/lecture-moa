@@ -45,12 +45,12 @@ export default async function InstructorDashboardPage() {
     redirect("/login");
   }
 
-  const role = user.user_metadata?.role as string;
+  const role = user.user_metadata.role as string;
   if (role !== "instructor") {
     redirect("/dashboard/student");
   }
 
-  const name = (user.user_metadata?.name as string) ?? "Instructor";
+  const name = (user.user_metadata.name as string | undefined) ?? "Instructor";
 
   return (
     <div className="space-y-6">

@@ -50,7 +50,7 @@ export default async function QuizTakingPage({ params }: QuizTakingPageProps) {
   }
 
   // REQ-FE-N605: Instructors cannot take quizzes
-  if ((user.user_metadata?.role as string) === "instructor") {
+  if ((user.user_metadata.role as string) === "instructor") {
     redirect("/instructor/quizzes");
   }
 

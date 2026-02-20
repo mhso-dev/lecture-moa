@@ -6,6 +6,7 @@
 
 "use client";
 
+import type { Route } from "next";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import {
   Select,
@@ -86,7 +87,7 @@ export function QuizFilters({
     }
 
     // Update URL without full page reload
-    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+    router.replace(`${pathname}?${params.toString()}` as Route, { scroll: false });
   };
 
   const handleStatusChange = (value: string) => {

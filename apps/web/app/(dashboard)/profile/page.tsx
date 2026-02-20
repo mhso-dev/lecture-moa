@@ -34,9 +34,9 @@ export default async function ProfilePage() {
   const initialUser: User = {
     id: user.id,
     email: user.email ?? "",
-    name: (user.user_metadata?.name as string) ?? "",
-    role: (user.user_metadata?.role as UserRole) ?? "student",
-    image: (user.user_metadata?.avatar_url as string) ?? undefined,
+    name: (user.user_metadata.name as string | undefined) ?? "",
+    role: (user.user_metadata.role as UserRole | undefined) ?? "student",
+    image: (user.user_metadata.avatar_url as string | undefined) ?? undefined,
     createdAt: new Date(user.created_at),
   };
 

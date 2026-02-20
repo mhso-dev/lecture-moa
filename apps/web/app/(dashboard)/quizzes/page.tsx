@@ -33,7 +33,7 @@ export default async function StudentQuizzesPage() {
   }
 
   // REQ-FE-N605: Instructors should not access student quiz taking routes
-  if ((user.user_metadata?.role as string) === "instructor") {
+  if ((user.user_metadata.role as string) === "instructor") {
     redirect("/instructor/quizzes");
   }
 

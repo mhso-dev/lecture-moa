@@ -39,12 +39,12 @@ export default async function StudentDashboardPage() {
   const user = await getUser();
 
   // Role protection: only students can access this page
-  const role = user?.user_metadata?.role as string | undefined;
+  const role = user?.user_metadata.role as string | undefined;
   if (!user || role !== "student") {
     redirect("/dashboard/instructor");
   }
 
-  const name = (user.user_metadata?.name as string) ?? "Student";
+  const name = (user.user_metadata.name as string | undefined) ?? "Student";
 
   return (
     <div className="space-y-6">

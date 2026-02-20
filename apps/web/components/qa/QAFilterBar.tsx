@@ -9,6 +9,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import type { Route } from "next";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import {
   Select,
@@ -109,7 +110,7 @@ export function QAFilterBar({ className }: QAFilterBarProps) {
       // Reset to page 1 when filters change
       params.delete("page");
 
-      router.push(`${pathname}?${params.toString()}`);
+      router.push(`${pathname}?${params.toString()}` as Route);
     },
     [router, pathname, searchParams]
   );
@@ -123,7 +124,7 @@ export function QAFilterBar({ className }: QAFilterBarProps) {
   // Clear all filters
   const clearFilters = () => {
     setSearchInput("");
-    router.push(pathname);
+    router.push(pathname as Route);
   };
 
   const hasActiveFilters = courseId !== undefined || materialId !== undefined || status !== "ALL" || q !== "" || sort !== "newest";

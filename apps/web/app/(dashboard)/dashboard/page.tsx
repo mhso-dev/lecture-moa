@@ -23,7 +23,7 @@ export default async function DashboardRootPage() {
     redirect("/login");
   }
 
-  const role = (user.user_metadata?.role as UserRole) ?? "student";
+  const role = (user.user_metadata.role as UserRole | undefined) ?? "student";
 
   // Role-based redirect
   switch (role) {
