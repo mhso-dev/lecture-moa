@@ -1,7 +1,7 @@
 ---
 id: SPEC-AUTH-001
 version: "1.0.0"
-status: approved
+status: completed
 created: "2026-02-20"
 updated: "2026-02-20"
 author: mhso-dev
@@ -138,3 +138,42 @@ dependencies:
 - [SPEC-AUTH-001] -> [SPEC-BE-001] (Supabase 인프라 의존)
 - [SPEC-AUTH-001] -> plan.md (구현 계획)
 - [SPEC-AUTH-001] -> acceptance.md (인수 기준)
+
+## 8. Implementation Notes
+
+### 8.1 Completion Summary
+
+- **Status**: Completed (2026-02-20)
+- **Commits**: `8cabd18` feat(auth), `700b5d4` fix(web)
+- **Files Changed**: 50 files (plan estimated ~15)
+- **Tests**: 117 suites / 1577 tests passing
+- **next-auth Removal**: Fully removed (0 references remaining)
+
+### 8.2 Scope Changes
+
+**Planned and Completed (T1-T6)**:
+- T1: Middleware rewrite (supabase updateSession + getUser)
+- T2: Auth Core rewrite (lib/auth.ts, AuthProvider, auth.store)
+- T3: Auth Hooks/API Client migration (useAuth, api/index.ts)
+- T4: Auth UI Components (RegisterForm, SocialLoginButtons, OAuth callback route)
+- T5: useSession migration (20+ page/component files)
+- T6: Cleanup (next-auth package removed, NextAuth API route deleted, env vars cleaned)
+
+**Additional Changes (unplanned but necessary)**:
+- vitest.setup.ts and test/setup.ts updated for Supabase mock configuration
+- tsconfig.json updated for new module paths
+- pnpm-lock.yaml updated (dependency tree changes)
+- lib/supabase/middleware.ts enhanced for session cookie management
+- Multiple page components updated for Supabase auth patterns beyond original useSession migration scope
+
+### 8.3 Deferred Items
+
+- REQ-O01 (Password Reset): Not implemented in this cycle (optional requirement)
+- REQ-O03 (Email Confirmation): Not implemented in this cycle (optional requirement)
+
+### 8.4 Key Technical Decisions
+
+- Used getUser() consistently for server-side auth verification (not getSession())
+- Cookie-based sessions via @supabase/ssr for full App Router compatibility
+- onAuthStateChange listener in AuthProvider for real-time auth state sync
+- OAuth callback handler at /auth/callback for PKCE code exchange
