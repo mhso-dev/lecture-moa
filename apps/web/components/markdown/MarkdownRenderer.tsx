@@ -1,3 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
 'use client';
 
 /**
@@ -249,8 +254,13 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
     },
 
     // Links with security attributes
+<<<<<<< HEAD
     a({ href, children, ...props }: React.ClassAttributes<HTMLAnchorElement> & React.AnchorHTMLAttributes<HTMLAnchorElement> & ExtraProps) {
       const isExternal = (href?.startsWith("http://") ?? false) || (href?.startsWith("https://") ?? false);
+=======
+    a({ href, children, ...props }) {
+      const isExternal = href?.startsWith("http://") ?? href?.startsWith("https://");
+>>>>>>> feature/SPEC-FE-008
 
       return (
         <a

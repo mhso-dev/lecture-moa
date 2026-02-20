@@ -209,7 +209,7 @@ export interface SharedMemo {
 /**
  * Team activity item type
  */
-export type TeamActivityItemType = "memo_created" | "memo_updated" | "member_joined" | "qa_asked";
+export type TeamActivityItemType = "memo_created" | "memo_updated" | "member_joined" | "member_left" | "qa_asked";
 
 /**
  * Team activity item

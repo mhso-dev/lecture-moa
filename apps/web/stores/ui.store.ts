@@ -10,11 +10,18 @@ interface ToastData {
   description?: string;
 }
 
+/**
+ * Team WebSocket connection status
+ * REQ-FE-782: Track team memo real-time connection state
+ */
+export type TeamSocketStatus = "connected" | "disconnected" | "connecting" | "error";
+
 interface UIState {
   activeModal: ModalType;
   isLoading: boolean;
   loadingMessage: string;
   toasts: ToastData[];
+  teamSocketStatus: TeamSocketStatus;
 }
 
 interface UIActions {
@@ -24,6 +31,7 @@ interface UIActions {
   addToast: (toast: Omit<ToastData, "id">) => void;
   removeToast: (id: string) => void;
   clearToasts: () => void;
+  setTeamSocketStatus: (status: TeamSocketStatus) => void;
 }
 
 type UIStore = UIState & UIActions;
@@ -33,6 +41,7 @@ const initialState: UIState = {
   isLoading: false,
   loadingMessage: "",
   toasts: [],
+  teamSocketStatus: "disconnected",
 };
 
 /**
@@ -51,6 +60,7 @@ const initialState: UIState = {
  * - addToast: Add new toast notification
  * - removeToast: Remove toast by ID
  * - clearToasts: Clear all toasts
+ * - setTeamSocketStatus: Update team WebSocket connection status
  *
  * Note: Toast UI is handled by Sonner, this store is for programmatic control
  */
@@ -91,6 +101,9 @@ export const useUIStore = create<UIStore>()(
 
       clearToasts: () =>
         { set({ toasts: [] }, false, "ui/clearToasts"); },
+
+      setTeamSocketStatus: (status) =>
+        { set({ teamSocketStatus: status }, false, "ui/setTeamSocketStatus"); },
     }),
     {
       name: "UIStore",
@@ -103,3 +116,4 @@ export const useUIStore = create<UIStore>()(
 export const useActiveModal = () => useUIStore((state) => state.activeModal);
 export const useIsLoading = () => useUIStore((state) => state.isLoading);
 export const useLoadingMessage = () => useUIStore((state) => state.loadingMessage);
+export const useTeamSocketStatus = () => useUIStore((state) => state.teamSocketStatus);

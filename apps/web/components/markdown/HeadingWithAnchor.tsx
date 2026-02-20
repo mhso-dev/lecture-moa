@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-deprecated */
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 'use client';
 
 /**

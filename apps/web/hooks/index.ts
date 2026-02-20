@@ -84,3 +84,36 @@ export {
   // WebSocket hook
   useQAWebSocket,
 } from "./qa";
+
+// Team hooks (re-exported from team subdirectory)
+export {
+  // Query keys
+  teamKeys,
+  // Team list queries
+  useMyTeams,
+  useAvailableTeams,
+  // Team detail queries
+  useTeamDetail,
+  useTeamMembers,
+  useTeamActivity,
+  // Team CRUD mutations
+  useCreateTeam,
+  useUpdateTeam,
+  useDeleteTeam,
+  // Team membership mutations
+  useTeamMembership,
+} from "./team";
+
+// Memo hooks (re-exported from memo subdirectory)
+export {
+  // Query keys
+  memoKeys,
+  // Memo list queries
+  usePersonalMemos,
+  useTeamMemos,
+  // Memo detail queries and mutations
+  useMemoDetail,
+  useCreateMemo,
+  useUpdateMemo,
+  useDeleteMemo,
+} from "./memo";

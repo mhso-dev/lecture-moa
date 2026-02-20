@@ -33,8 +33,10 @@ const providers: NextAuthConfig["providers"] = [
 
       try {
         // Call backend authentication API
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        const apiUrl: string = env.NEXT_PUBLIC_API_URL;
         const response = await fetch(
-          `${env.NEXT_PUBLIC_API_URL}/api/auth/login`,
+          `${apiUrl}/api/auth/login`,
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },

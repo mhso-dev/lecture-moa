@@ -89,3 +89,12 @@ global.ResizeObserver = vi.fn().mockImplementation(function (this: Record<string
   this.unobserve = vi.fn();
   this.disconnect = vi.fn();
 });
+
+// Mock pointer capture for Radix UI
+Element.prototype.hasPointerCapture = vi.fn() as unknown as typeof Element.prototype.hasPointerCapture;
+Element.prototype.setPointerCapture = vi.fn() as unknown as typeof Element.prototype.setPointerCapture;
+Element.prototype.releasePointerCapture = vi.fn() as unknown as typeof Element.prototype.releasePointerCapture;
+
+// Mock scrollIntoView
+Element.prototype.scrollIntoView = vi.fn();
+window.scrollTo = vi.fn() as unknown as typeof window.scrollTo;

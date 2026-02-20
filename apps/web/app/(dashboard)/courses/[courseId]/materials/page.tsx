@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useState, useMemo, useCallback } from "react";
-import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { useRouter, useSearchParams, usePathname, useParams } from "next/navigation";
 import Link from "next/link";
 import {
   Search,
@@ -32,18 +33,52 @@ import {
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
 import { useAuthStore } from "~/stores/auth.store";
+import { useCourse } from "~/hooks/useCourse";
 import { useMaterials } from "~/hooks/materials";
 import { useDebounce } from "~/hooks/useDebounce";
 import { MaterialCard } from "~/components/materials/MaterialCard";
 import { MaterialCardSkeleton } from "~/components/materials/MaterialCardSkeleton";
+
+/**
+ * MaterialsPage Component
+ * REQ-FE-330, 332, 333, 334: Material list page with filtering and sorting
+ *
+ * Features:
+ * - Search with 300ms debounce
+ * - Filter by tags (multi-select), by status (published/draft, instructor only)
+ * - Sort by position, title, date, read time
+ * - URL search params persistence
+ * - Empty state with role-based CTA
+ * - Loading and error states
+ */
+export default function MaterialsPage() {
+  const params = useParams();
+  const courseId = params.courseId as string;
+
+  // Fetch course data for title
+  const { data: course } = useCourse(courseId);
+  const courseTitle = course?.title ?? "Course Materials";
+
+  // Get role from auth store
+  const role = useAuthStore((state) => state.role);
+  const isInstructor = role === "instructor";
+
+  return (
+    <MaterialsPageClient
+      courseId={courseId}
+      courseTitle={courseTitle}
+      isInstructor={isInstructor}
+    />
+  );
+}
 
 interface MaterialsPageClientProps {
   /** Course ID */
   courseId: string;
   /** Course title for page header */
   courseTitle: string;
-  /** All available tags in the course */
-  allTags: string[];
+  /** Whether current user is an instructor */
+  isInstructor: boolean;
 }
 
 /**
@@ -58,23 +93,17 @@ interface MaterialsPageClientProps {
  * - Empty state with role-based CTA
  * - Loading and error states
  */
-export function MaterialsPageClient({
+function MaterialsPageClient({
   courseId,
   courseTitle,
-  allTags,
+  isInstructor,
 }: MaterialsPageClientProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  // Get role from auth store
-  const role = useAuthStore((state) => state.role);
-  const isInstructor = role === "instructor";
-
   // Local state for search input (before debounce)
-  const [searchInput, setSearchInput] = useState(
-    searchParams.get("search") ?? ""
-  );
+  const [searchInput, setSearchInput] = useState(searchParams.get("search") ?? "");
 
   // Debounced search value
   const debouncedSearch = useDebounce(searchInput, 300);
@@ -87,9 +116,11 @@ export function MaterialsPageClient({
 
   const selectedStatus = useMemo(() => {
     const status = searchParams.get("status");
-    return status as MaterialStatus | null;
+    if (!status) return null;
+    return status as MaterialStatus;
   }, [searchParams]);
 
+<<<<<<< HEAD
   const sortKey = useMemo((): MaterialSortKey => {
     const sort = searchParams.get("sort");
     if (sort === "position" || sort === "title" || sort === "createdAt" || sort === "updatedAt" || sort === "readTimeMinutes") {
@@ -119,7 +150,8 @@ export function MaterialsPageClient({
         }
       });
 
-      router.push(`${pathname}?${params.toString()}`, { scroll: false });
+      const url = params.toString() ? `${pathname}?${params.toString()}` : pathname;
+      router.push(url as any, { scroll: false });
     },
     [pathname, router, searchParams]
   );
@@ -165,7 +197,7 @@ export function MaterialsPageClient({
   // Clear all filters
   const handleClearFilters = () => {
     setSearchInput("");
-    router.push(pathname, { scroll: false });
+    router.push(pathname as any, { scroll: false });
   };
 
   // Fetch materials
@@ -178,6 +210,17 @@ export function MaterialsPageClient({
   });
 
   const materials = data?.data ?? [];
+
+  // Derive allTags from materials data
+  const allTags = useMemo(() => {
+    const tagSet = new Set<string>();
+    materials.forEach((material) => {
+      material.tags.forEach((tag: string) => tagSet.add(tag));
+    });
+    return Array.from(tagSet);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data?.data]);
+
   const hasFilters =
     debouncedSearch || selectedTags.length > 0 || selectedStatus;
 

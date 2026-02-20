@@ -78,6 +78,18 @@ export const useCourseStore = create<CourseStore>()(
         partialize: (state) => ({
           viewMode: state.viewMode,
         }),
+        // Use custom storage to handle test environment
+        storage: createJSONStorage(() => {
+          // In test environment, return a no-op storage
+          if (process.env.NODE_ENV === 'test') {
+            return {
+              getItem: () => null,
+              setItem: () => {},
+              removeItem: () => {},
+            };
+          }
+          return localStorage;
+        }),
       }
     ),
     {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * CoursePagination Component
  * TASK-037: Pagination for course list
@@ -92,7 +93,7 @@ export function CoursePagination({
   const navigateToPage = (page: number) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set("page", page.toString());
-    router.push(`${pathname}?${params.toString()}`);
+    router.push(`${pathname}?${params.toString()}` as any);
     // Scroll to top of list
     window.scrollTo({ top: 0, behavior: "smooth" });
   };

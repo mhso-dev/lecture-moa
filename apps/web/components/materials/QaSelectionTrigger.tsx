@@ -181,10 +181,14 @@ export function QaSelectionTrigger({
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-    return () => { document.removeEventListener("mousedown", handleClickOutside); };
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, [role]);
 
-  // Hide for instructors
+  // Hide for instructors (after all hooks)
+
+  // Hide for instructors (after all hooks)
   if (role === "instructor") {
     return null;
   }

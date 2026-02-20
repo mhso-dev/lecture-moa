@@ -13,31 +13,35 @@ process.env.NEXTAUTH_URL = 'http://localhost:3000';
 process.env.SKIP_ENV_VALIDATION = 'true';
 
 // Properly mock localStorage for zustand persist middleware
-const localStorageMock = (() => {
-  let store: Record<string, string> = {};
-  return {
-    getItem: vi.fn((key: string) => store[key] ?? null),
-    setItem: vi.fn((key: string, value: string) => {
-      store[key] = value;
-    }),
-    removeItem: vi.fn((key: string) => {
-      // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
-      delete store[key];
-    }),
-    clear: vi.fn(() => {
-      store = {};
-    }),
-    get length() {
-      return Object.keys(store).length;
-    },
-    key: vi.fn((index: number) => Object.keys(store)[index] ?? null),
-  };
-})();
+// Zustand's persist middleware checks for storage availability at module load time
+// We need to mock it before any zustand store modules are imported
 
+const localStorageStore: Record<string, string> = {};
+
+const localStorageMock = {
+  getItem: vi.fn((key: string) => localStorageStore[key] ?? null),
+  setItem: vi.fn((key: string, value: string) => {
+    localStorageStore[key] = String(value);
+  }),
+  removeItem: vi.fn((key: string) => {
+    delete localStorageStore[key];
+  }),
+  clear: vi.fn(() => {
+    Object.keys(localStorageStore).forEach(key => delete localStorageStore[key]);
+  }),
+  get length() {
+    return Object.keys(localStorageStore).length;
+  },
+  key: vi.fn((index: number) => Object.keys(localStorageStore)[index] ?? null),
+};
+
+// Set on global before any modules are loaded
+(global as any).localStorage = localStorageMock;
 Object.defineProperty(global, 'localStorage', {
   value: localStorageMock,
   writable: true,
   configurable: true,
+  enumerable: true,
 });
 
 // Also define on window for zustand's createJSONStorage

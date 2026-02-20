@@ -36,3 +36,7 @@ export type {
   CreateQuizInput,
   GenerationOptions,
 } from "./quiz.types";
+
+// REQ-FE-700, REQ-FE-701: Team and Memo types
+export * from "./team.types";
+export * from "./memo.types";

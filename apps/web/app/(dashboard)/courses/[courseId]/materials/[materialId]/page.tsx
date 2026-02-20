@@ -77,6 +77,7 @@ export default function MaterialViewerPage() {
   // Reading progress
   const readingProgress = useReadingProgress();
 
+<<<<<<< HEAD
   // Q&A popup handler (TASK-034)
   const handleOpenQaPopup = useCallback(
     (
@@ -99,6 +100,29 @@ export default function MaterialViewerPage() {
       });
     },
     [courseId, openInlinePopup]
+  );
+
+  // Navigate to previous/next heading
+  const navigateSection = useCallback(
+    (direction: number) => {
+      if (headingIds.length === 0) {
+        return;
+      }
+
+      const currentIndex = activeHeadingId
+        ? headingIds.indexOf(activeHeadingId)
+        : -1;
+      const newIndex = currentIndex + direction;
+
+      if (newIndex >= 0 && newIndex < headingIds.length) {
+        const headingId = headingIds[newIndex];
+        if (headingId) {
+          const element = document.getElementById(headingId);
+          element?.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+    },
+    [headingIds, activeHeadingId]
   );
 
   // Keyboard shortcuts
@@ -133,29 +157,7 @@ export default function MaterialViewerPage() {
           break;
       }
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [toggleToc, toggleFullscreen]
-  );
-
-  // Navigate to previous/next heading
-  const navigateSection = useCallback(
-    (direction: number) => {
-      if (headingIds.length === 0) return;
-
-      const currentIndex = activeHeadingId
-        ? headingIds.indexOf(activeHeadingId)
-        : -1;
-      const newIndex = currentIndex + direction;
-
-      if (newIndex >= 0 && newIndex < headingIds.length) {
-        const headingId = headingIds[newIndex];
-        if (headingId) {
-          const element = document.getElementById(headingId);
-          element?.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      }
-    },
-    [headingIds, activeHeadingId]
+    [toggleToc, toggleFullscreen, navigateSection]
   );
 
   useEffect(() => {

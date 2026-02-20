@@ -21,7 +21,8 @@
     },
     "jsx": "preserve",
     "allowJs": true,
-    "incremental": true
+    "incremental": true,
+    "typeRoots": ["./node_modules/@types", "./types"]
   },
   "include": [
     "next-env.d.ts",
