@@ -44,7 +44,7 @@ const initialState: AuthState = {
  *
  * Persistence:
  * - Only user preference is persisted (not sensitive data)
- * - Session tokens are handled by next-auth
+ * - Session tokens are handled by Supabase Auth
  */
 export const useAuthStore = create<AuthStore>()(
   devtools(
@@ -102,7 +102,7 @@ export const useAuthStore = create<AuthStore>()(
         // Only persist user preference, not sensitive data
         partialize: (state) => ({
           // Note: We don't persist the actual user data for security
-          // Session is managed by next-auth
+          // Session is managed by Supabase Auth
           isAuthenticated: state.isAuthenticated,
         }),
       }

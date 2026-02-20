@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 import { useEffect } from "react";
-import { SessionProvider, useSession } from "next-auth/react";
+import { createClient } from "~/lib/supabase/client";
 import { useAuthStore } from "~/stores/auth.store";
 import { setApiAuthToken } from "~/lib/api";
 
@@ -11,66 +11,80 @@ interface AuthProviderProps {
 }
 
 /**
- * AuthSync - Internal component that synchronizes next-auth session
- * with the Zustand auth store and API client token.
+ * AuthProvider - Supabase Auth session synchronization
  *
- * Must be rendered inside SessionProvider.
+ * Listens to Supabase onAuthStateChange events and keeps
+ * the Zustand auth store and API client token in sync.
+ *
+ * Replaces the previous NextAuth SessionProvider wrapper.
  */
-function AuthSync({ children }: { children: ReactNode }) {
-  const { data: session, status } = useSession();
+export function AuthProvider({ children }: AuthProviderProps) {
   const setUser = useAuthStore((state) => state.setUser);
   const setLoading = useAuthStore((state) => state.setLoading);
   const clearAuth = useAuthStore((state) => state.clearAuth);
 
   useEffect(() => {
-    if (status === "loading") {
-      setLoading(true);
-      return;
-    }
+    const supabase = createClient();
 
-    if (status === "authenticated") {
-      // When status is authenticated, session is guaranteed to exist
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-      if (session) {
-        // Sync session user to Zustand store
+    // Set initial loading state
+    setLoading(true);
+
+    // Check initial session
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (user) {
         setUser({
-          id: session.user.id,
-          email: session.user.email ?? "",
-          name: session.user.name ?? "",
-          role: session.user.role,
-          image: session.user.image ?? undefined,
-          createdAt: new Date(),
+          id: user.id,
+          email: user.email ?? "",
+          name: user.user_metadata?.name as string ?? user.email ?? "",
+          role: (user.user_metadata?.role as string ?? "student") as "student" | "instructor" | "admin",
+          image: user.user_metadata?.avatar_url as string | undefined,
+          createdAt: new Date(user.created_at),
         });
-        setLoading(false);
-
-        // Sync access token to API client
-        setApiAuthToken(session.accessToken);
+        // Get access token for API client
+        supabase.auth.getSession().then(({ data: { session } }) => {
+          if (session?.access_token) {
+            setApiAuthToken(session.access_token);
+          }
+        }).catch(() => {
+          // Session fetch failed; token will not be set
+        });
+      } else {
+        clearAuth();
+        setApiAuthToken(null);
       }
-    }
-
-    if (status === "unauthenticated") {
+      setLoading(false);
+    }).catch(() => {
+      // Initial user check failed
       clearAuth();
       setApiAuthToken(null);
-    }
-  }, [session, status, setUser, setLoading, clearAuth]);
+      setLoading(false);
+    });
+
+    // Listen for auth state changes
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session?.user) {
+        const user = session.user;
+        setUser({
+          id: user.id,
+          email: user.email ?? "",
+          name: user.user_metadata?.name as string ?? user.email ?? "",
+          role: (user.user_metadata?.role as string ?? "student") as "student" | "instructor" | "admin",
+          image: user.user_metadata?.avatar_url as string | undefined,
+          createdAt: new Date(user.created_at),
+        });
+        setApiAuthToken(session.access_token);
+      } else {
+        clearAuth();
+        setApiAuthToken(null);
+      }
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, [setUser, clearAuth, setLoading]);
 
   return <>{children}</>;
-}
-
-/**
- * AuthProvider - NextAuth v5 SessionProvider wrapper
- *
- * Wraps the application with next-auth SessionProvider and
- * an internal AuthSync component that keeps Zustand store
- * and API client in sync with the session.
- *
- * SessionProvider polls for session updates every 5 minutes
- * to detect token refresh and session expiry.
- */
-export function AuthProvider({ children }: AuthProviderProps) {
-  return (
-    <SessionProvider refetchInterval={300}>
-      <AuthSync>{children}</AuthSync>
-    </SessionProvider>
-  );
 }

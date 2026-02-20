@@ -1,4 +1,5 @@
 import { createServerClient } from "@supabase/ssr";
+import type { User } from "@supabase/supabase-js";
 import { NextResponse, type NextRequest } from "next/server";
 
 import type { Database } from "~/types/supabase";
@@ -6,8 +7,14 @@ import type { Database } from "~/types/supabase";
 /**
  * Middleware helper to refresh the user's session on every request.
  * Call this from middleware.ts to keep the auth session alive.
+ *
+ * Returns the response (with refreshed session cookies) and the
+ * authenticated user (or null if unauthenticated) so middleware
+ * can perform route protection without an additional getUser() call.
  */
-export async function updateSession(request: NextRequest) {
+export async function updateSession(
+  request: NextRequest,
+): Promise<{ response: NextResponse; user: User | null }> {
   let supabaseResponse = NextResponse.next({
     request,
   });
@@ -38,7 +45,9 @@ export async function updateSession(request: NextRequest) {
   // IMPORTANT: Do NOT use supabase.auth.getSession() here.
   // getUser() sends a request to the Supabase Auth server every time
   // to revalidate the Auth token, while getSession() does not.
-  await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  return supabaseResponse;
+  return { response: supabaseResponse, user };
 }

@@ -9,7 +9,7 @@ import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { registerSchema, type RegisterSchema } from "@shared";
 import { useAuth } from "~/hooks/useAuth";
-import { api, ApiClientError } from "~/lib/api";
+import { ApiClientError } from "~/lib/api";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import {
@@ -109,7 +109,7 @@ function PasswordStrengthIndicator({ password }: { password: string }) {
  */
 export function RegisterForm() {
   const router = useRouter();
-  const { signIn } = useAuth();
+  const { signUp } = useAuth();
 
   const form = useForm<RegisterSchema>({
     // Zod 3.25.x type system changes require assertion for hookform resolvers compatibility
@@ -134,39 +134,32 @@ export function RegisterForm() {
 
   const onSubmit = async (data: RegisterSchema) => {
     try {
-      await api.post("/api/auth/register", {
-        name: data.name,
+      const result = await signUp({
         email: data.email,
         password: data.password,
+        name: data.name,
         role: data.role,
       });
 
-      // Auto sign-in after successful registration
-      const signInResult = await signIn({
-        email: data.email,
-        password: data.password,
-      });
-
-      if (signInResult.success) {
+      if (result.success) {
         toast.success("Welcome! Account created successfully.");
         router.push("/dashboard" as Route);
       } else {
-        // Registration succeeded but sign-in failed -- redirect to login
-        toast.success("Account created! Please sign in.");
-        router.push("/login");
+        // Check for duplicate email error
+        if (result.error?.includes("\uC774\uBBF8 \uB4F1\uB85D\uB41C")) {
+          setError("email", {
+            message: "An account with this email already exists",
+          });
+        } else {
+          toast.error(result.error ?? "An unexpected error occurred. Please try again.");
+        }
       }
     } catch (error) {
-      if (error instanceof ApiClientError && error.statusCode === 409) {
-        setError("email", {
-          message: "An account with this email already exists",
-        });
-      } else {
-        const message =
-          error instanceof ApiClientError
-            ? error.message
-            : "An unexpected error occurred. Please try again.";
-        toast.error(message);
-      }
+      const message =
+        error instanceof ApiClientError
+          ? error.message
+          : "An unexpected error occurred. Please try again.";
+      toast.error(message);
     }
   };
 

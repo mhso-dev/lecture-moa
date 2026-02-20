@@ -120,7 +120,6 @@ function MaterialsPageClient({
     return status as MaterialStatus;
   }, [searchParams]);
 
-<<<<<<< HEAD
   const sortKey = useMemo((): MaterialSortKey => {
     const sort = searchParams.get("sort");
     if (sort === "position" || sort === "title" || sort === "createdAt" || sort === "updatedAt" || sort === "readTimeMinutes") {

@@ -1,16 +1,26 @@
-import { handlers } from "~/lib/auth";
-
 /**
- * NextAuth API Route Handler
+ * Legacy NextAuth API Route Handler (DEPRECATED)
  *
- * This route handles all authentication requests:
- * - GET /api/auth/signin - Sign in page
- * - GET /api/auth/signout - Sign out page
- * - GET /api/auth/callback/:provider - OAuth callback
- * - GET /api/auth/session - Get session
- * - POST /api/auth/signin/:provider - Sign in action
- * - POST /api/auth/signout - Sign out action
+ * This route is kept as a stub to prevent 404 errors during the
+ * transition period. All authentication is now handled by Supabase Auth.
  *
- * @see https://authjs.dev/getting-started/installation#route-handler
+ * OAuth callbacks are handled by /auth/callback/route.ts.
+ * Client-side auth actions use hooks/useAuth.ts.
+ * Server-side auth checks use lib/auth.ts (getUser/getSession).
  */
-export const { GET, POST } = handlers;
+
+import { NextResponse } from "next/server";
+
+export function GET() {
+  return NextResponse.json(
+    { error: "NextAuth has been replaced by Supabase Auth" },
+    { status: 410 }
+  );
+}
+
+export function POST() {
+  return NextResponse.json(
+    { error: "NextAuth has been replaced by Supabase Auth" },
+    { status: 410 }
+  );
+}

@@ -1,5 +1,6 @@
-import { auth } from "./lib/auth";
-import { NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
+
+import { updateSession } from "./lib/supabase/middleware";
 
 /**
  * Protected route prefixes that require authentication
@@ -40,16 +41,22 @@ const STUDENT_ONLY_PREFIXES = [
 ];
 
 /**
- * Middleware for route protection using NextAuth v5
+ * Middleware for route protection using Supabase Auth
  *
+ * - Refreshes the auth session on every request via updateSession()
  * - Protects dashboard and feature routes from unauthenticated access
  * - Redirects authenticated users away from login/register pages
  * - Enforces role-based access for instructor and student routes
  * - Passes through public routes (/, /api, /reset-password)
  */
-export default auth((req) => {
-  const { pathname } = req.nextUrl;
-  const session = req.auth;
+export async function middleware(request: NextRequest) {
+  const { response, user } = await updateSession(request);
+  const { pathname } = request.nextUrl;
+
+  // Allow auth callback to proceed without any route protection
+  if (pathname.startsWith("/auth/callback")) {
+    return response;
+  }
 
   // Check if the current path matches any protected prefix
   const isProtectedRoute = PROTECTED_PREFIXES.some((prefix) =>
@@ -62,27 +69,27 @@ export default auth((req) => {
   );
 
   // Redirect unauthenticated users from protected routes to login
-  if (isProtectedRoute && !session) {
-    const loginUrl = new URL("/login", req.url);
+  if (isProtectedRoute && !user) {
+    const loginUrl = new URL("/login", request.url);
     loginUrl.searchParams.set("callbackUrl", encodeURIComponent(pathname));
     return NextResponse.redirect(loginUrl);
   }
 
   // Redirect authenticated users from auth routes to dashboard
-  if (isAuthRoute && session) {
-    return NextResponse.redirect(new URL("/dashboard", req.url));
+  if (isAuthRoute && user) {
+    return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 
   // Role-based guards for authenticated users
-  if (session?.user) {
-    const userRole = session.user.role;
+  if (user) {
+    const userRole = user.user_metadata?.role;
 
     // Instructor-only routes: redirect students to dashboard
     const isInstructorOnly = INSTRUCTOR_ONLY_PREFIXES.some((prefix) =>
       pathname.startsWith(prefix)
     );
     if (isInstructorOnly && userRole === "student") {
-      return NextResponse.redirect(new URL("/dashboard", req.url));
+      return NextResponse.redirect(new URL("/dashboard", request.url));
     }
 
     // Student-only routes: redirect instructors to dashboard
@@ -90,13 +97,13 @@ export default auth((req) => {
       pathname.startsWith(prefix)
     );
     if (isStudentOnly && userRole === "instructor") {
-      return NextResponse.redirect(new URL("/dashboard", req.url));
+      return NextResponse.redirect(new URL("/dashboard", request.url));
     }
   }
 
-  // Allow request to proceed
-  return NextResponse.next();
-});
+  // Return the response from updateSession (contains refreshed session cookies)
+  return response;
+}
 
 export const config = {
   matcher: [

@@ -77,7 +77,6 @@ export default function MaterialViewerPage() {
   // Reading progress
   const readingProgress = useReadingProgress();
 
-<<<<<<< HEAD
   // Q&A popup handler (TASK-034)
   const handleOpenQaPopup = useCallback(
     (

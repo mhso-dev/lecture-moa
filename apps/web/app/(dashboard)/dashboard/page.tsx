@@ -4,7 +4,8 @@
  */
 
 import { redirect } from "next/navigation";
-import { auth } from "~/lib/auth";
+import { getUser } from "~/lib/auth";
+import type { UserRole } from "@shared";
 
 /**
  * Dashboard Root Page - Redirects to role-appropriate dashboard
@@ -15,14 +16,14 @@ import { auth } from "~/lib/auth";
  * - no session -> /login (handled by middleware, but also here as safety net)
  */
 export default async function DashboardRootPage() {
-  const session = await auth();
+  const user = await getUser();
 
   // Safety net redirect if no session (should be caught by middleware)
-  if (!session?.user) {
+  if (!user) {
     redirect("/login");
   }
 
-  const { role } = session.user;
+  const role = (user.user_metadata?.role as UserRole) ?? "student";
 
   // Role-based redirect
   switch (role) {

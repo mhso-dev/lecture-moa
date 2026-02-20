@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { auth } from "~/lib/auth";
-import type { User } from "@shared";
+import { getUser } from "~/lib/auth";
+import type { User, UserRole } from "@shared";
 import {
   Card,
   CardContent,
@@ -24,20 +24,20 @@ export const metadata: Metadata = {
  * - Two sections: Avatar + Profile info, Password change
  */
 export default async function ProfilePage() {
-  const session = await auth();
+  const user = await getUser();
 
-  if (!session?.user) {
+  if (!user) {
     redirect("/login");
   }
 
-  // Map session user to shared User type for client components
+  // Map Supabase user to shared User type for client components
   const initialUser: User = {
-    id: session.user.id,
-    email: session.user.email ?? "",
-    name: session.user.name ?? "",
-    role: session.user.role,
-    image: session.user.image ?? undefined,
-    createdAt: new Date(),
+    id: user.id,
+    email: user.email ?? "",
+    name: (user.user_metadata?.name as string) ?? "",
+    role: (user.user_metadata?.role as UserRole) ?? "student",
+    image: (user.user_metadata?.avatar_url as string) ?? undefined,
+    createdAt: new Date(user.created_at),
   };
 
   return (

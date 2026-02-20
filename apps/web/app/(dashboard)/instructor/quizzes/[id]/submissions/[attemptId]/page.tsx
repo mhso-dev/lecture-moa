@@ -9,7 +9,7 @@
  */
 
 import { notFound, redirect } from "next/navigation";
-import { auth } from "~/lib/auth";
+import { getUser } from "~/lib/auth";
 import { fetchQuizDetail, fetchQuizResult, fetchSubmissions } from "~/lib/api/quiz.api";
 import { ResultsSummary } from "~/components/quiz/quiz-results/results-summary";
 import { ResultsBreakdown } from "~/components/quiz/quiz-results/results-breakdown";
@@ -41,15 +41,15 @@ export async function generateMetadata({
  * REQ-FE-624: Results Sharing (Instructor View)
  */
 export default async function InstructorResultPage({ params }: InstructorResultPageProps) {
-  const session = await auth();
+  const user = await getUser();
 
   // Auth protection
-  if (!session?.user) {
+  if (!user) {
     redirect("/login");
   }
 
   // Role protection - instructors only
-  if (session.user.role !== "instructor") {
+  if ((user.user_metadata?.role as string) !== "instructor") {
     redirect("/quizzes");
   }
 

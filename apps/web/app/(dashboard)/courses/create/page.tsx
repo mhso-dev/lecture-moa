@@ -11,7 +11,7 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
+import { useAuth } from "~/hooks/useAuth";
 import { ArrowLeft } from "lucide-react";
 import { CourseCreateForm } from "~/components/course";
 import { Button } from "~/components/ui/button";
@@ -23,17 +23,17 @@ import { Button } from "~/components/ui/button";
  */
 export default function CourseCreatePage() {
   const router = useRouter();
-  const { data: session, status } = useSession();
+  const { role, isLoading, isAuthenticated } = useAuth();
 
   // Redirect non-instructors to courses list
   useEffect(() => {
-    if (status === "authenticated" && session.user.role !== "instructor") {
+    if (isAuthenticated && role !== "instructor") {
       router.push("/courses");
     }
-  }, [session, status, router]);
+  }, [isAuthenticated, role, router]);
 
   // Show loading while checking auth
-  if (status === "loading") {
+  if (isLoading) {
     return (
       <div className="flex h-96 items-center justify-center">
         <p className="text-body text-[var(--color-muted-foreground)]">Loading...</p>
@@ -42,7 +42,7 @@ export default function CourseCreatePage() {
   }
 
   // Don't render form for non-instructors
-  if (session?.user.role !== "instructor") {
+  if (role !== "instructor") {
     return null;
   }
 

@@ -9,7 +9,7 @@
  */
 
 import { notFound, redirect } from "next/navigation";
-import { auth } from "~/lib/auth";
+import { getUser } from "~/lib/auth";
 import { fetchQuizDetail } from "~/lib/api/quiz.api";
 import { QuizEditClient } from "./QuizEditClient";
 import type { Metadata } from "next";
@@ -43,15 +43,15 @@ const MOCK_COURSES = [
  * REQ-FE-635: Quiz Edit Page
  */
 export default async function QuizEditPage({ params }: QuizEditPageProps) {
-  const session = await auth();
+  const user = await getUser();
 
   // Auth protection
-  if (!session?.user) {
+  if (!user) {
     redirect("/login");
   }
 
   // Role protection - instructors only
-  if (session.user.role !== "instructor") {
+  if ((user.user_metadata?.role as string) !== "instructor") {
     redirect("/quizzes");
   }
 

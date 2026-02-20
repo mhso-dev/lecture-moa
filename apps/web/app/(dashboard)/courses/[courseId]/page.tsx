@@ -8,7 +8,7 @@
 "use client";
 
 import { useParams, useRouter, notFound } from "next/navigation";
-import { useSession } from "next-auth/react";
+import { useAuth } from "~/hooks/useAuth";
 import { Calendar, Users, FileText, Settings, BookOpen } from "lucide-react";
 import { useCourse } from "~/hooks/useCourse";
 import { useCourseProgress } from "~/hooks/useCourseProgress";
@@ -24,7 +24,7 @@ import type { Course, CourseEnrollment } from "@shared";
 export default function CourseDetailPage() {
   const params = useParams();
   const router = useRouter();
-  const { data: session } = useSession();
+  const { user, role } = useAuth();
   const courseId = params.courseId as string;
 
   // Fetch course data
@@ -34,8 +34,8 @@ export default function CourseDetailPage() {
   const { data: enrollment } = useCourseProgress(courseId);
 
   // Role checks
-  const isInstructor = session?.user.role === "instructor";
-  const isOwner = isInstructor && course?.instructor.id === session.user.id;
+  const isInstructor = role === "instructor";
+  const isOwner = isInstructor && course?.instructor.id === user?.id;
   const isEnrolled = !!enrollment;
 
   // Loading state

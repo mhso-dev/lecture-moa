@@ -1,6 +1,6 @@
 "use client";
 
-import { signIn } from "next-auth/react";
+import { useAuth } from "~/hooks/useAuth";
 import { Button } from "~/components/ui/button";
 
 /**
@@ -47,6 +47,7 @@ function GitHubIcon() {
  * Supports Google and GitHub OAuth providers.
  */
 export function SocialLoginButtons() {
+  const { signInWithOAuth } = useAuth();
   const isSocialLoginEnabled =
     process.env.NEXT_PUBLIC_ENABLE_SOCIAL_LOGIN === "true";
 
@@ -73,7 +74,7 @@ export function SocialLoginButtons() {
         <Button
           type="button"
           variant="outline"
-          onClick={() => void signIn("google")}
+          onClick={() => void signInWithOAuth("google")}
         >
           <GoogleIcon />
           Google
@@ -81,7 +82,7 @@ export function SocialLoginButtons() {
         <Button
           type="button"
           variant="outline"
-          onClick={() => void signIn("github")}
+          onClick={() => void signInWithOAuth("github")}
         >
           <GitHubIcon />
           GitHub

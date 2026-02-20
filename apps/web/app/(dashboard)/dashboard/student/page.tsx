@@ -4,7 +4,7 @@
  */
 
 import { redirect } from "next/navigation";
-import { auth } from "~/lib/auth";
+import { getUser } from "~/lib/auth";
 import { DashboardGrid } from "~/components/dashboard/DashboardGrid";
 import { EnrolledCoursesWidget } from "~/components/dashboard/student/EnrolledCoursesWidget";
 import { RecentQAWidget } from "~/components/dashboard/student/RecentQAWidget";
@@ -36,19 +36,22 @@ export const metadata: Metadata = {
  * Grid layout: 1-col (Mobile), 2-col (Tablet), 3-col (Desktop)
  */
 export default async function StudentDashboardPage() {
-  const session = await auth();
+  const user = await getUser();
 
   // Role protection: only students can access this page
-  if (!session?.user || session.user.role !== "student") {
+  const role = user?.user_metadata?.role as string | undefined;
+  if (!user || role !== "student") {
     redirect("/dashboard/instructor");
   }
+
+  const name = (user.user_metadata?.name as string) ?? "Student";
 
   return (
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-bold tracking-tight">Dashboard</h1>
         <p className="text-muted-foreground">
-          Welcome back, {session.user.name ?? "Student"}! Here&apos;s your learning progress.
+          Welcome back, {name}! Here&apos;s your learning progress.
         </p>
       </div>
 

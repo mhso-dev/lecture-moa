@@ -15,7 +15,7 @@
 
 import { useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
-import { useSession } from "next-auth/react";
+import { useAuth } from "~/hooks/useAuth";
 import { ArrowLeft, Settings, Users, KeyRound } from "lucide-react";
 import { useCourse } from "~/hooks/useCourse";
 import {
@@ -36,23 +36,23 @@ export default function CourseSettingsPage() {
   const router = useRouter();
   const params = useParams();
   const courseId = params.courseId as string;
-  const { data: session, status } = useSession();
+  const { user, isLoading: isAuthLoading, isAuthenticated } = useAuth();
 
   const { data: course, isLoading, error } = useCourse(courseId);
 
   // Redirect non-owners to course detail
   useEffect(() => {
     if (
-      status === "authenticated" &&
+      isAuthenticated &&
       course &&
-      course.instructor.id !== session.user.id
+      course.instructor.id !== user?.id
     ) {
       router.push(`/courses/${courseId}`);
     }
-  }, [course, session, status, router, courseId]);
+  }, [course, user, isAuthenticated, router, courseId]);
 
   // Show loading state
-  if (status === "loading" || isLoading) {
+  if (isAuthLoading || isLoading) {
     return (
       <div className="space-y-6 max-w-4xl mx-auto">
         <div className="flex items-center gap-4">
@@ -79,7 +79,7 @@ export default function CourseSettingsPage() {
   }
 
   // Don't render for non-owners
-  if (course.instructor.id !== session?.user.id) {
+  if (course.instructor.id !== user?.id) {
     return null;
   }
 

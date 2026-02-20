@@ -4,7 +4,7 @@
  */
 
 import { redirect } from "next/navigation";
-import { auth } from "~/lib/auth";
+import { getUser } from "~/lib/auth";
 import { DashboardGrid } from "~/components/dashboard/DashboardGrid";
 import { TeamOverviewWidget } from "~/components/dashboard/team/TeamOverviewWidget";
 import { TeamMembersWidget } from "~/components/dashboard/team/TeamMembersWidget";
@@ -34,19 +34,22 @@ export const metadata: Metadata = {
  * Role protection: Only students can access this page
  */
 export default async function TeamDashboardPage() {
-  const session = await auth();
+  const user = await getUser();
 
   // Role protection: only students can access this page
-  if (!session?.user || session.user.role !== "student") {
+  const role = user?.user_metadata?.role as string | undefined;
+  if (!user || role !== "student") {
     redirect("/dashboard/instructor");
   }
+
+  const name = (user.user_metadata?.name as string) ?? "Student";
 
   return (
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-bold tracking-tight">Team Dashboard</h1>
         <p className="text-muted-foreground">
-          Welcome back, {session.user.name ?? "Student"}! Here&apos;s your team activity.
+          Welcome back, {name}! Here&apos;s your team activity.
         </p>
       </div>
 

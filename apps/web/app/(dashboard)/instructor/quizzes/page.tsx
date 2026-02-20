@@ -9,7 +9,7 @@
  */
 
 import { redirect } from "next/navigation";
-import { auth } from "~/lib/auth";
+import { getUser } from "~/lib/auth";
 import { QuizManageTable } from "~/components/quiz/quiz-manage/quiz-manage-table";
 import { Button } from "~/components/ui/button";
 import { Plus } from "lucide-react";
@@ -31,15 +31,15 @@ export const metadata: Metadata = {
  * REQ-FE-N602: No student access to instructor routes
  */
 export default async function InstructorQuizzesPage() {
-  const session = await auth();
+  const user = await getUser();
 
   // Auth protection
-  if (!session?.user) {
+  if (!user) {
     redirect("/login");
   }
 
   // REQ-FE-N602: Role protection - instructors only
-  if (session.user.role !== "instructor") {
+  if ((user.user_metadata?.role as string) !== "instructor") {
     redirect("/quizzes");
   }
 

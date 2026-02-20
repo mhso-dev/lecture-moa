@@ -3,7 +3,6 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { ZodType } from "zod";
-import { useSession } from "next-auth/react";
 import { toast } from "sonner";
 import { updateProfileSchema, type UpdateProfileSchema, type User } from "@shared";
 import { api, ApiClientError } from "~/lib/api";
@@ -31,10 +30,9 @@ interface ProfileFormProps {
  * - name: Editable text input (pre-filled from session)
  * - email: Read-only display field
  *
- * On submit: PATCH /api/users/me, refresh next-auth session, update Zustand store
+ * On submit: PATCH /api/users/me, update Zustand store
  */
 export function ProfileForm({ initialData }: ProfileFormProps) {
-  const { update } = useSession();
   const setUser = useAuthStore((state) => state.setUser);
 
   const form = useForm<UpdateProfileSchema>({
@@ -52,9 +50,6 @@ export function ProfileForm({ initialData }: ProfileFormProps) {
   async function onSubmit(data: UpdateProfileSchema) {
     try {
       await api.patch("/api/users/me", data);
-
-      // Refresh next-auth session to reflect updated user data
-      await update();
 
       // Update Zustand auth store with new values
       const updatedUser: User = {

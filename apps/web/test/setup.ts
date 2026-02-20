@@ -9,8 +9,8 @@ import { vi } from "vitest";
 // Skip environment validation in tests
 process.env.SKIP_ENV_VALIDATION = "true";
 process.env.NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001/api/v1";
-process.env.NEXTAUTH_SECRET = process.env.NEXTAUTH_SECRET || "test-secret-key-for-testing";
-process.env.NEXTAUTH_URL = process.env.NEXTAUTH_URL || "http://localhost:3000";
+process.env.NEXT_PUBLIC_SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || "http://localhost:54321";
+process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "test-anon-key";
 
 // Mock localStorage for zustand persist middleware
 // jsdom's built-in localStorage may not work properly with zustand's createJSONStorage
@@ -55,15 +55,34 @@ vi.mock("next/navigation", () => ({
   useSearchParams: () => new URLSearchParams(),
 }));
 
-// Mock next-auth
-vi.mock("next-auth/react", () => ({
-  useSession: () => ({
-    data: null,
-    status: "unauthenticated",
-    update: vi.fn(),
+// Mock useAuth hook (Supabase Auth)
+vi.mock("~/hooks/useAuth", () => ({
+  useAuth: () => ({
+    user: null,
+    isAuthenticated: false,
+    isLoading: false,
+    role: null,
+    signIn: vi.fn(),
+    signInWithOAuth: vi.fn(),
+    signUp: vi.fn(),
+    signOut: vi.fn(),
+    updateUser: vi.fn(),
   }),
-  signIn: vi.fn(),
-  signOut: vi.fn(),
+}));
+
+// Mock Supabase client (prevents actual Supabase calls in tests)
+vi.mock("~/lib/supabase/client", () => ({
+  createClient: () => ({
+    auth: {
+      signInWithPassword: vi.fn(),
+      signInWithOAuth: vi.fn(),
+      signUp: vi.fn(),
+      signOut: vi.fn(),
+      getUser: vi.fn().mockResolvedValue({ data: { user: null }, error: null }),
+      getSession: vi.fn().mockResolvedValue({ data: { session: null }, error: null }),
+      onAuthStateChange: vi.fn(() => ({ data: { subscription: { unsubscribe: vi.fn() } } })),
+    },
+  }),
 }));
 
 // Mock window.matchMedia for responsive tests

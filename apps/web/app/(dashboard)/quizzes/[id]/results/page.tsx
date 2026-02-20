@@ -9,7 +9,7 @@
  */
 
 import { notFound, redirect } from "next/navigation";
-import { auth } from "~/lib/auth";
+import { getUser } from "~/lib/auth";
 import { fetchQuizDetail, fetchQuizResult } from "~/lib/api/quiz.api";
 import { ResultsSummary } from "~/components/quiz/quiz-results/results-summary";
 import { ResultsBreakdown } from "~/components/quiz/quiz-results/results-breakdown";
@@ -49,15 +49,15 @@ export default async function QuizResultsPage({
   params,
   searchParams,
 }: QuizResultsPageProps) {
-  const session = await auth();
+  const user = await getUser();
 
   // Auth protection
-  if (!session?.user) {
+  if (!user) {
     redirect("/login");
   }
 
   // REQ-FE-N605: Instructors view results through instructor routes
-  if (session.user.role === "instructor") {
+  if ((user.user_metadata?.role as string) === "instructor") {
     redirect("/instructor/quizzes");
   }
 

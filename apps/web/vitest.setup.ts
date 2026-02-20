@@ -8,8 +8,8 @@ import '@testing-library/jest-dom/vitest';
 
 // Set required environment variables before any imports
 process.env.NEXT_PUBLIC_API_URL = 'http://localhost:3001/api/v1';
-process.env.NEXTAUTH_SECRET = 'test-secret-key-for-testing';
-process.env.NEXTAUTH_URL = 'http://localhost:3000';
+process.env.NEXT_PUBLIC_SUPABASE_URL = 'http://localhost:54321';
+process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY = 'test-anon-key';
 process.env.SKIP_ENV_VALIDATION = 'true';
 
 // Properly mock localStorage for zustand persist middleware

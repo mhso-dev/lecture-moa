@@ -9,7 +9,7 @@
  */
 
 import { notFound, redirect } from "next/navigation";
-import { auth } from "~/lib/auth";
+import { getUser } from "~/lib/auth";
 import { fetchQuizDetail, startQuizAttempt } from "~/lib/api/quiz.api";
 import { QuizTakingShell } from "~/components/quiz/quiz-taking/quiz-taking-shell";
 import type { Metadata } from "next";
@@ -42,15 +42,15 @@ export async function generateMetadata({
  * REQ-FE-N605: No instructor quiz taking
  */
 export default async function QuizTakingPage({ params }: QuizTakingPageProps) {
-  const session = await auth();
+  const user = await getUser();
 
   // Auth protection
-  if (!session?.user) {
+  if (!user) {
     redirect("/login");
   }
 
   // REQ-FE-N605: Instructors cannot take quizzes
-  if (session.user.role === "instructor") {
+  if ((user.user_metadata?.role as string) === "instructor") {
     redirect("/instructor/quizzes");
   }
 

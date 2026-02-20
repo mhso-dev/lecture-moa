@@ -9,7 +9,7 @@
 
 import { useMemo } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useSession } from "next-auth/react";
+import { useAuth } from "~/hooks/useAuth";
 import { Grid, List, Plus } from "lucide-react";
 import { useCourses } from "~/hooks/useCourses";
 import { useCourseStore } from "~/stores/course.store";
@@ -37,7 +37,7 @@ import type { CourseListParams, CourseListItem } from "@shared";
 export default function CourseListPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { data: session } = useSession();
+  const { role } = useAuth();
 
   // Extract URL params for query
   const params = useMemo<CourseListParams>(() => {
@@ -83,7 +83,7 @@ export default function CourseListPage() {
   };
 
   // Role check
-  const isInstructor = session?.user.role === "instructor";
+  const isInstructor = role === "instructor";
 
   // Data extraction
   const courses = data?.data ?? [];

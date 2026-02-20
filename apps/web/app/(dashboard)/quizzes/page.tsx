@@ -9,7 +9,7 @@
  */
 
 import { redirect } from "next/navigation";
-import { auth } from "~/lib/auth";
+import { getUser } from "~/lib/auth";
 import { QuizList } from "~/components/quiz/quiz-list";
 import type { Metadata } from "next";
 
@@ -25,15 +25,15 @@ export const metadata: Metadata = {
  * Protected route - only accessible to students.
  */
 export default async function StudentQuizzesPage() {
-  const session = await auth();
+  const user = await getUser();
 
   // Auth protection
-  if (!session?.user) {
+  if (!user) {
     redirect("/login");
   }
 
   // REQ-FE-N605: Instructors should not access student quiz taking routes
-  if (session.user.role === "instructor") {
+  if ((user.user_metadata?.role as string) === "instructor") {
     redirect("/instructor/quizzes");
   }
 

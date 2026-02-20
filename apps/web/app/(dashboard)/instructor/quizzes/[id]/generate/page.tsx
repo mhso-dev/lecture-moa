@@ -9,7 +9,7 @@
  */
 
 import { notFound, redirect } from "next/navigation";
-import { auth } from "~/lib/auth";
+import { getUser } from "~/lib/auth";
 import { fetchQuizDetail } from "~/lib/api/quiz.api";
 import { QuizGenerateClient } from "./QuizGenerateClient";
 import type { Metadata } from "next";
@@ -39,15 +39,15 @@ export async function generateMetadata({
  * REQ-FE-643: Generated Question Review
  */
 export default async function QuizGeneratePage({ params }: QuizGeneratePageProps) {
-  const session = await auth();
+  const user = await getUser();
 
   // Auth protection
-  if (!session?.user) {
+  if (!user) {
     redirect("/login");
   }
 
   // Role protection - instructors only
-  if (session.user.role !== "instructor") {
+  if ((user.user_metadata?.role as string) !== "instructor") {
     redirect("/quizzes");
   }
 

@@ -4,7 +4,7 @@
  */
 
 import { redirect } from "next/navigation";
-import { auth } from "~/lib/auth";
+import { getUser } from "~/lib/auth";
 import { DashboardGrid } from "~/components/dashboard/DashboardGrid";
 import { MyCoursesWidget } from "~/components/dashboard/instructor/MyCoursesWidget";
 import { StudentActivityWidget } from "~/components/dashboard/instructor/StudentActivityWidget";
@@ -38,23 +38,26 @@ export const metadata: Metadata = {
  * Role protection: Only instructors can access this page
  */
 export default async function InstructorDashboardPage() {
-  const session = await auth();
+  const user = await getUser();
 
   // Role protection: only instructors can access this page
-  if (!session?.user) {
+  if (!user) {
     redirect("/login");
   }
 
-  if (session.user.role !== "instructor") {
+  const role = user.user_metadata?.role as string;
+  if (role !== "instructor") {
     redirect("/dashboard/student");
   }
+
+  const name = (user.user_metadata?.name as string) ?? "Instructor";
 
   return (
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-bold tracking-tight">Dashboard</h1>
         <p className="text-muted-foreground">
-          Welcome back, {session.user.name ?? "Instructor"}! Here&apos;s an overview of your teaching activity.
+          Welcome back, {name}! Here&apos;s an overview of your teaching activity.
         </p>
       </div>
 

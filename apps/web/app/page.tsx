@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Route } from "next";
 import { MessageSquare, Brain, Users, Sparkles } from "lucide-react";
-import { auth } from "~/lib/auth";
+import { getUser } from "~/lib/auth";
 import { Button } from "~/components/ui/button";
 import { ThemeToggle } from "~/components/theme-toggle";
 
@@ -48,8 +48,8 @@ const features: Feature[] = [
 ];
 
 export default async function LandingPage() {
-  const session = await auth();
-  const isAuthenticated = !!session?.user;
+  const user = await getUser();
+  const isAuthenticated = !!user;
 
   return (
     <main className="relative flex min-h-screen flex-col bg-background">
