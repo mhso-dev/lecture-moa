@@ -42,7 +42,7 @@ export function useUpdateMaterial(courseId: string) {
       );
 
       // Invalidate materials list
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: materialKeys.lists(courseId),
       });
     },

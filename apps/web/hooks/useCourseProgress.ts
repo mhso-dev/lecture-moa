@@ -21,10 +21,10 @@ import type { CourseEnrollment } from "@shared";
  */
 export function useCourseProgress(
   courseId: string
-): UseQueryResult<CourseEnrollment, Error> {
-  return useQuery<CourseEnrollment, Error>({
+): UseQueryResult<CourseEnrollment> {
+  return useQuery({
     queryKey: ["course", courseId, "progress"],
-    queryFn: async () => {
+    queryFn: async (): Promise<CourseEnrollment> => {
       const response = await api.get<CourseEnrollment>(
         `/api/v1/courses/${courseId}/progress`
       );

@@ -376,6 +376,7 @@ describe('useCourses Hook', () => {
   describe('Loading States', () => {
     it('should start with loading state', () => {
       vi.mocked(api.get).mockImplementation(
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
         () => new Promise(() => {}) // Never resolves
       );
 

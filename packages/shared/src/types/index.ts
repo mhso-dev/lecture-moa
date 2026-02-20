@@ -8,3 +8,4 @@ export * from "./api.types";
 export * from "./dashboard.types";
 export * from "./material.types";
 export * from "./course.types";
+export * from "./qa.types";

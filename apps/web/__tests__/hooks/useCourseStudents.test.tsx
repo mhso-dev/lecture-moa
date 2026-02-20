@@ -295,6 +295,7 @@ describe('useCourseStudents Hook', () => {
   describe('Loading States', () => {
     it('should start with loading state', () => {
       vi.mocked(api.get).mockImplementation(
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
         () => new Promise(() => {}) // Never resolves
       );
 
@@ -513,8 +514,8 @@ describe('useCourseStudents Hook', () => {
   describe('Multiple Students', () => {
     it('should handle large student lists', async () => {
       const manyStudents: StudentProgress[] = Array.from({ length: 50 }, (_, i) => ({
-        userId: `user-${i}`,
-        name: `Student ${i}`,
+        userId: `user-${i.toString()}`,
+        name: `Student ${i.toString()}`,
         enrolledAt: '2024-01-01T00:00:00Z',
         progressPercent: Math.floor(Math.random() * 100),
       }));

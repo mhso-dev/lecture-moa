@@ -42,7 +42,7 @@ export function useToggleMaterialStatus(courseId: string) {
       );
 
       // Invalidate materials list to reflect status change
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: materialKeys.lists(courseId),
       });
     },

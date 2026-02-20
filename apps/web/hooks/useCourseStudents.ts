@@ -21,10 +21,10 @@ import type { StudentProgress } from "@shared";
  */
 export function useCourseStudents(
   courseId: string
-): UseQueryResult<StudentProgress[], Error> {
-  return useQuery<StudentProgress[], Error>({
+): UseQueryResult<StudentProgress[]> {
+  return useQuery({
     queryKey: ["course", courseId, "students"],
-    queryFn: async () => {
+    queryFn: async (): Promise<StudentProgress[]> => {
       const response = await api.get<StudentProgress[]>(
         `/api/v1/courses/${courseId}/students`
       );

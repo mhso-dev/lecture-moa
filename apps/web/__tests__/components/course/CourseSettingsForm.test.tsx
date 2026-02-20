@@ -60,11 +60,11 @@ describe('CourseSettingsForm Component', () => {
     it('should pre-populate form with existing course data', () => {
       render(<CourseSettingsForm courseId="course-1" defaultValues={mockCourse} />);
 
-      const titleInput = screen.getByLabelText(/title/i) as HTMLInputElement;
-      const descInput = screen.getByLabelText(/description/i) as HTMLTextAreaElement;
+      const titleInput = screen.getByLabelText(/title/i);
+      const descInput = screen.getByLabelText(/description/i);
 
-      expect(titleInput.value).toBe('Existing Course');
-      expect(descInput.value).toBe('This is an existing course description that is long enough.');
+      expect((titleInput as HTMLInputElement).value).toBe('Existing Course');
+      expect((descInput as HTMLTextAreaElement).value).toBe('This is an existing course description that is long enough.');
     });
 
     it('should show invite_only as checked when course is invite_only', () => {
@@ -93,14 +93,14 @@ describe('CourseSettingsForm Component', () => {
   });
 
   describe('Save Settings (REQ-FE-432)', () => {
-    it('should render save changes button', async () => {
+    it('should render save changes button', () => {
       render(<CourseSettingsForm courseId="course-1" defaultValues={mockCourse} onSuccess={mockOnSuccess} />);
 
       const submitButton = screen.getByRole('button', { name: /save changes/i });
       expect(submitButton).toBeInTheDocument();
     });
 
-    it('should show loading state during update', async () => {
+    it('should show loading state during update', () => {
       vi.mock('../../../hooks/useUpdateCourse', () => ({
         useUpdateCourse: () => ({
           mutate: mockUpdateMutate,
@@ -132,7 +132,8 @@ describe('CourseSettingsForm Component', () => {
     it('should update preview when new thumbnail selected', async () => {
       render(<CourseSettingsForm courseId="course-1" defaultValues={mockCourse} />);
 
-      const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
+      const fileInput = document.querySelector('input[type="file"]');
+      if (!fileInput) throw new Error('File input not found');
       const file = new File(['test'], 'new-thumb.png', { type: 'image/png' });
 
       fireEvent.change(fileInput, { target: { files: [file] } });

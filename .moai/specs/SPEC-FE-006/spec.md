@@ -2,9 +2,10 @@
 id: SPEC-FE-006
 title: "Q&A System"
 version: 2.0.0
-status: draft
+status: completed
 created: 2026-02-19
 updated: 2026-02-19
+completed: 2026-02-19
 author: MoAI
 priority: critical
 tags: [frontend, qa, inline-popup, text-selection, ai-answer, websocket, real-time, markdown, role-based]

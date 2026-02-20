@@ -18,10 +18,10 @@ import type { PaginatedCourseList, CourseListParams } from "@shared";
  */
 export function useCourses(
   params?: CourseListParams
-): UseQueryResult<PaginatedCourseList, Error> {
-  return useQuery<PaginatedCourseList, Error>({
+): UseQueryResult<PaginatedCourseList> {
+  return useQuery({
     queryKey: ["courses", params],
-    queryFn: async () => {
+    queryFn: async (): Promise<PaginatedCourseList> => {
       const response = await api.get<PaginatedCourseList>("/api/v1/courses", {
         params: params as Record<string, string | number | boolean> | undefined,
       });

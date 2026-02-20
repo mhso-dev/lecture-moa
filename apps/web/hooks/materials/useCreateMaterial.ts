@@ -37,7 +37,7 @@ export function useCreateMaterial(courseId: string) {
     mutationFn: (dto: CreateMaterialDto) => createMaterial(courseId, dto),
     onSuccess: () => {
       // Invalidate materials list to refetch
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: materialKeys.lists(courseId),
       });
     },

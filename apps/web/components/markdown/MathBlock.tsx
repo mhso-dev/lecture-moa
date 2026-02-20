@@ -67,7 +67,7 @@ export function MathBlock({ math, inline = false, className }: MathBlockProps) {
       }
     }
 
-    renderMath();
+    void renderMath();
 
     return () => {
       mounted = false;
@@ -97,7 +97,7 @@ export function MathBlock({ math, inline = false, className }: MathBlockProps) {
             "inline-flex items-center gap-1",
             className
           )}
-          title={result?.error?.message || "Math rendering error"}
+          title={result?.error?.message ?? "Math rendering error"}
           role="alert"
         >
           <AlertCircle className="h-3 w-3" aria-hidden="true" />

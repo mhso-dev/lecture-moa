@@ -126,7 +126,7 @@ function MaterialUploadPageInner({
     formState: { errors, isDirty: isFormDirty },
     setValue,
   } = useForm<UploadFormInput>({
-    resolver: zodResolver(uploadFormInputSchema as any),
+    resolver: zodResolver(uploadFormInputSchema as z.ZodType<UploadFormInput>),
     defaultValues: {
       title: "",
       tagsInput: "",

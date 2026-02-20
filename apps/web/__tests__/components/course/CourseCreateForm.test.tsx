@@ -101,7 +101,8 @@ describe('CourseCreateForm Component', () => {
     it('should show thumbnail preview when image selected', async () => {
       render(<CourseCreateForm />);
 
-      const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
+      const fileInput = document.querySelector('input[type="file"]');
+      if (!fileInput) throw new Error('File input not found');
       const file = new File(['test'], 'test.png', { type: 'image/png' });
 
       fireEvent.change(fileInput, { target: { files: [file] } });
@@ -120,7 +121,7 @@ describe('CourseCreateForm Component', () => {
   });
 
   describe('Form Submission (REQ-FE-424)', () => {
-    it('should render form fields correctly for submission', async () => {
+    it('should render form fields correctly for submission', () => {
       render(<CourseCreateForm onSuccess={mockOnSuccess} />);
 
       // Verify form fields exist
@@ -129,7 +130,7 @@ describe('CourseCreateForm Component', () => {
       expect(screen.getByRole('button', { name: /create course/i })).toBeInTheDocument();
     });
 
-    it('should show loading state during submission', async () => {
+    it('should show loading state during submission', () => {
       vi.mock('../../../hooks/useCreateCourse', () => ({
         useCreateCourse: () => ({
           mutate: mockCreateMutate,
@@ -150,11 +151,11 @@ describe('CourseCreateForm Component', () => {
     it('should preserve form data on error', async () => {
       render(<CourseCreateForm />);
 
-      const titleInput = screen.getByLabelText(/title/i) as HTMLInputElement;
+      const titleInput = screen.getByLabelText(/title/i);
       await userEvent.type(titleInput, 'My Course Title');
 
       // Even after an error, the input should retain its value
-      expect(titleInput.value).toBe('My Course Title');
+      expect((titleInput as HTMLInputElement).value).toBe('My Course Title');
     });
   });
 

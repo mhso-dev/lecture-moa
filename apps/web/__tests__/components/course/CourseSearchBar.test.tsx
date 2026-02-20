@@ -53,8 +53,8 @@ describe('CourseSearchBar Component', () => {
       // Since our mock returns empty URLSearchParams, the value should be empty
       render(<CourseSearchBar />);
 
-      const input = screen.getByPlaceholderText(/search/i) as HTMLInputElement;
-      expect(input.value).toBe('');
+      const input = screen.getByPlaceholderText(/search/i);
+      expect((input as HTMLInputElement).value).toBe('');
     });
 
     it('should have correct accessibility attributes', () => {
@@ -74,7 +74,7 @@ describe('CourseSearchBar Component', () => {
       vi.useRealTimers();
     });
 
-    it('should debounce input by 300ms', async () => {
+    it('should debounce input by 300ms', () => {
       const onSearchChange = vi.fn();
       render(<CourseSearchBar onSearchChange={onSearchChange} />);
 
@@ -117,14 +117,14 @@ describe('CourseSearchBar Component', () => {
 
       render(<CourseSearchBar />);
 
-      const input = screen.getByPlaceholderText(/search/i) as HTMLInputElement;
-      expect(input.value).toBe('test');
+      const input = screen.getByPlaceholderText(/search/i);
+      expect((input as HTMLInputElement).value).toBe('test');
 
       const clearButton = screen.getByTestId('clear-button');
       fireEvent.click(clearButton);
 
       // Input should be cleared
-      expect(input.value).toBe('');
+      expect((input as HTMLInputElement).value).toBe('');
     });
   });
 
@@ -145,13 +145,13 @@ describe('CourseSearchBar Component', () => {
 
       render(<CourseSearchBar />);
 
-      const input = screen.getByPlaceholderText(/search/i) as HTMLInputElement;
-      expect(input.value).toBe('test');
+      const input = screen.getByPlaceholderText(/search/i);
+      expect((input as HTMLInputElement).value).toBe('test');
 
       // Escape should clear
       fireEvent.keyDown(input, { key: 'Escape' });
 
-      expect(input.value).toBe('');
+      expect((input as HTMLInputElement).value).toBe('');
     });
   });
 

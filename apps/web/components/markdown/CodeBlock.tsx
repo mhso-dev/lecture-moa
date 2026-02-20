@@ -37,7 +37,7 @@ export function CodeBlock({ children, language, className }: CodeBlockProps) {
   const handleCopy = useCallback(async () => {
     try {
       // Try modern Clipboard API first
-      if (navigator.clipboard && navigator.clipboard.writeText) {
+      if (typeof navigator.clipboard.writeText === "function") {
         await navigator.clipboard.writeText(children);
         setCopied(true);
         return;
@@ -53,6 +53,7 @@ export function CodeBlock({ children, language, className }: CodeBlockProps) {
       textArea.focus();
       textArea.select();
 
+      // eslint-disable-next-line @typescript-eslint/no-deprecated
       const success = document.execCommand("copy");
       document.body.removeChild(textArea);
 
@@ -71,7 +72,9 @@ export function CodeBlock({ children, language, className }: CodeBlockProps) {
         setCopied(false);
       }, 2000);
 
-      return () => clearTimeout(timer);
+      return () => {
+        clearTimeout(timer);
+      };
     }
   }, [copied]);
 
@@ -92,7 +95,7 @@ export function CodeBlock({ children, language, className }: CodeBlockProps) {
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
-            handleCopy();
+            void handleCopy();
           }
         }}
         className={cn(

@@ -151,7 +151,9 @@ describe('CourseStudentRoster Component', () => {
       render(<CourseStudentRoster courseId="course-1" />);
 
       const removeButtons = screen.getAllByRole('button', { name: /remove/i });
-      fireEvent.click(removeButtons[0]!);
+      const firstButton = removeButtons[0];
+      if (!firstButton) throw new Error('Remove button not found');
+      fireEvent.click(firstButton);
 
       expect(screen.getByRole('alertdialog')).toBeInTheDocument();
       expect(screen.getByText(/are you sure/i)).toBeInTheDocument();
@@ -161,7 +163,9 @@ describe('CourseStudentRoster Component', () => {
       render(<CourseStudentRoster courseId="course-1" />);
 
       const removeButtons = screen.getAllByRole('button', { name: /remove/i });
-      fireEvent.click(removeButtons[0]!);
+      const firstButton = removeButtons[0];
+      if (!firstButton) throw new Error('Remove button not found');
+      fireEvent.click(firstButton);
 
       const confirmButton = screen.getByRole('button', { name: /confirm/i });
       fireEvent.click(confirmButton);
@@ -178,11 +182,13 @@ describe('CourseStudentRoster Component', () => {
       }, { timeout: 3000 });
     });
 
-    it('should not remove student when cancelled', async () => {
+    it('should not remove student when cancelled', () => {
       render(<CourseStudentRoster courseId="course-1" />);
 
       const removeButtons = screen.getAllByRole('button', { name: /remove/i });
-      fireEvent.click(removeButtons[0]!);
+      const firstButton = removeButtons[0];
+      if (!firstButton) throw new Error('Remove button not found');
+      fireEvent.click(firstButton);
 
       const cancelButton = screen.getByRole('button', { name: /cancel/i });
       fireEvent.click(cancelButton);

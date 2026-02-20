@@ -28,6 +28,7 @@ interface EnrollCourseContext {
 export function useEnrollCourse(): UseMutationResult<void, Error, EnrollCourseVariables, EnrollCourseContext> {
   const queryClient = useQueryClient();
 
+  // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
   return useMutation<void, Error, EnrollCourseVariables, EnrollCourseContext>({
     mutationFn: async ({ courseId }: EnrollCourseVariables) => {
       await api.post(`/api/v1/courses/${courseId}/enroll`);
@@ -64,7 +65,7 @@ export function useEnrollCourse(): UseMutationResult<void, Error, EnrollCourseVa
 
     onSettled: (_data, _error, { courseId }: EnrollCourseVariables) => {
       // Always refetch after error or success to ensure cache is in sync
-      queryClient.invalidateQueries({ queryKey: ['course', courseId] });
+      void queryClient.invalidateQueries({ queryKey: ['course', courseId] });
     },
   });
 }

@@ -5,6 +5,7 @@
  * REQ-FE-362: Material domain hooks
  * REQ-FE-005: Course query hooks
  * REQ-FE-414-FE-437: Course mutation hooks
+ * REQ-FE-503: Q&A query and mutation hooks
  */
 
 // Responsive and scroll hooks
@@ -64,3 +65,22 @@ export { useArchiveCourse } from "./useArchiveCourse";
 export { useDeleteCourse } from "./useDeleteCourse";
 export { useGenerateInviteCode } from "./useGenerateInviteCode";
 export { useRemoveStudent } from "./useRemoveStudent";
+
+// Q&A hooks (re-exported from qa subdirectory)
+export {
+  // Query keys
+  qaKeys,
+  // Query hooks
+  useQAList,
+  useQADetail,
+  // Mutation hooks
+  useCreateQuestion,
+  useCreateAnswer,
+  useAcceptAnswer,
+  useUpvoteQuestion,
+  useUpvoteAnswer,
+  useChangeQuestionStatus,
+  useRequestAISuggestion,
+  // WebSocket hook
+  useQAWebSocket,
+} from "./qa";

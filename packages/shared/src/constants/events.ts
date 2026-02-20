@@ -30,6 +30,8 @@ export const EVENTS = {
   // Q&A events
   QA_QUESTION_POSTED: "qa:question_posted",
   QA_ANSWER_POSTED: "qa:answer_posted",
+  QA_AI_SUGGESTION_READY: "qa:ai_suggestion_ready",
+  QA_QUESTION_RESOLVED: "qa:question_resolved",
 
   // Notification events
   NOTIFICATION_NEW: "notification:new",

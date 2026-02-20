@@ -89,7 +89,9 @@ const EditorWithPreview = forwardRef<EditorWithPreviewRef, EditorWithPreviewProp
 
       checkMobile();
       window.addEventListener("resize", checkMobile);
-      return () => window.removeEventListener("resize", checkMobile);
+      return () => {
+        window.removeEventListener("resize", checkMobile);
+      };
     }, [viewMode]);
 
     // Expose methods via ref
@@ -125,7 +127,9 @@ const EditorWithPreview = forwardRef<EditorWithPreviewRef, EditorWithPreviewProp
       <div className="flex border-b border-[var(--color-border)] bg-[var(--color-background)]">
         <button
           type="button"
-          onClick={() => setViewMode("editor")}
+          onClick={() => {
+            setViewMode("editor");
+          }}
           className={cn(
             "flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 transition-colors",
             viewMode === "editor"
@@ -138,7 +142,9 @@ const EditorWithPreview = forwardRef<EditorWithPreviewRef, EditorWithPreviewProp
         </button>
         <button
           type="button"
-          onClick={() => setViewMode("preview")}
+          onClick={() => {
+            setViewMode("preview");
+          }}
           className={cn(
             "flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 transition-colors",
             viewMode === "preview"
@@ -162,7 +168,9 @@ const EditorWithPreview = forwardRef<EditorWithPreviewRef, EditorWithPreviewProp
           <Button
             variant={viewMode === "editor" ? "secondary" : "ghost"}
             size="sm"
-            onClick={() => setViewMode("editor")}
+            onClick={() => {
+              setViewMode("editor");
+            }}
             className="h-8"
           >
             <Edit3 className="h-4 w-4 mr-1" />
@@ -171,7 +179,9 @@ const EditorWithPreview = forwardRef<EditorWithPreviewRef, EditorWithPreviewProp
           <Button
             variant={viewMode === "split" ? "secondary" : "ghost"}
             size="sm"
-            onClick={() => setViewMode("split")}
+            onClick={() => {
+              setViewMode("split");
+            }}
             className="h-8"
           >
             <Columns className="h-4 w-4 mr-1" />
@@ -180,7 +190,9 @@ const EditorWithPreview = forwardRef<EditorWithPreviewRef, EditorWithPreviewProp
           <Button
             variant={viewMode === "preview" ? "secondary" : "ghost"}
             size="sm"
-            onClick={() => setViewMode("preview")}
+            onClick={() => {
+              setViewMode("preview");
+            }}
             className="h-8"
           >
             <Eye className="h-4 w-4 mr-1" />
@@ -191,7 +203,7 @@ const EditorWithPreview = forwardRef<EditorWithPreviewRef, EditorWithPreviewProp
     );
 
     // Calculate height for panels
-    const panelHeight = typeof height === "number" ? `${height}px` : height;
+    const panelHeight = typeof height === "number" ? `${String(height)}px` : height;
 
     return (
       <div className={cn("editor-with-preview rounded-[var(--radius-lg)] border border-[var(--color-border)] overflow-hidden", className)}>
