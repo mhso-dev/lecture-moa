@@ -7,7 +7,7 @@
  */
 
 import { useMutation, useQueryClient, type UseMutationResult } from '@tanstack/react-query';
-import { api } from '~/lib/api';
+import { generateInviteCode } from '~/lib/supabase/courses';
 import type { InviteCodeResponse, Course } from '@shared';
 
 interface GenerateInviteCodeVariables {
@@ -23,10 +23,8 @@ export function useGenerateInviteCode(): UseMutationResult<InviteCodeResponse, E
   const queryClient = useQueryClient();
 
   return useMutation<InviteCodeResponse, Error, GenerateInviteCodeVariables>({
-    mutationFn: async ({ courseId }: GenerateInviteCodeVariables) => {
-      const response = await api.post<InviteCodeResponse>(`/api/v1/courses/${courseId}/invite-code`);
-      return response.data;
-    },
+    mutationFn: ({ courseId }: GenerateInviteCodeVariables): Promise<InviteCodeResponse> =>
+      generateInviteCode(courseId),
 
     onSuccess: (data: InviteCodeResponse, { courseId }: GenerateInviteCodeVariables) => {
       // Update the course query with the new invite code

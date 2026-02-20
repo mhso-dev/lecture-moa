@@ -8,14 +8,12 @@ import { renderHook, waitFor, act } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { ReactNode } from 'react';
 import { useUpdateCourse } from '../../hooks/useUpdateCourse';
-import { api } from '../../lib/api';
+import * as coursesModule from '../../lib/supabase/courses';
 import type { UpdateCoursePayload, Course } from '@shared';
 
-// Mock the API module
-vi.mock('../../lib/api', () => ({
-  api: {
-    patch: vi.fn(),
-  },
+// Mock the Supabase courses module
+vi.mock('../../lib/supabase/courses', () => ({
+  updateCourse: vi.fn(),
 }));
 
 // Create wrapper for TanStack Query
@@ -39,6 +37,21 @@ function createWrapper() {
   };
 }
 
+const mockUpdatedCourse: Course = {
+  id: 'course-1',
+  title: 'Updated Title',
+  description: 'Updated description',
+  category: 'programming',
+  status: 'published',
+  visibility: 'public',
+  instructor: { id: 'inst-1', name: 'Instructor' },
+  enrolledCount: 10,
+  materialCount: 5,
+  createdAt: '2024-01-01T00:00:00Z',
+  updatedAt: '2024-01-02T00:00:00Z',
+  syllabus: [],
+};
+
 describe('useUpdateCourse Hook', () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -58,31 +71,13 @@ describe('useUpdateCourse Hook', () => {
       expect(result.current.isPending).toBe(false);
     });
 
-    it('should call PATCH /api/v1/courses/:id with payload', async () => {
+    it('should call Supabase updateCourse with payload on mutate', async () => {
       const payload: UpdateCoursePayload = {
         title: 'Updated Title',
         description: 'Updated description',
       };
 
-      const mockCourse: Course = {
-        id: 'course-1',
-        title: 'Updated Title',
-        description: 'Updated description',
-        category: 'programming',
-        status: 'published',
-        visibility: 'public',
-        instructor: { id: 'inst-1', name: 'Instructor' },
-        enrolledCount: 10,
-        materialCount: 5,
-        createdAt: '2024-01-01T00:00:00Z',
-        updatedAt: '2024-01-02T00:00:00Z',
-        syllabus: [],
-      };
-
-      vi.mocked(api.patch).mockResolvedValueOnce({
-        data: mockCourse,
-        success: true,
-      });
+      vi.mocked(coursesModule.updateCourse).mockResolvedValueOnce(mockUpdatedCourse);
 
       const { result } = renderHook(() => useUpdateCourse(), {
         wrapper: createWrapper(),
@@ -96,7 +91,7 @@ describe('useUpdateCourse Hook', () => {
         expect(result.current.isSuccess).toBe(true);
       });
 
-      expect(api.patch).toHaveBeenCalledWith('/api/v1/courses/course-1', payload);
+      expect(coursesModule.updateCourse).toHaveBeenCalledWith('course-1', payload);
     });
 
     it('should return updated course data', async () => {
@@ -104,25 +99,7 @@ describe('useUpdateCourse Hook', () => {
         title: 'Updated Title',
       };
 
-      const mockCourse: Course = {
-        id: 'course-1',
-        title: 'Updated Title',
-        description: 'Original description',
-        category: 'programming',
-        status: 'published',
-        visibility: 'public',
-        instructor: { id: 'inst-1', name: 'Instructor' },
-        enrolledCount: 10,
-        materialCount: 5,
-        createdAt: '2024-01-01T00:00:00Z',
-        updatedAt: '2024-01-02T00:00:00Z',
-        syllabus: [],
-      };
-
-      vi.mocked(api.patch).mockResolvedValueOnce({
-        data: mockCourse,
-        success: true,
-      });
+      vi.mocked(coursesModule.updateCourse).mockResolvedValueOnce(mockUpdatedCourse);
 
       const { result } = renderHook(() => useUpdateCourse(), {
         wrapper: createWrapper(),
@@ -136,7 +113,7 @@ describe('useUpdateCourse Hook', () => {
         expect(result.current.isSuccess).toBe(true);
       });
 
-      expect(result.current.data).toEqual(mockCourse);
+      expect(result.current.data).toEqual(mockUpdatedCourse);
     });
   });
 
@@ -147,24 +124,11 @@ describe('useUpdateCourse Hook', () => {
       };
 
       const mockCourse: Course = {
-        id: 'course-1',
+        ...mockUpdatedCourse,
         title: 'New Title Only',
-        description: 'Original description',
-        category: 'programming',
-        status: 'published',
-        visibility: 'public',
-        instructor: { id: 'inst-1', name: 'Instructor' },
-        enrolledCount: 10,
-        materialCount: 5,
-        createdAt: '2024-01-01T00:00:00Z',
-        updatedAt: '2024-01-02T00:00:00Z',
-        syllabus: [],
       };
 
-      vi.mocked(api.patch).mockResolvedValueOnce({
-        data: mockCourse,
-        success: true,
-      });
+      vi.mocked(coursesModule.updateCourse).mockResolvedValueOnce(mockCourse);
 
       const { result } = renderHook(() => useUpdateCourse(), {
         wrapper: createWrapper(),
@@ -178,7 +142,7 @@ describe('useUpdateCourse Hook', () => {
         expect(result.current.isSuccess).toBe(true);
       });
 
-      expect(api.patch).toHaveBeenCalledWith('/api/v1/courses/course-1', { title: 'New Title Only' });
+      expect(coursesModule.updateCourse).toHaveBeenCalledWith('course-1', { title: 'New Title Only' });
     });
 
     it('should support updating only visibility', async () => {
@@ -187,24 +151,11 @@ describe('useUpdateCourse Hook', () => {
       };
 
       const mockCourse: Course = {
-        id: 'course-1',
-        title: 'Original Title',
-        description: 'Original description',
-        category: 'programming',
-        status: 'published',
+        ...mockUpdatedCourse,
         visibility: 'invite_only',
-        instructor: { id: 'inst-1', name: 'Instructor' },
-        enrolledCount: 10,
-        materialCount: 5,
-        createdAt: '2024-01-01T00:00:00Z',
-        updatedAt: '2024-01-02T00:00:00Z',
-        syllabus: [],
       };
 
-      vi.mocked(api.patch).mockResolvedValueOnce({
-        data: mockCourse,
-        success: true,
-      });
+      vi.mocked(coursesModule.updateCourse).mockResolvedValueOnce(mockCourse);
 
       const { result } = renderHook(() => useUpdateCourse(), {
         wrapper: createWrapper(),
@@ -218,7 +169,7 @@ describe('useUpdateCourse Hook', () => {
         expect(result.current.isSuccess).toBe(true);
       });
 
-      expect(api.patch).toHaveBeenCalledWith('/api/v1/courses/course-1', { visibility: 'invite_only' });
+      expect(coursesModule.updateCourse).toHaveBeenCalledWith('course-1', { visibility: 'invite_only' });
     });
 
     it('should support updating status', async () => {
@@ -227,24 +178,11 @@ describe('useUpdateCourse Hook', () => {
       };
 
       const mockCourse: Course = {
-        id: 'course-1',
-        title: 'Original Title',
-        description: 'Original description',
-        category: 'programming',
+        ...mockUpdatedCourse,
         status: 'archived',
-        visibility: 'public',
-        instructor: { id: 'inst-1', name: 'Instructor' },
-        enrolledCount: 10,
-        materialCount: 5,
-        createdAt: '2024-01-01T00:00:00Z',
-        updatedAt: '2024-01-02T00:00:00Z',
-        syllabus: [],
       };
 
-      vi.mocked(api.patch).mockResolvedValueOnce({
-        data: mockCourse,
-        success: true,
-      });
+      vi.mocked(coursesModule.updateCourse).mockResolvedValueOnce(mockCourse);
 
       const { result } = renderHook(() => useUpdateCourse(), {
         wrapper: createWrapper(),
@@ -258,7 +196,7 @@ describe('useUpdateCourse Hook', () => {
         expect(result.current.isSuccess).toBe(true);
       });
 
-      expect(api.patch).toHaveBeenCalledWith('/api/v1/courses/course-1', { status: 'archived' });
+      expect(coursesModule.updateCourse).toHaveBeenCalledWith('course-1', { status: 'archived' });
     });
   });
 
@@ -275,25 +213,7 @@ describe('useUpdateCourse Hook', () => {
         title: 'Updated Title',
       };
 
-      const mockCourse: Course = {
-        id: 'course-1',
-        title: 'Updated Title',
-        description: 'Description',
-        category: 'programming',
-        status: 'published',
-        visibility: 'public',
-        instructor: { id: 'inst-1', name: 'Instructor' },
-        enrolledCount: 10,
-        materialCount: 5,
-        createdAt: '2024-01-01T00:00:00Z',
-        updatedAt: '2024-01-02T00:00:00Z',
-        syllabus: [],
-      };
-
-      vi.mocked(api.patch).mockResolvedValueOnce({
-        data: mockCourse,
-        success: true,
-      });
+      vi.mocked(coursesModule.updateCourse).mockResolvedValueOnce(mockUpdatedCourse);
 
       const wrapper = ({ children }: { children: ReactNode }) => (
         <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
@@ -309,15 +229,15 @@ describe('useUpdateCourse Hook', () => {
         expect(result.current.isSuccess).toBe(true);
       });
 
-      // Verify the API was called correctly
-      expect(api.patch).toHaveBeenCalledWith('/api/v1/courses/course-1', payload);
+      // Verify the updateCourse was called correctly
+      expect(coursesModule.updateCourse).toHaveBeenCalledWith('course-1', payload);
     });
   });
 
   describe('Error Handling', () => {
     it('should handle API errors', async () => {
       const error = new Error('Failed to update course');
-      vi.mocked(api.patch).mockRejectedValueOnce(error);
+      vi.mocked(coursesModule.updateCourse).mockRejectedValueOnce(error);
 
       const payload: UpdateCoursePayload = {
         title: 'Updated Title',
@@ -340,7 +260,7 @@ describe('useUpdateCourse Hook', () => {
 
     it('should handle not found errors', async () => {
       const error = new Error('Course not found');
-      vi.mocked(api.patch).mockRejectedValueOnce(error);
+      vi.mocked(coursesModule.updateCourse).mockRejectedValueOnce(error);
 
       const payload: UpdateCoursePayload = {
         title: 'Updated Title',
@@ -366,25 +286,7 @@ describe('useUpdateCourse Hook', () => {
         title: 'Updated Title',
       };
 
-      const mockCourse: Course = {
-        id: 'course-1',
-        title: 'Updated Title',
-        description: 'Description',
-        category: 'programming',
-        status: 'published',
-        visibility: 'public',
-        instructor: { id: 'inst-1', name: 'Instructor' },
-        enrolledCount: 10,
-        materialCount: 5,
-        createdAt: '2024-01-01T00:00:00Z',
-        updatedAt: '2024-01-02T00:00:00Z',
-        syllabus: [],
-      };
-
-      vi.mocked(api.patch).mockResolvedValueOnce({
-        data: mockCourse,
-        success: true,
-      });
+      vi.mocked(coursesModule.updateCourse).mockResolvedValueOnce(mockUpdatedCourse);
 
       const { result } = renderHook(() => useUpdateCourse(), {
         wrapper: createWrapper(),
@@ -405,7 +307,7 @@ describe('useUpdateCourse Hook', () => {
         expect(result.current.isSuccess).toBe(true);
       });
 
-      expect(result.current.data).toEqual(mockCourse);
+      expect(result.current.data).toEqual(mockUpdatedCourse);
     });
   });
 });

@@ -7,7 +7,7 @@
  */
 
 import { useMutation, useQueryClient, type UseMutationResult } from '@tanstack/react-query';
-import { api } from '~/lib/api';
+import { removeStudent } from '~/lib/supabase/courses';
 
 interface RemoveStudentVariables {
   courseId: string;
@@ -24,13 +24,12 @@ export function useRemoveStudent(): UseMutationResult<void, Error, RemoveStudent
 
   // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
   return useMutation<void, Error, RemoveStudentVariables>({
-    mutationFn: async ({ courseId, userId }: RemoveStudentVariables) => {
-      await api.delete(`/api/v1/courses/${courseId}/students/${userId}`);
-    },
+    mutationFn: ({ courseId, userId }: RemoveStudentVariables): Promise<void> =>
+      removeStudent(courseId, userId),
 
     onSuccess: (_data, { courseId }: RemoveStudentVariables) => {
       // Invalidate students query to refresh the roster
-      void queryClient.invalidateQueries({ queryKey: ['course-students', courseId] });
+      void queryClient.invalidateQueries({ queryKey: ['course', courseId, 'students'] });
     },
   });
 }

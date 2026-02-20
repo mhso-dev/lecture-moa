@@ -2,12 +2,15 @@
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import type { Material } from "@shared";
-import { toggleMaterialStatus } from "~/lib/api/materials";
+import {
+  toggleMaterialStatus as toggleMaterialStatusQuery,
+  toMaterial,
+} from "~/lib/supabase/materials";
 import { materialKeys } from "./useMaterial";
 
 /**
  * useToggleMaterialStatus Hook
- * REQ-FE-362: Mutation for publish/unpublish toggle
+ * REQ-FE-362: Mutation for publish/unpublish toggle (via Supabase direct query)
  *
  * @param courseId - The course ID
  * @returns TanStack mutation for toggling material status
@@ -33,7 +36,10 @@ export function useToggleMaterialStatus(courseId: string) {
   const queryClient = useQueryClient();
 
   return useMutation<Material, Error, string>({
-    mutationFn: (materialId: string) => toggleMaterialStatus(courseId, materialId),
+    mutationFn: async (materialId: string) => {
+      const row = await toggleMaterialStatusQuery(materialId);
+      return toMaterial(row);
+    },
     onSuccess: (updatedMaterial, materialId) => {
       // Update the cached material detail
       queryClient.setQueryData(

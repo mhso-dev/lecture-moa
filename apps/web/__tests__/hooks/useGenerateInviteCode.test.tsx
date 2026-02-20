@@ -8,14 +8,12 @@ import { renderHook, waitFor, act } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { ReactNode } from 'react';
 import { useGenerateInviteCode } from '../../hooks/useGenerateInviteCode';
-import { api } from '../../lib/api';
+import * as coursesModule from '../../lib/supabase/courses';
 import type { InviteCodeResponse, Course } from '@shared';
 
-// Mock the API module
-vi.mock('../../lib/api', () => ({
-  api: {
-    post: vi.fn(),
-  },
+// Mock the Supabase courses module
+vi.mock('../../lib/supabase/courses', () => ({
+  generateInviteCode: vi.fn(),
 }));
 
 // Create wrapper for TanStack Query
@@ -66,16 +64,13 @@ describe('useGenerateInviteCode Hook', () => {
       expect(result.current.isPending).toBe(false);
     });
 
-    it('should call POST /api/v1/courses/:id/invite-code', async () => {
+    it('should call Supabase generateInviteCode on mutate', async () => {
       const mockResponse: InviteCodeResponse = {
         code: 'ABC123',
         expiresAt: '2024-12-31T23:59:59Z',
       };
 
-      vi.mocked(api.post).mockResolvedValueOnce({
-        data: mockResponse,
-        success: true,
-      });
+      vi.mocked(coursesModule.generateInviteCode).mockResolvedValueOnce(mockResponse);
 
       const { result } = renderHook(() => useGenerateInviteCode(), {
         wrapper: createWrapper(),
@@ -89,7 +84,7 @@ describe('useGenerateInviteCode Hook', () => {
         expect(result.current.isSuccess).toBe(true);
       });
 
-      expect(api.post).toHaveBeenCalledWith('/api/v1/courses/course-1/invite-code');
+      expect(coursesModule.generateInviteCode).toHaveBeenCalledWith('course-1');
     });
 
     it('should return invite code response', async () => {
@@ -98,10 +93,7 @@ describe('useGenerateInviteCode Hook', () => {
         expiresAt: '2024-12-31T23:59:59Z',
       };
 
-      vi.mocked(api.post).mockResolvedValueOnce({
-        data: mockResponse,
-        success: true,
-      });
+      vi.mocked(coursesModule.generateInviteCode).mockResolvedValueOnce(mockResponse);
 
       const { result } = renderHook(() => useGenerateInviteCode(), {
         wrapper: createWrapper(),
@@ -124,10 +116,7 @@ describe('useGenerateInviteCode Hook', () => {
         code: 'DEF456',
       };
 
-      vi.mocked(api.post).mockResolvedValueOnce({
-        data: mockResponse,
-        success: true,
-      });
+      vi.mocked(coursesModule.generateInviteCode).mockResolvedValueOnce(mockResponse);
 
       const { result } = renderHook(() => useGenerateInviteCode(), {
         wrapper: createWrapper(),
@@ -176,10 +165,7 @@ describe('useGenerateInviteCode Hook', () => {
       // Pre-populate course query
       queryClient.setQueryData(['course', 'course-1'], mockCourse);
 
-      vi.mocked(api.post).mockResolvedValueOnce({
-        data: mockResponse,
-        success: true,
-      });
+      vi.mocked(coursesModule.generateInviteCode).mockResolvedValueOnce(mockResponse);
 
       const { result } = renderHook(() => useGenerateInviteCode(), { wrapper });
 
@@ -199,7 +185,7 @@ describe('useGenerateInviteCode Hook', () => {
   describe('Error Handling', () => {
     it('should handle API errors', async () => {
       const error = new Error('Failed to generate invite code');
-      vi.mocked(api.post).mockRejectedValueOnce(error);
+      vi.mocked(coursesModule.generateInviteCode).mockRejectedValueOnce(error);
 
       const { result } = renderHook(() => useGenerateInviteCode(), {
         wrapper: createWrapper(),
@@ -218,7 +204,7 @@ describe('useGenerateInviteCode Hook', () => {
 
     it('should handle unauthorized errors', async () => {
       const error = new Error('Unauthorized');
-      vi.mocked(api.post).mockRejectedValueOnce(error);
+      vi.mocked(coursesModule.generateInviteCode).mockRejectedValueOnce(error);
 
       const { result } = renderHook(() => useGenerateInviteCode(), {
         wrapper: createWrapper(),
@@ -235,7 +221,7 @@ describe('useGenerateInviteCode Hook', () => {
 
     it('should handle not found errors', async () => {
       const error = new Error('Course not found');
-      vi.mocked(api.post).mockRejectedValueOnce(error);
+      vi.mocked(coursesModule.generateInviteCode).mockRejectedValueOnce(error);
 
       const { result } = renderHook(() => useGenerateInviteCode(), {
         wrapper: createWrapper(),
@@ -257,10 +243,7 @@ describe('useGenerateInviteCode Hook', () => {
         code: 'ABC123',
       };
 
-      vi.mocked(api.post).mockResolvedValueOnce({
-        data: mockResponse,
-        success: true,
-      });
+      vi.mocked(coursesModule.generateInviteCode).mockResolvedValueOnce(mockResponse);
 
       const { result } = renderHook(() => useGenerateInviteCode(), {
         wrapper: createWrapper(),

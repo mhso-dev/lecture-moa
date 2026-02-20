@@ -10,14 +10,6 @@ export {
   ApiClientError,
   setApiAuthToken,
   getApiAuthToken,
-  // Re-export domain-specific API modules
-  getMaterials,
-  getMaterial,
-  createMaterial,
-  updateMaterial,
-  deleteMaterial,
-  toggleMaterialStatus,
-  uploadMaterialImage,
 } from "./api/index";
 
 // Quiz API functions

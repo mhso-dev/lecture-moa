@@ -8,7 +8,8 @@
 
 import { useMutation, useQueryClient, type UseMutationResult } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { api } from '~/lib/api';
+import { archiveCourse } from '~/lib/supabase/courses';
+import type { Course } from '@shared';
 
 interface ArchiveCourseVariables {
   courseId: string;
@@ -19,18 +20,17 @@ interface ArchiveCourseVariables {
  *
  * @returns UseMutationResult for archive mutation
  */
-export function useArchiveCourse(): UseMutationResult<void, Error, ArchiveCourseVariables> {
+export function useArchiveCourse(): UseMutationResult<Course, Error, ArchiveCourseVariables> {
   const queryClient = useQueryClient();
   const router = useRouter();
 
-  // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
-  return useMutation<void, Error, ArchiveCourseVariables>({
-    mutationFn: async ({ courseId }: ArchiveCourseVariables) => {
-      await api.post(`/api/v1/courses/${courseId}/archive`);
-    },
+  return useMutation<Course, Error, ArchiveCourseVariables>({
+    mutationFn: ({ courseId }: ArchiveCourseVariables): Promise<Course> =>
+      archiveCourse(courseId),
 
-    onSuccess: () => {
-      // Invalidate courses query to refresh the list
+    onSuccess: (_data, { courseId }: ArchiveCourseVariables) => {
+      // Invalidate both the specific course and the course list
+      void queryClient.invalidateQueries({ queryKey: ['course', courseId] });
       void queryClient.invalidateQueries({ queryKey: ['courses'] });
 
       // Redirect to courses list page

@@ -8,14 +8,12 @@ import { renderHook, waitFor, act } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { ReactNode } from 'react';
 import { useCreateCourse } from '../../hooks/useCreateCourse';
-import { api } from '../../lib/api';
+import * as coursesModule from '../../lib/supabase/courses';
 import type { CreateCoursePayload, Course } from '@shared';
 
-// Mock the API module
-vi.mock('../../lib/api', () => ({
-  api: {
-    post: vi.fn(),
-  },
+// Mock the Supabase courses module
+vi.mock('../../lib/supabase/courses', () => ({
+  createCourse: vi.fn(),
 }));
 
 // Create wrapper for TanStack Query
@@ -39,6 +37,21 @@ function createWrapper() {
   };
 }
 
+const mockCourseBase: Course = {
+  id: 'new-course-id',
+  title: 'New Course',
+  description: 'Course description',
+  category: 'programming',
+  status: 'draft',
+  visibility: 'public',
+  instructor: { id: 'inst-1', name: 'Instructor' },
+  enrolledCount: 0,
+  materialCount: 0,
+  createdAt: '2024-01-01T00:00:00Z',
+  updatedAt: '2024-01-01T00:00:00Z',
+  syllabus: [],
+};
+
 describe('useCreateCourse Hook', () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -58,7 +71,7 @@ describe('useCreateCourse Hook', () => {
       expect(result.current.isPending).toBe(false);
     });
 
-    it('should call POST /api/v1/courses with payload', async () => {
+    it('should call createCourse with payload', async () => {
       const payload: CreateCoursePayload = {
         title: 'New Course',
         description: 'Course description',
@@ -66,25 +79,7 @@ describe('useCreateCourse Hook', () => {
         visibility: 'public',
       };
 
-      const mockCourse: Course = {
-        id: 'new-course-id',
-        title: 'New Course',
-        description: 'Course description',
-        category: 'programming',
-        status: 'draft',
-        visibility: 'public',
-        instructor: { id: 'inst-1', name: 'Instructor' },
-        enrolledCount: 0,
-        materialCount: 0,
-        createdAt: '2024-01-01T00:00:00Z',
-        updatedAt: '2024-01-01T00:00:00Z',
-        syllabus: [],
-      };
-
-      vi.mocked(api.post).mockResolvedValueOnce({
-        data: mockCourse,
-        success: true,
-      });
+      vi.mocked(coursesModule.createCourse).mockResolvedValueOnce(mockCourseBase);
 
       const { result } = renderHook(() => useCreateCourse(), {
         wrapper: createWrapper(),
@@ -98,7 +93,7 @@ describe('useCreateCourse Hook', () => {
         expect(result.current.isSuccess).toBe(true);
       });
 
-      expect(api.post).toHaveBeenCalledWith('/api/v1/courses', payload);
+      expect(coursesModule.createCourse).toHaveBeenCalledWith(payload);
     });
 
     it('should return created course data', async () => {
@@ -109,25 +104,7 @@ describe('useCreateCourse Hook', () => {
         visibility: 'public',
       };
 
-      const mockCourse: Course = {
-        id: 'new-course-id',
-        title: 'New Course',
-        description: 'Course description',
-        category: 'programming',
-        status: 'draft',
-        visibility: 'public',
-        instructor: { id: 'inst-1', name: 'Instructor' },
-        enrolledCount: 0,
-        materialCount: 0,
-        createdAt: '2024-01-01T00:00:00Z',
-        updatedAt: '2024-01-01T00:00:00Z',
-        syllabus: [],
-      };
-
-      vi.mocked(api.post).mockResolvedValueOnce({
-        data: mockCourse,
-        success: true,
-      });
+      vi.mocked(coursesModule.createCourse).mockResolvedValueOnce(mockCourseBase);
 
       const { result } = renderHook(() => useCreateCourse(), {
         wrapper: createWrapper(),
@@ -141,7 +118,7 @@ describe('useCreateCourse Hook', () => {
         expect(result.current.isSuccess).toBe(true);
       });
 
-      expect(result.current.data).toEqual(mockCourse);
+      expect(result.current.data).toEqual(mockCourseBase);
     });
   });
 
@@ -161,25 +138,7 @@ describe('useCreateCourse Hook', () => {
         visibility: 'public',
       };
 
-      const mockCourse: Course = {
-        id: 'new-course-id',
-        title: 'New Course',
-        description: 'Course description',
-        category: 'programming',
-        status: 'draft',
-        visibility: 'public',
-        instructor: { id: 'inst-1', name: 'Instructor' },
-        enrolledCount: 0,
-        materialCount: 0,
-        createdAt: '2024-01-01T00:00:00Z',
-        updatedAt: '2024-01-01T00:00:00Z',
-        syllabus: [],
-      };
-
-      vi.mocked(api.post).mockResolvedValueOnce({
-        data: mockCourse,
-        success: true,
-      });
+      vi.mocked(coursesModule.createCourse).mockResolvedValueOnce(mockCourseBase);
 
       const wrapper = ({ children }: { children: ReactNode }) => (
         <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
@@ -195,8 +154,8 @@ describe('useCreateCourse Hook', () => {
         expect(result.current.isSuccess).toBe(true);
       });
 
-      // Verify API was called correctly
-      expect(api.post).toHaveBeenCalledWith('/api/v1/courses', payload);
+      // Verify createCourse was called
+      expect(coursesModule.createCourse).toHaveBeenCalledWith(payload);
     });
   });
 
@@ -209,25 +168,7 @@ describe('useCreateCourse Hook', () => {
         visibility: 'public',
       };
 
-      const mockCourse: Course = {
-        id: 'new-course-id',
-        title: 'New Course',
-        description: 'Course description',
-        category: 'programming',
-        status: 'draft',
-        visibility: 'public',
-        instructor: { id: 'inst-1', name: 'Instructor' },
-        enrolledCount: 0,
-        materialCount: 0,
-        createdAt: '2024-01-01T00:00:00Z',
-        updatedAt: '2024-01-01T00:00:00Z',
-        syllabus: [],
-      };
-
-      vi.mocked(api.post).mockResolvedValueOnce({
-        data: mockCourse,
-        success: true,
-      });
+      vi.mocked(coursesModule.createCourse).mockResolvedValueOnce(mockCourseBase);
 
       const { result } = renderHook(() => useCreateCourse(), {
         wrapper: createWrapper(),
@@ -257,25 +198,11 @@ describe('useCreateCourse Hook', () => {
       };
 
       const mockCourse: Course = {
-        id: 'new-course-id',
-        title: 'New Course',
-        description: 'Course description',
-        category: 'programming',
-        status: 'draft',
-        visibility: 'public',
+        ...mockCourseBase,
         thumbnailUrl: 'https://example.com/image.jpg',
-        instructor: { id: 'inst-1', name: 'Instructor' },
-        enrolledCount: 0,
-        materialCount: 0,
-        createdAt: '2024-01-01T00:00:00Z',
-        updatedAt: '2024-01-01T00:00:00Z',
-        syllabus: [],
       };
 
-      vi.mocked(api.post).mockResolvedValueOnce({
-        data: mockCourse,
-        success: true,
-      });
+      vi.mocked(coursesModule.createCourse).mockResolvedValueOnce(mockCourse);
 
       const { result } = renderHook(() => useCreateCourse(), {
         wrapper: createWrapper(),
@@ -289,9 +216,11 @@ describe('useCreateCourse Hook', () => {
         expect(result.current.isSuccess).toBe(true);
       });
 
-      expect(api.post).toHaveBeenCalledWith('/api/v1/courses', expect.objectContaining({
-        thumbnailUrl: 'https://example.com/image.jpg',
-      }));
+      expect(coursesModule.createCourse).toHaveBeenCalledWith(
+        expect.objectContaining({
+          thumbnailUrl: 'https://example.com/image.jpg',
+        })
+      );
     });
 
     it('should support invite_only visibility', async () => {
@@ -303,24 +232,11 @@ describe('useCreateCourse Hook', () => {
       };
 
       const mockCourse: Course = {
-        id: 'new-course-id',
-        title: 'New Course',
-        description: 'Course description',
-        category: 'programming',
-        status: 'draft',
+        ...mockCourseBase,
         visibility: 'invite_only',
-        instructor: { id: 'inst-1', name: 'Instructor' },
-        enrolledCount: 0,
-        materialCount: 0,
-        createdAt: '2024-01-01T00:00:00Z',
-        updatedAt: '2024-01-01T00:00:00Z',
-        syllabus: [],
       };
 
-      vi.mocked(api.post).mockResolvedValueOnce({
-        data: mockCourse,
-        success: true,
-      });
+      vi.mocked(coursesModule.createCourse).mockResolvedValueOnce(mockCourse);
 
       const { result } = renderHook(() => useCreateCourse(), {
         wrapper: createWrapper(),
@@ -334,16 +250,18 @@ describe('useCreateCourse Hook', () => {
         expect(result.current.isSuccess).toBe(true);
       });
 
-      expect(api.post).toHaveBeenCalledWith('/api/v1/courses', expect.objectContaining({
-        visibility: 'invite_only',
-      }));
+      expect(coursesModule.createCourse).toHaveBeenCalledWith(
+        expect.objectContaining({
+          visibility: 'invite_only',
+        })
+      );
     });
   });
 
   describe('Error Handling', () => {
     it('should handle API errors', async () => {
       const error = new Error('Failed to create course');
-      vi.mocked(api.post).mockRejectedValueOnce(error);
+      vi.mocked(coursesModule.createCourse).mockRejectedValueOnce(error);
 
       const payload: CreateCoursePayload = {
         title: 'New Course',
@@ -369,7 +287,7 @@ describe('useCreateCourse Hook', () => {
 
     it('should handle validation errors', async () => {
       const error = new Error('Validation failed');
-      vi.mocked(api.post).mockRejectedValueOnce(error);
+      vi.mocked(coursesModule.createCourse).mockRejectedValueOnce(error);
 
       const payload: CreateCoursePayload = {
         title: '',
@@ -401,25 +319,7 @@ describe('useCreateCourse Hook', () => {
         visibility: 'public',
       };
 
-      const mockCourse: Course = {
-        id: 'new-course-id',
-        title: 'New Course',
-        description: 'Course description',
-        category: 'programming',
-        status: 'draft',
-        visibility: 'public',
-        instructor: { id: 'inst-1', name: 'Instructor' },
-        enrolledCount: 0,
-        materialCount: 0,
-        createdAt: '2024-01-01T00:00:00Z',
-        updatedAt: '2024-01-01T00:00:00Z',
-        syllabus: [],
-      };
-
-      vi.mocked(api.post).mockResolvedValueOnce({
-        data: mockCourse,
-        success: true,
-      });
+      vi.mocked(coursesModule.createCourse).mockResolvedValueOnce(mockCourseBase);
 
       const { result } = renderHook(() => useCreateCourse(), {
         wrapper: createWrapper(),
@@ -440,7 +340,7 @@ describe('useCreateCourse Hook', () => {
         expect(result.current.isSuccess).toBe(true);
       });
 
-      expect(result.current.data).toEqual(mockCourse);
+      expect(result.current.data).toEqual(mockCourseBase);
     });
   });
 });

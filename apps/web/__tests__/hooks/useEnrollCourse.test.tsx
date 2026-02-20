@@ -8,14 +8,12 @@ import { renderHook, waitFor, act } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { ReactNode } from 'react';
 import { useEnrollCourse } from '../../hooks/useEnrollCourse';
-import { api } from '../../lib/api';
+import * as coursesModule from '../../lib/supabase/courses';
 import type { Course } from '@shared';
 
-// Mock the API module
-vi.mock('../../lib/api', () => ({
-  api: {
-    post: vi.fn(),
-  },
+// Mock the Supabase courses module
+vi.mock('../../lib/supabase/courses', () => ({
+  enrollInCourse: vi.fn(),
 }));
 
 // Mock toast
@@ -79,11 +77,8 @@ describe('useEnrollCourse Hook', () => {
       expect(result.current.isPending).toBe(false);
     });
 
-    it('should call POST /api/v1/courses/:id/enroll on mutate', async () => {
-      vi.mocked(api.post).mockResolvedValueOnce({
-        data: undefined,
-        success: true,
-      });
+    it('should call Supabase enrollInCourse on mutate', async () => {
+      vi.mocked(coursesModule.enrollInCourse).mockResolvedValueOnce(undefined as never);
 
       const { result } = renderHook(() => useEnrollCourse(), {
         wrapper: createWrapper(),
@@ -97,14 +92,11 @@ describe('useEnrollCourse Hook', () => {
         expect(result.current.isSuccess).toBe(true);
       });
 
-      expect(api.post).toHaveBeenCalledWith('/api/v1/courses/course-1/enroll');
+      expect(coursesModule.enrollInCourse).toHaveBeenCalledWith('course-1');
     });
 
     it('should transition through states during mutation', async () => {
-      vi.mocked(api.post).mockResolvedValueOnce({
-        data: undefined,
-        success: true,
-      });
+      vi.mocked(coursesModule.enrollInCourse).mockResolvedValueOnce(undefined as never);
 
       const { result } = renderHook(() => useEnrollCourse(), {
         wrapper: createWrapper(),
@@ -157,10 +149,7 @@ describe('useEnrollCourse Hook', () => {
       // Pre-populate query cache
       queryClient.setQueryData(['course', 'course-1'], mockCourse);
 
-      vi.mocked(api.post).mockResolvedValueOnce({
-        data: undefined,
-        success: true,
-      });
+      vi.mocked(coursesModule.enrollInCourse).mockResolvedValueOnce(undefined as never);
 
       const { result } = renderHook(() => useEnrollCourse(), { wrapper });
 
@@ -173,14 +162,11 @@ describe('useEnrollCourse Hook', () => {
       });
 
       // Verify API was called correctly
-      expect(api.post).toHaveBeenCalledWith('/api/v1/courses/course-1/enroll');
+      expect(coursesModule.enrollInCourse).toHaveBeenCalledWith('course-1');
     });
 
     it('should handle enrollment without cached course', async () => {
-      vi.mocked(api.post).mockResolvedValueOnce({
-        data: undefined,
-        success: true,
-      });
+      vi.mocked(coursesModule.enrollInCourse).mockResolvedValueOnce(undefined as never);
 
       const wrapper = ({ children }: { children: ReactNode }) => (
         <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
@@ -197,16 +183,13 @@ describe('useEnrollCourse Hook', () => {
       });
 
       // Should succeed even without pre-cached data
-      expect(api.post).toHaveBeenCalledWith('/api/v1/courses/course-1/enroll');
+      expect(coursesModule.enrollInCourse).toHaveBeenCalledWith('course-1');
     });
   });
 
   describe('Cache Invalidation', () => {
     it('should invalidate course query on settled', async () => {
-      vi.mocked(api.post).mockResolvedValueOnce({
-        data: undefined,
-        success: true,
-      });
+      vi.mocked(coursesModule.enrollInCourse).mockResolvedValueOnce(undefined as never);
 
       // Pre-populate the cache to have something to invalidate
       queryClient.setQueryData(['course', 'course-1'], { id: 'course-1' });
@@ -226,14 +209,14 @@ describe('useEnrollCourse Hook', () => {
       });
 
       // Verify the API was called (mutation succeeded)
-      expect(api.post).toHaveBeenCalledWith('/api/v1/courses/course-1/enroll');
+      expect(coursesModule.enrollInCourse).toHaveBeenCalledWith('course-1');
     });
   });
 
   describe('Error Handling', () => {
     it('should handle API errors', async () => {
       const error = new Error('Network error');
-      vi.mocked(api.post).mockRejectedValueOnce(error);
+      vi.mocked(coursesModule.enrollInCourse).mockRejectedValueOnce(error);
 
       const { result } = renderHook(() => useEnrollCourse(), {
         wrapper: createWrapper(),
@@ -253,7 +236,7 @@ describe('useEnrollCourse Hook', () => {
     it('should call toast.error on enrollment failure', async () => {
       const { toast } = await import('sonner');
       const error = new Error('Enrollment failed');
-      vi.mocked(api.post).mockRejectedValueOnce(error);
+      vi.mocked(coursesModule.enrollInCourse).mockRejectedValueOnce(error);
 
       const wrapper = ({ children }: { children: ReactNode }) => {
         queryClient = new QueryClient({
@@ -297,10 +280,7 @@ describe('useEnrollCourse Hook', () => {
 
   describe('Return Type', () => {
     it('should return UseMutationResult', async () => {
-      vi.mocked(api.post).mockResolvedValueOnce({
-        data: undefined,
-        success: true,
-      });
+      vi.mocked(coursesModule.enrollInCourse).mockResolvedValueOnce(undefined as never);
 
       const { result } = renderHook(() => useEnrollCourse(), {
         wrapper: createWrapper(),

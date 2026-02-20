@@ -1,12 +1,12 @@
 "use client";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteMaterial } from "~/lib/api/materials";
+import { deleteMaterial as deleteMaterialQuery } from "~/lib/supabase/materials";
 import { materialKeys } from "./useMaterial";
 
 /**
  * useDeleteMaterial Hook
- * REQ-FE-362: Mutation for material deletion
+ * REQ-FE-362: Mutation for material deletion (via Supabase direct query)
  *
  * @param courseId - The course ID
  * @returns TanStack mutation for deleting materials
@@ -31,7 +31,7 @@ export function useDeleteMaterial(courseId: string) {
   const queryClient = useQueryClient();
 
   return useMutation<unknown, Error, string>({
-    mutationFn: (materialId: string) => deleteMaterial(courseId, materialId),
+    mutationFn: (materialId: string) => deleteMaterialQuery(materialId),
     onSuccess: (_, materialId) => {
       // Remove the material from cache
       queryClient.removeQueries({

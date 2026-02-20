@@ -8,13 +8,11 @@ import { renderHook, waitFor, act } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { ReactNode } from 'react';
 import { useRemoveStudent } from '../../hooks/useRemoveStudent';
-import { api } from '../../lib/api';
+import * as coursesModule from '../../lib/supabase/courses';
 
-// Mock the API module
-vi.mock('../../lib/api', () => ({
-  api: {
-    delete: vi.fn(),
-  },
+// Mock the Supabase courses module
+vi.mock('../../lib/supabase/courses', () => ({
+  removeStudent: vi.fn(),
 }));
 
 // Create wrapper for TanStack Query
@@ -65,11 +63,8 @@ describe('useRemoveStudent Hook', () => {
       expect(result.current.isPending).toBe(false);
     });
 
-    it('should call DELETE /api/v1/courses/:id/students/:userId', async () => {
-      vi.mocked(api.delete).mockResolvedValueOnce({
-        data: undefined,
-        success: true,
-      });
+    it('should call Supabase removeStudent on mutate', async () => {
+      vi.mocked(coursesModule.removeStudent).mockResolvedValueOnce(undefined);
 
       const { result } = renderHook(() => useRemoveStudent(), {
         wrapper: createWrapper(),
@@ -83,14 +78,11 @@ describe('useRemoveStudent Hook', () => {
         expect(result.current.isSuccess).toBe(true);
       });
 
-      expect(api.delete).toHaveBeenCalledWith('/api/v1/courses/course-1/students/user-1');
+      expect(coursesModule.removeStudent).toHaveBeenCalledWith('course-1', 'user-1');
     });
 
     it('should transition through states during mutation', async () => {
-      vi.mocked(api.delete).mockResolvedValueOnce({
-        data: undefined,
-        success: true,
-      });
+      vi.mocked(coursesModule.removeStudent).mockResolvedValueOnce(undefined);
 
       const { result } = renderHook(() => useRemoveStudent(), {
         wrapper: createWrapper(),
@@ -116,10 +108,7 @@ describe('useRemoveStudent Hook', () => {
         <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
       );
 
-      vi.mocked(api.delete).mockResolvedValueOnce({
-        data: undefined,
-        success: true,
-      });
+      vi.mocked(coursesModule.removeStudent).mockResolvedValueOnce(undefined);
 
       const { result } = renderHook(() => useRemoveStudent(), { wrapper });
 
@@ -132,14 +121,14 @@ describe('useRemoveStudent Hook', () => {
       });
 
       // Verify API was called correctly
-      expect(api.delete).toHaveBeenCalledWith('/api/v1/courses/course-1/students/user-1');
+      expect(coursesModule.removeStudent).toHaveBeenCalledWith('course-1', 'user-1');
     });
   });
 
   describe('Error Handling', () => {
     it('should handle API errors', async () => {
       const error = new Error('Failed to remove student');
-      vi.mocked(api.delete).mockRejectedValueOnce(error);
+      vi.mocked(coursesModule.removeStudent).mockRejectedValueOnce(error);
 
       const { result } = renderHook(() => useRemoveStudent(), {
         wrapper: createWrapper(),
@@ -158,7 +147,7 @@ describe('useRemoveStudent Hook', () => {
 
     it('should handle unauthorized errors', async () => {
       const error = new Error('Unauthorized');
-      vi.mocked(api.delete).mockRejectedValueOnce(error);
+      vi.mocked(coursesModule.removeStudent).mockRejectedValueOnce(error);
 
       const { result } = renderHook(() => useRemoveStudent(), {
         wrapper: createWrapper(),
@@ -175,7 +164,7 @@ describe('useRemoveStudent Hook', () => {
 
     it('should handle student not found errors', async () => {
       const error = new Error('Student not found');
-      vi.mocked(api.delete).mockRejectedValueOnce(error);
+      vi.mocked(coursesModule.removeStudent).mockRejectedValueOnce(error);
 
       const { result } = renderHook(() => useRemoveStudent(), {
         wrapper: createWrapper(),
@@ -192,7 +181,7 @@ describe('useRemoveStudent Hook', () => {
 
     it('should handle course not found errors', async () => {
       const error = new Error('Course not found');
-      vi.mocked(api.delete).mockRejectedValueOnce(error);
+      vi.mocked(coursesModule.removeStudent).mockRejectedValueOnce(error);
 
       const { result } = renderHook(() => useRemoveStudent(), {
         wrapper: createWrapper(),
@@ -210,15 +199,9 @@ describe('useRemoveStudent Hook', () => {
 
   describe('Multiple Students', () => {
     it('should handle removing different students', async () => {
-      vi.mocked(api.delete)
-        .mockResolvedValueOnce({
-          data: undefined,
-          success: true,
-        })
-        .mockResolvedValueOnce({
-          data: undefined,
-          success: true,
-        });
+      vi.mocked(coursesModule.removeStudent)
+        .mockResolvedValueOnce(undefined)
+        .mockResolvedValueOnce(undefined);
 
       const { result } = renderHook(() => useRemoveStudent(), {
         wrapper: createWrapper(),
@@ -233,7 +216,7 @@ describe('useRemoveStudent Hook', () => {
         expect(result.current.isSuccess).toBe(true);
       });
 
-      expect(api.delete).toHaveBeenCalledWith('/api/v1/courses/course-1/students/user-1');
+      expect(coursesModule.removeStudent).toHaveBeenCalledWith('course-1', 'user-1');
 
       // Reset for next call
       result.current.reset();
@@ -247,16 +230,13 @@ describe('useRemoveStudent Hook', () => {
         expect(result.current.isSuccess).toBe(true);
       });
 
-      expect(api.delete).toHaveBeenCalledWith('/api/v1/courses/course-1/students/user-2');
+      expect(coursesModule.removeStudent).toHaveBeenCalledWith('course-1', 'user-2');
     });
   });
 
   describe('Return Type', () => {
     it('should return UseMutationResult', async () => {
-      vi.mocked(api.delete).mockResolvedValueOnce({
-        data: undefined,
-        success: true,
-      });
+      vi.mocked(coursesModule.removeStudent).mockResolvedValueOnce(undefined);
 
       const { result } = renderHook(() => useRemoveStudent(), {
         wrapper: createWrapper(),

@@ -42,6 +42,7 @@ import {
   DialogTitle,
 } from "~/components/ui/dialog";
 import { sanitizeMarkdown } from "~/lib/markdown";
+import { fetchMaterial, toMaterial } from "~/lib/supabase/materials";
 import type { Material, MaterialStatus } from "@shared";
 
 // LocalStorage key for drafts
@@ -134,8 +135,8 @@ export default function MaterialEditPage() {
   } = useQuery<Material>({
     queryKey: materialKeys.detail(courseId, materialId),
     queryFn: async () => {
-      const { getMaterial } = await import("~/lib/api/materials");
-      return getMaterial(courseId, materialId);
+      const row = await fetchMaterial(courseId, materialId);
+      return toMaterial(row);
     },
     enabled: !!courseId && !!materialId,
     staleTime: 0, // Always fetch fresh data for editing
@@ -207,14 +208,14 @@ export default function MaterialEditPage() {
   const handleImageUpload = useCallback(
     async (file: File): Promise<string> => {
       try {
-        const result = await imageUploadMutation.mutateAsync(file);
+        const result = await imageUploadMutation.mutateAsync({ materialId, file });
         return result.url;
       } catch (error) {
         console.error("Image upload failed:", error);
         throw error;
       }
     },
-    [imageUploadMutation]
+    [imageUploadMutation, materialId]
   );
 
   // Restore draft
@@ -241,8 +242,8 @@ export default function MaterialEditPage() {
 
     try {
       // Refetch to get current server state
-      const { getMaterial } = await import("~/lib/api/materials");
-      const currentMaterial = await getMaterial(courseId, materialId);
+      const row = await fetchMaterial(courseId, materialId);
+      const currentMaterial = toMaterial(row);
 
       if (currentMaterial.updatedAt !== originalUpdatedAt) {
         setShowConflictDialog(true);

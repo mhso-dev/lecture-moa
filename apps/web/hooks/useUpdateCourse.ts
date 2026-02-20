@@ -7,7 +7,7 @@
  */
 
 import { useMutation, useQueryClient, type UseMutationResult } from '@tanstack/react-query';
-import { api } from '~/lib/api';
+import { updateCourse } from '~/lib/supabase/courses';
 import type { UpdateCoursePayload, Course } from '@shared';
 
 interface UpdateCourseVariables {
@@ -25,10 +25,8 @@ export function useUpdateCourse(): UseMutationResult<Course, Error, UpdateCourse
   const queryClient = useQueryClient();
 
   return useMutation<Course, Error, UpdateCourseParams>({
-    mutationFn: async ({ courseId, ...payload }: UpdateCourseParams) => {
-      const response = await api.patch<Course>(`/api/v1/courses/${courseId}`, payload);
-      return response.data;
-    },
+    mutationFn: ({ courseId, ...payload }: UpdateCourseParams): Promise<Course> =>
+      updateCourse(courseId, payload),
 
     onSuccess: (_data, { courseId }: UpdateCourseParams) => {
       // Invalidate both the specific course and the course list

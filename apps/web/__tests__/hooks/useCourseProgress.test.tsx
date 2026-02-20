@@ -8,23 +8,12 @@ import { renderHook, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { ReactNode } from 'react';
 import { useCourseProgress } from '../../hooks/useCourseProgress';
-import { api, ApiClientError } from '../../lib/api';
+import * as coursesModule from '../../lib/supabase/courses';
 import type { CourseEnrollment } from '@shared';
 
-// Mock the API module
-vi.mock('../../lib/api', () => ({
-  api: {
-    get: vi.fn(),
-  },
-  ApiClientError: class ApiClientError extends Error {
-    code: string;
-    statusCode: number;
-    constructor(error: { code: string; message: string }, statusCode: number) {
-      super(error.message);
-      this.code = error.code;
-      this.statusCode = statusCode;
-    }
-  },
+// Mock the Supabase courses module
+vi.mock('../../lib/supabase/courses', () => ({
+  fetchCourseProgress: vi.fn(),
 }));
 
 // Create wrapper for TanStack Query
@@ -64,10 +53,7 @@ describe('useCourseProgress Hook', () => {
 
   describe('Basic Query', () => {
     it('should fetch course progress for enrolled student', async () => {
-      vi.mocked(api.get).mockResolvedValueOnce({
-        data: mockEnrollment,
-        success: true,
-      });
+      vi.mocked(coursesModule.fetchCourseProgress).mockResolvedValueOnce(mockEnrollment);
 
       const { result } = renderHook(() => useCourseProgress('course-1'), {
         wrapper: createWrapper(),
@@ -82,7 +68,7 @@ describe('useCourseProgress Hook', () => {
       });
 
       expect(result.current.data).toEqual(mockEnrollment);
-      expect(api.get).toHaveBeenCalledWith('/api/v1/courses/course-1/progress');
+      expect(coursesModule.fetchCourseProgress).toHaveBeenCalledWith('course-1');
     });
 
     it('should not fetch when courseId is empty', async () => {
@@ -93,7 +79,7 @@ describe('useCourseProgress Hook', () => {
       // Should not be loading, query is disabled
       expect(result.current.isLoading).toBe(false);
       expect(result.current.isFetching).toBe(false);
-      expect(api.get).not.toHaveBeenCalled();
+      expect(coursesModule.fetchCourseProgress).not.toHaveBeenCalled();
     });
 
     it('should not fetch when courseId is undefined', async () => {
@@ -103,16 +89,13 @@ describe('useCourseProgress Hook', () => {
       );
 
       expect(result.current.isLoading).toBe(false);
-      expect(api.get).not.toHaveBeenCalled();
+      expect(coursesModule.fetchCourseProgress).not.toHaveBeenCalled();
     });
   });
 
   describe('Query Key', () => {
     it('should use correct query key with courseId', async () => {
-      vi.mocked(api.get).mockResolvedValueOnce({
-        data: mockEnrollment,
-        success: true,
-      });
+      vi.mocked(coursesModule.fetchCourseProgress).mockResolvedValueOnce(mockEnrollment);
 
       const queryClient = new QueryClient({
         defaultOptions: { queries: { retry: false } },
@@ -132,15 +115,9 @@ describe('useCourseProgress Hook', () => {
     });
 
     it('should fetch different progress when courseId changes', async () => {
-      vi.mocked(api.get)
-        .mockResolvedValueOnce({
-          data: mockEnrollment,
-          success: true,
-        })
-        .mockResolvedValueOnce({
-          data: { ...mockEnrollment, courseId: 'course-2', progressPercent: 80 },
-          success: true,
-        });
+      vi.mocked(coursesModule.fetchCourseProgress)
+        .mockResolvedValueOnce(mockEnrollment)
+        .mockResolvedValueOnce({ ...mockEnrollment, courseId: 'course-2', progressPercent: 80 });
 
       const { result, rerender } = renderHook(
         ({ courseId }: { courseId: string }) => useCourseProgress(courseId),
@@ -163,19 +140,16 @@ describe('useCourseProgress Hook', () => {
         expect(result.current.data?.progressPercent).toBe(80);
       });
 
-      expect(api.get).toHaveBeenCalledTimes(2);
-      expect(api.get).toHaveBeenNthCalledWith(1, '/api/v1/courses/course-1/progress');
-      expect(api.get).toHaveBeenNthCalledWith(2, '/api/v1/courses/course-2/progress');
+      expect(coursesModule.fetchCourseProgress).toHaveBeenCalledTimes(2);
+      expect(coursesModule.fetchCourseProgress).toHaveBeenNthCalledWith(1, 'course-1');
+      expect(coursesModule.fetchCourseProgress).toHaveBeenNthCalledWith(2, 'course-2');
     });
   });
 
   describe('Error Handling - Not Enrolled', () => {
     it('should handle 404 when user is not enrolled', async () => {
-      const notFoundError = new ApiClientError(
-        { code: 'NOT_FOUND', message: 'Enrollment not found' },
-        404
-      );
-      vi.mocked(api.get).mockRejectedValueOnce(notFoundError);
+      const notFoundError = new Error('Enrollment not found');
+      vi.mocked(coursesModule.fetchCourseProgress).mockRejectedValueOnce(notFoundError);
 
       const { result } = renderHook(() => useCourseProgress('course-1'), {
         wrapper: createWrapper(),
@@ -189,11 +163,8 @@ describe('useCourseProgress Hook', () => {
     });
 
     it('should handle 403 forbidden (not enrolled student)', async () => {
-      const forbiddenError = new ApiClientError(
-        { code: 'FORBIDDEN', message: 'You are not enrolled in this course' },
-        403
-      );
-      vi.mocked(api.get).mockRejectedValueOnce(forbiddenError);
+      const forbiddenError = new Error('You are not enrolled in this course');
+      vi.mocked(coursesModule.fetchCourseProgress).mockRejectedValueOnce(forbiddenError);
 
       const { result } = renderHook(() => useCourseProgress('course-1'), {
         wrapper: createWrapper(),
@@ -210,7 +181,7 @@ describe('useCourseProgress Hook', () => {
   describe('Error Handling - Other Errors', () => {
     it('should handle network errors', async () => {
       const error = new Error('Network error');
-      vi.mocked(api.get).mockRejectedValueOnce(error);
+      vi.mocked(coursesModule.fetchCourseProgress).mockRejectedValueOnce(error);
 
       const { result } = renderHook(() => useCourseProgress('course-1'), {
         wrapper: createWrapper(),
@@ -224,11 +195,8 @@ describe('useCourseProgress Hook', () => {
     });
 
     it('should handle 401 unauthorized (not authenticated)', async () => {
-      const unauthorizedError = new ApiClientError(
-        { code: 'UNAUTHORIZED', message: 'Authentication required' },
-        401
-      );
-      vi.mocked(api.get).mockRejectedValueOnce(unauthorizedError);
+      const unauthorizedError = new Error('Authentication required');
+      vi.mocked(coursesModule.fetchCourseProgress).mockRejectedValueOnce(unauthorizedError);
 
       const { result } = renderHook(() => useCourseProgress('course-1'), {
         wrapper: createWrapper(),
@@ -242,11 +210,8 @@ describe('useCourseProgress Hook', () => {
     });
 
     it('should handle 500 server errors', async () => {
-      const serverError = new ApiClientError(
-        { code: 'INTERNAL_ERROR', message: 'Internal Server Error' },
-        500
-      );
-      vi.mocked(api.get).mockRejectedValueOnce(serverError);
+      const serverError = new Error('Internal Server Error');
+      vi.mocked(coursesModule.fetchCourseProgress).mockRejectedValueOnce(serverError);
 
       const { result } = renderHook(() => useCourseProgress('course-1'), {
         wrapper: createWrapper(),
@@ -262,7 +227,7 @@ describe('useCourseProgress Hook', () => {
 
   describe('Loading States', () => {
     it('should start with loading state', () => {
-      vi.mocked(api.get).mockImplementation(
+      vi.mocked(coursesModule.fetchCourseProgress).mockImplementation(
         // eslint-disable-next-line @typescript-eslint/no-empty-function
         () => new Promise(() => {}) // Never resolves
       );
@@ -277,10 +242,7 @@ describe('useCourseProgress Hook', () => {
     });
 
     it('should set isLoading to false after successful fetch', async () => {
-      vi.mocked(api.get).mockResolvedValueOnce({
-        data: mockEnrollment,
-        success: true,
-      });
+      vi.mocked(coursesModule.fetchCourseProgress).mockResolvedValueOnce(mockEnrollment);
 
       const { result } = renderHook(() => useCourseProgress('course-1'), {
         wrapper: createWrapper(),
@@ -294,7 +256,7 @@ describe('useCourseProgress Hook', () => {
     });
 
     it('should set isLoading to false after error', async () => {
-      vi.mocked(api.get).mockRejectedValueOnce(new Error('Error'));
+      vi.mocked(coursesModule.fetchCourseProgress).mockRejectedValueOnce(new Error('Error'));
 
       const { result } = renderHook(() => useCourseProgress('course-1'), {
         wrapper: createWrapper(),
@@ -310,10 +272,7 @@ describe('useCourseProgress Hook', () => {
 
   describe('Refetch', () => {
     it('should provide refetch function', async () => {
-      vi.mocked(api.get).mockResolvedValueOnce({
-        data: mockEnrollment,
-        success: true,
-      });
+      vi.mocked(coursesModule.fetchCourseProgress).mockResolvedValueOnce(mockEnrollment);
 
       const { result } = renderHook(() => useCourseProgress('course-1'), {
         wrapper: createWrapper(),
@@ -330,15 +289,9 @@ describe('useCourseProgress Hook', () => {
     it('should refetch progress when refetch is called', async () => {
       const updatedEnrollment = { ...mockEnrollment, progressPercent: 60 };
 
-      vi.mocked(api.get)
-        .mockResolvedValueOnce({
-          data: mockEnrollment,
-          success: true,
-        })
-        .mockResolvedValueOnce({
-          data: updatedEnrollment,
-          success: true,
-        });
+      vi.mocked(coursesModule.fetchCourseProgress)
+        .mockResolvedValueOnce(mockEnrollment)
+        .mockResolvedValueOnce(updatedEnrollment);
 
       const { result } = renderHook(() => useCourseProgress('course-1'), {
         wrapper: createWrapper(),
@@ -360,10 +313,7 @@ describe('useCourseProgress Hook', () => {
 
   describe('Progress Data Structure', () => {
     it('should include enrollment timestamp', async () => {
-      vi.mocked(api.get).mockResolvedValueOnce({
-        data: mockEnrollment,
-        success: true,
-      });
+      vi.mocked(coursesModule.fetchCourseProgress).mockResolvedValueOnce(mockEnrollment);
 
       const { result } = renderHook(() => useCourseProgress('course-1'), {
         wrapper: createWrapper(),
@@ -377,10 +327,7 @@ describe('useCourseProgress Hook', () => {
     });
 
     it('should include progress percentage (0-100)', async () => {
-      vi.mocked(api.get).mockResolvedValueOnce({
-        data: mockEnrollment,
-        success: true,
-      });
+      vi.mocked(coursesModule.fetchCourseProgress).mockResolvedValueOnce(mockEnrollment);
 
       const { result } = renderHook(() => useCourseProgress('course-1'), {
         wrapper: createWrapper(),
@@ -396,10 +343,7 @@ describe('useCourseProgress Hook', () => {
     });
 
     it('should include completed material IDs', async () => {
-      vi.mocked(api.get).mockResolvedValueOnce({
-        data: mockEnrollment,
-        success: true,
-      });
+      vi.mocked(coursesModule.fetchCourseProgress).mockResolvedValueOnce(mockEnrollment);
 
       const { result } = renderHook(() => useCourseProgress('course-1'), {
         wrapper: createWrapper(),
@@ -423,10 +367,7 @@ describe('useCourseProgress Hook', () => {
         completedMaterialIds: [],
       };
 
-      vi.mocked(api.get).mockResolvedValueOnce({
-        data: newEnrollment,
-        success: true,
-      });
+      vi.mocked(coursesModule.fetchCourseProgress).mockResolvedValueOnce(newEnrollment);
 
       const { result } = renderHook(() => useCourseProgress('course-1'), {
         wrapper: createWrapper(),
@@ -447,10 +388,7 @@ describe('useCourseProgress Hook', () => {
         completedMaterialIds: ['material-1', 'material-2', 'material-3', 'material-4'],
       };
 
-      vi.mocked(api.get).mockResolvedValueOnce({
-        data: completedEnrollment,
-        success: true,
-      });
+      vi.mocked(coursesModule.fetchCourseProgress).mockResolvedValueOnce(completedEnrollment);
 
       const { result } = renderHook(() => useCourseProgress('course-1'), {
         wrapper: createWrapper(),

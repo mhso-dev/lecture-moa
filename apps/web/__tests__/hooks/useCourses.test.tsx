@@ -8,14 +8,12 @@ import { renderHook, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { ReactNode } from 'react';
 import { useCourses } from '../../hooks/useCourses';
-import { api } from '../../lib/api';
+import * as coursesModule from '../../lib/supabase/courses';
 import type { PaginatedCourseList, CourseListParams } from '@shared';
 
-// Mock the API module
-vi.mock('../../lib/api', () => ({
-  api: {
-    get: vi.fn(),
-  },
+// Mock the Supabase courses module
+vi.mock('../../lib/supabase/courses', () => ({
+  fetchCourses: vi.fn(),
 }));
 
 // Create wrapper for TanStack Query
@@ -71,10 +69,7 @@ describe('useCourses Hook', () => {
         limit: 10,
       };
 
-      vi.mocked(api.get).mockResolvedValueOnce({
-        data: mockResponse,
-        success: true,
-      });
+      vi.mocked(coursesModule.fetchCourses).mockResolvedValueOnce(mockResponse);
 
       const { result } = renderHook(() => useCourses(), {
         wrapper: createWrapper(),
@@ -89,9 +84,7 @@ describe('useCourses Hook', () => {
       });
 
       expect(result.current.data).toEqual(mockResponse);
-      expect(api.get).toHaveBeenCalledWith('/api/v1/courses', {
-        params: undefined,
-      });
+      expect(coursesModule.fetchCourses).toHaveBeenCalledWith(undefined);
     });
 
     it('should fetch course list with pagination params', async () => {
@@ -107,10 +100,7 @@ describe('useCourses Hook', () => {
         limit: 20,
       };
 
-      vi.mocked(api.get).mockResolvedValueOnce({
-        data: mockResponse,
-        success: true,
-      });
+      vi.mocked(coursesModule.fetchCourses).mockResolvedValueOnce(mockResponse);
 
       const { result } = renderHook(() => useCourses(params), {
         wrapper: createWrapper(),
@@ -120,9 +110,7 @@ describe('useCourses Hook', () => {
         expect(result.current.isSuccess).toBe(true);
       });
 
-      expect(api.get).toHaveBeenCalledWith('/api/v1/courses', {
-        params: { page: 2, limit: 20 },
-      });
+      expect(coursesModule.fetchCourses).toHaveBeenCalledWith(params);
     });
 
     it('should fetch course list with search params', async () => {
@@ -137,10 +125,7 @@ describe('useCourses Hook', () => {
         limit: 10,
       };
 
-      vi.mocked(api.get).mockResolvedValueOnce({
-        data: mockResponse,
-        success: true,
-      });
+      vi.mocked(coursesModule.fetchCourses).mockResolvedValueOnce(mockResponse);
 
       const { result } = renderHook(() => useCourses(params), {
         wrapper: createWrapper(),
@@ -150,9 +135,7 @@ describe('useCourses Hook', () => {
         expect(result.current.isSuccess).toBe(true);
       });
 
-      expect(api.get).toHaveBeenCalledWith('/api/v1/courses', {
-        params: { search: 'typescript' },
-      });
+      expect(coursesModule.fetchCourses).toHaveBeenCalledWith(params);
     });
 
     it('should fetch course list with category filter', async () => {
@@ -167,10 +150,7 @@ describe('useCourses Hook', () => {
         limit: 10,
       };
 
-      vi.mocked(api.get).mockResolvedValueOnce({
-        data: mockResponse,
-        success: true,
-      });
+      vi.mocked(coursesModule.fetchCourses).mockResolvedValueOnce(mockResponse);
 
       const { result } = renderHook(() => useCourses(params), {
         wrapper: createWrapper(),
@@ -180,9 +160,7 @@ describe('useCourses Hook', () => {
         expect(result.current.isSuccess).toBe(true);
       });
 
-      expect(api.get).toHaveBeenCalledWith('/api/v1/courses', {
-        params: { category: 'programming' },
-      });
+      expect(coursesModule.fetchCourses).toHaveBeenCalledWith(params);
     });
 
     it('should fetch course list with sort option', async () => {
@@ -197,10 +175,7 @@ describe('useCourses Hook', () => {
         limit: 10,
       };
 
-      vi.mocked(api.get).mockResolvedValueOnce({
-        data: mockResponse,
-        success: true,
-      });
+      vi.mocked(coursesModule.fetchCourses).mockResolvedValueOnce(mockResponse);
 
       const { result } = renderHook(() => useCourses(params), {
         wrapper: createWrapper(),
@@ -210,9 +185,7 @@ describe('useCourses Hook', () => {
         expect(result.current.isSuccess).toBe(true);
       });
 
-      expect(api.get).toHaveBeenCalledWith('/api/v1/courses', {
-        params: { sort: 'popular' },
-      });
+      expect(coursesModule.fetchCourses).toHaveBeenCalledWith(params);
     });
 
     it('should fetch course list with status filter', async () => {
@@ -227,10 +200,7 @@ describe('useCourses Hook', () => {
         limit: 10,
       };
 
-      vi.mocked(api.get).mockResolvedValueOnce({
-        data: mockResponse,
-        success: true,
-      });
+      vi.mocked(coursesModule.fetchCourses).mockResolvedValueOnce(mockResponse);
 
       const { result } = renderHook(() => useCourses(params), {
         wrapper: createWrapper(),
@@ -240,9 +210,7 @@ describe('useCourses Hook', () => {
         expect(result.current.isSuccess).toBe(true);
       });
 
-      expect(api.get).toHaveBeenCalledWith('/api/v1/courses', {
-        params: { status: 'published' },
-      });
+      expect(coursesModule.fetchCourses).toHaveBeenCalledWith(params);
     });
 
     it('should fetch course list with all params combined', async () => {
@@ -262,10 +230,7 @@ describe('useCourses Hook', () => {
         limit: 10,
       };
 
-      vi.mocked(api.get).mockResolvedValueOnce({
-        data: mockResponse,
-        success: true,
-      });
+      vi.mocked(coursesModule.fetchCourses).mockResolvedValueOnce(mockResponse);
 
       const { result } = renderHook(() => useCourses(params), {
         wrapper: createWrapper(),
@@ -275,9 +240,7 @@ describe('useCourses Hook', () => {
         expect(result.current.isSuccess).toBe(true);
       });
 
-      expect(api.get).toHaveBeenCalledWith('/api/v1/courses', {
-        params,
-      });
+      expect(coursesModule.fetchCourses).toHaveBeenCalledWith(params);
     });
   });
 
@@ -285,9 +248,8 @@ describe('useCourses Hook', () => {
     it('should use correct query key with params', async () => {
       const params: CourseListParams = { page: 1, limit: 10 };
 
-      vi.mocked(api.get).mockResolvedValueOnce({
-        data: { data: [], total: 0, page: 1, limit: 10 },
-        success: true,
+      vi.mocked(coursesModule.fetchCourses).mockResolvedValueOnce({
+        data: [], total: 0, page: 1, limit: 10,
       });
 
       const queryClient = new QueryClient({
@@ -308,15 +270,9 @@ describe('useCourses Hook', () => {
     });
 
     it('should refetch when params change', async () => {
-      vi.mocked(api.get)
-        .mockResolvedValueOnce({
-          data: { data: [], total: 0, page: 1, limit: 10 },
-          success: true,
-        })
-        .mockResolvedValueOnce({
-          data: { data: [], total: 0, page: 2, limit: 10 },
-          success: true,
-        });
+      vi.mocked(coursesModule.fetchCourses)
+        .mockResolvedValueOnce({ data: [], total: 0, page: 1, limit: 10 })
+        .mockResolvedValueOnce({ data: [], total: 0, page: 2, limit: 10 });
 
       const { result, rerender } = renderHook(
         ({ params }: { params: CourseListParams }) => useCourses(params),
@@ -330,13 +286,13 @@ describe('useCourses Hook', () => {
         expect(result.current.isSuccess).toBe(true);
       });
 
-      expect(api.get).toHaveBeenCalledTimes(1);
+      expect(coursesModule.fetchCourses).toHaveBeenCalledTimes(1);
 
       // Change params
       rerender({ params: { page: 2 } });
 
       await waitFor(() => {
-        expect(api.get).toHaveBeenCalledTimes(2);
+        expect(coursesModule.fetchCourses).toHaveBeenCalledTimes(2);
       });
     });
   });
@@ -344,7 +300,7 @@ describe('useCourses Hook', () => {
   describe('Error Handling', () => {
     it('should handle API errors', async () => {
       const error = new Error('Network error');
-      vi.mocked(api.get).mockRejectedValueOnce(error);
+      vi.mocked(coursesModule.fetchCourses).mockRejectedValueOnce(error);
 
       const { result } = renderHook(() => useCourses(), {
         wrapper: createWrapper(),
@@ -359,7 +315,7 @@ describe('useCourses Hook', () => {
 
     it('should return error on 500 response', async () => {
       const error = new Error('Internal Server Error');
-      vi.mocked(api.get).mockRejectedValueOnce(error);
+      vi.mocked(coursesModule.fetchCourses).mockRejectedValueOnce(error);
 
       const { result } = renderHook(() => useCourses(), {
         wrapper: createWrapper(),
@@ -375,7 +331,7 @@ describe('useCourses Hook', () => {
 
   describe('Loading States', () => {
     it('should start with loading state', () => {
-      vi.mocked(api.get).mockImplementation(
+      vi.mocked(coursesModule.fetchCourses).mockImplementation(
         // eslint-disable-next-line @typescript-eslint/no-empty-function
         () => new Promise(() => {}) // Never resolves
       );
@@ -389,9 +345,8 @@ describe('useCourses Hook', () => {
     });
 
     it('should set isLoading to false after fetch', async () => {
-      vi.mocked(api.get).mockResolvedValueOnce({
-        data: { data: [], total: 0, page: 1, limit: 10 },
-        success: true,
+      vi.mocked(coursesModule.fetchCourses).mockResolvedValueOnce({
+        data: [], total: 0, page: 1, limit: 10,
       });
 
       const { result } = renderHook(() => useCourses(), {
@@ -406,9 +361,8 @@ describe('useCourses Hook', () => {
 
   describe('Refetch', () => {
     it('should provide refetch function', async () => {
-      vi.mocked(api.get).mockResolvedValueOnce({
-        data: { data: [], total: 0, page: 1, limit: 10 },
-        success: true,
+      vi.mocked(coursesModule.fetchCourses).mockResolvedValueOnce({
+        data: [], total: 0, page: 1, limit: 10,
       });
 
       const { result } = renderHook(() => useCourses(), {
@@ -424,15 +378,9 @@ describe('useCourses Hook', () => {
     });
 
     it('should refetch data when refetch is called', async () => {
-      vi.mocked(api.get)
-        .mockResolvedValueOnce({
-          data: { data: [], total: 0, page: 1, limit: 10 },
-          success: true,
-        })
-        .mockResolvedValueOnce({
-          data: { data: [], total: 1, page: 1, limit: 10 },
-          success: true,
-        });
+      vi.mocked(coursesModule.fetchCourses)
+        .mockResolvedValueOnce({ data: [], total: 0, page: 1, limit: 10 })
+        .mockResolvedValueOnce({ data: [], total: 1, page: 1, limit: 10 });
 
       const { result } = renderHook(() => useCourses(), {
         wrapper: createWrapper(),

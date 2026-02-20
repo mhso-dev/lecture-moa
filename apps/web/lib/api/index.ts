@@ -218,6 +218,3 @@ export const api = new ApiClient();
 
 // Export class for testing
 export { ApiClient };
-
-// Re-export domain-specific API modules
-export * from "./materials";

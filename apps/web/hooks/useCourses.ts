@@ -7,7 +7,7 @@
  */
 
 import { useQuery, type UseQueryResult } from "@tanstack/react-query";
-import { api } from "~/lib/api";
+import { fetchCourses } from "~/lib/supabase/courses";
 import type { PaginatedCourseList, CourseListParams } from "@shared";
 
 /**
@@ -21,11 +21,6 @@ export function useCourses(
 ): UseQueryResult<PaginatedCourseList> {
   return useQuery({
     queryKey: ["courses", params],
-    queryFn: async (): Promise<PaginatedCourseList> => {
-      const response = await api.get<PaginatedCourseList>("/api/v1/courses", {
-        params: params as Record<string, string | number | boolean> | undefined,
-      });
-      return response.data;
-    },
+    queryFn: (): Promise<PaginatedCourseList> => fetchCourses(params),
   });
 }

@@ -8,13 +8,12 @@ import { renderHook, waitFor, act } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { ReactNode } from 'react';
 import { useArchiveCourse } from '../../hooks/useArchiveCourse';
-import { api } from '../../lib/api';
+import * as coursesModule from '../../lib/supabase/courses';
+import type { Course } from '@shared';
 
-// Mock the API module
-vi.mock('../../lib/api', () => ({
-  api: {
-    post: vi.fn(),
-  },
+// Mock the Supabase courses module
+vi.mock('../../lib/supabase/courses', () => ({
+  archiveCourse: vi.fn(),
 }));
 
 // Mock next/navigation
@@ -46,6 +45,21 @@ function createWrapper() {
   };
 }
 
+const mockArchivedCourse: Course = {
+  id: 'course-1',
+  title: 'Archived Course',
+  description: 'This course has been archived',
+  category: 'programming',
+  status: 'archived',
+  visibility: 'public',
+  instructor: { id: 'inst-1', name: 'Instructor' },
+  enrolledCount: 10,
+  materialCount: 5,
+  createdAt: '2024-01-01T00:00:00Z',
+  updatedAt: '2024-01-02T00:00:00Z',
+  syllabus: [],
+};
+
 describe('useArchiveCourse Hook', () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -66,11 +80,8 @@ describe('useArchiveCourse Hook', () => {
       expect(result.current.isPending).toBe(false);
     });
 
-    it('should call POST /api/v1/courses/:id/archive', async () => {
-      vi.mocked(api.post).mockResolvedValueOnce({
-        data: undefined,
-        success: true,
-      });
+    it('should call Supabase archiveCourse on mutate', async () => {
+      vi.mocked(coursesModule.archiveCourse).mockResolvedValueOnce(mockArchivedCourse);
 
       const { result } = renderHook(() => useArchiveCourse(), {
         wrapper: createWrapper(),
@@ -84,14 +95,11 @@ describe('useArchiveCourse Hook', () => {
         expect(result.current.isSuccess).toBe(true);
       });
 
-      expect(api.post).toHaveBeenCalledWith('/api/v1/courses/course-1/archive');
+      expect(coursesModule.archiveCourse).toHaveBeenCalledWith('course-1');
     });
 
     it('should transition through states during mutation', async () => {
-      vi.mocked(api.post).mockResolvedValueOnce({
-        data: undefined,
-        success: true,
-      });
+      vi.mocked(coursesModule.archiveCourse).mockResolvedValueOnce(mockArchivedCourse);
 
       const { result } = renderHook(() => useArchiveCourse(), {
         wrapper: createWrapper(),
@@ -120,10 +128,7 @@ describe('useArchiveCourse Hook', () => {
         },
       });
 
-      vi.mocked(api.post).mockResolvedValueOnce({
-        data: undefined,
-        success: true,
-      });
+      vi.mocked(coursesModule.archiveCourse).mockResolvedValueOnce(mockArchivedCourse);
 
       const wrapper = ({ children }: { children: ReactNode }) => (
         <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
@@ -139,17 +144,14 @@ describe('useArchiveCourse Hook', () => {
         expect(result.current.isSuccess).toBe(true);
       });
 
-      // Verify API was called correctly
-      expect(api.post).toHaveBeenCalledWith('/api/v1/courses/course-1/archive');
+      // Verify archiveCourse was called correctly
+      expect(coursesModule.archiveCourse).toHaveBeenCalledWith('course-1');
     });
   });
 
   describe('Redirect Handling', () => {
     it('should redirect to /courses on success', async () => {
-      vi.mocked(api.post).mockResolvedValueOnce({
-        data: undefined,
-        success: true,
-      });
+      vi.mocked(coursesModule.archiveCourse).mockResolvedValueOnce(mockArchivedCourse);
 
       const { result } = renderHook(() => useArchiveCourse(), {
         wrapper: createWrapper(),
@@ -170,7 +172,7 @@ describe('useArchiveCourse Hook', () => {
   describe('Error Handling', () => {
     it('should handle API errors', async () => {
       const error = new Error('Failed to archive course');
-      vi.mocked(api.post).mockRejectedValueOnce(error);
+      vi.mocked(coursesModule.archiveCourse).mockRejectedValueOnce(error);
 
       const { result } = renderHook(() => useArchiveCourse(), {
         wrapper: createWrapper(),
@@ -189,7 +191,7 @@ describe('useArchiveCourse Hook', () => {
 
     it('should not redirect on error', async () => {
       const error = new Error('Failed to archive course');
-      vi.mocked(api.post).mockRejectedValueOnce(error);
+      vi.mocked(coursesModule.archiveCourse).mockRejectedValueOnce(error);
 
       const { result } = renderHook(() => useArchiveCourse(), {
         wrapper: createWrapper(),
@@ -208,7 +210,7 @@ describe('useArchiveCourse Hook', () => {
 
     it('should handle unauthorized errors', async () => {
       const error = new Error('Unauthorized');
-      vi.mocked(api.post).mockRejectedValueOnce(error);
+      vi.mocked(coursesModule.archiveCourse).mockRejectedValueOnce(error);
 
       const { result } = renderHook(() => useArchiveCourse(), {
         wrapper: createWrapper(),
@@ -226,10 +228,7 @@ describe('useArchiveCourse Hook', () => {
 
   describe('Return Type', () => {
     it('should return UseMutationResult', async () => {
-      vi.mocked(api.post).mockResolvedValueOnce({
-        data: undefined,
-        success: true,
-      });
+      vi.mocked(coursesModule.archiveCourse).mockResolvedValueOnce(mockArchivedCourse);
 
       const { result } = renderHook(() => useArchiveCourse(), {
         wrapper: createWrapper(),

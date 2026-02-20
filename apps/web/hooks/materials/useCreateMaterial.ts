@@ -2,12 +2,15 @@
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import type { CreateMaterialDto, Material } from "@shared";
-import { createMaterial } from "~/lib/api/materials";
+import {
+  createMaterial as createMaterialQuery,
+  toMaterial,
+} from "~/lib/supabase/materials";
 import { materialKeys } from "./useMaterial";
 
 /**
  * useCreateMaterial Hook
- * REQ-FE-362: Mutation for material creation
+ * REQ-FE-362: Mutation for material creation (via Supabase direct query)
  *
  * @param courseId - The course ID
  * @returns TanStack mutation for creating materials
@@ -34,7 +37,17 @@ export function useCreateMaterial(courseId: string) {
   const queryClient = useQueryClient();
 
   return useMutation<Material, Error, CreateMaterialDto>({
-    mutationFn: (dto: CreateMaterialDto) => createMaterial(courseId, dto),
+    mutationFn: async (dto: CreateMaterialDto) => {
+      const row = await createMaterialQuery({
+        course_id: courseId,
+        title: dto.title,
+        content: dto.content,
+        tags: dto.tags,
+        status: dto.status,
+        position: dto.position,
+      });
+      return toMaterial(row);
+    },
     onSuccess: () => {
       // Invalidate materials list to refetch
       void queryClient.invalidateQueries({

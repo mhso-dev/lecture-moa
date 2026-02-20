@@ -7,8 +7,7 @@
  */
 
 import { useMutation, useQueryClient, type UseMutationResult } from '@tanstack/react-query';
-import { api } from '~/lib/api';
-import type { EnrollWithCodePayload } from '@shared';
+import { enrollWithCode } from '~/lib/supabase/courses';
 
 interface EnrollWithCodeVariables {
   courseId: string;
@@ -38,15 +37,14 @@ export function useEnrollWithCode(): UseMutationResult<void, Error, EnrollWithCo
 
   // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
   return useMutation<void, Error, EnrollWithCodeVariables>({
-    mutationFn: async ({ courseId, code }: EnrollWithCodeVariables) => {
-      // Validate code length before calling API
+    mutationFn: async ({ code }: EnrollWithCodeVariables): Promise<void> => {
+      // Validate code length before calling Supabase
       const validationError = validateCode(code);
       if (validationError) {
         throw validationError;
       }
 
-      const payload: EnrollWithCodePayload = { code };
-      await api.post(`/api/v1/courses/${courseId}/enroll/code`, payload);
+      await enrollWithCode(code);
     },
 
     onSuccess: (_data, { courseId }: EnrollWithCodeVariables) => {

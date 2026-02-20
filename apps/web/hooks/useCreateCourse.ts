@@ -8,7 +8,7 @@
  */
 
 import { useMutation, useQueryClient, type UseMutationResult } from '@tanstack/react-query';
-import { api } from '~/lib/api';
+import { createCourse } from '~/lib/supabase/courses';
 import type { CreateCoursePayload, Course } from '@shared';
 
 /**
@@ -20,10 +20,8 @@ export function useCreateCourse(): UseMutationResult<Course, Error, CreateCourse
   const queryClient = useQueryClient();
 
   return useMutation<Course, Error, CreateCoursePayload>({
-    mutationFn: async (payload: CreateCoursePayload) => {
-      const response = await api.post<Course>('/api/v1/courses', payload);
-      return response.data;
-    },
+    mutationFn: (payload: CreateCoursePayload): Promise<Course> =>
+      createCourse(payload),
 
     onSuccess: () => {
       // Invalidate courses query to refresh the list

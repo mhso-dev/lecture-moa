@@ -7,7 +7,7 @@
  */
 
 import { useQuery, type UseQueryResult } from "@tanstack/react-query";
-import { api } from "~/lib/api";
+import { fetchCourse } from "~/lib/supabase/courses";
 import type { Course } from "@shared";
 
 /**
@@ -22,10 +22,7 @@ import type { Course } from "@shared";
 export function useCourse(courseId: string): UseQueryResult<Course> {
   return useQuery({
     queryKey: ["course", courseId],
-    queryFn: async (): Promise<Course> => {
-      const response = await api.get<Course>(`/api/v1/courses/${courseId}`);
-      return response.data;
-    },
+    queryFn: (): Promise<Course> => fetchCourse(courseId),
     enabled: !!courseId && courseId.length > 0,
   });
 }

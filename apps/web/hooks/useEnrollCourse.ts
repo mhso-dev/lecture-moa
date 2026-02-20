@@ -8,7 +8,7 @@
  */
 
 import { useMutation, useQueryClient, type UseMutationResult } from '@tanstack/react-query';
-import { api } from '~/lib/api';
+import { enrollInCourse } from '~/lib/supabase/courses';
 import { toast } from 'sonner';
 import type { Course } from '@shared';
 
@@ -30,8 +30,8 @@ export function useEnrollCourse(): UseMutationResult<void, Error, EnrollCourseVa
 
   // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
   return useMutation<void, Error, EnrollCourseVariables, EnrollCourseContext>({
-    mutationFn: async ({ courseId }: EnrollCourseVariables) => {
-      await api.post(`/api/v1/courses/${courseId}/enroll`);
+    mutationFn: async ({ courseId }: EnrollCourseVariables): Promise<void> => {
+      await enrollInCourse(courseId);
     },
 
     onMutate: async ({ courseId }: EnrollCourseVariables) => {

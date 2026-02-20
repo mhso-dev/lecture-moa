@@ -8,13 +8,11 @@ import { renderHook, waitFor, act } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { ReactNode } from 'react';
 import { useEnrollWithCode } from '../../hooks/useEnrollWithCode';
-import { api } from '../../lib/api';
+import * as coursesModule from '../../lib/supabase/courses';
 
-// Mock the API module
-vi.mock('../../lib/api', () => ({
-  api: {
-    post: vi.fn(),
-  },
+// Mock the Supabase courses module
+vi.mock('../../lib/supabase/courses', () => ({
+  enrollWithCode: vi.fn(),
 }));
 
 // Create wrapper for TanStack Query
@@ -57,11 +55,8 @@ describe('useEnrollWithCode Hook', () => {
       expect(result.current.isPending).toBe(false);
     });
 
-    it('should call POST /api/v1/courses/:id/enroll/code with code', async () => {
-      vi.mocked(api.post).mockResolvedValueOnce({
-        data: undefined,
-        success: true,
-      });
+    it('should call Supabase enrollWithCode on mutate', async () => {
+      vi.mocked(coursesModule.enrollWithCode).mockResolvedValueOnce(undefined as never);
 
       const { result } = renderHook(() => useEnrollWithCode(), {
         wrapper: createWrapper(),
@@ -75,16 +70,11 @@ describe('useEnrollWithCode Hook', () => {
         expect(result.current.isSuccess).toBe(true);
       });
 
-      expect(api.post).toHaveBeenCalledWith('/api/v1/courses/course-1/enroll/code', {
-        code: 'ABC123',
-      });
+      expect(coursesModule.enrollWithCode).toHaveBeenCalledWith('ABC123');
     });
 
     it('should transition through states during mutation', async () => {
-      vi.mocked(api.post).mockResolvedValueOnce({
-        data: undefined,
-        success: true,
-      });
+      vi.mocked(coursesModule.enrollWithCode).mockResolvedValueOnce(undefined as never);
 
       const { result } = renderHook(() => useEnrollWithCode(), {
         wrapper: createWrapper(),
@@ -119,17 +109,17 @@ describe('useEnrollWithCode Hook', () => {
         wrapper: createWrapper(),
       });
 
-      // Test with short code - should not call API
+      // Test with short code - should not call Supabase
       act(() => {
         result.current.mutate({ courseId: 'course-1', code: 'ABC' });
       });
 
-      // Should fail validation before API call
+      // Should fail validation before Supabase call
       await waitFor(() => {
         expect(result.current.isError).toBe(true);
       });
 
-      expect(api.post).not.toHaveBeenCalled();
+      expect(coursesModule.enrollWithCode).not.toHaveBeenCalled();
       expect(result.current.error?.message).toContain('6 characters');
     });
 
@@ -146,14 +136,11 @@ describe('useEnrollWithCode Hook', () => {
         expect(result.current.isError).toBe(true);
       });
 
-      expect(api.post).not.toHaveBeenCalled();
+      expect(coursesModule.enrollWithCode).not.toHaveBeenCalled();
     });
 
     it('should accept valid 6-character codes', async () => {
-      vi.mocked(api.post).mockResolvedValueOnce({
-        data: undefined,
-        success: true,
-      });
+      vi.mocked(coursesModule.enrollWithCode).mockResolvedValueOnce(undefined as never);
 
       const { result } = renderHook(() => useEnrollWithCode(), {
         wrapper: createWrapper(),
@@ -167,14 +154,11 @@ describe('useEnrollWithCode Hook', () => {
         expect(result.current.isSuccess).toBe(true);
       });
 
-      expect(api.post).toHaveBeenCalled();
+      expect(coursesModule.enrollWithCode).toHaveBeenCalled();
     });
 
     it('should accept alphanumeric codes', async () => {
-      vi.mocked(api.post).mockResolvedValueOnce({
-        data: undefined,
-        success: true,
-      });
+      vi.mocked(coursesModule.enrollWithCode).mockResolvedValueOnce(undefined as never);
 
       const { result } = renderHook(() => useEnrollWithCode(), {
         wrapper: createWrapper(),
@@ -188,9 +172,7 @@ describe('useEnrollWithCode Hook', () => {
         expect(result.current.isSuccess).toBe(true);
       });
 
-      expect(api.post).toHaveBeenCalledWith('/api/v1/courses/course-1/enroll/code', {
-        code: 'A1B2C3',
-      });
+      expect(coursesModule.enrollWithCode).toHaveBeenCalledWith('A1B2C3');
     });
   });
 
@@ -203,10 +185,7 @@ describe('useEnrollWithCode Hook', () => {
         },
       });
 
-      vi.mocked(api.post).mockResolvedValueOnce({
-        data: undefined,
-        success: true,
-      });
+      vi.mocked(coursesModule.enrollWithCode).mockResolvedValueOnce(undefined as never);
 
       const wrapper = ({ children }: { children: ReactNode }) => (
         <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
@@ -222,17 +201,15 @@ describe('useEnrollWithCode Hook', () => {
         expect(result.current.isSuccess).toBe(true);
       });
 
-      // Verify the API was called
-      expect(api.post).toHaveBeenCalledWith('/api/v1/courses/course-1/enroll/code', {
-        code: 'ABC123',
-      });
+      // Verify the Supabase function was called with just the code
+      expect(coursesModule.enrollWithCode).toHaveBeenCalledWith('ABC123');
     });
   });
 
   describe('Error Handling', () => {
     it('should handle API errors', async () => {
       const error = new Error('Invalid invite code');
-      vi.mocked(api.post).mockRejectedValueOnce(error);
+      vi.mocked(coursesModule.enrollWithCode).mockRejectedValueOnce(error);
 
       const { result } = renderHook(() => useEnrollWithCode(), {
         wrapper: createWrapper(),
@@ -251,7 +228,7 @@ describe('useEnrollWithCode Hook', () => {
 
     it('should handle network errors', async () => {
       const error = new Error('Network error');
-      vi.mocked(api.post).mockRejectedValueOnce(error);
+      vi.mocked(coursesModule.enrollWithCode).mockRejectedValueOnce(error);
 
       const { result } = renderHook(() => useEnrollWithCode(), {
         wrapper: createWrapper(),
@@ -269,10 +246,7 @@ describe('useEnrollWithCode Hook', () => {
 
   describe('Return Type', () => {
     it('should return UseMutationResult', async () => {
-      vi.mocked(api.post).mockResolvedValueOnce({
-        data: undefined,
-        success: true,
-      });
+      vi.mocked(coursesModule.enrollWithCode).mockResolvedValueOnce(undefined as never);
 
       const { result } = renderHook(() => useEnrollWithCode(), {
         wrapper: createWrapper(),

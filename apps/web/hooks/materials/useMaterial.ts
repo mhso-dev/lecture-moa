@@ -3,13 +3,9 @@
 import { useQuery } from "@tanstack/react-query";
 import type { Material, MaterialsQueryParams } from "@shared";
 import {
-  getMaterial,
-  getMaterials,
-  createMaterial,
-  updateMaterial,
-  deleteMaterial,
-  toggleMaterialStatus,
-} from "~/lib/api/materials";
+  fetchMaterial,
+  toMaterial,
+} from "~/lib/supabase/materials";
 
 /**
  * Query key factory for materials
@@ -24,19 +20,9 @@ export const materialKeys = {
     [...materialKeys.details(courseId), materialId] as const,
 };
 
-// Re-export API functions for convenience
-export {
-  getMaterial,
-  getMaterials,
-  createMaterial,
-  updateMaterial,
-  deleteMaterial,
-  toggleMaterialStatus,
-};
-
 /**
  * useMaterial Hook
- * REQ-FE-362: Fetch single material with full content
+ * REQ-FE-362: Fetch single material with full content (via Supabase direct query)
  *
  * @param courseId - The course ID
  * @param materialId - The material ID
@@ -54,7 +40,10 @@ export {
 export function useMaterial(courseId: string, materialId: string) {
   return useQuery<Material>({
     queryKey: materialKeys.detail(courseId, materialId),
-    queryFn: () => getMaterial(courseId, materialId),
+    queryFn: async () => {
+      const row = await fetchMaterial(courseId, materialId);
+      return toMaterial(row);
+    },
     enabled: !!courseId && !!materialId,
     staleTime: 5 * 60 * 1000, // 5 minutes
   });

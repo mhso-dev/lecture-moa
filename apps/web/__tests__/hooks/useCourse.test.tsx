@@ -8,23 +8,12 @@ import { renderHook, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { ReactNode } from 'react';
 import { useCourse } from '../../hooks/useCourse';
-import { api, ApiClientError } from '../../lib/api';
+import * as coursesModule from '../../lib/supabase/courses';
 import type { Course } from '@shared';
 
-// Mock the API module
-vi.mock('../../lib/api', () => ({
-  api: {
-    get: vi.fn(),
-  },
-  ApiClientError: class ApiClientError extends Error {
-    code: string;
-    statusCode: number;
-    constructor(error: { code: string; message: string }, statusCode: number) {
-      super(error.message);
-      this.code = error.code;
-      this.statusCode = statusCode;
-    }
-  },
+// Mock the Supabase courses module
+vi.mock('../../lib/supabase/courses', () => ({
+  fetchCourse: vi.fn(),
 }));
 
 // Create wrapper for TanStack Query
@@ -88,10 +77,7 @@ describe('useCourse Hook', () => {
 
   describe('Basic Query', () => {
     it('should fetch single course by ID', async () => {
-      vi.mocked(api.get).mockResolvedValueOnce({
-        data: mockCourse,
-        success: true,
-      });
+      vi.mocked(coursesModule.fetchCourse).mockResolvedValueOnce(mockCourse);
 
       const { result } = renderHook(() => useCourse('course-1'), {
         wrapper: createWrapper(),
@@ -106,7 +92,7 @@ describe('useCourse Hook', () => {
       });
 
       expect(result.current.data).toEqual(mockCourse);
-      expect(api.get).toHaveBeenCalledWith('/api/v1/courses/course-1');
+      expect(coursesModule.fetchCourse).toHaveBeenCalledWith('course-1');
     });
 
     it('should not fetch when courseId is empty', async () => {
@@ -117,7 +103,7 @@ describe('useCourse Hook', () => {
       // Should not be loading, query is disabled
       expect(result.current.isLoading).toBe(false);
       expect(result.current.isFetching).toBe(false);
-      expect(api.get).not.toHaveBeenCalled();
+      expect(coursesModule.fetchCourse).not.toHaveBeenCalled();
     });
 
     it('should not fetch when courseId is undefined', async () => {
@@ -126,16 +112,13 @@ describe('useCourse Hook', () => {
       });
 
       expect(result.current.isLoading).toBe(false);
-      expect(api.get).not.toHaveBeenCalled();
+      expect(coursesModule.fetchCourse).not.toHaveBeenCalled();
     });
   });
 
   describe('Query Key', () => {
     it('should use correct query key with courseId', async () => {
-      vi.mocked(api.get).mockResolvedValueOnce({
-        data: mockCourse,
-        success: true,
-      });
+      vi.mocked(coursesModule.fetchCourse).mockResolvedValueOnce(mockCourse);
 
       const queryClient = new QueryClient({
         defaultOptions: { queries: { retry: false } },
@@ -155,15 +138,9 @@ describe('useCourse Hook', () => {
     });
 
     it('should fetch different course when courseId changes', async () => {
-      vi.mocked(api.get)
-        .mockResolvedValueOnce({
-          data: mockCourse,
-          success: true,
-        })
-        .mockResolvedValueOnce({
-          data: { ...mockCourse, id: 'course-2', title: 'Another Course' },
-          success: true,
-        });
+      vi.mocked(coursesModule.fetchCourse)
+        .mockResolvedValueOnce(mockCourse)
+        .mockResolvedValueOnce({ ...mockCourse, id: 'course-2', title: 'Another Course' });
 
       const { result, rerender } = renderHook(
         ({ courseId }: { courseId: string }) => useCourse(courseId),
@@ -186,19 +163,16 @@ describe('useCourse Hook', () => {
         expect(result.current.data?.id).toBe('course-2');
       });
 
-      expect(api.get).toHaveBeenCalledTimes(2);
-      expect(api.get).toHaveBeenNthCalledWith(1, '/api/v1/courses/course-1');
-      expect(api.get).toHaveBeenNthCalledWith(2, '/api/v1/courses/course-2');
+      expect(coursesModule.fetchCourse).toHaveBeenCalledTimes(2);
+      expect(coursesModule.fetchCourse).toHaveBeenNthCalledWith(1, 'course-1');
+      expect(coursesModule.fetchCourse).toHaveBeenNthCalledWith(2, 'course-2');
     });
   });
 
   describe('404 Handling', () => {
     it('should handle 404 not found gracefully', async () => {
-      const notFoundError = new ApiClientError(
-        { code: 'NOT_FOUND', message: 'Course not found' },
-        404
-      );
-      vi.mocked(api.get).mockRejectedValueOnce(notFoundError);
+      const notFoundError = new Error('Course not found');
+      vi.mocked(coursesModule.fetchCourse).mockRejectedValueOnce(notFoundError);
 
       const { result } = renderHook(() => useCourse('non-existent'), {
         wrapper: createWrapper(),
@@ -212,11 +186,8 @@ describe('useCourse Hook', () => {
     });
 
     it('should not refetch on 404 error', async () => {
-      const notFoundError = new ApiClientError(
-        { code: 'NOT_FOUND', message: 'Course not found' },
-        404
-      );
-      vi.mocked(api.get).mockRejectedValue(notFoundError);
+      const notFoundError = new Error('Course not found');
+      vi.mocked(coursesModule.fetchCourse).mockRejectedValue(notFoundError);
 
       const queryClient = new QueryClient({
         defaultOptions: {
@@ -237,15 +208,15 @@ describe('useCourse Hook', () => {
         expect(result.current.isError).toBe(true);
       });
 
-      // API should only be called once (no retries due to retry: false)
-      expect(api.get).toHaveBeenCalledTimes(1);
+      // fetchCourse should only be called once (no retries due to retry: false)
+      expect(coursesModule.fetchCourse).toHaveBeenCalledTimes(1);
     });
   });
 
   describe('Error Handling', () => {
     it('should handle network errors', async () => {
       const error = new Error('Network error');
-      vi.mocked(api.get).mockRejectedValueOnce(error);
+      vi.mocked(coursesModule.fetchCourse).mockRejectedValueOnce(error);
 
       const { result } = renderHook(() => useCourse('course-1'), {
         wrapper: createWrapper(),
@@ -259,11 +230,8 @@ describe('useCourse Hook', () => {
     });
 
     it('should handle 500 server errors', async () => {
-      const serverError = new ApiClientError(
-        { code: 'INTERNAL_ERROR', message: 'Internal Server Error' },
-        500
-      );
-      vi.mocked(api.get).mockRejectedValueOnce(serverError);
+      const serverError = new Error('Internal Server Error');
+      vi.mocked(coursesModule.fetchCourse).mockRejectedValueOnce(serverError);
 
       const { result } = renderHook(() => useCourse('course-1'), {
         wrapper: createWrapper(),
@@ -277,11 +245,8 @@ describe('useCourse Hook', () => {
     });
 
     it('should handle 403 forbidden errors', async () => {
-      const forbiddenError = new ApiClientError(
-        { code: 'FORBIDDEN', message: 'Access denied' },
-        403
-      );
-      vi.mocked(api.get).mockRejectedValueOnce(forbiddenError);
+      const forbiddenError = new Error('Access denied');
+      vi.mocked(coursesModule.fetchCourse).mockRejectedValueOnce(forbiddenError);
 
       const { result } = renderHook(() => useCourse('private-course'), {
         wrapper: createWrapper(),
@@ -297,7 +262,7 @@ describe('useCourse Hook', () => {
 
   describe('Loading States', () => {
     it('should start with loading state', () => {
-      vi.mocked(api.get).mockImplementation(
+      vi.mocked(coursesModule.fetchCourse).mockImplementation(
         // eslint-disable-next-line @typescript-eslint/no-empty-function
         () => new Promise(() => {}) // Never resolves
       );
@@ -312,10 +277,7 @@ describe('useCourse Hook', () => {
     });
 
     it('should set isLoading to false after successful fetch', async () => {
-      vi.mocked(api.get).mockResolvedValueOnce({
-        data: mockCourse,
-        success: true,
-      });
+      vi.mocked(coursesModule.fetchCourse).mockResolvedValueOnce(mockCourse);
 
       const { result } = renderHook(() => useCourse('course-1'), {
         wrapper: createWrapper(),
@@ -329,7 +291,7 @@ describe('useCourse Hook', () => {
     });
 
     it('should set isLoading to false after error', async () => {
-      vi.mocked(api.get).mockRejectedValueOnce(new Error('Error'));
+      vi.mocked(coursesModule.fetchCourse).mockRejectedValueOnce(new Error('Error'));
 
       const { result } = renderHook(() => useCourse('course-1'), {
         wrapper: createWrapper(),
@@ -345,10 +307,7 @@ describe('useCourse Hook', () => {
 
   describe('Refetch', () => {
     it('should provide refetch function', async () => {
-      vi.mocked(api.get).mockResolvedValueOnce({
-        data: mockCourse,
-        success: true,
-      });
+      vi.mocked(coursesModule.fetchCourse).mockResolvedValueOnce(mockCourse);
 
       const { result } = renderHook(() => useCourse('course-1'), {
         wrapper: createWrapper(),
@@ -365,15 +324,9 @@ describe('useCourse Hook', () => {
     it('should refetch course data when refetch is called', async () => {
       const updatedCourse = { ...mockCourse, title: 'Updated Title' };
 
-      vi.mocked(api.get)
-        .mockResolvedValueOnce({
-          data: mockCourse,
-          success: true,
-        })
-        .mockResolvedValueOnce({
-          data: updatedCourse,
-          success: true,
-        });
+      vi.mocked(coursesModule.fetchCourse)
+        .mockResolvedValueOnce(mockCourse)
+        .mockResolvedValueOnce(updatedCourse);
 
       const { result } = renderHook(() => useCourse('course-1'), {
         wrapper: createWrapper(),
@@ -395,10 +348,7 @@ describe('useCourse Hook', () => {
 
   describe('Course Data Structure', () => {
     it('should include syllabus in course data', async () => {
-      vi.mocked(api.get).mockResolvedValueOnce({
-        data: mockCourse,
-        success: true,
-      });
+      vi.mocked(coursesModule.fetchCourse).mockResolvedValueOnce(mockCourse);
 
       const { result } = renderHook(() => useCourse('course-1'), {
         wrapper: createWrapper(),
@@ -414,10 +364,7 @@ describe('useCourse Hook', () => {
     });
 
     it('should include instructor info', async () => {
-      vi.mocked(api.get).mockResolvedValueOnce({
-        data: mockCourse,
-        success: true,
-      });
+      vi.mocked(coursesModule.fetchCourse).mockResolvedValueOnce(mockCourse);
 
       const { result } = renderHook(() => useCourse('course-1'), {
         wrapper: createWrapper(),
@@ -439,10 +386,7 @@ describe('useCourse Hook', () => {
         inviteCode: 'INVITE123',
       };
 
-      vi.mocked(api.get).mockResolvedValueOnce({
-        data: courseWithInviteCode,
-        success: true,
-      });
+      vi.mocked(coursesModule.fetchCourse).mockResolvedValueOnce(courseWithInviteCode);
 
       const { result } = renderHook(() => useCourse('course-1'), {
         wrapper: createWrapper(),
