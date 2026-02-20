@@ -2,7 +2,7 @@
 
 ## Overview
 
-lecture-moa uses a monorepo architecture managed with pnpm workspaces and Turborepo. The project is organized into four primary packages: a Next.js frontend application, a Node.js backend API server, a Python FastAPI AI microservice, and a shared package for types, utilities, and constants used by the TypeScript applications.
+lecture-moa uses a monorepo architecture managed with pnpm workspaces and Turborepo. The project is organized into three primary areas: a Next.js frontend application, a Python FastAPI AI microservice, and a shared package for types, utilities, and constants. Backend responsibilities (authentication, database, real-time, storage) are delegated to Supabase, whose configuration and migrations live in the top-level supabase/ directory.
 
 ## Directory Structure
 
@@ -23,7 +23,7 @@ lecture-moa/
 │   │   │   │       │   └── [materialId]/
 │   │   │   │       ├── quizzes/
 │   │   │   │       └── teams/
-│   │   │   ├── api/                  # Next.js API routes (auth, BFF)
+│   │   │   ├── api/                  # Next.js API routes (webhooks, BFF)
 │   │   │   ├── layout.tsx
 │   │   │   └── page.tsx
 │   │   ├── components/               # React components
@@ -44,73 +44,19 @@ lecture-moa/
 │   │   │   ├── useAuth.ts            # Auth state and actions (signIn, signOut, updateUser)
 │   │   │   └── useCurrentUser.ts     # Current user profile data via TanStack Query
 │   │   ├── middleware.ts             # Next.js middleware for route protection and role-based guards
-│   │   ├── types/
-│   │   │   └── next-auth.d.ts        # next-auth Session and JWT type augmentation
 │   │   ├── lib/                      # Client-side utilities
-│   │   │   ├── api.ts                # API client configuration
-│   │   │   ├── auth.ts               # Auth utilities
-│   │   │   └── websocket.ts          # WebSocket client
+│   │   │   ├── supabase/             # Supabase client configuration
+│   │   │   │   ├── client.ts         # Browser-side Supabase client (singleton)
+│   │   │   │   ├── server.ts         # Server-side Supabase client (RSC, Route Handlers, Server Actions)
+│   │   │   │   └── middleware.ts     # Auth session refresh helper for Next.js middleware
+│   │   │   ├── api.ts                # API client helpers for Edge Function calls
+│   │   │   └── realtime.ts           # Supabase Realtime channel setup utilities
 │   │   ├── providers/                # React context providers
 │   │   ├── styles/                   # Global styles and themes
+│   │   ├── types/
+│   │   │   └── supabase.ts           # Auto-generated database types (supabase gen types typescript)
 │   │   ├── next.config.ts
 │   │   ├── tailwind.config.ts
-│   │   ├── tsconfig.json
-│   │   └── package.json
-│   │
-│   ├── api/                          # Node.js backend API server
-│   │   ├── src/
-│   │   │   ├── modules/              # Feature modules (domain-driven)
-│   │   │   │   ├── auth/
-│   │   │   │   │   ├── auth.controller.ts
-│   │   │   │   │   ├── auth.service.ts
-│   │   │   │   │   ├── auth.routes.ts
-│   │   │   │   │   └── auth.middleware.ts
-│   │   │   │   ├── course/
-│   │   │   │   │   ├── course.controller.ts
-│   │   │   │   │   ├── course.service.ts
-│   │   │   │   │   └── course.routes.ts
-│   │   │   │   ├── material/
-│   │   │   │   │   ├── material.controller.ts
-│   │   │   │   │   ├── material.service.ts
-│   │   │   │   │   └── material.routes.ts
-│   │   │   │   ├── qa/
-│   │   │   │   │   ├── qa.controller.ts
-│   │   │   │   │   ├── qa.service.ts
-│   │   │   │   │   └── qa.routes.ts
-│   │   │   │   ├── memo/
-│   │   │   │   │   ├── memo.controller.ts
-│   │   │   │   │   ├── memo.service.ts
-│   │   │   │   │   └── memo.routes.ts
-│   │   │   │   ├── quiz/
-│   │   │   │   │   ├── quiz.controller.ts
-│   │   │   │   │   ├── quiz.service.ts
-│   │   │   │   │   └── quiz.routes.ts
-│   │   │   │   ├── team/
-│   │   │   │   │   ├── team.controller.ts
-│   │   │   │   │   ├── team.service.ts
-│   │   │   │   │   └── team.routes.ts
-│   │   │   │   └── dashboard/
-│   │   │   │       ├── dashboard.controller.ts
-│   │   │   │       ├── dashboard.service.ts
-│   │   │   │       └── dashboard.routes.ts
-│   │   │   ├── common/               # Shared backend utilities
-│   │   │   │   ├── middleware/        # Global middleware
-│   │   │   │   ├── guards/           # Authorization guards
-│   │   │   │   ├── decorators/       # Custom decorators
-│   │   │   │   ├── filters/          # Error filters
-│   │   │   │   └── utils/            # Utility functions
-│   │   │   ├── config/               # Configuration management
-│   │   │   │   ├── database.ts
-│   │   │   │   └── auth.ts
-│   │   │   ├── websocket/            # WebSocket server
-│   │   │   │   ├── gateway.ts
-│   │   │   │   └── handlers/
-│   │   │   ├── app.ts                # Application entry point
-│   │   │   └── server.ts             # Server bootstrap
-│   │   ├── prisma/                   # Prisma ORM
-│   │   │   ├── schema.prisma         # Database schema
-│   │   │   ├── migrations/           # Database migrations
-│   │   │   └── seed.ts               # Seed data
 │   │   ├── tsconfig.json
 │   │   └── package.json
 │   │
@@ -134,6 +80,22 @@ lecture-moa/
 │       ├── Dockerfile
 │       └── README.md
 │
+├── supabase/                         # Supabase project configuration
+│   ├── migrations/                   # Database migrations (SQL, version-controlled)
+│   │   └── 20240101000000_initial_schema.sql
+│   ├── functions/                    # Supabase Edge Functions (Deno/TypeScript)
+│   │   ├── quiz-generate/            # AI quiz generation proxy
+│   │   │   └── index.ts
+│   │   ├── qa-suggest/               # AI Q&A suggestion proxy
+│   │   │   └── index.ts
+│   │   ├── material-analyze/         # AI material analysis proxy
+│   │   │   └── index.ts
+│   │   └── _shared/                  # Shared Edge Function utilities
+│   │       ├── auth.ts               # JWT validation helpers
+│   │       └── ai-client.ts          # FastAPI AI service client
+│   ├── seed.sql                      # Database seed data for local development
+│   └── config.toml                   # Supabase local development configuration
+│
 ├── packages/
 │   └── shared/                       # Shared package
 │       ├── src/
@@ -150,7 +112,7 @@ lecture-moa/
 │       │   ├── constants/            # Shared constants
 │       │   │   ├── roles.ts
 │       │   │   ├── permissions.ts
-│       │   │   └── events.ts         # WebSocket event names
+│       │   │   └── realtime.ts       # Supabase Realtime channel and event names
 │       │   ├── validators/           # Shared validation schemas (Zod)
 │       │   │   ├── auth.schema.ts
 │       │   │   ├── course.schema.ts
@@ -190,37 +152,42 @@ lecture-moa/
 ### apps/web/ - Frontend Application
 The Next.js application using the App Router for file-system-based routing. Route groups with parentheses organize authentication pages, dashboard views, and course content separately. Components are organized by domain feature (auth, course, material, qa, quiz, team) with shared UI primitives in the ui directory. The HighlightPopup and MarkdownRenderer components are critical to the core user experience of inline Q&A on lecture materials.
 
-### apps/api/ - Backend API Server
-The Node.js backend organized into feature modules following a domain-driven structure. Each module contains its own controller (HTTP handlers), service (business logic), and routes (endpoint definitions). For AI-powered features (quiz generation, Q&A assistant, material analysis), the backend forwards requests to the Python AI service via internal REST API calls. The websocket directory manages real-time communication for Q&A notifications and team collaboration.
+All data access goes through the Supabase client libraries configured in lib/supabase/. Server-side pages and actions use the server client, while client components use the browser client. Authentication state is managed through @supabase/ssr cookie helpers in the Next.js middleware.
 
 ### apps/ai/ - AI Service
-A separate Python FastAPI microservice responsible for all LLM-powered features. Contains LangChain chain definitions for quiz generation, Q&A assistance, and material analysis. Organized with FastAPI routers for endpoint handling, a chains directory for LangChain orchestration logic, prompt templates for LLM interactions, Pydantic models for request/response validation, and a services layer for business logic. Communicates exclusively with the Node.js backend via REST API. Deployed as its own Docker container for independent scaling and development.
+A separate Python FastAPI microservice responsible for all LLM-powered features. Contains LangChain chain definitions for quiz generation, Q&A assistance, and material analysis. Organized with FastAPI routers for endpoint handling, a chains directory for LangChain orchestration logic, prompt templates for LLM interactions, Pydantic models for request/response validation, and a services layer for business logic.
+
+The AI service does not communicate directly with the frontend. It is accessed exclusively through Supabase Edge Functions, which validate the user's Supabase Auth JWT before proxying the request to the AI service using an internal API key. The AI service is deployed as its own Docker container.
+
+### supabase/ - Supabase Project Configuration
+Contains all Supabase-managed resources tracked in version control. The migrations/ directory holds SQL migration files that define and evolve the database schema. These are applied in sequence by the Supabase CLI and represent the authoritative history of the database schema.
+
+The functions/ directory contains Supabase Edge Functions written in Deno TypeScript. Each top-level subdirectory (quiz-generate, qa-suggest, material-analyze) corresponds to a separately deployed Edge Function that acts as a secure proxy to the Python AI service. The _shared/ directory contains utilities shared across multiple Edge Functions, such as JWT validation helpers and the AI service HTTP client.
 
 ### packages/shared/ - Shared Package
-Contains TypeScript types, constants, validation schemas, and utilities shared between frontend and backend. Using Zod for validation schemas ensures consistent validation rules on both client and server. The types directory provides a single source of truth for all data structures used across the application.
+Contains TypeScript types, constants, validation schemas, and utilities shared between the frontend and Edge Functions. Using Zod for validation schemas ensures consistent validation rules on both client and server. The types directory provides a single source of truth for all data structures used across the application. Database-level types are auto-generated from the Supabase schema and stored in apps/web/types/supabase.ts.
 
 ### docs/ - Documentation
 A Nextra-based documentation site for developer and user documentation. Organized with file-system routing for automatic navigation generation.
 
 ## Module Organization Strategy
 
-### Domain-Driven Modules
-Each feature domain (auth, course, material, qa, memo, quiz, team, dashboard) is encapsulated in its own module with clear boundaries. AI/LLM features are handled by the separate Python AI service in apps/ai/. This enables:
-- Independent development and testing of each feature
-- Clear ownership and responsibility boundaries
-- Easy addition of new features without affecting existing ones
-- Straightforward navigation for developers
+### Supabase-Centric Architecture
+The architecture is organized around Supabase as the central backend platform rather than a custom application server. Domain logic is distributed across three layers:
 
-### Layered Architecture Within Modules
-Each module follows a consistent internal structure:
-- **Controller**: Handles HTTP request/response, input validation, and delegates to service
-- **Service**: Contains business logic, interacts with database and external services
-- **Routes**: Defines API endpoints and applies middleware
+- **Database layer**: Schema definitions, constraints, indexes, and Row Level Security policies in supabase/migrations/
+- **Edge Function layer**: Complex business logic, external service integration, and AI feature proxying in supabase/functions/
+- **Frontend layer**: UI rendering, client-side state, and direct Supabase client calls in apps/web/
+
+This eliminates the traditional controller-service-repository pattern of a Node.js backend. For simple CRUD operations, the frontend queries the Supabase database directly using the typed client and RLS policies enforce authorization. For complex operations requiring server-side logic, Edge Functions provide a lightweight serverless compute layer.
+
+### Authorization Strategy
+Authorization is enforced at the database layer through PostgreSQL Row Level Security policies defined in migrations. Each table has RLS policies that reference the authenticated user's JWT claims to filter rows automatically. Edge Functions validate the Supabase Auth JWT before processing requests, applying an additional application-level authorization check where needed.
 
 ### Shared Code Strategy
-Code shared across modules lives in two places:
-- **packages/shared/**: For code shared between frontend and backend (types, validators, constants)
-- **apps/api/src/common/**: For code shared across backend modules only (middleware, guards, utilities)
+Code shared across the application lives in two places:
+- **packages/shared/**: For types, validators, and constants shared between the frontend and Edge Functions
+- **supabase/functions/_shared/**: For Edge Function utilities shared across multiple serverless functions
 
-### WebSocket Architecture
-Real-time features are centralized in the websocket directory with event handlers organized by feature domain. Event names are defined as constants in the shared package to ensure consistency between client and server.
+### Real-Time Architecture
+Real-time features are implemented using Supabase Realtime channels rather than a custom WebSocket server. The frontend subscribes to Realtime channels corresponding to specific database tables or custom broadcast channels. When database rows change (for example, a new Q&A question is inserted), Supabase Realtime automatically pushes the change to subscribed clients. Channel and event names are defined as constants in packages/shared/constants/realtime.ts to ensure consistency between the frontend subscription setup and the database event source.
