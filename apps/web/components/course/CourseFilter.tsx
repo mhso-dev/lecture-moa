@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * CourseFilter Component
  * TASK-020: Category filter tabs and sort select dropdown
@@ -66,7 +67,7 @@ export function CourseFilter({
       params.delete("category");
     }
     params.set("page", "1"); // Reset to first page
-    router.replace(`${pathname}?${params.toString()}`);
+    router.replace(`${pathname}?${params.toString()}` as any);
   };
 
   const handleSortChange = (sort: CourseSortOption) => {
@@ -75,7 +76,7 @@ export function CourseFilter({
     // Update URL params
     const params = new URLSearchParams(searchParams.toString());
     params.set("sort", sort);
-    router.replace(`${pathname}?${params.toString()}`);
+    router.replace(`${pathname}?${params.toString()}` as any);
   };
 
   return (

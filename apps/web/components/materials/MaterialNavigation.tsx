@@ -50,7 +50,7 @@ export function MaterialNavigation({
   onNavigate,
 }: MaterialNavigationProps) {
   // Truncate title to max characters
-  const truncateTitle = (title: string, maxLen: number = 40) => {
+  const truncateTitle = (title: string, maxLen = 40) => {
     if (title.length <= maxLen) return title;
     return `${title.slice(0, maxLen)}...`;
   };
@@ -81,7 +81,7 @@ export function MaterialNavigation({
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    return () => { window.removeEventListener("keydown", handleKeyDown); };
   }, [handleKeyDown]);
 
   return (

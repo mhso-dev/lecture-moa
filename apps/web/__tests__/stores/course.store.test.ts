@@ -28,8 +28,6 @@ describe('Course Store', () => {
       selectedCategory: null,
       sortOption: 'recent',
     });
-    // Clear localStorage
-    localStorage.clear();
     vi.clearAllMocks();
   });
 

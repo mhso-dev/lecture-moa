@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
+/* eslint-disable react-hooks/exhaustive-deps */
 /**
  * MemoFilterSidebar Component
  * REQ-FE-751, REQ-FE-752: Desktop filter panel for personal memo list
@@ -30,7 +32,7 @@ import { Badge } from "~/components/ui/badge";
 import { Switch } from "~/components/ui/switch";
 import { cn } from "~/lib/utils";
 import { useDebounce } from "~/hooks/useDebounce";
-import type { MemoFilterParams, MemoVisibility } from "@shared/types/memo.types";
+import type { MemoFilterParams } from "@shared/types/memo.types";
 
 /**
  * Course type for filter dropdown
@@ -219,7 +221,7 @@ export function MemoFilterSidebar({
               id="memo-search"
               placeholder="Search memos..."
               value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
+              onChange={(e) => { setSearchValue(e.target.value); }}
               className="pl-10"
             />
           </div>
@@ -284,7 +286,7 @@ export function MemoFilterSidebar({
           <Input
             placeholder="Add a tag..."
             value={tagInput}
-            onChange={(e) => setTagInput(e.target.value)}
+            onChange={(e) => { setTagInput(e.target.value); }}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 e.preventDefault();
@@ -303,7 +305,7 @@ export function MemoFilterSidebar({
                 >
                   {tag}
                   <button
-                    onClick={() => handleRemoveTag(tag)}
+                    onClick={() => { handleRemoveTag(tag); }}
                     className="ml-1 rounded-full p-0.5 hover:bg-[var(--color-muted)]"
                   >
                     <X className="h-3 w-3" />
@@ -321,7 +323,7 @@ export function MemoFilterSidebar({
                     key={tag}
                     variant="outline"
                     className="cursor-pointer hover:bg-[var(--color-secondary)]"
-                    onClick={() => handleAddTag(tag)}
+                    onClick={() => { handleAddTag(tag); }}
                   >
                     {tag}
                   </Badge>

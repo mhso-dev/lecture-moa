@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 /**
  * DraftRestoreBanner Component
  * REQ-FE-764: Dismissible banner for draft restoration

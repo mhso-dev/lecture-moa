@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Team Detail Layout
  * TASK-022: Team detail layout with header
@@ -58,7 +59,7 @@ export default function TeamDetailLayout({
   // Set current team in store
   useEffect(() => {
     setCurrentTeam(teamId);
-    return () => setCurrentTeam(null);
+    return () => { setCurrentTeam(null); };
   }, [teamId, setCurrentTeam]);
 
   if (isLoading) {
@@ -80,7 +81,7 @@ export default function TeamDetailLayout({
         <Button
           variant="outline"
           className="mt-4"
-          onClick={() => router.push("/teams")}
+          onClick={() => { router.push("/teams"); }}
         >
           Back to Teams
         </Button>
@@ -154,7 +155,7 @@ export default function TeamDetailLayout({
                 <Button
                   variant="outline"
                   size="icon"
-                  onClick={() => router.push(`/teams/${teamId}/settings`)}
+                  onClick={() => { router.push(`/teams/${teamId}/settings` as any); }}
                   aria-label="Team settings"
                 >
                   <Settings className="h-4 w-4" />

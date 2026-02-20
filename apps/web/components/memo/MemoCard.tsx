@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Memo Card Component
  * REQ-FE-741: Displays memo summary in team memo board
@@ -88,7 +89,7 @@ export function MemoCard({
    * Handle card click - navigate to memo detail
    */
   const handleCardClick = () => {
-    router.push(`/memos/${memo.id}`);
+    router.push(`/memos/${memo.id}` as any);
   };
 
   /**
@@ -163,7 +164,7 @@ export function MemoCard({
           {/* Action menu */}
           {(canEdit || canDelete) && (
             <DropdownMenu>
-              <DropdownMenuTrigger asChild onClick={(e) => e.stopPropagation()}>
+              <DropdownMenuTrigger asChild onClick={(e) => { e.stopPropagation(); }}>
                 <Button
                   variant="ghost"
                   size="icon"

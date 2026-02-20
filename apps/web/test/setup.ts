@@ -6,6 +6,11 @@
 import "@testing-library/jest-dom/vitest";
 import { vi } from "vitest";
 
+// Set required environment variables before any module imports
+process.env.NEXT_PUBLIC_API_URL = "http://localhost:3001/api/v1";
+process.env.NEXTAUTH_SECRET = "test-secret-key-for-testing";
+process.env.NEXTAUTH_URL = "http://localhost:3000";
+
 // Mock next/navigation
 vi.mock("next/navigation", () => ({
   useRouter: () => ({
@@ -46,9 +51,19 @@ Object.defineProperty(window, "matchMedia", {
   })),
 });
 
-// Mock ResizeObserver
-global.ResizeObserver = vi.fn().mockImplementation(() => ({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn(),
-}));
+// Mock ResizeObserver (must be a class for Radix UI's `new ResizeObserver()`)
+class ResizeObserverMock {
+  observe = vi.fn();
+  unobserve = vi.fn();
+  disconnect = vi.fn();
+}
+global.ResizeObserver = ResizeObserverMock as unknown as typeof ResizeObserver;
+
+// Mock pointer capture for Radix UI
+Element.prototype.hasPointerCapture = vi.fn() as unknown as typeof Element.prototype.hasPointerCapture;
+Element.prototype.setPointerCapture = vi.fn() as unknown as typeof Element.prototype.setPointerCapture;
+Element.prototype.releasePointerCapture = vi.fn() as unknown as typeof Element.prototype.releasePointerCapture;
+
+// Mock scrollIntoView
+Element.prototype.scrollIntoView = vi.fn();
+window.scrollTo = vi.fn() as unknown as typeof window.scrollTo;

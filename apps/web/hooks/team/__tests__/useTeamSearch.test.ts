@@ -10,7 +10,7 @@ import { useTeamSearch } from "../useTeamSearch";
 
 // Mock useAvailableTeams hook
 vi.mock("../useTeams", () => ({
-  useAvailableTeams: vi.fn((search?: string) => ({
+  useAvailableTeams: vi.fn().mockImplementation((search?: string) => ({
     data: search ? [{ id: "team-1", name: "Search Result" }] : [],
     isLoading: false,
     isError: false,
@@ -19,7 +19,7 @@ vi.mock("../useTeams", () => ({
 
 // Mock useDebounce hook
 vi.mock("~/hooks/useDebounce", () => ({
-  useDebounce: vi.fn((value: string, _delay: number) => value),
+  useDebounce: vi.fn().mockImplementation((value: string, _delay: number) => value),
 }));
 
 describe("useTeamSearch", () => {
@@ -66,7 +66,7 @@ describe("useTeamSearch", () => {
 
     it("should use debounced search query with useAvailableTeams", async () => {
       const { useAvailableTeams } = await import("../useTeams");
-      const mockUseAvailableTeams = vi.mocked(useAvailableTeams);
+      const mockUseAvailableTeams = vi.mocked(useAvailableTeams) as any;
 
       const { result } = renderHook(() => useTeamSearch());
 
@@ -85,7 +85,7 @@ describe("useTeamSearch", () => {
   describe("REQ-FE-714: Search Results", () => {
     it("should return loading state from useAvailableTeams", async () => {
       const { useAvailableTeams } = await import("../useTeams");
-      vi.mocked(useAvailableTeams).mockReturnValueOnce({
+      (vi.mocked(useAvailableTeams) as any).mockReturnValueOnce({
         data: [],
         isLoading: true,
         isError: false,
@@ -103,7 +103,7 @@ describe("useTeamSearch", () => {
       ];
 
       const { useAvailableTeams } = await import("../useTeams");
-      vi.mocked(useAvailableTeams).mockReturnValueOnce({
+      (vi.mocked(useAvailableTeams) as any).mockReturnValueOnce({
         data: mockTeams,
         isLoading: false,
         isError: false,
@@ -116,7 +116,7 @@ describe("useTeamSearch", () => {
 
     it("should return empty array when no teams found", async () => {
       const { useAvailableTeams } = await import("../useTeams");
-      vi.mocked(useAvailableTeams).mockReturnValueOnce({
+      (vi.mocked(useAvailableTeams) as any).mockReturnValueOnce({
         data: [],
         isLoading: false,
         isError: false,

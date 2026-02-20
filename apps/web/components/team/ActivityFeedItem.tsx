@@ -4,6 +4,7 @@
  * REQ-FE-725: Individual activity item in feed
  */
 
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 "use client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";

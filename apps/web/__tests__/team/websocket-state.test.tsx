@@ -3,7 +3,7 @@
  * REQ-FE-N702: LiveIndicator shall show correct connection state
  */
 
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { LiveIndicator } from "../../components/team/LiveIndicator";
 import type { TeamSocketStatus } from "../../stores/ui.store";

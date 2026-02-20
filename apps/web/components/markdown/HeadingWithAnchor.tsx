@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-deprecated */
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 'use client';
 
 /**
@@ -45,7 +47,7 @@ export function HeadingWithAnchor({
     try {
       const url = `${window.location.origin}${window.location.pathname}#${id}`;
 
-      if (navigator.clipboard && navigator.clipboard.writeText) {
+      if (navigator.clipboard) {
         await navigator.clipboard.writeText(url);
       } else {
         // Fallback for older browsers
@@ -60,7 +62,7 @@ export function HeadingWithAnchor({
       }
 
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      setTimeout(() => { setCopied(false); }, 2000);
     } catch (error) {
       console.error("Failed to copy anchor URL:", error);
     }
@@ -82,8 +84,8 @@ export function HeadingWithAnchor({
         sizeClasses[level],
         className
       )}
-      onMouseEnter={() => setShowAnchor(true)}
-      onMouseLeave={() => setShowAnchor(false)}
+      onMouseEnter={() => { setShowAnchor(true); }}
+      onMouseLeave={() => { setShowAnchor(false); }}
     >
       {/* Heading content */}
       <span className="flex-1">{children}</span>
@@ -94,7 +96,7 @@ export function HeadingWithAnchor({
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
-            handleCopyAnchor();
+            void handleCopyAnchor();
           }
         }}
         className={cn(

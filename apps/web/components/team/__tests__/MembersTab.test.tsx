@@ -4,7 +4,8 @@
  * REQ-FE-722: Member list with invite functionality
  */
 
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { MembersTab } from "../MembersTab";
 import type { TeamMemberDetail } from "@shared";
@@ -18,7 +19,7 @@ const mockMembers: TeamMemberDetail[] = [
     name: "John Doe",
     email: "john@example.com",
     role: "member",
-    avatarUrl: null,
+    avatarUrl: undefined,
     lastActiveAt: new Date("2024-01-15"),
     joinedAt: new Date("2024-01-10"),
   },
@@ -29,30 +30,60 @@ const mockMembers: TeamMemberDetail[] = [
     name: "Jane Leader",
     email: "jane@example.com",
     role: "leader",
-    avatarUrl: null,
+    avatarUrl: undefined,
     lastActiveAt: new Date("2024-01-15"),
     joinedAt: new Date("2024-01-01"),
   },
 ];
 
+// Use vi.hoisted to create mutable mock refs
+const { mockUseTeamMembersRef } = vi.hoisted(() => ({
+  mockUseTeamMembersRef: {
+    fn: vi.fn(),
+  },
+}));
+
 vi.mock("~/hooks/team/useTeam", () => ({
-  useTeamMembers: () => ({
-    data: mockMembers,
-    isLoading: false,
-    error: null,
-  }),
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+  useTeamMembers: (...args: unknown[]) => mockUseTeamMembersRef.fn(...args),
 }));
 
 vi.mock("~/stores/auth.store", () => ({
   useAuthStore: vi.fn((selector) => {
     const state = { user: { id: "leader-user" } };
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return selector ? selector(state) : state;
   }),
+}));
+
+// Mock useTeamMembership to prevent env.ts import chain
+vi.mock("~/hooks/team/useTeamMembership", () => ({
+  useTeamMembership: () => ({
+    inviteMember: { mutate: vi.fn(), isPending: false },
+    removeMember: { mutate: vi.fn(), isPending: false },
+    changeMemberRole: { mutate: vi.fn(), isPending: false },
+    joinTeam: { mutate: vi.fn(), isPending: false },
+    leaveTeam: { mutate: vi.fn(), isPending: false },
+  }),
+}));
+
+// Mock sonner for child components
+vi.mock("sonner", () => ({
+  toast: {
+    success: vi.fn(),
+    error: vi.fn(),
+  },
 }));
 
 describe("MembersTab", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    // Default: return members data
+    mockUseTeamMembersRef.fn.mockReturnValue({
+      data: mockMembers,
+      isLoading: false,
+      error: null,
+    });
   });
 
   it("should render member list", () => {
@@ -75,14 +106,6 @@ describe("MembersTab", () => {
   });
 
   it("should not show invite button for non-leaders", () => {
-    vi.mock("~/hooks/team/useTeam", () => ({
-      useTeamMembers: () => ({
-        data: mockMembers,
-        isLoading: false,
-        error: null,
-      }),
-    }));
-
     render(
       <MembersTab
         teamId="team-1"
@@ -104,13 +127,11 @@ describe("MembersTab", () => {
   });
 
   it("should show loading skeleton while loading", () => {
-    vi.mock("~/hooks/team/useTeam", () => ({
-      useTeamMembers: () => ({
-        data: undefined,
-        isLoading: true,
-        error: null,
-      }),
-    }));
+    mockUseTeamMembersRef.fn.mockReturnValue({
+      data: undefined,
+      isLoading: true,
+      error: null,
+    });
 
     render(<MembersTab teamId="team-1" />);
 
@@ -118,13 +139,11 @@ describe("MembersTab", () => {
   });
 
   it("should show empty state when no members", () => {
-    vi.mock("~/hooks/team/useTeam", () => ({
-      useTeamMembers: () => ({
-        data: [],
-        isLoading: false,
-        error: null,
-      }),
-    }));
+    mockUseTeamMembersRef.fn.mockReturnValue({
+      data: [],
+      isLoading: false,
+      error: null,
+    });
 
     render(<MembersTab teamId="team-1" />);
 
@@ -142,20 +161,18 @@ describe("MembersTab", () => {
   it("should pass isCurrentUserLeader to MemberListItem", () => {
     render(<MembersTab teamId="team-1" currentUserId="leader-user" />);
 
-    // If leader, remove button should be visible
+    // If leader, remove button should be visible for non-self members
     const removeButtons = screen.queryAllByRole("button", { name: /remove/i });
     // Only one remove button (for the non-leader member, not for self)
     expect(removeButtons.length).toBeGreaterThanOrEqual(0);
   });
 
   it("should handle error state", () => {
-    vi.mock("~/hooks/team/useTeam", () => ({
-      useTeamMembers: () => ({
-        data: undefined,
-        isLoading: false,
-        error: new Error("Failed to load members"),
-      }),
-    }));
+    mockUseTeamMembersRef.fn.mockReturnValue({
+      data: undefined,
+      isLoading: false,
+      error: new Error("Failed to load members"),
+    });
 
     render(<MembersTab teamId="team-1" />);
 

@@ -4,6 +4,7 @@
  * REQ-FE-722: Member list with invite functionality
  */
 
+/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
 "use client";
 
 import { useState } from "react";
@@ -71,7 +72,7 @@ export function MembersTab({ teamId, currentUserId }: MembersTabProps) {
           Invite people to join your team.
         </p>
         {isCurrentUserLeader && (
-          <Button onClick={() => setShowInviteModal(true)}>
+          <Button onClick={() => { setShowInviteModal(true); }}>
             <Plus className="h-4 w-4 mr-2" />
             Invite Member
           </Button>
@@ -91,7 +92,7 @@ export function MembersTab({ teamId, currentUserId }: MembersTabProps) {
           </span>
         </div>
         {isCurrentUserLeader && (
-          <Button onClick={() => setShowInviteModal(true)}>
+          <Button onClick={() => { setShowInviteModal(true); }}>
             <Plus className="h-4 w-4 mr-2" />
             Invite Member
           </Button>
@@ -115,7 +116,7 @@ export function MembersTab({ teamId, currentUserId }: MembersTabProps) {
       <InviteMemberModal
         teamId={teamId}
         open={showInviteModal}
-        onClose={() => setShowInviteModal(false)}
+        onClose={() => { setShowInviteModal(false); }}
       />
     </div>
   );

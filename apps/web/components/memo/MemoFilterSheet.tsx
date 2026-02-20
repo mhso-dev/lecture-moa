@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
 /**
  * MemoFilterSheet Component
  * REQ-FE-751: Mobile bottom sheet for memo filters
@@ -78,7 +79,7 @@ export function MemoFilterSheet({
   onFiltersChange,
   courses,
   materials,
-  availableTags,
+  availableTags: _availableTags,
   className,
 }: MemoFilterSheetProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -180,7 +181,7 @@ export function MemoFilterSheet({
                 id="memo-search-mobile"
                 placeholder="Search memos..."
                 value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value)}
+                onChange={(e) => { setSearchValue(e.target.value); }}
                 className="pl-10"
               />
             </div>
@@ -193,7 +194,7 @@ export function MemoFilterSheet({
               id="visibility-toggle-mobile"
               checked={tempFilters.visibility === "team"}
               onCheckedChange={(checked) =>
-                setTempFilters({ ...tempFilters, visibility: checked ? "team" : "personal" })
+                { setTempFilters({ ...tempFilters, visibility: checked ? "team" : "personal" }); }
               }
             />
           </div>
@@ -204,11 +205,11 @@ export function MemoFilterSheet({
             <Select
               value={tempFilters.courseId || ""}
               onValueChange={(value) =>
-                setTempFilters({
+                { setTempFilters({
                   ...tempFilters,
                   courseId: value || undefined,
                   materialId: undefined,
-                })
+                }); }
               }
             >
               <SelectTrigger>
@@ -231,7 +232,7 @@ export function MemoFilterSheet({
             <Select
               value={tempFilters.materialId || ""}
               onValueChange={(value) =>
-                setTempFilters({ ...tempFilters, materialId: value || undefined })
+                { setTempFilters({ ...tempFilters, materialId: value || undefined }); }
               }
               disabled={!tempFilters.courseId}
             >
@@ -255,7 +256,7 @@ export function MemoFilterSheet({
             <Input
               placeholder="Add a tag..."
               value={tagInput}
-              onChange={(e) => setTagInput(e.target.value)}
+              onChange={(e) => { setTagInput(e.target.value); }}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
                   e.preventDefault();
@@ -270,7 +271,7 @@ export function MemoFilterSheet({
                   <Badge key={tag} variant="secondary" className="gap-1 pr-1">
                     {tag}
                     <button
-                      onClick={() => handleRemoveTag(tag)}
+                      onClick={() => { handleRemoveTag(tag); }}
                       className="ml-1 rounded-full p-0.5 hover:bg-[var(--color-muted)]"
                     >
                       <X className="h-3 w-3" />

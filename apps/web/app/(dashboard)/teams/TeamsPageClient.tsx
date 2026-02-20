@@ -24,7 +24,7 @@ export function TeamsPageClient() {
 
   // Fetch available teams with search
   const {
-    teams: availableTeams = [],
+    teams: availableTeams,
     isLoading: isLoadingAvailable,
     searchQuery,
     setSearchQuery,

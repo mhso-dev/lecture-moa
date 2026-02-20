@@ -4,7 +4,6 @@
  */
 
 import { describe, it, expect } from "vitest";
-import { render, screen } from "@testing-library/react";
 import { stripMarkdown } from "@shared/utils/markdown";
 
 describe("Markdown Preview - REQ-FE-N704", () => {

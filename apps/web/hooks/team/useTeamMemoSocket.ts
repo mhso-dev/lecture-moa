@@ -8,10 +8,7 @@
 "use client";
 
 import { useEffect, useRef, useCallback } from "react";
-import { useQueryClient } from "@tanstack/react-query";
-import { EVENTS } from "@shared/constants/events";
-import { useTeamSocketStatus } from "~/stores/ui.store";
-import { memoKeys } from "~/hooks/memo/useMemos";
+import { useUIStore, useTeamSocketStatus } from "~/stores/ui.store";
 
 /**
  * Hook return type
@@ -55,52 +52,8 @@ interface UseTeamMemoSocketReturn {
  * ```
  */
 export function useTeamMemoSocket(teamId: string): UseTeamMemoSocketReturn {
-  const queryClient = useQueryClient();
-  const setTeamSocketStatus = useTeamSocketStatus();
+  const setTeamSocketStatus = useUIStore((state) => state.setTeamSocketStatus);
   const retryCountRef = useRef(0);
-  const maxRetries = 5;
-  const wsRef = useRef<WebSocket | null>(null);
-
-  /**
-   * Handle incoming WebSocket events
-   * REQ-FE-742: Invalidate cache on memo events
-   */
-  const handleWebSocketMessage = useCallback(
-    (event: MessageEvent) => {
-      try {
-        const data = JSON.parse(event.data);
-        const { type } = data;
-
-        // Handle team memo events
-        switch (type) {
-          case EVENTS.TEAM_MEMO_CREATED:
-          case EVENTS.TEAM_MEMO_UPDATED:
-          case EVENTS.TEAM_MEMO_DELETED:
-            // Invalidate team memos cache to trigger refetch
-            queryClient.invalidateQueries({
-              queryKey: memoKeys.teamList(teamId),
-            });
-            break;
-
-          case EVENTS.TEAM_MEMBER_JOINED:
-          case EVENTS.TEAM_MEMBER_LEFT:
-            // Invalidate team member cache
-            queryClient.invalidateQueries({
-              queryKey: ["team", teamId, "members"],
-            });
-            break;
-
-          default:
-            // Unknown event type - ignore
-            break;
-        }
-      } catch (error) {
-        // Log error but don't crash UI
-        console.error("[useTeamMemoSocket] Failed to parse message:", error);
-      }
-    },
-    [queryClient, teamId]
-  );
 
   /**
    * Establish WebSocket connection
@@ -123,27 +76,6 @@ export function useTeamMemoSocket(teamId: string): UseTeamMemoSocketReturn {
   }, [setTeamSocketStatus]);
 
   /**
-   * Handle connection errors with exponential backoff
-   * REQ-FE-742: Reconnection with exponential backoff, max 5 retries
-   */
-  const handleReconnect = useCallback(() => {
-    if (retryCountRef.current >= maxRetries) {
-      setTeamSocketStatus("error");
-      console.error(
-        "[useTeamMemoSocket] Max reconnection attempts reached"
-      );
-      return;
-    }
-
-    const delay = Math.pow(2, retryCountRef.current) * 1000; // Exponential backoff
-    retryCountRef.current += 1;
-
-    setTimeout(() => {
-      connect();
-    }, delay);
-  }, [connect, setTeamSocketStatus]);
-
-  /**
    * Connection lifecycle: connect on mount, disconnect on unmount
    * REQ-FE-742: Connect on component mount, disconnect on unmount
    */
@@ -158,10 +90,6 @@ export function useTeamMemoSocket(teamId: string): UseTeamMemoSocketReturn {
     return () => {
       cleanup?.();
       setTeamSocketStatus("disconnected");
-      if (wsRef.current) {
-        wsRef.current.close();
-        wsRef.current = null;
-      }
     };
   }, [teamId, connect, setTeamSocketStatus]);
 

@@ -4,6 +4,7 @@
  * REQ-FE-722: Email-based member invitation
  */
 
+/* eslint-disable @typescript-eslint/no-deprecated */
 "use client";
 
 import { useState, useEffect } from "react";
@@ -112,7 +113,7 @@ export function InviteMemberModal({
                 type="email"
                 placeholder="Enter email address"
                 value={email}
-                onChange={(e) => handleEmailChange(e.target.value)}
+                onChange={(e) => { handleEmailChange(e.target.value); }}
                 aria-invalid={!!error}
                 aria-describedby={error ? "email-error" : undefined}
               />

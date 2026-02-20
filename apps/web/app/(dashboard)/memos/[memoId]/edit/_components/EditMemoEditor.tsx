@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * EditMemoEditor Client Component
  * REQ-FE-765: Interactive editor for editing existing memos
@@ -66,7 +67,7 @@ export function EditMemoEditor() {
     clearDraft,
     restoreDraft,
   } = useAutoSaveDraft({
-    userId: user?.id || "",
+    userId: user?.id ?? "",
     memoId,
     title,
     content,
@@ -155,7 +156,7 @@ export function EditMemoEditor() {
       onSuccess: () => {
         toast.success("Memo deleted");
         clearDraft();
-        router.push("/memos");
+        router.push("/memos" as any);
       },
       onError: (error) => {
         toast.error("Failed to delete memo");
@@ -174,7 +175,7 @@ export function EditMemoEditor() {
       );
       if (!confirmed) return;
     }
-    router.push(`/memos/${memoId}`);
+    router.push(`/memos/${memoId}` as any);
   };
 
   // Show loading state
@@ -197,7 +198,7 @@ export function EditMemoEditor() {
           <p className="text-[var(--color-muted-foreground)] mb-6">
             The memo you're looking for doesn't exist or you don't have access to it.
           </p>
-          <Button onClick={() => router.push("/memos")}>
+          <Button onClick={() => { router.push("/memos" as any); }}>
             Back to Memos
           </Button>
         </div>
@@ -208,7 +209,7 @@ export function EditMemoEditor() {
   // Check if user is author
   const isAuthor = memoData.memo.authorId === user?.id;
   if (!isAuthor) {
-    router.push(`/memos/${memoId}`);
+    router.push(`/memos/${memoId}` as any);
     return null;
   }
 
@@ -245,7 +246,7 @@ export function EditMemoEditor() {
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => setShowDeleteDialog(true)}
+            onClick={() => { setShowDeleteDialog(true); }}
             className="text-[var(--color-destructive)]"
             aria-label="Delete memo"
           >
@@ -272,8 +273,8 @@ export function EditMemoEditor() {
           title,
           content,
           tags,
-          materialId: materialId || undefined,
-          anchorId: anchorId || undefined,
+          materialId: materialId ?? undefined,
+          anchorId: anchorId ?? undefined,
           visibility: memoData.memo.visibility,
         }}
         onSubmit={handleSubmit}

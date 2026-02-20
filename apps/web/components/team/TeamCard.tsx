@@ -4,6 +4,7 @@
  * REQ-FE-713: Displays team information with member actions
  */
 
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 "use client";
 
 import { Avatar, AvatarFallback } from "~/components/ui/avatar";

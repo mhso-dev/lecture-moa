@@ -4,6 +4,7 @@
  * REQ-FE-715, REQ-FE-716: Form fields with React Hook Form + Zod validation
  */
 
+/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
 "use client";
 
 import { useState } from "react";
@@ -33,7 +34,7 @@ import {
 interface TeamCreationFormProps {
   onSubmit: (data: CreateTeamType) => void;
   isSubmitting: boolean;
-  courses?: Array<{ id: string; name: string }>;
+  courses?: { id: string; name: string }[];
 }
 
 /**
@@ -147,7 +148,7 @@ export function TeamCreationForm({
                   min={2}
                   max={100}
                   data-testid="max-members-input"
-                  onChange={(e) => field.onChange(parseInt(e.target.value, 10))}
+                  onChange={(e) => { field.onChange(parseInt(e.target.value, 10)); }}
                 />
               </FormControl>
               <FormDescription>

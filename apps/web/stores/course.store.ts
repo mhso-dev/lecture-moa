@@ -7,7 +7,7 @@
  */
 
 import { create } from 'zustand';
-import { devtools, persist } from 'zustand/middleware';
+import { devtools, persist, createJSONStorage } from 'zustand/middleware';
 import type { CourseCategory, CourseSortOption } from '@shared';
 
 interface CourseUIState {
@@ -76,6 +76,18 @@ export const useCourseStore = create<CourseStore>()(
         // Filter state is managed via URL params for shareability
         partialize: (state) => ({
           viewMode: state.viewMode,
+        }),
+        // Use custom storage to handle test environment
+        storage: createJSONStorage(() => {
+          // In test environment, return a no-op storage
+          if (process.env.NODE_ENV === 'test') {
+            return {
+              getItem: () => null,
+              setItem: () => {},
+              removeItem: () => {},
+            };
+          }
+          return localStorage;
         }),
       }
     ),

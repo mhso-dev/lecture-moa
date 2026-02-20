@@ -20,7 +20,6 @@ import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { Badge } from "~/components/ui/badge";
-import { Checkbox } from "~/components/ui/checkbox";
 import { Switch } from "~/components/ui/switch";
 import {
   Form,
@@ -31,15 +30,15 @@ import {
   FormLabel,
   FormMessage,
 } from "~/components/ui/form";
-import { EditorWithPreview } from "~/components/markdown/EditorWithPreview";
+import EditorWithPreview from "~/components/markdown/EditorWithPreview";
 import { MaterialLinkDialog } from "./MaterialLinkDialog";
 import { cn } from "~/lib/utils";
 import { useMemoEditorStore } from "~/stores/memo.store";
-import { createMemoSchema } from "@shared/validators/memo.schema";
+import { CreateMemoSchema } from "@shared/validators/memo.schema";
 import type { MemoLinkTarget } from "@shared/types/memo.types";
 import type * as z from "zod";
 
-type MemoFormValues = z.infer<typeof createMemoSchema>;
+type MemoFormValues = z.infer<typeof CreateMemoSchema>;
 
 /**
  * Props for MemoEditorWrapper component
@@ -109,10 +108,10 @@ export function MemoEditorWrapper({
     initialValues?.materialId
       ? {
           materialId: initialValues.materialId,
-          materialTitle: initialValues.materialTitle || "Material",
-          courseId: initialValues.courseId || "",
-          anchorId: initialValues.anchorId || null,
-          anchorText: initialValues.anchorText || null,
+          materialTitle: initialValues.materialTitle ?? "Material",
+          courseId: initialValues.courseId ?? "",
+          anchorId: initialValues.anchorId ?? null,
+          anchorText: initialValues.anchorText ?? null,
         }
       : null
   );
@@ -121,15 +120,15 @@ export function MemoEditorWrapper({
 
   // Initialize form with react-hook-form + Zod
   const form = useForm<MemoFormValues>({
-    resolver: zodResolver(createMemoSchema),
+    resolver: zodResolver(CreateMemoSchema),
     defaultValues: {
-      title: initialValues?.title || "",
-      content: initialValues?.content || "",
-      tags: initialValues?.tags || [],
-      materialId: initialValues?.materialId || undefined,
-      anchorId: initialValues?.anchorId || undefined,
-      teamId: teamId || initialValues?.teamId || undefined,
-      visibility: teamId ? "team" : (initialValues?.visibility || "personal"),
+      title: initialValues?.title ?? "",
+      content: initialValues?.content ?? "",
+      tags: initialValues?.tags ?? [],
+      materialId: initialValues?.materialId ?? undefined,
+      anchorId: initialValues?.anchorId ?? undefined,
+      teamId: teamId ?? initialValues?.teamId ?? undefined,
+      visibility: teamId ? "team" : (initialValues?.visibility ?? "personal"),
     },
   });
 
@@ -157,7 +156,7 @@ export function MemoEditorWrapper({
     const finalValues: MemoFormValues = {
       ...values,
       materialId: linkTarget?.materialId,
-      anchorId: linkTarget?.anchorId,
+      anchorId: linkTarget?.anchorId ?? undefined,
     };
 
     onSubmit(finalValues);
@@ -174,10 +173,10 @@ export function MemoEditorWrapper({
     if (
       normalizedTag &&
       !tags?.includes(normalizedTag) &&
-      (tags?.length || 0) < 10 &&
+      (tags?.length ?? 0) < 10 &&
       normalizedTag.length <= 30
     ) {
-      setValue("tags", [...(tags || []), normalizedTag]);
+      setValue("tags", [...(tags ?? []), normalizedTag]);
       setTagInput("");
     }
   };
@@ -185,7 +184,7 @@ export function MemoEditorWrapper({
   const handleRemoveTag = (tagToRemove: string) => {
     setValue(
       "tags",
-      tags?.filter((tag) => tag !== tagToRemove) || []
+      tags?.filter((tag: string) => tag !== tagToRemove) ?? []
     );
   };
 
@@ -203,7 +202,7 @@ export function MemoEditorWrapper({
         anchorText: null, // Would be fetched from TOC in production
       });
       setValue("materialId", materialId);
-      setValue("anchorId", anchorId || undefined);
+      setValue("anchorId", anchorId ?? undefined);
     }
     setShowMaterialDialog(false);
   };
@@ -263,7 +262,7 @@ export function MemoEditorWrapper({
               <Input
                 placeholder="Add a tag..."
                 value={tagInput}
-                onChange={(e) => setTagInput(e.target.value)}
+                onChange={(e) => { setTagInput(e.target.value); }}
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
                     e.preventDefault();
@@ -271,26 +270,26 @@ export function MemoEditorWrapper({
                   }
                 }}
                 maxLength={30}
-                disabled={(tags?.length || 0) >= 10}
+                disabled={(tags?.length ?? 0) >= 10}
               />
               <Button
                 type="button"
                 variant="outline"
                 size="icon"
                 onClick={handleAddTag}
-                disabled={(tags?.length || 0) >= 10}
+                disabled={(tags?.length ?? 0) >= 10}
               >
                 <Plus className="h-4 w-4" />
               </Button>
             </div>
             {tags && tags.length > 0 && (
               <div className="flex flex-wrap gap-1.5">
-                {tags.map((tag) => (
+                {tags.map((tag: string) => (
                   <Badge key={tag} variant="secondary" className="gap-1 pr-1">
                     {tag}
                     <button
                       type="button"
-                      onClick={() => handleRemoveTag(tag)}
+                      onClick={() => { handleRemoveTag(tag); }}
                       className="ml-1 rounded-full p-0.5 hover:bg-[var(--color-muted)]"
                     >
                       <X className="h-3 w-3" />
@@ -300,7 +299,7 @@ export function MemoEditorWrapper({
               </div>
             )}
             <FormDescription>
-              {(tags?.length || 0)}/10 tags • Each tag max 30 characters
+              {(tags?.length ?? 0)}/10 tags • Each tag max 30 characters
             </FormDescription>
           </div>
 
@@ -324,7 +323,7 @@ export function MemoEditorWrapper({
                     type="button"
                     variant="ghost"
                     size="sm"
-                    onClick={() => setShowMaterialDialog(true)}
+                    onClick={() => { setShowMaterialDialog(true); }}
                   >
                     Change
                   </Button>
@@ -342,7 +341,7 @@ export function MemoEditorWrapper({
               <Button
                 type="button"
                 variant="outline"
-                onClick={() => setShowMaterialDialog(true)}
+                onClick={() => { setShowMaterialDialog(true); }}
                 className="w-full"
               >
                 <Plus className="h-4 w-4 mr-2" />
@@ -358,7 +357,7 @@ export function MemoEditorWrapper({
                 <Label>Share with Team</Label>
                 <p className="text-sm text-[var(--color-muted-foreground)]">
                   {teamToggle
-                    ? `This memo will be shared with ${teamName || "your team"}`
+                    ? `This memo will be shared with ${teamName ?? "your team"}`
                     : "Keep this memo private to you"}
                 </p>
               </div>
@@ -382,7 +381,7 @@ export function MemoEditorWrapper({
                     height={500}
                     placeholder="Start writing your memo..."
                     showPreview={true}
-                    initialTab="write"
+                    initialTab="editor"
                   />
                 </FormControl>
                 <FormMessage />

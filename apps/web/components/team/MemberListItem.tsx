@@ -4,6 +4,7 @@
  * REQ-FE-722: Member display with role and actions
  */
 
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 "use client";
 
 import { useState } from "react";
@@ -145,7 +146,7 @@ export function MemberListItem({
             <DropdownMenuContent>
               {member.role === "member" && (
                 <DropdownMenuItem
-                  onClick={() => handleRoleChange("leader")}
+                  onClick={() => { handleRoleChange("leader"); }}
                   role="option"
                 >
                   Promote to Leader
@@ -153,7 +154,7 @@ export function MemberListItem({
               )}
               {member.role === "leader" && (
                 <DropdownMenuItem
-                  onClick={() => handleRoleChange("member")}
+                  onClick={() => { handleRoleChange("member"); }}
                   role="option"
                 >
                   Demote to Member
@@ -166,7 +167,7 @@ export function MemberListItem({
           <Button
             variant="destructive"
             size="sm"
-            onClick={() => setShowRemoveDialog(true)}
+            onClick={() => { setShowRemoveDialog(true); }}
             disabled={isSelf || removeMember.isPending}
             aria-label="Remove member"
           >

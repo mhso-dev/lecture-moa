@@ -8,7 +8,7 @@
 
 import { useEffect, useCallback } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
-import { useTeamStore, useTeamActiveTab } from "~/stores/team.store";
+import { useTeamStore, useTeamActiveTab, type TeamDetailTab } from "~/stores/team.store";
 
 // Hash to tab mapping
 const HASH_TO_TAB: Record<string, TeamDetailTab> = {
@@ -36,7 +36,7 @@ interface TeamDetailTabsProps {
  * Tabs: Members | Shared Materials | Team Memos | Activity
  * Default: Members
  */
-export function TeamDetailTabs({ teamId }: TeamDetailTabsProps) {
+export function TeamDetailTabs({ teamId: _teamId }: TeamDetailTabsProps) {
   const activeTab = useTeamActiveTab();
   const setActiveTab = useTeamStore((state) => state.setActiveTab);
 
@@ -60,7 +60,7 @@ export function TeamDetailTabs({ teamId }: TeamDetailTabsProps) {
     };
 
     window.addEventListener("hashchange", handleHashChange);
-    return () => window.removeEventListener("hashchange", handleHashChange);
+    return () => { window.removeEventListener("hashchange", handleHashChange); };
   }, [setActiveTab]);
 
   const handleTabChange = useCallback(

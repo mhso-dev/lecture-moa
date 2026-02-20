@@ -107,7 +107,7 @@ export function TeamListContent({
                 team={team}
                 currentUserId={currentUserId}
                 isMember={true}
-                onView={() => handleViewTeam(team.id)}
+                onView={() => { handleViewTeam(team.id); }}
               />
             ))}
           </div>
@@ -124,7 +124,7 @@ export function TeamListContent({
             type="search"
             placeholder="Search teams..."
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={(e) => { setSearchQuery(e.target.value); }}
             aria-label="Search teams"
             className="max-w-md"
           />
@@ -153,7 +153,7 @@ export function TeamListContent({
               <p className="text-muted-foreground mb-4">
                 No teams found matching your search.
               </p>
-              <Button variant="outline" onClick={() => setSearchQuery("")}>
+              <Button variant="outline" onClick={() => { setSearchQuery(""); }}>
                 Clear Search
               </Button>
             </CardContent>
@@ -169,8 +169,8 @@ export function TeamListContent({
                   team={team}
                   currentUserId={currentUserId}
                   isMember={isMember}
-                  onJoin={() => handleJoinTeam(team.id)}
-                  onView={() => handleViewTeam(team.id)}
+                  onJoin={() => { handleJoinTeam(team.id); }}
+                  onView={() => { handleViewTeam(team.id); }}
                 />
               );
             })}

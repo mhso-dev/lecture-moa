@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+/* eslint-disable @typescript-eslint/no-floating-promises */
 "use client";
 
 import { useState } from "react";
@@ -128,7 +130,7 @@ export function MaterialCard({
   };
 
   // Truncate excerpt
-  const truncateExcerpt = (text: string, maxLength: number = 150) => {
+  const truncateExcerpt = (text: string, maxLength = 150) => {
     if (text.length <= maxLength) return text;
     return text.slice(0, maxLength).trim() + "...";
   };
@@ -205,7 +207,7 @@ export function MaterialCard({
                     <DropdownMenuItem asChild>
                       <Link
                         href={`/courses/${courseId}/materials/${material.id}/edit`}
-                        onClick={(e) => e.stopPropagation()}
+                        onClick={(e) => { e.stopPropagation(); }}
                       >
                         <Pencil className="mr-2 h-4 w-4" />
                         Edit
@@ -334,7 +336,7 @@ export function MaterialCard({
           <DialogFooter>
             <Button
               variant="outline"
-              onClick={() => setIsDeleteDialogOpen(false)}
+              onClick={() => { setIsDeleteDialogOpen(false); }}
               disabled={isDeleting}
             >
               Cancel

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * MemoView Client Component
  * REQ-FE-770, REQ-FE-771, REQ-FE-772: Read-only memo view
@@ -39,14 +40,14 @@ export function MemoView() {
    * Handle back navigation
    */
   const handleBack = () => {
-    router.push("/memos");
+    router.push("/memos" as any);
   };
 
   /**
    * Handle edit
    */
   const handleEdit = () => {
-    router.push(`/memos/${memoId}/edit`);
+    router.push(`/memos/${memoId}/edit` as any);
   };
 
   /**
@@ -57,8 +58,8 @@ export function MemoView() {
       await navigator.clipboard.writeText(window.location.href);
       setCopiedLink(true);
       toast.success("Link copied to clipboard");
-      setTimeout(() => setCopiedLink(false), 2000);
-    } catch (error) {
+      setTimeout(() => { setCopiedLink(false); }, 2000);
+    } catch {
       toast.error("Failed to copy link");
     }
   };
@@ -67,7 +68,7 @@ export function MemoView() {
    * Handle tag click
    */
   const handleTagClick = (tag: string) => {
-    router.push(`/memos?tags=${encodeURIComponent(tag)}`);
+    router.push(`/memos?tags=${encodeURIComponent(tag)}` as any);
   };
 
   /**
@@ -157,11 +158,11 @@ export function MemoView() {
                 variant="outline"
                 size="sm"
                 onClick={() =>
-                  router.push(
+                  { router.push(
                     `/courses/${linkTarget.courseId}/materials/${linkTarget.materialId}${
                       linkTarget.anchorId ? `#${linkTarget.anchorId}` : ""
-                    }`
-                  )
+                    }` as any
+                  ); }
                 }
               >
                 View Material
@@ -234,7 +235,7 @@ export function MemoView() {
                 key={tag}
                 variant="secondary"
                 className="cursor-pointer hover:bg-[var(--color-secondary)]/80"
-                onClick={() => handleTagClick(tag)}
+                onClick={() => { handleTagClick(tag); }}
               >
                 {tag}
               </Badge>

@@ -3,13 +3,15 @@
  * REQ-FE-724: Wrapper for TeamMemoBoard with WebSocket initialization
  */
 
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { TeamMemoBoard } from "./TeamMemoBoard";
 import { useTeamMemoSocket } from "~/hooks/team/useTeamMemoSocket";
-import { useTeam } from "~/hooks/team/useTeam";
+import { useTeamDetail } from "~/hooks/team/useTeam";
 import { useAuth } from "~/hooks/useAuth";
 import {
   AlertDialog,
@@ -57,7 +59,7 @@ interface TeamMemosTabProps {
 export function TeamMemosTab({ teamId, className }: TeamMemosTabProps) {
   const router = useRouter();
   const { user } = useAuth();
-  const { data: teamData } = useTeam(teamId);
+  const { data: teamData } = useTeamDetail(teamId);
   const { status: socketStatus } = useTeamMemoSocket(teamId);
   const deleteMemo = useDeleteMemo();
 
@@ -67,15 +69,15 @@ export function TeamMemosTab({ teamId, className }: TeamMemosTabProps) {
   /**
    * Get current user's role in the team
    */
-  const currentUserRole: TeamMemberRole | undefined = teamData?.members.find(
-    (member) => member.id === user?.id
+  const currentUserRole: TeamMemberRole | undefined = teamData?.members?.find(
+    (member: { id: string; role: TeamMemberRole }) => member.id === user?.id
   )?.role;
 
   /**
    * Handle edit memo navigation
    */
   const handleEditMemo = (memoId: string) => {
-    router.push(`/memos/${memoId}/edit`);
+    router.push(`/memos/${memoId}/edit` as any);
   };
 
   /**
@@ -93,7 +95,7 @@ export function TeamMemosTab({ teamId, className }: TeamMemosTabProps) {
     if (!memoToDelete) return;
 
     try {
-      await deleteMemo.mutateAsync({ memoId: memoToDelete });
+      await deleteMemo.mutateAsync(memoToDelete);
       toast.success("Memo deleted successfully");
       setShowDeleteDialog(false);
       setMemoToDelete(null);

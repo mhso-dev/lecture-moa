@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * MemoListItem Component
  * REQ-FE-754: Memo item for personal memo list
@@ -95,7 +96,7 @@ export function MemoListItem({
    * Handle card click - navigate to memo detail
    */
   const handleCardClick = () => {
-    router.push(`/memos/${memo.id}`);
+    router.push(`/memos/${memo.id}` as any);
   };
 
   /**
@@ -150,8 +151,8 @@ export function MemoListItem({
           className
         )}
         onClick={handleCardClick}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        onMouseEnter={() => { setIsHovered(true); }}
+        onMouseLeave={() => { setIsHovered(false); }}
       >
         <CardHeader className="pb-2">
           <div className="flex items-start justify-between">
@@ -169,7 +170,7 @@ export function MemoListItem({
 
             {/* Hover actions - only for author */}
             {isAuthor && isHovered && (
-              <div className="flex gap-1 ml-2" onClick={(e) => e.stopPropagation()}>
+              <div className="flex gap-1 ml-2" onClick={(e) => { e.stopPropagation(); }}>
                 <Button
                   variant="ghost"
                   size="icon"

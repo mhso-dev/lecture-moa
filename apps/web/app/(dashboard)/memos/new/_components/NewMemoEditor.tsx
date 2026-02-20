@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * NewMemoEditor Client Component
  * REQ-FE-760: Interactive editor for new memos
@@ -49,7 +50,7 @@ export function NewMemoEditor() {
     clearDraft,
     restoreDraft,
   } = useAutoSaveDraft({
-    userId: user?.id || "",
+    userId: user?.id ?? "",
     memoId: "new",
     title,
     content,
@@ -106,7 +107,7 @@ export function NewMemoEditor() {
           clearDraft();
           setDirty(false);
           setLastSaved(new Date());
-          router.push(`/memos/${memo.id}`);
+          router.push(`/memos/${memo.id}` as any);
         },
         onError: (error) => {
           toast.error("Failed to create memo");
@@ -127,7 +128,7 @@ export function NewMemoEditor() {
       );
       if (!confirmed) return;
     }
-    router.push("/memos");
+    router.push("/memos" as any);
   };
 
   // Show loading if user not loaded

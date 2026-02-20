@@ -22,7 +22,7 @@
  */
 export function stripMarkdown(
   markdown: string,
-  maxLength: number = 150
+  maxLength = 150
 ): string {
   if (!markdown) return "";
 

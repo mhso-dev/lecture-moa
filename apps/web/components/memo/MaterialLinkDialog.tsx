@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 /**
  * MaterialLinkDialog Component
  * REQ-FE-766: Three-step material picker dialog
@@ -152,9 +153,6 @@ export function MaterialLinkDialog({
     ? materials.filter((m) => m.courseId === selectedCourseId)
     : [];
 
-  // Get selected material title
-  const selectedMaterial = materials.find((m) => m.id === selectedMaterialId);
-
   /**
    * Handle course selection
    */
@@ -279,7 +277,7 @@ export function MaterialLinkDialog({
                     filteredMaterials.map((material) => (
                       <button
                         key={material.id}
-                        onClick={() => handleMaterialSelect(material.id)}
+                        onClick={() => { handleMaterialSelect(material.id); }}
                         className={cn(
                           "w-full text-left px-3 py-2 rounded-md text-sm transition-colors",
                           selectedMaterialId === material.id
@@ -305,7 +303,7 @@ export function MaterialLinkDialog({
               <ScrollArea className="h-[150px] rounded-md border border-[var(--color-border)]">
                 <div className="p-2 space-y-1">
                   <button
-                    onClick={() => handleAnchorSelect(null)}
+                    onClick={() => { handleAnchorSelect(null); }}
                     className={cn(
                       "w-full text-left px-3 py-2 rounded-md text-sm transition-colors",
                       selectedAnchorId === null
@@ -318,7 +316,7 @@ export function MaterialLinkDialog({
                   {tocItems.map((item) => (
                     <button
                       key={item.id}
-                      onClick={() => handleAnchorSelect(item.id)}
+                      onClick={() => { handleAnchorSelect(item.id); }}
                       style={{ paddingLeft: `${12 + (item.level - 2) * 16}px` }}
                       className={cn(
                         "w-full text-left px-3 py-2 rounded-md text-sm transition-colors",
@@ -343,7 +341,7 @@ export function MaterialLinkDialog({
               Clear Link
             </Button>
           )}
-          <Button variant="outline" onClick={() => onOpenChange(false)}>
+          <Button variant="outline" onClick={() => { onOpenChange(false); }}>
             Cancel
           </Button>
           <Button onClick={handleLink} disabled={!selectedMaterialId}>

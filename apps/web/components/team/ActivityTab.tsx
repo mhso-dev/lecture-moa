@@ -4,6 +4,7 @@
  * REQ-FE-725: Team activity feed with pagination
  */
 
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 "use client";
 
 import { useState } from "react";

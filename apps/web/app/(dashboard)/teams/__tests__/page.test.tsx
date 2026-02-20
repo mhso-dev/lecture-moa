@@ -4,6 +4,14 @@
  * REQ-FE-710, REQ-FE-711, REQ-FE-712: Team list page with My Teams and Browse sections
  */
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
@@ -122,7 +130,7 @@ function createWrapper() {
 // Mock the TeamListPageContent component for initial tests
 // We'll implement the actual component in GREEN phase
 vi.mock("~/components/team/TeamListContent", () => ({
-  TeamListContent: vi.fn(({ myTeams, availableTeams, isLoading, searchQuery, setSearchQuery }) => (
+  TeamListContent: vi.fn(({ myTeams, availableTeams, isLoading, searchQuery, setSearchQuery }: any) => (
     <div data-testid="team-list-content">
       <h1>Teams</h1>
       <a href="/teams/new">Create Team</a>
@@ -205,8 +213,12 @@ describe("TeamListPage", () => {
         data: [],
         isLoading: false,
         isError: false,
+        isPending: false,
+        isLoadingError: false,
+        isRefetchError: false,
+        error: null,
         refetch: vi.fn(),
-      });
+      } as any);
       vi.mocked(useTeamSearch).mockReturnValue({
         teams: [],
         isLoading: false,
@@ -227,8 +239,12 @@ describe("TeamListPage", () => {
         data: [],
         isLoading: false,
         isError: false,
+        isPending: false,
+        isLoadingError: false,
+        isRefetchError: false,
+        error: null,
         refetch: vi.fn(),
-      });
+      } as any);
       vi.mocked(useTeamSearch).mockReturnValue({
         teams: [],
         isLoading: false,
@@ -250,8 +266,12 @@ describe("TeamListPage", () => {
         data: [],
         isLoading: false,
         isError: false,
+        isPending: false,
+        isLoadingError: false,
+        isRefetchError: false,
+        error: null,
         refetch: vi.fn(),
-      });
+      } as any);
       vi.mocked(useTeamSearch).mockReturnValue({
         teams: [],
         isLoading: false,
@@ -274,8 +294,12 @@ describe("TeamListPage", () => {
         data: mockMyTeams,
         isLoading: false,
         isError: false,
+        isPending: false,
+        isLoadingError: false,
+        isRefetchError: false,
+        error: null,
         refetch: vi.fn(),
-      });
+      } as any);
       vi.mocked(useTeamSearch).mockReturnValue({
         teams: [],
         isLoading: false,
@@ -296,8 +320,12 @@ describe("TeamListPage", () => {
         data: [],
         isLoading: false,
         isError: false,
+        isPending: false,
+        isLoadingError: false,
+        isRefetchError: false,
+        error: null,
         refetch: vi.fn(),
-      });
+      } as any);
       vi.mocked(useTeamSearch).mockReturnValue({
         teams: [],
         isLoading: false,
@@ -319,8 +347,12 @@ describe("TeamListPage", () => {
         data: undefined,
         isLoading: true,
         isError: false,
+        isPending: true,
+        isLoadingError: false,
+        isRefetchError: false,
+        error: null,
         refetch: vi.fn(),
-      });
+      } as any);
       vi.mocked(useTeamSearch).mockReturnValue({
         teams: [],
         isLoading: false,
@@ -342,8 +374,12 @@ describe("TeamListPage", () => {
         data: mockMyTeams,
         isLoading: false,
         isError: false,
+        isPending: false,
+        isLoadingError: false,
+        isRefetchError: false,
+        error: null,
         refetch: vi.fn(),
-      });
+      } as any);
       vi.mocked(useTeamSearch).mockReturnValue({
         teams: [],
         isLoading: false,
@@ -367,8 +403,12 @@ describe("TeamListPage", () => {
         data: [],
         isLoading: false,
         isError: false,
+        isPending: false,
+        isLoadingError: false,
+        isRefetchError: false,
+        error: null,
         refetch: vi.fn(),
-      });
+      } as any);
       vi.mocked(useTeamSearch).mockReturnValue({
         teams: [],
         isLoading: false,
@@ -390,8 +430,12 @@ describe("TeamListPage", () => {
         data: [],
         isLoading: false,
         isError: false,
+        isPending: false,
+        isLoadingError: false,
+        isRefetchError: false,
+        error: null,
         refetch: vi.fn(),
-      });
+      } as any);
       vi.mocked(useTeamSearch).mockReturnValue({
         teams: mockAvailableTeams,
         isLoading: false,
@@ -412,8 +456,12 @@ describe("TeamListPage", () => {
         data: [],
         isLoading: false,
         isError: false,
+        isPending: false,
+        isLoadingError: false,
+        isRefetchError: false,
+        error: null,
         refetch: vi.fn(),
-      });
+      } as any);
       vi.mocked(useTeamSearch).mockReturnValue({
         teams: [],
         isLoading: false,
@@ -437,8 +485,12 @@ describe("TeamListPage", () => {
         data: [],
         isLoading: false,
         isError: false,
+        isPending: false,
+        isLoadingError: false,
+        isRefetchError: false,
+        error: null,
         refetch: vi.fn(),
-      });
+      } as any);
       vi.mocked(useTeamSearch).mockReturnValue({
         teams: mockAvailableTeams,
         isLoading: false,
@@ -458,8 +510,12 @@ describe("TeamListPage", () => {
         data: mockMyTeams,
         isLoading: false,
         isError: false,
+        isPending: false,
+        isLoadingError: false,
+        isRefetchError: false,
+        error: null,
         refetch: vi.fn(),
-      });
+      } as any);
       // Available teams includes a team user is already member of
       vi.mocked(useTeamSearch).mockReturnValue({
         teams: mockMyTeams,
@@ -482,22 +538,26 @@ describe("TeamListPage", () => {
         ...mockAvailableTeams[0],
         memberCount: 10,
         maxMembers: 10,
-      };
+      } as const;
 
       vi.mocked(useMyTeams).mockReturnValue({
         data: [],
         isLoading: false,
         isError: false,
+        isPending: false,
+        isLoadingError: false,
+        isRefetchError: false,
+        error: null,
         refetch: vi.fn(),
-      });
+      } as any);
       vi.mocked(useTeamSearch).mockReturnValue({
-        teams: [fullTeam],
+        teams: [fullTeam] as any,
         isLoading: false,
         searchQuery: "",
         setSearchQuery: vi.fn(),
       });
 
-      render(<TeamListContent myTeams={[]} availableTeams={[fullTeam]} isLoading={false} searchQuery="" setSearchQuery={vi.fn()} />, {
+      render(<TeamListContent myTeams={[]} availableTeams={[fullTeam] as any} isLoading={false} searchQuery="" setSearchQuery={vi.fn()} />, {
         wrapper: createWrapper(),
       });
 
@@ -510,8 +570,12 @@ describe("TeamListPage", () => {
         data: [],
         isLoading: false,
         isError: false,
+        isPending: false,
+        isLoadingError: false,
+        isRefetchError: false,
+        error: null,
         refetch: vi.fn(),
-      });
+      } as any);
       vi.mocked(useTeamSearch).mockReturnValue({
         teams: [],
         isLoading: false,
@@ -533,8 +597,12 @@ describe("TeamListPage", () => {
         data: mockMyTeams,
         isLoading: false,
         isError: false,
+        isPending: false,
+        isLoadingError: false,
+        isRefetchError: false,
+        error: null,
         refetch: vi.fn(),
-      });
+      } as any);
       vi.mocked(useTeamSearch).mockReturnValue({
         teams: [],
         isLoading: false,
@@ -547,7 +615,7 @@ describe("TeamListPage", () => {
       });
 
       const viewButtons = screen.getAllByRole("button", { name: /view/i });
-      await userEvent.click(viewButtons[0]);
+      await userEvent.click(viewButtons[0]!);
 
       expect(mockPush).toHaveBeenCalledWith("/teams/team-1");
     });

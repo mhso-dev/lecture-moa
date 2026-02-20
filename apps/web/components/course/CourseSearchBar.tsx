@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * CourseSearchBar Component
  * TASK-019: Search input with 300ms debounce
@@ -65,7 +66,7 @@ export function CourseSearchBar({
         } else {
           params.delete("q");
         }
-        router.replace(`${pathname}?${params.toString()}`);
+        router.replace(`${pathname}?${params.toString()}` as any);
       }, DEBOUNCE_MS);
     },
     [onSearchChange, router, searchParams, pathname]
@@ -86,7 +87,7 @@ export function CourseSearchBar({
     // Update URL params
     const params = new URLSearchParams(searchParams.toString());
     params.delete("q");
-    router.replace(`${pathname}?${params.toString()}`);
+    router.replace(`${pathname}?${params.toString()}` as any);
 
     // Focus back on input
     inputRef.current?.focus();
