@@ -45,7 +45,7 @@ function EditorLoading({ height }: { height?: number | string }) {
   return (
     <div
       className="flex items-center justify-center border border-[var(--color-border)] rounded-[var(--radius-md)] bg-[var(--color-background)]"
-      style={{ height: typeof height === "number" ? `${height.toString()}px` : height }}
+      style={{ height: typeof height === "number" ? `${String(height)}px` : height }}
     >
       <Loader2 className="h-6 w-6 animate-spin text-[var(--color-muted-foreground)]" />
     </div>
@@ -101,7 +101,7 @@ const MarkdownEditor = forwardRef<MarkdownEditorRef, MarkdownEditorProps>(
 
     // Calculate word count
     useEffect(() => {
-      const text = value || "";
+      const text = value;
       const words = text.trim().split(/\s+/).filter((w) => w.length > 0);
       setWordCount(words.length);
     }, [value]);

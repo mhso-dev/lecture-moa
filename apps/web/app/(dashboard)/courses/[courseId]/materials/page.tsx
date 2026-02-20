@@ -134,7 +134,7 @@ export function MaterialsPageClient({
   // biome-ignore lint/correctness/useExhaustiveDependencies: Only trigger on debounced value change
   useMemo(() => {
     updateParams({ search: debouncedSearch || null });
-  }, [debouncedSearch]);
+  }, [debouncedSearch, updateParams]);
 
   // Handle tag toggle
   const handleTagToggle = (tag: string) => {

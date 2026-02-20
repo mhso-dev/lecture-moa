@@ -205,8 +205,8 @@ export function QaSelectionTrigger({
         className
       )}
       style={{
-        top: `${buttonPosition.top.toString()}px`,
-        left: `${buttonPosition.left.toString()}px`,
+        top: `${String(buttonPosition.top)}px`,
+        left: `${String(buttonPosition.left)}px`,
       }}
       onClick={handleClick}
       aria-label="Ask a question about the selected text"

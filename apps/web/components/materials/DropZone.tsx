@@ -1,8 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import { useDropzone } from "react-dropzone";
-import type { FileRejection, FileError } from "react-dropzone";
+import { useDropzone, type FileRejection, type FileError } from "react-dropzone";
 import { Upload, X, AlertCircle, FileText } from "lucide-react";
 import { cn } from "~/lib/utils";
 

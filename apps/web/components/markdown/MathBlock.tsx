@@ -45,7 +45,7 @@ export function MathBlock({ math, inline = false, className }: MathBlockProps) {
         // Dynamically import katex to avoid SSR issues
         const katex = (await import("katex")).default;
 
-        const html = katex.renderToString(math, {
+        const html: string = katex.renderToString(math, {
           displayMode: !inline,
           throwOnError: false,
           strict: false,

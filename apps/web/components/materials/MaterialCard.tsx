@@ -108,7 +108,7 @@ export function MaterialCard({
     } else if (diffDays === 1) {
       return "Yesterday";
     } else if (diffDays < 7) {
-      return `${diffDays.toString()} days ago`;
+      return `${String(diffDays)} days ago`;
     } else {
       return date.toLocaleDateString("ko-KR", {
         month: "short",
@@ -205,7 +205,7 @@ export function MaterialCard({
                     <DropdownMenuItem asChild>
                       <Link
                         href={`/courses/${courseId}/materials/${material.id}/edit`}
-                        onClick={(e) => { e.stopPropagation() }}
+                        onClick={(e) => { e.stopPropagation(); }}
                       >
                         <Pencil className="mr-2 h-4 w-4" />
                         Edit
@@ -334,7 +334,7 @@ export function MaterialCard({
           <DialogFooter>
             <Button
               variant="outline"
-              onClick={() => { setIsDeleteDialogOpen(false) }}
+              onClick={() => { setIsDeleteDialogOpen(false); }}
               disabled={isDeleting}
             >
               Cancel

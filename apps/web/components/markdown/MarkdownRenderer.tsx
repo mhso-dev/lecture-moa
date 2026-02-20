@@ -13,7 +13,7 @@
  * 6. rehypeSanitize - XSS prevention (custom schema)
  */
 
-import ReactMarkdown from "react-markdown";
+import ReactMarkdown, { type ExtraProps } from "react-markdown";
 import type { ReactNode, HTMLAttributes, ClassAttributes } from "react";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
@@ -84,7 +84,7 @@ function generateUniqueSlug(text: string): string {
   const count = slugCache.get(baseSlug) ?? 0;
   slugCache.set(baseSlug, count + 1);
 
-  return count === 0 ? baseSlug : `${baseSlug}-${count.toString()}`;
+  return count === 0 ? baseSlug : `${baseSlug}-${String(count)}`;
 }
 
 /**
@@ -105,7 +105,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
 
   const components: Components = {
     // Code blocks
-    code({ className: codeClassName, children, ...props }: ClassAttributes<HTMLElement> & HTMLAttributes<HTMLElement> & { node?: unknown }) {
+    code({ className: codeClassName, children, node: _node, ...props }: React.ClassAttributes<HTMLElement> & React.HTMLAttributes<HTMLElement> & ExtraProps) {
       const match = /language-(\w+)/.exec(codeClassName ?? "");
       const language = match ? match[1] : undefined;
       const codeString = extractTextFromChildren(children).replace(/\n$/, "");
@@ -125,7 +125,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
     },
 
     // Headings with anchors
-    h2({ children, ...props }: HTMLAttributes<HTMLHeadingElement>) {
+    h2({ children, ...props }: React.ClassAttributes<HTMLHeadingElement> & React.HTMLAttributes<HTMLHeadingElement> & ExtraProps) {
       const text = extractTextFromChildren(children);
       const id = generateUniqueSlug(text);
       return (
@@ -135,7 +135,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
       );
     },
 
-    h3({ children, ...props }: HTMLAttributes<HTMLHeadingElement>) {
+    h3({ children, ...props }: React.ClassAttributes<HTMLHeadingElement> & React.HTMLAttributes<HTMLHeadingElement> & ExtraProps) {
       const text = extractTextFromChildren(children);
       const id = generateUniqueSlug(text);
       return (
@@ -145,7 +145,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
       );
     },
 
-    h4({ children, ...props }: HTMLAttributes<HTMLHeadingElement>) {
+    h4({ children, ...props }: React.ClassAttributes<HTMLHeadingElement> & React.HTMLAttributes<HTMLHeadingElement> & ExtraProps) {
       const text = extractTextFromChildren(children);
       const id = generateUniqueSlug(text);
       return (
@@ -156,7 +156,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
     },
 
     // Images with next/image optimization
-    img({ src, alt, ...props }: HTMLAttributes<HTMLImageElement> & { src?: string; alt?: string }) {
+    img({ src, alt, ...props }: React.ClassAttributes<HTMLImageElement> & React.ImgHTMLAttributes<HTMLImageElement> & ExtraProps) {
       if (!src) return null;
 
       // Ensure src is a string
@@ -204,7 +204,6 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
     },
 
     // Callout blocks (custom node type from remark-callout)
-    // @ts-expect-error - Custom node type not in types
     callout({ calloutType, title, children }: { calloutType: string; title?: string; children?: ReactNode }) {
       return (
         <Callout type={calloutType as CalloutType} title={title}>
@@ -215,7 +214,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
 
     // Math blocks (from remark-math)
     // Inline math
-    span({ className: spanClassName, children, ...props }: HTMLAttributes<HTMLSpanElement>) {
+    span({ className: spanClassName, children, ...props }: React.ClassAttributes<HTMLSpanElement> & React.HTMLAttributes<HTMLSpanElement> & ExtraProps) {
       if (spanClassName?.includes("math-inline")) {
         const mathText = extractTextFromChildren(children);
         return <MathBlock math={mathText} inline />;
@@ -228,7 +227,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
     },
 
     // Block math
-    div({ className: divClassName, children, ...props }: HTMLAttributes<HTMLDivElement>) {
+    div({ className: divClassName, children, ...props }: React.ClassAttributes<HTMLDivElement> & React.HTMLAttributes<HTMLDivElement> & ExtraProps) {
       if (divClassName?.includes("math-display")) {
         const mathText = extractTextFromChildren(children);
         return <MathBlock math={mathText} inline={false} />;
@@ -241,7 +240,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
     },
 
     // Tables with responsive wrapper
-    table({ children, ...props }: HTMLAttributes<HTMLTableElement>) {
+    table({ children, ...props }: React.ClassAttributes<HTMLTableElement> & React.TableHTMLAttributes<HTMLTableElement> & ExtraProps) {
       return (
         <div className="my-6 overflow-x-auto">
           <table {...props}>{children}</table>
@@ -250,8 +249,8 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
     },
 
     // Links with security attributes
-    a({ href, children, ...props }: HTMLAttributes<HTMLAnchorElement> & { href?: string }) {
-      const isExternal = href?.startsWith("http://") ?? href?.startsWith("https://");
+    a({ href, children, ...props }: React.ClassAttributes<HTMLAnchorElement> & React.AnchorHTMLAttributes<HTMLAnchorElement> & ExtraProps) {
+      const isExternal = (href?.startsWith("http://") ?? false) || (href?.startsWith("https://") ?? false);
 
       return (
         <a

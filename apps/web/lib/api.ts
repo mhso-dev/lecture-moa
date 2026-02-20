@@ -19,3 +19,6 @@ export {
   toggleMaterialStatus,
   uploadMaterialImage,
 } from "./api/index";
+
+// Quiz API functions
+export * from "./api/quiz.api";
