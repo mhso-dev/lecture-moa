@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-deprecated */
-/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 'use client';
 
 /**
@@ -57,7 +56,6 @@ export function HeadingWithAnchor({
         textArea.style.left = "-9999px";
         document.body.appendChild(textArea);
         textArea.select();
-        // eslint-disable-next-line @typescript-eslint/no-deprecated
         document.execCommand("copy");
         document.body.removeChild(textArea);
       }

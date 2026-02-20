@@ -17,7 +17,7 @@ interface UseQuizTimerOptions {
 
 interface UseQuizTimerReturn {
   remainingSeconds: number | null;
-  timerStatus: TimerStatus;
+  timerStatus: TimerStatus | null;
   formattedTime: string | null;
   pauseTimer: () => void;
   resumeTimer: () => void;

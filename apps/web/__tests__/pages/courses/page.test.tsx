@@ -18,17 +18,23 @@ vi.mock("next/navigation", () => ({
   useSearchParams: vi.fn(),
 }));
 
-// Mock useSession from next-auth
-vi.mock("next-auth/react", () => ({
-  useSession: vi.fn(() => ({
-    data: {
-      user: {
-        id: "user-1",
-        role: "instructor",
-        name: "Test Instructor",
-      },
+// Mock useAuth hook (Supabase Auth)
+vi.mock("~/hooks/useAuth", () => ({
+  useAuth: vi.fn(() => ({
+    user: {
+      id: "user-1",
+      name: "Test Instructor",
+      email: "instructor@test.com",
+      role: "instructor",
     },
-    status: "authenticated",
+    isAuthenticated: true,
+    isLoading: false,
+    role: "instructor",
+    signIn: vi.fn(),
+    signInWithOAuth: vi.fn(),
+    signUp: vi.fn(),
+    signOut: vi.fn(),
+    updateUser: vi.fn(),
   })),
 }));
 

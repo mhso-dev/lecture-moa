@@ -1,8 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
 'use client';
 
 /**
@@ -19,7 +14,7 @@
  */
 
 import ReactMarkdown, { type ExtraProps } from "react-markdown";
-import type { ReactNode, HTMLAttributes, ClassAttributes } from "react";
+import type { ReactNode } from "react";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
@@ -254,13 +249,8 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
     },
 
     // Links with security attributes
-<<<<<<< HEAD
     a({ href, children, ...props }: React.ClassAttributes<HTMLAnchorElement> & React.AnchorHTMLAttributes<HTMLAnchorElement> & ExtraProps) {
       const isExternal = (href?.startsWith("http://") ?? false) || (href?.startsWith("https://") ?? false);
-=======
-    a({ href, children, ...props }) {
-      const isExternal = href?.startsWith("http://") ?? href?.startsWith("https://");
->>>>>>> feature/SPEC-FE-008
 
       return (
         <a

@@ -68,7 +68,6 @@ class ApiClient {
   private readonly defaultHeaders: Record<string, string>;
 
   constructor() {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     this.baseUrl = env.NEXT_PUBLIC_API_URL;
     this.defaultHeaders = {
       "Content-Type": "application/json",

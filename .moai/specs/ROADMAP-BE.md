@@ -15,11 +15,11 @@ Supabase 기반 백엔드 구현 로드맵. 의존성 분석 및 병렬 처리 �
 
 ### Phase 1 - 기반 (순차)
 
-- [ ] **SPEC-BE-001** Supabase 초기 설정
-  - [ ] plan: `/moai plan "Supabase 초기 설정: 프로젝트 구조 생성, 전체 DB 스키마 설계, RLS 정책 수립, Supabase CLI 연동"`
-  - [ ] run: `/moai run SPEC-BE-001`
-  - [ ] sync: `/moai sync SPEC-BE-001`
-  - [ ] main 머지 완료
+- [x] **SPEC-BE-001** Supabase 초기 설정
+  - [x] plan: `/moai plan "Supabase 초기 설정: 프로젝트 구조 생성, 전체 DB 스키마 설계, RLS 정책 수립, Supabase CLI 연동"`
+  - [x] run: `/moai run SPEC-BE-001`
+  - [x] sync: `/moai sync SPEC-BE-001`
+  - [x] main 머지 완료
 - [ ] **SPEC-BE-002** 인증 전환
   - [ ] plan: `/moai plan "인증 시스템 전환: NextAuth를 Supabase Auth로 교체, @supabase/ssr 미들웨어, 프론트엔드 인증 레이어 수정"`
   - [ ] run: `/moai run SPEC-BE-002`

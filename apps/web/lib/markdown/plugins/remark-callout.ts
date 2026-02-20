@@ -78,11 +78,7 @@ export const remarkCallout = function (): (tree: Root) => Root {
         (child) => child.type === "paragraph"
       );
 
-<<<<<<< HEAD
       if (!firstParagraph) {
-=======
-      if (!firstParagraph?.type || firstParagraph.type !== "paragraph") {
->>>>>>> feature/SPEC-FE-008
         continue;
       }
 
@@ -110,11 +106,7 @@ export const remarkCallout = function (): (tree: Root) => Root {
 
       // Remove the callout marker from the first text node
       const matchedText = match[0];
-<<<<<<< HEAD
-      const remainingText = matchedText ? textNode.value.slice(matchedText.length) : textNode.value;
-=======
       const remainingText = matchedText ? textNode.value.slice(matchedText.length) : "";
->>>>>>> feature/SPEC-FE-008
 
       // Build phrasing content
       const phrasingContent: PhrasingContent[] = [];

@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-deprecated */
-/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 'use client';
 
 /**
@@ -55,7 +54,6 @@ export function CodeBlock({ children, language, className }: CodeBlockProps) {
       textArea.focus();
       textArea.select();
 
-      // eslint-disable-next-line @typescript-eslint/no-deprecated
       const success = document.execCommand("copy");
       document.body.removeChild(textArea);
 

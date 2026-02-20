@@ -7,27 +7,27 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import type { ReactNode } from "react";
-import type { Session } from "next-auth";
+import type { User } from "@supabase/supabase-js";
 import InstructorDashboardPage from "../page";
 
-// Helper to create mock session with proper typing
-function createMockSession(overrides: {
+// Helper to create mock Supabase User
+function createMockUser(overrides: {
   id: string;
   name: string;
   email: string;
   role: "student" | "instructor" | "admin";
-}): Session {
+}): User {
   return {
-    user: {
-      id: overrides.id,
+    id: overrides.id,
+    email: overrides.email,
+    app_metadata: {},
+    user_metadata: {
       name: overrides.name,
-      email: overrides.email,
       role: overrides.role,
-      image: null,
-    } as Session["user"],
-    expires: new Date(Date.now() + 86400000).toISOString(),
-    accessToken: "test-token",
-  };
+    },
+    aud: "authenticated",
+    created_at: new Date().toISOString(),
+  } as User;
 }
 
 // Mock next/navigation
@@ -40,11 +40,11 @@ vi.mock("next/navigation", () => ({
   },
 }));
 
-// Mock auth with proper typing
-const mockAuth = vi.fn<() => Promise<Session | null>>();
+// Mock getUser with proper typing
+const mockGetUser = vi.fn<() => Promise<User | null>>();
 vi.mock("~/lib/auth", () => ({
-  get auth() {
-    return mockAuth;
+  get getUser() {
+    return mockGetUser;
   },
 }));
 
@@ -97,8 +97,8 @@ describe("InstructorDashboardPage", () => {
 
   describe("role protection", () => {
     it("redirects to student dashboard when user is not instructor", async () => {
-      mockAuth.mockResolvedValueOnce(
-        createMockSession({
+      mockGetUser.mockResolvedValueOnce(
+        createMockUser({
           id: "1",
           name: "Student",
           email: "student@test.com",
@@ -116,7 +116,7 @@ describe("InstructorDashboardPage", () => {
     });
 
     it("redirects to login when not authenticated", async () => {
-      mockAuth.mockResolvedValueOnce(null);
+      mockGetUser.mockResolvedValueOnce(null);
 
       try {
         await InstructorDashboardPage();
@@ -130,8 +130,8 @@ describe("InstructorDashboardPage", () => {
 
   describe("rendering", () => {
     it("renders all 6 widgets", async () => {
-      mockAuth.mockResolvedValueOnce(
-        createMockSession({
+      mockGetUser.mockResolvedValueOnce(
+        createMockUser({
           id: "1",
           name: "Instructor",
           email: "instructor@test.com",
@@ -152,8 +152,8 @@ describe("InstructorDashboardPage", () => {
     });
 
     it("displays welcome message with user name", async () => {
-      mockAuth.mockResolvedValueOnce(
-        createMockSession({
+      mockGetUser.mockResolvedValueOnce(
+        createMockUser({
           id: "1",
           name: "Test Instructor",
           email: "instructor@test.com",
@@ -169,8 +169,8 @@ describe("InstructorDashboardPage", () => {
     });
 
     it("displays dashboard heading", async () => {
-      mockAuth.mockResolvedValueOnce(
-        createMockSession({
+      mockGetUser.mockResolvedValueOnce(
+        createMockUser({
           id: "1",
           name: "Instructor",
           email: "instructor@test.com",

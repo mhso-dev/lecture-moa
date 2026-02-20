@@ -223,7 +223,10 @@ describe("useQuizAutoSave", () => {
         { timeout: 2000 }
       );
 
-      expect(result.current.saveError).toBe(error);
+      // Wait for async state update from the catch block
+      await waitFor(() => {
+        expect(result.current.saveError).toBe(error);
+      });
     });
   });
 
@@ -324,12 +327,14 @@ describe("useQuizAutoSave", () => {
       expect(result.current.isSaving).toBe(true);
 
       // Resolve the save
-      act(() => {
+      await act(async () => {
         if (resolveSave) resolveSave();
       });
 
-      // Should no longer be saving
-      expect(result.current.isSaving).toBe(false);
+      // Should no longer be saving (await act flushes the async state update)
+      await waitFor(() => {
+        expect(result.current.isSaving).toBe(false);
+      });
     });
   });
 });
