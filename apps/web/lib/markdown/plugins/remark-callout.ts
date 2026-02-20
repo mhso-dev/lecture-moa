@@ -78,19 +78,19 @@ export const remarkCallout = function (): (tree: Root) => Root {
         (child) => child.type === "paragraph"
       );
 
-      if (!firstParagraph || firstParagraph.type !== "paragraph") {
+      if (firstParagraph?.type !== "paragraph") {
         continue;
       }
 
       const paragraph = firstParagraph as Paragraph;
       const firstChild = paragraph.children[0];
 
-      if (!firstChild || firstChild.type !== "text") {
+      if (firstChild?.type !== "text") {
         continue;
       }
 
       const textNode = firstChild as Text;
-      const match = textNode.value.match(CALLOUT_REGEX);
+      const match = CALLOUT_REGEX.exec(textNode.value);
 
       if (!match) {
         continue;
@@ -105,7 +105,9 @@ export const remarkCallout = function (): (tree: Root) => Root {
       }
 
       // Remove the callout marker from the first text node
-      const remainingText = textNode.value.slice(match[0]?.length ?? 0);
+      const fullMatch = match[0];
+      const matchLength = fullMatch.length;
+      const remainingText = textNode.value.slice(matchLength);
 
       // Build phrasing content
       const phrasingContent: PhrasingContent[] = [];
@@ -126,7 +128,7 @@ export const remarkCallout = function (): (tree: Root) => Root {
       // Add content from remaining paragraphs
       for (let j = 1; j < blockquote.children.length; j++) {
         const child = blockquote.children[j];
-        if (child && child.type === "paragraph") {
+        if (child?.type === "paragraph") {
           const childParagraph = child as Paragraph;
           phrasingContent.push(
             { type: "text", value: " " },

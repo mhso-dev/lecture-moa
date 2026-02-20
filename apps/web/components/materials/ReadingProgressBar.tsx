@@ -42,7 +42,7 @@ export function ReadingProgressBar({
     >
       <div
         className="h-full bg-[var(--color-primary-500)] transition-[width] duration-100 ease-out"
-        style={{ width: `${Math.min(100, Math.max(0, progress))}%` }}
+        style={{ width: `${String(Math.min(100, Math.max(0, progress)))}%` }}
       />
     </div>
   );

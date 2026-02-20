@@ -124,7 +124,7 @@ export function Callout({ type, title, children, className }: CalloutProps) {
         <div className="flex-1 min-w-0">
           {/* Title */}
           <div className={cn("font-semibold mb-1", config.styles.title)}>
-            {title || config.label}
+            {title ?? config.label}
           </div>
 
           {/* Body */}

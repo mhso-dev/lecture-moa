@@ -45,22 +45,10 @@ export function HeadingWithAnchor({
     try {
       const url = `${window.location.origin}${window.location.pathname}#${id}`;
 
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        await navigator.clipboard.writeText(url);
-      } else {
-        // Fallback for older browsers
-        const textArea = document.createElement("textarea");
-        textArea.value = url;
-        textArea.style.position = "fixed";
-        textArea.style.left = "-9999px";
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand("copy");
-        document.body.removeChild(textArea);
-      }
+      await navigator.clipboard.writeText(url);
 
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      setTimeout(() => { setCopied(false); }, 2000);
     } catch (error) {
       console.error("Failed to copy anchor URL:", error);
     }
@@ -82,8 +70,8 @@ export function HeadingWithAnchor({
         sizeClasses[level],
         className
       )}
-      onMouseEnter={() => setShowAnchor(true)}
-      onMouseLeave={() => setShowAnchor(false)}
+      onMouseEnter={() => { setShowAnchor(true); }}
+      onMouseLeave={() => { setShowAnchor(false); }}
     >
       {/* Heading content */}
       <span className="flex-1">{children}</span>
@@ -94,7 +82,7 @@ export function HeadingWithAnchor({
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
-            handleCopyAnchor();
+            void handleCopyAnchor();
           }
         }}
         className={cn(

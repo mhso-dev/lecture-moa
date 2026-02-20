@@ -109,6 +109,7 @@ export default function MaterialViewerPage() {
           break;
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [toggleToc, toggleFullscreen]
   );
 
@@ -135,7 +136,7 @@ export default function MaterialViewerPage() {
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    return () => { window.removeEventListener("keydown", handleKeyDown); };
   }, [handleKeyDown]);
 
   // Apply fullscreen class to body
@@ -145,7 +146,7 @@ export default function MaterialViewerPage() {
     } else {
       document.body.classList.remove("material-fullscreen");
     }
-    return () => document.body.classList.remove("material-fullscreen");
+    return () => { document.body.classList.remove("material-fullscreen"); };
   }, [isFullscreen]);
 
   // Font size CSS variable
@@ -168,7 +169,7 @@ export default function MaterialViewerPage() {
           Material Not Found
         </h1>
         <p className="text-[var(--color-muted-foreground)] mb-4">
-          {error?.message || "The requested material could not be loaded."}
+          {error?.message ?? "The requested material could not be loaded."}
         </p>
         <a
           href={`/courses/${courseId}/materials`}

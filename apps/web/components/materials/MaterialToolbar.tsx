@@ -76,7 +76,7 @@ export function MaterialToolbar({
   const { setFontSize, toggleFullscreen, toggleToc } = useMaterialStore();
 
   // Truncate title
-  const truncateTitle = (title: string, maxLen: number = 30) => {
+  const truncateTitle = (title: string, maxLen = 30) => {
     if (title.length <= maxLen) return title;
     return `${title.slice(0, maxLen)}...`;
   };

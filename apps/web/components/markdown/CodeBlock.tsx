@@ -36,29 +36,8 @@ export function CodeBlock({ children, language, className }: CodeBlockProps) {
 
   const handleCopy = useCallback(async () => {
     try {
-      // Try modern Clipboard API first
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        await navigator.clipboard.writeText(children);
-        setCopied(true);
-        return;
-      }
-
-      // Fallback to execCommand for older browsers
-      const textArea = document.createElement("textarea");
-      textArea.value = children;
-      textArea.style.position = "fixed";
-      textArea.style.left = "-9999px";
-      textArea.style.top = "0";
-      document.body.appendChild(textArea);
-      textArea.focus();
-      textArea.select();
-
-      const success = document.execCommand("copy");
-      document.body.removeChild(textArea);
-
-      if (success) {
-        setCopied(true);
-      }
+      await navigator.clipboard.writeText(children);
+      setCopied(true);
     } catch (error) {
       console.error("Failed to copy code:", error);
     }
@@ -71,7 +50,7 @@ export function CodeBlock({ children, language, className }: CodeBlockProps) {
         setCopied(false);
       }, 2000);
 
-      return () => clearTimeout(timer);
+      return () => { clearTimeout(timer); };
     }
   }, [copied]);
 
@@ -92,7 +71,7 @@ export function CodeBlock({ children, language, className }: CodeBlockProps) {
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
-            handleCopy();
+            void handleCopy();
           }
         }}
         className={cn(

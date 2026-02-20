@@ -63,11 +63,6 @@ export function QaSelectionTrigger({
 
   const buttonRef = useRef<HTMLButtonElement>(null);
 
-  // Hide for instructors
-  if (role === "instructor") {
-    return null;
-  }
-
   // Handle text selection
   const handleSelectionChange = useCallback(() => {
     const selection = window.getSelection();
@@ -180,8 +175,13 @@ export function QaSelectionTrigger({
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    return () => { document.removeEventListener("mousedown", handleClickOutside); };
   }, []);
+
+  // Hide for instructors
+  if (role === "instructor") {
+    return null;
+  }
 
   // Don't render if no selection or no position
   if (!selectedText || !buttonPosition) {
@@ -199,8 +199,8 @@ export function QaSelectionTrigger({
         className
       )}
       style={{
-        top: `${buttonPosition.top}px`,
-        left: `${buttonPosition.left}px`,
+        top: `${String(buttonPosition.top)}px`,
+        left: `${String(buttonPosition.left)}px`,
       }}
       onClick={handleClick}
       aria-label="Ask a question about the selected text"

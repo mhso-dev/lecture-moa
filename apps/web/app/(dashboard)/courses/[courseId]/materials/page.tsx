@@ -91,11 +91,11 @@ export function MaterialsPageClient({
   }, [searchParams]);
 
   const sortKey = useMemo(() => {
-    return (searchParams.get("sort") as MaterialSortKey) ?? "position";
+    return (searchParams.get("sort") ?? "position") as MaterialSortKey;
   }, [searchParams]);
 
   const sortOrder = useMemo(() => {
-    return (searchParams.get("order") as SortOrder) ?? "asc";
+    return (searchParams.get("order") ?? "asc") as SortOrder;
   }, [searchParams]);
 
   // Update URL params
@@ -104,7 +104,7 @@ export function MaterialsPageClient({
       const params = new URLSearchParams(searchParams.toString());
 
       Object.entries(updates).forEach(([key, value]) => {
-        if (value === null || value === "" || value === undefined) {
+        if (value === null || value === "") {
           params.delete(key);
         } else {
           params.set(key, value);
@@ -126,7 +126,7 @@ export function MaterialsPageClient({
   // biome-ignore lint/correctness/useExhaustiveDependencies: Only trigger on debounced value change
   useMemo(() => {
     updateParams({ search: debouncedSearch || null });
-  }, [debouncedSearch]);
+  }, [debouncedSearch, updateParams]);
 
   // Handle tag toggle
   const handleTagToggle = (tag: string) => {
@@ -193,7 +193,7 @@ export function MaterialsPageClient({
           Failed to load materials
         </h2>
         <p className="text-[var(--color-muted-foreground)] mb-4 max-w-md">
-          {error?.message ??
+          {error.message ||
             "An error occurred while loading materials. Please try again."}
         </p>
         <Button onClick={() => refetch()}>Retry</Button>
@@ -278,8 +278,8 @@ export function MaterialsPageClient({
                   <DropdownMenuCheckboxItem
                     key={tag}
                     checked={selectedTags.includes(tag)}
-                    onCheckedChange={() => handleTagToggle(tag)}
-                    onSelect={(e) => e.preventDefault()}
+                    onCheckedChange={() => { handleTagToggle(tag); }}
+                    onSelect={(e) => { e.preventDefault(); }}
                   >
                     {tag}
                   </DropdownMenuCheckboxItem>
@@ -292,9 +292,9 @@ export function MaterialsPageClient({
           {isInstructor && (
             <Select
               value={selectedStatus ?? "all"}
-              onValueChange={(value) =>
-                handleStatusChange(value as MaterialStatus | "all")
-              }
+              onValueChange={(value) => {
+                handleStatusChange(value as MaterialStatus | "all");
+              }}
             >
               <SelectTrigger className="w-[130px] h-9">
                 <SelectValue placeholder="Status" />
@@ -325,8 +325,8 @@ export function MaterialsPageClient({
                 <DropdownMenuCheckboxItem
                   key={key}
                   checked={sortKey === key}
-                  onCheckedChange={() => handleSortChange(key)}
-                  onSelect={(e) => e.preventDefault()}
+                  onCheckedChange={() => { handleSortChange(key); }}
+                  onSelect={(e) => { e.preventDefault(); }}
                 >
                   {sortLabels[key]}
                   {sortKey === key && (
@@ -381,7 +381,7 @@ export function MaterialsPageClient({
               {tag}
               <button
                 type="button"
-                onClick={() => handleTagToggle(tag)}
+                onClick={() => { handleTagToggle(tag); }}
                 className="ml-1 hover:text-[var(--color-foreground)]"
                 aria-label={`Remove ${tag} filter`}
               >
@@ -394,7 +394,7 @@ export function MaterialsPageClient({
               Status: {selectedStatus}
               <button
                 type="button"
-                onClick={() => updateParams({ status: null })}
+                onClick={() => { updateParams({ status: null }); }}
                 className="ml-1 hover:text-[var(--color-foreground)]"
                 aria-label="Remove status filter"
               >

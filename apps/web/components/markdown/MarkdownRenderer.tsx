@@ -13,7 +13,7 @@
  * 6. rehypeSanitize - XSS prevention (custom schema)
  */
 
-import ReactMarkdown from "react-markdown";
+import ReactMarkdown, { type ExtraProps } from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
@@ -47,7 +47,7 @@ interface MarkdownRendererProps {
 const customSanitizeSchema = {
   ...defaultSchema,
   tagNames: [
-    ...(defaultSchema.tagNames || []),
+    ...(defaultSchema.tagNames ?? []),
     "figure",
     "figcaption",
   ],
@@ -80,10 +80,10 @@ function generateUniqueSlug(text: string): string {
     .replace(/-+/g, "-")
     .replace(/^-|-$/g, "");
 
-  const count = slugCache.get(baseSlug) || 0;
+  const count = slugCache.get(baseSlug) ?? 0;
   slugCache.set(baseSlug, count + 1);
 
-  return count === 0 ? baseSlug : `${baseSlug}-${count}`;
+  return count === 0 ? baseSlug : `${baseSlug}-${String(count)}`;
 }
 
 /**
@@ -104,10 +104,10 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
 
   const components: Components = {
     // Code blocks
-    code({ className: codeClassName, children, node, ...props }) {
-      const match = /language-(\w+)/.exec(codeClassName || "");
+    code({ className: codeClassName, children, node: _node, ...props }: React.ClassAttributes<HTMLElement> & React.HTMLAttributes<HTMLElement> & ExtraProps) {
+      const match = /language-(\w+)/.exec(codeClassName ?? "");
       const language = match ? match[1] : undefined;
-      const codeString = String(children).replace(/\n$/, "");
+      const codeString = (children as string).replace(/\n$/, "");
 
       // Check if it's inline code (no className) or block code (has className)
       const isInline = !codeClassName;
@@ -124,7 +124,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
     },
 
     // Headings with anchors
-    h2({ children, ...props }) {
+    h2({ children, ...props }: React.ClassAttributes<HTMLHeadingElement> & React.HTMLAttributes<HTMLHeadingElement> & ExtraProps) {
       const text = extractTextFromChildren(children);
       const id = generateUniqueSlug(text);
       return (
@@ -134,7 +134,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
       );
     },
 
-    h3({ children, ...props }) {
+    h3({ children, ...props }: React.ClassAttributes<HTMLHeadingElement> & React.HTMLAttributes<HTMLHeadingElement> & ExtraProps) {
       const text = extractTextFromChildren(children);
       const id = generateUniqueSlug(text);
       return (
@@ -144,7 +144,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
       );
     },
 
-    h4({ children, ...props }) {
+    h4({ children, ...props }: React.ClassAttributes<HTMLHeadingElement> & React.HTMLAttributes<HTMLHeadingElement> & ExtraProps) {
       const text = extractTextFromChildren(children);
       const id = generateUniqueSlug(text);
       return (
@@ -155,7 +155,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
     },
 
     // Images with next/image optimization
-    img({ src, alt, ...props }) {
+    img({ src, alt, ...props }: React.ClassAttributes<HTMLImageElement> & React.ImgHTMLAttributes<HTMLImageElement> & ExtraProps) {
       if (!src) return null;
 
       // Ensure src is a string
@@ -167,7 +167,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
           <figure className="my-6">
             <Image
               src={imgSrc}
-              alt={alt || ""}
+              alt={alt ?? ""}
               width={800}
               height={600}
               className="rounded-lg w-full h-auto"
@@ -188,7 +188,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
         <figure className="my-6">
           <img
             src={imgSrc}
-            alt={alt || ""}
+            alt={alt ?? ""}
             className="rounded-lg w-full h-auto"
             loading="lazy"
             {...props}
@@ -203,8 +203,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
     },
 
     // Callout blocks (custom node type from remark-callout)
-    // @ts-expect-error - Custom node type not in types
-    callout({ calloutType, title, children }) {
+    callout({ calloutType, title, children }: { calloutType: string; title: string; children: React.ReactNode }) {
       return (
         <Callout type={calloutType as CalloutType} title={title}>
           {children}
@@ -214,7 +213,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
 
     // Math blocks (from remark-math)
     // Inline math
-    span({ className: spanClassName, children, ...props }) {
+    span({ className: spanClassName, children, ...props }: React.ClassAttributes<HTMLSpanElement> & React.HTMLAttributes<HTMLSpanElement> & ExtraProps) {
       if (spanClassName?.includes("math-inline")) {
         const mathText = extractTextFromChildren(children);
         return <MathBlock math={mathText} inline />;
@@ -227,7 +226,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
     },
 
     // Block math
-    div({ className: divClassName, children, ...props }) {
+    div({ className: divClassName, children, ...props }: React.ClassAttributes<HTMLDivElement> & React.HTMLAttributes<HTMLDivElement> & ExtraProps) {
       if (divClassName?.includes("math-display")) {
         const mathText = extractTextFromChildren(children);
         return <MathBlock math={mathText} inline={false} />;
@@ -240,7 +239,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
     },
 
     // Tables with responsive wrapper
-    table({ children, ...props }) {
+    table({ children, ...props }: React.ClassAttributes<HTMLTableElement> & React.TableHTMLAttributes<HTMLTableElement> & ExtraProps) {
       return (
         <div className="my-6 overflow-x-auto">
           <table {...props}>{children}</table>
@@ -249,8 +248,8 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
     },
 
     // Links with security attributes
-    a({ href, children, ...props }) {
-      const isExternal = href?.startsWith("http://") || href?.startsWith("https://");
+    a({ href, children, ...props }: React.ClassAttributes<HTMLAnchorElement> & React.AnchorHTMLAttributes<HTMLAnchorElement> & ExtraProps) {
+      const isExternal = (href?.startsWith("http://") ?? false) || (href?.startsWith("https://") ?? false);
 
       return (
         <a
