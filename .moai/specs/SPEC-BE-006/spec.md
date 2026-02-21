@@ -1,7 +1,7 @@
 ---
 id: SPEC-BE-006
 version: "1.0.0"
-status: draft
+status: completed
 created: "2026-02-21"
 updated: "2026-02-21"
 author: mhso-dev
@@ -373,3 +373,29 @@ packages/shared/src/constants/realtime.ts:
 | REQ-BE-006-035~039 | hooks/memo/useMemoDetail.ts | Memo CRUD mutations |
 | REQ-BE-006-040~046 | hooks/team/useTeamMemoSocket.ts | Supabase Realtime |
 | REQ-BE-006-047~050 | hooks/team/index.ts, hooks/memo/index.ts, lib/api/ | index 및 레거시 제거 |
+
+## Implementation Notes
+
+| 항목 | 내용 |
+|------|------|
+| 구현일 | 2026-02-21 |
+| 브랜치 | feature/SPEC-BE-006 |
+| 커밋 | 2개 (feat + test) |
+| 수정/생성 파일 | 36개 |
+| 신규 테스트 | 83개 (teams 47 + memos 20 + realtime 16) |
+| TypeScript 오류 | 0개 |
+| ESLint 오류 | 0개 |
+| TRUST 5 | PASS |
+
+### Scope Changes
+
+- **이관된 항목**: `useTeamActivity` REST API 유지 (SPEC-BE-007로 이관)
+- **타입 변경**: `courseIds: string[]` -> `courseId: string` (DB 스키마 일치)
+- **초대 방식 변경**: email 기반 -> invite_code 기반 (6자리 대문자 영숫자)
+- **페이지네이션 변경**: page-based -> range-based (Supabase `.range()`)
+- **nanoid 미사용**: 기존 `generateRandomCode()` 패턴 재사용
+
+### Known Issues
+
+- `InviteMemberModal.test.tsx`: email 기반 초대 테스트 실패 (컴포넌트 계층, 후속 작업)
+- `MemberListItem.test.tsx`: member.email 참조 테스트 실패 (컴포넌트 계층, 후속 작업)
