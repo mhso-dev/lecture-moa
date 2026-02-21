@@ -63,9 +63,9 @@ export function useAcceptAnswer(
           ...previousQuestion,
           status: 'RESOLVED',
           answers: Array.isArray(previousQuestion.answers)
-            ? previousQuestion.answers.map((a: Record<string, unknown>) => ({
-                ...a,
-                isAccepted: a.id === answerId,
+            ? previousQuestion.answers.map((a) => ({
+                ...(a as Record<string, unknown>),
+                isAccepted: (a as Record<string, unknown>).id === answerId,
               }))
             : previousQuestion.answers,
         });

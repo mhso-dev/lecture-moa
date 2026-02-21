@@ -11,7 +11,6 @@ import { renderHook, waitFor, act } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { ReactNode } from 'react';
 import { useUpvoteAnswer } from './useUpvoteAnswer';
-import type { QAAnswer } from '@shared';
 
 // Mock the Supabase Q&A query layer
 vi.mock('~/lib/supabase/qa', () => ({
@@ -51,26 +50,6 @@ function createWrapper() {
     );
   };
 }
-
-// Mock data
-const mockAnswer: QAAnswer = {
-  id: 'a1',
-  questionId: 'q1',
-  authorId: 'u2',
-  author: {
-    id: 'u2',
-    name: 'Instructor',
-    avatarUrl: null,
-    role: 'instructor',
-  },
-  content: 'Answer content',
-  isAccepted: false,
-  isAiGenerated: false,
-  upvoteCount: 5,
-  isUpvoted: false,
-  createdAt: '2024-01-01T00:00:00Z',
-  updatedAt: '2024-01-01T00:00:00Z',
-};
 
 describe('useUpvoteAnswer', () => {
   beforeEach(() => {

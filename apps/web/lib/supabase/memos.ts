@@ -13,6 +13,7 @@ import type {
   MemoDetailResponse,
   MemoLinkTarget,
   MemoFilterParams,
+  MemoVisibility,
   CreateMemoRequest,
   UpdateMemoRequest,
 } from "@shared";
@@ -61,8 +62,8 @@ function mapMemoRow(row: MemoRowWithProfile): Memo {
     teamId: row.team_id,
     materialId: row.material_id,
     anchorId: row.anchor_id,
-    tags: row.tags,
-    visibility: row.visibility,
+    tags: row.tags ?? [],
+    visibility: row.visibility as MemoVisibility,
     isDraft: row.is_draft,
     createdAt: row.created_at as unknown as Date,
     updatedAt: row.updated_at as unknown as Date,

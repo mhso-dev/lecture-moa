@@ -8,6 +8,7 @@ import type { Database } from "~/types/supabase";
 import type {
   Material,
   MaterialListItem,
+  MaterialStatus,
   MaterialsQueryParams,
 } from "@shared";
 
@@ -50,9 +51,9 @@ export function toMaterial(row: MaterialWithAuthor): Material {
     title: row.title,
     content: row.content,
     excerpt: row.excerpt ?? "",
-    status: row.status,
+    status: row.status as MaterialStatus,
     position: row.position,
-    tags: row.tags,
+    tags: row.tags ?? [],
     readTimeMinutes: row.read_time_minutes ?? 0,
     authorId: row.author.id,
     author: {

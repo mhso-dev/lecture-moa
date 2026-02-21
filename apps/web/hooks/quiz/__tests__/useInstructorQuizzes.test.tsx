@@ -55,7 +55,7 @@ describe("useInstructorQuizzes", () => {
     it("uses ['instructor', 'quizzes'] as base key when no params", async () => {
       const mockData = {
         data: [],
-        pagination: { page: 1, limit: 10, total: 0, totalPages: 0 },
+        total: 0, page: 1, limit: 10,
       };
       vi.mocked(quizApi.getInstructorQuizzes).mockResolvedValue(mockData);
 
@@ -72,7 +72,7 @@ describe("useInstructorQuizzes", () => {
     it("uses ['instructor', 'quizzes', params] when params provided", async () => {
       const mockData = {
         data: [],
-        pagination: { page: 1, limit: 10, total: 0, totalPages: 0 },
+        total: 0, page: 1, limit: 10,
       };
       vi.mocked(quizApi.getInstructorQuizzes).mockResolvedValue(mockData);
 
@@ -95,7 +95,7 @@ describe("useInstructorQuizzes", () => {
           createMockQuizListItem("quiz-1"),
           createMockQuizListItem("quiz-2"),
         ],
-        pagination: { page: 1, limit: 10, total: 2, totalPages: 1 },
+        total: 2, page: 1, limit: 10,
       };
       vi.mocked(quizApi.getInstructorQuizzes).mockResolvedValue(mockData);
 
@@ -113,7 +113,7 @@ describe("useInstructorQuizzes", () => {
     it("handles empty list", async () => {
       const mockData = {
         data: [],
-        pagination: { page: 1, limit: 10, total: 0, totalPages: 0 },
+        total: 0, page: 1, limit: 10,
       };
       vi.mocked(quizApi.getInstructorQuizzes).mockResolvedValue(mockData);
 
@@ -147,7 +147,7 @@ describe("useInstructorQuizzes", () => {
     it("filters by status", async () => {
       const mockData = {
         data: [createMockQuizListItem("quiz-1")],
-        pagination: { page: 1, limit: 10, total: 1, totalPages: 1 },
+        total: 1, page: 1, limit: 10,
       };
       vi.mocked(quizApi.getInstructorQuizzes).mockResolvedValue(mockData);
 
@@ -165,7 +165,7 @@ describe("useInstructorQuizzes", () => {
     it("filters by courseId", async () => {
       const mockData = {
         data: [createMockQuizListItem("quiz-1")],
-        pagination: { page: 1, limit: 10, total: 1, totalPages: 1 },
+        total: 1, page: 1, limit: 10,
       };
       vi.mocked(quizApi.getInstructorQuizzes).mockResolvedValue(mockData);
 
@@ -183,7 +183,7 @@ describe("useInstructorQuizzes", () => {
     it("filters by both status and courseId", async () => {
       const mockData = {
         data: [],
-        pagination: { page: 1, limit: 10, total: 0, totalPages: 0 },
+        total: 0, page: 1, limit: 10,
       };
       vi.mocked(quizApi.getInstructorQuizzes).mockResolvedValue(mockData);
 
@@ -203,24 +203,24 @@ describe("useInstructorQuizzes", () => {
   });
 
   describe("pagination", () => {
-    it("supports cursor-based pagination", async () => {
+    it("supports page-based pagination", async () => {
       const mockData = {
         data: [],
-        pagination: { page: 2, limit: 10, total: 25, totalPages: 3 },
+        total: 25, page: 2, limit: 10,
       };
       vi.mocked(quizApi.getInstructorQuizzes).mockResolvedValue(mockData);
 
       const { useInstructorQuizzes } = await import("../useInstructorQuizzes");
       const { result } = renderHook(
-        () => useInstructorQuizzes({ cursor: "current-cursor" }),
+        () => useInstructorQuizzes({ page: 2 }),
         { wrapper: createWrapper() }
       );
 
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
-      expect(quizApi.getInstructorQuizzes).toHaveBeenCalledWith({ cursor: "current-cursor" });
-      expect(result.current.data?.pagination.page).toBe(2);
-      expect(result.current.data?.pagination.totalPages).toBe(3);
+      expect(quizApi.getInstructorQuizzes).toHaveBeenCalledWith({ page: 2 });
+      expect(result.current.data?.page).toBe(2);
+      expect(result.current.data?.total).toBe(25);
     });
   });
 
@@ -231,7 +231,7 @@ describe("useInstructorQuizzes", () => {
           { ...createMockQuizListItem("quiz-1"), status: "draft" as const },
           { ...createMockQuizListItem("quiz-2"), status: "draft" as const },
         ],
-        pagination: { page: 1, limit: 10, total: 2, totalPages: 1 },
+        total: 2, page: 1, limit: 10,
       };
       vi.mocked(quizApi.getInstructorQuizzes).mockResolvedValue(mockData);
 

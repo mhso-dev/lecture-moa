@@ -1,4 +1,4 @@
--- Migration: 00014_create_quiz_functions
+-- Migration: 00015_create_quiz_functions
 -- Description: Add UNIQUE constraint for quiz_answers upsert and create
 --              PL/pgSQL functions for quiz attempt lifecycle (start, grade, duplicate)
 

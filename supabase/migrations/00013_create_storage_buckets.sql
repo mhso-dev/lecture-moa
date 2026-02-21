@@ -110,5 +110,3 @@ CREATE POLICY "material_images_delete_instructor"
     AND auth.uid() = owner
     AND public.get_user_role() = 'instructor'
   );
-
-COMMENT ON TABLE storage.buckets IS 'Storage buckets for course and material images';

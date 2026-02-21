@@ -75,7 +75,7 @@ function mapQuestionRowToListItem(
     context: {
       selectedText: questionRow.selected_text ?? "",
     },
-    status: questionRow.status,
+    status: questionRow.status as QAStatus,
     upvoteCount: questionRow.upvote_count,
     answerCount: questionRow.answer_count,
     hasAiSuggestion: Boolean(questionRow.has_ai_answer),
@@ -123,7 +123,7 @@ function mapQuestionRowToDetail(
       headingId: questionRow.heading_id,
       selectedText: questionRow.selected_text ?? "",
     },
-    status: questionRow.status,
+    status: questionRow.status as QAStatus,
     upvoteCount: questionRow.upvote_count,
     isUpvoted: userQuestionVotes?.has(questionRow.id) ?? false,
     answerCount: questionRow.answer_count,

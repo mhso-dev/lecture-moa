@@ -114,7 +114,7 @@ export function QAList() {
     <div className="space-y-4">
       {/* Question count */}
       <div className="text-sm text-muted-foreground">
-        총 {pages[0]?.pagination.total ?? questions.length}개의 질문
+        총 {pages[0]?.total ?? questions.length}개의 질문
       </div>
 
       {/* Question list */}
