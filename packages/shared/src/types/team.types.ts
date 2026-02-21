@@ -23,7 +23,8 @@ export type { TeamMemberRole } from "./dashboard.types";
  */
 export interface Team extends TeamOverview {
   maxMembers: number;
-  courseIds: string[];
+  courseId: string;
+  inviteCode: string | null;
   createdBy: string;
   updatedAt: Date;
 }
@@ -36,25 +37,6 @@ export interface TeamMemberDetail extends TeamMember {
   userId: string;
   teamId: string;
   joinedAt: Date;
-  email: string;
-}
-
-/**
- * Team invitation status
- */
-export type TeamInvitationStatus = "pending" | "accepted" | "declined" | "expired";
-
-/**
- * Team invitation structure
- * REQ-FE-700: Invitation data for team membership
- */
-export interface TeamInvitation {
-  id: string;
-  teamId: string;
-  email: string;
-  status: TeamInvitationStatus;
-  invitedBy: string;
-  createdAt: Date;
 }
 
 /**
@@ -103,10 +85,3 @@ export interface TeamMemberUpdateRequest {
   role: TeamMemberRole;
 }
 
-/**
- * Team invite request
- * REQ-FE-700: Request body for inviting a new member
- */
-export interface TeamInviteRequest {
-  email: string;
-}

@@ -9,12 +9,10 @@ import { describe, expect, it } from "vitest";
 import type {
   Team,
   TeamMemberDetail,
-  TeamInvitation,
   TeamActivity,
   TeamDetailResponse,
   TeamListResponse,
   TeamMemberUpdateRequest,
-  TeamInviteRequest,
   TeamMemberRole,
 } from "./team.types";
 
@@ -43,13 +41,15 @@ describe("Team Types", () => {
         createdAt: new Date("2024-01-15"),
         // Additional Team fields
         maxMembers: 10,
-        courseIds: ["course-1", "course-2"],
+        courseId: "course-1",
+        inviteCode: "abc123",
         createdBy: "user-123",
         updatedAt: new Date("2024-01-20"),
       };
       expect(team.id).toBe("team-123");
       expect(team.maxMembers).toBe(10);
-      expect(team.courseIds).toHaveLength(2);
+      expect(team.courseId).toBe("course-1");
+      expect(team.inviteCode).toBe("abc123");
       expect(team.createdBy).toBe("user-123");
     });
 
@@ -61,7 +61,8 @@ describe("Team Types", () => {
         memberCount: 3,
         createdAt: new Date("2024-01-15"),
         maxMembers: 5,
-        courseIds: [],
+        courseId: "course-456",
+        inviteCode: null,
         createdBy: "user-456",
         updatedAt: new Date("2024-01-15"),
       };
@@ -82,27 +83,10 @@ describe("Team Types", () => {
         userId: "user-123",
         teamId: "team-123",
         joinedAt: new Date("2024-01-15"),
-        email: "john.doe@example.com",
       };
       expect(memberDetail.userId).toBe("user-123");
       expect(memberDetail.teamId).toBe("team-123");
       expect(memberDetail.joinedAt).toBeInstanceOf(Date);
-      expect(memberDetail.email).toBe("john.doe@example.com");
-    });
-  });
-
-  describe("TeamInvitation", () => {
-    it("should define invitation structure", () => {
-      const invitation: TeamInvitation = {
-        id: "invite-123",
-        teamId: "team-123",
-        email: "invited@example.com",
-        status: "pending",
-        invitedBy: "user-123",
-        createdAt: new Date("2024-01-20"),
-      };
-      expect(invitation.id).toBe("invite-123");
-      expect(invitation.status).toBe("pending");
     });
   });
 
@@ -136,7 +120,8 @@ describe("Team Types", () => {
           memberCount: 5,
           createdAt: new Date(),
           maxMembers: 10,
-          courseIds: ["course-1"],
+          courseId: "course-1",
+          inviteCode: "xyz789",
           createdBy: "user-1",
           updatedAt: new Date(),
         },
@@ -149,7 +134,6 @@ describe("Team Types", () => {
             userId: "user-1",
             teamId: "team-123",
             joinedAt: new Date(),
-            email: "john@example.com",
           },
         ],
       };
@@ -169,7 +153,8 @@ describe("Team Types", () => {
             memberCount: 5,
             createdAt: new Date(),
             maxMembers: 10,
-            courseIds: ["course-1"],
+            courseId: "course-1",
+            inviteCode: null,
             createdBy: "user-1",
             updatedAt: new Date(),
           },
@@ -195,12 +180,4 @@ describe("Team Types", () => {
     });
   });
 
-  describe("TeamInviteRequest", () => {
-    it("should define invite request structure", () => {
-      const request: TeamInviteRequest = {
-        email: "invited@example.com",
-      };
-      expect(request.email).toBe("invited@example.com");
-    });
-  });
 });

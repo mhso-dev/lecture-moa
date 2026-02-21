@@ -1,38 +1,43 @@
 /**
- * Team Memo WebSocket Hook
- * REQ-FE-742: WebSocket connection management for team memo real-time updates
+ * Team Memo Realtime Hook
+ * REQ-BE-006-040~046: Supabase Realtime subscription for team memo updates
  *
- * Following the pattern from useTeamRealtimeUpdates.ts
+ * Subscribes to postgres_changes on the memos table filtered by team_id.
+ * Invalidates TanStack Query cache on INSERT/UPDATE/DELETE events.
  */
 
 "use client";
 
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef } from "react";
+import { useQueryClient } from "@tanstack/react-query";
+import type { RealtimeChannel } from "@supabase/supabase-js";
+import { createClient } from "~/lib/supabase/client";
+import { memoKeys } from "~/hooks/memo";
+import {
+  REALTIME_CHANNELS,
+  REALTIME_CONFIG,
+} from "@shared/constants/realtime";
 import { useUIStore, useTeamSocketStatus } from "~/stores/ui.store";
 
 /**
  * Hook return type
  */
 interface UseTeamMemoSocketReturn {
-  /** Whether the WebSocket connection is established */
+  /** Whether the Realtime connection is established */
   isConnected: boolean;
   /** Connection status string */
   status: "connected" | "disconnected" | "connecting" | "error";
 }
 
 /**
- * Hook for real-time team memo updates via WebSocket.
- * REQ-FE-742: Implements WebSocket connection with reconnection logic
- *
- * This is a skeleton implementation that will be enhanced when WebSocket SPEC is available.
- * Currently manages connection state and cache invalidation placeholders.
- *
- * Future implementation will:
- * - Establish WebSocket connection to /ws/team/{teamId}/memos
- * - Subscribe to team memo events: created, updated, deleted
- * - Invalidate TanStack Query cache on events
- * - Handle reconnection with exponential backoff (max 5 retries)
- * - Update ui.store.ts teamSocketStatus state
+ * Hook for real-time team memo updates via Supabase Realtime.
+ * REQ-BE-006-040: Subscribes to postgres_changes on memos table filtered by team_id
+ * REQ-BE-006-041: Invalidates team memo list on INSERT
+ * REQ-BE-006-042: Invalidates memo detail and list on UPDATE
+ * REQ-BE-006-043: Removes memo detail cache and invalidates list on DELETE
+ * REQ-BE-006-044: Cleans up channel on unmount
+ * REQ-BE-006-045: Reflects connection status in ui.store teamSocketStatus
+ * REQ-BE-006-046: Relies on Supabase built-in reconnection (no manual retry)
  *
  * @param teamId - The team ID to subscribe to
  * @returns Object with connection status
@@ -52,46 +57,75 @@ interface UseTeamMemoSocketReturn {
  * ```
  */
 export function useTeamMemoSocket(teamId: string): UseTeamMemoSocketReturn {
+  const queryClient = useQueryClient();
   const setTeamSocketStatus = useUIStore((state) => state.setTeamSocketStatus);
-  const retryCountRef = useRef(0);
+  const channelRef = useRef<RealtimeChannel | null>(null);
 
-  /**
-   * Establish WebSocket connection
-   * REQ-FE-742: Connection lifecycle management
-   */
-  const connect = useCallback(() => {
-    // TODO: Implement actual WebSocket connection when WS SPEC is available
-    // For now, this is a skeleton that simulates connection behavior
-
-    setTeamSocketStatus("connecting");
-
-    // Simulate connection attempt
-    const connectTimeout = setTimeout(() => {
-      // Mock successful connection for skeleton
-      setTeamSocketStatus("connected");
-      retryCountRef.current = 0;
-    }, 500);
-
-    return () => clearTimeout(connectTimeout);
-  }, [setTeamSocketStatus]);
-
-  /**
-   * Connection lifecycle: connect on mount, disconnect on unmount
-   * REQ-FE-742: Connect on component mount, disconnect on unmount
-   */
   useEffect(() => {
     if (!teamId) {
       setTeamSocketStatus("disconnected");
       return;
     }
 
-    const cleanup = connect();
+    const supabase = createClient();
+    setTeamSocketStatus("connecting");
+
+    const channel = supabase
+      .channel(REALTIME_CHANNELS.TEAM_MEMOS(teamId))
+      .on(
+        "postgres_changes",
+        {
+          event: "*",
+          schema: REALTIME_CONFIG.SCHEMA,
+          table: REALTIME_CONFIG.TABLE,
+          filter: `team_id=eq.${teamId}`,
+        },
+        (payload) => {
+          if (
+            payload.eventType === "INSERT" ||
+            payload.eventType === "UPDATE"
+          ) {
+            void queryClient.invalidateQueries({
+              queryKey: memoKeys.teamList(teamId),
+            });
+            void queryClient.invalidateQueries({
+              queryKey: memoKeys.lists(),
+            });
+          }
+
+          if (payload.eventType === "DELETE") {
+            const oldRecord = payload.old as Record<string, unknown> | undefined;
+            if (oldRecord?.id != null) {
+              queryClient.removeQueries({
+                queryKey: memoKeys.detail(oldRecord.id as string),
+              });
+            }
+            void queryClient.invalidateQueries({
+              queryKey: memoKeys.teamList(teamId),
+            });
+            void queryClient.invalidateQueries({
+              queryKey: memoKeys.lists(),
+            });
+          }
+        },
+      )
+      .subscribe((status: string) => {
+        if (status === "SUBSCRIBED") {
+          setTeamSocketStatus("connected");
+        } else if (status === "CHANNEL_ERROR") {
+          setTeamSocketStatus("error");
+        } else if (status === "CLOSED") {
+          setTeamSocketStatus("disconnected");
+        }
+      });
+
+    channelRef.current = channel;
 
     return () => {
-      cleanup?.();
+      void supabase.removeChannel(channel);
       setTeamSocketStatus("disconnected");
     };
-  }, [teamId, connect, setTeamSocketStatus]);
+  }, [teamId, queryClient, setTeamSocketStatus]);
 
   // Get current status from store
   const status = useTeamSocketStatus();

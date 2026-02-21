@@ -95,7 +95,8 @@ export {
   // Team detail queries
   useTeamDetail,
   useTeamMembers,
-  useTeamActivity,
+  // Team join by invite code
+  useJoinTeam,
   // Team CRUD mutations
   useCreateTeam,
   useUpdateTeam,

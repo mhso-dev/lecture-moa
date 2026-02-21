@@ -9,8 +9,11 @@ export { teamKeys, useMyTeams, useAvailableTeams } from "./useTeams";
 // Team search
 export { useTeamSearch } from "./useTeamSearch";
 
-// Team detail queries
-export { useTeamDetail, useTeamMembers, useTeamActivity } from "./useTeam";
+// Team detail queries (useTeamActivity deferred to SPEC-BE-007)
+export { useTeamDetail, useTeamMembers } from "./useTeam";
+
+// Team join by invite code
+export { useJoinTeam } from "./useTeamMembership";
 
 // Team CRUD mutations
 export { useCreateTeam, useUpdateTeam, useDeleteTeam } from "./useTeamMutations";

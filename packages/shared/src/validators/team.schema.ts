@@ -29,7 +29,7 @@ export const CreateTeamSchema = z.object({
     .min(2, "Team must have at least 2 members")
     .max(100, "Team cannot have more than 100 members")
     .default(10),
-  courseIds: z.array(uuidSchema).optional(),
+  courseId: uuidSchema.optional(),
 });
 
 export type CreateTeamSchema = z.infer<typeof CreateTeamSchema>;

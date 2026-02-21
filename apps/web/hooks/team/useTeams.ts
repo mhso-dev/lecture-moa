@@ -1,8 +1,12 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import type { Team, TeamListResponse } from "@shared";
-import { api } from "~/lib/api";
+import type { Team } from "@shared";
+import { useAuth } from "~/hooks/useAuth";
+import {
+  fetchMyTeams,
+  fetchAvailableTeams,
+} from "~/lib/supabase/teams";
 
 /**
  * Query key factory for teams
@@ -22,34 +26,8 @@ export const teamKeys = {
 };
 
 /**
- * Fetch teams where current user is a member
- * REQ-FE-785: GET /api/v1/teams/?member=me
- */
-async function fetchMyTeams(): Promise<Team[]> {
-  const response = await api.get<TeamListResponse>("/api/v1/teams/", {
-    params: { member: "me" },
-  });
-  return response.data.teams;
-}
-
-/**
- * Fetch teams available to join
- * REQ-FE-785: GET /api/v1/teams/?available=true&search={query}
- */
-async function fetchAvailableTeams(search?: string): Promise<Team[]> {
-  const params: Record<string, string | boolean> = { available: true };
-  if (search) {
-    params.search = search;
-  }
-  const response = await api.get<TeamListResponse>("/api/v1/teams/", {
-    params,
-  });
-  return response.data.teams;
-}
-
-/**
  * useMyTeams Hook
- * REQ-FE-785: Fetches teams where current user is a member
+ * REQ-BE-006-011: Fetches teams where current user is a member via Supabase
  *
  * @returns TanStack Query result with Team array
  *
@@ -63,16 +41,20 @@ async function fetchAvailableTeams(search?: string): Promise<Team[]> {
  * ```
  */
 export function useMyTeams() {
-  return useQuery<Team[], Error>({
+  const { user } = useAuth();
+
+  return useQuery<Team[]>({
     queryKey: teamKeys.myTeams(),
-    queryFn: fetchMyTeams,
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- user existence guaranteed by enabled
+    queryFn: () => fetchMyTeams(user!.id),
+    enabled: !!user?.id,
     staleTime: 2 * 60 * 1000, // 2 minutes
   });
 }
 
 /**
  * useAvailableTeams Hook
- * REQ-FE-785: Fetches teams available to join with optional search
+ * REQ-BE-006-012: Fetches teams available to join with optional search via Supabase
  *
  * @param search - Optional search query string
  * @returns TanStack Query result with Team array
@@ -92,7 +74,7 @@ export function useMyTeams() {
  * ```
  */
 export function useAvailableTeams(search?: string) {
-  return useQuery<Team[], Error>({
+  return useQuery<Team[]>({
     queryKey: teamKeys.availableTeams(search),
     queryFn: () => fetchAvailableTeams(search),
     enabled: true,

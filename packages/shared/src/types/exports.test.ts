@@ -10,7 +10,6 @@ import type {
   // Team types (REQ-FE-700)
   Team,
   TeamMemberDetail,
-  TeamInvitation,
   TeamActivity,
   TeamMemberRole,
   // Memo types (REQ-FE-701)
@@ -31,7 +30,8 @@ describe("Types Index Exports", () => {
         memberCount: 5,
         createdAt: new Date(),
         maxMembers: 10,
-        courseIds: [],
+        courseId: "course-1",
+        inviteCode: null,
         createdBy: "user-1",
         updatedAt: new Date(),
       };
@@ -47,21 +47,8 @@ describe("Types Index Exports", () => {
         userId: "user-1",
         teamId: "team-1",
         joinedAt: new Date(),
-        email: "test@example.com",
       };
       expect(member.role).toBe("member");
-    });
-
-    it("should export TeamInvitation type", () => {
-      const invitation: TeamInvitation = {
-        id: "invite-1",
-        teamId: "team-1",
-        email: "invited@example.com",
-        status: "pending",
-        invitedBy: "user-1",
-        createdAt: new Date(),
-      };
-      expect(invitation.status).toBe("pending");
     });
 
     it("should export TeamActivity type", () => {

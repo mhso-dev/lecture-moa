@@ -2,55 +2,34 @@
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import type { Team } from "@shared";
-import { api } from "~/lib/api";
+import { useAuth } from "~/hooks/useAuth";
+import {
+  createTeam,
+  updateTeam,
+  deleteTeam,
+} from "~/lib/supabase/teams";
 import { teamKeys } from "./useTeams";
 
-// Note: CreateTeamRequest and UpdateTeamRequest types should be defined in team.types.ts
+// Note: CreateTeamData and UpdateTeamData types should be defined in team.types.ts
 // Using inline types for now based on SPEC requirements
 
 interface CreateTeamData {
   name: string;
   description?: string;
   maxMembers?: number;
-  courseIds?: string[];
+  courseId?: string;
 }
 
 interface UpdateTeamData {
   name?: string;
   description?: string;
   maxMembers?: number;
-  courseIds?: string[];
-}
-
-/**
- * Create team
- * REQ-FE-789: POST /api/v1/teams/
- */
-async function createTeam(data: CreateTeamData): Promise<Team> {
-  const response = await api.post<Team>("/api/v1/teams/", data);
-  return response.data;
-}
-
-/**
- * Update team
- * REQ-FE-789: PATCH /api/v1/teams/{teamId}
- */
-async function updateTeam(teamId: string, data: UpdateTeamData): Promise<Team> {
-  const response = await api.patch<Team>(`/api/v1/teams/${teamId}`, data);
-  return response.data;
-}
-
-/**
- * Delete team
- * REQ-FE-789: DELETE /api/v1/teams/{teamId}
- */
-async function deleteTeam(teamId: string): Promise<void> {
-  await api.delete<void>(`/api/v1/teams/${teamId}`);
 }
 
 /**
  * useCreateTeam Hook
- * REQ-FE-789: Mutation for creating a new team
+ * REQ-BE-006-017, REQ-BE-006-018: Mutation for creating a new team via Supabase
+ * Creates team with invite_code and adds creator as leader.
  *
  * @returns TanStack mutation for team creation
  *
@@ -63,7 +42,7 @@ async function deleteTeam(teamId: string): Promise<void> {
  *     name: "Study Group",
  *     description: "Weekly study sessions",
  *     maxMembers: 10,
- *     courseIds: ["course-123"]
+ *     courseId: "course-123"
  *   },
  *   {
  *     onSuccess: (team) => {
@@ -79,12 +58,14 @@ async function deleteTeam(teamId: string): Promise<void> {
  */
 export function useCreateTeam() {
   const queryClient = useQueryClient();
+  const { user } = useAuth();
 
   return useMutation<Team, Error, CreateTeamData>({
-    mutationFn: createTeam,
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- user existence guaranteed before mutate call
+    mutationFn: (data) => createTeam(data, user!.id),
     onSuccess: () => {
       // Invalidate all team lists to refetch
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: teamKeys.lists(),
       });
     },
@@ -93,7 +74,7 @@ export function useCreateTeam() {
 
 /**
  * useUpdateTeam Hook
- * REQ-FE-789: Mutation for updating an existing team
+ * REQ-BE-006-019: Mutation for updating an existing team via Supabase
  *
  * @param teamId - The team ID to update
  * @returns TanStack mutation for team update
@@ -135,7 +116,7 @@ export function useUpdateTeam(teamId: string) {
       });
 
       // Invalidate lists to ensure consistency
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: teamKeys.lists(),
       });
     },
@@ -144,7 +125,7 @@ export function useUpdateTeam(teamId: string) {
 
 /**
  * useDeleteTeam Hook
- * REQ-FE-789: Mutation for deleting a team
+ * REQ-BE-006-020: Mutation for deleting a team via Supabase
  *
  * @param teamId - The team ID to delete
  * @returns TanStack mutation for team deletion
@@ -171,7 +152,7 @@ export function useUpdateTeam(teamId: string) {
 export function useDeleteTeam(teamId: string) {
   const queryClient = useQueryClient();
 
-  return useMutation<void, Error, void>({
+  return useMutation({
     mutationFn: () => deleteTeam(teamId),
     onSuccess: () => {
       // Remove from detail cache
@@ -180,7 +161,7 @@ export function useDeleteTeam(teamId: string) {
       });
 
       // Invalidate all lists
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: teamKeys.lists(),
       });
     },

@@ -126,7 +126,7 @@ export function MemberListItem({
             <span>Joined {formatDate(member.joinedAt)}</span>
             {isSelf && (
               <span className="text-xs text-muted-foreground">
-                ({member.email})
+                (You)
               </span>
             )}
           </div>

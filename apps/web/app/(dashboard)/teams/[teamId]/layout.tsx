@@ -207,17 +207,15 @@ export default function TeamDetailLayout({
           </div>
         </CardHeader>
 
-        {/* Course associations */}
-        {team.courseIds.length > 0 && (
+        {/* Course association */}
+        {team.courseId && (
           <CardContent className="border-t pt-4">
             <div className="flex items-center gap-2 flex-wrap">
               <BookOpen className="h-4 w-4 text-muted-foreground" />
               <span className="text-sm text-muted-foreground">Associated with:</span>
-              {team.courseIds.map((courseId) => (
-                <Badge key={courseId} variant="outline">
-                  Course
-                </Badge>
-              ))}
+              <Badge variant="outline">
+                Course
+              </Badge>
             </div>
           </CardContent>
         )}

@@ -17,7 +17,7 @@ describe("Team Schemas", () => {
         name: "Study Group Alpha",
         description: "A study group for beginners",
         maxMembers: 10,
-        courseIds: ["123e4567-e89b-12d3-a456-426614174001", "123e4567-e89b-12d3-a456-426614174002"],
+        courseId: "123e4567-e89b-12d3-a456-426614174001",
       });
       expect(result.success).toBe(true);
       if (result.success) {
@@ -118,21 +118,21 @@ describe("Team Schemas", () => {
       expect(result.success).toBe(false);
     });
 
-    it("should accept valid UUID array for courseIds", () => {
+    it("should accept valid UUID for courseId", () => {
       const result = CreateTeamSchema.safeParse({
         name: "Team",
-        courseIds: ["123e4567-e89b-12d3-a456-426614174000"],
+        courseId: "123e4567-e89b-12d3-a456-426614174000",
       });
       expect(result.success).toBe(true);
     });
 
-    it("should allow optional courseIds", () => {
+    it("should allow optional courseId", () => {
       const result = CreateTeamSchema.safeParse({
         name: "Team",
       });
       expect(result.success).toBe(true);
       if (result.success) {
-        expect(result.data.courseIds).toBeUndefined();
+        expect(result.data.courseId).toBeUndefined();
       }
     });
   });

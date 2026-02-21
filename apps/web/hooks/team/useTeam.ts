@@ -8,35 +8,19 @@ import type {
   PaginatedResponse,
 } from "@shared";
 import { api } from "~/lib/api";
+import {
+  fetchTeamDetail,
+  fetchTeamMembers,
+} from "~/lib/supabase/teams";
 import { teamKeys } from "./useTeams";
 
 /**
- * Fetch single team detail
- * REQ-FE-786: GET /api/v1/teams/{teamId}
- */
-async function fetchTeamDetail(teamId: string): Promise<TeamDetailResponse> {
-  const response = await api.get<TeamDetailResponse>(`/api/v1/teams/${teamId}`);
-  return response.data;
-}
-
-/**
- * Fetch team members
- * REQ-FE-786: GET /api/v1/teams/{teamId}/members
- */
-async function fetchTeamMembers(teamId: string): Promise<TeamMemberDetail[]> {
-  const response = await api.get<{ members: TeamMemberDetail[] }>(
-    `/api/v1/teams/${teamId}/members`
-  );
-  return response.data.members;
-}
-
-/**
- * Fetch team activity
+ * Fetch team activity (kept as REST API - out of scope, SPEC-BE-007)
  * REQ-FE-786: GET /api/v1/teams/{teamId}/activity
  */
-async function fetchTeamActivity(
+async function fetchTeamActivityRest(
   teamId: string,
-  page: number = 1
+  page = 1
 ): Promise<PaginatedResponse<TeamActivity>> {
   const response = await api.get<PaginatedResponse<TeamActivity>>(
     `/api/v1/teams/${teamId}/activity`,
@@ -47,7 +31,7 @@ async function fetchTeamActivity(
 
 /**
  * useTeamDetail Hook
- * REQ-FE-786: Fetches single team detail with members
+ * REQ-BE-006-013: Fetches single team detail with members via Supabase
  *
  * @param teamId - The team ID
  * @returns TanStack Query result with TeamDetailResponse
@@ -64,7 +48,7 @@ async function fetchTeamActivity(
  * ```
  */
 export function useTeamDetail(teamId: string) {
-  return useQuery<TeamDetailResponse, Error>({
+  return useQuery<TeamDetailResponse>({
     queryKey: teamKeys.detail(teamId),
     queryFn: () => fetchTeamDetail(teamId),
     enabled: !!teamId,
@@ -74,7 +58,7 @@ export function useTeamDetail(teamId: string) {
 
 /**
  * useTeamMembers Hook
- * REQ-FE-786: Fetches team member list
+ * REQ-BE-006-014: Fetches team member list via Supabase
  *
  * @param teamId - The team ID
  * @returns TanStack Query result with TeamMemberDetail array
@@ -88,7 +72,7 @@ export function useTeamDetail(teamId: string) {
  * ```
  */
 export function useTeamMembers(teamId: string) {
-  return useQuery<TeamMemberDetail[], Error>({
+  return useQuery<TeamMemberDetail[]>({
     queryKey: teamKeys.members(teamId),
     queryFn: () => fetchTeamMembers(teamId),
     enabled: !!teamId,
@@ -99,6 +83,7 @@ export function useTeamMembers(teamId: string) {
 /**
  * useTeamActivity Hook
  * REQ-FE-786: Fetches paginated team activity feed
+ * NOTE: Kept as REST API call - migration deferred to SPEC-BE-007
  *
  * @param teamId - The team ID
  * @param page - Page number (default: 1)
@@ -124,10 +109,10 @@ export function useTeamMembers(teamId: string) {
  * );
  * ```
  */
-export function useTeamActivity(teamId: string, page: number = 1) {
-  return useQuery<PaginatedResponse<TeamActivity>, Error>({
+export function useTeamActivity(teamId: string, page = 1) {
+  return useQuery<PaginatedResponse<TeamActivity>>({
     queryKey: teamKeys.activity(teamId, page),
-    queryFn: () => fetchTeamActivity(teamId, page),
+    queryFn: () => fetchTeamActivityRest(teamId, page),
     enabled: !!teamId,
     staleTime: 30 * 1000, // 30 seconds (activity is more dynamic)
     gcTime: 5 * 60 * 1000, // 5 minutes (keep cached for back navigation)

@@ -1,12 +1,21 @@
 "use client";
 
 import { useInfiniteQuery } from "@tanstack/react-query";
-import type {
-  Memo,
-  MemoFilterParams,
-  PaginatedResponse,
-} from "@shared";
-import { api } from "~/lib/api";
+import type { Memo, MemoFilterParams } from "@shared";
+import { useAuth } from "~/hooks/useAuth";
+import {
+  fetchPersonalMemos,
+  fetchTeamMemos,
+} from "~/lib/supabase/memos";
+
+/** Page size for memo list pagination */
+const PAGE_SIZE = 20;
+
+/** Response shape from Supabase range-based pagination */
+interface MemoPageResponse {
+  data: Memo[];
+  count: number;
+}
 
 /**
  * Query key factory for memos
@@ -24,66 +33,10 @@ export const memoKeys = {
 };
 
 /**
- * Build query string from filter params
- */
-function buildFilterParams(filters: MemoFilterParams): Record<string, string | number | boolean> {
-  const params: Record<string, string | number | boolean> = {};
-
-  if (filters.visibility) params.visibility = filters.visibility;
-  if (filters.teamId) params.teamId = filters.teamId;
-  if (filters.materialId) params.materialId = filters.materialId;
-  if (filters.tags && filters.tags.length > 0) {
-    // Tags are passed as comma-separated string for URL params
-    params.tags = filters.tags.join(",");
-  }
-  if (filters.isDraft !== undefined) params.isDraft = filters.isDraft;
-  if (filters.search) params.search = filters.search;
-
-  return params;
-}
-
-/**
- * Fetch personal memos with filters
- * REQ-FE-787: GET /api/v1/memos/?visibility=personal&...filters
- */
-async function fetchPersonalMemos(
-  filters: MemoFilterParams,
-  pageParam: number = 1
-): Promise<PaginatedResponse<Memo>> {
-  const params: Record<string, string | number | boolean> = {
-    ...buildFilterParams(filters),
-    visibility: "personal",
-    page: pageParam,
-    limit: 20,
-  };
-
-  const response = await api.get<PaginatedResponse<Memo>>("/api/v1/memos/", {
-    params,
-  });
-  return response.data;
-}
-
-/**
- * Fetch team memos
- * REQ-FE-787: GET /api/v1/memos/?teamId={teamId}
- */
-async function fetchTeamMemos(
-  teamId: string,
-  pageParam: number = 1
-): Promise<PaginatedResponse<Memo>> {
-  const response = await api.get<PaginatedResponse<Memo>>("/api/v1/memos/", {
-    params: {
-      teamId,
-      page: pageParam,
-      limit: 20,
-    },
-  });
-  return response.data;
-}
-
-/**
  * usePersonalMemos Hook
- * REQ-FE-787: Fetches personal memos with filtering and infinite scroll
+ * REQ-BE-006-030/031/033: Fetches personal memos via Supabase with filtering and infinite scroll
+ *
+ * Uses range-based pagination with Supabase .range() instead of page-based REST pagination.
  *
  * @param filters - Filter parameters for memo list
  * @returns TanStack InfiniteQuery result with paginated Memo data
@@ -113,21 +66,32 @@ async function fetchTeamMemos(
  * ```
  */
 export function usePersonalMemos(filters: MemoFilterParams = {}) {
-  return useInfiniteQuery<PaginatedResponse<Memo>, Error>({
+  const { user } = useAuth();
+
+  return useInfiniteQuery<MemoPageResponse>({
     queryKey: memoKeys.personalList(filters),
-    queryFn: ({ pageParam = 1 }) => fetchPersonalMemos(filters, pageParam as number),
-    initialPageParam: 1,
-    getNextPageParam: (lastPage) => {
-      const { page, totalPages } = lastPage.pagination;
-      return page < totalPages ? page + 1 : undefined;
+    queryFn: ({ pageParam = 0 }) =>
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- user existence guaranteed by enabled
+      fetchPersonalMemos(user!.id, filters, {
+        from: pageParam as number,
+        to: (pageParam as number) + PAGE_SIZE - 1,
+      }),
+    initialPageParam: 0,
+    getNextPageParam: (lastPage, _allPages, lastPageParam) => {
+      return lastPage.data.length === PAGE_SIZE
+        ? (lastPageParam as number) + PAGE_SIZE
+        : undefined;
     },
+    enabled: !!user?.id,
     staleTime: 2 * 60 * 1000, // 2 minutes
   });
 }
 
 /**
  * useTeamMemos Hook
- * REQ-FE-787: Fetches team memos with infinite scroll
+ * REQ-BE-006-032/033: Fetches team memos via Supabase with infinite scroll
+ *
+ * Uses range-based pagination with Supabase .range() instead of page-based REST pagination.
  *
  * @param teamId - The team ID
  * @returns TanStack InfiniteQuery result with paginated Memo data
@@ -157,13 +121,18 @@ export function usePersonalMemos(filters: MemoFilterParams = {}) {
  * ```
  */
 export function useTeamMemos(teamId: string) {
-  return useInfiniteQuery<PaginatedResponse<Memo>, Error>({
+  return useInfiniteQuery<MemoPageResponse>({
     queryKey: memoKeys.teamList(teamId),
-    queryFn: ({ pageParam = 1 }) => fetchTeamMemos(teamId, pageParam as number),
-    initialPageParam: 1,
-    getNextPageParam: (lastPage) => {
-      const { page, totalPages } = lastPage.pagination;
-      return page < totalPages ? page + 1 : undefined;
+    queryFn: ({ pageParam = 0 }) =>
+      fetchTeamMemos(teamId, {
+        from: pageParam as number,
+        to: (pageParam as number) + PAGE_SIZE - 1,
+      }),
+    initialPageParam: 0,
+    getNextPageParam: (lastPage, _allPages, lastPageParam) => {
+      return lastPage.data.length === PAGE_SIZE
+        ? (lastPageParam as number) + PAGE_SIZE
+        : undefined;
     },
     enabled: !!teamId,
     staleTime: 30 * 1000, // 30 seconds (team memos are more collaborative)

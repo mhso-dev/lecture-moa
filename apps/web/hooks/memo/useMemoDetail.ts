@@ -7,47 +7,18 @@ import type {
   CreateMemoRequest,
   UpdateMemoRequest,
 } from "@shared";
-import { api } from "~/lib/api";
+import { useAuth } from "~/hooks/useAuth";
+import {
+  fetchMemoDetail,
+  createMemo,
+  updateMemo,
+  deleteMemo,
+} from "~/lib/supabase/memos";
 import { memoKeys } from "./useMemos";
 
 /**
- * Fetch single memo detail
- * REQ-FE-788: GET /api/v1/memos/{memoId}
- */
-async function fetchMemoDetail(memoId: string): Promise<MemoDetailResponse> {
-  const response = await api.get<MemoDetailResponse>(`/api/v1/memos/${memoId}`);
-  return response.data;
-}
-
-/**
- * Create memo
- * REQ-FE-788: POST /api/v1/memos/
- */
-async function createMemo(data: CreateMemoRequest): Promise<Memo> {
-  const response = await api.post<Memo>("/api/v1/memos/", data);
-  return response.data;
-}
-
-/**
- * Update memo
- * REQ-FE-788: PATCH /api/v1/memos/{memoId}
- */
-async function updateMemo(memoId: string, data: UpdateMemoRequest): Promise<Memo> {
-  const response = await api.patch<Memo>(`/api/v1/memos/${memoId}`, data);
-  return response.data;
-}
-
-/**
- * Delete memo
- * REQ-FE-788: DELETE /api/v1/memos/{memoId}
- */
-async function deleteMemo(memoId: string): Promise<void> {
-  await api.delete<void>(`/api/v1/memos/${memoId}`);
-}
-
-/**
  * useMemoDetail Hook
- * REQ-FE-788: Fetches single memo with link target
+ * REQ-BE-006-034: Fetches single memo with link target via Supabase
  *
  * @param memoId - The memo ID
  * @returns TanStack Query result with MemoDetailResponse
@@ -69,7 +40,7 @@ async function deleteMemo(memoId: string): Promise<void> {
  * ```
  */
 export function useMemoDetail(memoId: string) {
-  return useQuery<MemoDetailResponse, Error>({
+  return useQuery<MemoDetailResponse>({
     queryKey: memoKeys.detail(memoId),
     queryFn: () => fetchMemoDetail(memoId),
     enabled: !!memoId,
@@ -79,7 +50,7 @@ export function useMemoDetail(memoId: string) {
 
 /**
  * useCreateMemo Hook
- * REQ-FE-788: Mutation for creating a new memo
+ * REQ-BE-006-035: Mutation for creating a new memo via Supabase
  *
  * @returns TanStack mutation for memo creation
  *
@@ -107,19 +78,21 @@ export function useMemoDetail(memoId: string) {
  * ```
  */
 export function useCreateMemo() {
+  const { user } = useAuth();
   const queryClient = useQueryClient();
 
   return useMutation<Memo, Error, CreateMemoRequest>({
-    mutationFn: createMemo,
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- user existence guaranteed before mutate call
+    mutationFn: (data) => createMemo(data, user!.id),
     onSuccess: (newMemo) => {
       // Invalidate memo lists to refetch
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: memoKeys.lists(),
       });
 
       // If team memo, also invalidate team-specific list
       if (newMemo.teamId) {
-        queryClient.invalidateQueries({
+        void queryClient.invalidateQueries({
           queryKey: memoKeys.teamList(newMemo.teamId),
         });
       }
@@ -129,7 +102,7 @@ export function useCreateMemo() {
 
 /**
  * useUpdateMemo Hook
- * REQ-FE-788: Mutation for updating an existing memo
+ * REQ-BE-006-036: Mutation for updating an existing memo via Supabase
  *
  * @param memoId - The memo ID to update
  * @returns TanStack mutation for memo update
@@ -171,13 +144,13 @@ export function useUpdateMemo(memoId: string) {
       });
 
       // Invalidate lists to ensure consistency
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: memoKeys.lists(),
       });
 
       // If team memo changed, invalidate team list
       if (updatedMemo.teamId) {
-        queryClient.invalidateQueries({
+        void queryClient.invalidateQueries({
           queryKey: memoKeys.teamList(updatedMemo.teamId),
         });
       }
@@ -187,7 +160,7 @@ export function useUpdateMemo(memoId: string) {
 
 /**
  * useDeleteMemo Hook
- * REQ-FE-788: Mutation for deleting a memo
+ * REQ-BE-006-037: Mutation for deleting a memo via Supabase
  *
  * @returns TanStack mutation for memo deletion
  *
@@ -209,7 +182,7 @@ export function useUpdateMemo(memoId: string) {
 export function useDeleteMemo() {
   const queryClient = useQueryClient();
 
-  return useMutation<void, Error, string>({
+  return useMutation<unknown, Error, string>({
     mutationFn: deleteMemo,
     onSuccess: (_, deletedMemoId) => {
       // Remove from detail cache
@@ -218,7 +191,7 @@ export function useDeleteMemo() {
       });
 
       // Invalidate all lists
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: memoKeys.lists(),
       });
     },

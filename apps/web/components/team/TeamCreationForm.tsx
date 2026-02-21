@@ -46,7 +46,7 @@ export function TeamCreationForm({
   isSubmitting,
   courses = [],
 }: TeamCreationFormProps) {
-  const [selectedCourses, setSelectedCourses] = useState<string[]>([]);
+  const [selectedCourseId, setSelectedCourseId] = useState<string | undefined>(undefined);
   const [descriptionLength, setDescriptionLength] = useState(0);
 
   const form = useForm<CreateTeamType>({
@@ -55,15 +55,15 @@ export function TeamCreationForm({
       name: "",
       description: "",
       maxMembers: 10,
-      courseIds: [],
+      courseId: undefined,
     },
   });
 
   const handleSubmit = (data: CreateTeamType) => {
-    // Include selected courses in submission
+    // Include selected course in submission
     onSubmit({
       ...data,
-      courseIds: selectedCourses,
+      courseId: selectedCourseId,
     });
   };
 
@@ -163,22 +163,20 @@ export function TeamCreationForm({
         {courses.length > 0 && (
           <FormField
             control={form.control}
-            name="courseIds"
+            name="courseId"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Course Association (optional)</FormLabel>
                 <FormControl>
                   <Select
                     onValueChange={(value) => {
-                      const newSelection = selectedCourses.includes(value)
-                        ? selectedCourses.filter((id) => id !== value)
-                        : [...selectedCourses, value];
-                      setSelectedCourses(newSelection);
-                      field.onChange(newSelection);
+                      setSelectedCourseId(value);
+                      field.onChange(value);
                     }}
+                    value={selectedCourseId}
                   >
-                    <SelectTrigger data-testid="courses-input">
-                      <SelectValue placeholder="Select associated courses" />
+                    <SelectTrigger data-testid="course-input">
+                      <SelectValue placeholder="Select associated course" />
                     </SelectTrigger>
                     <SelectContent>
                       {courses.map((course) => (
@@ -190,37 +188,12 @@ export function TeamCreationForm({
                   </Select>
                 </FormControl>
                 <FormDescription>
-                  Link this team to specific courses.
+                  Link this team to a course.
                 </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
           />
-        )}
-
-        {/* Selected Courses Display */}
-        {selectedCourses.length > 0 && (
-          <div className="flex flex-wrap gap-2">
-            {selectedCourses.map((courseId) => {
-              const course = courses.find((c) => c.id === courseId);
-              return (
-                <Button
-                  key={courseId}
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  onClick={() => {
-                    setSelectedCourses(
-                      selectedCourses.filter((id) => id !== courseId)
-                    );
-                  }}
-                >
-                  {course?.name || courseId}
-                  <span className="ml-2">&times;</span>
-                </Button>
-              );
-            })}
-          </div>
         )}
 
         {/* Form Actions */}

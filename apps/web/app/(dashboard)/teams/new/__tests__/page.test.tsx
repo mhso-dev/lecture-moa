@@ -75,7 +75,7 @@ vi.mock("~/components/team/TeamCreationForm", () => ({
         name: "New Team",
         description: "A test team",
         maxMembers: 10,
-        courseIds: [],
+        courseId: undefined,
       });
     };
 
@@ -126,7 +126,7 @@ vi.mock("~/components/team/TeamCreationForm", () => ({
         {/* Course Association Field (optional) */}
         <div>
           <label htmlFor="courses">Course Association (optional)</label>
-          <select id="courses" name="courseIds" multiple data-testid="courses-input">
+          <select id="courses" name="courseId" data-testid="course-input">
             <option value="course-1">Course 1</option>
             <option value="course-2">Course 2</option>
           </select>
@@ -236,16 +236,15 @@ describe("TeamCreationForm", () => {
       expect(maxMembersInput).toHaveAttribute("max", "100");
     });
 
-    it("should render Course Association field (optional, multi-select)", () => {
+    it("should render Course Association field (optional, single select)", () => {
       const handleSubmit = vi.fn();
 
       render(<TeamCreationForm onSubmit={handleSubmit} isSubmitting={false} />, {
         wrapper: createWrapper(),
       });
 
-      const coursesInput = screen.getByTestId("courses-input");
-      expect(coursesInput).toBeInTheDocument();
-      expect(coursesInput).toHaveAttribute("multiple");
+      const courseInput = screen.getByTestId("course-input");
+      expect(courseInput).toBeInTheDocument();
     });
 
     it("should render Submit button with 'Create Team' text", () => {

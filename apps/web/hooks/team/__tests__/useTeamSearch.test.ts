@@ -66,7 +66,7 @@ describe("useTeamSearch", () => {
 
     it("should use debounced search query with useAvailableTeams", async () => {
       const { useAvailableTeams } = await import("../useTeams");
-      const mockUseAvailableTeams = vi.mocked(useAvailableTeams) as any;
+      const mockUseAvailableTeams = vi.mocked(useAvailableTeams);
 
       const { result } = renderHook(() => useTeamSearch());
 
@@ -85,7 +85,7 @@ describe("useTeamSearch", () => {
   describe("REQ-FE-714: Search Results", () => {
     it("should return loading state from useAvailableTeams", async () => {
       const { useAvailableTeams } = await import("../useTeams");
-      (vi.mocked(useAvailableTeams) as any).mockReturnValueOnce({
+      (vi.mocked(useAvailableTeams) as ReturnType<typeof vi.fn>).mockReturnValueOnce({
         data: [],
         isLoading: true,
         isError: false,
@@ -103,7 +103,7 @@ describe("useTeamSearch", () => {
       ];
 
       const { useAvailableTeams } = await import("../useTeams");
-      (vi.mocked(useAvailableTeams) as any).mockReturnValueOnce({
+      (vi.mocked(useAvailableTeams) as ReturnType<typeof vi.fn>).mockReturnValueOnce({
         data: mockTeams,
         isLoading: false,
         isError: false,
@@ -116,7 +116,7 @@ describe("useTeamSearch", () => {
 
     it("should return empty array when no teams found", async () => {
       const { useAvailableTeams } = await import("../useTeams");
-      (vi.mocked(useAvailableTeams) as any).mockReturnValueOnce({
+      (vi.mocked(useAvailableTeams) as ReturnType<typeof vi.fn>).mockReturnValueOnce({
         data: [],
         isLoading: false,
         isError: false,

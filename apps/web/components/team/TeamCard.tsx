@@ -96,19 +96,16 @@ export function TeamCard({
           </div>
         </div>
 
-        {/* Course badges */}
-        {team.courseIds.length > 0 && (
+        {/* Course badge */}
+        {team.courseId && (
           <div className="flex flex-wrap gap-2">
-            {team.courseIds.slice(0, 3).map((courseId) => (
-              <Badge
-                key={courseId}
-                role="badge"
-                variant="outline"
-                className="text-xs"
-              >
-                Course
-              </Badge>
-            ))}
+            <Badge
+              role="badge"
+              variant="outline"
+              className="text-xs"
+            >
+              Course
+            </Badge>
           </div>
         )}
 

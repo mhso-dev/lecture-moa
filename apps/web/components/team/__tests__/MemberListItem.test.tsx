@@ -45,7 +45,6 @@ const mockMember: TeamMemberDetail = {
   userId: "user-1",
   teamId: "team-1",
   name: "John Doe",
-  email: "john@example.com",
   role: "member",
   avatarUrl: undefined,
   lastActiveAt: new Date("2024-01-15"),
