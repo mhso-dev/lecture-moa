@@ -12,7 +12,7 @@
 
 import { useRouter } from "next/navigation";
 import { QuizForm } from "~/components/quiz/quiz-create/quiz-form";
-import { createQuiz } from "~/lib/api/quiz.api";
+import { createQuiz, type CreateQuizPayload } from "~/lib/supabase/quizzes";
 import type { CreateQuizInput } from "@shared";
 import { toast } from "sonner";
 
@@ -36,7 +36,7 @@ export default function QuizCreatePage() {
 
   const handleSubmit = async (data: CreateQuizInput) => {
     try {
-      const quiz = await createQuiz(data);
+      const quiz = await createQuiz(data as unknown as CreateQuizPayload);
       toast.success("Quiz created successfully");
       router.push(`/instructor/quizzes/${quiz.id}/edit`);
     } catch (error) {

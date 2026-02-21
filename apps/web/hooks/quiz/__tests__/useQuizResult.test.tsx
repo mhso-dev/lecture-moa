@@ -7,11 +7,11 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { renderHook, waitFor } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import type { ReactNode } from "react";
-import * as quizApi from "~/lib/api/quiz.api";
+import * as quizApi from "~/lib/supabase/quizzes";
 
 // Mock the API module
-vi.mock("~/lib/api/quiz.api", () => ({
-  fetchQuizResult: vi.fn(),
+vi.mock("~/lib/supabase/quizzes", () => ({
+  getQuizResult: vi.fn(),
 }));
 
 // Create wrapper with QueryClient
@@ -82,7 +82,7 @@ describe("useQuizResult", () => {
   describe("query key", () => {
     it("uses ['quizzes', quizId, 'result', attemptId] as key", async () => {
       const mockData = createMockQuizResult("quiz-1", "attempt-1");
-      vi.mocked(quizApi.fetchQuizResult).mockResolvedValue(mockData);
+      vi.mocked(quizApi.getQuizResult).mockResolvedValue(mockData);
 
       const { useQuizResult } = await import("../useQuizResult");
       const { result } = renderHook(
@@ -92,7 +92,7 @@ describe("useQuizResult", () => {
 
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
-      expect(quizApi.fetchQuizResult).toHaveBeenCalledWith("quiz-1", "attempt-1");
+      expect(quizApi.getQuizResult).toHaveBeenCalledWith("quiz-1", "attempt-1");
     });
   });
 
@@ -103,7 +103,7 @@ describe("useQuizResult", () => {
         wrapper: createWrapper(),
       });
 
-      expect(quizApi.fetchQuizResult).not.toHaveBeenCalled();
+      expect(quizApi.getQuizResult).not.toHaveBeenCalled();
     });
 
     it("is disabled when attemptId is empty", async () => {
@@ -112,7 +112,7 @@ describe("useQuizResult", () => {
         wrapper: createWrapper(),
       });
 
-      expect(quizApi.fetchQuizResult).not.toHaveBeenCalled();
+      expect(quizApi.getQuizResult).not.toHaveBeenCalled();
     });
 
     it("is disabled when both quizId and attemptId are empty", async () => {
@@ -121,12 +121,12 @@ describe("useQuizResult", () => {
         wrapper: createWrapper(),
       });
 
-      expect(quizApi.fetchQuizResult).not.toHaveBeenCalled();
+      expect(quizApi.getQuizResult).not.toHaveBeenCalled();
     });
 
     it("is enabled when both quizId and attemptId are valid", async () => {
       const mockData = createMockQuizResult("quiz-1", "attempt-1");
-      vi.mocked(quizApi.fetchQuizResult).mockResolvedValue(mockData);
+      vi.mocked(quizApi.getQuizResult).mockResolvedValue(mockData);
 
       const { useQuizResult } = await import("../useQuizResult");
       const { result } = renderHook(
@@ -136,14 +136,14 @@ describe("useQuizResult", () => {
 
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
-      expect(quizApi.fetchQuizResult).toHaveBeenCalledWith("quiz-1", "attempt-1");
+      expect(quizApi.getQuizResult).toHaveBeenCalledWith("quiz-1", "attempt-1");
     });
   });
 
   describe("data fetching", () => {
     it("returns quiz result with question breakdown on success", async () => {
       const mockData = createMockQuizResult("quiz-1", "attempt-1");
-      vi.mocked(quizApi.fetchQuizResult).mockResolvedValue(mockData);
+      vi.mocked(quizApi.getQuizResult).mockResolvedValue(mockData);
 
       const { useQuizResult } = await import("../useQuizResult");
       const { result } = renderHook(
@@ -159,7 +159,7 @@ describe("useQuizResult", () => {
 
     it("includes score and percentage in result", async () => {
       const mockData = createMockQuizResult("quiz-1", "attempt-1");
-      vi.mocked(quizApi.fetchQuizResult).mockResolvedValue(mockData);
+      vi.mocked(quizApi.getQuizResult).mockResolvedValue(mockData);
 
       const { useQuizResult } = await import("../useQuizResult");
       const { result } = renderHook(
@@ -176,7 +176,7 @@ describe("useQuizResult", () => {
 
     it("includes time taken in result", async () => {
       const mockData = createMockQuizResult("quiz-1", "attempt-1");
-      vi.mocked(quizApi.fetchQuizResult).mockResolvedValue(mockData);
+      vi.mocked(quizApi.getQuizResult).mockResolvedValue(mockData);
 
       const { useQuizResult } = await import("../useQuizResult");
       const { result } = renderHook(
@@ -190,7 +190,7 @@ describe("useQuizResult", () => {
     });
 
     it("handles 404 error for non-existent attempt", async () => {
-      vi.mocked(quizApi.fetchQuizResult).mockRejectedValue(
+      vi.mocked(quizApi.getQuizResult).mockRejectedValue(
         new Error("Attempt not found")
       );
 
@@ -207,7 +207,7 @@ describe("useQuizResult", () => {
     });
 
     it("handles unauthorized access", async () => {
-      vi.mocked(quizApi.fetchQuizResult).mockRejectedValue(
+      vi.mocked(quizApi.getQuizResult).mockRejectedValue(
         new Error("Unauthorized")
       );
 
@@ -226,7 +226,7 @@ describe("useQuizResult", () => {
   describe("question results", () => {
     it("includes per-question details", async () => {
       const mockData = createMockQuizResult("quiz-1", "attempt-1");
-      vi.mocked(quizApi.fetchQuizResult).mockResolvedValue(mockData);
+      vi.mocked(quizApi.getQuizResult).mockResolvedValue(mockData);
 
       const { useQuizResult } = await import("../useQuizResult");
       const { result } = renderHook(
@@ -250,7 +250,7 @@ describe("useQuizResult", () => {
 
     it("includes explanations for questions", async () => {
       const mockData = createMockQuizResult("quiz-1", "attempt-1");
-      vi.mocked(quizApi.fetchQuizResult).mockResolvedValue(mockData);
+      vi.mocked(quizApi.getQuizResult).mockResolvedValue(mockData);
 
       const { useQuizResult } = await import("../useQuizResult");
       const { result } = renderHook(

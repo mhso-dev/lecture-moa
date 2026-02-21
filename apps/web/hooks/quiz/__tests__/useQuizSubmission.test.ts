@@ -17,9 +17,10 @@ import { useQuizTakingStore } from "~/stores/quiz-taking.store";
 import type { DraftAnswer, Question } from "@shared";
 
 // Mock the API
-vi.mock("~/lib/api/quiz.api", () => ({
+vi.mock("~/lib/supabase/quizzes", () => ({
   submitQuizAttempt: vi.fn(),
   saveDraftAnswers: vi.fn(),
+  getQuizResult: vi.fn(),
 }));
 
 // Mock Next.js navigation
@@ -30,13 +31,14 @@ vi.mock("next/navigation", () => ({
   }),
 }));
 
-import { submitQuizAttempt, saveDraftAnswers } from "~/lib/api/quiz.api";
+import { submitQuizAttempt, saveDraftAnswers, getQuizResult } from "~/lib/supabase/quizzes";
 import { useQuizSubmission } from "../useQuizSubmission";
 import type { QuizModuleResult } from "@shared";
 
 describe("useQuizSubmission", () => {
   const mockSubmitQuizAttempt = vi.mocked(submitQuizAttempt);
   const mockSaveDraftAnswers = vi.mocked(saveDraftAnswers);
+  const mockGetQuizResult = vi.mocked(getQuizResult);
 
   const mockQuestions: Question[] = [
     {
@@ -217,7 +219,8 @@ describe("useQuizSubmission", () => {
       };
 
       mockSaveDraftAnswers.mockResolvedValueOnce();
-      mockSubmitQuizAttempt.mockResolvedValueOnce(mockResult);
+      mockSubmitQuizAttempt.mockResolvedValueOnce({} as any);
+      mockGetQuizResult.mockResolvedValueOnce(mockResult);
 
       const { result } = renderHook(() =>
         useQuizSubmission({
@@ -233,9 +236,8 @@ describe("useQuizSubmission", () => {
       });
 
       expect(mockSaveDraftAnswers).toHaveBeenCalledWith(
-        "quiz-1",
         "attempt-1",
-        Object.values(answers)
+        [{ questionId: "q-1", answer: "opt-1" }]
       );
     });
 
@@ -257,7 +259,8 @@ describe("useQuizSubmission", () => {
       };
 
       mockSaveDraftAnswers.mockResolvedValueOnce();
-      mockSubmitQuizAttempt.mockResolvedValueOnce(mockResult);
+      mockSubmitQuizAttempt.mockResolvedValueOnce({} as any);
+      mockGetQuizResult.mockResolvedValueOnce(mockResult);
 
       const { result } = renderHook(() =>
         useQuizSubmission({
@@ -274,7 +277,8 @@ describe("useQuizSubmission", () => {
         submitResult = await result.current.confirmSubmit();
       });
 
-      expect(mockSubmitQuizAttempt).toHaveBeenCalledWith("quiz-1", "attempt-1");
+      expect(mockSubmitQuizAttempt).toHaveBeenCalledWith("attempt-1");
+      expect(mockGetQuizResult).toHaveBeenCalledWith("quiz-1", "attempt-1");
       expect(submitResult).toEqual(mockResult);
     });
 
@@ -296,7 +300,8 @@ describe("useQuizSubmission", () => {
       };
 
       mockSaveDraftAnswers.mockResolvedValueOnce();
-      mockSubmitQuizAttempt.mockResolvedValueOnce(mockResult);
+      mockSubmitQuizAttempt.mockResolvedValueOnce({} as any);
+      mockGetQuizResult.mockResolvedValueOnce(mockResult);
 
       const { result } = renderHook(() =>
         useQuizSubmission({
@@ -334,7 +339,8 @@ describe("useQuizSubmission", () => {
       };
 
       mockSaveDraftAnswers.mockResolvedValueOnce();
-      mockSubmitQuizAttempt.mockResolvedValueOnce(mockResult);
+      mockSubmitQuizAttempt.mockResolvedValueOnce({} as any);
+      mockGetQuizResult.mockResolvedValueOnce(mockResult);
 
       useQuizTakingStore.setState({
         quizId: "quiz-1",
@@ -426,7 +432,8 @@ describe("useQuizSubmission", () => {
       };
 
       mockSaveDraftAnswers.mockResolvedValueOnce();
-      mockSubmitQuizAttempt.mockResolvedValueOnce(mockResult);
+      mockSubmitQuizAttempt.mockResolvedValueOnce({} as any);
+      mockGetQuizResult.mockResolvedValueOnce(mockResult);
 
       const { result } = renderHook(() =>
         useQuizSubmission({
@@ -503,10 +510,11 @@ describe("useQuizSubmission", () => {
         () =>
           new Promise((resolve) => {
             resolveSubmit = () => {
-              resolve(mockResult);
+              resolve({} as any);
             };
           })
       );
+      mockGetQuizResult.mockResolvedValue(mockResult);
 
       const { result } = renderHook(() =>
         useQuizSubmission({

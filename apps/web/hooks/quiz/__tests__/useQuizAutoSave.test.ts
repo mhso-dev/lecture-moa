@@ -16,7 +16,7 @@ import { useQuizTakingStore } from "~/stores/quiz-taking.store";
 import type { DraftAnswer } from "@shared";
 
 // Mock the API
-vi.mock("~/lib/api/quiz.api", () => ({
+vi.mock("~/lib/supabase/quizzes", () => ({
   saveDraftAnswers: vi.fn(),
 }));
 
@@ -30,7 +30,7 @@ vi.mock("~/hooks/useBeforeUnload", () => ({
   useBeforeUnload: vi.fn(),
 }));
 
-import { saveDraftAnswers } from "~/lib/api/quiz.api";
+import { saveDraftAnswers } from "~/lib/supabase/quizzes";
 
 describe("useQuizAutoSave", () => {
   const mockSaveDraftAnswers = vi.mocked(saveDraftAnswers);
@@ -115,9 +115,8 @@ describe("useQuizAutoSave", () => {
       await waitFor(
         () => {
           expect(mockSaveDraftAnswers).toHaveBeenCalledWith(
-            "quiz-1",
             "attempt-1",
-            Object.values(answers)
+            [{ questionId: "q-1", answer: "opt-1" }]
           );
         },
         { timeout: 2000 }
@@ -147,7 +146,6 @@ describe("useQuizAutoSave", () => {
       await waitFor(
         () => {
           expect(mockSaveDraftAnswers).toHaveBeenCalledWith(
-            "quiz-1",
             "attempt-1",
             expect.arrayContaining([expect.objectContaining({ questionId: "q-1" })])
           );
@@ -257,9 +255,8 @@ describe("useQuizAutoSave", () => {
       });
 
       expect(mockSaveDraftAnswers).toHaveBeenCalledWith(
-        "quiz-1",
         "attempt-1",
-        Object.values(answers)
+        [{ questionId: "q-1", answer: "opt-1" }]
       );
     });
 

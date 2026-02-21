@@ -23,7 +23,7 @@ export type QuizStatus = "draft" | "published" | "closed";
 /**
  * Quiz attempt status
  */
-export type AttemptStatus = "in_progress" | "submitted";
+export type AttemptStatus = "in_progress" | "submitted" | "graded";
 
 // ============================================================================
 // Question Types (Discriminated Union)

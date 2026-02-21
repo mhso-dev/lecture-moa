@@ -7,7 +7,7 @@
  */
 
 import { useQuery, type UseQueryResult } from "@tanstack/react-query";
-import { fetchQuizResult } from "~/lib/api/quiz.api";
+import { getQuizResult } from "~/lib/supabase/quizzes";
 import type { QuizModuleResult } from "@shared";
 
 /**
@@ -40,7 +40,7 @@ export function useQuizResult(
 ): UseQueryResult<QuizModuleResult> {
   return useQuery({
     queryKey: ["quizzes", quizId, "result", attemptId],
-    queryFn: () => fetchQuizResult(quizId, attemptId),
+    queryFn: () => getQuizResult(quizId, attemptId),
     enabled: !!quizId && quizId.length > 0 && !!attemptId && attemptId.length > 0,
   });
 }

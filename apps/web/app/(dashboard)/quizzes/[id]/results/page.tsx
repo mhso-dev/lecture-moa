@@ -10,7 +10,8 @@
 
 import { notFound, redirect } from "next/navigation";
 import { getUser } from "~/lib/auth";
-import { fetchQuizDetail, fetchQuizResult } from "~/lib/api/quiz.api";
+import { createClient } from "~/lib/supabase/server";
+import { getQuiz, getQuizResult } from "~/lib/supabase/quizzes";
 import { ResultsSummary } from "~/components/quiz/quiz-results/results-summary";
 import { ResultsBreakdown } from "~/components/quiz/quiz-results/results-breakdown";
 import { Button } from "~/components/ui/button";
@@ -70,10 +71,12 @@ export default async function QuizResultsPage({
     redirect(`/quizzes/${quizId}`);
   }
 
+  const client = await createClient();
+
   // Fetch quiz detail
   let quiz;
   try {
-    quiz = await fetchQuizDetail(quizId);
+    quiz = await getQuiz(quizId, client);
   } catch {
     notFound();
   }
@@ -81,7 +84,7 @@ export default async function QuizResultsPage({
   // Fetch results
   let result;
   try {
-    result = await fetchQuizResult(quizId, attemptId);
+    result = await getQuizResult(quizId, attemptId, client);
   } catch {
     // REQ-FE-620: If attemptId doesn't belong to user, redirect
     redirect("/quizzes?error=unauthorized");

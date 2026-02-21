@@ -7,7 +7,7 @@
  */
 
 import { useQuery, type UseQueryResult } from "@tanstack/react-query";
-import { fetchSubmissions } from "~/lib/api/quiz.api";
+import { getSubmissions } from "~/lib/supabase/quizzes";
 import type { QuizSubmissionSummary } from "@shared";
 
 /**
@@ -35,7 +35,7 @@ export function useSubmissions(
 ): UseQueryResult<QuizSubmissionSummary[]> {
   return useQuery({
     queryKey: ["instructor", "quizzes", quizId, "submissions"],
-    queryFn: () => fetchSubmissions(quizId),
+    queryFn: () => getSubmissions(quizId),
     enabled: !!quizId && quizId.length > 0,
   });
 }

@@ -1,14 +1,18 @@
 /**
  * useInstructorQuizzes Hook - Instructor Quiz List
- * Instructor quiz list fetching with pagination and filtering
+ * REQ-BE-005-011: Instructor quiz list fetching with pagination and filtering
  *
  * Fetches paginated list of quizzes created by the instructor.
  * Includes drafts and all statuses visible to instructors.
+ * Data source: Supabase direct query (migrated from REST API).
  */
 
 import { useQuery, type UseQueryResult } from "@tanstack/react-query";
-import { fetchInstructorQuizzes, type QuizListParams } from "~/lib/api/quiz.api";
-import type { PaginatedResponse, QuizListItem } from "@shared";
+import {
+  getInstructorQuizzes,
+  type InstructorQuizParams,
+  type PaginatedQuizList,
+} from "~/lib/supabase/quizzes";
 
 /**
  * Query key factory for instructor quizzes
@@ -16,7 +20,7 @@ import type { PaginatedResponse, QuizListItem } from "@shared";
 export const instructorQuizKeys = {
   all: ["instructor", "quizzes"] as const,
   lists: () => [...instructorQuizKeys.all, "list"] as const,
-  list: (params?: QuizListParams) => [...instructorQuizKeys.lists(), params] as const,
+  list: (params?: InstructorQuizParams) => [...instructorQuizKeys.lists(), params] as const,
   detail: (quizId: string) => [...instructorQuizKeys.all, quizId] as const,
 };
 
@@ -30,15 +34,15 @@ export const instructorQuizKeys = {
  *
  * Features:
  * - Filters by status and courseId
- * - Cursor-based pagination
- * - Includes draft quizzes
+ * - Page-based pagination via Supabase .range()
+ * - Includes draft quizzes (all statuses)
  * - Automatic caching
  */
 export function useInstructorQuizzes(
-  params?: QuizListParams
-): UseQueryResult<PaginatedResponse<QuizListItem>> {
+  params?: InstructorQuizParams
+): UseQueryResult<PaginatedQuizList> {
   return useQuery({
     queryKey: ["instructor", "quizzes", params],
-    queryFn: () => fetchInstructorQuizzes(params),
+    queryFn: () => getInstructorQuizzes(params),
   });
 }

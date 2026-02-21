@@ -7,11 +7,11 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { renderHook, waitFor } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import type { ReactNode } from "react";
-import * as quizApi from "~/lib/api/quiz.api";
+import * as quizApi from "~/lib/supabase/quizzes";
 
 // Mock the API module
-vi.mock("~/lib/api/quiz.api", () => ({
-  fetchSubmissions: vi.fn(),
+vi.mock("~/lib/supabase/quizzes", () => ({
+  getSubmissions: vi.fn(),
 }));
 
 // Create wrapper with QueryClient
@@ -49,7 +49,7 @@ describe("useSubmissions", () => {
   describe("query key", () => {
     it("uses ['instructor', 'quizzes', quizId, 'submissions'] as key", async () => {
       const mockData = [createMockSubmission("user-1")];
-      vi.mocked(quizApi.fetchSubmissions).mockResolvedValue(mockData);
+      vi.mocked(quizApi.getSubmissions).mockResolvedValue(mockData);
 
       const { useSubmissions } = await import("../useSubmissions");
       const { result } = renderHook(() => useSubmissions("quiz-1"), {
@@ -58,7 +58,7 @@ describe("useSubmissions", () => {
 
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
-      expect(quizApi.fetchSubmissions).toHaveBeenCalledWith("quiz-1");
+      expect(quizApi.getSubmissions).toHaveBeenCalledWith("quiz-1");
     });
   });
 
@@ -69,7 +69,7 @@ describe("useSubmissions", () => {
         wrapper: createWrapper(),
       });
 
-      expect(quizApi.fetchSubmissions).not.toHaveBeenCalled();
+      expect(quizApi.getSubmissions).not.toHaveBeenCalled();
     });
 
     it("is disabled when quizId is undefined", async () => {
@@ -78,12 +78,12 @@ describe("useSubmissions", () => {
         wrapper: createWrapper(),
       });
 
-      expect(quizApi.fetchSubmissions).not.toHaveBeenCalled();
+      expect(quizApi.getSubmissions).not.toHaveBeenCalled();
     });
 
     it("is enabled when quizId is valid", async () => {
       const mockData = [createMockSubmission("user-1")];
-      vi.mocked(quizApi.fetchSubmissions).mockResolvedValue(mockData);
+      vi.mocked(quizApi.getSubmissions).mockResolvedValue(mockData);
 
       const { useSubmissions } = await import("../useSubmissions");
       const { result } = renderHook(() => useSubmissions("quiz-1"), {
@@ -92,7 +92,7 @@ describe("useSubmissions", () => {
 
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
-      expect(quizApi.fetchSubmissions).toHaveBeenCalledWith("quiz-1");
+      expect(quizApi.getSubmissions).toHaveBeenCalledWith("quiz-1");
     });
   });
 
@@ -103,7 +103,7 @@ describe("useSubmissions", () => {
         createMockSubmission("user-2"),
         createMockSubmission("user-3"),
       ];
-      vi.mocked(quizApi.fetchSubmissions).mockResolvedValue(mockData);
+      vi.mocked(quizApi.getSubmissions).mockResolvedValue(mockData);
 
       const { useSubmissions } = await import("../useSubmissions");
       const { result } = renderHook(() => useSubmissions("quiz-1"), {
@@ -117,7 +117,7 @@ describe("useSubmissions", () => {
     });
 
     it("handles empty submissions list", async () => {
-      vi.mocked(quizApi.fetchSubmissions).mockResolvedValue([]);
+      vi.mocked(quizApi.getSubmissions).mockResolvedValue([]);
 
       const { useSubmissions } = await import("../useSubmissions");
       const { result } = renderHook(() => useSubmissions("quiz-1"), {
@@ -130,7 +130,7 @@ describe("useSubmissions", () => {
     });
 
     it("handles API error", async () => {
-      vi.mocked(quizApi.fetchSubmissions).mockRejectedValue(
+      vi.mocked(quizApi.getSubmissions).mockRejectedValue(
         new Error("API Error")
       );
 
@@ -148,7 +148,7 @@ describe("useSubmissions", () => {
   describe("submission data", () => {
     it("includes user information in submissions", async () => {
       const mockData = [createMockSubmission("user-1")];
-      vi.mocked(quizApi.fetchSubmissions).mockResolvedValue(mockData);
+      vi.mocked(quizApi.getSubmissions).mockResolvedValue(mockData);
 
       const { useSubmissions } = await import("../useSubmissions");
       const { result } = renderHook(() => useSubmissions("quiz-1"), {
@@ -164,7 +164,7 @@ describe("useSubmissions", () => {
 
     it("includes score and pass status in submissions", async () => {
       const mockData = [createMockSubmission("user-1")];
-      vi.mocked(quizApi.fetchSubmissions).mockResolvedValue(mockData);
+      vi.mocked(quizApi.getSubmissions).mockResolvedValue(mockData);
 
       const { useSubmissions } = await import("../useSubmissions");
       const { result } = renderHook(() => useSubmissions("quiz-1"), {
@@ -181,7 +181,7 @@ describe("useSubmissions", () => {
 
     it("includes submission timestamp", async () => {
       const mockData = [createMockSubmission("user-1")];
-      vi.mocked(quizApi.fetchSubmissions).mockResolvedValue(mockData);
+      vi.mocked(quizApi.getSubmissions).mockResolvedValue(mockData);
 
       const { useSubmissions } = await import("../useSubmissions");
       const { result } = renderHook(() => useSubmissions("quiz-1"), {
@@ -198,7 +198,7 @@ describe("useSubmissions", () => {
       const mockData = [
         { ...createMockSubmission("user-1"), passed: false, score: 50, percentage: 50 },
       ];
-      vi.mocked(quizApi.fetchSubmissions).mockResolvedValue(mockData);
+      vi.mocked(quizApi.getSubmissions).mockResolvedValue(mockData);
 
       const { useSubmissions } = await import("../useSubmissions");
       const { result } = renderHook(() => useSubmissions("quiz-1"), {

@@ -12,5 +12,3 @@ export {
   getApiAuthToken,
 } from "./api/index";
 
-// Quiz API functions
-export * from "./api/quiz.api";

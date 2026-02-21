@@ -7,11 +7,11 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { renderHook, waitFor } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import type { ReactNode } from "react";
-import * as quizApi from "~/lib/api/quiz.api";
+import * as quizApi from "~/lib/supabase/quizzes";
 
 // Mock the API module
-vi.mock("~/lib/api/quiz.api", () => ({
-  fetchInstructorQuizzes: vi.fn(),
+vi.mock("~/lib/supabase/quizzes", () => ({
+  getInstructorQuizzes: vi.fn(),
 }));
 
 // Create wrapper with QueryClient
@@ -57,7 +57,7 @@ describe("useInstructorQuizzes", () => {
         data: [],
         pagination: { page: 1, limit: 10, total: 0, totalPages: 0 },
       };
-      vi.mocked(quizApi.fetchInstructorQuizzes).mockResolvedValue(mockData);
+      vi.mocked(quizApi.getInstructorQuizzes).mockResolvedValue(mockData);
 
       const { useInstructorQuizzes } = await import("../useInstructorQuizzes");
       const { result } = renderHook(() => useInstructorQuizzes(), {
@@ -66,7 +66,7 @@ describe("useInstructorQuizzes", () => {
 
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
-      expect(quizApi.fetchInstructorQuizzes).toHaveBeenCalledWith(undefined);
+      expect(quizApi.getInstructorQuizzes).toHaveBeenCalledWith(undefined);
     });
 
     it("uses ['instructor', 'quizzes', params] when params provided", async () => {
@@ -74,7 +74,7 @@ describe("useInstructorQuizzes", () => {
         data: [],
         pagination: { page: 1, limit: 10, total: 0, totalPages: 0 },
       };
-      vi.mocked(quizApi.fetchInstructorQuizzes).mockResolvedValue(mockData);
+      vi.mocked(quizApi.getInstructorQuizzes).mockResolvedValue(mockData);
 
       const params = { status: "draft" as const, courseId: "course-1" };
       const { useInstructorQuizzes } = await import("../useInstructorQuizzes");
@@ -84,7 +84,7 @@ describe("useInstructorQuizzes", () => {
 
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
-      expect(quizApi.fetchInstructorQuizzes).toHaveBeenCalledWith(params);
+      expect(quizApi.getInstructorQuizzes).toHaveBeenCalledWith(params);
     });
   });
 
@@ -97,7 +97,7 @@ describe("useInstructorQuizzes", () => {
         ],
         pagination: { page: 1, limit: 10, total: 2, totalPages: 1 },
       };
-      vi.mocked(quizApi.fetchInstructorQuizzes).mockResolvedValue(mockData);
+      vi.mocked(quizApi.getInstructorQuizzes).mockResolvedValue(mockData);
 
       const { useInstructorQuizzes } = await import("../useInstructorQuizzes");
       const { result } = renderHook(() => useInstructorQuizzes(), {
@@ -115,7 +115,7 @@ describe("useInstructorQuizzes", () => {
         data: [],
         pagination: { page: 1, limit: 10, total: 0, totalPages: 0 },
       };
-      vi.mocked(quizApi.fetchInstructorQuizzes).mockResolvedValue(mockData);
+      vi.mocked(quizApi.getInstructorQuizzes).mockResolvedValue(mockData);
 
       const { useInstructorQuizzes } = await import("../useInstructorQuizzes");
       const { result } = renderHook(() => useInstructorQuizzes(), {
@@ -128,7 +128,7 @@ describe("useInstructorQuizzes", () => {
     });
 
     it("handles API error", async () => {
-      vi.mocked(quizApi.fetchInstructorQuizzes).mockRejectedValue(
+      vi.mocked(quizApi.getInstructorQuizzes).mockRejectedValue(
         new Error("API Error")
       );
 
@@ -149,7 +149,7 @@ describe("useInstructorQuizzes", () => {
         data: [createMockQuizListItem("quiz-1")],
         pagination: { page: 1, limit: 10, total: 1, totalPages: 1 },
       };
-      vi.mocked(quizApi.fetchInstructorQuizzes).mockResolvedValue(mockData);
+      vi.mocked(quizApi.getInstructorQuizzes).mockResolvedValue(mockData);
 
       const { useInstructorQuizzes } = await import("../useInstructorQuizzes");
       const { result } = renderHook(
@@ -159,7 +159,7 @@ describe("useInstructorQuizzes", () => {
 
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
-      expect(quizApi.fetchInstructorQuizzes).toHaveBeenCalledWith({ status: "draft" });
+      expect(quizApi.getInstructorQuizzes).toHaveBeenCalledWith({ status: "draft" });
     });
 
     it("filters by courseId", async () => {
@@ -167,7 +167,7 @@ describe("useInstructorQuizzes", () => {
         data: [createMockQuizListItem("quiz-1")],
         pagination: { page: 1, limit: 10, total: 1, totalPages: 1 },
       };
-      vi.mocked(quizApi.fetchInstructorQuizzes).mockResolvedValue(mockData);
+      vi.mocked(quizApi.getInstructorQuizzes).mockResolvedValue(mockData);
 
       const { useInstructorQuizzes } = await import("../useInstructorQuizzes");
       const { result } = renderHook(
@@ -177,7 +177,7 @@ describe("useInstructorQuizzes", () => {
 
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
-      expect(quizApi.fetchInstructorQuizzes).toHaveBeenCalledWith({ courseId: "course-123" });
+      expect(quizApi.getInstructorQuizzes).toHaveBeenCalledWith({ courseId: "course-123" });
     });
 
     it("filters by both status and courseId", async () => {
@@ -185,7 +185,7 @@ describe("useInstructorQuizzes", () => {
         data: [],
         pagination: { page: 1, limit: 10, total: 0, totalPages: 0 },
       };
-      vi.mocked(quizApi.fetchInstructorQuizzes).mockResolvedValue(mockData);
+      vi.mocked(quizApi.getInstructorQuizzes).mockResolvedValue(mockData);
 
       const { useInstructorQuizzes } = await import("../useInstructorQuizzes");
       const { result } = renderHook(
@@ -195,7 +195,7 @@ describe("useInstructorQuizzes", () => {
 
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
-      expect(quizApi.fetchInstructorQuizzes).toHaveBeenCalledWith({
+      expect(quizApi.getInstructorQuizzes).toHaveBeenCalledWith({
         status: "published",
         courseId: "course-123",
       });
@@ -208,7 +208,7 @@ describe("useInstructorQuizzes", () => {
         data: [],
         pagination: { page: 2, limit: 10, total: 25, totalPages: 3 },
       };
-      vi.mocked(quizApi.fetchInstructorQuizzes).mockResolvedValue(mockData);
+      vi.mocked(quizApi.getInstructorQuizzes).mockResolvedValue(mockData);
 
       const { useInstructorQuizzes } = await import("../useInstructorQuizzes");
       const { result } = renderHook(
@@ -218,7 +218,7 @@ describe("useInstructorQuizzes", () => {
 
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
-      expect(quizApi.fetchInstructorQuizzes).toHaveBeenCalledWith({ cursor: "current-cursor" });
+      expect(quizApi.getInstructorQuizzes).toHaveBeenCalledWith({ cursor: "current-cursor" });
       expect(result.current.data?.pagination.page).toBe(2);
       expect(result.current.data?.pagination.totalPages).toBe(3);
     });
@@ -233,7 +233,7 @@ describe("useInstructorQuizzes", () => {
         ],
         pagination: { page: 1, limit: 10, total: 2, totalPages: 1 },
       };
-      vi.mocked(quizApi.fetchInstructorQuizzes).mockResolvedValue(mockData);
+      vi.mocked(quizApi.getInstructorQuizzes).mockResolvedValue(mockData);
 
       const { useInstructorQuizzes } = await import("../useInstructorQuizzes");
       const { result } = renderHook(() => useInstructorQuizzes(), {

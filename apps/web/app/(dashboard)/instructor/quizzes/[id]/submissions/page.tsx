@@ -10,7 +10,8 @@
 
 import { notFound, redirect } from "next/navigation";
 import { getUser } from "~/lib/auth";
-import { fetchQuizDetail, fetchSubmissions } from "~/lib/api/quiz.api";
+import { createClient } from "~/lib/supabase/server";
+import { getQuiz, getSubmissions } from "~/lib/supabase/quizzes";
 import { SubmissionList } from "~/components/quiz/quiz-manage/submission-list";
 import { Button } from "~/components/ui/button";
 import { ArrowLeft } from "lucide-react";
@@ -54,18 +55,20 @@ export default async function QuizSubmissionsPage({ params }: QuizSubmissionsPag
   const { id } = await params;
   const quizId = id;
 
+  const client = await createClient();
+
   // Fetch quiz detail
   let quiz;
   try {
-    quiz = await fetchQuizDetail(quizId);
+    quiz = await getQuiz(quizId, client);
   } catch {
     notFound();
   }
 
   // Fetch submissions
-  let submissions: Awaited<ReturnType<typeof fetchSubmissions>> = [];
+  let submissions: Awaited<ReturnType<typeof getSubmissions>> = [];
   try {
-    submissions = await fetchSubmissions(quizId);
+    submissions = await getSubmissions(quizId, client);
   } catch {
     // Handle error silently, show empty state
   }

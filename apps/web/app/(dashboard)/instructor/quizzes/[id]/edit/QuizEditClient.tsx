@@ -7,7 +7,7 @@
 
 import { useRouter } from "next/navigation";
 import { QuizForm } from "~/components/quiz/quiz-create/quiz-form";
-import { updateQuiz } from "~/lib/api/quiz.api";
+import { updateQuiz, type UpdateQuizPayload } from "~/lib/supabase/quizzes";
 import type { QuizDetail, CreateQuizInput } from "@shared";
 import { toast } from "sonner";
 
@@ -21,7 +21,7 @@ export function QuizEditClient({ quiz, courses }: QuizEditClientProps) {
 
   const handleSubmit = async (data: CreateQuizInput) => {
     try {
-      await updateQuiz(quiz.id, data);
+      await updateQuiz(quiz.id, data as unknown as UpdateQuizPayload);
       toast.success("Quiz updated successfully");
       router.push("/instructor/quizzes");
     } catch (error) {
@@ -32,7 +32,7 @@ export function QuizEditClient({ quiz, courses }: QuizEditClientProps) {
 
   const handleAutoSave = async (data: CreateQuizInput) => {
     try {
-      await updateQuiz(quiz.id, data);
+      await updateQuiz(quiz.id, data as unknown as UpdateQuizPayload);
     } catch (error) {
       console.error("Auto-save failed:", error);
     }

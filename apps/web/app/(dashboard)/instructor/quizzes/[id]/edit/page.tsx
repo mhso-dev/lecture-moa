@@ -10,7 +10,8 @@
 
 import { notFound, redirect } from "next/navigation";
 import { getUser } from "~/lib/auth";
-import { fetchQuizDetail } from "~/lib/api/quiz.api";
+import { createClient } from "~/lib/supabase/server";
+import { getQuiz } from "~/lib/supabase/quizzes";
 import { QuizEditClient } from "./QuizEditClient";
 import type { Metadata } from "next";
 
@@ -58,10 +59,12 @@ export default async function QuizEditPage({ params }: QuizEditPageProps) {
   const { id } = await params;
   const quizId = id;
 
+  const client = await createClient();
+
   // Fetch quiz detail
   let quiz;
   try {
-    quiz = await fetchQuizDetail(quizId);
+    quiz = await getQuiz(quizId, client);
   } catch {
     notFound();
   }

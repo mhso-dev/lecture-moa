@@ -7,7 +7,7 @@
  */
 
 import { useMutation, type UseMutationResult } from "@tanstack/react-query";
-import { generateQuizWithAI } from "~/lib/api/quiz.api";
+import { generateQuizWithAI } from "~/lib/api/ai-quiz.api";
 import type { GenerationOptions, GeneratedQuestion } from "@shared";
 
 /**

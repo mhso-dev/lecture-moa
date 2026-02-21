@@ -14,7 +14,8 @@ import {
   publishQuiz,
   closeQuiz,
   duplicateQuiz,
-} from "~/lib/api/quiz.api";
+} from "~/lib/supabase/quizzes";
+import type { CreateQuizPayload, UpdateQuizPayload as SupabaseUpdateQuizPayload } from "~/lib/supabase/quizzes";
 import type { CreateQuizInput, QuizDetail } from "@shared";
 
 // ============================================================================
@@ -46,7 +47,7 @@ export function useCreateQuiz(): UseMutationResult<QuizDetail, Error, CreateQuiz
   const queryClient = useQueryClient();
 
   return useMutation<QuizDetail, Error, CreateQuizInput>({
-    mutationFn: (payload) => createQuiz(payload),
+    mutationFn: (payload) => createQuiz(payload as CreateQuizPayload),
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: ["instructor", "quizzes"] });
     },
@@ -70,7 +71,7 @@ export function useUpdateQuiz(): UseMutationResult<QuizDetail, Error, UpdateQuiz
   const queryClient = useQueryClient();
 
   return useMutation<QuizDetail, Error, UpdateQuizPayload>({
-    mutationFn: ({ quizId, data }) => updateQuiz(quizId, data),
+    mutationFn: ({ quizId, data }) => updateQuiz(quizId, data as SupabaseUpdateQuizPayload),
     onSuccess: (_, { quizId }) => {
       void queryClient.invalidateQueries({ queryKey: ["quizzes", quizId] });
       void queryClient.invalidateQueries({ queryKey: ["instructor", "quizzes"] });

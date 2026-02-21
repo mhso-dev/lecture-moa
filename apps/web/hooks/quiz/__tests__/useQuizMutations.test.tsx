@@ -7,10 +7,10 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { renderHook, waitFor } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import type { ReactNode } from "react";
-import * as quizApi from "~/lib/api/quiz.api";
+import * as quizApi from "~/lib/supabase/quizzes";
 
 // Mock the API module
-vi.mock("~/lib/api/quiz.api", () => ({
+vi.mock("~/lib/supabase/quizzes", () => ({
   createQuiz: vi.fn(),
   updateQuiz: vi.fn(),
   deleteQuiz: vi.fn(),

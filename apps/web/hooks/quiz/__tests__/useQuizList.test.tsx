@@ -7,11 +7,11 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { renderHook, waitFor } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import type { ReactNode } from "react";
-import * as quizApi from "~/lib/api/quiz.api";
+import * as quizApi from "~/lib/supabase/quizzes";
 
 // Mock the API module
-vi.mock("~/lib/api/quiz.api", () => ({
-  fetchQuizList: vi.fn(),
+vi.mock("~/lib/supabase/quizzes", () => ({
+  getQuizzes: vi.fn(),
 }));
 
 // Create wrapper with QueryClient
@@ -42,7 +42,7 @@ describe("useQuizList", () => {
         data: [],
         pagination: { page: 1, limit: 10, total: 0, totalPages: 0 },
       };
-      vi.mocked(quizApi.fetchQuizList).mockResolvedValue(mockData);
+      vi.mocked(quizApi.getQuizzes).mockResolvedValue(mockData);
 
       const { useQuizList } = await import("../useQuizList");
       const { result } = renderHook(() => useQuizList(), {
@@ -51,7 +51,7 @@ describe("useQuizList", () => {
 
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
-      expect(quizApi.fetchQuizList).toHaveBeenCalledWith(undefined);
+      expect(quizApi.getQuizzes).toHaveBeenCalledWith(undefined);
     });
 
     it("uses ['quizzes', params] when params provided", async () => {
@@ -59,7 +59,7 @@ describe("useQuizList", () => {
         data: [],
         pagination: { page: 1, limit: 10, total: 0, totalPages: 0 },
       };
-      vi.mocked(quizApi.fetchQuizList).mockResolvedValue(mockData);
+      vi.mocked(quizApi.getQuizzes).mockResolvedValue(mockData);
 
       const params = { status: "published" as const, courseId: "course-1" };
       const { useQuizList } = await import("../useQuizList");
@@ -69,7 +69,7 @@ describe("useQuizList", () => {
 
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
-      expect(quizApi.fetchQuizList).toHaveBeenCalledWith(params);
+      expect(quizApi.getQuizzes).toHaveBeenCalledWith(params);
     });
   });
 
@@ -94,7 +94,7 @@ describe("useQuizList", () => {
         ],
         pagination: { page: 1, limit: 10, total: 1, totalPages: 1 },
       };
-      vi.mocked(quizApi.fetchQuizList).mockResolvedValue(mockData);
+      vi.mocked(quizApi.getQuizzes).mockResolvedValue(mockData);
 
       const { useQuizList } = await import("../useQuizList");
       const { result } = renderHook(() => useQuizList(), {
@@ -111,7 +111,7 @@ describe("useQuizList", () => {
         data: [],
         pagination: { page: 1, limit: 10, total: 0, totalPages: 0 },
       };
-      vi.mocked(quizApi.fetchQuizList).mockResolvedValue(mockData);
+      vi.mocked(quizApi.getQuizzes).mockResolvedValue(mockData);
 
       const { useQuizList } = await import("../useQuizList");
       const { result } = renderHook(() => useQuizList(), {
@@ -124,7 +124,7 @@ describe("useQuizList", () => {
     });
 
     it("handles API error", async () => {
-      vi.mocked(quizApi.fetchQuizList).mockRejectedValue(new Error("API Error"));
+      vi.mocked(quizApi.getQuizzes).mockRejectedValue(new Error("API Error"));
 
       const { useQuizList } = await import("../useQuizList");
       const { result } = renderHook(() => useQuizList(), {
@@ -144,7 +144,7 @@ describe("useQuizList", () => {
         data: [],
         pagination: { page: 1, limit: 10, total: 0, totalPages: 0 },
       };
-      vi.mocked(quizApi.fetchQuizList).mockResolvedValue(mockData);
+      vi.mocked(quizApi.getQuizzes).mockResolvedValue(mockData);
 
       const { useQuizList } = await import("../useQuizList");
       const { result } = renderHook(
@@ -154,7 +154,7 @@ describe("useQuizList", () => {
 
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
-      expect(quizApi.fetchQuizList).toHaveBeenCalledWith({ status: "closed" });
+      expect(quizApi.getQuizzes).toHaveBeenCalledWith({ status: "closed" });
     });
 
     it("filters by courseId", async () => {
@@ -162,7 +162,7 @@ describe("useQuizList", () => {
         data: [],
         pagination: { page: 1, limit: 10, total: 0, totalPages: 0 },
       };
-      vi.mocked(quizApi.fetchQuizList).mockResolvedValue(mockData);
+      vi.mocked(quizApi.getQuizzes).mockResolvedValue(mockData);
 
       const { useQuizList } = await import("../useQuizList");
       const { result } = renderHook(
@@ -172,7 +172,7 @@ describe("useQuizList", () => {
 
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
-      expect(quizApi.fetchQuizList).toHaveBeenCalledWith({ courseId: "course-123" });
+      expect(quizApi.getQuizzes).toHaveBeenCalledWith({ courseId: "course-123" });
     });
 
     it("filters by both status and courseId", async () => {
@@ -180,7 +180,7 @@ describe("useQuizList", () => {
         data: [],
         pagination: { page: 1, limit: 10, total: 0, totalPages: 0 },
       };
-      vi.mocked(quizApi.fetchQuizList).mockResolvedValue(mockData);
+      vi.mocked(quizApi.getQuizzes).mockResolvedValue(mockData);
 
       const { useQuizList } = await import("../useQuizList");
       const { result } = renderHook(
@@ -190,7 +190,7 @@ describe("useQuizList", () => {
 
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
-      expect(quizApi.fetchQuizList).toHaveBeenCalledWith({
+      expect(quizApi.getQuizzes).toHaveBeenCalledWith({
         status: "published",
         courseId: "course-123",
       });
@@ -203,7 +203,7 @@ describe("useQuizList", () => {
         data: [],
         pagination: { page: 2, limit: 10, total: 25, totalPages: 3 },
       };
-      vi.mocked(quizApi.fetchQuizList).mockResolvedValue(mockData);
+      vi.mocked(quizApi.getQuizzes).mockResolvedValue(mockData);
 
       const { useQuizList } = await import("../useQuizList");
       const { result } = renderHook(
@@ -213,7 +213,7 @@ describe("useQuizList", () => {
 
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
-      expect(quizApi.fetchQuizList).toHaveBeenCalledWith({ cursor: "current-cursor" });
+      expect(quizApi.getQuizzes).toHaveBeenCalledWith({ cursor: "current-cursor" });
     });
   });
 });

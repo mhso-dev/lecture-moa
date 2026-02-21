@@ -10,7 +10,8 @@
 
 import { notFound, redirect } from "next/navigation";
 import { getUser } from "~/lib/auth";
-import { fetchQuizDetail, fetchQuizResult, fetchSubmissions } from "~/lib/api/quiz.api";
+import { createClient } from "~/lib/supabase/server";
+import { getQuiz, getQuizResult, getSubmissions } from "~/lib/supabase/quizzes";
 import { ResultsSummary } from "~/components/quiz/quiz-results/results-summary";
 import { ResultsBreakdown } from "~/components/quiz/quiz-results/results-breakdown";
 import { Button } from "~/components/ui/button";
@@ -56,10 +57,12 @@ export default async function InstructorResultPage({ params }: InstructorResultP
   const { id, attemptId } = await params;
   const quizId = id;
 
+  const client = await createClient();
+
   // Fetch quiz detail
   let quiz;
   try {
-    quiz = await fetchQuizDetail(quizId);
+    quiz = await getQuiz(quizId, client);
   } catch {
     notFound();
   }
@@ -67,15 +70,15 @@ export default async function InstructorResultPage({ params }: InstructorResultP
   // Fetch result
   let result;
   try {
-    result = await fetchQuizResult(quizId, attemptId);
+    result = await getQuizResult(quizId, attemptId, client);
   } catch {
     notFound();
   }
 
   // Fetch all submissions for navigation
-  let submissions: Awaited<ReturnType<typeof fetchSubmissions>> = [];
+  let submissions: Awaited<ReturnType<typeof getSubmissions>> = [];
   try {
-    submissions = await fetchSubmissions(quizId);
+    submissions = await getSubmissions(quizId, client);
   } catch {
     // Handle error silently
   }

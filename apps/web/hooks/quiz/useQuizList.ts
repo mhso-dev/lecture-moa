@@ -1,14 +1,18 @@
 /**
  * useQuizList Hook - Quiz List with Pagination
- * REQ-FE-602: Quiz list fetching with pagination
+ * REQ-FE-602 / REQ-BE-005-009: Quiz list fetching with pagination
  *
  * Fetches paginated quiz list with filtering options.
  * Uses TanStack Query v5 for caching and state management.
+ * Data source: Supabase direct query (migrated from REST API).
  */
 
 import { useQuery, type UseQueryResult } from "@tanstack/react-query";
-import { fetchQuizList, type QuizListParams } from "~/lib/api/quiz.api";
-import type { PaginatedResponse, QuizListItem } from "@shared";
+import {
+  getQuizzes,
+  type QuizListParams,
+  type PaginatedQuizList,
+} from "~/lib/supabase/quizzes";
 
 /**
  * Query key factory for quiz list
@@ -29,14 +33,14 @@ export const quizListKeys = {
  *
  * Features:
  * - Filters by status and courseId
- * - Cursor-based pagination
+ * - Page-based pagination via Supabase .range()
  * - Automatic caching
  */
 export function useQuizList(
   params?: QuizListParams
-): UseQueryResult<PaginatedResponse<QuizListItem>> {
+): UseQueryResult<PaginatedQuizList> {
   return useQuery({
     queryKey: ["quizzes", params],
-    queryFn: () => fetchQuizList(params),
+    queryFn: () => getQuizzes(params),
   });
 }

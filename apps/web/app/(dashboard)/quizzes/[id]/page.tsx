@@ -10,7 +10,8 @@
 
 import { notFound, redirect } from "next/navigation";
 import { getUser } from "~/lib/auth";
-import { fetchQuizDetail, startQuizAttempt } from "~/lib/api/quiz.api";
+import { createClient } from "~/lib/supabase/server";
+import { getQuiz, startQuizAttempt } from "~/lib/supabase/quizzes";
 import { QuizTakingShell } from "~/components/quiz/quiz-taking/quiz-taking-shell";
 import type { Metadata } from "next";
 
@@ -57,10 +58,12 @@ export default async function QuizTakingPage({ params }: QuizTakingPageProps) {
   const { id } = await params;
   const quizId = id;
 
+  const client = await createClient();
+
   // Fetch quiz detail
   let quiz;
   try {
-    quiz = await fetchQuizDetail(quizId);
+    quiz = await getQuiz(quizId, client);
   } catch {
     notFound();
   }
@@ -73,7 +76,7 @@ export default async function QuizTakingPage({ params }: QuizTakingPageProps) {
   // REQ-FE-610: Initialize or resume attempt
   let attempt;
   try {
-    attempt = await startQuizAttempt(quizId);
+    attempt = await startQuizAttempt(quizId, client);
   } catch {
     // If student already submitted and reattempt not allowed
     redirect(`/quizzes/${quizId}/results?error=already_submitted`);

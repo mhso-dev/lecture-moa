@@ -11,7 +11,7 @@ import { Loader2, Sparkles, AlertCircle } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import { GenerationOptions } from "~/components/quiz/quiz-generate/generation-options";
 import { GeneratedQuestionReview } from "~/components/quiz/quiz-generate/generated-question-review";
-import { generateQuizWithAI } from "~/lib/api/quiz.api";
+import { generateQuizWithAI } from "~/lib/api/ai-quiz.api";
 import type { GenerationOptions as GenerationOptionsType, GeneratedQuestion } from "@shared";
 import { toast } from "sonner";
 

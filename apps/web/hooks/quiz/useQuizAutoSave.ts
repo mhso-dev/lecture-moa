@@ -14,7 +14,7 @@ import { useEffect, useCallback, useRef, useState } from "react";
 import { useDebounce } from "~/hooks/useDebounce";
 import { useBeforeUnload } from "~/hooks/useBeforeUnload";
 import { useQuizTakingStore } from "~/stores/quiz-taking.store";
-import { saveDraftAnswers } from "~/lib/api/quiz.api";
+import { saveDraftAnswers } from "~/lib/supabase/quizzes";
 import type { DraftAnswer } from "@shared";
 
 // ============================================================================
@@ -45,6 +45,46 @@ const DEBOUNCE_DELAY_MS = 3000;
 const RETRY_DELAY_MS = 5000;
 
 // ============================================================================
+// Serialization
+// ============================================================================
+
+/**
+ * Serialize a DraftAnswer into the simple {questionId, answer} format
+ * expected by the Supabase saveDraftAnswers function.
+ */
+function serializeDraftAnswer(
+  draft: DraftAnswer
+): { questionId: string; answer: string } {
+  switch (draft.type) {
+    case "multiple_choice":
+      return {
+        questionId: draft.questionId,
+        answer: draft.selectedOptionId ?? "",
+      };
+    case "true_false":
+      return {
+        questionId: draft.questionId,
+        answer: draft.selectedAnswer != null ? String(draft.selectedAnswer) : "",
+      };
+    case "short_answer":
+      return {
+        questionId: draft.questionId,
+        answer: draft.text,
+      };
+    case "fill_in_the_blank":
+      return {
+        questionId: draft.questionId,
+        answer: JSON.stringify(draft.filledAnswers),
+      };
+    default:
+      return {
+        questionId: (draft as DraftAnswer).questionId,
+        answer: "",
+      };
+  }
+}
+
+// ============================================================================
 // Hook Implementation
 // ============================================================================
 
@@ -61,7 +101,7 @@ const RETRY_DELAY_MS = 5000;
  * - Navigation guard integration
  */
 export function useQuizAutoSave({
-  quizId,
+  quizId: _quizId,
   attemptId,
   isDirty,
   answers,
@@ -96,8 +136,8 @@ export function useQuizAutoSave({
     setSaveError(null);
 
     try {
-      const answersArray = Object.values(debouncedAnswers);
-      await saveDraftAnswers(quizId, attemptId, answersArray);
+      const serialized = Object.values(debouncedAnswers).map(serializeDraftAnswer);
+      await saveDraftAnswers(attemptId, serialized);
 
       if (isMountedRef.current) {
         markSaved();
@@ -123,7 +163,7 @@ export function useQuizAutoSave({
         setIsSaving(false);
       }
     }
-  }, [quizId, attemptId, debouncedAnswers, enabled, markSaved, isDirty]);
+  }, [attemptId, debouncedAnswers, enabled, markSaved, isDirty]);
 
   // Force save function (immediate, no debounce)
   const forceSave = useCallback(async (): Promise<void> => {
@@ -135,8 +175,8 @@ export function useQuizAutoSave({
     setSaveError(null);
 
     try {
-      const answersArray = Object.values(answers);
-      await saveDraftAnswers(quizId, attemptId, answersArray);
+      const serialized = Object.values(answers).map(serializeDraftAnswer);
+      await saveDraftAnswers(attemptId, serialized);
 
       if (isMountedRef.current) {
         markSaved();
@@ -150,7 +190,7 @@ export function useQuizAutoSave({
         setIsSaving(false);
       }
     }
-  }, [quizId, attemptId, answers, markSaved]);
+  }, [attemptId, answers, markSaved]);
 
   // Trigger auto-save when debounced isDirty becomes true
   useEffect(() => {

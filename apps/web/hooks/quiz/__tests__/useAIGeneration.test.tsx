@@ -7,10 +7,10 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { renderHook, waitFor } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import type { ReactNode } from "react";
-import * as quizApi from "~/lib/api/quiz.api";
+import * as aiQuizApi from "~/lib/api/ai-quiz.api";
 
 // Mock the API module
-vi.mock("~/lib/api/quiz.api", () => ({
+vi.mock("~/lib/api/ai-quiz.api", () => ({
   generateQuizWithAI: vi.fn(),
 }));
 
@@ -56,7 +56,7 @@ describe("useAIGeneration", () => {
         createMockGeneratedQuestion("temp-2"),
         createMockGeneratedQuestion("temp-3"),
       ];
-      vi.mocked(quizApi.generateQuizWithAI).mockResolvedValue(mockData);
+      vi.mocked(aiQuizApi.generateQuizWithAI).mockResolvedValue(mockData);
 
       const { useAIGeneration } = await import("../useAIGeneration");
       const { result } = renderHook(() => useAIGeneration(), {
@@ -72,7 +72,7 @@ describe("useAIGeneration", () => {
 
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
-      expect(quizApi.generateQuizWithAI).toHaveBeenCalledWith({
+      expect(aiQuizApi.generateQuizWithAI).toHaveBeenCalledWith({
         materialIds: ["material-1", "material-2"],
         count: 3,
         difficulty: "medium",
@@ -83,7 +83,7 @@ describe("useAIGeneration", () => {
     });
 
     it("handles generation error", async () => {
-      vi.mocked(quizApi.generateQuizWithAI).mockRejectedValue(
+      vi.mocked(aiQuizApi.generateQuizWithAI).mockRejectedValue(
         new Error("AI generation failed")
       );
 
@@ -105,7 +105,7 @@ describe("useAIGeneration", () => {
     });
 
     it("handles empty material IDs", async () => {
-      vi.mocked(quizApi.generateQuizWithAI).mockRejectedValue(
+      vi.mocked(aiQuizApi.generateQuizWithAI).mockRejectedValue(
         new Error("No materials provided")
       );
 
@@ -130,7 +130,7 @@ describe("useAIGeneration", () => {
   describe("generation options", () => {
     it("supports different difficulty levels", async () => {
       const mockData = [createMockGeneratedQuestion("temp-1")];
-      vi.mocked(quizApi.generateQuizWithAI).mockResolvedValue(mockData);
+      vi.mocked(aiQuizApi.generateQuizWithAI).mockResolvedValue(mockData);
 
       const { useAIGeneration } = await import("../useAIGeneration");
       const { result } = renderHook(() => useAIGeneration(), {
@@ -149,18 +149,18 @@ describe("useAIGeneration", () => {
 
         await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
-        expect(quizApi.generateQuizWithAI).toHaveBeenCalledWith(
+        expect(aiQuizApi.generateQuizWithAI).toHaveBeenCalledWith(
           expect.objectContaining({ difficulty })
         );
 
         vi.clearAllMocks();
-        vi.mocked(quizApi.generateQuizWithAI).mockResolvedValue(mockData);
+        vi.mocked(aiQuizApi.generateQuizWithAI).mockResolvedValue(mockData);
       }
     });
 
     it("supports multiple question types", async () => {
       const mockData = [createMockGeneratedQuestion("temp-1")];
-      vi.mocked(quizApi.generateQuizWithAI).mockResolvedValue(mockData);
+      vi.mocked(aiQuizApi.generateQuizWithAI).mockResolvedValue(mockData);
 
       const { useAIGeneration } = await import("../useAIGeneration");
       const { result } = renderHook(() => useAIGeneration(), {
@@ -176,7 +176,7 @@ describe("useAIGeneration", () => {
 
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
-      expect(quizApi.generateQuizWithAI).toHaveBeenCalledWith(
+      expect(aiQuizApi.generateQuizWithAI).toHaveBeenCalledWith(
         expect.objectContaining({
           questionTypes: ["multiple_choice", "true_false", "short_answer"],
         })
@@ -187,7 +187,7 @@ describe("useAIGeneration", () => {
       const mockData = Array(10).fill(null).map((_, i) =>
         createMockGeneratedQuestion(`temp-${String(i)}`)
       );
-      vi.mocked(quizApi.generateQuizWithAI).mockResolvedValue(mockData);
+      vi.mocked(aiQuizApi.generateQuizWithAI).mockResolvedValue(mockData);
 
       const { useAIGeneration } = await import("../useAIGeneration");
       const { result } = renderHook(() => useAIGeneration(), {
@@ -203,7 +203,7 @@ describe("useAIGeneration", () => {
 
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
-      expect(quizApi.generateQuizWithAI).toHaveBeenCalledWith(
+      expect(aiQuizApi.generateQuizWithAI).toHaveBeenCalledWith(
         expect.objectContaining({ count: 10 })
       );
     });
@@ -212,7 +212,7 @@ describe("useAIGeneration", () => {
   describe("generated question format", () => {
     it("returns questions with tempId for tracking", async () => {
       const mockData = [createMockGeneratedQuestion("temp-abc123")];
-      vi.mocked(quizApi.generateQuizWithAI).mockResolvedValue(mockData);
+      vi.mocked(aiQuizApi.generateQuizWithAI).mockResolvedValue(mockData);
 
       const { useAIGeneration } = await import("../useAIGeneration");
       const { result } = renderHook(() => useAIGeneration(), {
@@ -233,7 +233,7 @@ describe("useAIGeneration", () => {
 
     it("returns questions with points value", async () => {
       const mockData = [createMockGeneratedQuestion("temp-1")];
-      vi.mocked(quizApi.generateQuizWithAI).mockResolvedValue(mockData);
+      vi.mocked(aiQuizApi.generateQuizWithAI).mockResolvedValue(mockData);
 
       const { useAIGeneration } = await import("../useAIGeneration");
       const { result } = renderHook(() => useAIGeneration(), {
@@ -254,7 +254,7 @@ describe("useAIGeneration", () => {
 
     it("returns questions with explanation", async () => {
       const mockData = [createMockGeneratedQuestion("temp-1")];
-      vi.mocked(quizApi.generateQuizWithAI).mockResolvedValue(mockData);
+      vi.mocked(aiQuizApi.generateQuizWithAI).mockResolvedValue(mockData);
 
       const { useAIGeneration } = await import("../useAIGeneration");
       const { result } = renderHook(() => useAIGeneration(), {
@@ -279,7 +279,7 @@ describe("useAIGeneration", () => {
       // This test verifies the mutation state machine
       // isIdle -> isPending -> isSuccess
       const mockData = [createMockGeneratedQuestion("temp-1")];
-      vi.mocked(quizApi.generateQuizWithAI).mockResolvedValue(mockData);
+      vi.mocked(aiQuizApi.generateQuizWithAI).mockResolvedValue(mockData);
 
       const { useAIGeneration } = await import("../useAIGeneration");
       const { result } = renderHook(() => useAIGeneration(), {
