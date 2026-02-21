@@ -25,11 +25,11 @@ Supabase 기반 백엔드 구현 로드맵. 의존성 분석 및 병렬 처리 �
   - [x] run: `/moai run SPEC-AUTH-001` (8cabd18, 700b5d4)
   - [x] sync: `/moai sync SPEC-AUTH-001` (6d691b8)
   - [x] main 커밋 완료 (main_direct)
-- [ ] **SPEC-BE-003** 강좌 + 학습자료
-  - [ ] plan: `/moai plan "강좌 및 학습자료 백엔드 연동: Course/Material CRUD를 Supabase DB로 연결, Storage로 이미지 업로드, API 클라이언트 전환"`
-  - [ ] run: `/moai run SPEC-BE-003`
-  - [ ] sync: `/moai sync SPEC-BE-003`
-  - [ ] main 머지 완료
+- [x] **SPEC-BE-003** 강좌 + 학습자료
+  - [x] plan
+  - [x] run (cb79d4d)
+  - [x] sync
+  - [x] main 머지 완료
 
 ### Phase 2 - 도메인 기능 (병렬 가능 - Worktree)
 
@@ -39,10 +39,10 @@ Supabase 기반 백엔드 구현 로드맵. 의존성 분석 및 병렬 처리 �
   - [ ] run: `/moai run SPEC-BE-004`
   - [ ] sync: `/moai sync SPEC-BE-004`
   - [ ] `moai worktree done SPEC-BE-004`
-- [ ] **SPEC-BE-005** 퀴즈 시스템 (Worktree 병렬)
-  - [ ] plan: `/moai plan "퀴즈 시스템 백엔드 연동: Quiz CRUD, 응시/채점 로직, Edge Functions로 복잡한 비즈니스 로직 처리"`
-  - [ ] run: `/moai run SPEC-BE-005`
-  - [ ] sync: `/moai sync SPEC-BE-005`
+- [x] **SPEC-BE-005** 퀴즈 시스템 (Worktree 병렬)
+  - [x] plan
+  - [x] run (b08a313)
+  - [x] sync (PR #1)
   - [ ] `moai worktree done SPEC-BE-005`
 - [ ] **SPEC-BE-006** 팀 + 메모 (Worktree 병렬)
   - [ ] plan: `/moai plan "팀 및 메모 백엔드 연동: Team/Memo CRUD, 팀 초대/관리, Supabase Realtime으로 팀 메모 실시간 동기화"`
