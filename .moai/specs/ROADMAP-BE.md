@@ -26,10 +26,10 @@ Supabase 기반 백엔드 구현 로드맵. 의존성 분석 및 병렬 처리 �
   - [x] sync: `/moai sync SPEC-AUTH-001` (6d691b8)
   - [x] main 커밋 완료 (main_direct)
 - [x] **SPEC-BE-003** 강좌 + 학습자료
-  - [x] plan
-  - [x] run (cb79d4d)
-  - [x] sync
-  - [x] main 머지 완료
+  - [x] plan: SPEC-BE-003 spec.md/plan.md/acceptance.md 작성 완료
+  - [x] run: `/moai run SPEC-BE-003` (cb79d4d)
+  - [x] sync: `/moai sync SPEC-BE-003`
+  - [x] main 커밋 완료 (main_direct)
 
 ### Phase 2 - 도메인 기능 (병렬 가능 - Worktree)
 
@@ -44,10 +44,10 @@ Supabase 기반 백엔드 구현 로드맵. 의존성 분석 및 병렬 처리 �
   - [x] run (b08a313)
   - [x] sync (PR #1)
   - [ ] `moai worktree done SPEC-BE-005`
-- [ ] **SPEC-BE-006** 팀 + 메모 (Worktree 병렬)
-  - [ ] plan: `/moai plan "팀 및 메모 백엔드 연동: Team/Memo CRUD, 팀 초대/관리, Supabase Realtime으로 팀 메모 실시간 동기화"`
-  - [ ] run: `/moai run SPEC-BE-006`
-  - [ ] sync: `/moai sync SPEC-BE-006`
+- [x] **SPEC-BE-006** 팀 + 메모 (Worktree 병렬)
+  - [x] plan: SPEC-BE-006 spec.md/plan.md/acceptance.md 작성 완료
+  - [x] run: `/moai run SPEC-BE-006` (7b41126, 924c4b0)
+  - [x] sync: `/moai sync SPEC-BE-006` (f7354bc) - PR #2
   - [ ] `moai worktree done SPEC-BE-006`
 
 ### Phase 3 - 집계 + AI (순차)
