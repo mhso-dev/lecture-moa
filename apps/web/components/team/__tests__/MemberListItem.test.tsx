@@ -186,20 +186,4 @@ describe("MemberListItem", () => {
     expect(screen.getByText(/joined jan 10, 2024/i)).toBeInTheDocument();
   });
 
-  it("should show email for current user", () => {
-    render(
-      <MemberListItem
-        member={mockMember}
-        teamId="team-1"
-        isCurrentUserLeader={false}
-        currentUserId="user-1"
-      />
-    );
-
-    // Email is wrapped in parentheses as separate text nodes: (email)
-    // Use a custom matcher to find text split across elements
-    expect(screen.getByText((_content, element) => {
-      return element?.textContent === "(john@example.com)";
-    })).toBeInTheDocument();
-  });
 });

@@ -5,6 +5,7 @@
  */
 
 /* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
+/* eslint-disable @typescript-eslint/no-deprecated */
 "use client";
 
 import { useState } from "react";

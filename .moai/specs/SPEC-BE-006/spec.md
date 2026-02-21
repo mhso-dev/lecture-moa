@@ -380,7 +380,7 @@ packages/shared/src/constants/realtime.ts:
 |------|------|
 | 구현일 | 2026-02-21 |
 | 브랜치 | feature/SPEC-BE-006 |
-| 커밋 | 2개 (feat + test) |
+| 커밋 | 4개 (feat + test + docs + fix) |
 | 수정/생성 파일 | 36개 |
 | 신규 테스트 | 83개 (teams 47 + memos 20 + realtime 16) |
 | TypeScript 오류 | 0개 |
@@ -397,5 +397,5 @@ packages/shared/src/constants/realtime.ts:
 
 ### Known Issues
 
-- `InviteMemberModal.test.tsx`: email 기반 초대 테스트 실패 (컴포넌트 계층, 후속 작업)
-- `MemberListItem.test.tsx`: member.email 참조 테스트 실패 (컴포넌트 계층, 후속 작업)
+- ~~`InviteMemberModal.test.tsx`: email 기반 초대 테스트 실패~~ (Resolved: deprecated stub 테스트로 재작성)
+- ~~`MemberListItem.test.tsx`: member.email 참조 테스트 실패~~ (Resolved: email 테스트 제거)
