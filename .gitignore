@@ -165,6 +165,10 @@ secret-*.*
 .claude/local/
 .claude/plans/
 
+# Agent memory (local per-machine, not shared)
+.claude/agent-memory/
+.claude/agent-memory-local/
+
 # Skill-specific credentials
 .claude/skills/*/.env*
 .claude/skills/*/secrets/
