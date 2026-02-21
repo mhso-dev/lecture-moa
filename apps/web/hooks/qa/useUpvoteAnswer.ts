@@ -1,16 +1,26 @@
 /**
- * useUpvoteAnswer Hook - Upvote Answer Mutation
+ * useUpvoteAnswer Hook - Upvote Answer Mutation with Optimistic Update
  * TASK-011: TanStack Query mutation for upvoting answer
  * REQ-FE-503: Q&A API hook definitions
  * REQ-FE-536: Upvote interaction with optimistic update
+ * REQ-BE-004-021: Supabase direct query for answer vote toggle
  *
  * Handles toggling upvote on an answer with optimistic cache update.
+ * Uses Supabase query layer instead of REST API.
  */
 
 import { useMutation, useQueryClient, type UseMutationResult } from '@tanstack/react-query';
-import { api } from '~/lib/api';
+import { toggleAnswerVote } from '~/lib/supabase/qa';
+import { useAuth } from '~/hooks/useAuth';
 import { qaKeys } from './qa-keys';
-import type { QAAnswer } from '@shared';
+import type { QAQuestion, QAAnswer } from '@shared';
+
+/**
+ * Context for optimistic update rollback
+ */
+interface OptimisticContext {
+  previousData: (QAQuestion & { answers: QAAnswer[] }) | undefined;
+}
 
 /**
  * Hook for toggling upvote on an answer
@@ -32,21 +42,58 @@ import type { QAAnswer } from '@shared';
  */
 export function useUpvoteAnswer(
   questionId: string
-): UseMutationResult<QAAnswer, Error, string> {
+): UseMutationResult<{ voted: boolean; newCount: number }, Error, string, OptimisticContext> {
   const queryClient = useQueryClient();
+  const queryKey = qaKeys.detail(questionId);
+  const { user } = useAuth();
 
   return useMutation({
     mutationFn: async (answerId: string) => {
-      const response = await api.post<QAAnswer>(
-        `/api/v1/qa/questions/${questionId}/answers/${answerId}/upvote`
-      );
-      return response.data;
+      if (!user?.id) {
+        throw new Error('로그인이 필요합니다');
+      }
+      return toggleAnswerVote(answerId, user.id);
     },
-    onSuccess: () => {
-      // Invalidate question detail to refresh answer list
-      void queryClient.invalidateQueries({
-        queryKey: qaKeys.detail(questionId),
-      });
+
+    // Optimistic update before mutation
+    onMutate: async (answerId: string) => {
+      // Cancel any outgoing refetches
+      await queryClient.cancelQueries({ queryKey });
+
+      // Snapshot the previous value
+      const previousData = queryClient.getQueryData<QAQuestion & { answers: QAAnswer[] }>(queryKey);
+
+      // Optimistically toggle upvote state on the specific answer
+      if (previousData && Array.isArray(previousData.answers)) {
+        queryClient.setQueryData(queryKey, {
+          ...previousData,
+          answers: previousData.answers.map((answer: QAAnswer) =>
+            answer.id === answerId
+              ? {
+                  ...answer,
+                  isUpvoted: !answer.isUpvoted,
+                  upvoteCount: answer.isUpvoted
+                    ? answer.upvoteCount - 1
+                    : answer.upvoteCount + 1,
+                }
+              : answer
+          ),
+        });
+      }
+
+      return { previousData };
+    },
+
+    // Rollback on error
+    onError: (_error, _variables, context) => {
+      if (context?.previousData) {
+        queryClient.setQueryData(queryKey, context.previousData);
+      }
+    },
+
+    // Always refetch after success or error to ensure sync
+    onSettled: () => {
+      void queryClient.invalidateQueries({ queryKey });
     },
   });
 }

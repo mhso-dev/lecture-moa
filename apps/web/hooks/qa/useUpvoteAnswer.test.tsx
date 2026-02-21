@@ -3,6 +3,7 @@
  * TASK-011: TanStack Query mutation for upvoting answer with optimistic update
  * REQ-FE-503: Q&A API hook definitions
  * REQ-FE-536: Upvote interaction with optimistic update
+ * REQ-BE-004-021: Supabase direct query for answer vote toggle
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
@@ -12,14 +13,27 @@ import type { ReactNode } from 'react';
 import { useUpvoteAnswer } from './useUpvoteAnswer';
 import type { QAAnswer } from '@shared';
 
-// Mock the API module
-vi.mock('~/lib/api', () => ({
-  api: {
-    post: vi.fn(),
-  },
+// Mock the Supabase Q&A query layer
+vi.mock('~/lib/supabase/qa', () => ({
+  toggleAnswerVote: vi.fn(),
 }));
 
-import { api } from '~/lib/api';
+// Mock useAuth to provide a user for voting
+vi.mock('~/hooks/useAuth', () => ({
+  useAuth: () => ({
+    user: { id: 'u1' },
+    isAuthenticated: true,
+    isLoading: false,
+    role: 'student',
+    signIn: vi.fn(),
+    signInWithOAuth: vi.fn(),
+    signUp: vi.fn(),
+    signOut: vi.fn(),
+    updateUser: vi.fn(),
+  }),
+}));
+
+import { toggleAnswerVote } from '~/lib/supabase/qa';
 
 // Test wrapper with QueryClient
 function createWrapper() {
@@ -58,21 +72,15 @@ const mockAnswer: QAAnswer = {
   updatedAt: '2024-01-01T00:00:00Z',
 };
 
-const mockAnswerUpvoted: QAAnswer = {
-  ...mockAnswer,
-  upvoteCount: 6,
-  isUpvoted: true,
-};
-
 describe('useUpvoteAnswer', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
-  it('should upvote answer and return updated answer', async () => {
-    vi.mocked(api.post).mockResolvedValueOnce({
-      data: mockAnswerUpvoted,
-      success: true,
+  it('should upvote answer and return updated vote state', async () => {
+    vi.mocked(toggleAnswerVote).mockResolvedValueOnce({
+      voted: true,
+      newCount: 6,
     });
 
     const { result } = renderHook(() => useUpvoteAnswer('q1'), {
@@ -87,18 +95,16 @@ describe('useUpvoteAnswer', () => {
       expect(result.current.isSuccess).toBe(true);
     });
 
-    // Verify API call
-    expect(api.post).toHaveBeenCalledWith(
-      '/api/v1/qa/questions/q1/answers/a1/upvote'
-    );
+    // Verify Supabase query call with answerId and userId
+    expect(toggleAnswerVote).toHaveBeenCalledWith('a1', 'u1');
 
-    // Verify returned data
-    expect(result.current.data).toEqual(mockAnswerUpvoted);
+    // Verify returned data (Supabase returns { voted, newCount })
+    expect(result.current.data).toEqual({ voted: true, newCount: 6 });
   });
 
   it('should handle upvote error', async () => {
     const mockError = new Error('Failed to upvote answer');
-    vi.mocked(api.post).mockRejectedValueOnce(mockError);
+    vi.mocked(toggleAnswerVote).mockRejectedValueOnce(mockError);
 
     const { result } = renderHook(() => useUpvoteAnswer('q1'), {
       wrapper: createWrapper(),
@@ -116,9 +122,9 @@ describe('useUpvoteAnswer', () => {
   });
 
   it('should show loading state during mutation', async () => {
-    vi.mocked(api.post).mockResolvedValueOnce({
-      data: mockAnswerUpvoted,
-      success: true,
+    vi.mocked(toggleAnswerVote).mockResolvedValueOnce({
+      voted: true,
+      newCount: 6,
     });
 
     const { result } = renderHook(() => useUpvoteAnswer('q1'), {
@@ -138,9 +144,9 @@ describe('useUpvoteAnswer', () => {
   });
 
   it('should invalidate question detail on success', async () => {
-    vi.mocked(api.post).mockResolvedValueOnce({
-      data: mockAnswerUpvoted,
-      success: true,
+    vi.mocked(toggleAnswerVote).mockResolvedValueOnce({
+      voted: true,
+      newCount: 6,
     });
 
     const queryClient = new QueryClient({

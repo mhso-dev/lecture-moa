@@ -6,3 +6,4 @@
 export * from "./roles";
 export * from "./permissions";
 export * from "./events";
+export * from "./realtime";

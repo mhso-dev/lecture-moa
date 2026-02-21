@@ -3,22 +3,24 @@
  * TASK-009: TanStack Query mutation for accepting answer
  * REQ-FE-503: Q&A API hook definitions
  * REQ-FE-535: Accept answer action with optimistic update
+ * REQ-BE-004-016: Supabase direct query for answer acceptance
  *
  * Handles accepting an answer with optimistic cache update.
  * Only one answer can be accepted per question.
+ * Uses Supabase query layer instead of REST API.
  */
 
 import { useMutation, useQueryClient, type UseMutationResult } from '@tanstack/react-query';
-import { api } from '~/lib/api';
+import { acceptAnswer as acceptAnswerQuery } from '~/lib/supabase/qa';
 import { qaKeys } from './qa-keys';
 import { toast } from 'sonner';
-import type { QAAnswer, QAQuestion } from '@shared';
+import type { QAQuestion } from '@shared';
 
 /**
  * Context for optimistic update rollback
  */
 interface OptimisticContext {
-  previousQuestion: QAQuestion | undefined;
+  previousQuestion: (QAQuestion & { answers: unknown[] }) | undefined;
 }
 
 /**
@@ -38,31 +40,34 @@ interface OptimisticContext {
  */
 export function useAcceptAnswer(
   questionId: string
-): UseMutationResult<QAAnswer, Error, string, OptimisticContext> {
+): UseMutationResult<void, Error, string, OptimisticContext> {
   const queryClient = useQueryClient();
   const queryKey = qaKeys.detail(questionId);
 
   return useMutation({
     mutationFn: async (answerId: string) => {
-      const response = await api.patch<QAAnswer>(
-        `/api/v1/qa/questions/${questionId}/answers/${answerId}/accept`
-      );
-      return response.data;
+      await acceptAnswerQuery(questionId, answerId);
     },
 
     // Optimistic update before mutation
-    onMutate: async (_answerId: string) => {
+    onMutate: async (answerId: string) => {
       // Cancel any outgoing refetches
       await queryClient.cancelQueries({ queryKey });
 
       // Snapshot the previous value
-      const previousQuestion = queryClient.getQueryData<QAQuestion>(queryKey);
+      const previousQuestion = queryClient.getQueryData<QAQuestion & { answers: unknown[] }>(queryKey);
 
       // Optimistically update to the new value
       if (previousQuestion) {
-        queryClient.setQueryData<QAQuestion>(queryKey, {
+        queryClient.setQueryData(queryKey, {
           ...previousQuestion,
           status: 'RESOLVED',
+          answers: Array.isArray(previousQuestion.answers)
+            ? previousQuestion.answers.map((a: Record<string, unknown>) => ({
+                ...a,
+                isAccepted: a.id === answerId,
+              }))
+            : previousQuestion.answers,
         });
       }
 

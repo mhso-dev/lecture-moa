@@ -3,6 +3,7 @@
  * TASK-010: TanStack Query mutation for upvoting question with optimistic update
  * REQ-FE-503: Q&A API hook definitions
  * REQ-FE-536: Upvote interaction with optimistic update
+ * REQ-BE-004-020: Supabase direct query for question vote toggle
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
@@ -12,14 +13,27 @@ import type { ReactNode } from 'react';
 import { useUpvoteQuestion } from './useUpvoteQuestion';
 import type { QAQuestion } from '@shared';
 
-// Mock the API module
-vi.mock('~/lib/api', () => ({
-  api: {
-    post: vi.fn(),
-  },
+// Mock the Supabase Q&A query layer
+vi.mock('~/lib/supabase/qa', () => ({
+  toggleQuestionVote: vi.fn(),
 }));
 
-import { api } from '~/lib/api';
+// Mock useAuth to provide a user for voting
+vi.mock('~/hooks/useAuth', () => ({
+  useAuth: () => ({
+    user: { id: 'u1' },
+    isAuthenticated: true,
+    isLoading: false,
+    role: 'student',
+    signIn: vi.fn(),
+    signInWithOAuth: vi.fn(),
+    signUp: vi.fn(),
+    signOut: vi.fn(),
+    updateUser: vi.fn(),
+  }),
+}));
+
+import { toggleQuestionVote } from '~/lib/supabase/qa';
 
 // Test wrapper with QueryClient
 function createWrapper(initialData?: QAQuestion) {
@@ -73,21 +87,15 @@ const mockQuestion: QAQuestion = {
   updatedAt: '2024-01-01T00:00:00Z',
 };
 
-const mockQuestionUpvoted: QAQuestion = {
-  ...mockQuestion,
-  upvoteCount: 6,
-  isUpvoted: true,
-};
-
 describe('useUpvoteQuestion', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
   it('should upvote question and optimistically update', async () => {
-    vi.mocked(api.post).mockResolvedValueOnce({
-      data: mockQuestionUpvoted,
-      success: true,
+    vi.mocked(toggleQuestionVote).mockResolvedValueOnce({
+      voted: true,
+      newCount: 6,
     });
 
     const { result } = renderHook(() => useUpvoteQuestion('q1'), {
@@ -102,11 +110,11 @@ describe('useUpvoteQuestion', () => {
       expect(result.current.isSuccess).toBe(true);
     });
 
-    // Verify API call
-    expect(api.post).toHaveBeenCalledWith('/api/v1/qa/questions/q1/upvote');
+    // Verify Supabase query call with questionId and userId
+    expect(toggleQuestionVote).toHaveBeenCalledWith('q1', 'u1');
 
-    // Verify returned data
-    expect(result.current.data).toEqual(mockQuestionUpvoted);
+    // Verify returned data (Supabase returns { voted, newCount })
+    expect(result.current.data).toEqual({ voted: true, newCount: 6 });
   });
 
   it('should toggle upvote (remove if already upvoted)', async () => {
@@ -116,15 +124,9 @@ describe('useUpvoteQuestion', () => {
       isUpvoted: true,
     };
 
-    const mockQuestionAfterUnupvote: QAQuestion = {
-      ...mockQuestion,
-      upvoteCount: 5,
-      isUpvoted: false,
-    };
-
-    vi.mocked(api.post).mockResolvedValueOnce({
-      data: mockQuestionAfterUnupvote,
-      success: true,
+    vi.mocked(toggleQuestionVote).mockResolvedValueOnce({
+      voted: false,
+      newCount: 5,
     });
 
     const { result } = renderHook(() => useUpvoteQuestion('q1'), {
@@ -139,18 +141,15 @@ describe('useUpvoteQuestion', () => {
       expect(result.current.isSuccess).toBe(true);
     });
 
-    expect(api.post).toHaveBeenCalledWith('/api/v1/qa/questions/q1/upvote');
+    expect(toggleQuestionVote).toHaveBeenCalledWith('q1', 'u1');
   });
 
   it('should perform optimistic update', async () => {
-    vi.mocked(api.post).mockImplementation(
+    vi.mocked(toggleQuestionVote).mockImplementation(
       () =>
         new Promise((resolve) => {
           setTimeout(() => {
-            resolve({
-              data: mockQuestionUpvoted,
-              success: true,
-            });
+            resolve({ voted: true, newCount: 6 });
           }, 100);
         })
     );
@@ -182,7 +181,7 @@ describe('useUpvoteQuestion', () => {
 
   it('should rollback on error', async () => {
     const mockError = new Error('Failed to upvote');
-    vi.mocked(api.post).mockRejectedValueOnce(mockError);
+    vi.mocked(toggleQuestionVote).mockRejectedValueOnce(mockError);
 
     const queryClient = new QueryClient({
       defaultOptions: { queries: { retry: false } },
@@ -210,9 +209,9 @@ describe('useUpvoteQuestion', () => {
   });
 
   it('should show loading state during mutation', async () => {
-    vi.mocked(api.post).mockResolvedValueOnce({
-      data: mockQuestionUpvoted,
-      success: true,
+    vi.mocked(toggleQuestionVote).mockResolvedValueOnce({
+      voted: true,
+      newCount: 6,
     });
 
     const { result } = renderHook(() => useUpvoteQuestion('q1'), {

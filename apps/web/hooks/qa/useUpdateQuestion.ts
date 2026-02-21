@@ -2,12 +2,13 @@
  * useUpdateQuestion Hook - Update Question Mutation
  * TASK-007: TanStack Query mutation for updating question
  * REQ-FE-503: Q&A API hook definitions
+ * REQ-BE-004-013: Supabase query layer migration
  *
  * Handles question update with automatic cache invalidation.
  */
 
 import { useMutation, useQueryClient, type UseMutationResult } from "@tanstack/react-query";
-import { api } from "~/lib/api";
+import { updateQuestion } from "~/lib/supabase/qa";
 import { qaKeys } from "./qa-keys";
 import { toast } from "sonner";
 import type { QAQuestion } from "@shared";
@@ -28,10 +29,10 @@ interface UpdateQuestionPayload {
  *
  * @example
  * ```tsx
- * const { mutate: updateQuestion, isPending } = useUpdateQuestion('question-123');
+ * const { mutate: update, isPending } = useUpdateQuestion('question-123');
  *
  * const handleSubmit = (data: { title: string; content: string }) => {
- *   updateQuestion(data, {
+ *   update(data, {
  *     onSuccess: () => {
  *       setIsEditing(false);
  *     },
@@ -46,11 +47,7 @@ export function useUpdateQuestion(
 
   return useMutation({
     mutationFn: async (payload: UpdateQuestionPayload) => {
-      const response = await api.patch<QAQuestion>(
-        `/api/v1/qa/questions/${questionId}`,
-        payload
-      );
-      return response.data;
+      return updateQuestion(questionId, payload);
     },
     onSuccess: () => {
       // Invalidate question detail to refresh

@@ -3,6 +3,7 @@
  * TASK-009: TanStack Query mutation for accepting answer with optimistic update
  * REQ-FE-503: Q&A API hook definitions
  * REQ-FE-535: Accept answer action with optimistic update
+ * REQ-BE-004-016: Supabase direct query for answer acceptance
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
@@ -10,13 +11,11 @@ import { renderHook, waitFor, act } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { ReactNode } from 'react';
 import { useAcceptAnswer } from './useAcceptAnswer';
-import type { QAQuestion, QAAnswer } from '@shared';
+import type { QAQuestion } from '@shared';
 
-// Mock the API module
-vi.mock('~/lib/api', () => ({
-  api: {
-    patch: vi.fn(),
-  },
+// Mock the Supabase Q&A query layer
+vi.mock('~/lib/supabase/qa', () => ({
+  acceptAnswer: vi.fn(),
 }));
 
 // Mock sonner toast
@@ -27,7 +26,7 @@ vi.mock('sonner', () => ({
   },
 }));
 
-import { api } from '~/lib/api';
+import { acceptAnswer } from '~/lib/supabase/qa';
 import { toast } from 'sonner';
 
 // Test wrapper with QueryClient
@@ -80,36 +79,13 @@ function createWrapper() {
   };
 }
 
-// Mock data
-const mockAcceptedAnswer: QAAnswer = {
-  id: 'a1',
-  questionId: 'q1',
-  authorId: 'u2',
-  author: {
-    id: 'u2',
-    name: 'Instructor',
-    avatarUrl: null,
-    role: 'instructor',
-  },
-  content: 'Accepted answer content',
-  isAccepted: true,
-  isAiGenerated: false,
-  upvoteCount: 10,
-  isUpvoted: false,
-  createdAt: '2024-01-01T00:00:00Z',
-  updatedAt: '2024-01-01T00:00:00Z',
-};
-
 describe('useAcceptAnswer', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
   it('should accept answer and invalidate question detail', async () => {
-    vi.mocked(api.patch).mockResolvedValueOnce({
-      data: mockAcceptedAnswer,
-      success: true,
-    });
+    vi.mocked(acceptAnswer).mockResolvedValueOnce(undefined);
 
     const { result } = renderHook(() => useAcceptAnswer('q1'), {
       wrapper: createWrapper(),
@@ -123,24 +99,19 @@ describe('useAcceptAnswer', () => {
       expect(result.current.isSuccess).toBe(true);
     });
 
-    // Verify API call
-    expect(api.patch).toHaveBeenCalledWith(
-      '/api/v1/qa/questions/q1/answers/a1/accept'
-    );
+    // Verify Supabase query call with questionId and answerId
+    expect(acceptAnswer).toHaveBeenCalledWith('q1', 'a1');
 
     // Verify success toast
     expect(toast.success).toHaveBeenCalledWith('답변이 채택되었습니다');
   });
 
   it('should perform optimistic update', async () => {
-    vi.mocked(api.patch).mockImplementation(
+    vi.mocked(acceptAnswer).mockImplementation(
       () =>
         new Promise((resolve) => {
           setTimeout(() => {
-            resolve({
-              data: mockAcceptedAnswer,
-              success: true,
-            });
+            resolve(undefined);
           }, 100);
         })
     );
@@ -195,7 +166,7 @@ describe('useAcceptAnswer', () => {
 
   it('should handle error and show toast', async () => {
     const mockError = new Error('Failed to accept answer');
-    vi.mocked(api.patch).mockRejectedValueOnce(mockError);
+    vi.mocked(acceptAnswer).mockRejectedValueOnce(mockError);
 
     const { result } = renderHook(() => useAcceptAnswer('q1'), {
       wrapper: createWrapper(),
@@ -213,10 +184,7 @@ describe('useAcceptAnswer', () => {
   });
 
   it('should show loading state during mutation', async () => {
-    vi.mocked(api.patch).mockResolvedValueOnce({
-      data: mockAcceptedAnswer,
-      success: true,
-    });
+    vi.mocked(acceptAnswer).mockResolvedValueOnce(undefined);
 
     const { result } = renderHook(() => useAcceptAnswer('q1'), {
       wrapper: createWrapper(),

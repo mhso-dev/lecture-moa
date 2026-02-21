@@ -1,21 +1,24 @@
 /**
- * useRequestAISuggestion Hook - Request AI Suggestion Mutation
+ * useRequestAISuggestion Hook - Request AI Suggestion Mutation (Graceful Failure Stub)
  * TASK-013: TanStack Query mutation for requesting AI suggestion
  * REQ-FE-503: Q&A API hook definitions
  * REQ-FE-532: AI answer suggestion display
+ * REQ-BE-004-031: Graceful failure stub until SPEC-AI-001 is implemented
  *
- * Handles requesting AI suggestion for a question.
- * Sets aiSuggestionPending to true while waiting for AI response.
+ * AI suggestion feature is not yet implemented. This hook returns a graceful
+ * failure stub until SPEC-AI-001 delivers the actual AI service.
  */
 
 import { useMutation, useQueryClient, type UseMutationResult } from '@tanstack/react-query';
-import { api } from '~/lib/api';
 import { qaKeys } from './qa-keys';
 import { toast } from 'sonner';
 import type { QAQuestion } from '@shared';
 
 /**
  * Hook for requesting AI suggestion for a question
+ *
+ * Currently a graceful failure stub. Returns an error indicating the feature
+ * is not yet available. Will be replaced in SPEC-AI-001.
  *
  * @param questionId - The question ID to request AI suggestion for
  * @returns UseMutationResult for AI suggestion request
@@ -39,18 +42,14 @@ export function useRequestAISuggestion(
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async () => {
-      const response = await api.post<QAQuestion>(
-        `/api/v1/qa/questions/${questionId}/ai-suggest`
-      );
-      return response.data;
+    mutationFn: async (): Promise<QAQuestion> => {
+      throw new Error('AI 추천 기능은 준비 중입니다');
     },
     onSuccess: () => {
       // Invalidate question detail to refresh with pending state
       void queryClient.invalidateQueries({
         queryKey: qaKeys.detail(questionId),
       });
-      toast.success('AI 답변 요청이 접수되었습니다');
     },
     onError: (error) => {
       toast.error(error.message || 'AI 답변 요청에 실패했습니다');

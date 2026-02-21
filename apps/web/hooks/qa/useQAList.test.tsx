@@ -2,6 +2,7 @@
  * useQAList Hook Tests
  * TASK-005: TanStack Query hook for paginated Q&A list
  * REQ-FE-503: Q&A API hook definitions
+ * REQ-BE-004-010: Supabase query layer migration
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
@@ -9,16 +10,14 @@ import { renderHook, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { ReactNode } from 'react';
 import { useQAList } from './useQAList';
-import type { PaginatedResponse, QAListItem } from '@shared';
+import type { QAListItem } from '@shared';
 
-// Mock the API module
-vi.mock('~/lib/api', () => ({
-  api: {
-    get: vi.fn(),
-  },
+// Mock the Supabase Q&A query layer
+vi.mock('~/lib/supabase/qa', () => ({
+  getQuestions: vi.fn(),
 }));
 
-import { api } from '~/lib/api';
+import { getQuestions } from '~/lib/supabase/qa';
 
 // Test wrapper with QueryClient
 function createWrapper() {
@@ -61,14 +60,10 @@ const mockQAListItems: QAListItem[] = [
   },
 ];
 
-const mockPaginatedResponse: PaginatedResponse<QAListItem> = {
+const mockSupabaseResponse = {
   data: mockQAListItems,
-  pagination: {
-    page: 1,
-    limit: 20,
-    total: 1,
-    totalPages: 1,
-  },
+  nextPage: null,
+  total: 1,
 };
 
 describe('useQAList', () => {
@@ -77,10 +72,7 @@ describe('useQAList', () => {
   });
 
   it('should fetch paginated Q&A list with default filter', async () => {
-    vi.mocked(api.get).mockResolvedValueOnce({
-      data: mockPaginatedResponse,
-      success: true,
-    });
+    vi.mocked(getQuestions).mockResolvedValueOnce(mockSupabaseResponse);
 
     const { result } = renderHook(
       () =>
@@ -97,23 +89,20 @@ describe('useQAList', () => {
       expect(result.current.isSuccess).toBe(true);
     });
 
-    // Verify API call
-    expect(api.get).toHaveBeenCalledWith('/api/v1/qa/questions', {
-      params: expect.objectContaining({
-        page: 1,
+    // Verify Supabase query call with page 0 (initialPageParam)
+    expect(getQuestions).toHaveBeenCalledWith(
+      expect.objectContaining({
+        page: 0,
         limit: 20,
       }) as Record<string, unknown>,
-    });
+    );
 
     // Verify response data (useInfiniteQuery wraps in pages/pageParams)
-    expect((result.current.data as { pages: unknown[] } | undefined)?.pages[0]).toEqual(mockPaginatedResponse);
+    expect((result.current.data as { pages: unknown[] } | undefined)?.pages[0]).toEqual(mockSupabaseResponse);
   });
 
   it('should fetch Q&A list with course filter', async () => {
-    vi.mocked(api.get).mockResolvedValueOnce({
-      data: mockPaginatedResponse,
-      success: true,
-    });
+    vi.mocked(getQuestions).mockResolvedValueOnce(mockSupabaseResponse);
 
     const { result } = renderHook(
       () =>
@@ -128,18 +117,15 @@ describe('useQAList', () => {
       expect(result.current.isSuccess).toBe(true);
     });
 
-    expect(api.get).toHaveBeenCalledWith('/api/v1/qa/questions', {
-      params: expect.objectContaining({
+    expect(getQuestions).toHaveBeenCalledWith(
+      expect.objectContaining({
         courseId: 'c1',
       }) as Record<string, unknown>,
-    });
+    );
   });
 
   it('should fetch Q&A list with status filter', async () => {
-    vi.mocked(api.get).mockResolvedValueOnce({
-      data: mockPaginatedResponse,
-      success: true,
-    });
+    vi.mocked(getQuestions).mockResolvedValueOnce(mockSupabaseResponse);
 
     const { result } = renderHook(
       () =>
@@ -154,16 +140,16 @@ describe('useQAList', () => {
       expect(result.current.isSuccess).toBe(true);
     });
 
-    expect(api.get).toHaveBeenCalledWith('/api/v1/qa/questions', {
-      params: expect.objectContaining({
+    expect(getQuestions).toHaveBeenCalledWith(
+      expect.objectContaining({
         status: 'OPEN',
       }) as Record<string, unknown>,
-    });
+    );
   });
 
   it('should handle fetch error', async () => {
     const mockError = new Error('Network error');
-    vi.mocked(api.get).mockRejectedValueOnce(mockError);
+    vi.mocked(getQuestions).mockRejectedValueOnce(mockError);
 
     const { result } = renderHook(
       () =>
@@ -181,10 +167,7 @@ describe('useQAList', () => {
   });
 
   it('should return correct query key', async () => {
-    vi.mocked(api.get).mockResolvedValueOnce({
-      data: mockPaginatedResponse,
-      success: true,
-    });
+    vi.mocked(getQuestions).mockResolvedValueOnce(mockSupabaseResponse);
 
     const filter = {
       courseId: 'c1',

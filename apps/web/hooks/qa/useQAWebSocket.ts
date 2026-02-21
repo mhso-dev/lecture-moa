@@ -1,45 +1,30 @@
 /**
- * useQAWebSocket Hook - WebSocket Subscription for Q&A Events
+ * useQAWebSocket Hook - Supabase Realtime Subscription for Q&A Events
  * TASK-014: WebSocket subscription hook for Q&A events
  * REQ-FE-503: Q&A API hook definitions
  * REQ-FE-545: WebSocket connection for Q&A
+ * REQ-BE-004-025: Subscribe to new answers, question updates, and answer updates
  *
- * Subscribes to Q&A WebSocket events and manages real-time updates.
- * Follows pattern from hooks/dashboard/useStudentRealtimeUpdates.ts
+ * Subscribes to Q&A Supabase Realtime events and manages real-time cache invalidation.
+ * Uses subscribeToQuestion/unsubscribeFromChannel from ~/lib/supabase/realtime.
  */
 
-import { useEffect, useCallback } from 'react';
+import { useEffect } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useQAStore } from '~/stores/qa.store';
+import type { QAStore } from '~/stores/qa.store';
 import { qaKeys } from './qa-keys';
-import { EVENTS } from '@shared/constants/events';
-
-/**
- * WebSocket event payload types
- */
-interface QAWebSocketEvent {
-  type: string;
-  questionId: string;
-}
-
-interface NewAnswerEvent extends QAWebSocketEvent {
-  answerId: string;
-  actorName: string;
-  questionTitle: string;
-}
-
-interface AISuggestionReadyEvent extends QAWebSocketEvent {
-  questionTitle: string;
-}
-
-interface QuestionResolvedEvent extends QAWebSocketEvent {
-  courseId: string;
-}
+import {
+  subscribeToQuestion,
+  unsubscribeFromChannel,
+} from '~/lib/supabase/realtime';
 
 /**
  * Options for useQAWebSocket hook
  */
 export interface UseQAWebSocketOptions {
+  /** The question ID to subscribe to. When provided, subscribes to Realtime events for this question. */
+  questionId?: string;
   /** Callback when new answer is posted */
   onNewAnswer?: (payload: {
     questionId: string;
@@ -60,182 +45,148 @@ export interface UseQAWebSocketOptions {
  * Hook return type
  */
 interface UseQAWebSocketReturn {
-  /** Whether the WebSocket connection is established */
+  /** Whether the Realtime channel subscription is active */
   isConnected: boolean;
 }
 
 /**
- * Hook for subscribing to Q&A WebSocket events
+ * Hook for subscribing to Q&A Supabase Realtime events for a specific question.
  *
- * @param options - Callback options for different event types
+ * When a questionId is provided, subscribes to:
+ * - New answers (INSERT on answers table filtered by question_id)
+ * - Question updates (UPDATE on questions table filtered by id)
+ * - Answer updates such as acceptance (UPDATE on answers table filtered by question_id)
+ *
+ * Cache invalidation strategy:
+ * - onNewAnswer: invalidates qaKeys.detail(questionId)
+ * - onQuestionUpdated: invalidates qaKeys.detail(questionId) and qaKeys.lists()
+ * - onAnswerUpdated: invalidates qaKeys.detail(questionId)
+ *
+ * @param options - Optional questionId and callback options for different event types
  * @returns Object with connection status
  *
  * @example
  * ```tsx
+ * // On a question detail page - subscribes to Realtime for this question
+ * const { isConnected } = useQAWebSocket({
+ *   questionId: question.id,
+ *   onNewAnswer: ({ actorName }) => {
+ *     toast.info(`${actorName}님이 답변했습니다`);
+ *   },
+ * });
+ *
+ * // Without questionId - no Realtime subscription, isConnected stays false
  * const { isConnected } = useQAWebSocket({
  *   onNewAnswer: ({ questionId, actorName }) => {
  *     toast.info(`${actorName}님이 답변했습니다`);
  *   },
- *   onAiSuggestionReady: ({ questionId }) => {
- *     toast.info('AI 답변이 준비되었습니다');
- *   },
  * });
- *
- * return (
- *   <div className={isConnected ? 'text-green-500' : 'text-gray-400'}>
- *     {isConnected ? 'Connected' : 'Offline'}
- *   </div>
- * );
  * ```
  */
 export function useQAWebSocket(
   options: UseQAWebSocketOptions = {}
 ): UseQAWebSocketReturn {
-  const { onNewAnswer, onAiSuggestionReady, onQuestionResolved } = options;
+  const { questionId, onNewAnswer, onAiSuggestionReady, onQuestionResolved } =
+    options;
 
   const queryClient = useQueryClient();
-  const wsConnected = useQAStore((state) => state.wsConnected);
-  const setWsConnected = useQAStore((state) => state.setWsConnected);
-  const addNotification = useQAStore((state) => state.addNotification);
-  const activeQuestionId = useQAStore((state) => state.activeQuestionId);
+  const wsConnected = useQAStore((state: QAStore) => state.wsConnected);
+  const setWsConnected = useQAStore((state: QAStore) => state.setWsConnected);
 
-  /**
-   * Type guard for QAWebSocketEvent
-   */
-  function isQAWebSocketEvent(value: unknown): value is QAWebSocketEvent {
-    return (
-      typeof value === "object" &&
-      value !== null &&
-      "type" in value &&
-      "questionId" in value
-    );
-  }
-
-  /**
-   * Handle WebSocket messages
-   */
-  const handleMessage = useCallback(
-    (event: MessageEvent) => {
-      try {
-        // WebSocket message data is always a string
-        const eventData = event.data as string;
-        const parsed: unknown = JSON.parse(eventData);
-        if (!isQAWebSocketEvent(parsed)) {
-          return;
-        }
-        const data = parsed;
-
-        switch (data.type) {
-          case EVENTS.QA_ANSWER_POSTED: {
-            const payload = data as NewAnswerEvent;
-
-            // Invalidate question detail to refetch
-            void queryClient.invalidateQueries({
-              queryKey: qaKeys.detail(payload.questionId),
-            });
-
-            // Call callback if provided
-            onNewAnswer?.({
-              questionId: payload.questionId,
-              answerId: payload.answerId,
-              questionTitle: payload.questionTitle,
-              actorName: payload.actorName,
-            });
-
-            // Add notification if not viewing this question
-            if (activeQuestionId !== payload.questionId) {
-              addNotification({
-                id: `answer-${payload.answerId}`,
-                type: 'NEW_ANSWER',
-                questionId: payload.questionId,
-                questionTitle: payload.questionTitle,
-                actorName: payload.actorName,
-                receivedAt: new Date().toISOString(),
-              });
-            }
-            break;
-          }
-
-          case EVENTS.QA_AI_SUGGESTION_READY: {
-            const payload = data as AISuggestionReadyEvent;
-
-            // Invalidate question detail to refetch
-            void queryClient.invalidateQueries({
-              queryKey: qaKeys.detail(payload.questionId),
-            });
-
-            // Call callback if provided
-            onAiSuggestionReady?.({
-              questionId: payload.questionId,
-              questionTitle: payload.questionTitle,
-            });
-
-            // Add notification if not viewing this question
-            if (activeQuestionId !== payload.questionId) {
-              addNotification({
-                id: `ai-${payload.questionId}-${Date.now().toString()}`,
-                type: 'AI_SUGGESTION_READY',
-                questionId: payload.questionId,
-                questionTitle: payload.questionTitle,
-                receivedAt: new Date().toISOString(),
-              });
-            }
-            break;
-          }
-
-          case EVENTS.QA_QUESTION_RESOLVED: {
-            const payload = data as QuestionResolvedEvent;
-
-            // Invalidate both detail and list
-            void queryClient.invalidateQueries({
-              queryKey: qaKeys.detail(payload.questionId),
-            });
-            void queryClient.invalidateQueries({ queryKey: qaKeys.lists() });
-
-            // Call callback if provided
-            onQuestionResolved?.({ questionId: payload.questionId });
-            break;
-          }
-        }
-      } catch {
-        // Ignore parse errors for non-JSON messages
-      }
-    },
-    [
-      queryClient,
-      onNewAnswer,
-      onAiSuggestionReady,
-      onQuestionResolved,
-      activeQuestionId,
-      addNotification,
-    ]
-  );
-
-  /**
-   * Setup WebSocket connection
-   */
   useEffect(() => {
-    // TODO: Implement WebSocket connection when WS SPEC is available
-    // The implementation should:
-    // 1. Connect to WebSocket endpoint (e.g., /ws/qa)
-    // 2. Handle authentication via JWT token
-    // 3. Subscribe to Q&A event channels
-    // 4. Call handleMessage on received messages
-    // 5. Handle reconnection with exponential backoff
-    // 6. Update wsConnected state
-    // 7. Clean up connection on unmount
+    // Only subscribe when a questionId is provided
+    if (!questionId) {
+      return;
+    }
 
-    // For now, set up a placeholder that calls handlers
-    // This will be replaced with actual WebSocket implementation
+    setWsConnected(true);
+
+    const channel = subscribeToQuestion(questionId, {
+      /**
+       * New answer inserted for this question.
+       * REQ-BE-004-026: Invalidate question detail cache.
+       */
+      onNewAnswer: (payload) => {
+        void queryClient.invalidateQueries({
+          queryKey: qaKeys.detail(questionId),
+        });
+
+        // Forward to caller callback if provided
+        onNewAnswer?.({
+          questionId,
+          answerId: '',
+          questionTitle: undefined,
+          actorName: undefined,
+          ...extractAnswerPayload(payload),
+        });
+      },
+
+      /**
+       * Question status or upvote count updated.
+       * REQ-BE-004-027: Invalidate both detail and list caches.
+       */
+      onQuestionUpdated: () => {
+        void queryClient.invalidateQueries({
+          queryKey: qaKeys.detail(questionId),
+        });
+        void queryClient.invalidateQueries({ queryKey: qaKeys.lists() });
+
+        // Map to onQuestionResolved callback for status changes
+        onQuestionResolved?.({ questionId });
+      },
+
+      /**
+       * Answer updated (e.g., accepted as best answer).
+       * Invalidate question detail to reflect acceptance state.
+       */
+      onAnswerUpdated: () => {
+        void queryClient.invalidateQueries({
+          queryKey: qaKeys.detail(questionId),
+        });
+      },
+    });
 
     return () => {
-      // Cleanup on unmount
+      unsubscribeFromChannel(channel);
       setWsConnected(false);
     };
-  }, [setWsConnected, handleMessage]);
+  }, [
+    questionId,
+    queryClient,
+    setWsConnected,
+    onNewAnswer,
+    onAiSuggestionReady,
+    onQuestionResolved,
+  ]);
 
   return {
     isConnected: wsConnected,
+  };
+}
+
+/**
+ * Extracts answer-related fields from a Supabase Realtime payload.
+ * The payload shape varies depending on the table and event type.
+ */
+function extractAnswerPayload(payload: unknown): {
+  answerId?: string;
+  questionTitle?: string;
+  actorName?: string;
+} {
+  if (typeof payload !== 'object' || payload === null) {
+    return {};
+  }
+
+  const record = (payload as Record<string, unknown>).new;
+  if (typeof record !== 'object' || record === null) {
+    return {};
+  }
+
+  const data = record as Record<string, unknown>;
+  return {
+    answerId: typeof data.id === 'string' ? data.id : undefined,
+    questionTitle: undefined,
+    actorName: undefined,
   };
 }
 

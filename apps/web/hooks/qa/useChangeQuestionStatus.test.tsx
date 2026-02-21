@@ -3,6 +3,7 @@
  * TASK-012: TanStack Query mutation for changing question status
  * REQ-FE-503: Q&A API hook definitions
  * REQ-FE-540: Instructor moderation actions
+ * REQ-BE-004-018: Supabase direct query for status change
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
@@ -10,13 +11,10 @@ import { renderHook, waitFor, act } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { ReactNode } from 'react';
 import { useChangeQuestionStatus } from './useChangeQuestionStatus';
-import type { QAQuestion } from '@shared';
 
-// Mock the API module
-vi.mock('~/lib/api', () => ({
-  api: {
-    patch: vi.fn(),
-  },
+// Mock the Supabase Q&A query layer
+vi.mock('~/lib/supabase/qa', () => ({
+  changeQuestionStatus: vi.fn(),
 }));
 
 // Mock sonner toast
@@ -27,7 +25,7 @@ vi.mock('sonner', () => ({
   },
 }));
 
-import { api } from '~/lib/api';
+import { changeQuestionStatus } from '~/lib/supabase/qa';
 import { toast } from 'sonner';
 
 // Test wrapper with QueryClient
@@ -47,52 +45,13 @@ function createWrapper() {
   };
 }
 
-// Mock data
-const mockQuestion: QAQuestion = {
-  id: 'q1',
-  courseId: 'c1',
-  courseName: 'Test Course',
-  materialId: 'm1',
-  materialTitle: 'Test Material',
-  authorId: 'u1',
-  author: {
-    id: 'u1',
-    name: 'Test User',
-    avatarUrl: null,
-    role: 'student',
-  },
-  title: 'Test Question',
-  content: 'Question content',
-  context: {
-    materialId: 'm1',
-    headingId: null,
-    selectedText: 'selected',
-  },
-  status: 'OPEN',
-  upvoteCount: 5,
-  isUpvoted: false,
-  answerCount: 2,
-  aiSuggestion: null,
-  aiSuggestionPending: false,
-  createdAt: '2024-01-01T00:00:00Z',
-  updatedAt: '2024-01-01T00:00:00Z',
-};
-
-const mockResolvedQuestion: QAQuestion = {
-  ...mockQuestion,
-  status: 'RESOLVED',
-};
-
 describe('useChangeQuestionStatus', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
   it('should change question status to RESOLVED', async () => {
-    vi.mocked(api.patch).mockResolvedValueOnce({
-      data: mockResolvedQuestion,
-      success: true,
-    });
+    vi.mocked(changeQuestionStatus).mockResolvedValueOnce(undefined);
 
     const { result } = renderHook(() => useChangeQuestionStatus('q1'), {
       wrapper: createWrapper(),
@@ -106,28 +65,15 @@ describe('useChangeQuestionStatus', () => {
       expect(result.current.isSuccess).toBe(true);
     });
 
-    // Verify API call
-    expect(api.patch).toHaveBeenCalledWith('/api/v1/qa/questions/q1/status', {
-      status: 'RESOLVED',
-    });
+    // Verify Supabase query call with questionId and status
+    expect(changeQuestionStatus).toHaveBeenCalledWith('q1', 'RESOLVED');
 
     // Verify success toast
     expect(toast.success).toHaveBeenCalledWith('상태가 변경되었습니다');
-
-    // Verify returned data
-    expect(result.current.data?.status).toBe('RESOLVED');
   });
 
   it('should change question status to CLOSED', async () => {
-    const mockClosedQuestion: QAQuestion = {
-      ...mockQuestion,
-      status: 'CLOSED',
-    };
-
-    vi.mocked(api.patch).mockResolvedValueOnce({
-      data: mockClosedQuestion,
-      success: true,
-    });
+    vi.mocked(changeQuestionStatus).mockResolvedValueOnce(undefined);
 
     const { result } = renderHook(() => useChangeQuestionStatus('q1'), {
       wrapper: createWrapper(),
@@ -141,14 +87,12 @@ describe('useChangeQuestionStatus', () => {
       expect(result.current.isSuccess).toBe(true);
     });
 
-    expect(api.patch).toHaveBeenCalledWith('/api/v1/qa/questions/q1/status', {
-      status: 'CLOSED',
-    });
+    expect(changeQuestionStatus).toHaveBeenCalledWith('q1', 'CLOSED');
   });
 
   it('should handle change error', async () => {
     const mockError = new Error('Failed to change status');
-    vi.mocked(api.patch).mockRejectedValueOnce(mockError);
+    vi.mocked(changeQuestionStatus).mockRejectedValueOnce(mockError);
 
     const { result } = renderHook(() => useChangeQuestionStatus('q1'), {
       wrapper: createWrapper(),
@@ -166,10 +110,7 @@ describe('useChangeQuestionStatus', () => {
   });
 
   it('should show loading state during mutation', async () => {
-    vi.mocked(api.patch).mockResolvedValueOnce({
-      data: mockResolvedQuestion,
-      success: true,
-    });
+    vi.mocked(changeQuestionStatus).mockResolvedValueOnce(undefined);
 
     const { result } = renderHook(() => useChangeQuestionStatus('q1'), {
       wrapper: createWrapper(),
@@ -188,10 +129,7 @@ describe('useChangeQuestionStatus', () => {
   });
 
   it('should invalidate both detail and list queries', async () => {
-    vi.mocked(api.patch).mockResolvedValueOnce({
-      data: mockResolvedQuestion,
-      success: true,
-    });
+    vi.mocked(changeQuestionStatus).mockResolvedValueOnce(undefined);
 
     const queryClient = new QueryClient({
       defaultOptions: { queries: { retry: false } },

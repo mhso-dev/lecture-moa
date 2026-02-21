@@ -3,12 +3,15 @@
  * TASK-010: TanStack Query mutation for upvoting question
  * REQ-FE-503: Q&A API hook definitions
  * REQ-FE-536: Upvote interaction with optimistic update
+ * REQ-BE-004-020: Supabase direct query for question vote toggle
  *
  * Handles toggling upvote on a question with optimistic cache update.
+ * Uses Supabase query layer instead of REST API.
  */
 
 import { useMutation, useQueryClient, type UseMutationResult } from '@tanstack/react-query';
-import { api } from '~/lib/api';
+import { toggleQuestionVote } from '~/lib/supabase/qa';
+import { useAuth } from '~/hooks/useAuth';
 import { qaKeys } from './qa-keys';
 import type { QAQuestion } from '@shared';
 
@@ -39,16 +42,17 @@ interface OptimisticContext {
  */
 export function useUpvoteQuestion(
   questionId: string
-): UseMutationResult<QAQuestion, Error, void, OptimisticContext> {
+): UseMutationResult<{ voted: boolean; newCount: number }, Error, void, OptimisticContext> {
   const queryClient = useQueryClient();
   const queryKey = qaKeys.detail(questionId);
+  const { user } = useAuth();
 
   return useMutation({
     mutationFn: async () => {
-      const response = await api.post<QAQuestion>(
-        `/api/v1/qa/questions/${questionId}/upvote`
-      );
-      return response.data;
+      if (!user?.id) {
+        throw new Error('로그인이 필요합니다');
+      }
+      return toggleQuestionVote(questionId, user.id);
     },
 
     // Optimistic update before mutation

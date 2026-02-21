@@ -2,15 +2,16 @@
  * useQAList Hook - Paginated Q&A List Query
  * TASK-005: TanStack Query hook for paginated Q&A list
  * REQ-FE-503: Q&A API hook definitions
+ * REQ-BE-004-010: Supabase query layer migration
  *
  * Provides infinite query support for Q&A list with filter support.
  * Uses useInfiniteQuery for pagination with "Load More" pattern.
  */
 
 import { useInfiniteQuery, type UseInfiniteQueryResult } from '@tanstack/react-query';
-import { api } from '~/lib/api';
+import { getQuestions } from '~/lib/supabase/qa';
 import { qaKeys } from './qa-keys';
-import type { PaginatedResponse, QAListFilter, QAListItem } from '@shared';
+import type { QAListFilter, QAListItem } from '@shared';
 
 /**
  * Parameters for useQAList hook
@@ -18,9 +19,9 @@ import type { PaginatedResponse, QAListFilter, QAListItem } from '@shared';
 export type UseQAListParams = Omit<QAListFilter, 'page'>;
 
 /**
- * Response type for QA list query
+ * Response type for QA list query (Supabase query layer format)
  */
-export type QAListResponse = PaginatedResponse<QAListItem>;
+export type QAListResponse = { data: QAListItem[]; nextPage: number | null; total: number };
 
 /**
  * Hook for fetching paginated Q&A list with filter support
@@ -52,19 +53,14 @@ export function useQAList(
   return useInfiniteQuery({
     queryKey: qaKeys.list(filter),
     queryFn: async ({ pageParam }): Promise<QAListResponse> => {
-      const response = await api.get<QAListResponse>('/api/v1/qa/questions', {
-        params: {
-          ...filter,
-          page: pageParam,
-        },
+      return getQuestions({
+        ...filter,
+        page: pageParam,
+        limit: filter.limit ?? 20,
       });
-      return response.data;
     },
-    initialPageParam: 1,
-    getNextPageParam: (lastPage) => {
-      const { page, totalPages } = lastPage.pagination;
-      return page < totalPages ? page + 1 : undefined;
-    },
+    initialPageParam: 0,
+    getNextPageParam: (lastPage) => lastPage.nextPage ?? undefined,
     staleTime: 30 * 1000, // 30 seconds
   });
 }

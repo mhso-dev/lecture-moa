@@ -2,6 +2,7 @@
  * useCreateAnswer Hook Tests
  * TASK-008: TanStack Query mutation for creating answer
  * REQ-FE-503: Q&A API hook definitions
+ * REQ-BE-004-015: Supabase direct query for answer creation
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
@@ -11,11 +12,9 @@ import type { ReactNode } from 'react';
 import { useCreateAnswer } from './useCreateAnswer';
 import type { QAAnswer } from '@shared';
 
-// Mock the API module
-vi.mock('~/lib/api', () => ({
-  api: {
-    post: vi.fn(),
-  },
+// Mock the Supabase Q&A query layer
+vi.mock('~/lib/supabase/qa', () => ({
+  createAnswer: vi.fn(),
 }));
 
 // Mock sonner toast
@@ -26,7 +25,22 @@ vi.mock('sonner', () => ({
   },
 }));
 
-import { api } from '~/lib/api';
+// Mock useAuth to provide a user for answer creation
+vi.mock('~/hooks/useAuth', () => ({
+  useAuth: () => ({
+    user: { id: 'u1' },
+    isAuthenticated: true,
+    isLoading: false,
+    role: 'instructor',
+    signIn: vi.fn(),
+    signInWithOAuth: vi.fn(),
+    signUp: vi.fn(),
+    signOut: vi.fn(),
+    updateUser: vi.fn(),
+  }),
+}));
+
+import { createAnswer } from '~/lib/supabase/qa';
 import { toast } from 'sonner';
 
 // Test wrapper with QueryClient
@@ -72,10 +86,7 @@ describe('useCreateAnswer', () => {
   });
 
   it('should create answer and invalidate question detail', async () => {
-    vi.mocked(api.post).mockResolvedValueOnce({
-      data: mockCreatedAnswer,
-      success: true,
-    });
+    vi.mocked(createAnswer).mockResolvedValueOnce(mockCreatedAnswer);
 
     const { result } = renderHook(() => useCreateAnswer('q1'), {
       wrapper: createWrapper(),
@@ -89,10 +100,12 @@ describe('useCreateAnswer', () => {
       expect(result.current.isSuccess).toBe(true);
     });
 
-    // Verify API call
-    expect(api.post).toHaveBeenCalledWith('/api/v1/qa/questions/q1/answers', {
-      content: 'This is the answer content.',
-    });
+    // Verify Supabase query call with questionId, payload, and userId
+    expect(createAnswer).toHaveBeenCalledWith(
+      'q1',
+      { content: 'This is the answer content.' },
+      'u1',
+    );
 
     // Verify success toast
     expect(toast.success).toHaveBeenCalledWith('답변이 등록되었습니다');
@@ -107,12 +120,12 @@ describe('useCreateAnswer', () => {
     });
 
     expect(result.current.isIdle).toBe(true);
-    expect(api.post).not.toHaveBeenCalled();
+    expect(createAnswer).not.toHaveBeenCalled();
   });
 
   it('should handle create error', async () => {
     const mockError = new Error('Failed to create answer');
-    vi.mocked(api.post).mockRejectedValueOnce(mockError);
+    vi.mocked(createAnswer).mockRejectedValueOnce(mockError);
 
     const { result } = renderHook(() => useCreateAnswer('q1'), {
       wrapper: createWrapper(),
@@ -130,10 +143,7 @@ describe('useCreateAnswer', () => {
   });
 
   it('should show loading state during mutation', async () => {
-    vi.mocked(api.post).mockResolvedValueOnce({
-      data: mockCreatedAnswer,
-      success: true,
-    });
+    vi.mocked(createAnswer).mockResolvedValueOnce(mockCreatedAnswer);
 
     const { result } = renderHook(() => useCreateAnswer('q1'), {
       wrapper: createWrapper(),

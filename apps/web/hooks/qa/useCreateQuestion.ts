@@ -2,13 +2,15 @@
  * useCreateQuestion Hook - Create Question Mutation
  * TASK-007: TanStack Query mutation for creating Q&A question
  * REQ-FE-503: Q&A API hook definitions
+ * REQ-BE-004-012: Supabase query layer migration
  *
  * Handles question creation with automatic cache invalidation.
  */
 
 import { useMutation, useQueryClient, type UseMutationResult } from '@tanstack/react-query';
-import { api } from '~/lib/api';
+import { createQuestion } from '~/lib/supabase/qa';
 import { qaKeys } from './qa-keys';
+import { useAuth } from '~/hooks/useAuth';
 import { toast } from 'sonner';
 import type { QACreateRequest, QAQuestion } from '@shared';
 
@@ -19,10 +21,10 @@ import type { QACreateRequest, QAQuestion } from '@shared';
  *
  * @example
  * ```tsx
- * const { mutate: createQuestion, isPending } = useCreateQuestion();
+ * const { mutate: create, isPending } = useCreateQuestion();
  *
  * const handleSubmit = (data: CreateQuestionInput) => {
- *   createQuestion(data, {
+ *   create(data, {
  *     onSuccess: (question) => {
  *       router.push(`/qa/${question.id}`);
  *     },
@@ -36,11 +38,14 @@ export function useCreateQuestion(): UseMutationResult<
   QACreateRequest
 > {
   const queryClient = useQueryClient();
+  const { user } = useAuth();
 
   return useMutation({
     mutationFn: async (data: QACreateRequest) => {
-      const response = await api.post<QAQuestion>('/api/v1/qa/questions', data);
-      return response.data;
+      if (!user?.id) {
+        throw new Error('로그인이 필요합니다');
+      }
+      return createQuestion(data, user.id);
     },
     onSuccess: () => {
       // Invalidate all list queries to refresh the list

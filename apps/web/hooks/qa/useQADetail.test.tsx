@@ -2,6 +2,7 @@
  * useQADetail Hook Tests
  * TASK-006: TanStack Query hook for Q&A question detail
  * REQ-FE-503: Q&A API hook definitions
+ * REQ-BE-004-011: Supabase query layer migration
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
@@ -9,16 +10,29 @@ import { renderHook, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { ReactNode } from 'react';
 import { useQADetail } from './useQADetail';
-import type { QAQuestion } from '@shared';
+import type { QAQuestion, QAAnswer } from '@shared';
 
-// Mock the API module
-vi.mock('~/lib/api', () => ({
-  api: {
-    get: vi.fn(),
-  },
+// Mock the Supabase Q&A query layer
+vi.mock('~/lib/supabase/qa', () => ({
+  getQuestionDetail: vi.fn(),
 }));
 
-import { api } from '~/lib/api';
+// Mock useAuth to provide a user for vote queries
+vi.mock('~/hooks/useAuth', () => ({
+  useAuth: () => ({
+    user: { id: 'u1' },
+    isAuthenticated: true,
+    isLoading: false,
+    role: 'student',
+    signIn: vi.fn(),
+    signInWithOAuth: vi.fn(),
+    signUp: vi.fn(),
+    signOut: vi.fn(),
+    updateUser: vi.fn(),
+  }),
+}));
+
+import { getQuestionDetail } from '~/lib/supabase/qa';
 
 // Test wrapper with QueryClient
 function createWrapper() {
@@ -38,7 +52,7 @@ function createWrapper() {
 }
 
 // Mock data
-const mockQuestion: QAQuestion = {
+const mockQuestionDetail: QAQuestion & { answers: QAAnswer[] } = {
   id: 'q1',
   courseId: 'c1',
   courseName: 'Test Course',
@@ -66,6 +80,7 @@ const mockQuestion: QAQuestion = {
   aiSuggestionPending: false,
   createdAt: '2024-01-01T00:00:00Z',
   updatedAt: '2024-01-01T00:00:00Z',
+  answers: [],
 };
 
 describe('useQADetail', () => {
@@ -74,10 +89,7 @@ describe('useQADetail', () => {
   });
 
   it('should fetch question detail when questionId is provided', async () => {
-    vi.mocked(api.get).mockResolvedValueOnce({
-      data: mockQuestion,
-      success: true,
-    });
+    vi.mocked(getQuestionDetail).mockResolvedValueOnce(mockQuestionDetail);
 
     const { result } = renderHook(() => useQADetail('q1'), {
       wrapper: createWrapper(),
@@ -90,11 +102,11 @@ describe('useQADetail', () => {
       expect(result.current.isSuccess).toBe(true);
     });
 
-    // Verify API call
-    expect(api.get).toHaveBeenCalledWith('/api/v1/qa/questions/q1');
+    // Verify Supabase query call with questionId and userId
+    expect(getQuestionDetail).toHaveBeenCalledWith('q1', 'u1');
 
     // Verify response data
-    expect(result.current.data).toEqual(mockQuestion);
+    expect(result.current.data).toEqual(mockQuestionDetail);
   });
 
   it('should not fetch when questionId is empty', async () => {
@@ -105,7 +117,7 @@ describe('useQADetail', () => {
     // Should not be loading or fetching
     expect(result.current.isLoading).toBe(false);
     expect(result.current.isFetching).toBe(false);
-    expect(api.get).not.toHaveBeenCalled();
+    expect(getQuestionDetail).not.toHaveBeenCalled();
   });
 
   it('should not fetch when questionId is null', async () => {
@@ -114,12 +126,12 @@ describe('useQADetail', () => {
     });
 
     expect(result.current.isLoading).toBe(false);
-    expect(api.get).not.toHaveBeenCalled();
+    expect(getQuestionDetail).not.toHaveBeenCalled();
   });
 
   it('should handle fetch error', async () => {
     const mockError = new Error('Question not found');
-    vi.mocked(api.get).mockRejectedValueOnce(mockError);
+    vi.mocked(getQuestionDetail).mockRejectedValueOnce(mockError);
 
     const { result } = renderHook(() => useQADetail('nonexistent'), {
       wrapper: createWrapper(),
@@ -133,10 +145,7 @@ describe('useQADetail', () => {
   });
 
   it('should have correct query key structure', async () => {
-    vi.mocked(api.get).mockResolvedValueOnce({
-      data: mockQuestion,
-      success: true,
-    });
+    vi.mocked(getQuestionDetail).mockResolvedValueOnce(mockQuestionDetail);
 
     const { result } = renderHook(() => useQADetail('q1'), {
       wrapper: createWrapper(),

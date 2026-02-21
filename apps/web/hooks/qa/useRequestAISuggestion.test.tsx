@@ -3,6 +3,10 @@
  * TASK-013: TanStack Query mutation for requesting AI suggestion
  * REQ-FE-503: Q&A API hook definitions
  * REQ-FE-532: AI answer suggestion display
+ * REQ-BE-004-031: Graceful failure stub until SPEC-AI-001 is implemented
+ *
+ * The AI suggestion hook is currently a graceful failure stub that always
+ * throws an error. Tests verify the stub behavior and error handling.
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
@@ -10,14 +14,6 @@ import { renderHook, waitFor, act } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { ReactNode } from 'react';
 import { useRequestAISuggestion } from './useRequestAISuggestion';
-import type { QAQuestion } from '@shared';
-
-// Mock the API module
-vi.mock('~/lib/api', () => ({
-  api: {
-    post: vi.fn(),
-  },
-}));
 
 // Mock sonner toast
 vi.mock('sonner', () => ({
@@ -27,7 +23,6 @@ vi.mock('sonner', () => ({
   },
 }));
 
-import { api } from '~/lib/api';
 import { toast } from 'sonner';
 
 // Test wrapper with QueryClient
@@ -47,48 +42,12 @@ function createWrapper() {
   };
 }
 
-// Mock data
-const mockQuestion: QAQuestion = {
-  id: 'q1',
-  courseId: 'c1',
-  courseName: 'Test Course',
-  materialId: 'm1',
-  materialTitle: 'Test Material',
-  authorId: 'u1',
-  author: {
-    id: 'u1',
-    name: 'Test User',
-    avatarUrl: null,
-    role: 'student',
-  },
-  title: 'Test Question',
-  content: 'Question content',
-  context: {
-    materialId: 'm1',
-    headingId: null,
-    selectedText: 'selected',
-  },
-  status: 'OPEN',
-  upvoteCount: 5,
-  isUpvoted: false,
-  answerCount: 0,
-  aiSuggestion: null,
-  aiSuggestionPending: true,
-  createdAt: '2024-01-01T00:00:00Z',
-  updatedAt: '2024-01-01T00:00:00Z',
-};
-
 describe('useRequestAISuggestion', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
-  it('should request AI suggestion and set pending state', async () => {
-    vi.mocked(api.post).mockResolvedValueOnce({
-      data: mockQuestion,
-      success: true,
-    });
-
+  it('should return error since AI suggestion is a graceful failure stub', async () => {
     const { result } = renderHook(() => useRequestAISuggestion('q1'), {
       wrapper: createWrapper(),
     });
@@ -98,25 +57,17 @@ describe('useRequestAISuggestion', () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBe(true);
+      expect(result.current.isError).toBe(true);
     });
 
-    // Verify API call
-    expect(api.post).toHaveBeenCalledWith(
-      '/api/v1/qa/questions/q1/ai-suggest'
-    );
+    // Verify the stub error message
+    expect(result.current.error?.message).toBe('AI 추천 기능은 준비 중입니다');
 
-    // Verify success toast
-    expect(toast.success).toHaveBeenCalledWith('AI 답변 요청이 접수되었습니다');
-
-    // Verify returned data has pending state
-    expect(result.current.data?.aiSuggestionPending).toBe(true);
+    // Verify error toast is shown
+    expect(toast.error).toHaveBeenCalledWith('AI 추천 기능은 준비 중입니다');
   });
 
-  it('should handle request error', async () => {
-    const mockError = new Error('Failed to request AI suggestion');
-    vi.mocked(api.post).mockRejectedValueOnce(mockError);
-
+  it('should handle the stub error gracefully', async () => {
     const { result } = renderHook(() => useRequestAISuggestion('q1'), {
       wrapper: createWrapper(),
     });
@@ -133,11 +84,6 @@ describe('useRequestAISuggestion', () => {
   });
 
   it('should show loading state during mutation', async () => {
-    vi.mocked(api.post).mockResolvedValueOnce({
-      data: mockQuestion,
-      success: true,
-    });
-
     const { result } = renderHook(() => useRequestAISuggestion('q1'), {
       wrapper: createWrapper(),
     });
@@ -149,17 +95,13 @@ describe('useRequestAISuggestion', () => {
       result.current.mutate();
     });
 
+    // Stub always throws, so it should end as error
     await waitFor(() => {
-      expect(result.current.isSuccess).toBe(true);
+      expect(result.current.isError).toBe(true);
     });
   });
 
-  it('should invalidate question detail on success', async () => {
-    vi.mocked(api.post).mockResolvedValueOnce({
-      data: mockQuestion,
-      success: true,
-    });
-
+  it('should not invalidate query on error (stub behavior)', async () => {
     const queryClient = new QueryClient({
       defaultOptions: { queries: { retry: false } },
     });
@@ -179,12 +121,11 @@ describe('useRequestAISuggestion', () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBe(true);
+      expect(result.current.isError).toBe(true);
     });
 
-    // Verify detail query is invalidated
-    expect(invalidateSpy).toHaveBeenCalledWith({
-      queryKey: ['qa', 'detail', 'q1'],
-    });
+    // onSuccess never fires since mutationFn always throws,
+    // so invalidateQueries should not be called
+    expect(invalidateSpy).not.toHaveBeenCalled();
   });
 });

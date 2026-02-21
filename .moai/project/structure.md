@@ -45,12 +45,16 @@ lecture-moa/
 │   │   │   └── useCurrentUser.ts     # Current user profile data via TanStack Query
 │   │   ├── middleware.ts             # Next.js middleware for route protection and role-based guards
 │   │   ├── lib/                      # Client-side utilities
-│   │   │   ├── supabase/             # Supabase client configuration
+│   │   │   ├── supabase/             # Supabase client configuration and query layers
 │   │   │   │   ├── client.ts         # Browser-side Supabase client (singleton)
 │   │   │   │   ├── server.ts         # Server-side Supabase client (RSC, Route Handlers, Server Actions)
-│   │   │   │   └── middleware.ts     # Auth session refresh helper for Next.js middleware
-│   │   │   ├── api.ts                # API client helpers for Edge Function calls
-│   │   │   └── realtime.ts           # Supabase Realtime channel setup utilities
+│   │   │   │   ├── middleware.ts     # Auth session refresh helper for Next.js middleware
+│   │   │   │   ├── courses.ts        # Course domain Supabase query functions (SPEC-BE-003)
+│   │   │   │   ├── materials.ts      # Material domain Supabase query functions (SPEC-BE-003)
+│   │   │   │   ├── storage.ts        # Storage upload/download helpers (SPEC-BE-003)
+│   │   │   │   ├── qa.ts             # Q&A domain Supabase query functions with camelCase mapping (SPEC-BE-004)
+│   │   │   │   └── realtime.ts       # Supabase Realtime channel create/subscribe/unsubscribe utilities (SPEC-BE-004)
+│   │   │   └── api.ts                # API client helpers for Edge Function calls
 │   │   ├── providers/                # React context providers
 │   │   ├── styles/                   # Global styles and themes
 │   │   ├── types/

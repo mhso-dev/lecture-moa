@@ -3,16 +3,18 @@
  * TASK-012: TanStack Query mutation for changing question status
  * REQ-FE-503: Q&A API hook definitions
  * REQ-FE-540: Instructor moderation actions
+ * REQ-BE-004-018: Supabase direct query for status change
  *
  * Handles changing question status (OPEN, RESOLVED, CLOSED).
  * Instructor-only action.
+ * Uses Supabase query layer instead of REST API.
  */
 
 import { useMutation, useQueryClient, type UseMutationResult } from '@tanstack/react-query';
-import { api } from '~/lib/api';
+import { changeQuestionStatus as changeQuestionStatusQuery } from '~/lib/supabase/qa';
 import { qaKeys } from './qa-keys';
 import { toast } from 'sonner';
-import type { QAQuestion, QAStatus } from '@shared';
+import type { QAStatus } from '@shared';
 
 /**
  * Hook for changing question status
@@ -37,16 +39,12 @@ import type { QAQuestion, QAStatus } from '@shared';
  */
 export function useChangeQuestionStatus(
   questionId: string
-): UseMutationResult<QAQuestion, Error, QAStatus> {
+): UseMutationResult<void, Error, QAStatus> {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: async (status: QAStatus) => {
-      const response = await api.patch<QAQuestion>(
-        `/api/v1/qa/questions/${questionId}/status`,
-        { status }
-      );
-      return response.data;
+      await changeQuestionStatusQuery(questionId, status);
     },
     onSuccess: () => {
       // Invalidate question detail

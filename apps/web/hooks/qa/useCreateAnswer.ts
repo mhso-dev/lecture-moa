@@ -2,12 +2,15 @@
  * useCreateAnswer Hook - Create Answer Mutation
  * TASK-008: TanStack Query mutation for creating answer
  * REQ-FE-503: Q&A API hook definitions
+ * REQ-BE-004-015: Supabase direct query for answer creation
  *
  * Handles answer creation with automatic cache invalidation.
+ * Uses Supabase query layer instead of REST API.
  */
 
 import { useMutation, useQueryClient, type UseMutationResult } from '@tanstack/react-query';
-import { api } from '~/lib/api';
+import { createAnswer as createAnswerQuery } from '~/lib/supabase/qa';
+import { useAuth } from '~/hooks/useAuth';
 import { qaKeys } from './qa-keys';
 import { toast } from 'sonner';
 import type { QAAnswer } from '@shared';
@@ -35,14 +38,14 @@ export function useCreateAnswer(
   questionId: string
 ): UseMutationResult<QAAnswer, Error, string> {
   const queryClient = useQueryClient();
+  const { user } = useAuth();
 
   return useMutation({
     mutationFn: async (content: string) => {
-      const response = await api.post<QAAnswer>(
-        `/api/v1/qa/questions/${questionId}/answers`,
-        { content }
-      );
-      return response.data;
+      if (!user?.id) {
+        throw new Error('로그인이 필요합니다');
+      }
+      return createAnswerQuery(questionId, { content }, user.id);
     },
     onSuccess: () => {
       // Invalidate question detail to refresh answers
