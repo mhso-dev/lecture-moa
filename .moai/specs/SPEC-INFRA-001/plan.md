@@ -4,7 +4,7 @@
 | -------- | ---------------------------------------------- |
 | SPEC ID  | SPEC-INFRA-001                                 |
 | Title    | Supabase Backend Verification & MCP Integration |
-| Status   | Draft                                          |
+| Status   | Completed                                      |
 
 ---
 

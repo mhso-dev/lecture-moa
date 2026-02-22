@@ -5,7 +5,7 @@
 | SPEC ID  | SPEC-INFRA-001                                 |
 | Title    | Supabase Backend Verification & MCP Integration |
 | Type     | Infrastructure / Verification                  |
-| Status   | Draft                                          |
+| Status   | Completed                                      |
 | Priority | High                                           |
 | Created  | 2026-02-21                                     |
 
@@ -139,6 +139,60 @@ lecture-moa 프로젝트는 Supabase 백엔드 마이그레이션 Phase 2를 완
 | Docker Desktop | 실행 중 | 확인됨 |
 | Homebrew | 설치됨 | Supabase CLI 설치용 |
 | Supabase 계정 | 필요 | MCP 인증용 |
+
+---
+
+## Implementation Notes
+
+| Field | Value |
+| ----- | ----- |
+| Completion Date | 2026-02-22 |
+| Implementation Commit | 79260f3 |
+
+### Phases Completed
+
+모든 6단계가 계획대로 완료되었으며 범위 변경 또는 이연 항목이 없다.
+
+**Phase 1: Infrastructure Fixes**
+- Supabase CLI 설치 완료 (`brew install supabase/tap/supabase`)
+- 마이그레이션 번호 수정: `00014_create_quiz_functions.sql` → `00015_create_quiz_functions.sql`
+- 고아 파일 제거: `apps/web/vitest.setup.ts` 삭제
+
+**Phase 2: Local Supabase Validation**
+- 15개 테이블 모두 존재 확인 (profiles, courses, enrollments, materials, questions, answers, votes, teams, team_members, memos, quizzes, quiz_questions, quiz_attempts, quiz_answers, notifications)
+- 모든 RLS 정책 적용 확인
+- 헬퍼 함수 및 Quiz RPC 함수 존재 확인
+- Vote count 트리거 정상 동작 확인
+
+**Phase 3: Type Regeneration**
+- `supabase gen types typescript --local`로 `apps/web/types/supabase.ts` 재생성
+- start_quiz_attempt, submit_and_grade_quiz, duplicate_quiz RPC 함수 타입 포함 확인
+
+**Phase 4: MCP Configuration**
+- `.mcp.json`에 Supabase MCP 서버 추가 완료
+- 프로젝트 데이터베이스 스키마 조회 가능 확인
+
+**Phase 5: Test Suite**
+- 122개 테스트 파일, 1,732개 테스트 전체 통과
+- 실패 테스트 0건
+
+**Phase 6: Integration**
+- 개발 서버 Supabase 연결 오류 없음 확인
+
+### Files Modified
+
+총 19개 파일이 수정되었다.
+
+| Category | Count | Files |
+| -------- | ----- | ----- |
+| Infra/Config | 3 | `.mcp.json`, `supabase/migrations/` (번호 수정), `supabase/config.toml` |
+| Types | 1 | `apps/web/types/supabase.ts` |
+| Supabase Services | 5 | 서비스 계층 파일 |
+| Tests | 3 | 테스트 파일 |
+| Component | 1 | 컴포넌트 파일 |
+| SPEC Docs | 3 | spec.md, plan.md, acceptance.md |
+| Cleanup | 1 | `apps/web/vitest.setup.ts` (삭제) |
+| Migrations | 2 | 마이그레이션 파일 |
 
 ---
 

@@ -4,7 +4,7 @@
 | -------- | ---------------------------------------------- |
 | SPEC ID  | SPEC-INFRA-001                                 |
 | Title    | Supabase Backend Verification & MCP Integration |
-| Status   | Draft                                          |
+| Status   | Completed                                      |
 
 ---
 
@@ -18,37 +18,37 @@ SPEC-INFRA-001은 아래의 모든 수용 기준이 충족되었을 때 완료�
 
 ### Infrastructure Setup
 
-- [ ] **AC-001**: Supabase CLI가 설치되어 있으며 `supabase --version`이 유효한 버전을 반환한다
-- [ ] **AC-002**: 모든 마이그레이션 파일이 고유한 순차 번호를 가진다 (중복 없음)
+- [x] **AC-001**: Supabase CLI가 설치되어 있으며 `supabase --version`이 유효한 버전을 반환한다
+- [x] **AC-002**: 모든 마이그레이션 파일이 고유한 순차 번호를 가진다 (중복 없음)
 
 ### Migration Validation
 
-- [ ] **AC-003**: `supabase db reset`이 오류 없이 완료된다
-- [ ] **AC-004**: 로컬 데이터베이스에 15개 테이블이 모두 존재한다
-- [ ] **AC-005**: 모든 RLS 정책이 적용되어 있다 (profiles, courses, enrollments, materials, questions, answers, votes, teams, team_members, memos, quizzes, quiz_questions, quiz_attempts, quiz_answers, notifications)
-- [ ] **AC-006**: 모든 헬퍼 함수가 존재한다 (get_user_role, is_course_instructor, is_course_enrolled, is_team_member, set_updated_at)
-- [ ] **AC-007**: 모든 Quiz RPC 함수가 존재한다 (start_quiz_attempt, submit_and_grade_quiz, duplicate_quiz)
-- [ ] **AC-008**: Vote count 트리거가 정상 동작한다
-- [ ] **AC-009**: Storage 버킷이 존재한다 (course-images, material-images)
-- [ ] **AC-010**: Seed 데이터가 채워져 있다 (3명의 사용자, 2개의 강의, 교재, Q&A, 팀, 퀴즈)
+- [x] **AC-003**: `supabase db reset`이 오류 없이 완료된다
+- [x] **AC-004**: 로컬 데이터베이스에 15개 테이블이 모두 존재한다
+- [x] **AC-005**: 모든 RLS 정책이 적용되어 있다 (profiles, courses, enrollments, materials, questions, answers, votes, teams, team_members, memos, quizzes, quiz_questions, quiz_attempts, quiz_answers, notifications)
+- [x] **AC-006**: 모든 헬퍼 함수가 존재한다 (get_user_role, is_course_instructor, is_course_enrolled, is_team_member, set_updated_at)
+- [x] **AC-007**: 모든 Quiz RPC 함수가 존재한다 (start_quiz_attempt, submit_and_grade_quiz, duplicate_quiz)
+- [x] **AC-008**: Vote count 트리거가 정상 동작한다
+- [x] **AC-009**: Storage 버킷이 존재한다 (course-images, material-images)
+- [x] **AC-010**: Seed 데이터가 채워져 있다 (3명의 사용자, 2개의 강의, 교재, Q&A, 팀, 퀴즈)
 
 ### Type System
 
-- [ ] **AC-011**: 생성된 TypeScript 타입이 모든 테이블, 함수, enum을 포함한다
+- [x] **AC-011**: 생성된 TypeScript 타입이 모든 테이블, 함수, enum을 포함한다
 
 ### MCP Integration
 
-- [ ] **AC-012**: Supabase MCP가 .mcp.json에 설정되어 있다
-- [ ] **AC-013**: Supabase MCP가 프로젝트 데이터베이스 스키마를 조회할 수 있다
+- [x] **AC-012**: Supabase MCP가 .mcp.json에 설정되어 있다
+- [x] **AC-013**: Supabase MCP가 프로젝트 데이터베이스 스키마를 조회할 수 있다
 
 ### Test & Runtime Validation
 
-- [ ] **AC-014**: `pnpm test`가 apps/web의 모든 테스트를 통과한다
-- [ ] **AC-015**: 개발 서버가 Supabase 연결 오류 없이 시작된다
+- [x] **AC-014**: `pnpm test`가 apps/web의 모든 테스트를 통과한다
+- [x] **AC-015**: 개발 서버가 Supabase 연결 오류 없이 시작된다
 
 ### Cleanup
 
-- [ ] **AC-016**: 고아 vitest.setup.ts가 제거되었다
+- [x] **AC-016**: 고아 vitest.setup.ts가 제거되었다
 
 ---
 
