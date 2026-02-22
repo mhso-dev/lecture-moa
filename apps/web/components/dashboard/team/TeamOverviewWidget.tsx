@@ -14,6 +14,14 @@ import { useTeamOverview } from "~/hooks/dashboard/useTeamDashboard";
 import { formatDistanceToNow } from "~/lib/date-utils";
 
 /**
+ * Props for TeamOverviewWidget
+ */
+interface TeamOverviewWidgetProps {
+  /** Team ID to fetch overview for */
+  teamId?: string;
+}
+
+/**
  * TeamOverviewWidget displays team metadata and stats.
  *
  * Features:
@@ -25,11 +33,11 @@ import { formatDistanceToNow } from "~/lib/date-utils";
  *
  * @example
  * ```tsx
- * <TeamOverviewWidget />
+ * <TeamOverviewWidget teamId="team-123" />
  * ```
  */
-export function TeamOverviewWidget() {
-  const { data: overview, isLoading, error, refetch } = useTeamOverview();
+export function TeamOverviewWidget({ teamId = "" }: TeamOverviewWidgetProps) {
+  const { data: overview, isLoading, error, refetch } = useTeamOverview(teamId);
 
   return (
     <DashboardWidget

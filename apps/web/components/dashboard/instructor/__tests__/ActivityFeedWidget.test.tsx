@@ -88,12 +88,7 @@ describe("ActivityFeedWidget", () => {
           courseName: string;
           createdAt: Date;
         }[],
-        pagination: {
-          page: 1,
-          totalPages: 1,
-          totalItems: 0,
-          hasNextPage: false,
-        },
+        hasMore: false,
       };
 
       vi.mocked(hooksModule.useActivityFeed).mockReturnValue({
@@ -101,7 +96,7 @@ describe("ActivityFeedWidget", () => {
         isLoading: false,
         isError: false,
         error: null,
-      } as ReturnType<typeof hooksModule.useActivityFeed>);
+      } as unknown as ReturnType<typeof hooksModule.useActivityFeed>);
 
       render(<ActivityFeedWidget />, { wrapper: createWrapper() });
 
@@ -128,12 +123,7 @@ describe("ActivityFeedWidget", () => {
             createdAt: new Date("2026-02-18T09:30:00Z"),
           },
         ],
-        pagination: {
-          page: 1,
-          totalPages: 1,
-          totalItems: 2,
-          hasNextPage: false,
-        },
+        hasMore: false,
       };
 
       vi.mocked(hooksModule.useActivityFeed).mockReturnValue({
@@ -141,7 +131,7 @@ describe("ActivityFeedWidget", () => {
         isLoading: false,
         isError: false,
         error: null,
-      } as ReturnType<typeof hooksModule.useActivityFeed>);
+      } as unknown as ReturnType<typeof hooksModule.useActivityFeed>);
 
       render(<ActivityFeedWidget />, { wrapper: createWrapper() });
 
@@ -183,12 +173,7 @@ describe("ActivityFeedWidget", () => {
             createdAt: new Date("2026-02-18T07:00:00Z"),
           },
         ],
-        pagination: {
-          page: 1,
-          totalPages: 1,
-          totalItems: 4,
-          hasNextPage: false,
-        },
+        hasMore: false,
       };
 
       vi.mocked(hooksModule.useActivityFeed).mockReturnValue({
@@ -196,7 +181,7 @@ describe("ActivityFeedWidget", () => {
         isLoading: false,
         isError: false,
         error: null,
-      } as ReturnType<typeof hooksModule.useActivityFeed>);
+      } as unknown as ReturnType<typeof hooksModule.useActivityFeed>);
 
       render(<ActivityFeedWidget />, { wrapper: createWrapper() });
 
@@ -216,12 +201,7 @@ describe("ActivityFeedWidget", () => {
           courseName: "Test Course",
           createdAt: new Date("2026-02-18T10:00:00Z"),
         })),
-        pagination: {
-          page: 1,
-          totalPages: 2,
-          totalItems: 20,
-          hasNextPage: true,
-        },
+        hasMore: true,
       };
 
       vi.mocked(hooksModule.useActivityFeed).mockReturnValue({
@@ -229,7 +209,7 @@ describe("ActivityFeedWidget", () => {
         isLoading: false,
         isError: false,
         error: null,
-      } as ReturnType<typeof hooksModule.useActivityFeed>);
+      } as unknown as ReturnType<typeof hooksModule.useActivityFeed>);
 
       render(<ActivityFeedWidget />, { wrapper: createWrapper() });
 
@@ -246,12 +226,7 @@ describe("ActivityFeedWidget", () => {
           courseName: "Test Course",
           createdAt: new Date("2026-02-18T10:00:00Z"),
         })),
-        pagination: {
-          page: 1,
-          totalPages: 2,
-          totalItems: 20,
-          hasNextPage: true,
-        },
+        hasMore: true,
       };
 
       vi.mocked(hooksModule.useActivityFeed).mockReturnValue({
@@ -259,7 +234,7 @@ describe("ActivityFeedWidget", () => {
         isLoading: false,
         isError: false,
         error: null,
-      } as ReturnType<typeof hooksModule.useActivityFeed>);
+      } as unknown as ReturnType<typeof hooksModule.useActivityFeed>);
 
       render(<ActivityFeedWidget />, { wrapper: createWrapper() });
 
@@ -277,12 +252,7 @@ describe("ActivityFeedWidget", () => {
             createdAt: new Date("2026-02-18T10:00:00Z"),
           },
         ],
-        pagination: {
-          page: 2,
-          totalPages: 2,
-          totalItems: 11,
-          hasNextPage: false,
-        },
+        hasMore: false,
       };
 
       vi.mocked(hooksModule.useActivityFeed).mockReturnValue({
@@ -290,7 +260,7 @@ describe("ActivityFeedWidget", () => {
         isLoading: false,
         isError: false,
         error: null,
-      } as ReturnType<typeof hooksModule.useActivityFeed>);
+      } as unknown as ReturnType<typeof hooksModule.useActivityFeed>);
 
       render(<ActivityFeedWidget />, { wrapper: createWrapper() });
 
@@ -306,12 +276,7 @@ describe("ActivityFeedWidget", () => {
           courseName: "Test Course",
           createdAt: new Date("2026-02-18T10:00:00Z"),
         })),
-        pagination: {
-          page: 1,
-          totalPages: 2,
-          totalItems: 20,
-          hasNextPage: true,
-        },
+        hasMore: true,
       };
 
       vi.mocked(hooksModule.useActivityFeed).mockReturnValue({
@@ -319,7 +284,7 @@ describe("ActivityFeedWidget", () => {
         isLoading: false,
         isError: false,
         error: null,
-      } as ReturnType<typeof hooksModule.useActivityFeed>);
+      } as unknown as ReturnType<typeof hooksModule.useActivityFeed>);
 
       render(<ActivityFeedWidget />, { wrapper: createWrapper() });
 

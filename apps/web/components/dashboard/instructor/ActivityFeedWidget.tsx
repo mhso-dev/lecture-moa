@@ -82,7 +82,7 @@ export function ActivityFeedWidget() {
     setPage((prev) => prev + 1);
   };
 
-  const hasNextPage = data?.pagination.hasNextPage ?? false;
+  const hasNextPage = data?.hasMore ?? false;
 
   return (
     <DashboardWidget

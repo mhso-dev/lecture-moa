@@ -77,15 +77,18 @@ describe("TeamActivityWidget", () => {
     it("displays activity timeline with actor name and time", () => {
       vi.mocked(hooks.useTeamActivity).mockReturnValue({
         isLoading: false,
-        data: [
-          {
-            id: "activity-1",
-            type: "memo_created",
-            actorName: "John Doe",
-            description: "Created a new memo: React Hooks Notes",
-            createdAt: new Date(Date.now() - 1000 * 60 * 30), // 30 min ago
-          },
-        ],
+        data: {
+          items: [
+            {
+              id: "activity-1",
+              type: "memo_created",
+              actorName: "John Doe",
+              description: "Created a new memo: React Hooks Notes",
+              createdAt: new Date(Date.now() - 1000 * 60 * 30), // 30 min ago
+            },
+          ],
+          hasMore: false,
+        },
         error: null,
         isError: false,
         isSuccess: true,
@@ -102,15 +105,18 @@ describe("TeamActivityWidget", () => {
     it("displays activity description", () => {
       vi.mocked(hooks.useTeamActivity).mockReturnValue({
         isLoading: false,
-        data: [
-          {
-            id: "activity-1",
-            type: "memo_created",
-            actorName: "John Doe",
-            description: "Created a new memo: React Hooks Notes",
-            createdAt: new Date(),
-          },
-        ],
+        data: {
+          items: [
+            {
+              id: "activity-1",
+              type: "memo_created",
+              actorName: "John Doe",
+              description: "Created a new memo: React Hooks Notes",
+              createdAt: new Date(),
+            },
+          ],
+          hasMore: false,
+        },
         error: null,
         isError: false,
         isSuccess: true,
@@ -126,22 +132,25 @@ describe("TeamActivityWidget", () => {
     it("shows different icons for different activity types", () => {
       vi.mocked(hooks.useTeamActivity).mockReturnValue({
         isLoading: false,
-        data: [
-          {
-            id: "activity-1",
-            type: "memo_created",
-            actorName: "John Doe",
-            description: "Created a new memo",
-            createdAt: new Date(),
-          },
-          {
-            id: "activity-2",
-            type: "member_joined",
-            actorName: "Jane Smith",
-            description: "Joined the team",
-            createdAt: new Date(),
-          },
-        ],
+        data: {
+          items: [
+            {
+              id: "activity-1",
+              type: "memo_created",
+              actorName: "John Doe",
+              description: "Created a new memo",
+              createdAt: new Date(),
+            },
+            {
+              id: "activity-2",
+              type: "member_joined",
+              actorName: "Jane Smith",
+              description: "Joined the team",
+              createdAt: new Date(),
+            },
+          ],
+          hasMore: false,
+        },
         error: null,
         isError: false,
         isSuccess: true,
@@ -167,7 +176,7 @@ describe("TeamActivityWidget", () => {
 
       vi.mocked(hooks.useTeamActivity).mockReturnValue({
         isLoading: false,
-        data: activities,
+        data: { items: activities, hasMore: true },
         error: null,
         isError: false,
         isSuccess: true,
@@ -186,7 +195,7 @@ describe("TeamActivityWidget", () => {
     it("shows empty state when no activity", () => {
       vi.mocked(hooks.useTeamActivity).mockReturnValue({
         isLoading: false,
-        data: [],
+        data: { items: [], hasMore: false },
         error: null,
         isError: false,
         isSuccess: true,
@@ -214,7 +223,7 @@ describe("TeamActivityWidget", () => {
 
       vi.mocked(hooks.useTeamActivity).mockReturnValue({
         isLoading: false,
-        data: [],
+        data: { items: [], hasMore: false },
         error: null,
         isError: false,
         isSuccess: true,
@@ -259,7 +268,7 @@ describe("TeamActivityWidget", () => {
 
       vi.mocked(hooks.useTeamActivity).mockReturnValue({
         isLoading: false,
-        data: activities,
+        data: { items: activities, hasMore: true },
         error: null,
         isError: false,
         isSuccess: true,

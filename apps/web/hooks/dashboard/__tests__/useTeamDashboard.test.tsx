@@ -62,7 +62,7 @@ describe("Team Dashboard Hooks", () => {
         courseName: "Introduction to React",
         memberCount: 5,
         description: "Weekly study sessions for React beginners",
-        createdAt: "2026-02-01T10:00:00Z",
+        createdAt: new Date("2026-02-01T10:00:00Z"),
       };
 
       vi.mocked(dashboardModule.fetchTeamOverview).mockResolvedValueOnce(mockOverview);
@@ -83,7 +83,7 @@ describe("Team Dashboard Hooks", () => {
         name: "Test Team",
         courseName: "Test Course",
         memberCount: 1,
-        createdAt: "2026-02-01T10:00:00Z",
+        createdAt: new Date("2026-02-01T10:00:00Z"),
       });
 
       renderHook(() => useTeamOverview("team-1"), {
@@ -107,7 +107,7 @@ describe("Team Dashboard Hooks", () => {
         name: "Test Team",
         courseName: "Test Course",
         memberCount: 1,
-        createdAt: "2026-02-01T10:00:00Z",
+        createdAt: new Date("2026-02-01T10:00:00Z"),
       });
 
       const { result } = renderHook(() => useTeamOverview("team-1"), {
@@ -141,14 +141,14 @@ describe("Team Dashboard Hooks", () => {
           name: "John Doe",
           avatarUrl: "https://example.com/avatar1.jpg",
           role: "leader" as const,
-          lastActiveAt: "2026-02-19T10:00:00Z",
+          lastActiveAt: new Date("2026-02-19T10:00:00Z"),
         },
         {
           id: "user-2",
           name: "Jane Smith",
           avatarUrl: "https://example.com/avatar2.jpg",
           role: "member" as const,
-          lastActiveAt: "2026-02-18T15:30:00Z",
+          lastActiveAt: new Date("2026-02-18T15:30:00Z"),
         },
       ];
 
@@ -192,14 +192,14 @@ describe("Team Dashboard Hooks", () => {
             title: "React Hooks Notes",
             authorName: "John Doe",
             excerpt: "Key concepts about useState and useEffect...",
-            updatedAt: "2026-02-19T10:00:00Z",
+            updatedAt: new Date("2026-02-19T10:00:00Z"),
           },
           {
             id: "memo-2",
             title: "TypeScript Tips",
             authorName: "Jane Smith",
             excerpt: "Best practices for TypeScript development...",
-            updatedAt: "2026-02-18T15:30:00Z",
+            updatedAt: new Date("2026-02-18T15:30:00Z"),
           },
         ],
         hasMore: false,
@@ -264,14 +264,14 @@ describe("Team Dashboard Hooks", () => {
             type: "memo_created" as const,
             actorName: "John Doe",
             description: "Created a new memo: React Hooks Notes",
-            createdAt: "2026-02-19T10:00:00Z",
+            createdAt: new Date("2026-02-19T10:00:00Z"),
           },
           {
             id: "activity-2",
             type: "member_joined" as const,
             actorName: "Jane Smith",
             description: "Joined the team",
-            createdAt: "2026-02-18T15:30:00Z",
+            createdAt: new Date("2026-02-18T15:30:00Z"),
           },
         ],
         hasMore: false,

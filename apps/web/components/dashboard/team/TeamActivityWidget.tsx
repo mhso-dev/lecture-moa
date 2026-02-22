@@ -56,6 +56,14 @@ function getActivityColor(type: TeamActivityItemType): string {
 }
 
 /**
+ * Props for TeamActivityWidget
+ */
+interface TeamActivityWidgetProps {
+  /** Team ID to fetch activity for */
+  teamId?: string;
+}
+
+/**
  * TeamActivityWidget displays team activity timeline.
  *
  * Features:
@@ -66,12 +74,12 @@ function getActivityColor(type: TeamActivityItemType): string {
  *
  * @example
  * ```tsx
- * <TeamActivityWidget />
+ * <TeamActivityWidget teamId="team-123" />
  * ```
  */
-export function TeamActivityWidget() {
-  const { data: overview } = useTeamOverview();
-  const { data: activities, isLoading, error, refetch } = useTeamActivity({ page: 1 });
+export function TeamActivityWidget({ teamId = "" }: TeamActivityWidgetProps) {
+  const { data: overview } = useTeamOverview(teamId);
+  const { data: activitiesData, isLoading, error, refetch } = useTeamActivity({ teamId, page: 1 });
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -81,8 +89,9 @@ export function TeamActivityWidget() {
   }
 
   // Limit to MAX_DISPLAYED_ACTIVITIES
-  const displayedActivities = activities?.slice(0, MAX_DISPLAYED_ACTIVITIES * currentPage);
-  const hasMore = (activities?.length ?? 0) > MAX_DISPLAYED_ACTIVITIES * currentPage;
+  const activityItems = activitiesData?.items;
+  const displayedActivities = activityItems?.slice(0, MAX_DISPLAYED_ACTIVITIES * currentPage);
+  const hasMore = (activityItems?.length ?? 0) > MAX_DISPLAYED_ACTIVITIES * currentPage;
 
   const handleLoadMore = () => {
     setCurrentPage((prev) => prev + 1);

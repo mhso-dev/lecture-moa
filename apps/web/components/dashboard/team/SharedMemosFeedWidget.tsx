@@ -32,6 +32,14 @@ function truncateText(text: string, maxLength: number): string {
 }
 
 /**
+ * Props for SharedMemosFeedWidget
+ */
+interface SharedMemosFeedWidgetProps {
+  /** Team ID to fetch shared memos for */
+  teamId?: string;
+}
+
+/**
  * SharedMemosFeedWidget displays team memos feed.
  *
  * Features:
@@ -42,12 +50,12 @@ function truncateText(text: string, maxLength: number): string {
  *
  * @example
  * ```tsx
- * <SharedMemosFeedWidget />
+ * <SharedMemosFeedWidget teamId="team-123" />
  * ```
  */
-export function SharedMemosFeedWidget() {
-  const { data: overview } = useTeamOverview();
-  const { data: memos, isLoading, error, refetch } = useSharedMemos({ page: 1 });
+export function SharedMemosFeedWidget({ teamId = "" }: SharedMemosFeedWidgetProps) {
+  const { data: overview } = useTeamOverview(teamId);
+  const { data: memosData, isLoading, error, refetch } = useSharedMemos({ teamId, page: 1 });
 
   // Don't render if no team
   if (!overview && !isLoading) {
@@ -55,15 +63,16 @@ export function SharedMemosFeedWidget() {
   }
 
   // Limit to MAX_DISPLAYED_MEMOS
-  const displayedMemos = memos?.slice(0, MAX_DISPLAYED_MEMOS);
-  const hasMore = (memos?.length ?? 0) > MAX_DISPLAYED_MEMOS;
+  const memoItems = memosData?.items;
+  const displayedMemos = memoItems?.slice(0, MAX_DISPLAYED_MEMOS);
+  const hasMore = (memoItems?.length ?? 0) > MAX_DISPLAYED_MEMOS;
 
   return (
     <DashboardWidget
       title="Shared Memos"
       subtitle="Team collaboration notes"
       headerAction={
-        memos && memos.length > 0 ? (
+        memoItems && memoItems.length > 0 ? (
           <Link
             href={`/teams/${overview?.id ?? ""}/memos` as Route}
             className="text-sm text-primary hover:underline flex items-center gap-1"
@@ -102,12 +111,12 @@ export function SharedMemosFeedWidget() {
             </Link>
           ))}
 
-          {hasMore && memos && (
+          {hasMore && memoItems && (
             <Link
               href={`/teams/${overview?.id ?? ""}/memos` as Route}
               className="block text-sm text-center text-primary hover:underline pt-2"
             >
-              View {memos.length - MAX_DISPLAYED_MEMOS} more memos
+              View {memoItems.length - MAX_DISPLAYED_MEMOS} more memos
             </Link>
           )}
 

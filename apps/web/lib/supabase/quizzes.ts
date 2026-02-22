@@ -324,7 +324,7 @@ function mapQuestionPayloadToDB(
 
   return {
     quiz_id: quizId,
-    question_type: q.type as QuestionRow["question_type"],
+    question_type: q.type,
     content: q.questionText,
     options: options as Database["public"]["Tables"]["quiz_questions"]["Insert"]["options"],
     correct_answer: correctAnswer,

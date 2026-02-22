@@ -94,15 +94,18 @@ describe("SharedMemosFeedWidget", () => {
     it("displays memo list with title, author, and excerpt", () => {
       vi.mocked(hooks.useSharedMemos).mockReturnValue({
         isLoading: false,
-        data: [
-          {
-            id: "memo-1",
-            title: "React Hooks Notes",
-            authorName: "John Doe",
-            excerpt: "Key concepts about useState and useEffect...",
-            updatedAt: new Date("2026-02-19T10:00:00Z"),
-          },
-        ],
+        data: {
+          items: [
+            {
+              id: "memo-1",
+              title: "React Hooks Notes",
+              authorName: "John Doe",
+              excerpt: "Key concepts about useState and useEffect...",
+              updatedAt: new Date("2026-02-19T10:00:00Z"),
+            },
+          ],
+          hasMore: false,
+        },
         error: null,
         isError: false,
         isSuccess: true,
@@ -121,15 +124,18 @@ describe("SharedMemosFeedWidget", () => {
       const longExcerpt = "A".repeat(150);
       vi.mocked(hooks.useSharedMemos).mockReturnValue({
         isLoading: false,
-        data: [
-          {
-            id: "memo-1",
-            title: "Long Memo",
-            authorName: "John Doe",
-            excerpt: longExcerpt,
-            updatedAt: new Date("2026-02-19T10:00:00Z"),
-          },
-        ],
+        data: {
+          items: [
+            {
+              id: "memo-1",
+              title: "Long Memo",
+              authorName: "John Doe",
+              excerpt: longExcerpt,
+              updatedAt: new Date("2026-02-19T10:00:00Z"),
+            },
+          ],
+          hasMore: false,
+        },
         error: null,
         isError: false,
         isSuccess: true,
@@ -147,15 +153,18 @@ describe("SharedMemosFeedWidget", () => {
     it("displays updated time as relative time", () => {
       vi.mocked(hooks.useSharedMemos).mockReturnValue({
         isLoading: false,
-        data: [
-          {
-            id: "memo-1",
-            title: "React Hooks Notes",
-            authorName: "John Doe",
-            excerpt: "Key concepts...",
-            updatedAt: new Date(Date.now() - 1000 * 60 * 30), // 30 min ago
-          },
-        ],
+        data: {
+          items: [
+            {
+              id: "memo-1",
+              title: "React Hooks Notes",
+              authorName: "John Doe",
+              excerpt: "Key concepts...",
+              updatedAt: new Date(Date.now() - 1000 * 60 * 30), // 30 min ago
+            },
+          ],
+          hasMore: false,
+        },
         error: null,
         isError: false,
         isSuccess: true,
@@ -180,7 +189,7 @@ describe("SharedMemosFeedWidget", () => {
 
       vi.mocked(hooks.useSharedMemos).mockReturnValue({
         isLoading: false,
-        data: memos,
+        data: { items: memos, hasMore: true },
         error: null,
         isError: false,
         isSuccess: true,
@@ -197,7 +206,7 @@ describe("SharedMemosFeedWidget", () => {
     it("shows create memo button", () => {
       vi.mocked(hooks.useSharedMemos).mockReturnValue({
         isLoading: false,
-        data: [],
+        data: { items: [], hasMore: false },
         error: null,
         isError: false,
         isSuccess: true,
@@ -214,15 +223,18 @@ describe("SharedMemosFeedWidget", () => {
     it("shows view all memos link when there are memos", () => {
       vi.mocked(hooks.useSharedMemos).mockReturnValue({
         isLoading: false,
-        data: [
-          {
-            id: "memo-1",
-            title: "Test Memo",
-            authorName: "Author",
-            excerpt: "Excerpt...",
-            updatedAt: new Date(),
-          },
-        ],
+        data: {
+          items: [
+            {
+              id: "memo-1",
+              title: "Test Memo",
+              authorName: "Author",
+              excerpt: "Excerpt...",
+              updatedAt: new Date(),
+            },
+          ],
+          hasMore: false,
+        },
         error: null,
         isError: false,
         isSuccess: true,
@@ -240,7 +252,7 @@ describe("SharedMemosFeedWidget", () => {
     it("shows empty state with create memo CTA when no memos", () => {
       vi.mocked(hooks.useSharedMemos).mockReturnValue({
         isLoading: false,
-        data: [],
+        data: { items: [], hasMore: false },
         error: null,
         isError: false,
         isSuccess: true,
@@ -269,7 +281,7 @@ describe("SharedMemosFeedWidget", () => {
 
       vi.mocked(hooks.useSharedMemos).mockReturnValue({
         isLoading: false,
-        data: [],
+        data: { items: [], hasMore: false },
         error: null,
         isError: false,
         isSuccess: true,

@@ -348,7 +348,7 @@ export async function fetchActivityFeed(
     throw new Error(`Failed to fetch activity feed: ${error.message}`);
   }
 
-  const items = (data ?? []).map(
+  const items = data.map(
     (row: { id: string; type: string; actor_name: string; course_name: string; created_at: string }) => ({
       id: row.id,
       type: row.type as ActivityFeedItemType,
@@ -468,7 +468,7 @@ export async function fetchTeamActivityFeed(
     throw new Error(`Failed to fetch team activity feed: ${error.message}`);
   }
 
-  const items = (data ?? []).map(
+  const items = data.map(
     (row: { id: string; type: string; actor_name: string; description: string; created_at: string }) => ({
       id: row.id,
       type: row.type as TeamActivityItemType,

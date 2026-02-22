@@ -52,6 +52,14 @@ function getInitials(name: string): string {
 }
 
 /**
+ * Props for TeamMembersWidget
+ */
+interface TeamMembersWidgetProps {
+  /** Team ID to fetch members for */
+  teamId?: string;
+}
+
+/**
  * TeamMembersWidget displays team member list with activity status.
  *
  * Features:
@@ -62,12 +70,12 @@ function getInitials(name: string): string {
  *
  * @example
  * ```tsx
- * <TeamMembersWidget />
+ * <TeamMembersWidget teamId="team-123" />
  * ```
  */
-export function TeamMembersWidget() {
-  const { data: overview } = useTeamOverview();
-  const { data: members, isLoading, error, refetch } = useTeamMembers();
+export function TeamMembersWidget({ teamId = "" }: TeamMembersWidgetProps) {
+  const { data: overview } = useTeamOverview(teamId);
+  const { data: members, isLoading, error, refetch } = useTeamMembers(teamId);
 
   // Don't render if no team
   if (!overview && !isLoading) {

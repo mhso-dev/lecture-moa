@@ -66,14 +66,14 @@ describe("Student Dashboard Hooks", () => {
           title: "Introduction to React",
           instructorName: "John Doe",
           progressPercent: 75,
-          lastAccessedAt: "2026-02-18T10:00:00Z",
+          lastAccessedAt: new Date("2026-02-18T10:00:00Z"),
         },
         {
           id: "2",
           title: "Advanced TypeScript",
           instructorName: "Jane Smith",
           progressPercent: 50,
-          lastAccessedAt: "2026-02-17T15:30:00Z",
+          lastAccessedAt: new Date("2026-02-17T15:30:00Z"),
         },
       ];
 
@@ -127,14 +127,14 @@ describe("Student Dashboard Hooks", () => {
           questionExcerpt: "How do I use useEffect?",
           courseName: "Introduction to React",
           status: "answered" as const,
-          createdAt: "2026-02-18T10:00:00Z",
+          createdAt: new Date("2026-02-18T10:00:00Z"),
         },
         {
           id: "2",
           questionExcerpt: "What is the difference between interface and type?",
           courseName: "Advanced TypeScript",
           status: "pending" as const,
-          createdAt: "2026-02-17T15:30:00Z",
+          createdAt: new Date("2026-02-17T15:30:00Z"),
         },
       ];
 
@@ -177,7 +177,7 @@ describe("Student Dashboard Hooks", () => {
           courseName: "Introduction to React",
           score: 8,
           totalPoints: 10,
-          takenAt: "2026-02-18T10:00:00Z",
+          takenAt: new Date("2026-02-18T10:00:00Z"),
         },
         {
           id: "2",
@@ -185,7 +185,7 @@ describe("Student Dashboard Hooks", () => {
           courseName: "Advanced TypeScript",
           score: 6,
           totalPoints: 10,
-          takenAt: "2026-02-17T15:30:00Z",
+          takenAt: new Date("2026-02-17T15:30:00Z"),
         },
       ];
 
@@ -271,7 +271,7 @@ describe("Student Dashboard Hooks", () => {
           quizTitle: "React Hooks Quiz",
           courseName: "Introduction to React",
           questionCount: 10,
-          dueAt: "2026-02-25T10:00:00Z",
+          dueAt: new Date("2026-02-25T10:00:00Z"),
         },
         {
           id: "2",
@@ -320,7 +320,7 @@ describe("Student Dashboard Hooks", () => {
           questionExcerpt: "How do I use useEffect?",
           courseName: "Introduction to React",
           isRead: false,
-          createdAt: "2026-02-18T10:00:00Z",
+          createdAt: new Date("2026-02-18T10:00:00Z"),
         },
         {
           id: "2",
@@ -328,7 +328,7 @@ describe("Student Dashboard Hooks", () => {
           questionExcerpt: "What is the difference between interface and type?",
           courseName: "Advanced TypeScript",
           isRead: true,
-          createdAt: "2026-02-17T15:30:00Z",
+          createdAt: new Date("2026-02-17T15:30:00Z"),
         },
       ];
 
