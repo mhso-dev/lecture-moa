@@ -83,6 +83,20 @@ export type Database = {
             referencedRelation: "questions"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "answers_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "v_instructor_pending_qa"
+            referencedColumns: ["question_id"]
+          },
+          {
+            foreignKeyName: "answers_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "v_student_qa_activity"
+            referencedColumns: ["question_id"]
+          },
         ]
       }
       course_enrollments: {
@@ -117,6 +131,20 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "courses"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "course_enrollments_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "v_instructor_courses_overview"
+            referencedColumns: ["course_id"]
+          },
+          {
+            foreignKeyName: "course_enrollments_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "v_student_enrolled_courses"
+            referencedColumns: ["course_id"]
           },
           {
             foreignKeyName: "course_enrollments_student_id_fkey"
@@ -228,6 +256,20 @@ export type Database = {
             referencedRelation: "courses"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "materials_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "v_instructor_courses_overview"
+            referencedColumns: ["course_id"]
+          },
+          {
+            foreignKeyName: "materials_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "v_student_enrolled_courses"
+            referencedColumns: ["course_id"]
+          },
         ]
       }
       memos: {
@@ -294,6 +336,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "teams"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "memos_team_id_fkey"
+            columns: ["team_id"]
+            isOneToOne: false
+            referencedRelation: "v_team_overview"
+            referencedColumns: ["team_id"]
           },
         ]
       }
@@ -430,6 +479,20 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "questions_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "v_instructor_courses_overview"
+            referencedColumns: ["course_id"]
+          },
+          {
+            foreignKeyName: "questions_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "v_student_enrolled_courses"
+            referencedColumns: ["course_id"]
+          },
+          {
             foreignKeyName: "questions_material_id_fkey"
             columns: ["material_id"]
             isOneToOne: false
@@ -473,6 +536,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "quiz_attempts"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "quiz_answers_attempt_id_fkey"
+            columns: ["attempt_id"]
+            isOneToOne: false
+            referencedRelation: "v_student_quiz_results"
+            referencedColumns: ["attempt_id"]
           },
           {
             foreignKeyName: "quiz_answers_question_id_fkey"
@@ -524,6 +594,20 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "quizzes"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "quiz_attempts_quiz_id_fkey"
+            columns: ["quiz_id"]
+            isOneToOne: false
+            referencedRelation: "v_instructor_quiz_performance"
+            referencedColumns: ["quiz_id"]
+          },
+          {
+            foreignKeyName: "quiz_attempts_quiz_id_fkey"
+            columns: ["quiz_id"]
+            isOneToOne: false
+            referencedRelation: "v_student_upcoming_quizzes"
+            referencedColumns: ["quiz_id"]
           },
           {
             foreignKeyName: "quiz_attempts_student_id_fkey"
@@ -578,6 +662,20 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "quizzes"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "quiz_questions_quiz_id_fkey"
+            columns: ["quiz_id"]
+            isOneToOne: false
+            referencedRelation: "v_instructor_quiz_performance"
+            referencedColumns: ["quiz_id"]
+          },
+          {
+            foreignKeyName: "quiz_questions_quiz_id_fkey"
+            columns: ["quiz_id"]
+            isOneToOne: false
+            referencedRelation: "v_student_upcoming_quizzes"
+            referencedColumns: ["quiz_id"]
           },
         ]
       }
@@ -648,6 +746,20 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "quizzes_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "v_instructor_courses_overview"
+            referencedColumns: ["course_id"]
+          },
+          {
+            foreignKeyName: "quizzes_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "v_student_enrolled_courses"
+            referencedColumns: ["course_id"]
+          },
+          {
             foreignKeyName: "quizzes_created_by_fkey"
             columns: ["created_by"]
             isOneToOne: false
@@ -667,6 +779,7 @@ export type Database = {
         Row: {
           id: string
           joined_at: string
+          last_active_at: string | null
           role: string
           team_id: string
           user_id: string
@@ -674,6 +787,7 @@ export type Database = {
         Insert: {
           id?: string
           joined_at?: string
+          last_active_at?: string | null
           role?: string
           team_id: string
           user_id: string
@@ -681,6 +795,7 @@ export type Database = {
         Update: {
           id?: string
           joined_at?: string
+          last_active_at?: string | null
           role?: string
           team_id?: string
           user_id?: string
@@ -692,6 +807,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "teams"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "team_members_team_id_fkey"
+            columns: ["team_id"]
+            isOneToOne: false
+            referencedRelation: "v_team_overview"
+            referencedColumns: ["team_id"]
           },
           {
             foreignKeyName: "team_members_user_id_fkey"
@@ -745,6 +867,20 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "teams_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "v_instructor_courses_overview"
+            referencedColumns: ["course_id"]
+          },
+          {
+            foreignKeyName: "teams_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "v_student_enrolled_courses"
+            referencedColumns: ["course_id"]
+          },
+          {
             foreignKeyName: "teams_created_by_fkey"
             columns: ["created_by"]
             isOneToOne: false
@@ -790,7 +926,215 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      v_instructor_courses_overview: {
+        Row: {
+          course_id: string | null
+          enrolled_count: number | null
+          instructor_id: string | null
+          is_published: boolean | null
+          materials_count: number | null
+          pending_qa_count: number | null
+          title: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "courses_instructor_id_fkey"
+            columns: ["instructor_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      v_instructor_pending_qa: {
+        Row: {
+          asked_at: string | null
+          course_name: string | null
+          instructor_id: string | null
+          is_urgent: boolean | null
+          question_excerpt: string | null
+          question_id: string | null
+          student_name: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "courses_instructor_id_fkey"
+            columns: ["instructor_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      v_instructor_quiz_performance: {
+        Row: {
+          average_score: number | null
+          course_name: string | null
+          instructor_id: string | null
+          pass_rate: number | null
+          quiz_id: string | null
+          quiz_title: string | null
+          submission_count: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "courses_instructor_id_fkey"
+            columns: ["instructor_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      v_student_enrolled_courses: {
+        Row: {
+          course_id: string | null
+          enrollment_id: string | null
+          instructor_name: string | null
+          last_accessed_at: string | null
+          progress_percent: number | null
+          student_id: string | null
+          title: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "course_enrollments_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      v_student_qa_activity: {
+        Row: {
+          author_id: string | null
+          course_name: string | null
+          created_at: string | null
+          question_excerpt: string | null
+          question_id: string | null
+          status: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "questions_author_id_fkey"
+            columns: ["author_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      v_student_quiz_results: {
+        Row: {
+          attempt_id: string | null
+          course_name: string | null
+          quiz_title: string | null
+          score: number | null
+          student_id: string | null
+          taken_at: string | null
+          total_points: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "quiz_attempts_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      v_student_upcoming_quizzes: {
+        Row: {
+          course_name: string | null
+          due_date: string | null
+          question_count: number | null
+          quiz_id: string | null
+          quiz_title: string | null
+          student_id: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "course_enrollments_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      v_team_members_detail: {
+        Row: {
+          avatar_url: string | null
+          display_name: string | null
+          last_active_at: string | null
+          member_id: string | null
+          role: string | null
+          team_id: string | null
+          user_id: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "team_members_team_id_fkey"
+            columns: ["team_id"]
+            isOneToOne: false
+            referencedRelation: "teams"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "team_members_team_id_fkey"
+            columns: ["team_id"]
+            isOneToOne: false
+            referencedRelation: "v_team_overview"
+            referencedColumns: ["team_id"]
+          },
+          {
+            foreignKeyName: "team_members_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      v_team_overview: {
+        Row: {
+          course_name: string | null
+          created_at: string | null
+          description: string | null
+          member_count: number | null
+          team_id: string | null
+          team_name: string | null
+        }
+        Relationships: []
+      }
+      v_team_shared_memos: {
+        Row: {
+          author_name: string | null
+          excerpt: string | null
+          memo_id: string | null
+          team_id: string | null
+          title: string | null
+          updated_at: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "memos_team_id_fkey"
+            columns: ["team_id"]
+            isOneToOne: false
+            referencedRelation: "teams"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "memos_team_id_fkey"
+            columns: ["team_id"]
+            isOneToOne: false
+            referencedRelation: "v_team_overview"
+            referencedColumns: ["team_id"]
+          },
+        ]
+      }
     }
     Functions: {
       duplicate_quiz: {
@@ -820,6 +1164,31 @@ export type Database = {
           isOneToOne: true
           isSetofReturn: false
         }
+      }
+      get_instructor_activity_feed: {
+        Args: { p_instructor_id: string; p_limit?: number; p_offset?: number }
+        Returns: {
+          actor_name: string
+          course_name: string
+          created_at: string
+          id: string
+          type: string
+        }[]
+      }
+      get_student_activity_stats: {
+        Args: { p_instructor_id: string }
+        Returns: Json
+      }
+      get_student_study_progress: { Args: { p_user_id: string }; Returns: Json }
+      get_team_activity_feed: {
+        Args: { p_limit?: number; p_offset?: number; p_team_id: string }
+        Returns: {
+          actor_name: string
+          created_at: string
+          description: string
+          id: string
+          type: string
+        }[]
       }
       get_user_role: { Args: never; Returns: string }
       is_course_enrolled: { Args: { p_course_id: string }; Returns: boolean }

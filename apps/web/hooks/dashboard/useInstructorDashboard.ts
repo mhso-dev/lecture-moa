@@ -4,8 +4,14 @@
  */
 
 import { useQuery } from "@tanstack/react-query";
-import { api } from "~/lib/api";
-import { INSTRUCTOR_DASHBOARD_ENDPOINTS } from "~/lib/api-endpoints";
+import {
+  fetchInstructorCourses,
+  fetchStudentActivityStats,
+  fetchPendingQA,
+  fetchQuizPerformance,
+  fetchActivityFeed,
+} from "~/lib/supabase/dashboard";
+import type { PaginatedResponse } from "~/lib/supabase/dashboard";
 import type {
   InstructorCourse,
   StudentActivityStats,
@@ -37,19 +43,6 @@ const STALE_TIME = {
 };
 
 /**
- * Pagination response structure
- */
-interface PaginatedResponse<T> {
-  items: T[];
-  pagination: {
-    page: number;
-    totalPages: number;
-    totalItems: number;
-    hasNextPage: boolean;
-  };
-}
-
-/**
  * Hook to fetch instructor's courses with metrics
  * REQ-FE-221: My Courses Overview Widget data
  *
@@ -63,12 +56,7 @@ interface PaginatedResponse<T> {
 export function useInstructorCourses() {
   return useQuery<InstructorCourse[]>({
     queryKey: instructorDashboardKeys.courses(),
-    queryFn: async () => {
-      const response = await api.get<InstructorCourse[]>(
-        INSTRUCTOR_DASHBOARD_ENDPOINTS.courses
-      );
-      return response.data;
-    },
+    queryFn: () => fetchInstructorCourses(),
     staleTime: STALE_TIME.METRICS,
   });
 }
@@ -88,12 +76,7 @@ export function useInstructorCourses() {
 export function useStudentActivity() {
   return useQuery<StudentActivityStats>({
     queryKey: instructorDashboardKeys.studentActivity(),
-    queryFn: async () => {
-      const response = await api.get<StudentActivityStats>(
-        INSTRUCTOR_DASHBOARD_ENDPOINTS.studentActivity
-      );
-      return response.data;
-    },
+    queryFn: () => fetchStudentActivityStats(),
     staleTime: STALE_TIME.METRICS,
   });
 }
@@ -115,12 +98,7 @@ export function useStudentActivity() {
 export function usePendingQA() {
   return useQuery<PendingQAItem[]>({
     queryKey: instructorDashboardKeys.pendingQA(),
-    queryFn: async () => {
-      const response = await api.get<PendingQAItem[]>(
-        INSTRUCTOR_DASHBOARD_ENDPOINTS.pendingQA
-      );
-      return response.data;
-    },
+    queryFn: () => fetchPendingQA(),
     staleTime: STALE_TIME.PENDING_QA,
   });
 }
@@ -140,12 +118,7 @@ export function usePendingQA() {
 export function useQuizPerformance() {
   return useQuery<QuizPerformanceSummary[]>({
     queryKey: instructorDashboardKeys.quizPerformance(),
-    queryFn: async () => {
-      const response = await api.get<QuizPerformanceSummary[]>(
-        INSTRUCTOR_DASHBOARD_ENDPOINTS.quizPerformance
-      );
-      return response.data;
-    },
+    queryFn: () => fetchQuizPerformance(),
     staleTime: STALE_TIME.METRICS,
   });
 }
@@ -168,12 +141,7 @@ export function useQuizPerformance() {
 export function useActivityFeed({ page = 1 }: { page?: number } = {}) {
   return useQuery<PaginatedResponse<ActivityFeedItem>>({
     queryKey: instructorDashboardKeys.activityFeed(page),
-    queryFn: async () => {
-      const response = await api.get<PaginatedResponse<ActivityFeedItem>>(
-        `${INSTRUCTOR_DASHBOARD_ENDPOINTS.activityFeed}?page=${String(page)}`
-      );
-      return response.data;
-    },
+    queryFn: () => fetchActivityFeed(page, 10),
     staleTime: STALE_TIME.METRICS,
   });
 }

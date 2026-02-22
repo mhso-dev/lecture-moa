@@ -15,13 +15,15 @@ import {
   useActivityFeed,
   instructorDashboardKeys,
 } from "../useInstructorDashboard";
-import * as apiModule from "~/lib/api";
+import * as dashboardModule from "~/lib/supabase/dashboard";
 
-// Mock the API module
-vi.mock("~/lib/api", () => ({
-  api: {
-    get: vi.fn(),
-  },
+// Mock the Supabase dashboard module
+vi.mock("~/lib/supabase/dashboard", () => ({
+  fetchInstructorCourses: vi.fn(),
+  fetchStudentActivityStats: vi.fn(),
+  fetchPendingQA: vi.fn(),
+  fetchQuizPerformance: vi.fn(),
+  fetchActivityFeed: vi.fn(),
 }));
 
 // Mock environment variable for mock data
@@ -108,10 +110,7 @@ describe("Instructor Dashboard Hooks", () => {
         },
       ];
 
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: mockCourses,
-        success: true,
-      });
+      vi.mocked(dashboardModule.fetchInstructorCourses).mockResolvedValueOnce(mockCourses);
 
       const { result } = renderHook(() => useInstructorCourses(), {
         wrapper: Wrapper,
@@ -120,16 +119,11 @@ describe("Instructor Dashboard Hooks", () => {
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(result.current.data).toEqual(mockCourses);
-      expect(apiModule.api.get).toHaveBeenCalledWith(
-        "/api/v1/dashboard/instructor/courses"
-      );
+      expect(dashboardModule.fetchInstructorCourses).toHaveBeenCalled();
     });
 
     it("uses correct query key", async () => {
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: [],
-        success: true,
-      });
+      vi.mocked(dashboardModule.fetchInstructorCourses).mockResolvedValueOnce([]);
 
       renderHook(() => useInstructorCourses(), {
         wrapper: Wrapper,
@@ -146,10 +140,7 @@ describe("Instructor Dashboard Hooks", () => {
     });
 
     it("uses 2-minute stale time for metrics", async () => {
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: [],
-        success: true,
-      });
+      vi.mocked(dashboardModule.fetchInstructorCourses).mockResolvedValueOnce([]);
 
       const { result } = renderHook(() => useInstructorCourses(), {
         wrapper: Wrapper,
@@ -162,7 +153,7 @@ describe("Instructor Dashboard Hooks", () => {
     });
 
     it("handles errors gracefully", async () => {
-      vi.mocked(apiModule.api.get).mockRejectedValueOnce(new Error("Network error"));
+      vi.mocked(dashboardModule.fetchInstructorCourses).mockRejectedValueOnce(new Error("Network error"));
 
       const { result } = renderHook(() => useInstructorCourses(), {
         wrapper: Wrapper,
@@ -183,10 +174,7 @@ describe("Instructor Dashboard Hooks", () => {
         studySessions7d: 423,
       };
 
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: mockStats,
-        success: true,
-      });
+      vi.mocked(dashboardModule.fetchStudentActivityStats).mockResolvedValueOnce(mockStats);
 
       const { result } = renderHook(() => useStudentActivity(), {
         wrapper: Wrapper,
@@ -195,20 +183,15 @@ describe("Instructor Dashboard Hooks", () => {
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(result.current.data).toEqual(mockStats);
-      expect(apiModule.api.get).toHaveBeenCalledWith(
-        "/api/v1/dashboard/instructor/students/activity"
-      );
+      expect(dashboardModule.fetchStudentActivityStats).toHaveBeenCalled();
     });
 
     it("uses correct query key", async () => {
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: {
-          totalStudents: 0,
-          activeStudents7d: 0,
-          avgCompletionRate: 0,
-          studySessions7d: 0,
-        },
-        success: true,
+      vi.mocked(dashboardModule.fetchStudentActivityStats).mockResolvedValueOnce({
+        totalStudents: 0,
+        activeStudents7d: 0,
+        avgCompletionRate: 0,
+        studySessions7d: 0,
       });
 
       renderHook(() => useStudentActivity(), {
@@ -226,14 +209,11 @@ describe("Instructor Dashboard Hooks", () => {
     });
 
     it("uses 2-minute stale time for metrics", async () => {
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: {
-          totalStudents: 0,
-          activeStudents7d: 0,
-          avgCompletionRate: 0,
-          studySessions7d: 0,
-        },
-        success: true,
+      vi.mocked(dashboardModule.fetchStudentActivityStats).mockResolvedValueOnce({
+        totalStudents: 0,
+        activeStudents7d: 0,
+        avgCompletionRate: 0,
+        studySessions7d: 0,
       });
 
       const { result } = renderHook(() => useStudentActivity(), {
@@ -267,10 +247,7 @@ describe("Instructor Dashboard Hooks", () => {
         },
       ];
 
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: mockItems,
-        success: true,
-      });
+      vi.mocked(dashboardModule.fetchPendingQA).mockResolvedValueOnce(mockItems);
 
       const { result } = renderHook(() => usePendingQA(), {
         wrapper: Wrapper,
@@ -279,16 +256,11 @@ describe("Instructor Dashboard Hooks", () => {
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(result.current.data).toEqual(mockItems);
-      expect(apiModule.api.get).toHaveBeenCalledWith(
-        "/api/v1/dashboard/instructor/qa/pending"
-      );
+      expect(dashboardModule.fetchPendingQA).toHaveBeenCalled();
     });
 
     it("uses correct query key", async () => {
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: [],
-        success: true,
-      });
+      vi.mocked(dashboardModule.fetchPendingQA).mockResolvedValueOnce([]);
 
       renderHook(() => usePendingQA(), {
         wrapper: Wrapper,
@@ -305,10 +277,7 @@ describe("Instructor Dashboard Hooks", () => {
     });
 
     it("uses 1-minute stale time for pending Q&A (more real-time)", async () => {
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: [],
-        success: true,
-      });
+      vi.mocked(dashboardModule.fetchPendingQA).mockResolvedValueOnce([]);
 
       const { result } = renderHook(() => usePendingQA(), {
         wrapper: Wrapper,
@@ -341,10 +310,7 @@ describe("Instructor Dashboard Hooks", () => {
         },
       ];
 
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: mockSummaries,
-        success: true,
-      });
+      vi.mocked(dashboardModule.fetchQuizPerformance).mockResolvedValueOnce(mockSummaries);
 
       const { result } = renderHook(() => useQuizPerformance(), {
         wrapper: Wrapper,
@@ -353,16 +319,11 @@ describe("Instructor Dashboard Hooks", () => {
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(result.current.data).toEqual(mockSummaries);
-      expect(apiModule.api.get).toHaveBeenCalledWith(
-        "/api/v1/dashboard/instructor/quizzes/performance"
-      );
+      expect(dashboardModule.fetchQuizPerformance).toHaveBeenCalled();
     });
 
     it("uses correct query key", async () => {
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: [],
-        success: true,
-      });
+      vi.mocked(dashboardModule.fetchQuizPerformance).mockResolvedValueOnce([]);
 
       renderHook(() => useQuizPerformance(), {
         wrapper: Wrapper,
@@ -379,10 +340,7 @@ describe("Instructor Dashboard Hooks", () => {
     });
 
     it("uses 2-minute stale time for metrics", async () => {
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: [],
-        success: true,
-      });
+      vi.mocked(dashboardModule.fetchQuizPerformance).mockResolvedValueOnce([]);
 
       const { result } = renderHook(() => useQuizPerformance(), {
         wrapper: Wrapper,
@@ -413,18 +371,10 @@ describe("Instructor Dashboard Hooks", () => {
             createdAt: "2026-02-18T09:30:00Z",
           },
         ],
-        pagination: {
-          page: 1,
-          totalPages: 3,
-          totalItems: 25,
-          hasNextPage: true,
-        },
+        hasMore: true,
       };
 
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: mockFeed,
-        success: true,
-      });
+      vi.mocked(dashboardModule.fetchActivityFeed).mockResolvedValueOnce(mockFeed);
 
       const { result } = renderHook(() => useActivityFeed({ page: 1 }), {
         wrapper: Wrapper,
@@ -433,23 +383,13 @@ describe("Instructor Dashboard Hooks", () => {
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(result.current.data).toEqual(mockFeed);
-      expect(apiModule.api.get).toHaveBeenCalledWith(
-        "/api/v1/dashboard/instructor/activity?page=1"
-      );
+      expect(dashboardModule.fetchActivityFeed).toHaveBeenCalledWith(1, 10);
     });
 
     it("uses correct query key with page parameter", async () => {
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: {
-          items: [],
-          pagination: {
-            page: 2,
-            totalPages: 1,
-            totalItems: 0,
-            hasNextPage: false,
-          },
-        },
-        success: true,
+      vi.mocked(dashboardModule.fetchActivityFeed).mockResolvedValueOnce({
+        items: [],
+        hasMore: false,
       });
 
       renderHook(() => useActivityFeed({ page: 2 }), {
@@ -468,17 +408,9 @@ describe("Instructor Dashboard Hooks", () => {
     });
 
     it("defaults to page 1 when not specified", async () => {
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: {
-          items: [],
-          pagination: {
-            page: 1,
-            totalPages: 1,
-            totalItems: 0,
-            hasNextPage: false,
-          },
-        },
-        success: true,
+      vi.mocked(dashboardModule.fetchActivityFeed).mockResolvedValueOnce({
+        items: [],
+        hasMore: false,
       });
 
       renderHook(() => useActivityFeed({}), {
@@ -486,24 +418,14 @@ describe("Instructor Dashboard Hooks", () => {
       });
 
       await waitFor(() =>
-        { expect(apiModule.api.get).toHaveBeenCalledWith(
-          "/api/v1/dashboard/instructor/activity?page=1"
-        ); }
+        { expect(dashboardModule.fetchActivityFeed).toHaveBeenCalledWith(1, 10); }
       );
     });
 
     it("uses 2-minute stale time for activity feed", async () => {
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: {
-          items: [],
-          pagination: {
-            page: 1,
-            totalPages: 1,
-            totalItems: 0,
-            hasNextPage: false,
-          },
-        },
-        success: true,
+      vi.mocked(dashboardModule.fetchActivityFeed).mockResolvedValueOnce({
+        items: [],
+        hasMore: false,
       });
 
       const { result } = renderHook(() => useActivityFeed({ page: 1 }), {

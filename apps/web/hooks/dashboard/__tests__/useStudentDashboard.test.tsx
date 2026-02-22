@@ -15,13 +15,16 @@ import {
   useUpcomingQuizzes,
   useQANotifications,
 } from "../useStudentDashboard";
-import * as apiModule from "~/lib/api";
+import * as dashboardModule from "~/lib/supabase/dashboard";
 
-// Mock the API module
-vi.mock("~/lib/api", () => ({
-  api: {
-    get: vi.fn(),
-  },
+// Mock the Supabase dashboard module
+vi.mock("~/lib/supabase/dashboard", () => ({
+  fetchEnrolledCourses: vi.fn(),
+  fetchRecentQA: vi.fn(),
+  fetchQuizResults: vi.fn(),
+  fetchStudyProgress: vi.fn(),
+  fetchUpcomingQuizzes: vi.fn(),
+  fetchQANotifications: vi.fn(),
 }));
 
 // Mock environment variable for mock data
@@ -74,10 +77,7 @@ describe("Student Dashboard Hooks", () => {
         },
       ];
 
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: mockCourses,
-        success: true,
-      });
+      vi.mocked(dashboardModule.fetchEnrolledCourses).mockResolvedValueOnce(mockCourses);
 
       const { result } = renderHook(() => useEnrolledCourses(), {
         wrapper: Wrapper,
@@ -86,16 +86,11 @@ describe("Student Dashboard Hooks", () => {
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(result.current.data).toEqual(mockCourses);
-      expect(apiModule.api.get).toHaveBeenCalledWith(
-        "/api/v1/dashboard/student/courses"
-      );
+      expect(dashboardModule.fetchEnrolledCourses).toHaveBeenCalled();
     });
 
     it("uses correct query key", async () => {
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: [],
-        success: true,
-      });
+      vi.mocked(dashboardModule.fetchEnrolledCourses).mockResolvedValueOnce([]);
 
       renderHook(() => useEnrolledCourses(), {
         wrapper: Wrapper,
@@ -112,7 +107,7 @@ describe("Student Dashboard Hooks", () => {
     });
 
     it("handles errors gracefully", async () => {
-      vi.mocked(apiModule.api.get).mockRejectedValueOnce(new Error("Network error"));
+      vi.mocked(dashboardModule.fetchEnrolledCourses).mockRejectedValueOnce(new Error("Network error"));
 
       const { result } = renderHook(() => useEnrolledCourses(), {
         wrapper: Wrapper,
@@ -143,10 +138,7 @@ describe("Student Dashboard Hooks", () => {
         },
       ];
 
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: mockQA,
-        success: true,
-      });
+      vi.mocked(dashboardModule.fetchRecentQA).mockResolvedValueOnce(mockQA);
 
       const { result } = renderHook(() => useRecentQA(), {
         wrapper: Wrapper,
@@ -155,16 +147,11 @@ describe("Student Dashboard Hooks", () => {
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(result.current.data).toEqual(mockQA);
-      expect(apiModule.api.get).toHaveBeenCalledWith(
-        "/api/v1/dashboard/student/qa"
-      );
+      expect(dashboardModule.fetchRecentQA).toHaveBeenCalled();
     });
 
     it("uses correct query key", async () => {
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: [],
-        success: true,
-      });
+      vi.mocked(dashboardModule.fetchRecentQA).mockResolvedValueOnce([]);
 
       renderHook(() => useRecentQA(), {
         wrapper: Wrapper,
@@ -202,10 +189,7 @@ describe("Student Dashboard Hooks", () => {
         },
       ];
 
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: mockResults,
-        success: true,
-      });
+      vi.mocked(dashboardModule.fetchQuizResults).mockResolvedValueOnce(mockResults);
 
       const { result } = renderHook(() => useQuizResults(), {
         wrapper: Wrapper,
@@ -214,16 +198,11 @@ describe("Student Dashboard Hooks", () => {
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(result.current.data).toEqual(mockResults);
-      expect(apiModule.api.get).toHaveBeenCalledWith(
-        "/api/v1/dashboard/student/quizzes/results"
-      );
+      expect(dashboardModule.fetchQuizResults).toHaveBeenCalled();
     });
 
     it("uses correct query key", async () => {
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: [],
-        success: true,
-      });
+      vi.mocked(dashboardModule.fetchQuizResults).mockResolvedValueOnce([]);
 
       renderHook(() => useQuizResults(), {
         wrapper: Wrapper,
@@ -249,10 +228,7 @@ describe("Student Dashboard Hooks", () => {
         materialsRead: 23,
       };
 
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: mockProgress,
-        success: true,
-      });
+      vi.mocked(dashboardModule.fetchStudyProgress).mockResolvedValueOnce(mockProgress);
 
       const { result } = renderHook(() => useStudyProgress(), {
         wrapper: Wrapper,
@@ -261,20 +237,15 @@ describe("Student Dashboard Hooks", () => {
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(result.current.data).toEqual(mockProgress);
-      expect(apiModule.api.get).toHaveBeenCalledWith(
-        "/api/v1/dashboard/student/progress"
-      );
+      expect(dashboardModule.fetchStudyProgress).toHaveBeenCalled();
     });
 
     it("uses correct query key with 2-minute stale time", async () => {
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: {
-          currentStreak: 0,
-          longestStreak: 0,
-          totalSessions: 0,
-          materialsRead: 0,
-        },
-        success: true,
+      vi.mocked(dashboardModule.fetchStudyProgress).mockResolvedValueOnce({
+        currentStreak: 0,
+        longestStreak: 0,
+        totalSessions: 0,
+        materialsRead: 0,
       });
 
       renderHook(() => useStudyProgress(), {
@@ -310,10 +281,7 @@ describe("Student Dashboard Hooks", () => {
         },
       ];
 
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: mockQuizzes,
-        success: true,
-      });
+      vi.mocked(dashboardModule.fetchUpcomingQuizzes).mockResolvedValueOnce(mockQuizzes);
 
       const { result } = renderHook(() => useUpcomingQuizzes(), {
         wrapper: Wrapper,
@@ -322,16 +290,11 @@ describe("Student Dashboard Hooks", () => {
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(result.current.data).toEqual(mockQuizzes);
-      expect(apiModule.api.get).toHaveBeenCalledWith(
-        "/api/v1/dashboard/student/quizzes/upcoming"
-      );
+      expect(dashboardModule.fetchUpcomingQuizzes).toHaveBeenCalled();
     });
 
     it("uses correct query key", async () => {
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: [],
-        success: true,
-      });
+      vi.mocked(dashboardModule.fetchUpcomingQuizzes).mockResolvedValueOnce([]);
 
       renderHook(() => useUpcomingQuizzes(), {
         wrapper: Wrapper,
@@ -369,10 +332,7 @@ describe("Student Dashboard Hooks", () => {
         },
       ];
 
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: mockNotifications,
-        success: true,
-      });
+      vi.mocked(dashboardModule.fetchQANotifications).mockResolvedValueOnce(mockNotifications);
 
       const { result } = renderHook(() => useQANotifications(), {
         wrapper: Wrapper,
@@ -381,16 +341,11 @@ describe("Student Dashboard Hooks", () => {
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(result.current.data).toEqual(mockNotifications);
-      expect(apiModule.api.get).toHaveBeenCalledWith(
-        "/api/v1/dashboard/student/notifications"
-      );
+      expect(dashboardModule.fetchQANotifications).toHaveBeenCalled();
     });
 
     it("uses correct query key with shorter stale time for notifications", async () => {
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: [],
-        success: true,
-      });
+      vi.mocked(dashboardModule.fetchQANotifications).mockResolvedValueOnce([]);
 
       renderHook(() => useQANotifications(), {
         wrapper: Wrapper,
@@ -407,10 +362,7 @@ describe("Student Dashboard Hooks", () => {
     });
 
     it("has shorter stale time for notifications (30 seconds)", async () => {
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: [],
-        success: true,
-      });
+      vi.mocked(dashboardModule.fetchQANotifications).mockResolvedValueOnce([]);
 
       const { result } = renderHook(() => useQANotifications(), {
         wrapper: Wrapper,

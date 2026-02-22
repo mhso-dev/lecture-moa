@@ -4,8 +4,14 @@
  */
 
 import { useQuery } from "@tanstack/react-query";
-import { api } from "~/lib/api";
-import { STUDENT_DASHBOARD_ENDPOINTS } from "~/lib/api-endpoints";
+import {
+  fetchEnrolledCourses,
+  fetchRecentQA,
+  fetchQuizResults,
+  fetchStudyProgress,
+  fetchUpcomingQuizzes,
+  fetchQANotifications,
+} from "~/lib/supabase/dashboard";
 import type {
   EnrolledCourse,
   QAActivityItem,
@@ -52,12 +58,7 @@ const STALE_TIME = {
 export function useEnrolledCourses() {
   return useQuery<EnrolledCourse[]>({
     queryKey: studentDashboardKeys.enrolledCourses(),
-    queryFn: async () => {
-      const response = await api.get<EnrolledCourse[]>(
-        STUDENT_DASHBOARD_ENDPOINTS.enrolledCourses
-      );
-      return response.data;
-    },
+    queryFn: () => fetchEnrolledCourses(),
     staleTime: STALE_TIME.METRICS,
   });
 }
@@ -76,12 +77,7 @@ export function useEnrolledCourses() {
 export function useRecentQA() {
   return useQuery<QAActivityItem[]>({
     queryKey: studentDashboardKeys.recentQA(),
-    queryFn: async () => {
-      const response = await api.get<QAActivityItem[]>(
-        STUDENT_DASHBOARD_ENDPOINTS.recentQA
-      );
-      return response.data;
-    },
+    queryFn: () => fetchRecentQA(),
     staleTime: STALE_TIME.METRICS,
   });
 }
@@ -100,12 +96,7 @@ export function useRecentQA() {
 export function useQuizResults() {
   return useQuery<QuizResult[]>({
     queryKey: studentDashboardKeys.quizResults(),
-    queryFn: async () => {
-      const response = await api.get<QuizResult[]>(
-        STUDENT_DASHBOARD_ENDPOINTS.quizResults
-      );
-      return response.data;
-    },
+    queryFn: () => fetchQuizResults(),
     staleTime: STALE_TIME.METRICS,
   });
 }
@@ -125,12 +116,7 @@ export function useQuizResults() {
 export function useStudyProgress() {
   return useQuery<StudyProgress>({
     queryKey: studentDashboardKeys.studyProgress(),
-    queryFn: async () => {
-      const response = await api.get<StudyProgress>(
-        STUDENT_DASHBOARD_ENDPOINTS.studyProgress
-      );
-      return response.data;
-    },
+    queryFn: () => fetchStudyProgress(),
     staleTime: STALE_TIME.METRICS,
   });
 }
@@ -149,12 +135,7 @@ export function useStudyProgress() {
 export function useUpcomingQuizzes() {
   return useQuery<UpcomingQuiz[]>({
     queryKey: studentDashboardKeys.upcomingQuizzes(),
-    queryFn: async () => {
-      const response = await api.get<UpcomingQuiz[]>(
-        STUDENT_DASHBOARD_ENDPOINTS.upcomingQuizzes
-      );
-      return response.data;
-    },
+    queryFn: () => fetchUpcomingQuizzes(),
     staleTime: STALE_TIME.METRICS,
   });
 }
@@ -176,12 +157,7 @@ export function useUpcomingQuizzes() {
 export function useQANotifications() {
   return useQuery<QANotification[]>({
     queryKey: studentDashboardKeys.notifications(),
-    queryFn: async () => {
-      const response = await api.get<QANotification[]>(
-        STUDENT_DASHBOARD_ENDPOINTS.notifications
-      );
-      return response.data;
-    },
+    queryFn: () => fetchQANotifications(),
     staleTime: STALE_TIME.NOTIFICATIONS,
   });
 }

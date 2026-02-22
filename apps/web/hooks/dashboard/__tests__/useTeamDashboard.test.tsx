@@ -13,13 +13,14 @@ import {
   useSharedMemos,
   useTeamActivity,
 } from "../useTeamDashboard";
-import * as apiModule from "~/lib/api";
+import * as dashboardModule from "~/lib/supabase/dashboard";
 
-// Mock the API module
-vi.mock("~/lib/api", () => ({
-  api: {
-    get: vi.fn(),
-  },
+// Mock the Supabase dashboard module
+vi.mock("~/lib/supabase/dashboard", () => ({
+  fetchTeamOverview: vi.fn(),
+  fetchTeamMembers: vi.fn(),
+  fetchSharedMemos: vi.fn(),
+  fetchTeamActivityFeed: vi.fn(),
 }));
 
 // Mock environment variable for mock data
@@ -64,34 +65,28 @@ describe("Team Dashboard Hooks", () => {
         createdAt: "2026-02-01T10:00:00Z",
       };
 
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: mockOverview,
-        success: true,
-      });
+      vi.mocked(dashboardModule.fetchTeamOverview).mockResolvedValueOnce(mockOverview);
 
-      const { result } = renderHook(() => useTeamOverview(), {
+      const { result } = renderHook(() => useTeamOverview("team-1"), {
         wrapper: Wrapper,
       });
 
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(result.current.data).toEqual(mockOverview);
-      expect(apiModule.api.get).toHaveBeenCalledWith("/api/v1/dashboard/team");
+      expect(dashboardModule.fetchTeamOverview).toHaveBeenCalledWith("team-1");
     });
 
     it("uses correct query key", async () => {
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: {
-          id: "team-1",
-          name: "Test Team",
-          courseName: "Test Course",
-          memberCount: 1,
-          createdAt: "2026-02-01T10:00:00Z",
-        },
-        success: true,
+      vi.mocked(dashboardModule.fetchTeamOverview).mockResolvedValueOnce({
+        id: "team-1",
+        name: "Test Team",
+        courseName: "Test Course",
+        memberCount: 1,
+        createdAt: "2026-02-01T10:00:00Z",
       });
 
-      renderHook(() => useTeamOverview(), {
+      renderHook(() => useTeamOverview("team-1"), {
         wrapper: Wrapper,
       });
 
@@ -100,24 +95,22 @@ describe("Team Dashboard Hooks", () => {
           "dashboard",
           "team",
           "overview",
+          "team-1",
         ]);
         expect(cacheData).toBeDefined();
       });
     });
 
     it("uses 2-minute stale time for overview data", async () => {
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: {
-          id: "team-1",
-          name: "Test Team",
-          courseName: "Test Course",
-          memberCount: 1,
-          createdAt: "2026-02-01T10:00:00Z",
-        },
-        success: true,
+      vi.mocked(dashboardModule.fetchTeamOverview).mockResolvedValueOnce({
+        id: "team-1",
+        name: "Test Team",
+        courseName: "Test Course",
+        memberCount: 1,
+        createdAt: "2026-02-01T10:00:00Z",
       });
 
-      const { result } = renderHook(() => useTeamOverview(), {
+      const { result } = renderHook(() => useTeamOverview("team-1"), {
         wrapper: Wrapper,
       });
 
@@ -128,9 +121,9 @@ describe("Team Dashboard Hooks", () => {
     });
 
     it("handles errors gracefully", async () => {
-      vi.mocked(apiModule.api.get).mockRejectedValueOnce(new Error("Network error"));
+      vi.mocked(dashboardModule.fetchTeamOverview).mockRejectedValueOnce(new Error("Network error"));
 
-      const { result } = renderHook(() => useTeamOverview(), {
+      const { result } = renderHook(() => useTeamOverview("team-1"), {
         wrapper: Wrapper,
       });
 
@@ -159,28 +152,22 @@ describe("Team Dashboard Hooks", () => {
         },
       ];
 
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: mockMembers,
-        success: true,
-      });
+      vi.mocked(dashboardModule.fetchTeamMembers).mockResolvedValueOnce(mockMembers);
 
-      const { result } = renderHook(() => useTeamMembers(), {
+      const { result } = renderHook(() => useTeamMembers("team-1"), {
         wrapper: Wrapper,
       });
 
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(result.current.data).toEqual(mockMembers);
-      expect(apiModule.api.get).toHaveBeenCalledWith("/api/v1/dashboard/team/members");
+      expect(dashboardModule.fetchTeamMembers).toHaveBeenCalledWith("team-1");
     });
 
     it("uses correct query key", async () => {
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: [],
-        success: true,
-      });
+      vi.mocked(dashboardModule.fetchTeamMembers).mockResolvedValueOnce([]);
 
-      renderHook(() => useTeamMembers(), {
+      renderHook(() => useTeamMembers("team-1"), {
         wrapper: Wrapper,
       });
 
@@ -189,6 +176,7 @@ describe("Team Dashboard Hooks", () => {
           "dashboard",
           "team",
           "members",
+          "team-1",
         ]);
         expect(cacheData).toBeDefined();
       });
@@ -197,48 +185,45 @@ describe("Team Dashboard Hooks", () => {
 
   describe("useSharedMemos", () => {
     it("fetches paginated shared memos", async () => {
-      const mockMemos = [
-        {
-          id: "memo-1",
-          title: "React Hooks Notes",
-          authorName: "John Doe",
-          excerpt: "Key concepts about useState and useEffect...",
-          updatedAt: "2026-02-19T10:00:00Z",
-        },
-        {
-          id: "memo-2",
-          title: "TypeScript Tips",
-          authorName: "Jane Smith",
-          excerpt: "Best practices for TypeScript development...",
-          updatedAt: "2026-02-18T15:30:00Z",
-        },
-      ];
+      const mockMemos = {
+        items: [
+          {
+            id: "memo-1",
+            title: "React Hooks Notes",
+            authorName: "John Doe",
+            excerpt: "Key concepts about useState and useEffect...",
+            updatedAt: "2026-02-19T10:00:00Z",
+          },
+          {
+            id: "memo-2",
+            title: "TypeScript Tips",
+            authorName: "Jane Smith",
+            excerpt: "Best practices for TypeScript development...",
+            updatedAt: "2026-02-18T15:30:00Z",
+          },
+        ],
+        hasMore: false,
+      };
 
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: mockMemos,
-        success: true,
-      });
+      vi.mocked(dashboardModule.fetchSharedMemos).mockResolvedValueOnce(mockMemos);
 
-      const { result } = renderHook(() => useSharedMemos({ page: 1 }), {
+      const { result } = renderHook(() => useSharedMemos({ teamId: "team-1", page: 1 }), {
         wrapper: Wrapper,
       });
 
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(result.current.data).toEqual(mockMemos);
-      expect(apiModule.api.get).toHaveBeenCalledWith(
-        "/api/v1/dashboard/team/memos",
-        expect.objectContaining({ params: { page: 1 } })
-      );
+      expect(dashboardModule.fetchSharedMemos).toHaveBeenCalledWith("team-1", 1, 10);
     });
 
     it("includes page parameter in query key", async () => {
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: [],
-        success: true,
+      vi.mocked(dashboardModule.fetchSharedMemos).mockResolvedValueOnce({
+        items: [],
+        hasMore: false,
       });
 
-      renderHook(() => useSharedMemos({ page: 2 }), {
+      renderHook(() => useSharedMemos({ teamId: "team-1", page: 2 }), {
         wrapper: Wrapper,
       });
 
@@ -247,6 +232,7 @@ describe("Team Dashboard Hooks", () => {
           "dashboard",
           "team",
           "memos",
+          "team-1",
           { page: 2 },
         ]);
         expect(cacheData).toBeDefined();
@@ -254,68 +240,62 @@ describe("Team Dashboard Hooks", () => {
     });
 
     it("defaults to page 1 when not specified", async () => {
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: [],
-        success: true,
+      vi.mocked(dashboardModule.fetchSharedMemos).mockResolvedValueOnce({
+        items: [],
+        hasMore: false,
       });
 
-      const { result } = renderHook(() => useSharedMemos(), {
+      const { result } = renderHook(() => useSharedMemos({ teamId: "team-1" }), {
         wrapper: Wrapper,
       });
 
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
-      expect(apiModule.api.get).toHaveBeenCalledWith(
-        "/api/v1/dashboard/team/memos",
-        expect.objectContaining({ params: { page: 1 } })
-      );
+      expect(dashboardModule.fetchSharedMemos).toHaveBeenCalledWith("team-1", 1, 10);
     });
   });
 
   describe("useTeamActivity", () => {
     it("fetches paginated team activity feed", async () => {
-      const mockActivity = [
-        {
-          id: "activity-1",
-          type: "memo_created" as const,
-          actorName: "John Doe",
-          description: "Created a new memo: React Hooks Notes",
-          createdAt: "2026-02-19T10:00:00Z",
-        },
-        {
-          id: "activity-2",
-          type: "member_joined" as const,
-          actorName: "Jane Smith",
-          description: "Joined the team",
-          createdAt: "2026-02-18T15:30:00Z",
-        },
-      ];
+      const mockActivity = {
+        items: [
+          {
+            id: "activity-1",
+            type: "memo_created" as const,
+            actorName: "John Doe",
+            description: "Created a new memo: React Hooks Notes",
+            createdAt: "2026-02-19T10:00:00Z",
+          },
+          {
+            id: "activity-2",
+            type: "member_joined" as const,
+            actorName: "Jane Smith",
+            description: "Joined the team",
+            createdAt: "2026-02-18T15:30:00Z",
+          },
+        ],
+        hasMore: false,
+      };
 
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: mockActivity,
-        success: true,
-      });
+      vi.mocked(dashboardModule.fetchTeamActivityFeed).mockResolvedValueOnce(mockActivity);
 
-      const { result } = renderHook(() => useTeamActivity({ page: 1 }), {
+      const { result } = renderHook(() => useTeamActivity({ teamId: "team-1", page: 1 }), {
         wrapper: Wrapper,
       });
 
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       expect(result.current.data).toEqual(mockActivity);
-      expect(apiModule.api.get).toHaveBeenCalledWith(
-        "/api/v1/dashboard/team/activity",
-        expect.objectContaining({ params: { page: 1 } })
-      );
+      expect(dashboardModule.fetchTeamActivityFeed).toHaveBeenCalledWith("team-1", 1, 10);
     });
 
     it("includes page parameter in query key", async () => {
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: [],
-        success: true,
+      vi.mocked(dashboardModule.fetchTeamActivityFeed).mockResolvedValueOnce({
+        items: [],
+        hasMore: false,
       });
 
-      renderHook(() => useTeamActivity({ page: 2 }), {
+      renderHook(() => useTeamActivity({ teamId: "team-1", page: 2 }), {
         wrapper: Wrapper,
       });
 
@@ -324,6 +304,7 @@ describe("Team Dashboard Hooks", () => {
           "dashboard",
           "team",
           "activity",
+          "team-1",
           { page: 2 },
         ]);
         expect(cacheData).toBeDefined();
@@ -331,37 +312,34 @@ describe("Team Dashboard Hooks", () => {
     });
 
     it("uses 30-second stale time for activity feed (more real-time)", async () => {
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: [],
-        success: true,
+      vi.mocked(dashboardModule.fetchTeamActivityFeed).mockResolvedValueOnce({
+        items: [],
+        hasMore: false,
       });
 
-      const { result } = renderHook(() => useTeamActivity({ page: 1 }), {
+      const { result } = renderHook(() => useTeamActivity({ teamId: "team-1", page: 1 }), {
         wrapper: Wrapper,
       });
 
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
       // Verify the hook returns data
-      expect(result.current.data).toEqual([]);
+      expect(result.current.data).toEqual({ items: [], hasMore: false });
     });
 
     it("defaults to page 1 when not specified", async () => {
-      vi.mocked(apiModule.api.get).mockResolvedValueOnce({
-        data: [],
-        success: true,
+      vi.mocked(dashboardModule.fetchTeamActivityFeed).mockResolvedValueOnce({
+        items: [],
+        hasMore: false,
       });
 
-      const { result } = renderHook(() => useTeamActivity(), {
+      const { result } = renderHook(() => useTeamActivity({ teamId: "team-1" }), {
         wrapper: Wrapper,
       });
 
       await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
 
-      expect(apiModule.api.get).toHaveBeenCalledWith(
-        "/api/v1/dashboard/team/activity",
-        expect.objectContaining({ params: { page: 1 } })
-      );
+      expect(dashboardModule.fetchTeamActivityFeed).toHaveBeenCalledWith("team-1", 1, 10);
     });
   });
 });

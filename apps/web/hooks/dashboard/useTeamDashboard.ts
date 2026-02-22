@@ -4,24 +4,29 @@
  */
 
 import { useQuery } from "@tanstack/react-query";
-import { api } from "~/lib/api";
-import { TEAM_DASHBOARD_ENDPOINTS } from "~/lib/api-endpoints";
 import type {
   TeamOverview,
   TeamMember,
   SharedMemo,
   TeamActivityItem,
 } from "@shared";
+import {
+  fetchTeamOverview,
+  fetchTeamMembers,
+  fetchSharedMemos,
+  fetchTeamActivityFeed,
+} from "~/lib/supabase/dashboard";
+import type { PaginatedResponse } from "~/lib/supabase/dashboard";
 
 /**
  * Query key namespace for team dashboard
  */
 export const teamDashboardKeys = {
   all: ["dashboard", "team"] as const,
-  overview: () => [...teamDashboardKeys.all, "overview"] as const,
-  members: () => [...teamDashboardKeys.all, "members"] as const,
-  sharedMemos: (page: number) => [...teamDashboardKeys.all, "memos", { page }] as const,
-  activity: (page: number) => [...teamDashboardKeys.all, "activity", { page }] as const,
+  overview: (teamId: string) => [...teamDashboardKeys.all, "overview", teamId] as const,
+  members: (teamId: string) => [...teamDashboardKeys.all, "members", teamId] as const,
+  sharedMemos: (teamId: string, page: number) => [...teamDashboardKeys.all, "memos", teamId, { page }] as const,
+  activity: (teamId: string, page: number) => [...teamDashboardKeys.all, "activity", teamId, { page }] as const,
 };
 
 /**
@@ -38,23 +43,19 @@ const STALE_TIME = {
  * Hook to fetch team overview with metadata and stats
  * REQ-FE-231: Team Overview Widget data
  *
+ * @param teamId - The team ID to fetch overview for
  * @returns TanStack Query result with TeamOverview data
  *
  * @example
  * ```tsx
- * const { data: overview, isLoading, error } = useTeamOverview();
+ * const { data: overview, isLoading, error } = useTeamOverview("team-123");
  * // overview.name, overview.memberCount, etc.
  * ```
  */
-export function useTeamOverview() {
+export function useTeamOverview(teamId: string) {
   return useQuery<TeamOverview>({
-    queryKey: teamDashboardKeys.overview(),
-    queryFn: async () => {
-      const response = await api.get<TeamOverview>(
-        TEAM_DASHBOARD_ENDPOINTS.overview
-      );
-      return response.data;
-    },
+    queryKey: teamDashboardKeys.overview(teamId),
+    queryFn: () => fetchTeamOverview(teamId),
     staleTime: STALE_TIME.OVERVIEW,
   });
 }
@@ -63,23 +64,19 @@ export function useTeamOverview() {
  * Hook to fetch team members with activity status
  * REQ-FE-232: Team Members Widget data
  *
+ * @param teamId - The team ID to fetch members for
  * @returns TanStack Query result with TeamMember[] data
  *
  * @example
  * ```tsx
- * const { data: members, isLoading } = useTeamMembers();
+ * const { data: members, isLoading } = useTeamMembers("team-123");
  * // members with lastActiveAt for activity indicator
  * ```
  */
-export function useTeamMembers() {
+export function useTeamMembers(teamId: string) {
   return useQuery<TeamMember[]>({
-    queryKey: teamDashboardKeys.members(),
-    queryFn: async () => {
-      const response = await api.get<TeamMember[]>(
-        TEAM_DASHBOARD_ENDPOINTS.members
-      );
-      return response.data;
-    },
+    queryKey: teamDashboardKeys.members(teamId),
+    queryFn: () => fetchTeamMembers(teamId),
     staleTime: STALE_TIME.OVERVIEW,
   });
 }
@@ -88,6 +85,8 @@ export function useTeamMembers() {
  * Options for useSharedMemos hook
  */
 export interface UseSharedMemosOptions {
+  /** The team ID to fetch shared memos for */
+  teamId: string;
   /** Page number for pagination (1-indexed) */
   page?: number;
 }
@@ -96,26 +95,21 @@ export interface UseSharedMemosOptions {
  * Hook to fetch paginated shared memos
  * REQ-FE-233: Shared Memos Feed Widget data
  *
- * @param options - Pagination options
- * @returns TanStack Query result with SharedMemo[] data
+ * @param options - Team ID and pagination options
+ * @returns TanStack Query result with PaginatedResponse<SharedMemo> data
  *
  * @example
  * ```tsx
- * const { data: memos, isLoading } = useSharedMemos({ page: 1 });
+ * const { data, isLoading } = useSharedMemos({ teamId: "team-123", page: 1 });
+ * // data.data, data.totalCount, data.hasMore
  * ```
  */
-export function useSharedMemos(options: UseSharedMemosOptions = {}) {
-  const page = options.page ?? 1;
+export function useSharedMemos(options: UseSharedMemosOptions) {
+  const { teamId, page = 1 } = options;
 
-  return useQuery<SharedMemo[]>({
-    queryKey: teamDashboardKeys.sharedMemos(page),
-    queryFn: async () => {
-      const response = await api.get<SharedMemo[]>(
-        TEAM_DASHBOARD_ENDPOINTS.sharedMemos,
-        { params: { page } }
-      );
-      return response.data;
-    },
+  return useQuery<PaginatedResponse<SharedMemo>>({
+    queryKey: teamDashboardKeys.sharedMemos(teamId, page),
+    queryFn: () => fetchSharedMemos(teamId, page, 10),
     staleTime: STALE_TIME.OVERVIEW,
   });
 }
@@ -124,6 +118,8 @@ export function useSharedMemos(options: UseSharedMemosOptions = {}) {
  * Options for useTeamActivity hook
  */
 export interface UseTeamActivityOptions {
+  /** The team ID to fetch activity for */
+  teamId: string;
   /** Page number for pagination (1-indexed) */
   page?: number;
 }
@@ -134,26 +130,21 @@ export interface UseTeamActivityOptions {
  *
  * Uses shorter stale time (30 seconds) for more real-time updates.
  *
- * @param options - Pagination options
- * @returns TanStack Query result with TeamActivityItem[] data
+ * @param options - Team ID and pagination options
+ * @returns TanStack Query result with PaginatedResponse<TeamActivityItem> data
  *
  * @example
  * ```tsx
- * const { data: activity, isLoading } = useTeamActivity({ page: 1 });
+ * const { data, isLoading } = useTeamActivity({ teamId: "team-123", page: 1 });
+ * // data.data, data.totalCount, data.hasMore
  * ```
  */
-export function useTeamActivity(options: UseTeamActivityOptions = {}) {
-  const page = options.page ?? 1;
+export function useTeamActivity(options: UseTeamActivityOptions) {
+  const { teamId, page = 1 } = options;
 
-  return useQuery<TeamActivityItem[]>({
-    queryKey: teamDashboardKeys.activity(page),
-    queryFn: async () => {
-      const response = await api.get<TeamActivityItem[]>(
-        TEAM_DASHBOARD_ENDPOINTS.activityFeed,
-        { params: { page } }
-      );
-      return response.data;
-    },
+  return useQuery<PaginatedResponse<TeamActivityItem>>({
+    queryKey: teamDashboardKeys.activity(teamId, page),
+    queryFn: () => fetchTeamActivityFeed(teamId, page, 10),
     staleTime: STALE_TIME.ACTIVITY,
   });
 }
