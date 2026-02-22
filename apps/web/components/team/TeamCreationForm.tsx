@@ -4,7 +4,6 @@
  * REQ-FE-715, REQ-FE-716: Form fields with React Hook Form + Zod validation
  */
 
-/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
 "use client";
 
 import { useState } from "react";
