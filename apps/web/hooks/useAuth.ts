@@ -59,6 +59,9 @@ function mapAuthError(error: AuthError): string {
   if (message.includes("signup_disabled")) {
     return "\uD604\uC7AC \uD68C\uC6D0\uAC00\uC785\uC774 \uBE44\uD65C\uC131\uD654\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4.";
   }
+  if (message.includes("invalid") && message.includes("email")) {
+    return "\uC720\uD6A8\uD558\uC9C0 \uC54A\uC740 \uC774\uBA54\uC77C \uC8FC\uC18C\uC785\uB2C8\uB2E4.";
+  }
 
   return "\uC608\uC0C1\uCE58 \uBABB\uD55C \uC624\uB958\uAC00 \uBC1C\uC0DD\uD588\uC2B5\uB2C8\uB2E4. \uB2E4\uC2DC \uC2DC\uB3C4\uD574 \uC8FC\uC138\uC694.";
 }
