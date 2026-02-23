@@ -26,16 +26,16 @@ interface TabItem {
  * REQ-FE-024: Mobile bottom tab with 5 core items
  */
 const TAB_ITEMS: TabItem[] = [
-  { label: "Dashboard", icon: LayoutDashboard, href: "/" },
-  { label: "Courses", icon: BookOpen, href: "/courses" },
-  { label: "Memos", icon: StickyNote, href: "/memos" },
+  { label: "대시보드", icon: LayoutDashboard, href: "/" },
+  { label: "강의", icon: BookOpen, href: "/courses" },
+  { label: "메모", icon: StickyNote, href: "/memos" },
   {
-    label: "More",
+    label: "더보기",
     icon: MoreHorizontal,
     href: "/more",
     // Note: "More" would typically open a sheet/menu with Q&A, Quizzes, Teams
   },
-  { label: "Profile", icon: User, href: "/profile" },
+  { label: "프로필", icon: User, href: "/profile" },
 ];
 
 /**
@@ -78,7 +78,7 @@ export function BottomTab() {
         "bg-background border-t border-border",
         "md:hidden" // Hidden on tablet and desktop
       )}
-      aria-label="Mobile navigation"
+      aria-label="모바일 내비게이션"
     >
       <ul className="flex h-full items-center justify-around">
         {TAB_ITEMS.map((item) => {

@@ -195,16 +195,16 @@ export default function MaterialViewerPage() {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] px-4">
         <h1 className="text-2xl font-bold text-[var(--color-foreground)] mb-2">
-          Material Not Found
+          자료를 찾을 수 없습니다
         </h1>
         <p className="text-[var(--color-muted-foreground)] mb-4">
-          {error?.message ?? "The requested material could not be loaded."}
+          {error?.message ?? "요청한 자료를 불러올 수 없습니다."}
         </p>
         <a
           href={`/courses/${courseId}/materials`}
           className="text-[var(--color-primary-500)] hover:underline"
         >
-          Return to materials
+          자료 목록으로
         </a>
       </div>
     );

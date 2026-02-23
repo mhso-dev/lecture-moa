@@ -72,8 +72,8 @@ export function StudyProgressWidget() {
 
   return (
     <DashboardWidget
-      title="Study Progress"
-      subtitle="Your learning streak"
+      title="학습 진도"
+      subtitle="나의 학습 스트릭"
       isLoading={isLoading}
       error={error?.message ?? null}
       onRetry={() => void refetch()}
@@ -83,31 +83,31 @@ export function StudyProgressWidget() {
         <div className="grid grid-cols-2 gap-3">
           <StatCard
             icon={Flame}
-            label="Current Streak"
+            label="현재 스트릭"
             value={progress.currentStreak}
             highlight={progress.currentStreak > 0}
           />
           <StatCard
             icon={Trophy}
-            label="Longest Streak"
+            label="최장 스트릭"
             value={progress.longestStreak}
           />
           <StatCard
             icon={Calendar}
-            label="Total Sessions"
+            label="총 세션"
             value={progress.totalSessions}
           />
           <StatCard
             icon={BookOpen}
-            label="Materials Read"
+            label="읽은 자료"
             value={progress.materialsRead}
           />
         </div>
       ) : (
         <EmptyState
           icon={Flame}
-          title="Start your streak!"
-          description="Start studying to build your streak!"
+          title="학습을 시작하세요!"
+          description="학습을 시작하면 스트릭이 쌓입니다!"
         />
       )}
     </DashboardWidget>

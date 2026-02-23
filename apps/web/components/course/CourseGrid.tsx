@@ -41,7 +41,7 @@ export function CourseGrid({
         data-testid="course-grid"
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
         role="list"
-        aria-label="Course list"
+        aria-label="강의 목록"
       >
         {Array.from({ length: skeletonCount }).map((_, index) => (
           <CourseCardSkeleton key={index} variant="grid" />
@@ -60,7 +60,7 @@ export function CourseGrid({
       data-testid="course-grid"
       className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
       role="list"
-      aria-label="Course list"
+      aria-label="강의 목록"
     >
       {courses.map((course) => (
         <div key={course.id} role="listitem">

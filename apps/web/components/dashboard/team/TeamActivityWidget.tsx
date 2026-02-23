@@ -99,8 +99,8 @@ export function TeamActivityWidget({ teamId = "" }: TeamActivityWidgetProps) {
 
   return (
     <DashboardWidget
-      title="Team Activity"
-      subtitle="Recent team events"
+      title="팀 활동"
+      subtitle="최근 팀 이벤트"
       isLoading={isLoading}
       error={error?.message ?? null}
       onRetry={() => void refetch()}
@@ -135,7 +135,7 @@ export function TeamActivityWidget({ teamId = "" }: TeamActivityWidgetProps) {
                     {activity.description}
                   </p>
                   <span className="text-xs text-muted-foreground">
-                    {formatDistanceToNow(new Date(activity.createdAt))} ago
+                    {formatDistanceToNow(new Date(activity.createdAt))} 전
                   </span>
                 </div>
               </div>
@@ -151,15 +151,15 @@ export function TeamActivityWidget({ teamId = "" }: TeamActivityWidgetProps) {
               onClick={handleLoadMore}
             >
               <ChevronDown className="h-4 w-4 mr-2" />
-              Load more
+              더 보기
             </Button>
           )}
         </div>
       ) : (
         <div className="text-center py-8 text-muted-foreground">
-          <p className="text-sm">No recent activity</p>
+          <p className="text-sm">최근 활동이 없습니다</p>
           <p className="text-xs mt-1">
-            Team activity will appear here as members collaborate.
+            팀원들이 협업하면 활동 내역이 여기에 표시됩니다.
           </p>
         </div>
       )}

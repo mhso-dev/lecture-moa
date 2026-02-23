@@ -43,8 +43,8 @@ import { sanitizeMarkdown } from "~/lib/markdown";
 const uploadFormInputSchema = z.object({
   title: z
     .string()
-    .min(1, "Title is required")
-    .max(200, "Title must be 200 characters or less"),
+    .min(1, "제목을 입력해 주세요")
+    .max(200, "제목은 200자 이하로 입력해 주세요"),
   tagsInput: z.string().optional(), // Raw comma-separated string
   status: z.enum(["draft", "published"]).default("draft"),
   positionInput: z.string().optional(), // Raw string for position
@@ -177,7 +177,7 @@ function MaterialUploadPageInner({
       setValue("title", titleFromFilename, { shouldDirty: true });
     }
 
-    toast.success(`File "${filename}" loaded successfully`);
+    toast.success(`"${filename}" 파일을 불러왔습니다`);
   };
 
   // Transform form data for submission
@@ -187,7 +187,7 @@ function MaterialUploadPageInner({
     // Validate tags
     const tags = parseTags(data.tagsInput);
     if (tags === null) {
-      setTagError("Maximum 10 tags, 50 characters each");
+      setTagError("태그는 최대 10개, 각 50자 이하로 입력해 주세요");
       return null;
     }
     setTagError(null);
@@ -195,7 +195,7 @@ function MaterialUploadPageInner({
     // Validate position
     const position = parsePosition(data.positionInput);
     if (position === false) {
-      setPositionError("Position must be a non-negative integer");
+      setPositionError("순서는 0 이상의 정수여야 합니다");
       return null;
     }
     setPositionError(null);
@@ -212,7 +212,7 @@ function MaterialUploadPageInner({
   const onSubmit = (data: UploadFormInput): void => {
     // Validate content
     if (!content.trim()) {
-      toast.error("Content is required");
+      toast.error("내용을 입력해 주세요");
       return;
     }
 
@@ -235,14 +235,14 @@ function MaterialUploadPageInner({
       },
       {
         onSuccess: (material) => {
-          toast.success("Material created successfully");
+          toast.success("자료가 생성되었습니다");
           router.push(`/courses/${courseId}/materials/${material.id}`);
         },
         onError: (error) => {
           toast.error(
             error instanceof Error
               ? error.message
-              : "Failed to create material"
+              : "자료 생성에 실패했습니다"
           );
         },
       }
@@ -266,12 +266,12 @@ function MaterialUploadPageInner({
           >
             <Link href={`/courses/${courseId}/materials`}>
               <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Materials
+              자료 목록으로
             </Link>
           </Button>
         </div>
         <h1 className="text-2xl font-bold text-[var(--color-foreground)]">
-          Upload Material
+          자료 업로드
         </h1>
       </div>
 
@@ -281,11 +281,11 @@ function MaterialUploadPageInner({
           <AlertTriangle className="h-5 w-5 text-[var(--color-warning-600)] flex-shrink-0 mt-0.5" />
           <div>
             <p className="text-sm font-medium text-[var(--color-warning-700)] dark:text-[var(--color-warning-400)]">
-              Large content detected ({contentSizeKB} KB)
+              대용량 콘텐츠 감지됨 ({contentSizeKB} KB)
             </p>
             <p className="text-sm text-[var(--color-warning-600)] dark:text-[var(--color-warning-500)] mt-1">
-              Content larger than 500KB may affect rendering performance.
-              Consider splitting into multiple materials.
+              500KB 이상의 콘텐츠는 렌더링 성능에 영향을 줄 수 있습니다.
+              여러 자료로 나누는 것을 권장합니다.
             </p>
           </div>
         </div>
@@ -298,7 +298,7 @@ function MaterialUploadPageInner({
           {/* Content input tabs */}
           <div className="space-y-4">
             <h2 className="text-lg font-semibold text-[var(--color-foreground)]">
-              Content
+              콘텐츠
             </h2>
             <Tabs
               value={uploadMode}
@@ -309,11 +309,11 @@ function MaterialUploadPageInner({
               <TabsList className="w-full">
                 <TabsTrigger value="file" className="flex-1">
                   <Upload className="h-4 w-4 mr-2" />
-                  File Upload
+                  파일 업로드
                 </TabsTrigger>
                 <TabsTrigger value="paste" className="flex-1">
                   <Edit3 className="h-4 w-4 mr-2" />
-                  Paste/Write
+                  붙여넣기/작성
                 </TabsTrigger>
               </TabsList>
 
@@ -326,7 +326,7 @@ function MaterialUploadPageInner({
 
               <TabsContent value="paste">
                 <Textarea
-                  placeholder="Paste or write your Markdown content here..."
+                  placeholder="Markdown 콘텐츠를 붙여넣거나 작성하세요..."
                   value={content}
                   onChange={(e) => {
                     setContent(e.target.value);
@@ -341,7 +341,7 @@ function MaterialUploadPageInner({
             {uploadMode === "file" && content && (
               <div className="flex items-center gap-2 text-sm text-[var(--color-muted-foreground)]">
                 <FileText className="h-4 w-4" />
-                <span>{contentSizeKB} KB loaded</span>
+                <span>{contentSizeKB} KB 로드됨</span>
               </div>
             )}
           </div>
@@ -351,11 +351,11 @@ function MaterialUploadPageInner({
             {/* Title */}
             <div className="space-y-2">
               <Label htmlFor="title">
-                Title <span className="text-[var(--color-danger-500)]">*</span>
+                제목 <span className="text-[var(--color-danger-500)]">*</span>
               </Label>
               <Input
                 id="title"
-                placeholder="Enter material title"
+                placeholder="자료 제목을 입력하세요"
                 {...register("title")}
                 disabled={createMutation.isPending}
                 aria-invalid={!!errors.title}
@@ -370,16 +370,16 @@ function MaterialUploadPageInner({
 
             {/* Tags */}
             <div className="space-y-2">
-              <Label htmlFor="tagsInput">Tags (optional)</Label>
+              <Label htmlFor="tagsInput">태그 (선택사항)</Label>
               <Input
                 id="tagsInput"
-                placeholder="Enter tags separated by commas"
+                placeholder="쉼표로 구분하여 태그를 입력하세요"
                 {...register("tagsInput")}
                 disabled={createMutation.isPending}
                 aria-describedby={tagError ? "tags-error" : "tags-hint"}
               />
               <p id="tags-hint" className="text-xs text-[var(--color-muted-foreground)]">
-                Max 10 tags, 50 characters each
+                최대 10개, 각 50자 이하
               </p>
               {tagError && (
                 <p id="tags-error" className="text-sm text-[var(--color-danger-500)]">
@@ -400,7 +400,7 @@ function MaterialUploadPageInner({
 
             {/* Status */}
             <div className="space-y-2">
-              <Label htmlFor="status">Status</Label>
+              <Label htmlFor="status">상태</Label>
               <Select
                 value={watchedStatus}
                 onValueChange={(value: string) => {
@@ -414,22 +414,22 @@ function MaterialUploadPageInner({
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="draft">Draft</SelectItem>
-                  <SelectItem value="published">Published</SelectItem>
+                  <SelectItem value="draft">초안</SelectItem>
+                  <SelectItem value="published">게시됨</SelectItem>
                 </SelectContent>
               </Select>
               <p className="text-xs text-[var(--color-muted-foreground)]">
-                Draft materials are only visible to instructors
+                초안 자료는 강사에게만 표시됩니다
               </p>
             </div>
 
             {/* Position */}
             <div className="space-y-2">
-              <Label htmlFor="positionInput">Position (optional)</Label>
+              <Label htmlFor="positionInput">순서 (선택사항)</Label>
               <Input
                 id="positionInput"
                 type="number"
-                placeholder="Auto-positioned if empty"
+                placeholder="비워두면 자동 배치됩니다"
                 {...register("positionInput")}
                 disabled={createMutation.isPending}
                 min={0}
@@ -451,12 +451,12 @@ function MaterialUploadPageInner({
                 {createMutation.isPending ? (
                   <>
                     <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                    Creating...
+                    생성 중...
                   </>
                 ) : (
                   <>
                     <Save className="h-4 w-4 mr-2" />
-                    Create Material
+                    자료 생성
                   </>
                 )}
               </Button>
@@ -470,7 +470,7 @@ function MaterialUploadPageInner({
           <div className="hidden lg:block">
             <h2 className="text-lg font-semibold text-[var(--color-foreground)] flex items-center gap-2">
               <Eye className="h-5 w-5" />
-              Preview
+              미리보기
             </h2>
             <div className="border rounded-lg p-4 mt-2 bg-[var(--color-background)] min-h-[500px] max-h-[80vh] overflow-auto">
               {/* Preview header */}
@@ -496,10 +496,10 @@ function MaterialUploadPageInner({
             >
               <TabsList className="w-full">
                 <TabsTrigger value="edit" className="flex-1">
-                  Edit
+                  편집
                 </TabsTrigger>
                 <TabsTrigger value="preview" className="flex-1">
-                  Preview
+                  미리보기
                 </TabsTrigger>
               </TabsList>
 
@@ -548,7 +548,7 @@ export default function MaterialUploadPage() {
   // Redirect non-instructors
   useEffect(() => {
     if (role !== null && !isInstructor) {
-      toast.error("Only instructors can upload materials");
+      toast.error("강사만 자료를 업로드할 수 있습니다");
       router.replace(`/courses/${courseId}/materials`);
     }
   }, [role, isInstructor, router, courseId]);

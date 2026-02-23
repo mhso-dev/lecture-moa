@@ -35,11 +35,11 @@ export default function CourseDetailError({ error, reset }: ErrorProps) {
 
       {/* Error Message */}
       <h1 className="mb-2 text-h2 font-semibold text-foreground">
-        Something went wrong
+        문제가 발생했습니다
       </h1>
       <p className="mb-6 text-center text-body text-neutral-500 max-w-md">
-        An unexpected error occurred while loading this course. Please try again
-        or contact support if the problem persists.
+        강의를 불러오는 중 예기치 않은 오류가 발생했습니다.
+        다시 시도하거나, 문제가 지속되면 관리자에게 문의해 주세요.
       </p>
 
       {/* Error Details (Development only) */}
@@ -54,11 +54,11 @@ export default function CourseDetailError({ error, reset }: ErrorProps) {
       {/* Actions */}
       <div className="flex gap-3">
         <Button variant="outline" onClick={() => (window.location.href = "/courses")}>
-          Back to Courses
+          강의 목록으로
         </Button>
         <Button onClick={reset}>
           <RefreshCw className="mr-2 h-4 w-4" />
-          Try Again
+          다시 시도
         </Button>
       </div>
     </div>

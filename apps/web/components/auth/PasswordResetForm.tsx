@@ -55,7 +55,7 @@ export function PasswordResetForm() {
         setIsSubmitted(true);
       } else {
         toast.error(
-          "If an account exists with this email, you will receive a reset link"
+          "해당 이메일로 등록된 계정이 있다면 재설정 링크를 보내드립니다"
         );
         setIsSubmitted(true);
       }
@@ -69,17 +69,17 @@ export function PasswordResetForm() {
           <MailCheck className="h-6 w-6 text-[var(--color-success-600)]" />
         </div>
         <div>
-          <h3 className="text-sm font-medium">Check your email</h3>
+          <h3 className="text-sm font-medium">이메일을 확인해 주세요</h3>
           <p className="mt-1 text-sm text-[var(--color-muted-foreground)]">
-            If an account exists with that email, we sent instructions to reset
-            your password.
+            해당 이메일로 등록된 계정이 있다면 비밀번호 재설정 안내를
+            보내드렸습니다.
           </p>
         </div>
         <Link
           href="/login"
           className="inline-block text-sm font-medium text-[var(--color-primary-600)] hover:underline"
         >
-          Back to login
+          로그인으로 돌아가기
         </Link>
       </div>
     );
@@ -90,14 +90,14 @@ export function PasswordResetForm() {
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="space-y-4"
-        aria-label="Password reset request form"
+        aria-label="비밀번호 재설정 요청 양식"
       >
         <FormField
           control={form.control}
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>이메일</FormLabel>
               <FormControl>
                 <Input
                   type="email"
@@ -113,7 +113,7 @@ export function PasswordResetForm() {
 
         <Button type="submit" className="w-full" disabled={isSubmitting}>
           {isSubmitting && <Loader2 className="animate-spin" />}
-          Send reset link
+          재설정 링크 보내기
         </Button>
 
         <div className="text-center">
@@ -121,7 +121,7 @@ export function PasswordResetForm() {
             href="/login"
             className="text-sm text-[var(--color-muted-foreground)] hover:underline"
           >
-            Back to login
+            로그인으로 돌아가기
           </Link>
         </div>
       </form>

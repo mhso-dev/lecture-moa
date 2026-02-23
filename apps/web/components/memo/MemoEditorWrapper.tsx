@@ -235,10 +235,10 @@ export function MemoEditorWrapper({
             name="title"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Title</FormLabel>
+                <FormLabel>제목</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="Enter memo title..."
+                    placeholder="메모 제목을 입력하세요..."
                     maxLength={200}
                     {...field}
                     onChange={(e) => {
@@ -248,7 +248,7 @@ export function MemoEditorWrapper({
                   />
                 </FormControl>
                 <FormDescription>
-                  {field.value.length}/200 characters
+                  {field.value.length}/200자
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -257,10 +257,10 @@ export function MemoEditorWrapper({
 
           {/* Tag Input */}
           <div className="space-y-2">
-            <Label>Tags (optional, max 10)</Label>
+            <Label>태그 (선택사항, 최대 10개)</Label>
             <div className="flex gap-2">
               <Input
-                placeholder="Add a tag..."
+                placeholder="태그를 입력하세요..."
                 value={tagInput}
                 onChange={(e) => { setTagInput(e.target.value); }}
                 onKeyDown={(e) => {
@@ -299,13 +299,13 @@ export function MemoEditorWrapper({
               </div>
             )}
             <FormDescription>
-              {(tags?.length ?? 0)}/10 tags • Each tag max 30 characters
+              {(tags?.length ?? 0)}/10개 태그 - 각 태그 최대 30자
             </FormDescription>
           </div>
 
           {/* Material Link */}
           <div className="space-y-2">
-            <Label>Link to Material (optional)</Label>
+            <Label>자료 연결 (선택사항)</Label>
             {linkTarget ? (
               <div className="flex items-center justify-between p-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-muted)]">
                 <div className="flex items-center gap-2 text-sm">
@@ -325,7 +325,7 @@ export function MemoEditorWrapper({
                     size="sm"
                     onClick={() => { setShowMaterialDialog(true); }}
                   >
-                    Change
+                    변경
                   </Button>
                   <Button
                     type="button"
@@ -345,7 +345,7 @@ export function MemoEditorWrapper({
                 className="w-full"
               >
                 <Plus className="h-4 w-4 mr-2" />
-                Link Material
+                자료 연결
               </Button>
             )}
           </div>
@@ -354,11 +354,11 @@ export function MemoEditorWrapper({
           {teamId && (
             <div className="flex items-center justify-between p-4 rounded-lg border border-[var(--color-border)]">
               <div className="space-y-0.5">
-                <Label>Share with Team</Label>
+                <Label>팀과 공유</Label>
                 <p className="text-sm text-[var(--color-muted-foreground)]">
                   {teamToggle
-                    ? `This memo will be shared with ${teamName ?? "your team"}`
-                    : "Keep this memo private to you"}
+                    ? `이 메모는 ${teamName ?? "팀"}에 공유됩니다`
+                    : "이 메모는 본인만 볼 수 있습니다"}
                 </p>
               </div>
               <Switch
@@ -379,7 +379,7 @@ export function MemoEditorWrapper({
                     value={content}
                     onChange={handleContentChange}
                     height={500}
-                    placeholder="Start writing your memo..."
+                    placeholder="메모를 작성하세요..."
                     showPreview={true}
                     initialTab="editor"
                   />
@@ -395,7 +395,7 @@ export function MemoEditorWrapper({
               type="submit"
               disabled={isSubmitting || !form.formState.isValid}
             >
-              {isSubmitting ? "Saving..." : "Save Memo"}
+              {isSubmitting ? "저장 중..." : "메모 저장"}
             </Button>
           </div>
         </form>

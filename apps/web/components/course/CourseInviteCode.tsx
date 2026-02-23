@@ -50,12 +50,12 @@ export function CourseInviteCode({
     try {
       await navigator.clipboard.writeText(code);
       setCopied(true);
-      toast.success("Invite code copied to clipboard");
+      toast.success("초대 코드가 클립보드에 복사되었습니다");
 
       // Reset copied state after 2 seconds
       void setTimeout(() => { setCopied(false); }, 2000);
     } catch (err) {
-      toast.error("Failed to copy. Please try again.");
+      toast.error("복사에 실패했습니다. 다시 시도해 주세요.");
       console.error("Copy error:", err);
     }
   };
@@ -70,12 +70,12 @@ export function CourseInviteCode({
       {
         onSuccess: (data) => {
           setCode(data.code);
-          toast.success("New invite code generated");
+          toast.success("새 초대 코드가 생성되었습니다");
           setShowConfirmDialog(false);
           onCodeGenerated?.(data.code);
         },
         onError: () => {
-          toast.error("Failed to generate new code. Please try again.");
+          toast.error("코드 생성에 실패했습니다. 다시 시도해 주세요.");
         },
       }
     );
@@ -86,18 +86,18 @@ export function CourseInviteCode({
     return (
       <div className="flex items-center gap-4">
         <p className="text-sm text-[var(--color-muted-foreground)]">
-          No invite code generated yet.
+          아직 초대 코드가 생성되지 않았습니다.
         </p>
         <Button
           onClick={handleGenerateNew}
           disabled={generateMutation.isPending}
-          aria-label="Generate invite code"
+          aria-label="초대 코드 생성"
         >
           {generateMutation.isPending && (
             <Loader2 className="h-4 w-4 mr-2 animate-spin" />
           )}
           <RefreshCw className="h-4 w-4 mr-2" />
-          Generate Code
+          코드 생성
         </Button>
       </div>
     );
@@ -108,7 +108,7 @@ export function CourseInviteCode({
       <div className="flex flex-col sm:flex-row sm:items-center gap-4">
         {/* Code Display */}
         <div className="flex items-center gap-2">
-          <span className="text-sm font-medium">Invite Code:</span>
+          <span className="text-sm font-medium">초대 코드:</span>
           <code
             data-testid="invite-code-display"
             aria-live="polite"
@@ -123,17 +123,17 @@ export function CourseInviteCode({
           variant="outline"
           size="sm"
           onClick={handleCopy}
-          aria-label="Copy invite code"
+          aria-label="초대 코드 복사"
         >
           {copied ? (
             <>
               <Check data-testid="check-icon" className="h-4 w-4 mr-2 text-[var(--color-success-600)]" />
-              Copied
+              복사됨
             </>
           ) : (
             <>
               <Copy data-testid="copy-icon" className="h-4 w-4 mr-2" />
-              Copy
+              복사
             </>
           )}
         </Button>
@@ -144,28 +144,28 @@ export function CourseInviteCode({
           size="sm"
           onClick={handleGenerateNew}
           disabled={generateMutation.isPending}
-          aria-label="Generate new invite code"
+          aria-label="새 초대 코드 생성"
         >
           {generateMutation.isPending ? (
             <Loader2 className="h-4 w-4 mr-2 animate-spin" />
           ) : (
             <RefreshCw className="h-4 w-4 mr-2" />
           )}
-          Generate New
+          새로 생성
         </Button>
       </div>
 
       {/* Expiration Info */}
       {expiresAt && (
         <p className="text-sm text-[var(--color-muted-foreground)] mt-2">
-          Expires: {new Date(expiresAt).toLocaleDateString()}
+          만료: {new Date(expiresAt).toLocaleDateString()}
         </p>
       )}
 
       {/* Copy Status Announcement */}
       {copied && (
         <span role="status" className="sr-only">
-          Invite code copied to clipboard
+          초대 코드가 클립보드에 복사되었습니다
         </span>
       )}
 
@@ -173,16 +173,16 @@ export function CourseInviteCode({
       <AlertDialog open={showConfirmDialog} onOpenChange={setShowConfirmDialog}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Generate New Invite Code</AlertDialogTitle>
+            <AlertDialogTitle>새 초대 코드 생성</AlertDialogTitle>
             <AlertDialogDescription>
-              This will invalidate the old code. Students who have not yet
-              enrolled will need the new code to join.
+              기존 코드가 무효화됩니다. 아직 등록하지 않은 학생은
+              새 코드로 참여해야 합니다.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogCancel>취소</AlertDialogCancel>
             <AlertDialogAction onClick={confirmGenerate}>
-              Generate New Code
+              새 코드 생성
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

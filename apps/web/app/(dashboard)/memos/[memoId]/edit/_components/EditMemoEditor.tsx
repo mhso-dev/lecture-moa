@@ -113,7 +113,7 @@ export function EditMemoEditor() {
       setMaterialId(draft.materialId);
       setAnchorId(draft.anchorId);
       setDirty(true);
-      toast.success("Draft restored");
+      toast.success("임시저장본이 복원되었습니다");
     }
     setShowRestoreBanner(false);
   };
@@ -124,7 +124,7 @@ export function EditMemoEditor() {
   const handleDiscardDraft = () => {
     clearDraft();
     setShowRestoreBanner(false);
-    toast.info("Draft discarded");
+    toast.info("임시저장본이 삭제되었습니다");
   };
 
   /**
@@ -134,13 +134,13 @@ export function EditMemoEditor() {
     (values: UpdateMemoRequest) => {
       updateMutation.mutate(values, {
         onSuccess: () => {
-          toast.success("Memo saved successfully");
+          toast.success("메모가 저장되었습니다");
           clearDraft();
           setDirty(false);
           setLastSaved(new Date());
         },
         onError: (error) => {
-          toast.error("Failed to save memo");
+          toast.error("메모 저장에 실패했습니다");
           console.error("Update memo error:", error);
         },
       });
@@ -154,12 +154,12 @@ export function EditMemoEditor() {
   const handleDelete = () => {
     deleteMutation.mutate(memoId, {
       onSuccess: () => {
-        toast.success("Memo deleted");
+        toast.success("메모가 삭제되었습니다");
         clearDraft();
         router.push("/memos" as any);
       },
       onError: (error) => {
-        toast.error("Failed to delete memo");
+        toast.error("메모 삭제에 실패했습니다");
         console.error("Delete memo error:", error);
       },
     });
@@ -171,7 +171,7 @@ export function EditMemoEditor() {
   const handleCancel = () => {
     if (isDirty) {
       const confirmed = window.confirm(
-        "You have unsaved changes. Are you sure you want to leave?"
+        "저장하지 않은 변경사항이 있습니다. 정말 나가시겠습니까?"
       );
       if (!confirmed) return;
     }
@@ -194,12 +194,12 @@ export function EditMemoEditor() {
     return (
       <div className="container max-w-4xl py-6 px-4 md:px-6">
         <div className="text-center py-16">
-          <h2 className="text-xl font-semibold mb-2">Memo not found</h2>
+          <h2 className="text-xl font-semibold mb-2">메모를 찾을 수 없습니다</h2>
           <p className="text-[var(--color-muted-foreground)] mb-6">
-            The memo you're looking for doesn't exist or you don't have access to it.
+            찾으시는 메모가 존재하지 않거나 접근 권한이 없습니다.
           </p>
           <Button onClick={() => { router.push("/memos" as any); }}>
-            Back to Memos
+            메모 목록으로
           </Button>
         </div>
       </div>
@@ -222,14 +222,14 @@ export function EditMemoEditor() {
             variant="ghost"
             size="icon"
             onClick={handleCancel}
-            aria-label="Back to memo"
+            aria-label="메모로 돌아가기"
           >
             <ArrowLeft className="h-5 w-5" />
           </Button>
           <div>
-            <h1 className="text-2xl font-bold">Edit Memo</h1>
+            <h1 className="text-2xl font-bold">메모 편집</h1>
             <p className="text-sm text-[var(--color-muted-foreground)]">
-              Update your memo
+              메모를 수정하세요
             </p>
           </div>
         </div>
@@ -238,7 +238,7 @@ export function EditMemoEditor() {
           {/* Draft saved indicator */}
           {lastSavedAt && (
             <div className="text-sm text-[var(--color-muted-foreground)]">
-              Draft saved
+              임시저장 완료
             </div>
           )}
 
@@ -248,7 +248,7 @@ export function EditMemoEditor() {
             size="icon"
             onClick={() => { setShowDeleteDialog(true); }}
             className="text-[var(--color-destructive)]"
-            aria-label="Delete memo"
+            aria-label="메모 삭제"
           >
             <Trash2 className="h-5 w-5" />
           </Button>
@@ -285,18 +285,18 @@ export function EditMemoEditor() {
       <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Delete Memo?</AlertDialogTitle>
+            <AlertDialogTitle>메모를 삭제하시겠습니까?</AlertDialogTitle>
             <AlertDialogDescription>
-              Are you sure you want to delete "{memoData.memo.title}"? This action cannot be undone.
+              "{memoData.memo.title}"을(를) 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogCancel>취소</AlertDialogCancel>
             <AlertDialogAction
               onClick={handleDelete}
               className="bg-[var(--color-destructive)] text-[var(--color-destructive-foreground)] hover:bg-[var(--color-destructive)]/90"
             >
-              Delete
+              삭제
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

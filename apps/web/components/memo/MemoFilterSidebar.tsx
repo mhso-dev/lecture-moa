@@ -197,7 +197,7 @@ export function MemoFilterSidebar({
       <div className="mb-6 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Filter className="h-5 w-5 text-[var(--color-muted-foreground)]" />
-          <h3 className="font-semibold">Filters</h3>
+          <h3 className="font-semibold">필터</h3>
         </div>
         {activeFilterCount > 0 && (
           <Button
@@ -206,7 +206,7 @@ export function MemoFilterSidebar({
             onClick={handleClearAll}
             className="h-8 text-xs text-[var(--color-muted-foreground)]"
           >
-            Clear all
+            전체 초기화
           </Button>
         )}
       </div>
@@ -214,12 +214,12 @@ export function MemoFilterSidebar({
       <div className="space-y-6">
         {/* Search */}
         <div className="space-y-2">
-          <Label htmlFor="memo-search">Search</Label>
+          <Label htmlFor="memo-search">검색</Label>
           <div className="relative">
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--color-muted-foreground)]" />
             <Input
               id="memo-search"
-              placeholder="Search memos..."
+              placeholder="메모 검색..."
               value={searchValue}
               onChange={(e) => { setSearchValue(e.target.value); }}
               className="pl-10"
@@ -229,7 +229,7 @@ export function MemoFilterSidebar({
 
         {/* Visibility Toggle */}
         <div className="flex items-center justify-between">
-          <Label htmlFor="visibility-toggle">Show Team Memos</Label>
+          <Label htmlFor="visibility-toggle">팀 메모 보기</Label>
           <Switch
             id="visibility-toggle"
             checked={filters.visibility === "team"}
@@ -239,16 +239,16 @@ export function MemoFilterSidebar({
 
         {/* Course Filter */}
         <div className="space-y-2">
-          <Label>Course</Label>
+          <Label>강의</Label>
           <Select
             value={filters.courseId || ""}
             onValueChange={handleCourseChange}
           >
             <SelectTrigger>
-              <SelectValue placeholder="All courses" />
+              <SelectValue placeholder="전체 강의" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">All courses</SelectItem>
+              <SelectItem value="">전체 강의</SelectItem>
               {courses.map((course) => (
                 <SelectItem key={course.id} value={course.id}>
                   {course.name}
@@ -260,17 +260,17 @@ export function MemoFilterSidebar({
 
         {/* Material Filter */}
         <div className="space-y-2">
-          <Label>Material</Label>
+          <Label>자료</Label>
           <Select
             value={filters.materialId || ""}
             onValueChange={handleMaterialChange}
             disabled={!filters.courseId}
           >
             <SelectTrigger>
-              <SelectValue placeholder={filters.courseId ? "All materials" : "Select course first"} />
+              <SelectValue placeholder={filters.courseId ? "전체 자료" : "강의를 먼저 선택하세요"} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">All materials</SelectItem>
+              <SelectItem value="">전체 자료</SelectItem>
               {filteredMaterials.map((material) => (
                 <SelectItem key={material.id} value={material.id}>
                   {material.title}
@@ -282,9 +282,9 @@ export function MemoFilterSidebar({
 
         {/* Tag Filter */}
         <div className="space-y-2">
-          <Label>Tags (max 10)</Label>
+          <Label>태그 (최대 10개)</Label>
           <Input
-            placeholder="Add a tag..."
+            placeholder="태그를 입력하세요..."
             value={tagInput}
             onChange={(e) => { setTagInput(e.target.value); }}
             onKeyDown={(e) => {
@@ -316,7 +316,7 @@ export function MemoFilterSidebar({
           )}
           {availableTags.length > 0 && selectedTags.length === 0 && (
             <div className="space-y-1">
-              <p className="text-xs text-[var(--color-muted-foreground)]">Popular:</p>
+              <p className="text-xs text-[var(--color-muted-foreground)]">인기 태그:</p>
               <div className="flex flex-wrap gap-1.5">
                 {availableTags.slice(0, 5).map((tag) => (
                   <Badge

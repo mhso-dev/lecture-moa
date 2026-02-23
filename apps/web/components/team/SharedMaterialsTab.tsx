@@ -86,10 +86,10 @@ export function SharedMaterialsTab({
 
   // Format date helper
   const formatDate = (date: Date) => {
-    return new Intl.DateTimeFormat("en-US", {
-      month: "short",
-      day: "numeric",
+    return new Intl.DateTimeFormat("ko-KR", {
       year: "numeric",
+      month: "long",
+      day: "numeric",
     }).format(new Date(date));
   };
 
@@ -115,9 +115,9 @@ export function SharedMaterialsTab({
     return (
       <div className="flex flex-col items-center justify-center p-8 text-center">
         <FolderOpen className="h-12 w-12 text-muted-foreground mb-4" />
-        <h3 className="font-semibold text-lg">Failed to load materials</h3>
+        <h3 className="font-semibold text-lg">자료를 불러오지 못했습니다</h3>
         <p className="text-muted-foreground">
-          Please try refreshing the page.
+          페이지를 새로고침해 주세요.
         </p>
       </div>
     );
@@ -127,27 +127,27 @@ export function SharedMaterialsTab({
     return (
       <div className="flex flex-col items-center justify-center p-8 text-center">
         <FolderOpen className="h-12 w-12 text-muted-foreground mb-4" />
-        <h3 className="font-semibold text-lg">No shared materials</h3>
+        <h3 className="font-semibold text-lg">공유된 자료가 없습니다</h3>
         <p className="text-muted-foreground mb-4">
-          Add materials to share with your team.
+          팀과 공유할 자료를 추가하세요.
         </p>
         <Button onClick={() => { setShowAddDialog(true); }}>
           <Plus className="h-4 w-4 mr-2" />
-          Add Material
+          자료 추가
         </Button>
 
         {/* Add material dialog placeholder */}
         <Dialog open={showAddDialog} onOpenChange={setShowAddDialog}>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Add Material</DialogTitle>
+              <DialogTitle>자료 추가</DialogTitle>
               <DialogDescription>
-                Select a material to share with your team.
+                팀과 공유할 자료를 선택하세요.
               </DialogDescription>
             </DialogHeader>
             <div className="py-4">
               <p className="text-muted-foreground">
-                Material picker component would go here.
+                자료 선택 컴포넌트가 여기에 표시됩니다.
               </p>
             </div>
           </DialogContent>
@@ -163,12 +163,12 @@ export function SharedMaterialsTab({
         <div className="flex items-center gap-2">
           <FolderOpen className="h-5 w-5 text-muted-foreground" />
           <span className="font-medium">
-            {materials.length} shared material{materials.length !== 1 ? "s" : ""}
+            공유 자료 {materials.length}개
           </span>
         </div>
         <Button onClick={() => { setShowAddDialog(true); }}>
           <Plus className="h-4 w-4 mr-2" />
-          Add Material
+          자료 추가
         </Button>
       </div>
 
@@ -194,7 +194,7 @@ export function SharedMaterialsTab({
                     size="sm"
                     onClick={() => { removeMaterial(); }}
                     disabled={isRemoving}
-                    aria-label="Remove material"
+                    aria-label="자료 삭제"
                   >
                     <Trash2 className="h-4 w-4 text-destructive" />
                   </Button>
@@ -204,8 +204,8 @@ export function SharedMaterialsTab({
             <CardContent>
               <div className="flex items-center gap-4 text-sm text-muted-foreground">
                 <Badge variant="outline">{material.courseName}</Badge>
-                <span>Shared by {material.authorName}</span>
-                <span>Linked {formatDate(material.linkedAt)}</span>
+                <span>{material.authorName} 공유</span>
+                <span>{formatDate(material.linkedAt)} 연결</span>
               </div>
             </CardContent>
           </Card>
@@ -216,14 +216,14 @@ export function SharedMaterialsTab({
       <Dialog open={showAddDialog} onOpenChange={setShowAddDialog}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Add Material</DialogTitle>
+            <DialogTitle>자료 추가</DialogTitle>
             <DialogDescription>
-              Select a material to share with your team.
+              팀과 공유할 자료를 선택하세요.
             </DialogDescription>
           </DialogHeader>
           <div className="py-4">
             <p className="text-muted-foreground">
-              Material picker component would go here.
+              자료 선택 컴포넌트가 여기에 표시됩니다.
             </p>
           </div>
         </DialogContent>

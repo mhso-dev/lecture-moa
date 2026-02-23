@@ -33,16 +33,16 @@ interface GenerationOptionsProps {
 }
 
 const QUESTION_TYPE_OPTIONS: { value: QuestionType; label: string }[] = [
-  { value: "multiple_choice", label: "Multiple Choice" },
-  { value: "true_false", label: "True/False" },
-  { value: "short_answer", label: "Short Answer" },
-  { value: "fill_in_the_blank", label: "Fill in the Blank" },
+  { value: "multiple_choice", label: "객관식" },
+  { value: "true_false", label: "참/거짓" },
+  { value: "short_answer", label: "단답형" },
+  { value: "fill_in_the_blank", label: "빈칸 채우기" },
 ];
 
 const DIFFICULTY_OPTIONS = [
-  { value: "easy", label: "Easy" },
-  { value: "medium", label: "Medium" },
-  { value: "hard", label: "Hard" },
+  { value: "easy", label: "쉬움" },
+  { value: "medium", label: "보통" },
+  { value: "hard", label: "어려움" },
 ] as const;
 
 /**
@@ -92,7 +92,7 @@ export function GenerationOptions({
 
       {/* Question Count */}
       <div className="space-y-2">
-        <Label htmlFor="question-count">Number of Questions</Label>
+        <Label htmlFor="question-count">문항 수</Label>
         <Input
           id="question-count"
           type="number"
@@ -103,13 +103,13 @@ export function GenerationOptions({
           className="w-32"
         />
         <p className="text-sm text-muted-foreground">
-          Generate between 1 and 50 questions
+          1개에서 50개까지 문항을 생성합니다
         </p>
       </div>
 
       {/* Difficulty */}
       <div className="space-y-2">
-        <Label>Difficulty</Label>
+        <Label>난이도</Label>
         <RadioGroup
           value={options.difficulty}
           onValueChange={handleDifficultyChange}
@@ -128,9 +128,9 @@ export function GenerationOptions({
 
       {/* Question Types */}
       <div className="space-y-2">
-        <Label>Question Types</Label>
+        <Label>문항 유형</Label>
         <p className="text-sm text-muted-foreground">
-          Select at least one question type
+          최소 하나의 문항 유형을 선택하세요
         </p>
         <div className="grid grid-cols-2 gap-3">
           {QUESTION_TYPE_OPTIONS.map((opt) => (

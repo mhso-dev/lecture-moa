@@ -34,7 +34,7 @@ export function ReadingProgressBar({
       aria-valuenow={progress}
       aria-valuemin={0}
       aria-valuemax={100}
-      aria-label="Reading progress"
+      aria-label="읽기 진행률"
       className={cn(
         "fixed top-0 left-0 z-50 h-[3px] w-full bg-transparent",
         className

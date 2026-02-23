@@ -48,7 +48,7 @@ export function CourseEnrollButton({
     return (
       <Badge variant="success" className="px-4 py-2">
         <Check className="h-4 w-4 mr-2" />
-        Enrolled
+        수강 중
       </Badge>
     );
   }
@@ -60,11 +60,11 @@ export function CourseEnrollButton({
         { courseId },
         {
           onSuccess: () => {
-            toast.success("Successfully enrolled in the course!");
+            toast.success("강의에 등록되었습니다!");
             onEnrollSuccess?.();
           },
           onError: (err) => {
-            toast.error("Failed to enroll. Please try again.");
+            toast.error("등록에 실패했습니다. 다시 시도해 주세요.");
             console.error("Enrollment error:", err);
           },
         }
@@ -75,13 +75,13 @@ export function CourseEnrollButton({
       <Button
         onClick={handleEnroll}
         disabled={enrollMutation.isPending}
-        aria-label="Enroll in this course"
+        aria-label="이 강의에 등록"
         size="lg"
       >
         {enrollMutation.isPending && (
           <Loader2 className="h-4 w-4 mr-2 animate-spin" />
         )}
-        Enroll
+        수강 신청
       </Button>
     );
   }
@@ -96,7 +96,7 @@ export function CourseEnrollButton({
   const handleSubmitCode = () => {
     // Validate code length
     if (inviteCode.length !== 6) {
-      setError("Invite code must be exactly 6 characters");
+      setError("초대 코드는 정확히 6자여야 합니다");
       return;
     }
 
@@ -108,7 +108,7 @@ export function CourseEnrollButton({
           onEnrollSuccess?.();
         },
         onError: (err) => {
-          toast.error("Invalid invite code. Please check and try again.");
+          toast.error("잘못된 초대 코드입니다. 확인 후 다시 시도해 주세요.");
           console.error("Enrollment error:", err);
         },
       }
@@ -126,8 +126,8 @@ export function CourseEnrollButton({
       <div className="flex gap-2">
         <Input
           type="text"
-          placeholder="Enter invite code"
-          aria-label="Enter invite code"
+          placeholder="초대 코드 입력"
+          aria-label="초대 코드 입력"
           value={inviteCode}
           onChange={handleCodeChange}
           onKeyDown={handleKeyDown}
@@ -145,7 +145,7 @@ export function CourseEnrollButton({
           {enrollWithCodeMutation.isPending ? (
             <Loader2 className="h-4 w-4 animate-spin" />
           ) : (
-            "Join"
+            "참여"
           )}
         </Button>
       </div>

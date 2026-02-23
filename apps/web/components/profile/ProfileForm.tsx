@@ -61,12 +61,12 @@ export function ProfileForm({ initialData }: ProfileFormProps) {
       // Reset form dirty state with new default values
       form.reset({ name: data.name });
 
-      toast.success("Profile updated successfully");
+      toast.success("프로필이 업데이트되었습니다");
     } catch (error) {
       const message =
         error instanceof ApiClientError
           ? error.message
-          : "Failed to update profile. Please try again.";
+          : "프로필 업데이트에 실패했습니다. 다시 시도해 주세요.";
       toast.error(message);
     }
   }
@@ -76,7 +76,7 @@ export function ProfileForm({ initialData }: ProfileFormProps) {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         {/* Email (read-only) */}
         <div className="space-y-2">
-          <label className="text-sm font-medium leading-none">Email</label>
+          <label className="text-sm font-medium leading-none">이메일</label>
           <Input
             type="email"
             value={initialData.email}
@@ -91,9 +91,9 @@ export function ProfileForm({ initialData }: ProfileFormProps) {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Name</FormLabel>
+              <FormLabel>이름</FormLabel>
               <FormControl>
-                <Input placeholder="Enter your name" {...field} />
+                <Input placeholder="이름을 입력하세요" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -105,7 +105,7 @@ export function ProfileForm({ initialData }: ProfileFormProps) {
           disabled={!isDirty || isSubmitting}
           loading={isSubmitting}
         >
-          Save changes
+          변경사항 저장
         </Button>
       </form>
     </Form>

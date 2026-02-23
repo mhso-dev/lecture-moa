@@ -80,22 +80,22 @@ export function ResultsSummary({
   // Format time taken
   const formatTime = (seconds: number): string => {
     if (seconds < 60) {
-      return "Less than a minute";
+      return "1분 미만";
     }
     const hours = Math.floor(seconds / 3600);
     const minutes = Math.floor((seconds % 3600) / 60);
 
     if (hours > 0) {
-      return `${String(hours)}h ${String(minutes)}min`;
+      return `${String(hours)}시간 ${String(minutes)}분`;
     }
-    return `${String(minutes)} min`;
+    return `${String(minutes)}분`;
   };
 
   return (
     <Card className={cn("w-full", className)} data-testid={testId}>
       <CardHeader>
         <CardTitle className="text-2xl">
-          Quiz Complete: {quiz.title}
+          퀴즈 완료: {quiz.title}
         </CardTitle>
       </CardHeader>
 
@@ -109,13 +109,13 @@ export function ResultsSummary({
                 variant={result.passed ? "default" : "destructive"}
                 className="text-lg px-4 py-2"
               >
-                {result.passed ? "Passed" : "Failed"}
+                {result.passed ? "합격" : "불합격"}
               </Badge>
             )}
           </div>
           {quiz.passingScore !== null && (
             <div className="text-sm text-muted-foreground">
-              Passing Score: {quiz.passingScore}%
+              합격 점수: {quiz.passingScore}%
             </div>
           )}
         </div>
@@ -132,28 +132,28 @@ export function ResultsSummary({
         {/* Stats Grid */}
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
           <div className="space-y-1">
-            <div className="text-sm font-medium text-muted-foreground">Correct</div>
+            <div className="text-sm font-medium text-muted-foreground">정답</div>
             <div className="text-2xl font-bold text-green-600">
               {stats.correct}
             </div>
           </div>
 
           <div className="space-y-1">
-            <div className="text-sm font-medium text-muted-foreground">Incorrect</div>
+            <div className="text-sm font-medium text-muted-foreground">오답</div>
             <div className="text-2xl font-bold text-red-600">
               {stats.incorrect}
             </div>
           </div>
 
           <div className="space-y-1">
-            <div className="text-sm font-medium text-muted-foreground">Unanswered</div>
+            <div className="text-sm font-medium text-muted-foreground">미응답</div>
             <div className="text-2xl font-bold text-gray-600">
               {stats.unanswered}
             </div>
           </div>
 
           <div className="space-y-1">
-            <div className="text-sm font-medium text-muted-foreground">Time Taken</div>
+            <div className="text-sm font-medium text-muted-foreground">소요 시간</div>
             <div className="text-2xl font-bold">
               {formatTime(result.timeTaken)}
             </div>
@@ -164,13 +164,13 @@ export function ResultsSummary({
         <div className="flex gap-4 pt-4">
           {onBack && (
             <Button variant="outline" onClick={onBack} className="flex-1">
-              Back to Quizzes
+              퀴즈 목록으로
             </Button>
           )}
 
           {canRetake && onRetake && (
             <Button onClick={onRetake} className="flex-1">
-              Retake Quiz
+              퀴즈 재응시
             </Button>
           )}
         </div>

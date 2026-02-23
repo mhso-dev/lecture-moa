@@ -155,7 +155,7 @@ export function MemoFilterSheet({
       <SheetTrigger asChild>
         <Button variant="outline" size="sm" className={cn("gap-2", className)}>
           <Filter className="h-4 w-4" />
-          Filters
+          필터
           {activeFilterCount > 0 && (
             <Badge variant="secondary" className="ml-1 h-5 w-5 rounded-full p-0 text-xs">
               {activeFilterCount}
@@ -165,21 +165,21 @@ export function MemoFilterSheet({
       </SheetTrigger>
       <SheetContent side="bottom" className="h-[85vh] overflow-y-auto">
         <SheetHeader>
-          <SheetTitle>Filter Memos</SheetTitle>
+          <SheetTitle>메모 필터</SheetTitle>
           <SheetDescription>
-            Apply filters to find the memos you need.
+            필터를 적용하여 원하는 메모를 찾으세요.
           </SheetDescription>
         </SheetHeader>
 
         <div className="mt-6 space-y-6 px-4">
           {/* Search */}
           <div className="space-y-2">
-            <Label htmlFor="memo-search-mobile">Search</Label>
+            <Label htmlFor="memo-search-mobile">검색</Label>
             <div className="relative">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--color-muted-foreground)]" />
               <Input
                 id="memo-search-mobile"
-                placeholder="Search memos..."
+                placeholder="메모 검색..."
                 value={searchValue}
                 onChange={(e) => { setSearchValue(e.target.value); }}
                 className="pl-10"
@@ -189,7 +189,7 @@ export function MemoFilterSheet({
 
           {/* Visibility Toggle */}
           <div className="flex items-center justify-between">
-            <Label htmlFor="visibility-toggle-mobile">Show Team Memos</Label>
+            <Label htmlFor="visibility-toggle-mobile">팀 메모 보기</Label>
             <Switch
               id="visibility-toggle-mobile"
               checked={tempFilters.visibility === "team"}
@@ -201,7 +201,7 @@ export function MemoFilterSheet({
 
           {/* Course Filter */}
           <div className="space-y-2">
-            <Label>Course</Label>
+            <Label>강의</Label>
             <Select
               value={tempFilters.courseId || ""}
               onValueChange={(value) =>
@@ -213,10 +213,10 @@ export function MemoFilterSheet({
               }
             >
               <SelectTrigger>
-                <SelectValue placeholder="All courses" />
+                <SelectValue placeholder="전체 강의" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All courses</SelectItem>
+                <SelectItem value="">전체 강의</SelectItem>
                 {courses.map((course) => (
                   <SelectItem key={course.id} value={course.id}>
                     {course.name}
@@ -228,7 +228,7 @@ export function MemoFilterSheet({
 
           {/* Material Filter */}
           <div className="space-y-2">
-            <Label>Material</Label>
+            <Label>자료</Label>
             <Select
               value={tempFilters.materialId || ""}
               onValueChange={(value) =>
@@ -237,10 +237,10 @@ export function MemoFilterSheet({
               disabled={!tempFilters.courseId}
             >
               <SelectTrigger>
-                <SelectValue placeholder={tempFilters.courseId ? "All materials" : "Select course first"} />
+                <SelectValue placeholder={tempFilters.courseId ? "전체 자료" : "강의를 먼저 선택하세요"} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All materials</SelectItem>
+                <SelectItem value="">전체 자료</SelectItem>
                 {filteredMaterials.map((material) => (
                   <SelectItem key={material.id} value={material.id}>
                     {material.title}
@@ -252,9 +252,9 @@ export function MemoFilterSheet({
 
           {/* Tag Filter */}
           <div className="space-y-2">
-            <Label>Tags (max 10)</Label>
+            <Label>태그 (최대 10개)</Label>
             <Input
-              placeholder="Add a tag..."
+              placeholder="태그를 입력하세요..."
               value={tagInput}
               onChange={(e) => { setTagInput(e.target.value); }}
               onKeyDown={(e) => {
@@ -285,10 +285,10 @@ export function MemoFilterSheet({
 
         <SheetFooter className="mt-6 flex-row gap-2 px-4">
           <Button variant="outline" onClick={handleClearAll} className="flex-1">
-            Clear All
+            전체 초기화
           </Button>
           <Button onClick={handleApply} className="flex-1">
-            Apply Filters
+            필터 적용
           </Button>
         </SheetFooter>
       </SheetContent>

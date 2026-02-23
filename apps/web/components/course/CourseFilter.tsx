@@ -28,19 +28,19 @@ interface CourseFilterProps {
 }
 
 const CATEGORIES: { value: CourseCategory | null; label: string }[] = [
-  { value: null, label: "All" },
-  { value: "programming", label: "Programming" },
-  { value: "design", label: "Design" },
-  { value: "business", label: "Business" },
-  { value: "science", label: "Science" },
-  { value: "language", label: "Language" },
-  { value: "other", label: "Other" },
+  { value: null, label: "전체" },
+  { value: "programming", label: "프로그래밍" },
+  { value: "design", label: "디자인" },
+  { value: "business", label: "비즈니스" },
+  { value: "science", label: "과학" },
+  { value: "language", label: "언어" },
+  { value: "other", label: "기타" },
 ];
 
 const SORT_OPTIONS: { value: CourseSortOption; label: string }[] = [
-  { value: "recent", label: "Most Recent" },
-  { value: "popular", label: "Most Popular" },
-  { value: "alphabetical", label: "Alphabetical" },
+  { value: "recent", label: "최신순" },
+  { value: "popular", label: "인기순" },
+  { value: "alphabetical", label: "가나다순" },
 ];
 
 /**
@@ -84,7 +84,7 @@ export function CourseFilter({
       {/* Category Tabs */}
       <div
         role="tablist"
-        aria-label="Filter by category"
+        aria-label="카테고리별 필터"
         className="flex flex-wrap gap-1"
       >
         {CATEGORIES.map((category) => {
@@ -112,9 +112,9 @@ export function CourseFilter({
       <Select value={selectedSort} onValueChange={handleSortChange}>
         <SelectTrigger
           className="w-[180px]"
-          aria-label="Sort courses"
+          aria-label="강의 정렬"
         >
-          <SelectValue placeholder="Sort by" />
+          <SelectValue placeholder="정렬" />
         </SelectTrigger>
         <SelectContent>
           {SORT_OPTIONS.map((option) => (

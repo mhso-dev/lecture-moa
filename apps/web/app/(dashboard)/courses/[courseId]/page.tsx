@@ -42,7 +42,7 @@ export default function CourseDetailPage() {
   if (isLoading) {
     return (
       <div className="flex h-96 items-center justify-center">
-        <p className="text-body text-neutral-500">Loading course...</p>
+        <p className="text-body text-neutral-500">강의 로딩 중...</p>
       </div>
     );
   }
@@ -74,14 +74,14 @@ export default function CourseDetailPage() {
             onClick={() => { router.push(`/courses/${courseId}/settings`); }}
           >
             <Settings className="mr-2 h-4 w-4" />
-            Course Settings
+            강의 설정
           </Button>
           <Button
             variant="outline"
             onClick={() => { router.push(`/courses/${courseId}/materials`); }}
           >
             <BookOpen className="mr-2 h-4 w-4" />
-            Manage Materials
+            자료 관리
           </Button>
         </div>
       )}
@@ -92,7 +92,7 @@ export default function CourseDetailPage() {
       {/* Course Description */}
       <div>
         <h2 className="text-h3 mb-3 font-semibold text-foreground">
-          About This Course
+          강의 소개
         </h2>
         <p className="text-body text-neutral-700 dark:text-neutral-300">
           {course.description}
@@ -102,7 +102,7 @@ export default function CourseDetailPage() {
       {/* Syllabus */}
       <div>
         <h2 className="text-h3 mb-3 font-semibold text-foreground">
-          Course Syllabus
+          커리큘럼
         </h2>
         <CourseSyllabus syllabus={course.syllabus} />
       </div>
@@ -137,7 +137,7 @@ function CourseHeader({ course }: CourseHeaderProps) {
       <div>
         <h1 className="text-h1 font-bold text-foreground">{course.title}</h1>
         <p className="mt-2 text-body text-neutral-500">
-          by {course.instructor.name}
+          {course.instructor.name}
         </p>
       </div>
     </div>
@@ -155,9 +155,9 @@ function EnrollmentStatus({ isEnrolled, enrollment, course }: EnrollmentStatusPr
     return (
       <div className="rounded-lg border border-border bg-card-background p-6">
         <div className="mb-3 flex items-center justify-between">
-          <h3 className="font-semibold text-foreground">Your Progress</h3>
+          <h3 className="font-semibold text-foreground">나의 진도</h3>
           <span className="text-body-sm text-neutral-500">
-            {enrollment.progressPercent}% complete
+            {enrollment.progressPercent}% 완료
           </span>
         </div>
         <CourseProgressBar percent={enrollment.progressPercent} />
@@ -185,17 +185,17 @@ function CourseMetadata({ course }: CourseMetadataProps) {
   const metadata = [
     {
       icon: Users,
-      label: "Students Enrolled",
+      label: "수강생",
       value: course.enrolledCount,
     },
     {
       icon: FileText,
-      label: "Materials",
+      label: "자료",
       value: course.materialCount,
     },
     {
       icon: Calendar,
-      label: "Created",
+      label: "생성일",
       value: new Date(course.createdAt).toLocaleDateString(),
     },
   ];

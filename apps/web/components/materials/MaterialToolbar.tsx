@@ -31,9 +31,9 @@ interface MaterialToolbarProps {
 }
 
 const FONT_SIZES = {
-  sm: { label: "Small", value: "sm", next: "md" as const },
-  md: { label: "Medium", value: "md", next: "lg" as const },
-  lg: { label: "Large", value: "lg", next: "sm" as const },
+  sm: { label: "작게", value: "sm", next: "md" as const },
+  md: { label: "보통", value: "md", next: "lg" as const },
+  lg: { label: "크게", value: "lg", next: "sm" as const },
 };
 
 /**
@@ -124,7 +124,7 @@ export function MaterialToolbar({
       {/* Reading time */}
       <div className="hidden sm:flex items-center gap-1 text-xs text-[var(--color-muted-foreground)] shrink-0">
         <Clock className="h-3.5 w-3.5" />
-        <span>{readTimeMinutes} min</span>
+        <span>{readTimeMinutes}분</span>
       </div>
 
       {/* ToC toggle (tablet/mobile) */}
@@ -133,7 +133,7 @@ export function MaterialToolbar({
         size="icon"
         className="xl:hidden"
         onClick={toggleToc}
-        aria-label="Toggle table of contents"
+        aria-label="목차 토글"
       >
         <FileText className="h-4 w-4" />
       </Button>
@@ -143,7 +143,7 @@ export function MaterialToolbar({
         variant="ghost"
         size="icon"
         onClick={handleFontSizeToggle}
-        aria-label={`Font size: ${FONT_SIZES[fontSize].label}. Click to change.`}
+        aria-label={`글꼴 크기: ${FONT_SIZES[fontSize].label}. 클릭하여 변경`}
       >
         <Type className="h-4 w-4" />
       </Button>
@@ -153,7 +153,7 @@ export function MaterialToolbar({
         variant="ghost"
         size="icon"
         onClick={toggleFullscreen}
-        aria-label="Toggle fullscreen mode"
+        aria-label="전체 화면 전환"
       >
         <Maximize2 className="h-4 w-4" />
       </Button>
@@ -167,7 +167,7 @@ export function MaterialToolbar({
             className="gap-2"
           >
             <Edit className="h-4 w-4" />
-            <span className="hidden sm:inline">Edit</span>
+            <span className="hidden sm:inline">편집</span>
           </Button>
         </Link>
       )}

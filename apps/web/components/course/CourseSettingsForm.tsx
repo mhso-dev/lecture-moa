@@ -47,12 +47,12 @@ interface CourseSettingsFormProps {
 }
 
 const CATEGORY_OPTIONS = [
-  { value: "programming", label: "Programming" },
-  { value: "design", label: "Design" },
-  { value: "business", label: "Business" },
-  { value: "science", label: "Science" },
-  { value: "language", label: "Language" },
-  { value: "other", label: "Other" },
+  { value: "programming", label: "프로그래밍" },
+  { value: "design", label: "디자인" },
+  { value: "business", label: "비즈니스" },
+  { value: "science", label: "과학" },
+  { value: "language", label: "언어" },
+  { value: "other", label: "기타" },
 ];
 
 /**
@@ -120,11 +120,11 @@ export function CourseSettingsForm({
       { courseId, ...data },
       {
         onSuccess: () => {
-          toast.success("Course updated successfully");
+          toast.success("강의가 수정되었습니다");
           onSuccess?.();
         },
         onError: (error) => {
-          toast.error("Failed to update course. Please try again.");
+          toast.error("강의 수정에 실패했습니다. 다시 시도해 주세요.");
           console.error("Update course error:", error);
         },
       }
@@ -140,16 +140,16 @@ export function CourseSettingsForm({
           name="title"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Title *</FormLabel>
+              <FormLabel>제목 *</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="Enter course title"
+                  placeholder="강의 제목을 입력하세요"
                   {...field}
                   aria-required="true"
                 />
               </FormControl>
               <FormDescription>
-                3-100 characters
+                3-100자
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -162,17 +162,17 @@ export function CourseSettingsForm({
           name="description"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Description *</FormLabel>
+              <FormLabel>설명 *</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="Describe your course"
+                  placeholder="강의에 대해 설명해 주세요"
                   rows={4}
                   {...field}
                   aria-required="true"
                 />
               </FormControl>
               <FormDescription>
-                10-2000 characters
+                10-2000자
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -185,11 +185,11 @@ export function CourseSettingsForm({
           name="category"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Category *</FormLabel>
+              <FormLabel>카테고리 *</FormLabel>
               <Select onValueChange={field.onChange} value={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select a category" />
+                    <SelectValue placeholder="카테고리 선택" />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
@@ -211,7 +211,7 @@ export function CourseSettingsForm({
           name="thumbnailUrl"
           render={() => (
             <FormItem>
-              <FormLabel>Thumbnail</FormLabel>
+              <FormLabel>썸네일</FormLabel>
               <FormControl>
                 <div className="space-y-4">
                   {thumbnailPreview ? (
@@ -227,7 +227,7 @@ export function CourseSettingsForm({
                         size="icon"
                         className="absolute -top-2 -right-2 h-6 w-6"
                         onClick={handleRemoveThumbnail}
-                        aria-label="Remove thumbnail"
+                        aria-label="썸네일 제거"
                       >
                         <X className="h-4 w-4" />
                       </Button>
@@ -239,7 +239,7 @@ export function CourseSettingsForm({
                     >
                       <Upload className="h-8 w-8 text-[var(--color-muted-foreground)] mb-2" />
                       <span className="text-sm text-[var(--color-muted-foreground)]">
-                        Upload thumbnail
+                        썸네일 업로드
                       </span>
                       <input
                         id="thumbnail-upload"
@@ -248,7 +248,7 @@ export function CourseSettingsForm({
                         accept="image/*"
                         className="hidden"
                         onChange={handleThumbnailChange}
-                        aria-label="Thumbnail"
+                        aria-label="썸네일"
                       />
                     </label>
                   )}
@@ -265,7 +265,7 @@ export function CourseSettingsForm({
           name="visibility"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Visibility *</FormLabel>
+              <FormLabel>공개 설정 *</FormLabel>
               <FormControl>
                 <RadioGroup
                   onValueChange={field.onChange}
@@ -277,7 +277,7 @@ export function CourseSettingsForm({
                       <RadioGroupItem value="public" />
                     </FormControl>
                     <FormLabel className="font-normal cursor-pointer">
-                      Public
+                      공개
                     </FormLabel>
                   </FormItem>
                   <FormItem className="flex items-center space-x-3 space-y-0">
@@ -285,13 +285,13 @@ export function CourseSettingsForm({
                       <RadioGroupItem value="invite_only" />
                     </FormControl>
                     <FormLabel className="font-normal cursor-pointer">
-                      Invite Only
+                      초대 전용
                     </FormLabel>
                   </FormItem>
                 </RadioGroup>
               </FormControl>
               <FormDescription>
-                Public courses can be discovered by all users. Invite-only courses require an invite code.
+                공개 강의는 모든 사용자가 검색할 수 있습니다. 초대 전용 강의는 초대 코드가 필요합니다.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -307,7 +307,7 @@ export function CourseSettingsForm({
             {updateMutation.isPending && (
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
             )}
-            Save Changes
+            변경 사항 저장
           </Button>
         </div>
       </form>

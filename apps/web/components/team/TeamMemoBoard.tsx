@@ -71,14 +71,14 @@ function EmptyState({ onCreateMemo }: { onCreateMemo?: () => void }) {
       <div className="mb-4 rounded-full bg-muted p-6">
         <FileText className="h-12 w-12 text-muted-foreground" />
       </div>
-      <h3 className="mb-2 text-lg font-semibold">No team memos yet</h3>
+      <h3 className="mb-2 text-lg font-semibold">아직 팀 메모가 없습니다</h3>
       <p className="mb-6 max-w-sm text-sm text-muted-foreground">
-        Share insights and notes with your team.
+        팀원들과 인사이트와 노트를 공유하세요.
       </p>
       {onCreateMemo && (
         <Button onClick={onCreateMemo}>
           <Plus className="mr-2 h-4 w-4" />
-          Create First Memo
+          첫 번째 메모 작성
         </Button>
       )}
     </div>
@@ -195,7 +195,7 @@ export function TeamMemoBoard({
     return (
       <div className={className}>
         <div className="mb-4 flex items-center gap-2">
-          <h2 className="text-xl font-semibold">Team Memos</h2>
+          <h2 className="text-xl font-semibold">팀 메모</h2>
           <LiveIndicator status={socketStatus} />
         </div>
         <EmptyState onCreateMemo={handleCreateMemo} />
@@ -208,12 +208,12 @@ export function TeamMemoBoard({
       {/* Header with Live Indicator */}
       <div className="mb-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <h2 className="text-xl font-semibold">Team Memos</h2>
+          <h2 className="text-xl font-semibold">팀 메모</h2>
           <LiveIndicator status={socketStatus} />
         </div>
         <Button onClick={handleCreateMemo}>
           <Plus className="mr-2 h-4 w-4" />
-          New Team Memo
+          새 팀 메모
         </Button>
       </div>
 
@@ -248,7 +248,7 @@ export function TeamMemoBoard({
             onClick={() => fetchNextPage()}
             disabled={isFetchingNextPage}
           >
-            Load More
+            더 보기
           </Button>
         </div>
       )}

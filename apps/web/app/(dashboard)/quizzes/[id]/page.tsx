@@ -24,8 +24,8 @@ export async function generateMetadata({
 }: QuizTakingPageProps): Promise<Metadata> {
   void await params; // params needed for dynamic route
   return {
-    title: `Take Quiz | lecture-moa`,
-    description: "Complete your quiz attempt.",
+    title: `퀴즈 응시 | lecture-moa`,
+    description: "퀴즈를 완료하세요.",
   };
 }
 

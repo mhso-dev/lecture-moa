@@ -16,8 +16,8 @@ import { Metadata } from "next";
 import { PersonalMemoList } from "./_components/PersonalMemoList";
 
 export const metadata: Metadata = {
-  title: "My Memos | Lecture MoA",
-  description: "Manage your personal study memos and notes",
+  title: "내 메모 | Lecture MoA",
+  description: "개인 학습 메모와 노트를 관리하세요",
 };
 
 /**

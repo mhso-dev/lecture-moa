@@ -84,7 +84,7 @@ const MarkdownEditor = forwardRef<MarkdownEditorRef, MarkdownEditorProps>(
     {
       value,
       onChange,
-      placeholder = "Write your content here...",
+      placeholder = "내용을 입력하세요...",
       height = 500,
       preview = true,
       onTogglePreview,
@@ -362,9 +362,9 @@ const MarkdownEditor = forwardRef<MarkdownEditorRef, MarkdownEditorProps>(
                 setIsFullscreen(!isFullscreen);
               }}
               className="hover:text-[var(--color-foreground)] transition-colors"
-              title={isFullscreen ? "Exit fullscreen" : "Fullscreen"}
+              title={isFullscreen ? "전체 화면 종료" : "전체 화면"}
             >
-              {isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
+              {isFullscreen ? "전체 화면 종료" : "전체 화면"}
             </button>
           </div>
         </div>

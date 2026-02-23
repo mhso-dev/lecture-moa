@@ -23,27 +23,27 @@ interface Feature {
 const features: Feature[] = [
   {
     icon: MessageSquare,
-    title: "Interactive Q&A",
+    title: "인터랙티브 Q&A",
     description:
-      "Ask questions directly on lecture materials and get instant answers from instructors and peers.",
+      "강의 자료에서 바로 질문하고 강사와 동료로부터 즉시 답변을 받으세요.",
   },
   {
     icon: Brain,
-    title: "Smart Quizzes",
+    title: "스마트 퀴즈",
     description:
-      "AI-generated quizzes that adapt to your learning progress and help reinforce key concepts.",
+      "학습 진도에 맞춰 AI가 생성하는 퀴즈로 핵심 개념을 강화하세요.",
   },
   {
     icon: Users,
-    title: "Team Collaboration",
+    title: "팀 협업",
     description:
-      "Study together with team memos, shared notes, and collaborative learning tools.",
+      "팀 메모, 공유 노트, 협업 학습 도구로 함께 공부하세요.",
   },
   {
     icon: Sparkles,
-    title: "AI-Powered Learning",
+    title: "AI 기반 학습",
     description:
-      "Leverage AI to summarize materials, generate study guides, and personalize your learning path.",
+      "AI로 자료를 요약하고, 학습 가이드를 생성하고, 맞춤형 학습 경로를 만드세요.",
   },
 ];
 
@@ -65,21 +65,21 @@ export default async function LandingPage() {
           <span className="text-gradient">MoA</span>
         </h1>
         <p className="mt-4 max-w-lg text-body-lg text-muted-foreground">
-          AI-powered learning platform for interactive courses
+          인터랙티브 강의를 위한 AI 기반 학습 플랫폼
         </p>
 
         <div className="mt-8 flex items-center gap-4">
           {isAuthenticated ? (
             <Button asChild size="lg">
-              <Link href={"/dashboard" as Route}>Go to Dashboard</Link>
+              <Link href={"/dashboard" as Route}>대시보드로 이동</Link>
             </Button>
           ) : (
             <>
               <Button asChild size="lg">
-                <Link href="/register">Get Started</Link>
+                <Link href="/register">시작하기</Link>
               </Button>
               <Button asChild variant="ghost" size="lg">
-                <Link href="/login">Sign In</Link>
+                <Link href="/login">로그인</Link>
               </Button>
             </>
           )}
@@ -90,10 +90,10 @@ export default async function LandingPage() {
       <section className="border-t border-border bg-card-background px-4 py-20">
         <div className="mx-auto max-w-5xl">
           <h2 className="text-center text-h2 font-semibold text-foreground">
-            Everything you need to learn effectively
+            효과적인 학습에 필요한 모든 것
           </h2>
           <p className="mt-2 text-center text-body text-muted-foreground">
-            A comprehensive platform designed for modern education.
+            현대 교육을 위해 설계된 종합 플랫폼입니다.
           </p>
 
           <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -107,7 +107,7 @@ export default async function LandingPage() {
       {/* Footer */}
       <footer className="border-t border-border px-4 py-6 text-center">
         <p className="text-caption text-muted-foreground">
-          &copy; {new Date().getFullYear()} Lecture MoA. All rights reserved.
+          &copy; {new Date().getFullYear()} Lecture MoA. All rights reserved. (모든 권리 보유)
         </p>
       </footer>
     </main>

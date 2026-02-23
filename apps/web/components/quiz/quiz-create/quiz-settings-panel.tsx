@@ -122,7 +122,7 @@ export function QuizSettingsPanel({
           variant="ghost"
           className="w-full justify-between p-4 font-medium"
         >
-          <span>Quiz Settings</span>
+          <span>퀴즈 설정</span>
           {isOpen ? (
             <ChevronUp className="h-4 w-4" />
           ) : (
@@ -138,10 +138,10 @@ export function QuizSettingsPanel({
               <Clock className="mt-0.5 h-5 w-5 text-muted-foreground" />
               <div className="space-y-0.5">
                 <Label htmlFor="time-limit-enabled" className="cursor-pointer">
-                  Time Limit
+                  제한 시간
                 </Label>
                 <p className="text-sm text-muted-foreground">
-                  Set a time limit for quiz completion
+                  퀴즈 완료 제한 시간 설정
                 </p>
               </div>
             </div>
@@ -160,7 +160,7 @@ export function QuizSettingsPanel({
                     min={1}
                     max={300}
                   />
-                  <span className="text-sm text-muted-foreground">min</span>
+                  <span className="text-sm text-muted-foreground">분</span>
                 </div>
               )}
               <Switch
@@ -177,10 +177,10 @@ export function QuizSettingsPanel({
               <Target className="mt-0.5 h-5 w-5 text-muted-foreground" />
               <div className="space-y-0.5">
                 <Label htmlFor="passing-score-enabled" className="cursor-pointer">
-                  Passing Score
+                  합격 점수
                 </Label>
                 <p className="text-sm text-muted-foreground">
-                  Minimum score required to pass
+                  합격에 필요한 최소 점수
                 </p>
               </div>
             </div>
@@ -213,8 +213,8 @@ export function QuizSettingsPanel({
           {/* Allow Reattempt */}
           <SettingToggle
             id="allow-reattempt"
-            label="Allow Reattempt"
-            description="Let students retake the quiz"
+            label="재응시 허용"
+            description="학생이 퀴즈를 다시 풀 수 있도록 허용"
             checked={allowReattempt}
             onCheckedChange={onAllowReattemptChange}
             icon={<RefreshCw className="h-5 w-5" />}
@@ -223,8 +223,8 @@ export function QuizSettingsPanel({
           {/* Shuffle Questions */}
           <SettingToggle
             id="shuffle-questions"
-            label="Shuffle Questions"
-            description="Randomize question order for each attempt"
+            label="문항 순서 섞기"
+            description="응시할 때마다 문항 순서를 무작위로 변경"
             checked={shuffleQuestions}
             onCheckedChange={onShuffleQuestionsChange}
             icon={<Shuffle className="h-5 w-5" />}
@@ -233,8 +233,8 @@ export function QuizSettingsPanel({
           {/* Show Answers After Submit */}
           <SettingToggle
             id="show-answers"
-            label="Show Answers After Submit"
-            description="Display correct answers after quiz submission"
+            label="제출 후 정답 공개"
+            description="퀴즈 제출 후 정답을 표시"
             checked={showAnswersAfterSubmit}
             onCheckedChange={onShowAnswersAfterSubmitChange}
             icon={<Eye className="h-5 w-5" />}
@@ -243,8 +243,8 @@ export function QuizSettingsPanel({
           {/* Focus Loss Warning */}
           <SettingToggle
             id="focus-loss-warning"
-            label="Focus Loss Warning"
-            description="Warn students when they leave the quiz tab"
+            label="포커스 이탈 경고"
+            description="학생이 퀴즈 탭을 벗어나면 경고 표시"
             checked={focusLossWarning}
             onCheckedChange={onFocusLossWarningChange}
             icon={<AlertTriangle className="h-5 w-5" />}

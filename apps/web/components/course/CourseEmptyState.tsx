@@ -33,7 +33,7 @@ export function CourseEmptyState({
   return (
     <div
       role="status"
-      aria-label="No courses available"
+      aria-label="이용 가능한 강의 없음"
       className="flex flex-col items-center justify-center py-16 px-4"
     >
       {/* Illustration */}
@@ -50,28 +50,28 @@ export function CourseEmptyState({
 
       {/* Message */}
       <h3 className="text-lg font-semibold mb-2">
-        {hasSearchQuery ? "No results found" : "No courses yet"}
+        {hasSearchQuery ? "검색 결과가 없습니다" : "아직 강의가 없습니다"}
       </h3>
 
       {/* Description */}
       <p className="text-sm text-[var(--color-muted-foreground)] text-center max-w-md mb-6">
         {hasSearchQuery
-          ? "Try adjusting your search terms or filters to find what you're looking for."
-          : "There are no courses available at the moment. Check back later or create your own course."}
+          ? "검색어나 필터를 조정해 보세요."
+          : "현재 이용 가능한 강의가 없습니다. 나중에 다시 확인하거나 직접 강의를 만들어 보세요."}
       </p>
 
       {/* CTAs */}
       <div className="flex flex-col sm:flex-row gap-3">
         {hasSearchQuery && onClearSearch && (
           <Button variant="outline" onClick={onClearSearch}>
-            Clear search
+            검색 초기화
           </Button>
         )}
 
         {isInstructor && !hasSearchQuery && (
           <Button onClick={handleCreateCourse}>
             <Plus className="h-4 w-4 mr-2" />
-            Create Course
+            강의 만들기
           </Button>
         )}
       </div>

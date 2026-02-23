@@ -43,15 +43,15 @@ export function MyCoursesWidget() {
 
   return (
     <DashboardWidget
-      title="My Courses"
-      subtitle="Courses you manage"
+      title="내 강의"
+      subtitle="관리 중인 강의"
       headerAction={
         hasCourses ? (
           <Link
             href={"/courses" as Route}
             className="text-sm text-primary hover:underline flex items-center gap-1"
           >
-            View all
+            전체 보기
             <ChevronRight className="h-4 w-4" />
           </Link>
         ) : (
@@ -60,7 +60,7 @@ export function MyCoursesWidget() {
             className="text-sm text-primary hover:underline flex items-center gap-1"
           >
             <Plus className="h-4 w-4" />
-            Create
+            만들기
           </Link>
         )
       }
@@ -84,7 +84,7 @@ export function MyCoursesWidget() {
                       {course.title}
                     </h4>
                     <Badge variant={course.isPublished ? "default" : "secondary"} className="text-xs">
-                      {course.isPublished ? "Published" : "Draft"}
+                      {course.isPublished ? "공개" : "초안"}
                     </Badge>
                   </div>
                   <div className="mt-2 flex items-center gap-4 text-xs text-muted-foreground">
@@ -111,16 +111,16 @@ export function MyCoursesWidget() {
               href={"/courses" as Route}
               className="block text-sm text-center text-primary hover:underline pt-2"
             >
-              View {courses.length - MAX_DISPLAYED_COURSES} more courses
+              {courses.length - MAX_DISPLAYED_COURSES}개의 강의 더 보기
             </Link>
           )}
         </div>
       ) : (
         <EmptyState
           icon={BookOpen}
-          title="No courses yet"
-          description="You haven't created any courses yet."
-          action={{ label: "Create Course", href: "/courses/new" as Route }}
+          title="아직 강의가 없습니다"
+          description="아직 생성한 강의가 없습니다."
+          action={{ label: "강의 만들기", href: "/courses/new" as Route }}
         />
       )}
     </DashboardWidget>

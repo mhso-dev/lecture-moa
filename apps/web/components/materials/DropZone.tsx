@@ -75,7 +75,7 @@ export function DropZone({
                 message:
                   error instanceof Error
                     ? error.message
-                    : "Failed to read file",
+                    : "파일을 읽지 못했습니다",
               },
             ],
           },
@@ -120,7 +120,7 @@ export function DropZone({
         {...getRootProps()}
         role="button"
         tabIndex={disabled ? -1 : 0}
-        aria-label="Upload markdown file"
+        aria-label="마크다운 파일 업로드"
         aria-disabled={disabled}
         className={cn(
           "relative flex flex-col items-center justify-center rounded-lg border-2 border-dashed p-8 transition-colors",
@@ -143,7 +143,7 @@ export function DropZone({
           <>
             <div className="h-12 w-12 animate-spin rounded-full border-4 border-[var(--color-primary-200)] border-t-[var(--color-primary-600)] mb-4" />
             <p className="text-sm text-[var(--color-muted-foreground)]">
-              Reading file...
+              파일 읽는 중...
             </p>
           </>
         ) : isDragActive ? (
@@ -151,17 +151,17 @@ export function DropZone({
             <>
               <AlertCircle className="h-12 w-12 text-[var(--color-danger-500)] mb-4" />
               <p className="text-sm font-medium text-[var(--color-danger-600)]">
-                Invalid file type
+                지원하지 않는 파일 형식
               </p>
               <p className="text-xs text-[var(--color-muted-foreground)] mt-1">
-                Please upload a Markdown file (.md, .markdown)
+                Markdown 파일(.md, .markdown)을 업로드해 주세요
               </p>
             </>
           ) : (
             <>
               <FileText className="h-12 w-12 text-[var(--color-primary-500)] mb-4" />
               <p className="text-sm font-medium text-[var(--color-primary-600)]">
-                Drop to upload
+                여기에 놓으세요
               </p>
             </>
           )
@@ -169,13 +169,13 @@ export function DropZone({
           <>
             <Upload className="h-12 w-12 text-[var(--color-muted-foreground)] mb-4" />
             <p className="text-sm font-medium text-[var(--color-foreground)] mb-1">
-              Drag and drop a Markdown file here
+              Markdown 파일을 여기에 드래그하세요
             </p>
             <p className="text-xs text-[var(--color-muted-foreground)]">
-              or click to browse
+              또는 클릭하여 파일 선택
             </p>
             <p className="text-xs text-[var(--color-muted-foreground)] mt-2">
-              Supported: .md, .markdown (max {formatSize(maxSize)})
+              지원 형식: .md, .markdown (최대 {formatSize(maxSize)})
             </p>
           </>
         )}
@@ -192,7 +192,7 @@ export function DropZone({
               <AlertCircle className="h-5 w-5 text-[var(--color-danger-500)] flex-shrink-0 mt-0.5" />
               <div>
                 <p className="text-sm font-medium text-[var(--color-danger-700)] dark:text-[var(--color-danger-400)]">
-                  File upload failed
+                  파일 업로드 실패
                 </p>
                 <ul className="mt-1 text-sm text-[var(--color-danger-600)] dark:text-[var(--color-danger-500)] list-disc list-inside">
                   {rejections.map(({ file, errors }) => (
@@ -202,9 +202,9 @@ export function DropZone({
                         {errors.map((error: FileError) => (
                           <li key={error.code}>
                             {error.code === "file-too-large"
-                              ? `File is too large (max ${formatSize(maxSize)})`
+                              ? `파일이 너무 큽니다 (최대 ${formatSize(maxSize)})`
                               : error.code === "file-invalid-type"
-                                ? "Invalid file type. Please upload a Markdown file."
+                                ? "지원하지 않는 파일 형식입니다. Markdown 파일을 업로드해 주세요."
                                 : error.message}
                           </li>
                         ))}
@@ -218,7 +218,7 @@ export function DropZone({
               type="button"
               onClick={clearErrors}
               className="text-[var(--color-danger-500)] hover:text-[var(--color-danger-700)] dark:hover:text-[var(--color-danger-300)]"
-              aria-label="Dismiss error"
+              aria-label="오류 닫기"
             >
               <X className="h-4 w-4" />
             </button>
@@ -243,7 +243,7 @@ function readFileAsText(file: File): Promise<string> {
       }
     };
     reader.onerror = () => {
-      reject(new Error(reader.error?.message ?? "Failed to read file"));
+      reject(new Error(reader.error?.message ?? "파일을 읽지 못했습니다"));
     };
     reader.readAsText(file, "UTF-8");
   });

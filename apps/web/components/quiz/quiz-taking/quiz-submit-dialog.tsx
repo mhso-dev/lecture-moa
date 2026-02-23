@@ -102,11 +102,11 @@ export function QuizSubmitDialog({
         data-testid={testId}
       >
         <AlertDialogHeader>
-          <AlertDialogTitle>Submit Quiz?</AlertDialogTitle>
+          <AlertDialogTitle>퀴즈를 제출하시겠습니까?</AlertDialogTitle>
           <AlertDialogDescription asChild>
             <div className="space-y-2">
               <p>
-                You have answered {answeredCount} of {totalCount} questions.
+                {totalCount}개 문항 중 {answeredCount}개에 응답했습니다.
               </p>
               {hasUnanswered && (
                 <div className="flex items-center gap-2 text-amber-600 dark:text-amber-500">
@@ -127,11 +127,7 @@ export function QuizSubmitDialog({
                     <line x1="12" y1="17" x2="12.01" y2="17" />
                   </svg>
                   <span className="font-medium">
-                    Warning: {unansweredCount}{" "}
-                    {unansweredCount === 1
-                      ? "question"
-                      : "questions"}{" "}
-                    unanswered.
+                    경고: 미응답 문항이 {unansweredCount}개 있습니다.
                   </span>
                 </div>
               )}
@@ -143,7 +139,7 @@ export function QuizSubmitDialog({
             onClick={handleCancel}
             disabled={isSubmitting}
           >
-            Continue Quiz
+            퀴즈 계속하기
           </AlertDialogCancel>
           <AlertDialogAction
             onClick={handleConfirm}
@@ -173,10 +169,10 @@ export function QuizSubmitDialog({
                     d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                   />
                 </svg>
-                Submitting...
+                제출 중...
               </span>
             ) : (
-              "Confirm Submit"
+              "제출 확인"
             )}
           </AlertDialogAction>
         </AlertDialogFooter>

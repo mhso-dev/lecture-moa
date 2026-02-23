@@ -29,8 +29,8 @@ export async function generateMetadata({
 }: InstructorResultPageProps): Promise<Metadata> {
   void await params; // params needed for dynamic route
   return {
-    title: `Student Results | lecture-moa`,
-    description: "View student quiz submission details.",
+    title: `학생 결과 | lecture-moa`,
+    description: "학생의 퀴즈 제출 상세 내역을 확인하세요.",
   };
 }
 
@@ -95,7 +95,7 @@ export default async function InstructorResultPage({ params }: InstructorResultP
       <Link href={`/instructor/quizzes/${quizId}/submissions`}>
         <Button variant="ghost" size="sm">
           <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to Submissions
+          제출 목록으로
         </Button>
       </Link>
 
@@ -104,10 +104,10 @@ export default async function InstructorResultPage({ params }: InstructorResultP
         <div className="lg:col-span-2 space-y-6">
           <div>
             <h1 className="text-2xl font-bold tracking-tight">
-              Results: {quiz.title}
+              결과: {quiz.title}
             </h1>
             <p className="text-muted-foreground">
-              Student submission details
+              학생 제출 상세 내역
             </p>
           </div>
 
@@ -120,7 +120,7 @@ export default async function InstructorResultPage({ params }: InstructorResultP
 
           {/* Question Breakdown - Instructors always see answers */}
           <div className="space-y-4">
-            <h2 className="text-xl font-semibold">Question Review</h2>
+            <h2 className="text-xl font-semibold">문항 리뷰</h2>
             <ResultsBreakdown
               results={result.questionResults}
               showAnswers={true}
@@ -134,17 +134,17 @@ export default async function InstructorResultPage({ params }: InstructorResultP
           {/* Student Info Card */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Student Information</CardTitle>
+              <CardTitle className="text-lg">학생 정보</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <div className="text-sm text-muted-foreground">Name</div>
+                <div className="text-sm text-muted-foreground">이름</div>
                 <div className="font-medium">
-                  {currentSubmission?.userName ?? "Unknown"}
+                  {currentSubmission?.userName ?? "알 수 없음"}
                 </div>
               </div>
               <div>
-                <div className="text-sm text-muted-foreground">Submitted</div>
+                <div className="text-sm text-muted-foreground">제출 일시</div>
                 <div className="font-medium">
                   {currentSubmission?.submittedAt
                     ? new Date(currentSubmission.submittedAt).toLocaleString()
@@ -157,7 +157,7 @@ export default async function InstructorResultPage({ params }: InstructorResultP
           {/* Navigation between students */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Navigate Students</CardTitle>
+              <CardTitle className="text-lg">학생 탐색</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex items-center justify-between">
@@ -167,7 +167,7 @@ export default async function InstructorResultPage({ params }: InstructorResultP
                   >
                     <Button variant="outline" size="sm">
                       <ChevronLeft className="mr-1 h-4 w-4" />
-                      Previous
+                      이전
                     </Button>
                   </Link>
                 ) : (
@@ -186,7 +186,7 @@ export default async function InstructorResultPage({ params }: InstructorResultP
                     href={`/instructor/quizzes/${quizId}/submissions/${nextSubmission.attemptId}`}
                   >
                     <Button variant="outline" size="sm">
-                      Next
+                      다음
                       <ChevronRight className="ml-1 h-4 w-4" />
                     </Button>
                   </Link>

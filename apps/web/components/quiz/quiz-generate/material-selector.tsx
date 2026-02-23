@@ -100,14 +100,14 @@ export function MaterialSelector({
     return (
       <div className="rounded-lg border border-dashed p-8 text-center">
         <Upload className="mx-auto h-12 w-12 text-muted-foreground mb-4" />
-        <h3 className="font-medium mb-2">No materials available</h3>
+        <h3 className="font-medium mb-2">사용 가능한 자료가 없습니다</h3>
         <p className="text-sm text-muted-foreground mb-4">
-          Upload course materials first to generate quiz questions.
+          퀴즈 문항을 생성하려면 먼저 강의 자료를 업로드하세요.
         </p>
         <Link href={"/instructor/materials" as Route}>
           <Button>
             <Plus className="h-4 w-4 mr-2" />
-            Upload Materials
+            자료 업로드
           </Button>
         </Link>
       </div>
@@ -117,9 +117,9 @@ export function MaterialSelector({
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h3 className="font-medium">Select Materials</h3>
+        <h3 className="font-medium">자료 선택</h3>
         <p className="text-sm text-muted-foreground">
-          {selectedIds.length} of {materials.length} selected
+          {materials.length}개 중 {selectedIds.length}개 선택됨
         </p>
       </div>
 

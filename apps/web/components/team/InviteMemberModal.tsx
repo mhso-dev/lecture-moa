@@ -35,16 +35,16 @@ export function InviteMemberModal({
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-md" role="dialog">
         <DialogHeader>
-          <DialogTitle>Share Invite Code</DialogTitle>
+          <DialogTitle>초대 코드 공유</DialogTitle>
           <DialogDescription>
-            Email-based invitation has been replaced with invite code sharing.
-            Share your team invite code with new members instead.
+            이메일 기반 초대가 초대 코드 공유 방식으로 변경되었습니다.
+            팀 초대 코드를 새 멤버에게 공유해 주세요.
           </DialogDescription>
         </DialogHeader>
 
         <DialogFooter>
           <Button type="button" variant="outline" onClick={onClose}>
-            Close
+            닫기
           </Button>
         </DialogFooter>
       </DialogContent>

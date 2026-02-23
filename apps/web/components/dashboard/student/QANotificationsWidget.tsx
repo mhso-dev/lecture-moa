@@ -57,8 +57,8 @@ export function QANotificationsWidget() {
 
   return (
     <DashboardWidget
-      title="Notifications"
-      subtitle="Q&A updates"
+      title="알림"
+      subtitle="Q&A 업데이트"
       headerAction={
         notifications && notifications.length > 0 ? (
           <div className="flex items-center gap-2">
@@ -70,14 +70,14 @@ export function QANotificationsWidget() {
                 className="h-7 text-xs"
               >
                 <CheckCheck className="h-3 w-3 mr-1" />
-                Mark all read
+                모두 읽음 처리
               </Button>
             )}
             <Link
               href={"/qa" as Route}
               className="text-sm text-primary hover:underline flex items-center gap-1"
             >
-              View all
+              전체 보기
               <ChevronRight className="h-4 w-4" />
             </Link>
           </div>
@@ -129,15 +129,15 @@ export function QANotificationsWidget() {
               href={"/qa" as Route}
               className="block text-sm text-center text-primary hover:underline pt-2"
             >
-              View {notifications.length - MAX_DISPLAYED_NOTIFICATIONS} more
+              {notifications.length - MAX_DISPLAYED_NOTIFICATIONS}개 더 보기
             </Link>
           )}
         </div>
       ) : (
         <EmptyState
           icon={Bell}
-          title="No notifications"
-          description="No new notifications."
+          title="알림이 없습니다"
+          description="새로운 알림이 없습니다."
         />
       )}
     </DashboardWidget>

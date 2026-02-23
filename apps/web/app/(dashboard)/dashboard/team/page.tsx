@@ -16,8 +16,8 @@ import type { Metadata } from "next";
  * Page metadata for SEO and browser tab
  */
 export const metadata: Metadata = {
-  title: "Team Dashboard | lecture-moa",
-  description: "View your team activity, shared memos, and collaboration.",
+  title: "팀 대시보드 | lecture-moa",
+  description: "팀 활동, 공유 메모, 협업 현황 확인",
 };
 
 /**
@@ -42,14 +42,14 @@ export default async function TeamDashboardPage() {
     redirect("/dashboard/instructor");
   }
 
-  const name = (user.user_metadata.name as string | undefined) ?? "Student";
+  const name = (user.user_metadata.name as string | undefined) ?? "학생";
 
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">Team Dashboard</h1>
+        <h1 className="text-2xl font-bold tracking-tight">팀 대시보드</h1>
         <p className="text-muted-foreground">
-          Welcome back, {name}! Here&apos;s your team activity.
+          {name}님, 다시 오신 것을 환영합니다! 팀 활동 현황입니다.
         </p>
       </div>
 

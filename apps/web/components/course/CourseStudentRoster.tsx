@@ -88,7 +88,7 @@ function StudentRow({
       </TableCell>
       <TableCell>
         {student.progressPercent === 100 && (
-          <Badge variant="success">Completed</Badge>
+          <Badge variant="success">완료</Badge>
         )}
       </TableCell>
       <TableCell className="text-right">
@@ -96,9 +96,9 @@ function StudentRow({
           variant="ghost"
           size="sm"
           onClick={onRemove}
-          aria-label={`Remove ${student.name}`}
+          aria-label={`${student.name} 제거`}
         >
-          Remove
+          제거
         </Button>
       </TableCell>
     </TableRow>
@@ -144,12 +144,12 @@ export function CourseStudentRoster({ courseId }: CourseStudentRosterProps) {
       { courseId, userId: studentToRemove.userId },
       {
         onSuccess: () => {
-          toast.success("Student removed successfully");
+          toast.success("학생이 제거되었습니다");
           void refetch();
           setStudentToRemove(null);
         },
         onError: () => {
-          toast.error("Failed to remove student. Please try again.");
+          toast.error("학생 제거에 실패했습니다. 다시 시도해 주세요.");
         },
       }
     );
@@ -169,7 +169,7 @@ export function CourseStudentRoster({ courseId }: CourseStudentRosterProps) {
     return (
       <div className="text-center py-8">
         <p className="text-[var(--color-muted-foreground)]">
-          No students enrolled yet.
+          아직 등록된 학생이 없습니다.
         </p>
       </div>
     );
@@ -180,11 +180,11 @@ export function CourseStudentRoster({ courseId }: CourseStudentRosterProps) {
       <Table role="table">
         <TableHeader>
           <TableRow>
-            <TableHead>Student</TableHead>
-            <TableHead>Enrolled</TableHead>
-            <TableHead>Progress</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead className="text-right">Actions</TableHead>
+            <TableHead>학생</TableHead>
+            <TableHead>등록일</TableHead>
+            <TableHead>진도</TableHead>
+            <TableHead>상태</TableHead>
+            <TableHead className="text-right">관리</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -205,19 +205,19 @@ export function CourseStudentRoster({ courseId }: CourseStudentRosterProps) {
       >
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Remove Student</AlertDialogTitle>
+            <AlertDialogTitle>학생 제거</AlertDialogTitle>
             <AlertDialogDescription>
-              Are you sure you want to remove {studentToRemove?.name} from this
-              course? Their progress will be lost.
+              정말 {studentToRemove?.name}님을 이 강의에서 제거하시겠습니까?
+              해당 학생의 진도가 삭제됩니다.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogCancel>취소</AlertDialogCancel>
             <AlertDialogAction
               onClick={handleConfirmRemove}
               className="bg-[var(--color-error-600)] hover:bg-[var(--color-error-700)]"
             >
-              Confirm
+              확인
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

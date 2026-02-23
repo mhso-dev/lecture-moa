@@ -90,7 +90,7 @@ export function MaterialNavigation({
         "flex items-center justify-between gap-4 border-t border-[var(--color-border)] pt-6",
         className
       )}
-      aria-label="Material navigation"
+      aria-label="자료 내비게이션"
     >
       {/* Previous */}
       <div className="flex-1">
@@ -104,12 +104,12 @@ export function MaterialNavigation({
               "dark:hover:bg-[var(--color-neutral-800)]",
               "transition-colors duration-150"
             )}
-            aria-label={`Previous: ${previous.title}`}
+            aria-label={`이전: ${previous.title}`}
           >
             <ChevronLeft className="h-5 w-5 shrink-0 transition-transform group-hover:-translate-x-1" />
             <div className="min-w-0 text-left">
               <div className="text-xs uppercase tracking-wide opacity-60">
-                Previous
+                이전
               </div>
               <div className="truncate text-sm font-medium text-[var(--color-foreground)]">
                 {truncateTitle(previous.title)}
@@ -121,8 +121,8 @@ export function MaterialNavigation({
             <div className="flex items-center gap-2">
               <ChevronLeft className="h-5 w-5" />
               <div>
-                <div className="text-xs uppercase tracking-wide">Previous</div>
-                <div className="text-sm">No previous material</div>
+                <div className="text-xs uppercase tracking-wide">이전</div>
+                <div className="text-sm">이전 자료 없음</div>
               </div>
             </div>
           </div>
@@ -141,11 +141,11 @@ export function MaterialNavigation({
               "dark:hover:bg-[var(--color-neutral-800)]",
               "transition-colors duration-150"
             )}
-            aria-label={`Next: ${next.title}`}
+            aria-label={`다음: ${next.title}`}
           >
             <div className="min-w-0 text-right">
               <div className="text-xs uppercase tracking-wide opacity-60">
-                Next
+                다음
               </div>
               <div className="truncate text-sm font-medium text-[var(--color-foreground)]">
                 {truncateTitle(next.title)}
@@ -157,8 +157,8 @@ export function MaterialNavigation({
           <div className="p-3 opacity-40">
             <div className="flex items-center justify-end gap-2">
               <div>
-                <div className="text-xs uppercase tracking-wide">Next</div>
-                <div className="text-sm">No next material</div>
+                <div className="text-xs uppercase tracking-wide">다음</div>
+                <div className="text-sm">다음 자료 없음</div>
               </div>
               <ChevronRight className="h-5 w-5" />
             </div>

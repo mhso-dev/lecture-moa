@@ -17,14 +17,14 @@ interface RoleOption {
 const ROLE_OPTIONS: RoleOption[] = [
   {
     value: "instructor",
-    label: "Instructor",
-    description: "Create courses, upload materials, and manage quizzes",
+    label: "강사",
+    description: "강의를 만들고, 자료를 업로드하고, 퀴즈를 관리합니다",
     icon: <GraduationCap className="h-6 w-6" />,
   },
   {
     value: "student",
-    label: "Student",
-    description: "Study materials, take quizzes, and collaborate with teams",
+    label: "학생",
+    description: "자료를 학습하고, 퀴즈를 풀고, 팀과 협업합니다",
     icon: <BookOpen className="h-6 w-6" />,
   },
 ];
@@ -87,7 +87,7 @@ export function RoleSelector({ value, onChange }: RoleSelectorProps) {
     <div
       ref={containerRef}
       role="radiogroup"
-      aria-label="Select your role"
+      aria-label="역할을 선택하세요"
       className="grid grid-cols-2 gap-3"
     >
       {ROLE_OPTIONS.map((option) => {

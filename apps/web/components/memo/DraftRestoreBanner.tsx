@@ -68,7 +68,7 @@ export function DraftRestoreBanner({
    * Format saved time
    */
   const formatSavedTime = () => {
-    if (!savedAt) return "previously";
+    if (!savedAt) return "이전";
 
     const now = new Date();
     const diffMs = now.getTime() - savedAt.getTime();
@@ -77,13 +77,13 @@ export function DraftRestoreBanner({
     const diffDays = Math.floor(diffHours / 24);
 
     if (diffDays > 0) {
-      return `${diffDays} day${diffDays > 1 ? "s" : ""} ago`;
+      return `${diffDays}일 전`;
     } else if (diffHours > 0) {
-      return `${diffHours} hour${diffHours > 1 ? "s" : ""} ago`;
+      return `${diffHours}시간 전`;
     } else if (diffMins > 0) {
-      return `${diffMins} minute${diffMins > 1 ? "s" : ""} ago`;
+      return `${diffMins}분 전`;
     } else {
-      return "just now";
+      return "방금 전";
     }
   };
 
@@ -107,10 +107,10 @@ export function DraftRestoreBanner({
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2">
           <FileText className="h-4 w-4 text-[var(--color-muted-foreground)]" />
-          <p className="text-sm font-medium">Unsaved draft found</p>
+          <p className="text-sm font-medium">저장되지 않은 임시저장본이 있습니다</p>
         </div>
         <p className="text-xs text-[var(--color-muted-foreground)] mt-1">
-          You have an unsaved draft from {formatSavedTime()}. Would you like to restore it?
+          {formatSavedTime()}에 저장된 임시저장본이 있습니다. 복원하시겠습니까?
         </p>
       </div>
 
@@ -121,7 +121,7 @@ export function DraftRestoreBanner({
           onClick={onDiscard}
           className="text-xs"
         >
-          Discard
+          삭제
         </Button>
         <Button
           size="sm"
@@ -131,14 +131,14 @@ export function DraftRestoreBanner({
           }}
           className="text-xs"
         >
-          Restore Draft
+          임시저장본 복원
         </Button>
         <Button
           variant="ghost"
           size="icon"
           className="h-6 w-6"
           onClick={handleDismiss}
-          aria-label="Dismiss"
+          aria-label="닫기"
         >
           <X className="h-4 w-4" />
         </Button>

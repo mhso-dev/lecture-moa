@@ -30,7 +30,7 @@ interface SubmissionListProps {
  */
 function formatSubmittedAt(timestamp: string): string {
   const date = new Date(timestamp);
-  return date.toLocaleDateString("en-US", {
+  return date.toLocaleDateString("ko-KR", {
     year: "numeric",
     month: "short",
     day: "numeric",
@@ -43,12 +43,12 @@ function formatSubmittedAt(timestamp: string): string {
  * Generate CSV content from submissions
  */
 function generateCSV(submissions: QuizSubmissionSummary[]): string {
-  const headers = ["Student Name", "Score", "Percentage", "Status", "Submitted At"];
+  const headers = ["학생 이름", "점수", "백분율", "상태", "제출 일시"];
   const rows = submissions.map((sub) => [
     sub.userName,
     String(sub.score),
     `${String(sub.percentage)}%`,
-    sub.passed === null ? "Pending" : sub.passed ? "Passed" : "Failed",
+    sub.passed === null ? "대기 중" : sub.passed ? "합격" : "불합격",
     formatSubmittedAt(sub.submittedAt),
   ]);
 
@@ -83,17 +83,17 @@ function StatusBadge({ passed }: { passed: boolean | null }) {
   if (passed === null) {
     return (
       <Badge variant="outline" className="bg-amber-50 text-amber-700 border-amber-200">
-        Pending
+        대기 중
       </Badge>
     );
   }
 
   return passed ? (
     <Badge variant="default" className="bg-green-600">
-      Passed
+      합격
     </Badge>
   ) : (
-    <Badge variant="destructive">Failed</Badge>
+    <Badge variant="destructive">불합격</Badge>
   );
 }
 
@@ -103,7 +103,7 @@ function StatusBadge({ passed }: { passed: boolean | null }) {
 function EmptyState() {
   return (
     <div className="flex flex-col items-center justify-center py-12 text-center">
-      <p className="text-muted-foreground">No submissions yet</p>
+      <p className="text-muted-foreground">아직 제출 내역이 없습니다</p>
     </div>
   );
 }
@@ -159,26 +159,26 @@ export function SubmissionList({
     <div className={className} data-testid={testId}>
       <Card>
         <CardHeader className="flex flex-row items-center justify-between">
-        <CardTitle>Submissions ({submissions.length})</CardTitle>
+        <CardTitle>제출 현황 ({submissions.length})</CardTitle>
         <Button
           variant="outline"
           size="sm"
           onClick={() => { handleExportCSV(submissions) }}
         >
           <Download className="h-4 w-4 mr-2" data-testid="download-icon" />
-          Export CSV
+          CSV 내보내기
         </Button>
       </CardHeader>
 
       <CardContent>
         {/* Header row */}
         <div className="flex items-center gap-4 py-3 border-b font-medium text-sm text-muted-foreground">
-          <div className="flex-1">Student</div>
+          <div className="flex-1">학생</div>
           <div
             className="w-24 text-center cursor-pointer hover:text-foreground"
             onClick={() => { handleSort("score") }}
           >
-            Score
+            점수
             {sortColumn === "score" && (
               sortDirection === "asc" ? (
                 <ChevronUp className="inline h-4 w-4 ml-1" data-testid="chevron-up-icon" />
@@ -187,12 +187,12 @@ export function SubmissionList({
               )
             )}
           </div>
-          <div className="w-24 text-center">Status</div>
+          <div className="w-24 text-center">상태</div>
           <div
             className="w-40 cursor-pointer hover:text-foreground"
             onClick={() => { handleSort("submittedAt") }}
           >
-            Submitted
+            제출 일시
             {sortColumn === "submittedAt" && (
               sortDirection === "asc" ? (
                 <ChevronUp className="inline h-4 w-4 ml-1" data-testid="chevron-up-icon" />
@@ -201,7 +201,7 @@ export function SubmissionList({
               )
             )}
           </div>
-          <div className="w-28 text-right">Actions</div>
+          <div className="w-28 text-right">작업</div>
         </div>
 
         {/* Submission rows */}
@@ -236,7 +236,7 @@ export function SubmissionList({
                   size="sm"
                   onClick={() => onViewDetails?.(submission.attemptId)}
                 >
-                  View Details
+                  상세 보기
                   <ExternalLink className="h-4 w-4 ml-1" data-testid="external-link-icon" />
                 </Button>
               </div>
@@ -247,7 +247,7 @@ export function SubmissionList({
         {/* Passing score info */}
         {passingScore !== undefined && (
           <div className="mt-4 pt-4 border-t text-sm text-muted-foreground">
-            Passing score: {passingScore}%
+            합격 점수: {passingScore}%
           </div>
         )}
       </CardContent>

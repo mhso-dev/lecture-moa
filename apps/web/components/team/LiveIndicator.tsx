@@ -26,22 +26,22 @@ const STATUS_CONFIG = {
   connected: {
     variant: "default" as const,
     dotColor: "bg-green-500",
-    label: "Live",
+    label: "실시간",
   },
   connecting: {
     variant: "secondary" as const,
     dotColor: "bg-yellow-500",
-    label: "Connecting...",
+    label: "연결 중...",
   },
   disconnected: {
     variant: "secondary" as const,
     dotColor: "bg-gray-500",
-    label: "Reconnecting...",
+    label: "재연결 중...",
   },
   error: {
     variant: "destructive" as const,
     dotColor: "bg-red-500",
-    label: "Error",
+    label: "오류",
   },
 } as const;
 
@@ -68,7 +68,7 @@ export function LiveIndicator({ status, className }: LiveIndicatorProps) {
     <Badge
       variant={config.variant}
       className={cn("flex items-center gap-1.5", className)}
-      aria-label={`Connection status: ${config.label}`}
+      aria-label={`연결 상태: ${config.label}`}
     >
       {/* Animated dot */}
       <span

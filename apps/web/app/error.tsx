@@ -28,29 +28,29 @@ export default function Error({ error, reset }: ErrorProps) {
       </div>
 
       <h1 className="mb-2 text-2xl font-semibold tracking-tight">
-        Something went wrong
+        문제가 발생했습니다
       </h1>
 
       <p className="mb-6 max-w-md text-muted-foreground">
-        {error.message || "An unexpected error occurred. Please try again."}
+        {error.message || "예상치 못한 오류가 발생했습니다. 다시 시도해 주세요."}
       </p>
 
       {error.digest && (
         <p className="mb-4 text-xs text-muted-foreground">
-          Error ID: {error.digest}
+          오류 ID: {error.digest}
         </p>
       )}
 
       <div className="flex flex-wrap items-center justify-center gap-4">
         <Button onClick={reset} variant="default" className="gap-2">
           <RefreshCw className="h-4 w-4" />
-          Try Again
+          다시 시도
         </Button>
 
         <Button asChild variant="outline" className="gap-2">
           <a href="/">
             <Home className="h-4 w-4" />
-            Go Home
+            홈으로 이동
           </a>
         </Button>
       </div>

@@ -29,8 +29,8 @@ export async function generateMetadata({
 }: QuizResultsPageProps): Promise<Metadata> {
   void await params; // params needed for dynamic route
   return {
-    title: `Quiz Results | lecture-moa`,
-    description: "View your quiz results and answers.",
+    title: `퀴즈 결과 | lecture-moa`,
+    description: "퀴즈 결과와 답변을 확인하세요.",
   };
 }
 
@@ -99,7 +99,7 @@ export default async function QuizResultsPage({
       <Link href="/quizzes">
         <Button variant="ghost" size="sm">
           <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to Quizzes
+          퀴즈 목록으로
         </Button>
       </Link>
 
@@ -115,7 +115,7 @@ export default async function QuizResultsPage({
       {/* REQ-FE-622: Question Breakdown */}
       {quiz.showAnswersAfterSubmit && (
         <div className="space-y-4">
-          <h2 className="text-xl font-semibold">Question Review</h2>
+          <h2 className="text-xl font-semibold">문항 리뷰</h2>
           <ResultsBreakdown
             results={result.questionResults}
             showAnswers={quiz.showAnswersAfterSubmit}

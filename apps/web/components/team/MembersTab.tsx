@@ -56,9 +56,9 @@ export function MembersTab({ teamId, currentUserId }: MembersTabProps) {
     return (
       <div className="flex flex-col items-center justify-center p-8 text-center">
         <Users className="h-12 w-12 text-muted-foreground mb-4" />
-        <h3 className="font-semibold text-lg">Failed to load members</h3>
+        <h3 className="font-semibold text-lg">멤버를 불러오지 못했습니다</h3>
         <p className="text-muted-foreground">
-          Please try refreshing the page.
+          페이지를 새로고침해 주세요.
         </p>
       </div>
     );
@@ -68,14 +68,14 @@ export function MembersTab({ teamId, currentUserId }: MembersTabProps) {
     return (
       <div className="flex flex-col items-center justify-center p-8 text-center">
         <Users className="h-12 w-12 text-muted-foreground mb-4" />
-        <h3 className="font-semibold text-lg">No members yet</h3>
+        <h3 className="font-semibold text-lg">아직 멤버가 없습니다</h3>
         <p className="text-muted-foreground mb-4">
-          Invite people to join your team.
+          팀에 참여할 사람을 초대하세요.
         </p>
         {isCurrentUserLeader && (
           <Button onClick={() => { setShowInviteModal(true); }}>
             <Plus className="h-4 w-4 mr-2" />
-            Invite Member
+            멤버 초대
           </Button>
         )}
       </div>
@@ -89,13 +89,13 @@ export function MembersTab({ teamId, currentUserId }: MembersTabProps) {
         <div className="flex items-center gap-2">
           <Users className="h-5 w-5 text-muted-foreground" />
           <span className="font-medium">
-            {members.length} member{members.length !== 1 ? "s" : ""}
+            멤버 {members.length}명
           </span>
         </div>
         {isCurrentUserLeader && (
           <Button onClick={() => { setShowInviteModal(true); }}>
             <Plus className="h-4 w-4 mr-2" />
-            Invite Member
+            멤버 초대
           </Button>
         )}
       </div>

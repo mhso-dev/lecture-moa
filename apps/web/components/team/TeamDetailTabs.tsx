@@ -78,47 +78,47 @@ export function TeamDetailTabs({ teamId: _teamId }: TeamDetailTabsProps) {
         <TabsTrigger
           value="members"
           data-value="members"
-          aria-label="Members"
+          aria-label="멤버"
         >
-          Members
+          멤버
         </TabsTrigger>
         <TabsTrigger
           value="materials"
           data-value="materials"
-          aria-label="Shared Materials"
+          aria-label="공유 자료"
         >
-          Shared Materials
+          공유 자료
         </TabsTrigger>
         <TabsTrigger
           value="memos"
           data-value="memos"
-          aria-label="Team Memos"
+          aria-label="팀 메모"
         >
-          Team Memos
+          팀 메모
         </TabsTrigger>
         <TabsTrigger
           value="activity"
           data-value="activity"
-          aria-label="Activity"
+          aria-label="활동"
         >
-          Activity
+          활동
         </TabsTrigger>
       </TabsList>
 
-      <TabsContent value="members" aria-label="Members">
-        <div className="p-4">Members content placeholder</div>
+      <TabsContent value="members" aria-label="멤버">
+        <div className="p-4">멤버 콘텐츠 영역</div>
       </TabsContent>
 
-      <TabsContent value="materials" aria-label="Shared Materials">
-        <div className="p-4">Shared materials content placeholder</div>
+      <TabsContent value="materials" aria-label="공유 자료">
+        <div className="p-4">공유 자료 콘텐츠 영역</div>
       </TabsContent>
 
-      <TabsContent value="memos" aria-label="Team Memos">
-        <div className="p-4">Team memos content placeholder</div>
+      <TabsContent value="memos" aria-label="팀 메모">
+        <div className="p-4">팀 메모 콘텐츠 영역</div>
       </TabsContent>
 
-      <TabsContent value="activity" aria-label="Activity">
-        <div className="p-4">Activity content placeholder</div>
+      <TabsContent value="activity" aria-label="활동">
+        <div className="p-4">활동 콘텐츠 영역</div>
       </TabsContent>
     </Tabs>
   );

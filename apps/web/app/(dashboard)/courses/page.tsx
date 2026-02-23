@@ -108,7 +108,7 @@ export default function CourseListPage() {
     return (
       <div className="flex h-96 items-center justify-center">
         <p className="text-body text-neutral-500">
-          Error loading courses. Please try again.
+          강의를 불러오는 데 실패했습니다. 다시 시도해 주세요.
         </p>
       </div>
     );
@@ -162,9 +162,9 @@ function PageHeader({
   return (
     <div className="flex items-center justify-between">
       <div>
-        <h1 className="text-h1 font-semibold text-foreground">Courses</h1>
+        <h1 className="text-h1 font-semibold text-foreground">강의</h1>
         <p className="mt-2 text-body text-neutral-500">
-          Browse and enroll in courses
+          강의를 탐색하고 수강 신청하세요
         </p>
       </div>
 
@@ -174,7 +174,7 @@ function PageHeader({
             variant="outline"
             size="icon"
             onClick={onViewToggle}
-            aria-label={`Switch to ${viewMode === "grid" ? "list" : "grid"} view`}
+            aria-label={`${viewMode === "grid" ? "목록" : "그리드"} 보기로 전환`}
           >
             {viewMode === "grid" ? (
               <List className="h-4 w-4" />
@@ -187,7 +187,7 @@ function PageHeader({
         {isInstructor && onCreateCourse && (
           <Button onClick={onCreateCourse}>
             <Plus className="mr-2 h-4 w-4" />
-            Create Course
+            강의 만들기
           </Button>
         )}
       </div>

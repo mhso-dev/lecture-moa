@@ -16,8 +16,8 @@ import { Metadata } from "next";
 import { NewMemoEditor } from "./_components/NewMemoEditor";
 
 export const metadata: Metadata = {
-  title: "New Memo | Lecture MoA",
-  description: "Create a new personal study memo",
+  title: "새 메모 | Lecture MoA",
+  description: "새 개인 학습 메모를 작성하세요",
 };
 
 /**

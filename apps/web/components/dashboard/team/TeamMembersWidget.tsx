@@ -22,7 +22,7 @@ const MAX_DISPLAYED_MEMBERS = 10;
  * Get member count display string
  */
 function getMemberCountDisplay(count: number): string {
-  return String(count) + " members";
+  return String(count) + "명";
 }
 
 /**
@@ -88,7 +88,7 @@ export function TeamMembersWidget({ teamId = "" }: TeamMembersWidgetProps) {
 
   return (
     <DashboardWidget
-      title="Team Members"
+      title="팀 멤버"
       subtitle={overview ? getMemberCountDisplay(overview.memberCount) : undefined}
       headerAction={
         members && members.length > 0 ? (
@@ -96,7 +96,7 @@ export function TeamMembersWidget({ teamId = "" }: TeamMembersWidgetProps) {
             href={`/teams/${overview?.id ?? ""}/members` as Route}
             className="text-sm text-primary hover:underline flex items-center gap-1"
           >
-            View all
+            전체 보기
             <ChevronRight className="h-4 w-4" />
           </Link>
         ) : undefined
@@ -130,7 +130,7 @@ export function TeamMembersWidget({ teamId = "" }: TeamMembersWidgetProps) {
                         "absolute bottom-0 right-0 h-3 w-3 rounded-full",
                         "bg-green-500 ring-2 ring-background"
                       )}
-                      aria-label="Active now"
+                      aria-label="현재 활동 중"
                     />
                   )}
                 </div>
@@ -143,7 +143,7 @@ export function TeamMembersWidget({ teamId = "" }: TeamMembersWidgetProps) {
                     {member.role === "leader" && (
                       <span className="inline-flex items-center gap-1 text-xs text-amber-600 dark:text-amber-500">
                         <Crown className="h-3 w-3" />
-                        Leader
+                        리더
                       </span>
                     )}
                   </div>
@@ -157,13 +157,13 @@ export function TeamMembersWidget({ teamId = "" }: TeamMembersWidgetProps) {
               href={`/teams/${overview?.id ?? ""}/members` as Route}
               className="block text-sm text-center text-primary hover:underline pt-2"
             >
-              View {members.length - MAX_DISPLAYED_MEMBERS} more members
+              {members.length - MAX_DISPLAYED_MEMBERS}명 더 보기
             </Link>
           )}
         </div>
       ) : (
         <div className="text-center py-4 text-muted-foreground text-sm">
-          No members in this team
+          이 팀에 멤버가 없습니다
         </div>
       )}
     </DashboardWidget>

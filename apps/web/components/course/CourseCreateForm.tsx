@@ -48,12 +48,12 @@ interface CourseCreateFormProps {
 }
 
 const CATEGORY_OPTIONS = [
-  { value: "programming", label: "Programming" },
-  { value: "design", label: "Design" },
-  { value: "business", label: "Business" },
-  { value: "science", label: "Science" },
-  { value: "language", label: "Language" },
-  { value: "other", label: "Other" },
+  { value: "programming", label: "프로그래밍" },
+  { value: "design", label: "디자인" },
+  { value: "business", label: "비즈니스" },
+  { value: "science", label: "과학" },
+  { value: "language", label: "언어" },
+  { value: "other", label: "기타" },
 ];
 
 /**
@@ -102,7 +102,7 @@ export function CourseCreateForm({ onSuccess }: CourseCreateFormProps) {
   const onSubmit = (data: CreateCourseInput) => {
     createMutation.mutate(data, {
       onSuccess: (course) => {
-        toast.success("Course created successfully!");
+        toast.success("강의가 생성되었습니다!");
         if (onSuccess) {
           onSuccess(course.id);
         } else {
@@ -110,7 +110,7 @@ export function CourseCreateForm({ onSuccess }: CourseCreateFormProps) {
         }
       },
       onError: (error) => {
-        toast.error("Failed to create course. Please try again.");
+        toast.error("강의 생성에 실패했습니다. 다시 시도해 주세요.");
         console.error("Create course error:", error);
       },
     });
@@ -125,16 +125,16 @@ export function CourseCreateForm({ onSuccess }: CourseCreateFormProps) {
           name="title"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Title *</FormLabel>
+              <FormLabel>제목 *</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="Enter course title"
+                  placeholder="강의 제목을 입력하세요"
                   {...field}
                   aria-required="true"
                 />
               </FormControl>
               <FormDescription>
-                3-100 characters
+                3-100자
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -147,17 +147,17 @@ export function CourseCreateForm({ onSuccess }: CourseCreateFormProps) {
           name="description"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Description *</FormLabel>
+              <FormLabel>설명 *</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="Describe your course"
+                  placeholder="강의에 대해 설명해 주세요"
                   rows={4}
                   {...field}
                   aria-required="true"
                 />
               </FormControl>
               <FormDescription>
-                10-2000 characters
+                10-2000자
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -170,11 +170,11 @@ export function CourseCreateForm({ onSuccess }: CourseCreateFormProps) {
           name="category"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Category *</FormLabel>
+              <FormLabel>카테고리 *</FormLabel>
               <Select onValueChange={field.onChange} value={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select a category" />
+                    <SelectValue placeholder="카테고리 선택" />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
@@ -196,7 +196,7 @@ export function CourseCreateForm({ onSuccess }: CourseCreateFormProps) {
           name="thumbnailUrl"
           render={() => (
             <FormItem>
-              <FormLabel>Thumbnail</FormLabel>
+              <FormLabel>썸네일</FormLabel>
               <FormControl>
                 <div className="space-y-4">
                   {thumbnailPreview ? (
@@ -212,7 +212,7 @@ export function CourseCreateForm({ onSuccess }: CourseCreateFormProps) {
                         size="icon"
                         className="absolute -top-2 -right-2 h-6 w-6"
                         onClick={handleRemoveThumbnail}
-                        aria-label="Remove thumbnail"
+                        aria-label="썸네일 제거"
                       >
                         <X className="h-4 w-4" />
                       </Button>
@@ -224,7 +224,7 @@ export function CourseCreateForm({ onSuccess }: CourseCreateFormProps) {
                     >
                       <Upload className="h-8 w-8 text-[var(--color-muted-foreground)] mb-2" />
                       <span className="text-sm text-[var(--color-muted-foreground)]">
-                        Upload thumbnail
+                        썸네일 업로드
                       </span>
                       <input
                         id="thumbnail-upload"
@@ -233,7 +233,7 @@ export function CourseCreateForm({ onSuccess }: CourseCreateFormProps) {
                         accept="image/*"
                         className="hidden"
                         onChange={handleThumbnailChange}
-                        aria-label="Thumbnail"
+                        aria-label="썸네일"
                       />
                     </label>
                   )}
@@ -250,7 +250,7 @@ export function CourseCreateForm({ onSuccess }: CourseCreateFormProps) {
           name="visibility"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Visibility *</FormLabel>
+              <FormLabel>공개 설정 *</FormLabel>
               <FormControl>
                 <RadioGroup
                   onValueChange={field.onChange}
@@ -262,7 +262,7 @@ export function CourseCreateForm({ onSuccess }: CourseCreateFormProps) {
                       <RadioGroupItem value="public" />
                     </FormControl>
                     <FormLabel className="font-normal cursor-pointer">
-                      Public
+                      공개
                     </FormLabel>
                   </FormItem>
                   <FormItem className="flex items-center space-x-3 space-y-0">
@@ -270,13 +270,13 @@ export function CourseCreateForm({ onSuccess }: CourseCreateFormProps) {
                       <RadioGroupItem value="invite_only" />
                     </FormControl>
                     <FormLabel className="font-normal cursor-pointer">
-                      Invite Only
+                      초대 전용
                     </FormLabel>
                   </FormItem>
                 </RadioGroup>
               </FormControl>
               <FormDescription>
-                Public courses can be discovered by all users. Invite-only courses require an invite code.
+                공개 강의는 모든 사용자가 검색할 수 있습니다. 초대 전용 강의는 초대 코드가 필요합니다.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -290,7 +290,7 @@ export function CourseCreateForm({ onSuccess }: CourseCreateFormProps) {
             variant="outline"
             onClick={() => { router.back(); }}
           >
-            Cancel
+            취소
           </Button>
           <Button
             type="submit"
@@ -299,7 +299,7 @@ export function CourseCreateForm({ onSuccess }: CourseCreateFormProps) {
             {createMutation.isPending && (
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
             )}
-            Create Course
+            강의 만들기
           </Button>
         </div>
       </form>

@@ -36,7 +36,7 @@ export default function CourseCreatePage() {
   if (isLoading) {
     return (
       <div className="flex h-96 items-center justify-center">
-        <p className="text-body text-[var(--color-muted-foreground)]">Loading...</p>
+        <p className="text-body text-[var(--color-muted-foreground)]">로딩 중...</p>
       </div>
     );
   }
@@ -58,14 +58,14 @@ export default function CourseCreatePage() {
           variant="ghost"
           size="icon"
           onClick={() => { router.back(); }}
-          aria-label="Go back"
+          aria-label="뒤로 가기"
         >
           <ArrowLeft className="h-5 w-5" />
         </Button>
         <div>
-          <h1 className="text-h1 font-semibold text-foreground">Create Course</h1>
+          <h1 className="text-h1 font-semibold text-foreground">강의 만들기</h1>
           <p className="mt-1 text-body text-[var(--color-muted-foreground)]">
-            Create a new course for your students
+            학생들을 위한 새 강의를 만들어 보세요
           </p>
         </div>
       </div>

@@ -122,27 +122,27 @@ export function ResultsChart({
       <div className="flex flex-col gap-2">
         {/* Screen reader text */}
         <span className="sr-only">
-          {correct} correct, {incorrect} incorrect, {unanswered} unanswered
+          정답 {correct}개, 오답 {incorrect}개, 미응답 {unanswered}개
         </span>
 
         {/* Correct */}
         <div className="flex items-center gap-2">
           <div className="h-3 w-3 rounded-sm bg-[hsl(var(--chart-2,142.1_76.2%_36.3%))]" />
-          <span className="text-sm text-muted-foreground">Correct</span>
+          <span className="text-sm text-muted-foreground">정답</span>
           <span className="ml-auto font-semibold">{correct}</span>
         </div>
 
         {/* Incorrect */}
         <div className="flex items-center gap-2">
           <div className="h-3 w-3 rounded-sm bg-[hsl(var(--destructive))]" />
-          <span className="text-sm text-muted-foreground">Incorrect</span>
+          <span className="text-sm text-muted-foreground">오답</span>
           <span className="ml-auto font-semibold">{incorrect}</span>
         </div>
 
         {/* Unanswered */}
         <div className="flex items-center gap-2">
           <div className="h-3 w-3 rounded-sm bg-[hsl(var(--muted-foreground))]" />
-          <span className="text-sm text-muted-foreground">Unanswered</span>
+          <span className="text-sm text-muted-foreground">미응답</span>
           <span className="ml-auto font-semibold">{unanswered}</span>
         </div>
       </div>

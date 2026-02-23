@@ -60,13 +60,13 @@ export function AvatarUpload({
 
     // Validate file type
     if (!ACCEPTED_TYPES.includes(file.type)) {
-      toast.error("Please select a JPEG, PNG, or WebP image.");
+      toast.error("JPEG, PNG 또는 WebP 이미지를 선택해 주세요.");
       return;
     }
 
     // Validate file size
     if (file.size > MAX_FILE_SIZE) {
-      toast.error("Image must be smaller than 5 MB.");
+      toast.error("이미지 크기는 5MB 이하여야 합니다.");
       return;
     }
 
@@ -91,11 +91,11 @@ export function AvatarUpload({
 
       const data = (await response.json()) as { data: { url: string } };
       onAvatarChange(data.data.url);
-      toast.success("Avatar updated");
+      toast.success("프로필 사진이 변경되었습니다");
     } catch {
       // Revert preview on failure
       setPreviewUrl(null);
-      toast.error("Failed to upload avatar. Please try again.");
+      toast.error("프로필 사진 업로드에 실패했습니다. 다시 시도해 주세요.");
     } finally {
       setIsUploading(false);
       // Revoke the object URL to free memory
@@ -134,10 +134,10 @@ export function AvatarUpload({
           disabled={isUploading}
         >
           <Camera className="mr-2 h-4 w-4" />
-          Change avatar
+          프로필 사진 변경
         </Button>
         <p className="text-xs text-muted-foreground">
-          JPEG, PNG, or WebP. Max 5 MB.
+          JPEG, PNG 또는 WebP. 최대 5MB.
         </p>
       </div>
 
@@ -148,7 +148,7 @@ export function AvatarUpload({
         accept="image/jpeg,image/png,image/webp"
         className="hidden"
         onChange={handleFileChange}
-        aria-label="Upload avatar image"
+        aria-label="프로필 사진 업로드"
       />
     </div>
   );

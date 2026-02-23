@@ -123,8 +123,8 @@ export function CourseSearchBar({
         ref={inputRef}
         type="search"
         role="searchbox"
-        aria-label="Search courses"
-        placeholder="Search courses..."
+        aria-label="강의 검색"
+        placeholder="강의 검색..."
         value={value}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
@@ -140,7 +140,7 @@ export function CourseSearchBar({
           size="icon"
           className="absolute right-1 top-1/2 -translate-y-1/2 h-7 w-7"
           onClick={handleClear}
-          aria-label="Clear search"
+          aria-label="검색 지우기"
         >
           <X className="h-4 w-4" />
         </Button>

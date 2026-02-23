@@ -103,13 +103,13 @@ function formatRelativeTime(isoString: string): string {
   const diffDay = Math.floor(diffHour / 24);
 
   if (diffSec < 60) {
-    return "just now";
+    return "방금 전";
   } else if (diffMin < 60) {
-    return `${String(diffMin)} minute${diffMin > 1 ? "s" : ""} ago`;
+    return `${String(diffMin)}분 전`;
   } else if (diffHour < 24) {
-    return `${String(diffHour)} hour${diffHour > 1 ? "s" : ""} ago`;
+    return `${String(diffHour)}시간 전`;
   } else if (diffDay < 7) {
-    return `${String(diffDay)} day${diffDay > 1 ? "s" : ""} ago`;
+    return `${String(diffDay)}일 전`;
   } else {
     return date.toLocaleDateString();
   }
@@ -392,12 +392,12 @@ export default function MaterialEditPage() {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4">
         <AlertTriangle className="h-12 w-12 text-[var(--color-error-500)]" />
-        <h2 className="text-xl font-semibold">Failed to load material</h2>
+        <h2 className="text-xl font-semibold">자료를 불러오지 못했습니다</h2>
         <Button
           variant="outline"
           onClick={() => { router.push(`/courses/${courseId}/materials`); }}
         >
-          Back to Materials
+          자료 목록으로
         </Button>
       </div>
     );
@@ -415,13 +415,13 @@ export default function MaterialEditPage() {
                 variant="ghost"
                 size="icon"
                 onClick={() => { router.push(`/courses/${courseId}/materials/${materialId}`); }}
-                aria-label="Back to material"
+                aria-label="자료로 돌아가기"
               >
                 <ArrowLeft className="h-5 w-5" />
               </Button>
               <div className="min-w-0">
                 <h1 className="text-lg font-semibold truncate">
-                  Edit: {material.title}
+                  편집: {material.title}
                 </h1>
                 <div className="flex items-center gap-2 text-sm text-[var(--color-muted-foreground)]">
                   <span
@@ -434,13 +434,13 @@ export default function MaterialEditPage() {
                     {autosaveStatus === "saving" && (
                       <>
                         <Loader2 className="h-3 w-3 animate-spin" />
-                        Saving...
+                        저장 중...
                       </>
                     )}
                     {autosaveStatus === "saved" && lastSaved && (
-                      <>Saved {formatRelativeTime(lastSaved)}</>
+                      <>{formatRelativeTime(lastSaved)}에 저장됨</>
                     )}
-                    {autosaveStatus === "unsaved" && "Unsaved changes"}
+                    {autosaveStatus === "unsaved" && "저장되지 않은 변경사항"}
                   </span>
                 </div>
               </div>
@@ -455,7 +455,7 @@ export default function MaterialEditPage() {
                 loading={updateMutation.isPending}
               >
                 <Save className="h-4 w-4 mr-2" />
-                Save Draft
+                초안 저장
               </Button>
               <Button
                 variant="default"
@@ -464,7 +464,7 @@ export default function MaterialEditPage() {
                 loading={updateMutation.isPending}
               >
                 <Send className="h-4 w-4 mr-2" />
-                Save & Publish
+                저장 및 게시
               </Button>
             </div>
           </div>
@@ -480,7 +480,7 @@ export default function MaterialEditPage() {
           height="calc(100vh - 200px)"
           showPreview={true}
           onImageUpload={handleImageUpload}
-          placeholder="Start writing your material content..."
+          placeholder="자료 내용을 작성하세요..."
         />
       </main>
 
@@ -488,17 +488,17 @@ export default function MaterialEditPage() {
       <Dialog open={showRestoreDialog} onOpenChange={setShowRestoreDialog}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Restore Draft?</DialogTitle>
+            <DialogTitle>초안을 복원하시겠습니까?</DialogTitle>
             <DialogDescription>
-              You have unsaved changes from a previous session. Would you like
-              to restore them or discard?
+              이전 세션에서 저장되지 않은 변경사항이 있습니다.
+              복원하거나 삭제할 수 있습니다.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
             <Button variant="outline" onClick={handleDiscardDraft}>
-              Discard Draft
+              초안 삭제
             </Button>
-            <Button onClick={handleRestoreDraft}>Restore Draft</Button>
+            <Button onClick={handleRestoreDraft}>초안 복원</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
@@ -509,20 +509,20 @@ export default function MaterialEditPage() {
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <AlertTriangle className="h-5 w-5 text-[var(--color-warning-500)]" />
-              Conflict Detected
+              충돌 감지됨
             </DialogTitle>
             <DialogDescription>
-              This material has been modified by someone else since you started
-              editing. Your changes may overwrite their work.
+              편집을 시작한 이후 다른 사람이 이 자료를 수정했습니다.
+              저장하면 상대방의 변경사항을 덮어쓸 수 있습니다.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
             <Button variant="outline" onClick={handleDiscardChanges}>
               <RefreshCw className="h-4 w-4 mr-2" />
-              Discard My Changes
+              내 변경사항 취소
             </Button>
             <Button variant="destructive" onClick={() => { void handleOverwrite(); }}>
-              Overwrite
+              덮어쓰기
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -532,10 +532,10 @@ export default function MaterialEditPage() {
       <Dialog open={showPublishDialog} onOpenChange={setShowPublishDialog}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Publish Material?</DialogTitle>
+            <DialogTitle>자료를 게시하시겠습니까?</DialogTitle>
             <DialogDescription>
-              This will make the material visible to all students in the
-              course. Are you sure you want to publish?
+              게시하면 강의의 모든 학생에게 이 자료가 공개됩니다.
+              정말 게시하시겠습니까?
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
@@ -543,11 +543,11 @@ export default function MaterialEditPage() {
               variant="outline"
               onClick={() => { setShowPublishDialog(false); }}
             >
-              Cancel
+              취소
             </Button>
             <Button onClick={handleConfirmPublish}>
               <Send className="h-4 w-4 mr-2" />
-              Publish
+              게시
             </Button>
           </DialogFooter>
         </DialogContent>

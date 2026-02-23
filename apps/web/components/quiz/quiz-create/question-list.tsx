@@ -197,7 +197,7 @@ function SortableQuestion({
         {...attributes}
         {...listeners}
         className="absolute left-0 top-4 cursor-grab active:cursor-grabbing p-2 -ml-8 text-muted-foreground hover:text-foreground"
-        aria-label="Drag to reorder"
+        aria-label="드래그하여 순서 변경"
       >
         <GripVertical className="h-5 w-5" />
       </div>
@@ -218,7 +218,7 @@ function SortableQuestion({
           onClick={() => { onDuplicate(index); }}
         >
           <Copy className="h-4 w-4 mr-1" />
-          Duplicate
+          복제
         </Button>
         <Button
           type="button"
@@ -227,7 +227,7 @@ function SortableQuestion({
           onClick={() => { onDelete(index); }}
         >
           <Trash2 className="h-4 w-4 mr-1" />
-          Delete
+          삭제
         </Button>
       </div>
     </div>
@@ -305,18 +305,18 @@ export function QuestionList({ questions, onChange }: QuestionListProps) {
       {/* Header */}
       <div className="flex items-center justify-between">
         <h3 className="text-lg font-medium">
-          Questions ({questions.length})
+          문항 ({questions.length})
         </h3>
         <Button type="button" onClick={handleAddQuestion}>
           <Plus className="h-4 w-4 mr-2" />
-          Add Question
+          문항 추가
         </Button>
       </div>
 
       {/* Question List */}
       {questions.length === 0 ? (
         <div className="text-center py-8 text-muted-foreground">
-          <p>No questions yet. Click &quot;Add Question&quot; to get started.</p>
+          <p>아직 문항이 없습니다. &quot;문항 추가&quot;를 클릭하여 시작하세요.</p>
         </div>
       ) : (
         <DndContext
@@ -348,14 +348,14 @@ export function QuestionList({ questions, onChange }: QuestionListProps) {
       <AlertDialog open={deleteIndex !== null} onOpenChange={() => { setDeleteIndex(null); }}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Delete Question?</AlertDialogTitle>
+            <AlertDialogTitle>문항을 삭제하시겠습니까?</AlertDialogTitle>
             <AlertDialogDescription>
-              This action cannot be undone. The question will be permanently removed from the quiz.
+              이 작업은 되돌릴 수 없습니다. 해당 문항이 퀴즈에서 영구적으로 삭제됩니다.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={confirmDelete}>Delete</AlertDialogAction>
+            <AlertDialogCancel>취소</AlertDialogCancel>
+            <AlertDialogAction onClick={confirmDelete}>삭제</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

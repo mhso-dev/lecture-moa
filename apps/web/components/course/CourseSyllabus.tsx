@@ -84,7 +84,7 @@ export function CourseSyllabus({
       <Card>
         <CardContent className="py-8 text-center">
           <p className="text-[var(--color-muted-foreground)]">
-            No syllabus available yet.
+            아직 커리큘럼이 없습니다.
           </p>
         </CardContent>
       </Card>
@@ -104,7 +104,7 @@ export function CourseSyllabus({
                   <Button
                     variant="ghost"
                     className="w-full flex items-center justify-between px-0 hover:bg-transparent"
-                    aria-label={`Toggle section ${String(section.order)}`}
+                    aria-label={`섹션 ${String(section.order)} 토글`}
                     aria-expanded={isExpanded}
                   >
                     <div className="flex items-center gap-3">

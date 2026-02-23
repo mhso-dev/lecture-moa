@@ -20,7 +20,7 @@ export function ThemeToggle() {
     return (
       <button
         className="flex h-10 w-10 items-center justify-center rounded-lg bg-muted transition-colors"
-        aria-label="Toggle theme"
+        aria-label="테마 전환"
       >
         <Sun className="h-5 w-5" />
       </button>
@@ -33,7 +33,7 @@ export function ThemeToggle() {
         setTheme(theme === "dark" ? "light" : "dark");
       }}
       className="flex h-10 w-10 items-center justify-center rounded-lg bg-muted transition-colors hover:bg-muted-foreground/10"
-      aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+      aria-label={`${theme === "dark" ? "라이트" : "다크"} 모드로 전환`}
     >
       {theme === "dark" ? (
         <Sun className="h-5 w-5 text-foreground" />

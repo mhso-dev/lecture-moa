@@ -27,8 +27,8 @@ export async function generateMetadata({
 }: QuizSubmissionsPageProps): Promise<Metadata> {
   void await params; // params needed for dynamic route
   return {
-    title: `Quiz Submissions | lecture-moa`,
-    description: "View all student submissions for this quiz.",
+    title: `퀴즈 제출 현황 | lecture-moa`,
+    description: "이 퀴즈의 모든 학생 제출 현황을 확인하세요.",
   };
 }
 
@@ -79,16 +79,16 @@ export default async function QuizSubmissionsPage({ params }: QuizSubmissionsPag
       <Link href="/instructor/quizzes">
         <Button variant="ghost" size="sm">
           <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to Quiz Management
+          퀴즈 관리로
         </Button>
       </Link>
 
       <div>
         <h1 className="text-2xl font-bold tracking-tight">
-          Submissions: {quiz.title}
+          제출 현황: {quiz.title}
         </h1>
         <p className="text-muted-foreground">
-          View all student submissions for this quiz.
+          이 퀴즈의 모든 학생 제출 현황을 확인하세요.
         </p>
       </div>
 

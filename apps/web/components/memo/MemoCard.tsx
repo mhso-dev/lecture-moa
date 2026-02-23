@@ -169,7 +169,7 @@ export function MemoCard({
                   variant="ghost"
                   size="icon"
                   className="h-8 w-8"
-                  aria-label="Memo actions"
+                  aria-label="메모 작업"
                 >
                   <MoreVertical className="h-4 w-4" />
                 </Button>
@@ -178,7 +178,7 @@ export function MemoCard({
                 {canEdit && (
                   <DropdownMenuItem onClick={handleEdit}>
                     <Edit className="mr-2 h-4 w-4" />
-                    Edit
+                    수정
                   </DropdownMenuItem>
                 )}
                 {canDelete && (
@@ -187,7 +187,7 @@ export function MemoCard({
                     className="text-destructive"
                   >
                     <Trash2 className="mr-2 h-4 w-4" />
-                    Delete
+                    삭제
                   </DropdownMenuItem>
                 )}
               </DropdownMenuContent>

@@ -37,10 +37,10 @@ export default function QuizCreatePage() {
   const handleSubmit = async (data: CreateQuizInput) => {
     try {
       const quiz = await createQuiz(data as unknown as CreateQuizPayload);
-      toast.success("Quiz created successfully");
+      toast.success("퀴즈가 생성되었습니다");
       router.push(`/instructor/quizzes/${quiz.id}/edit`);
     } catch (error) {
-      toast.error("Failed to create quiz");
+      toast.error("퀴즈 생성에 실패했습니다");
       console.error("Failed to create quiz:", error);
     }
   };
@@ -54,9 +54,9 @@ export default function QuizCreatePage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">Create Quiz</h1>
+        <h1 className="text-2xl font-bold tracking-tight">퀴즈 만들기</h1>
         <p className="text-muted-foreground">
-          Set up a new quiz for your students.
+          학생들을 위한 새 퀴즈를 설정하세요.
         </p>
       </div>
 

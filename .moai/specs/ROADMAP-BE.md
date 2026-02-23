@@ -33,30 +33,30 @@ Supabase 기반 백엔드 구현 로드맵. 의존성 분석 및 병렬 처리 �
 
 ### Phase 2 - 도메인 기능 (병렬 가능 - Worktree)
 
-- [ ] 워크트리 생성: `moai worktree new SPEC-BE-004 && moai worktree new SPEC-BE-005 && moai worktree new SPEC-BE-006`
-- [ ] **SPEC-BE-004** Q&A 시스템 (Worktree 병렬)
-  - [ ] plan: `/moai plan "Q&A 시스템 백엔드 연동: 질문/답변 CRUD, Supabase Realtime으로 실시간 알림, 추천/채택 기능"`
-  - [ ] run: `/moai run SPEC-BE-004`
-  - [ ] sync: `/moai sync SPEC-BE-004`
-  - [ ] `moai worktree done SPEC-BE-004`
+- [x] 워크트리 생성: `moai worktree new SPEC-BE-004 && moai worktree new SPEC-BE-005 && moai worktree new SPEC-BE-006`
+- [x] **SPEC-BE-004** Q&A 시스템 (Worktree 병렬)
+  - [x] plan: SPEC-BE-004 spec.md/plan.md/acceptance.md 작성 완료
+  - [x] run: `/moai run SPEC-BE-004` (16 files, 44/44 tests pass)
+  - [x] sync: `/moai sync SPEC-BE-004`
+  - [x] `moai worktree done SPEC-BE-004`
 - [x] **SPEC-BE-005** 퀴즈 시스템 (Worktree 병렬)
   - [x] plan
   - [x] run (b08a313)
   - [x] sync (PR #1)
-  - [ ] `moai worktree done SPEC-BE-005`
+  - [x] `moai worktree done SPEC-BE-005`
 - [x] **SPEC-BE-006** 팀 + 메모 (Worktree 병렬)
   - [x] plan: SPEC-BE-006 spec.md/plan.md/acceptance.md 작성 완료
   - [x] run: `/moai run SPEC-BE-006` (7b41126, 924c4b0)
   - [x] sync: `/moai sync SPEC-BE-006` (f7354bc) - PR #2
-  - [ ] `moai worktree done SPEC-BE-006`
+  - [x] `moai worktree done SPEC-BE-006`
 
 ### Phase 3 - 집계 + AI (순차)
 
-- [ ] **SPEC-BE-007** 대시보드
-  - [ ] plan: `/moai plan "대시보드 백엔드 연동: DB Views/Functions로 학생/강사/팀 대시보드 통계 집계, 성능 최적화"`
-  - [ ] run: `/moai run SPEC-BE-007`
-  - [ ] sync: `/moai sync SPEC-BE-007`
-  - [ ] main 머지 완료
+- [x] **SPEC-BE-007** 대시보드
+  - [x] plan: SPEC-BE-007 spec.md/plan.md/acceptance.md 작성 완료
+  - [x] run: `/moai run SPEC-BE-007` (8cd731e)
+  - [x] sync: `/moai sync SPEC-BE-007` (3d6f574)
+  - [x] main 커밋 완료 (main_direct)
 - [ ] **SPEC-AI-001** AI 서비스
   - [ ] plan: `/moai plan "AI 서비스 구축: FastAPI + LangChain으로 퀴즈 생성/Q&A 추천, Supabase Edge Functions 프록시 게이트웨이"`
   - [ ] run: `/moai run SPEC-AI-001`

@@ -88,7 +88,7 @@ export function DashboardWidget({
                 onClick={onRetry}
                 className="text-sm text-primary hover:underline"
               >
-                Retry
+                다시 시도
               </button>
             )}
           </div>

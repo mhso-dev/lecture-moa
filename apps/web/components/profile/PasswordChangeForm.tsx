@@ -46,11 +46,11 @@ export function PasswordChangeForm() {
       });
 
       form.reset();
-      toast.success("Password changed successfully");
+      toast.success("비밀번호가 변경되었습니다");
     } catch (error) {
       if (error instanceof ApiClientError && error.statusCode === 401) {
         form.setError("currentPassword", {
-          message: "Current password is incorrect",
+          message: "현재 비밀번호가 올바르지 않습니다",
         });
         return;
       }
@@ -58,7 +58,7 @@ export function PasswordChangeForm() {
       const message =
         error instanceof ApiClientError
           ? error.message
-          : "Failed to change password. Please try again.";
+          : "비밀번호 변경에 실패했습니다. 다시 시도해 주세요.";
       toast.error(message);
     }
   }
@@ -71,11 +71,11 @@ export function PasswordChangeForm() {
           name="currentPassword"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Current password</FormLabel>
+              <FormLabel>현재 비밀번호</FormLabel>
               <FormControl>
                 <Input
                   type="password"
-                  placeholder="Enter your current password"
+                  placeholder="현재 비밀번호를 입력하세요"
                   autoComplete="current-password"
                   {...field}
                 />
@@ -90,11 +90,11 @@ export function PasswordChangeForm() {
           name="newPassword"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>New password</FormLabel>
+              <FormLabel>새 비밀번호</FormLabel>
               <FormControl>
                 <Input
                   type="password"
-                  placeholder="Enter your new password"
+                  placeholder="새 비밀번호를 입력하세요"
                   autoComplete="new-password"
                   {...field}
                 />
@@ -109,11 +109,11 @@ export function PasswordChangeForm() {
           name="confirmNewPassword"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Confirm new password</FormLabel>
+              <FormLabel>새 비밀번호 확인</FormLabel>
               <FormControl>
                 <Input
                   type="password"
-                  placeholder="Re-enter your new password"
+                  placeholder="새 비밀번호를 다시 입력하세요"
                   autoComplete="new-password"
                   {...field}
                 />
@@ -124,7 +124,7 @@ export function PasswordChangeForm() {
         />
 
         <Button type="submit" loading={isSubmitting}>
-          Change password
+          비밀번호 변경
         </Button>
       </form>
     </Form>

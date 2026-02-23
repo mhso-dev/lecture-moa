@@ -40,15 +40,15 @@ export function EnrolledCoursesWidget() {
 
   return (
     <DashboardWidget
-      title="My Courses"
-      subtitle="Your enrolled courses"
+      title="내 강의"
+      subtitle="수강 중인 강의"
       headerAction={
         courses && courses.length > 0 ? (
           <Link
             href={"/courses" as Route}
             className="text-sm text-primary hover:underline flex items-center gap-1"
           >
-            View all
+            전체 보기
             <ChevronRight className="h-4 w-4" />
           </Link>
         ) : undefined
@@ -93,16 +93,16 @@ export function EnrolledCoursesWidget() {
               href={"/courses" as Route}
               className="block text-sm text-center text-primary hover:underline pt-2"
             >
-              View {courses.length - MAX_DISPLAYED_COURSES} more courses
+              {courses.length - MAX_DISPLAYED_COURSES}개의 강의 더 보기
             </Link>
           )}
         </div>
       ) : (
         <EmptyState
           icon={BookOpen}
-          title="No courses yet"
-          description="You haven't enrolled in any courses yet."
-          action={{ label: "Browse Courses", href: "/courses" as Route }}
+          title="아직 수강 중인 강의가 없습니다"
+          description="강의를 둘러보고 수강 신청하세요."
+          action={{ label: "강의 둘러보기", href: "/courses" as Route }}
         />
       )}
     </DashboardWidget>

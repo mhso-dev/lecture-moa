@@ -41,15 +41,15 @@ export function UpcomingQuizzesWidget() {
 
   return (
     <DashboardWidget
-      title="Upcoming Quizzes"
-      subtitle="Quizzes to complete"
+      title="예정된 퀴즈"
+      subtitle="완료할 퀴즈"
       headerAction={
         quizzes && quizzes.length > 0 ? (
           <Link
             href={"/quizzes" as Route}
             className="text-sm text-primary hover:underline flex items-center gap-1"
           >
-            View all
+            전체 보기
             <ChevronRight className="h-4 w-4" />
           </Link>
         ) : undefined
@@ -78,7 +78,7 @@ export function UpcomingQuizzesWidget() {
                     </span>
                     <span className="text-xs text-muted-foreground">-</span>
                     <span className="text-xs text-muted-foreground">
-                      {quiz.questionCount} questions
+                      {quiz.questionCount}문제
                     </span>
                   </div>
                 </div>
@@ -100,15 +100,15 @@ export function UpcomingQuizzesWidget() {
               href={"/quizzes" as Route}
               className="block text-sm text-center text-primary hover:underline pt-2"
             >
-              View {quizzes.length - MAX_DISPLAYED_QUIZZES} more quizzes
+              {quizzes.length - MAX_DISPLAYED_QUIZZES}개의 퀴즈 더 보기
             </Link>
           )}
         </div>
       ) : (
         <EmptyState
           icon={ClipboardList}
-          title="No upcoming quizzes"
-          description="No upcoming quizzes."
+          title="예정된 퀴즈가 없습니다"
+          description="완료할 퀴즈가 없습니다."
         />
       )}
     </DashboardWidget>

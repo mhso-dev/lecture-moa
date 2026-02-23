@@ -58,13 +58,13 @@ export function CourseDangerZone({
       { courseId },
       {
         onSuccess: () => {
-          toast.success("Course archived successfully");
+          toast.success("강의가 보관 처리되었습니다");
           setArchiveDialogOpen(false);
           onArchive?.();
           router.push("/courses");
         },
         onError: (error) => {
-          toast.error("Failed to archive course. Please try again.");
+          toast.error("강의 보관 처리에 실패했습니다. 다시 시도해 주세요.");
           console.error("Archive error:", error);
         },
       }
@@ -76,13 +76,13 @@ export function CourseDangerZone({
       { courseId },
       {
         onSuccess: () => {
-          toast.success("Course deleted successfully");
+          toast.success("강의가 삭제되었습니다");
           setDeleteDialogOpen(false);
           onDelete?.();
           router.push("/courses");
         },
         onError: (error) => {
-          toast.error("Failed to delete course. Please try again.");
+          toast.error("강의 삭제에 실패했습니다. 다시 시도해 주세요.");
           console.error("Delete error:", error);
         },
       }
@@ -98,10 +98,10 @@ export function CourseDangerZone({
     >
       <div className="flex items-center gap-2 text-destructive">
         <AlertTriangle className="h-5 w-5" />
-        <h3 className="text-lg font-semibold">Danger Zone</h3>
+        <h3 className="text-lg font-semibold">위험 구역</h3>
       </div>
       <p className="text-sm text-[var(--color-muted-foreground)]">
-        These actions are irreversible. Please proceed with caution.
+        이 작업은 되돌릴 수 없습니다. 신중하게 진행해 주세요.
       </p>
 
       <div className="flex gap-4">
@@ -111,29 +111,29 @@ export function CourseDangerZone({
             <Button
               variant="outline"
               disabled={archiveMutation.isPending}
-              aria-label="Archive course"
+              aria-label="강의 보관"
             >
               {archiveMutation.isPending ? (
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
               ) : (
                 <Archive className="mr-2 h-4 w-4" />
               )}
-              Archive Course
+              강의 보관
             </Button>
           </AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
-              <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+              <AlertDialogTitle>정말 보관하시겠습니까?</AlertDialogTitle>
               <AlertDialogDescription>
-                This will archive the course &ldquo;{courseTitle}&rdquo;. Archived courses are
-                hidden from the course list and students cannot access them.
-                You can restore an archived course later.
+                강의 &ldquo;{courseTitle}&rdquo;을(를) 보관 처리합니다. 보관된 강의는
+                강의 목록에서 숨겨지며 학생들이 접근할 수 없습니다.
+                나중에 보관된 강의를 복원할 수 있습니다.
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogCancel>취소</AlertDialogCancel>
               <AlertDialogAction onClick={handleArchive}>
-                Confirm
+                확인
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
@@ -145,7 +145,7 @@ export function CourseDangerZone({
             <Button
               variant="destructive"
               disabled={deleteMutation.isPending}
-              aria-label="Delete course"
+              aria-label="강의 삭제"
               className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
             >
               {deleteMutation.isPending ? (
@@ -153,21 +153,20 @@ export function CourseDangerZone({
               ) : (
                 <Trash2 className="mr-2 h-4 w-4" />
               )}
-              Delete Course
+              강의 삭제
             </Button>
           </AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
-              <AlertDialogTitle>Delete Course</AlertDialogTitle>
+              <AlertDialogTitle>강의 삭제</AlertDialogTitle>
               <AlertDialogDescription>
-                This action cannot be undone. This will permanently delete the
-                course &ldquo;{courseTitle}&rdquo; including all materials, student progress,
-                and associated data.
+                이 작업은 되돌릴 수 없습니다. 강의 &ldquo;{courseTitle}&rdquo;의
+                모든 자료, 학생 진도, 관련 데이터가 영구적으로 삭제됩니다.
               </AlertDialogDescription>
             </AlertDialogHeader>
             <div className="space-y-2 py-4">
               <Label htmlFor="confirm-title">
-                Type the course title to confirm: <strong>{courseTitle}</strong>
+                확인을 위해 강의 제목을 입력하세요: <strong>{courseTitle}</strong>
               </Label>
               <Input
                 id="confirm-title"
@@ -178,7 +177,7 @@ export function CourseDangerZone({
             </div>
             <AlertDialogFooter>
               <AlertDialogCancel onClick={() => { setConfirmTitle(""); }}>
-                Cancel
+                취소
               </AlertDialogCancel>
               <AlertDialogAction
                 onClick={handleDelete}
@@ -188,7 +187,7 @@ export function CourseDangerZone({
                 {deleteMutation.isPending ? (
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                 ) : null}
-                Delete Permanently
+                영구 삭제
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>

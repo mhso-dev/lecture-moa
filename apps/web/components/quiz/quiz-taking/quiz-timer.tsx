@@ -60,8 +60,8 @@ function getAriaLive(seconds: number): "off" | "polite" | "assertive" {
  * Get screen reader announcement for threshold changes
  */
 function getAnnouncement(seconds: number): string | null {
-  if (seconds === 120) return "2 minutes remaining";
-  if (seconds === 60) return "1 minute remaining";
+  if (seconds === 120) return "2분 남음";
+  if (seconds === 60) return "1분 남음";
   return null;
 }
 
@@ -126,7 +126,7 @@ export function QuizTimer({
       {/* Timer display */}
       <div
         role="timer"
-        aria-label="Time remaining"
+        aria-label="남은 시간"
         aria-live={ariaLive}
         className={cn(
           "text-2xl font-mono font-bold tabular-nums transition-colors",
@@ -140,10 +140,10 @@ export function QuizTimer({
 
       {/* Status indicator */}
       {displayStatus === "paused" && (
-        <span className="text-sm text-muted-foreground">(Paused)</span>
+        <span className="text-sm text-muted-foreground">(일시정지)</span>
       )}
       {displayStatus === "expired" && (
-        <span className="text-sm text-red-500 font-medium">(Time's up!)</span>
+        <span className="text-sm text-red-500 font-medium">(시간 종료!)</span>
       )}
 
       {/* Screen reader announcement */}

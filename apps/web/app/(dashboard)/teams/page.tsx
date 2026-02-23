@@ -8,8 +8,8 @@ import { Metadata } from "next";
 import { TeamsPageClient } from "./TeamsPageClient";
 
 export const metadata: Metadata = {
-  title: "Teams | Lecture MoA",
-  description: "Manage your study teams and discover new collaboration groups",
+  title: "팀 | Lecture MoA",
+  description: "스터디 팀을 관리하고 새로운 협업 그룹을 찾아보세요",
 };
 
 /**

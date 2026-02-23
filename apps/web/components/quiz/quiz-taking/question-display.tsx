@@ -190,10 +190,10 @@ export function QuestionDisplay({
       <div className="space-y-2">
         <div id={labelId} className="flex items-center justify-between">
           <h2 className="text-lg font-semibold">
-            Question {questionNumber} of {totalQuestions}
+            문항 {questionNumber} / {totalQuestions}
           </h2>
           <span className="text-sm text-muted-foreground">
-            {question.points} {question.points === 1 ? "point" : "points"}
+            {question.points}점
           </span>
         </div>
       </div>

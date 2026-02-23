@@ -66,15 +66,15 @@ export function QuizScoresWidget() {
 
   return (
     <DashboardWidget
-      title="Quiz Scores"
-      subtitle="Your recent quiz results"
+      title="퀴즈 점수"
+      subtitle="최근 퀴즈 결과"
       headerAction={
         results && results.length > 0 ? (
           <Link
             href={"/quizzes" as Route}
             className="text-sm text-primary hover:underline flex items-center gap-1"
           >
-            View all
+            전체 보기
             <ChevronRight className="h-4 w-4" />
           </Link>
         ) : undefined
@@ -127,15 +127,15 @@ export function QuizScoresWidget() {
               href={"/quizzes" as Route}
               className="block text-sm text-center text-primary hover:underline pt-2"
             >
-              View {results.length - MAX_DISPLAYED_RESULTS} more results
+              {results.length - MAX_DISPLAYED_RESULTS}개의 결과 더 보기
             </Link>
           )}
         </div>
       ) : (
         <EmptyState
           icon={Award}
-          title="No quiz results"
-          description="No quiz results yet."
+          title="퀴즈 결과가 없습니다"
+          description="아직 퀴즈 결과가 없습니다."
         />
       )}
     </DashboardWidget>

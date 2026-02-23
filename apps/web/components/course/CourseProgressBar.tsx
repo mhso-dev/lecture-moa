@@ -44,7 +44,7 @@ export function CourseProgressBar({
         aria-valuenow={clampedPercent}
         aria-valuemin={0}
         aria-valuemax={100}
-        aria-label="Course progress"
+        aria-label="강의 진행률"
       />
       {showLabel && (
         <span className="text-sm font-medium text-[var(--color-muted-foreground)] min-w-[3ch]">

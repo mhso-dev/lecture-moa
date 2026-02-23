@@ -31,13 +31,13 @@ interface NavItem {
  * Navigation items matching the design spec
  */
 const NAV_ITEMS: NavItem[] = [
-  { label: "Dashboard", icon: LayoutDashboard, href: "/" },
-  { label: "Courses", icon: BookOpen, href: "/courses" },
+  { label: "대시보드", icon: LayoutDashboard, href: "/" },
+  { label: "강의", icon: BookOpen, href: "/courses" },
   { label: "Q&A", icon: MessageCircleQuestion, href: "/qa" },
-  { label: "Quizzes", icon: ClipboardCheck, href: "/quizzes" },
-  { label: "Teams", icon: Users, href: "/teams" },
-  { label: "Memos", icon: StickyNote, href: "/memos" },
-  { label: "Profile", icon: User, href: "/profile" },
+  { label: "퀴즈", icon: ClipboardCheck, href: "/quizzes" },
+  { label: "팀", icon: Users, href: "/teams" },
+  { label: "메모", icon: StickyNote, href: "/memos" },
+  { label: "프로필", icon: User, href: "/profile" },
 ];
 
 /**
@@ -76,7 +76,7 @@ export function Sidebar() {
         // Width based on collapsed state
         isCollapsed ? "w-sidebar-collapsed" : "w-sidebar"
       )}
-      aria-label="Main navigation"
+      aria-label="메인 내비게이션"
     >
       {/* Header with Logo and Theme Toggle */}
       <div className="flex h-header shrink-0 items-center justify-between border-b border-sidebar-border px-4">
@@ -168,14 +168,14 @@ export function Sidebar() {
             "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           )}
-          aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+          aria-label={isCollapsed ? "사이드바 펼치기" : "사이드바 접기"}
         >
           {isCollapsed ? (
             <ChevronRight className="h-5 w-5" />
           ) : (
             <>
               <ChevronLeft className="h-5 w-5" />
-              <span className="text-sm">Collapse</span>
+              <span className="text-sm">접기</span>
             </>
           )}
         </button>

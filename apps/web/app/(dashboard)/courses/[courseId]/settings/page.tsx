@@ -72,7 +72,7 @@ export default function CourseSettingsPage() {
     return (
       <div className="flex h-96 items-center justify-center">
         <p className="text-body text-[var(--color-muted-foreground)]">
-          Course not found or you don&apos;t have access.
+          강의를 찾을 수 없거나 접근 권한이 없습니다.
         </p>
       </div>
     );
@@ -91,16 +91,16 @@ export default function CourseSettingsPage() {
           variant="ghost"
           size="icon"
           onClick={() => { router.push(`/courses/${courseId}`); }}
-          aria-label="Go back to course"
+          aria-label="강의로 돌아가기"
         >
           <ArrowLeft className="h-5 w-5" />
         </Button>
         <div>
           <h1 className="text-h1 font-semibold text-foreground">
-            Course Settings
+            강의 설정
           </h1>
           <p className="mt-1 text-body text-[var(--color-muted-foreground)]">
-            Manage your course settings and students
+            강의 설정 및 학생을 관리하세요
           </p>
         </div>
       </div>
@@ -109,7 +109,7 @@ export default function CourseSettingsPage() {
       <section className="bg-[var(--color-card)] rounded-lg border border-[var(--color-border)] p-6">
         <div className="flex items-center gap-2 mb-6">
           <Settings className="h-5 w-5 text-[var(--color-muted-foreground)]" />
-          <h2 className="text-lg font-semibold">Course Information</h2>
+          <h2 className="text-lg font-semibold">강의 정보</h2>
         </div>
         <CourseSettingsForm courseId={courseId} defaultValues={course} />
       </section>
@@ -119,7 +119,7 @@ export default function CourseSettingsPage() {
         <section className="bg-[var(--color-card)] rounded-lg border border-[var(--color-border)] p-6">
           <div className="flex items-center gap-2 mb-6">
             <KeyRound className="h-5 w-5 text-[var(--color-muted-foreground)]" />
-            <h2 className="text-lg font-semibold">Invite Code</h2>
+            <h2 className="text-lg font-semibold">초대 코드</h2>
           </div>
           <CourseInviteCode
             courseId={courseId}
@@ -132,7 +132,7 @@ export default function CourseSettingsPage() {
       <section className="bg-[var(--color-card)] rounded-lg border border-[var(--color-border)] p-6">
         <div className="flex items-center gap-2 mb-6">
           <Users className="h-5 w-5 text-[var(--color-muted-foreground)]" />
-          <h2 className="text-lg font-semibold">Enrolled Students</h2>
+          <h2 className="text-lg font-semibold">수강생 목록</h2>
         </div>
         <CourseStudentRoster courseId={courseId} />
       </section>

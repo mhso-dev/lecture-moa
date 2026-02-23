@@ -25,10 +25,10 @@ interface ResultsBreakdownProps {
  */
 function formatQuestionType(type: QuestionType): string {
   const typeMap: Record<QuestionType, string> = {
-    multiple_choice: "Multiple Choice",
-    true_false: "True/False",
-    short_answer: "Short Answer",
-    fill_in_the_blank: "Fill in the Blank",
+    multiple_choice: "객관식",
+    true_false: "참/거짓",
+    short_answer: "단답형",
+    fill_in_the_blank: "빈칸 채우기",
   };
   return typeMap[type] || type;
 }
@@ -41,18 +41,18 @@ function formatStudentAnswer(result: QuestionResult): string {
 
   switch (studentAnswer.type) {
     case "multiple_choice":
-      return studentAnswer.selectedOptionId ?? "Unanswered";
+      return studentAnswer.selectedOptionId ?? "미응답";
     case "true_false":
       return studentAnswer.selectedAnswer !== null
         ? studentAnswer.selectedAnswer
-          ? "True"
-          : "False"
-        : "Unanswered";
+          ? "참"
+          : "거짓"
+        : "미응답";
     case "short_answer":
-      return studentAnswer.text || "No answer provided";
+      return studentAnswer.text || "답변 없음";
     case "fill_in_the_blank": {
       const filled = Object.values(studentAnswer.filledAnswers).join(", ");
-      return filled || "Unanswered";
+      return filled || "미응답";
     }
     default:
       return "Unknown";
@@ -82,7 +82,7 @@ function formatCorrectAnswer(result: QuestionResult): string {
     }
     case "true_false": {
       const answer = correctAnswer as boolean;
-      return answer ? "True" : "False";
+      return answer ? "참" : "거짓";
     }
     case "short_answer": {
       const answer = correctAnswer as string;
@@ -112,7 +112,7 @@ function StatusIcon({
     return (
       <div className="flex items-center gap-2 text-amber-600">
         <Clock className="h-5 w-5" data-testid="clock" />
-        <span className="text-sm">Pending manual grading</span>
+        <span className="text-sm">수동 채점 대기 중</span>
       </div>
     );
   }
@@ -156,7 +156,7 @@ function QuestionResultCard({
         <div className="flex items-start justify-between gap-4">
           <div className="flex-1 space-y-2">
             <div className="flex items-center gap-3">
-              <CardTitle className="text-lg">Question {index + 1}</CardTitle>
+              <CardTitle className="text-lg">문항 {index + 1}</CardTitle>
               <Badge variant="outline">{formatQuestionType(result.type)}</Badge>
             </div>
             <p className="text-base">{result.questionText}</p>
@@ -175,7 +175,7 @@ function QuestionResultCard({
         {showAnswers && (
           <div className="space-y-1">
             <div className="text-sm font-medium text-muted-foreground">
-              Your Answer
+              나의 답변
             </div>
             <div
               className={cn(
@@ -194,7 +194,7 @@ function QuestionResultCard({
         {showAnswers && result.isCorrect === false && (
           <div className="space-y-1">
             <div className="text-sm font-medium text-muted-foreground">
-              Correct Answer
+              정답
             </div>
             <div className="rounded-md bg-green-50 border border-green-200 p-3 text-sm text-green-800">
               {formatCorrectAnswer(result)}
@@ -205,7 +205,7 @@ function QuestionResultCard({
         {/* Unanswered indicator */}
         {isUnanswered && (
           <div className="text-sm text-muted-foreground italic">
-            Unanswered
+            미응답
           </div>
         )}
 
@@ -213,7 +213,7 @@ function QuestionResultCard({
         {showAnswers && result.explanation && (
           <div className="space-y-1">
             <div className="text-sm font-medium text-muted-foreground">
-              Explanation
+              해설
             </div>
             <div className="rounded-md bg-muted p-3 text-sm">
               {result.explanation}
@@ -238,7 +238,7 @@ export function ResultsBreakdown({
         className={cn("text-center py-8 text-muted-foreground", className)}
         data-testid={testId}
       >
-        No questions to display
+        표시할 문항이 없습니다
       </div>
     );
   }

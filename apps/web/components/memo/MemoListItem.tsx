@@ -176,7 +176,7 @@ export function MemoListItem({
                   size="icon"
                   className="h-8 w-8"
                   onClick={handleEdit}
-                  aria-label="Edit memo"
+                  aria-label="메모 수정"
                 >
                   <Edit className="h-4 w-4" />
                 </Button>
@@ -185,7 +185,7 @@ export function MemoListItem({
                   size="icon"
                   className="h-8 w-8 text-[var(--color-destructive)]"
                   onClick={handleDeleteClick}
-                  aria-label="Delete memo"
+                  aria-label="메모 삭제"
                 >
                   <Trash2 className="h-4 w-4" />
                 </Button>
@@ -208,7 +208,7 @@ export function MemoListItem({
                   ))}
                   {remainingTags > 0 && (
                     <Badge variant="outline" className="text-xs">
-                      +{remainingTags} more
+                      +{remainingTags}개 더
                     </Badge>
                   )}
                 </div>
@@ -218,7 +218,7 @@ export function MemoListItem({
               {memo.materialId && (
                 <div className="flex items-center gap-1">
                   <FileText className="h-3 w-3" />
-                  <span>Linked to material</span>
+                  <span>자료 연결됨</span>
                 </div>
               )}
             </div>
@@ -233,18 +233,18 @@ export function MemoListItem({
       <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Delete Memo?</AlertDialogTitle>
+            <AlertDialogTitle>메모를 삭제하시겠습니까?</AlertDialogTitle>
             <AlertDialogDescription>
-              Are you sure you want to delete "{memo.title}"? This action cannot be undone.
+              "{memo.title}"을(를) 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogCancel>취소</AlertDialogCancel>
             <AlertDialogAction
               onClick={handleDeleteConfirm}
               className="bg-[var(--color-destructive)] text-[var(--color-destructive-foreground)] hover:bg-[var(--color-destructive)]/90"
             >
-              Delete
+              삭제
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

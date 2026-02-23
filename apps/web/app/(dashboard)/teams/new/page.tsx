@@ -8,8 +8,8 @@ import { Metadata } from "next";
 import { TeamCreationPageClient } from "./TeamCreationPageClient";
 
 export const metadata: Metadata = {
-  title: "Create Team | Lecture MoA",
-  description: "Create a new study team for collaboration",
+  title: "팀 만들기 | Lecture MoA",
+  description: "협업을 위한 새로운 스터디 팀을 만드세요",
 };
 
 /**

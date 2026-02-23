@@ -101,10 +101,10 @@ function DesktopTocPanel({ items, activeId, onItemClick }: {
     <aside className="sticky top-20 hidden h-[calc(100vh-5rem)] w-[240px] shrink-0 overflow-y-auto xl:block">
       <nav
         className="py-4"
-        aria-label="Table of contents"
+        aria-label="목차"
       >
         <h2 className="mb-3 text-xs font-semibold uppercase tracking-wide text-[var(--color-muted-foreground)]">
-          On this page
+          목차
         </h2>
         <ul className="space-y-0.5">
           {items.map((item) => (
@@ -139,10 +139,10 @@ function MobileTocSheet({ items, activeId, onItemClick, isOpen, onOpenChange }: 
           variant="outline"
           size="sm"
           className="gap-2 xl:hidden"
-          aria-label="Open table of contents"
+          aria-label="목차 열기"
         >
           <FileText className="h-4 w-4" />
-          <span className="hidden sm:inline">Contents</span>
+          <span className="hidden sm:inline">목차</span>
         </Button>
       </SheetTrigger>
       <SheetContent
@@ -152,10 +152,10 @@ function MobileTocSheet({ items, activeId, onItemClick, isOpen, onOpenChange }: 
         <SheetHeader>
           <SheetTitle className="flex items-center gap-2">
             <FileText className="h-5 w-5" />
-            Table of Contents
+            목차
           </SheetTitle>
         </SheetHeader>
-        <nav className="mt-6" aria-label="Table of contents">
+        <nav className="mt-6" aria-label="목차">
           <ul className="space-y-0.5">
             {items.map((item) => (
               <TocItemLink

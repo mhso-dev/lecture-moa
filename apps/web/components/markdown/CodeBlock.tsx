@@ -107,7 +107,7 @@ export function CodeBlock({ children, language, className }: CodeBlockProps) {
           "md:opacity-0 md:group-hover:opacity-100",
           "[@media(max-width:768px)]:opacity-100"
         )}
-        aria-label={copied ? "Copied!" : "Copy code to clipboard"}
+        aria-label={copied ? "복사됨!" : "코드 복사"}
       >
         {copied ? (
           <Check className="h-4 w-4 text-green-400" />

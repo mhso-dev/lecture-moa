@@ -164,13 +164,13 @@ export function PersonalMemoList() {
       <div className="rounded-full bg-[var(--color-muted)] p-4 mb-4">
         <FileText className="h-8 w-8 text-[var(--color-muted-foreground)]" />
       </div>
-      <h3 className="text-lg font-semibold mb-2">No memos yet</h3>
+      <h3 className="text-lg font-semibold mb-2">아직 메모가 없습니다</h3>
       <p className="text-[var(--color-muted-foreground)] mb-6 max-w-sm">
-        You haven't created any memos yet. Start documenting your learning journey!
+        아직 작성한 메모가 없습니다. 학습 여정을 기록해 보세요!
       </p>
       <Button onClick={() => { router.push("/memos/new" as any); }} className="gap-2">
         <Plus className="h-4 w-4" />
-        Create your first memo
+        첫 번째 메모 작성하기
       </Button>
     </div>
   );
@@ -183,15 +183,15 @@ export function PersonalMemoList() {
       <div className="rounded-full bg-[var(--color-muted)] p-4 mb-4">
         <SearchX className="h-8 w-8 text-[var(--color-muted-foreground)]" />
       </div>
-      <h3 className="text-lg font-semibold mb-2">No memos match your filters</h3>
+      <h3 className="text-lg font-semibold mb-2">필터에 맞는 메모가 없습니다</h3>
       <p className="text-[var(--color-muted-foreground)] mb-6 max-w-sm">
-        Try adjusting your search or filters to find what you're looking for.
+        검색어나 필터를 조정하여 원하는 메모를 찾아보세요.
       </p>
       <Button
         variant="outline"
         onClick={() => { handleFiltersChange({ visibility: "personal" }); }}
       >
-        Clear filters
+        필터 초기화
       </Button>
     </div>
   );
@@ -215,9 +215,9 @@ export function PersonalMemoList() {
           {/* Header */}
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h1 className="text-2xl font-bold">My Memos</h1>
+              <h1 className="text-2xl font-bold">내 메모</h1>
               <p className="text-[var(--color-muted-foreground)]">
-                {filters.visibility === "team" ? "Team memos you've authored" : "Your personal study notes"}
+                {filters.visibility === "team" ? "내가 작성한 팀 메모" : "개인 학습 노트"}
               </p>
             </div>
 
@@ -236,23 +236,23 @@ export function PersonalMemoList() {
               {/* Create New Button */}
               <Button onClick={() => { router.push("/memos/new" as any); }} className="gap-2">
                 <Plus className="h-4 w-4" />
-                <span className="hidden sm:inline">New Memo</span>
+                <span className="hidden sm:inline">새 메모</span>
               </Button>
             </div>
           </div>
 
           {/* Sort Controls */}
           <div className="flex items-center gap-4 mb-6">
-            <label className="text-sm font-medium">Sort by:</label>
+            <label className="text-sm font-medium">정렬:</label>
             <Select value={sortBy} onValueChange={(v) => { setSortBy(v as SortOption); }}>
               <SelectTrigger className="w-[180px]">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="modified">Last modified</SelectItem>
-                <SelectItem value="newest">Newest</SelectItem>
-                <SelectItem value="oldest">Oldest</SelectItem>
-                <SelectItem value="title">Title A-Z</SelectItem>
+                <SelectItem value="modified">최근 수정순</SelectItem>
+                <SelectItem value="newest">최신순</SelectItem>
+                <SelectItem value="oldest">오래된순</SelectItem>
+                <SelectItem value="title">제목순</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -262,7 +262,7 @@ export function PersonalMemoList() {
             renderSkeleton()
           ) : isError ? (
             <div className="text-center py-16 text-[var(--color-destructive)]">
-              Failed to load memos. Please try again.
+              메모를 불러오는 데 실패했습니다. 다시 시도해 주세요.
             </div>
           ) : memos.length === 0 ? (
             // Show different empty states based on filters
@@ -289,7 +289,7 @@ export function PersonalMemoList() {
                     onClick={() => fetchNextPage()}
                     disabled={isFetchingNextPage}
                   >
-                    {isFetchingNextPage ? "Loading..." : "Load more memos"}
+                    {isFetchingNextPage ? "불러오는 중..." : "더 보기"}
                   </Button>
                 </div>
               )}

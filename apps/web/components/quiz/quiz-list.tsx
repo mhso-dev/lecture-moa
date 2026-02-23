@@ -117,13 +117,13 @@ export function QuizList({
         <div className="mb-4 rounded-full bg-[var(--color-error-100)] p-4 dark:bg-[var(--color-error-900)]">
           <RefreshCw className="h-8 w-8 text-[var(--color-error-600)]" />
         </div>
-        <h3 className="text-lg font-semibold mb-2">Error loading quizzes</h3>
+        <h3 className="text-lg font-semibold mb-2">퀴즈를 불러오지 못했습니다</h3>
         <p className="text-sm text-[var(--color-muted-foreground)] text-center max-w-md mb-6">
           {error.message}
         </p>
         <Button onClick={() => refetch()} variant="outline">
           <RefreshCw className="h-4 w-4 mr-2" />
-          Retry
+          다시 시도
         </Button>
       </div>
     );
@@ -139,7 +139,7 @@ export function QuizList({
         />
         <div
           role="status"
-          aria-label="No quizzes available"
+          aria-label="이용 가능한 퀴즈 없음"
           className="flex flex-col items-center justify-center py-16 px-4"
         >
           <div className="mb-6 rounded-full bg-[var(--color-neutral-100)] dark:bg-[var(--color-neutral-900)] p-6">
@@ -151,26 +151,26 @@ export function QuizList({
           </div>
           <h3 className="text-lg font-semibold mb-2">
             {hasActiveFilters
-              ? "No quizzes match your filters"
-              : "No quizzes yet"}
+              ? "필터 조건에 맞는 퀴즈가 없습니다"
+              : "아직 퀴즈가 없습니다"}
           </h3>
           <p className="text-sm text-[var(--color-muted-foreground)] text-center max-w-md mb-6">
             {hasActiveFilters
-              ? "Try adjusting your filters to find what you're looking for."
+              ? "필터 조건을 변경해 보세요."
               : role === "instructor"
-                ? "Create your first quiz to get started."
-                : "No quizzes are available at the moment."}
+                ? "첫 번째 퀴즈를 만들어 시작하세요."
+                : "현재 이용 가능한 퀴즈가 없습니다."}
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
             {hasActiveFilters && (
               <Button variant="outline" onClick={handleClearFilters}>
-                Clear filters
+                필터 초기화
               </Button>
             )}
             {!hasActiveFilters && role === "instructor" && (
               <Button>
                 <Plus className="h-4 w-4 mr-2" />
-                Create Quiz
+                퀴즈 만들기
               </Button>
             )}
           </div>
@@ -192,7 +192,7 @@ export function QuizList({
       {/* Quiz list region */}
       <section
         role="region"
-        aria-label="Quizzes"
+        aria-label="퀴즈 목록"
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
       >
         {quizzes.map((quiz) => (
@@ -220,9 +220,9 @@ export function QuizList({
           <Button
             variant="outline"
             onClick={() => fetchNextPage()}
-            aria-label="Load more quizzes"
+            aria-label="퀴즈 더 보기"
           >
-            Load More
+            더 보기
           </Button>
         </div>
       )}

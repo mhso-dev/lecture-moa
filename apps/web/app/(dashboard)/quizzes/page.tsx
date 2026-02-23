@@ -14,8 +14,8 @@ import { QuizList } from "~/components/quiz/quiz-list";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Quizzes | lecture-moa",
-  description: "View and take quizzes from your enrolled courses.",
+  title: "퀴즈 | lecture-moa",
+  description: "수강 중인 강의의 퀴즈를 확인하고 응시하세요.",
 };
 
 /**
@@ -40,9 +40,9 @@ export default async function StudentQuizzesPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">Quizzes</h1>
+        <h1 className="text-2xl font-bold tracking-tight">퀴즈</h1>
         <p className="text-muted-foreground">
-          View and take quizzes from your enrolled courses.
+          수강 중인 강의의 퀴즈를 확인하고 응시하세요.
         </p>
       </div>
 

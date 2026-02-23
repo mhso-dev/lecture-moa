@@ -346,7 +346,7 @@ export function QuizTakingShell({
               )}
               {/* Save indicator */}
               {isSaving && (
-                <span className="text-sm text-muted-foreground">Saving...</span>
+                <span className="text-sm text-muted-foreground">저장 중...</span>
               )}
             </div>
           </div>
@@ -374,16 +374,16 @@ export function QuizTakingShell({
             onClick={() => { handleNavigate(currentQuestionIndex - 1); }}
             disabled={currentQuestionIndex === 0}
           >
-            Previous
+            이전
           </Button>
           <div className="flex gap-2">
             {currentQuestionIndex < displayQuestions.length - 1 ? (
               <Button onClick={() => { handleNavigate(currentQuestionIndex + 1); }}>
-                Next
+                다음
               </Button>
             ) : (
               <Button onClick={() => { openConfirmDialog(); }} variant="default">
-                Submit Quiz
+                퀴즈 제출
               </Button>
             )}
           </div>
@@ -393,7 +393,7 @@ export function QuizTakingShell({
       </main>
 
       {/* Desktop navigator sidebar */}
-      <nav className="hidden lg:block" role="navigation" aria-label="Question navigation">
+      <nav className="hidden lg:block" role="navigation" aria-label="문항 내비게이션">
         <QuestionNavigator
           questions={displayQuestions}
           answers={answers}

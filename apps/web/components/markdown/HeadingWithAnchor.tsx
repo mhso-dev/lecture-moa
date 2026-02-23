@@ -116,11 +116,11 @@ export function HeadingWithAnchor({
           // Always visible on mobile
           "opacity-100 md:opacity-0"
         )}
-        aria-label={`Copy link to ${typeof children === "string" ? children : "heading"}`}
+        aria-label={`${typeof children === "string" ? children : "제목"} 링크 복사`}
       >
         {copied ? (
           <span className="text-xs font-medium text-green-600 dark:text-green-400">
-            Copied!
+            복사됨!
           </span>
         ) : (
           <Hash className="h-4 w-4" aria-hidden="true" />

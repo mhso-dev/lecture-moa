@@ -126,36 +126,36 @@ export function QuestionEditor({
     <div className="rounded-lg border p-4 space-y-4">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h4 className="font-medium">Question {questionNumber}</h4>
+        <h4 className="font-medium">문항 {questionNumber}</h4>
         {onDelete && (
           <Button
             type="button"
             variant="ghost"
             size="sm"
             onClick={onDelete}
-            aria-label="Delete question"
+            aria-label="문항 삭제"
           >
             <Trash2 className="h-4 w-4" />
-            <span className="ml-1">Delete</span>
+            <span className="ml-1">삭제</span>
           </Button>
         )}
       </div>
 
       {/* Question Text */}
       <div className="space-y-2">
-        <Label htmlFor={`${id}-text`}>Question Text</Label>
+        <Label htmlFor={`${id}-text`}>문항 내용</Label>
         <Textarea
           id={`${id}-text`}
           value={question.questionText}
           onChange={handleTextChange}
-          placeholder="Enter your question"
+          placeholder="문항을 입력하세요"
           rows={2}
         />
       </div>
 
       {/* Points */}
       <div className="space-y-2">
-        <Label htmlFor={`${id}-points`}>Points</Label>
+        <Label htmlFor={`${id}-points`}>배점</Label>
         <Input
           id={`${id}-points`}
           type="number"
@@ -170,7 +170,7 @@ export function QuestionEditor({
       {/* Type-specific fields */}
       {question.type === "multiple_choice" && (
         <div className="space-y-3">
-          <Label>Options</Label>
+          <Label>선택지</Label>
           {question.options?.map((option, optIndex) => (
             <div key={option.id} className="flex items-center gap-2">
               <Input
@@ -178,7 +178,7 @@ export function QuestionEditor({
                 onChange={(e) => {
                   handleMultipleChoiceChange(option.id, "text", e.target.value);
                 }}
-                placeholder={`Option ${String(optIndex + 1)}`}
+                placeholder={`선택지 ${String(optIndex + 1)}`}
                 className="flex-1"
               />
               <Button
@@ -186,7 +186,7 @@ export function QuestionEditor({
                 variant="ghost"
                 size="sm"
                 onClick={() => { handleRemoveOption(option.id); }}
-                aria-label="Remove option"
+                aria-label="선택지 삭제"
               >
                 <Trash2 className="h-4 w-4" />
               </Button>
@@ -199,23 +199,23 @@ export function QuestionEditor({
             onClick={handleAddOption}
           >
             <Plus className="h-4 w-4 mr-1" />
-            Add Option
+            선택지 추가
           </Button>
 
           {/* Correct Answer Selector */}
           <div className="space-y-2">
-            <Label>Correct Answer</Label>
+            <Label>정답</Label>
             <Select
               value={question.correctOptionId}
               onValueChange={handleCorrectOptionChange}
             >
               <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select correct answer" />
+                <SelectValue placeholder="정답을 선택하세요" />
               </SelectTrigger>
               <SelectContent>
                 {question.options?.map((opt, optIndex) => (
                   <SelectItem key={opt.id} value={opt.id}>
-                    Option {optIndex + 1}: {opt.text || "(empty)"}
+                    선택지 {optIndex + 1}: {opt.text || "(비어 있음)"}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -226,7 +226,7 @@ export function QuestionEditor({
 
       {question.type === "true_false" && (
         <div className="space-y-2">
-          <Label>Correct Answer</Label>
+          <Label>정답</Label>
           <RadioGroup
             value={question.correctAnswer ? "true" : "false"}
             onValueChange={handleTrueFalseChange}
@@ -234,11 +234,11 @@ export function QuestionEditor({
           >
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="true" id={`${id}-true`} />
-              <Label htmlFor={`${id}-true`}>True</Label>
+              <Label htmlFor={`${id}-true`}>참</Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="false" id={`${id}-false`} />
-              <Label htmlFor={`${id}-false`}>False</Label>
+              <Label htmlFor={`${id}-false`}>거짓</Label>
             </div>
           </RadioGroup>
         </div>
@@ -246,12 +246,12 @@ export function QuestionEditor({
 
       {question.type === "short_answer" && (
         <div className="space-y-2">
-          <Label htmlFor={`${id}-sample`}>Sample Answer</Label>
+          <Label htmlFor={`${id}-sample`}>모범 답안</Label>
           <Textarea
             id={`${id}-sample`}
             value={question.sampleAnswer ?? ""}
             onChange={handleSampleAnswerChange}
-            placeholder="Enter a sample answer for grading reference"
+            placeholder="채점 참고용 모범 답안을 입력하세요"
             rows={2}
           />
         </div>
@@ -259,17 +259,17 @@ export function QuestionEditor({
 
       {question.type === "fill_in_the_blank" && (
         <div className="space-y-3">
-          <Label>Blank Answers</Label>
+          <Label>빈칸 정답</Label>
           {question.blanks?.map((blank, blankIndex) => (
             <div key={blank.id} className="space-y-1">
               <Label htmlFor={`${id}-blank-${blank.id}`}>
-                Blank {blankIndex + 1}
+                빈칸 {blankIndex + 1}
               </Label>
               <Input
                 id={`${id}-blank-${blank.id}`}
                 value={blank.answer}
                 onChange={(e) => { handleBlankAnswerChange(blank.id, e.target.value); }}
-                placeholder={`Answer for blank ${String(blankIndex + 1)}`}
+                placeholder={`빈칸 ${String(blankIndex + 1)}의 정답`}
               />
             </div>
           ))}
@@ -278,12 +278,12 @@ export function QuestionEditor({
 
       {/* Explanation (shared) */}
       <div className="space-y-2">
-        <Label htmlFor={`${id}-explanation`}>Explanation (optional)</Label>
+        <Label htmlFor={`${id}-explanation`}>해설 (선택사항)</Label>
         <Textarea
           id={`${id}-explanation`}
           value={question.explanation ?? ""}
           onChange={handleExplanationChange}
-          placeholder="Explain the correct answer (shown after quiz completion)"
+          placeholder="정답에 대한 해설을 입력하세요 (퀴즈 완료 후 표시됩니다)"
           rows={2}
         />
       </div>

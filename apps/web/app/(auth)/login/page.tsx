@@ -6,8 +6,8 @@ import { LoginForm } from "~/components/auth/LoginForm";
 import { SocialLoginButtons } from "~/components/auth/SocialLoginButtons";
 
 export const metadata: Metadata = {
-  title: "Login | Lecture Moa",
-  description: "Sign in to your account",
+  title: "로그인 | Lecture Moa",
+  description: "계정에 로그인하세요",
 };
 
 /**
@@ -17,16 +17,16 @@ export const metadata: Metadata = {
 export default function LoginPage() {
   return (
     <AuthCard
-      title="Welcome back"
-      description="Sign in to your account"
+      title="다시 오신 것을 환영합니다"
+      description="계정에 로그인하세요"
       footer={
         <p className="text-sm text-[var(--color-muted-foreground)]">
-          Don&apos;t have an account?{" "}
+          계정이 없으신가요?{" "}
           <Link
             href="/register"
             className="font-medium text-[var(--color-primary-600)] hover:underline"
           >
-            Sign up
+            회원가입
           </Link>
         </p>
       }

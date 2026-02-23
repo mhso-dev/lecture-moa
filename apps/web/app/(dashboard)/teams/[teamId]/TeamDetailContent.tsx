@@ -56,7 +56,7 @@ export function TeamDetailContent({ teamId }: TeamDetailContentProps) {
         {activeTab === "memos" && (
           <div className="p-4 border rounded-lg">
             <p className="text-muted-foreground">
-              Team memos tab content - to be implemented in future phase.
+              팀 메모 탭 콘텐츠 - 추후 구현 예정입니다.
             </p>
           </div>
         )}

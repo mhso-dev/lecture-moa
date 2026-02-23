@@ -258,7 +258,7 @@ export function QAInlinePopup() {
       ref={popupRef}
       role="dialog"
       aria-modal="true"
-      aria-label="Ask Question"
+      aria-label="질문하기"
       className={cn(
         "fixed z-[60] bg-[var(--color-background)] border border-[var(--color-border)] rounded-lg shadow-xl",
         "animate-in fade-in-0 zoom-in-95 duration-200",
@@ -275,14 +275,14 @@ export function QAInlinePopup() {
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--color-border)]">
         <h2 className="text-lg font-semibold text-[var(--color-foreground)]">
-          Ask Question
+          질문하기
         </h2>
         <Button
           variant="ghost"
           size="icon"
           onClick={handleClose}
           className="h-8 w-8"
-          aria-label="Close popup"
+          aria-label="팝업 닫기"
         >
           <X className="h-4 w-4" />
         </Button>
@@ -308,10 +308,10 @@ export function QAInlinePopup() {
             name="title"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Title</FormLabel>
+                <FormLabel>제목</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="Enter a descriptive title for your question"
+                    placeholder="질문의 제목을 입력하세요"
                     {...field}
                     disabled={isPending}
                   />
@@ -326,12 +326,12 @@ export function QAInlinePopup() {
             name="content"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Content</FormLabel>
+                <FormLabel>내용</FormLabel>
                 <FormControl>
                   <EditorWithPreview
                     value={field.value}
                     onChange={field.onChange}
-                    placeholder="Describe your question in detail (Markdown supported)"
+                    placeholder="질문 내용을 상세히 작성하세요 (마크다운 지원)"
                     initialTab="editor"
                     height={150}
                     disabled={isPending}
@@ -350,16 +350,16 @@ export function QAInlinePopup() {
               onClick={handleClose}
               disabled={isPending}
             >
-              Cancel
+              취소
             </Button>
             <Button type="submit" disabled={isPending}>
               {isPending ? (
                 <>
                   <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                  Submitting...
+                  등록 중...
                 </>
               ) : (
-                "Submit Question"
+                "질문 등록"
               )}
             </Button>
           </div>

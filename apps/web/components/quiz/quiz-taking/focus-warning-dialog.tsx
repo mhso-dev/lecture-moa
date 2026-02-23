@@ -104,12 +104,12 @@ export function FocusWarningDialog({
               <line x1="12" y1="9" x2="12" y2="13" />
               <line x1="12" y1="17" x2="12.01" y2="17" />
             </svg>
-            Focus Loss Detected
+            포커스 이탈 감지됨
           </AlertDialogTitle>
           <AlertDialogDescription aria-live="assertive">
             <p>
-              You have navigated away from the quiz window. This event has been
-              recorded and may be reported to your instructor.
+              퀴즈 창을 벗어났습니다. 이 이벤트는 기록되며
+              강사에게 보고될 수 있습니다.
             </p>
           </AlertDialogDescription>
         </AlertDialogHeader>
@@ -119,7 +119,7 @@ export function FocusWarningDialog({
             onClick={handleContinue}
             className="bg-primary text-primary-foreground hover:bg-primary/90"
           >
-            Continue Quiz
+            퀴즈 계속하기
           </AlertDialogAction>
         </div>
       </AlertDialogContent>

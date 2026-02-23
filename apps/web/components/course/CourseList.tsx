@@ -35,7 +35,7 @@ export function CourseList({
         data-testid="course-list"
         className="flex flex-col gap-4"
         role="list"
-        aria-label="Course list"
+        aria-label="강의 목록"
       >
         {Array.from({ length: skeletonCount }).map((_, index) => (
           <CourseCardSkeleton key={index} variant="list" />
@@ -54,7 +54,7 @@ export function CourseList({
       data-testid="course-list"
       className="flex flex-col gap-4"
       role="list"
-      aria-label="Course list"
+      aria-label="강의 목록"
     >
       {courses.map((course) => (
         <div key={course.id} role="listitem">

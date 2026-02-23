@@ -67,10 +67,10 @@ export function MemberListItem({
 
   // Format date helper
   const formatDate = (date: Date) => {
-    return new Intl.DateTimeFormat("en-US", {
-      month: "short",
-      day: "numeric",
+    return new Intl.DateTimeFormat("ko-KR", {
       year: "numeric",
+      month: "long",
+      day: "numeric",
     }).format(new Date(date));
   };
 
@@ -79,11 +79,11 @@ export function MemberListItem({
       { userId: member.userId },
       {
         onSuccess: () => {
-          toast.success("Member removed successfully");
+          toast.success("멤버가 제거되었습니다");
           setShowRemoveDialog(false);
         },
         onError: () => {
-          toast.error("Failed to remove member");
+          toast.error("멤버 제거에 실패했습니다");
         },
       }
     );
@@ -94,10 +94,10 @@ export function MemberListItem({
       { userId: member.userId, role: newRole },
       {
         onSuccess: () => {
-          toast.success(`Role changed to ${newRole}`);
+          toast.success(`역할이 ${newRole === "leader" ? "리더" : "멤버"}(으)로 변경되었습니다`);
         },
         onError: () => {
-          toast.error("Failed to change role");
+          toast.error("역할 변경에 실패했습니다");
         },
       }
     );
@@ -123,10 +123,10 @@ export function MemberListItem({
             </Badge>
           </div>
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <span>Joined {formatDate(member.joinedAt)}</span>
+            <span>{formatDate(member.joinedAt)} 가입</span>
             {isSelf && (
               <span className="text-xs text-muted-foreground">
-                (You)
+                (나)
               </span>
             )}
           </div>
@@ -139,8 +139,8 @@ export function MemberListItem({
           {/* Role change dropdown */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="sm" aria-label="Change role">
-                Change Role
+              <Button variant="outline" size="sm" aria-label="역할 변경">
+                역할 변경
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
@@ -149,7 +149,7 @@ export function MemberListItem({
                   onClick={() => { handleRoleChange("leader"); }}
                   role="option"
                 >
-                  Promote to Leader
+                  리더로 승격
                 </DropdownMenuItem>
               )}
               {member.role === "leader" && (
@@ -157,7 +157,7 @@ export function MemberListItem({
                   onClick={() => { handleRoleChange("member"); }}
                   role="option"
                 >
-                  Demote to Member
+                  멤버로 변경
                 </DropdownMenuItem>
               )}
             </DropdownMenuContent>
@@ -169,9 +169,9 @@ export function MemberListItem({
             size="sm"
             onClick={() => { setShowRemoveDialog(true); }}
             disabled={isSelf || removeMember.isPending}
-            aria-label="Remove member"
+            aria-label="멤버 제거"
           >
-            Remove
+            제거
           </Button>
         </div>
       )}
@@ -180,19 +180,18 @@ export function MemberListItem({
       <AlertDialog open={showRemoveDialog} onOpenChange={setShowRemoveDialog}>
         <AlertDialogContent role="alertdialog">
           <AlertDialogHeader>
-            <AlertDialogTitle>Remove Member?</AlertDialogTitle>
+            <AlertDialogTitle>멤버를 제거하시겠습니까?</AlertDialogTitle>
             <AlertDialogDescription>
-              Are you sure you want to remove {member.name} from the team? This
-              action cannot be undone.
+              {member.name}님을 팀에서 제거하시겠습니까? 이 작업은 되돌릴 수 없습니다.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogCancel>취소</AlertDialogCancel>
             <AlertDialogAction
               onClick={handleRemove}
               disabled={removeMember.isPending}
             >
-              {removeMember.isPending ? "Removing..." : "Remove"}
+              {removeMember.isPending ? "제거 중..." : "제거"}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

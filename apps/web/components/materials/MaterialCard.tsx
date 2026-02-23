@@ -104,11 +104,11 @@ export function MaterialCard({
     const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
 
     if (diffDays === 0) {
-      return "Today";
+      return "오늘";
     } else if (diffDays === 1) {
-      return "Yesterday";
+      return "어제";
     } else if (diffDays < 7) {
-      return `${String(diffDays)} days ago`;
+      return `${String(diffDays)}일 전`;
     } else {
       return date.toLocaleDateString("ko-KR", {
         month: "short",
@@ -196,7 +196,7 @@ export function MaterialCard({
                       variant="ghost"
                       size="icon"
                       className="h-8 w-8 shrink-0"
-                      aria-label="Material actions"
+                      aria-label="자료 관리"
                     >
                       <MoreVertical className="h-4 w-4" />
                     </Button>
@@ -208,7 +208,7 @@ export function MaterialCard({
                         onClick={(e) => { e.stopPropagation(); }}
                       >
                         <Pencil className="mr-2 h-4 w-4" />
-                        Edit
+                        편집
                       </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem
@@ -221,12 +221,12 @@ export function MaterialCard({
                       {material.status === "published" ? (
                         <>
                           <EyeOff className="mr-2 h-4 w-4" />
-                          Unpublish
+                          게시 취소
                         </>
                       ) : (
                         <>
                           <Globe className="mr-2 h-4 w-4" />
-                          Publish
+                          게시
                         </>
                       )}
                     </DropdownMenuItem>
@@ -239,7 +239,7 @@ export function MaterialCard({
                       className="text-[var(--color-danger-600)] focus:text-[var(--color-danger-600)]"
                     >
                       <Trash2 className="mr-2 h-4 w-4" />
-                      Delete
+                      삭제
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
@@ -262,7 +262,7 @@ export function MaterialCard({
                     : "border-[var(--color-warning-500)] text-[var(--color-warning-600)]"
                 )}
               >
-                {material.status === "published" ? "Published" : "Draft"}
+                {material.status === "published" ? "게시됨" : "초안"}
               </Badge>
             )}
 
@@ -296,7 +296,7 @@ export function MaterialCard({
             </div>
 
             {/* Read time */}
-            <span>{material.readTimeMinutes} min read</span>
+            <span>{material.readTimeMinutes}분 읽기</span>
 
             {/* Q&A count */}
             {material.qaCount > 0 && (
@@ -316,19 +316,19 @@ export function MaterialCard({
       <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Delete Material</DialogTitle>
+            <DialogTitle>자료 삭제</DialogTitle>
             <DialogDescription>
-              Are you sure you want to delete{" "}
+              정말{" "}
               <span className="font-semibold text-[var(--color-foreground)]">
                 {material.title}
               </span>
-              ?
+              을(를) 삭제하시겠습니까?
             </DialogDescription>
           </DialogHeader>
           <div className="py-4">
             <p className="text-sm text-[var(--color-danger-600)] bg-[var(--color-danger-50)] dark:bg-[var(--color-danger-950)] p-3 rounded-md">
-              This action cannot be undone. The material and all associated Q&A
-              threads will be permanently deleted.
+              이 작업은 되돌릴 수 없습니다. 자료 및 관련된 모든 Q&A
+              스레드가 영구적으로 삭제됩니다.
             </p>
           </div>
           <DialogFooter>
@@ -337,14 +337,14 @@ export function MaterialCard({
               onClick={() => { setIsDeleteDialogOpen(false); }}
               disabled={isDeleting}
             >
-              Cancel
+              취소
             </Button>
             <Button
               variant="destructive"
               onClick={handleDelete}
               disabled={isDeleting}
             >
-              {isDeleting ? "Deleting..." : "Delete"}
+              {isDeleting ? "삭제 중..." : "삭제"}
             </Button>
           </DialogFooter>
         </DialogContent>

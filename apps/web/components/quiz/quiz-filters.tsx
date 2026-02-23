@@ -40,19 +40,19 @@ interface QuizFiltersProps {
  * Status options for students
  */
 const STUDENT_STATUS_OPTIONS = [
-  { value: "all", label: "All" },
-  { value: "published", label: "Upcoming" },
-  { value: "submitted", label: "Completed" },
+  { value: "all", label: "전체" },
+  { value: "published", label: "예정" },
+  { value: "submitted", label: "완료" },
 ] as const;
 
 /**
  * Status options for instructors
  */
 const INSTRUCTOR_STATUS_OPTIONS = [
-  { value: "all", label: "All" },
-  { value: "draft", label: "Draft" },
-  { value: "published", label: "Published" },
-  { value: "closed", label: "Closed" },
+  { value: "all", label: "전체" },
+  { value: "draft", label: "초안" },
+  { value: "published", label: "게시됨" },
+  { value: "closed", label: "마감" },
 ] as const;
 
 /**
@@ -122,9 +122,9 @@ export function QuizFilters({
           <SelectTrigger
             id="status-filter"
             className="w-[160px]"
-            aria-label="Filter by status"
+            aria-label="상태별 필터"
           >
-            <SelectValue placeholder="Status" />
+            <SelectValue placeholder="상태" />
           </SelectTrigger>
           <SelectContent>
             {statusOptions.map((option) => (
@@ -140,18 +140,18 @@ export function QuizFilters({
       {courses.length > 0 && (
         <div className="flex items-center gap-2">
           <label htmlFor="course-filter" className="text-sm font-medium sr-only">
-            Course
+            강의
           </label>
           <Select value={currentCourseId} onValueChange={handleCourseChange}>
             <SelectTrigger
               id="course-filter"
               className="w-[200px]"
-              aria-label="Filter by course"
+              aria-label="강의별 필터"
             >
-              <SelectValue placeholder="All Courses" />
+              <SelectValue placeholder="전체 강의" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">All Courses</SelectItem>
+              <SelectItem value="all">전체 강의</SelectItem>
               {courses.map((course) => (
                 <SelectItem key={course.id} value={course.id}>
                   {course.name}

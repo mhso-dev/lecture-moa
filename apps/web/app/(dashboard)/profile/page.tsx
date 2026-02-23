@@ -13,7 +13,7 @@ import { ProfileSection } from "~/components/profile/ProfileSection";
 import { PasswordChangeForm } from "~/components/profile/PasswordChangeForm";
 
 export const metadata: Metadata = {
-  title: "Profile Settings | Lecture Moa",
+  title: "프로필 설정 | Lecture Moa",
 };
 
 /**
@@ -45,19 +45,19 @@ export default async function ProfilePage() {
       {/* Page Header */}
       <div>
         <h1 className="text-h1 font-semibold text-foreground">
-          Profile Settings
+          프로필 설정
         </h1>
         <p className="mt-2 text-body text-muted-foreground">
-          Manage your account information and security settings.
+          계정 정보 및 보안 설정을 관리하세요.
         </p>
       </div>
 
       {/* Section 1: Avatar and Profile Info */}
       <Card>
         <CardHeader>
-          <CardTitle>Profile Information</CardTitle>
+          <CardTitle>프로필 정보</CardTitle>
           <CardDescription>
-            Update your name and avatar. Your email address cannot be changed.
+            이름과 프로필 사진을 변경할 수 있습니다. 이메일 주소는 변경할 수 없습니다.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -68,9 +68,9 @@ export default async function ProfilePage() {
       {/* Section 2: Password Change */}
       <Card>
         <CardHeader>
-          <CardTitle>Change Password</CardTitle>
+          <CardTitle>비밀번호 변경</CardTitle>
           <CardDescription>
-            Update your password to keep your account secure.
+            계정 보안을 위해 비밀번호를 변경하세요.
           </CardDescription>
         </CardHeader>
         <CardContent>

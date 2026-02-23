@@ -18,28 +18,28 @@ import { DashboardWidget } from "../DashboardWidget";
  */
 const QUICK_ACTIONS = [
   {
-    label: "Upload Material",
+    label: "자료 업로드",
     href: "/materials/upload",
     icon: Upload,
-    description: "Add new learning materials",
+    description: "새 학습 자료 추가",
   },
   {
-    label: "Create Quiz",
+    label: "퀴즈 만들기",
     href: "/quizzes/create",
     icon: FileQuestion,
-    description: "Create a new quiz",
+    description: "새 퀴즈 생성",
   },
   {
-    label: "View All Q&A",
+    label: "Q&A 전체 보기",
     href: "/qa",
     icon: MessageCircle,
-    description: "Manage questions",
+    description: "질문 관리",
   },
   {
-    label: "Manage Courses",
+    label: "강의 관리",
     href: "/courses",
     icon: BookOpen,
-    description: "Edit your courses",
+    description: "강의 편집",
   },
 ] as const;
 
@@ -62,8 +62,8 @@ const QUICK_ACTIONS = [
 export function QuickActionsWidget() {
   return (
     <DashboardWidget
-      title="Quick Actions"
-      subtitle="Common tasks"
+      title="빠른 실행"
+      subtitle="자주 사용하는 기능"
       testId="quick-actions-widget"
     >
       <div className="grid grid-cols-2 gap-3">

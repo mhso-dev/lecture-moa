@@ -58,19 +58,19 @@ export function TeamListContent({
       {/* Page Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Teams</h1>
+          <h1 className="text-2xl font-bold tracking-tight">팀</h1>
           <p className="text-muted-foreground">
-            Manage your teams and discover new study groups
+            팀을 관리하고 새로운 스터디 그룹을 찾아보세요
           </p>
         </div>
         <Button asChild>
-          <a href="/teams/new">Create Team</a>
+          <a href="/teams/new">팀 만들기</a>
         </Button>
       </div>
 
       {/* My Teams Section */}
-      <section aria-label="My Teams">
-        <h2 className="text-xl font-semibold mb-4">My Teams</h2>
+      <section aria-label="내 팀">
+        <h2 className="text-xl font-semibold mb-4">내 팀</h2>
         {isLoading ? (
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {[1, 2, 3].map((i) => (
@@ -92,10 +92,10 @@ export function TeamListContent({
           <Card>
             <CardContent className="flex flex-col items-center justify-center py-12 text-center">
               <p className="text-muted-foreground mb-4">
-                You haven&apos;t joined any teams yet. Browse available teams below.
+                아직 가입한 팀이 없습니다. 아래에서 참여 가능한 팀을 찾아보세요.
               </p>
               <Button variant="outline" asChild>
-                <a href="#browse">Browse Teams</a>
+                <a href="#browse">팀 찾아보기</a>
               </Button>
             </CardContent>
           </Card>
@@ -115,17 +115,17 @@ export function TeamListContent({
       </section>
 
       {/* Browse Teams Section */}
-      <section id="browse" aria-label="Browse Teams">
-        <h2 className="text-xl font-semibold mb-4">Browse Teams</h2>
+      <section id="browse" aria-label="팀 찾아보기">
+        <h2 className="text-xl font-semibold mb-4">팀 찾아보기</h2>
 
         {/* Search Input */}
         <div className="mb-4">
           <Input
             type="search"
-            placeholder="Search teams..."
+            placeholder="팀 검색..."
             value={searchQuery}
             onChange={(e) => { setSearchQuery(e.target.value); }}
-            aria-label="Search teams"
+            aria-label="팀 검색"
             className="max-w-md"
           />
         </div>
@@ -151,10 +151,10 @@ export function TeamListContent({
           <Card>
             <CardContent className="flex flex-col items-center justify-center py-12 text-center">
               <p className="text-muted-foreground mb-4">
-                No teams found matching your search.
+                검색 결과에 맞는 팀이 없습니다.
               </p>
               <Button variant="outline" onClick={() => { setSearchQuery(""); }}>
-                Clear Search
+                검색 초기화
               </Button>
             </CardContent>
           </Card>

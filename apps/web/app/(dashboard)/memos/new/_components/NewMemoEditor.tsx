@@ -82,7 +82,7 @@ export function NewMemoEditor() {
       setMaterialId(draft.materialId);
       setAnchorId(draft.anchorId);
       setDirty(true);
-      toast.success("Draft restored");
+      toast.success("임시저장본이 복원되었습니다");
     }
     setShowRestoreBanner(false);
   };
@@ -93,7 +93,7 @@ export function NewMemoEditor() {
   const handleDiscardDraft = () => {
     clearDraft();
     setShowRestoreBanner(false);
-    toast.info("Draft discarded");
+    toast.info("임시저장본이 삭제되었습니다");
   };
 
   /**
@@ -103,14 +103,14 @@ export function NewMemoEditor() {
     (values: CreateMemoRequest) => {
       createMutation.mutate(values, {
         onSuccess: (memo) => {
-          toast.success("Memo created successfully");
+          toast.success("메모가 생성되었습니다");
           clearDraft();
           setDirty(false);
           setLastSaved(new Date());
           router.push(`/memos/${memo.id}` as any);
         },
         onError: (error) => {
-          toast.error("Failed to create memo");
+          toast.error("메모 생성에 실패했습니다");
           console.error("Create memo error:", error);
         },
       });
@@ -124,7 +124,7 @@ export function NewMemoEditor() {
   const handleCancel = () => {
     if (isDirty) {
       const confirmed = window.confirm(
-        "You have unsaved changes. Are you sure you want to leave?"
+        "저장하지 않은 변경사항이 있습니다. 정말 나가시겠습니까?"
       );
       if (!confirmed) return;
     }
@@ -151,14 +151,14 @@ export function NewMemoEditor() {
             variant="ghost"
             size="icon"
             onClick={handleCancel}
-            aria-label="Back to memos"
+            aria-label="메모 목록으로"
           >
             <ArrowLeft className="h-5 w-5" />
           </Button>
           <div>
-            <h1 className="text-2xl font-bold">New Memo</h1>
+            <h1 className="text-2xl font-bold">새 메모</h1>
             <p className="text-sm text-[var(--color-muted-foreground)]">
-              Create a personal study memo
+              개인 학습 메모 작성
             </p>
           </div>
         </div>
@@ -166,7 +166,7 @@ export function NewMemoEditor() {
         {/* Draft saved indicator */}
         {lastSavedAt && (
           <div className="text-sm text-[var(--color-muted-foreground)]">
-            Draft saved
+            임시저장 완료
           </div>
         )}
       </div>

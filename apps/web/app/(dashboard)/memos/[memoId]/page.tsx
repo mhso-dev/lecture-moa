@@ -15,8 +15,8 @@ import { Metadata } from "next";
 import { MemoView } from "./_components/MemoView";
 
 export const metadata: Metadata = {
-  title: "View Memo | Lecture MoA",
-  description: "View memo details",
+  title: "메모 보기 | Lecture MoA",
+  description: "메모 상세 보기",
 };
 
 /**

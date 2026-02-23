@@ -57,7 +57,7 @@ export default function MaterialsPage() {
 
   // Fetch course data for title
   const { data: course } = useCourse(courseId);
-  const courseTitle = course?.title ?? "Course Materials";
+  const courseTitle = course?.title ?? "강의 자료";
 
   // Get role from auth store
   const role = useAuthStore((state) => state.role);
@@ -225,11 +225,11 @@ function MaterialsPageClient({
 
   // Sort label mapping
   const sortLabels: Record<MaterialSortKey, string> = {
-    position: "Order",
-    title: "Title",
-    createdAt: "Created",
-    updatedAt: "Updated",
-    readTimeMinutes: "Read Time",
+    position: "순서",
+    title: "제목",
+    createdAt: "생성일",
+    updatedAt: "수정일",
+    readTimeMinutes: "읽기 시간",
   };
 
   // Error state
@@ -240,13 +240,13 @@ function MaterialsPageClient({
           <FileText className="h-8 w-8 text-[var(--color-danger-600)]" />
         </div>
         <h2 className="text-xl font-semibold text-[var(--color-foreground)] mb-2">
-          Failed to load materials
+          자료를 불러오지 못했습니다
         </h2>
         <p className="text-[var(--color-muted-foreground)] mb-4 max-w-md">
           {error.message ||
-            "An error occurred while loading materials. Please try again."}
+            "자료를 불러오는 중 오류가 발생했습니다. 다시 시도해 주세요."}
         </p>
-        <Button onClick={() => refetch()}>Retry</Button>
+        <Button onClick={() => refetch()}>다시 시도</Button>
       </div>
     );
   }
@@ -257,7 +257,7 @@ function MaterialsPageClient({
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold text-[var(--color-foreground)]">
-            Materials
+            자료
           </h1>
           <p className="text-sm text-[var(--color-muted-foreground)]">
             {courseTitle}
@@ -269,7 +269,7 @@ function MaterialsPageClient({
           <Button asChild>
             <Link href={`/courses/${courseId}/materials/upload`}>
               <Plus className="mr-2 h-4 w-4" />
-              Upload Material
+              자료 업로드
             </Link>
           </Button>
         )}
@@ -282,7 +282,7 @@ function MaterialsPageClient({
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[var(--color-muted-foreground)]" />
           <Input
             type="search"
-            placeholder="Search materials..."
+            placeholder="자료 검색..."
             value={searchInput}
             onChange={handleSearchChange}
             className="pl-10 pr-10"
@@ -295,7 +295,7 @@ function MaterialsPageClient({
                 updateParams({ search: null });
               }}
               className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--color-muted-foreground)] hover:text-[var(--color-foreground)]"
-              aria-label="Clear search"
+              aria-label="검색 지우기"
             >
               <X className="h-4 w-4" />
             </button>
@@ -310,7 +310,7 @@ function MaterialsPageClient({
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="sm">
                   <Tag className="mr-2 h-4 w-4" />
-                  Tags
+                  태그
                   {selectedTags.length > 0 && (
                     <Badge
                       variant="secondary"
@@ -322,7 +322,7 @@ function MaterialsPageClient({
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-48">
-                <DropdownMenuLabel>Filter by tags</DropdownMenuLabel>
+                <DropdownMenuLabel>태그 필터</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 {allTags.map((tag) => (
                   <DropdownMenuCheckboxItem
@@ -351,12 +351,12 @@ function MaterialsPageClient({
               }}
             >
               <SelectTrigger className="w-[130px] h-9">
-                <SelectValue placeholder="Status" />
+                <SelectValue placeholder="상태" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All</SelectItem>
-                <SelectItem value="published">Published</SelectItem>
-                <SelectItem value="draft">Draft</SelectItem>
+                <SelectItem value="all">전체</SelectItem>
+                <SelectItem value="published">게시됨</SelectItem>
+                <SelectItem value="draft">초안</SelectItem>
               </SelectContent>
             </Select>
           )}
@@ -373,7 +373,7 @@ function MaterialsPageClient({
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuLabel>Sort by</DropdownMenuLabel>
+              <DropdownMenuLabel>정렬</DropdownMenuLabel>
               <DropdownMenuSeparator />
               {(Object.keys(sortLabels) as MaterialSortKey[]).map((key) => (
                 <DropdownMenuCheckboxItem
@@ -406,7 +406,7 @@ function MaterialsPageClient({
               className="text-[var(--color-muted-foreground)]"
             >
               <X className="mr-2 h-4 w-4" />
-              Clear
+              초기화
             </Button>
           )}
         </div>
@@ -416,11 +416,11 @@ function MaterialsPageClient({
       {hasFilters && (
         <div className="flex flex-wrap items-center gap-2">
           <span className="text-sm text-[var(--color-muted-foreground)]">
-            Filters:
+            필터:
           </span>
           {debouncedSearch && (
             <Badge variant="secondary" className="gap-1">
-              Search: {debouncedSearch}
+              검색: {debouncedSearch}
               <button
                 type="button"
                 onClick={() => {
@@ -428,7 +428,7 @@ function MaterialsPageClient({
                   updateParams({ search: null });
                 }}
                 className="ml-1 hover:text-[var(--color-foreground)]"
-                aria-label="Remove search filter"
+                aria-label="검색 필터 제거"
               >
                 <X className="h-3 w-3" />
               </button>
@@ -443,7 +443,7 @@ function MaterialsPageClient({
                   handleTagToggle(tag);
                 }}
                 className="ml-1 hover:text-[var(--color-foreground)]"
-                aria-label={`Remove ${tag} filter`}
+                aria-label={`${tag} 필터 제거`}
               >
                 <X className="h-3 w-3" />
               </button>
@@ -451,14 +451,14 @@ function MaterialsPageClient({
           ))}
           {selectedStatus && (
             <Badge variant="secondary" className="gap-1">
-              Status: {selectedStatus}
+              상태: {selectedStatus}
               <button
                 type="button"
                 onClick={() => {
                   updateParams({ status: null });
                 }}
                 className="ml-1 hover:text-[var(--color-foreground)]"
-                aria-label="Remove status filter"
+                aria-label="상태 필터 제거"
               >
                 <X className="h-3 w-3" />
               </button>
@@ -486,39 +486,38 @@ function MaterialsPageClient({
           {hasFilters ? (
             <>
               <h2 className="text-xl font-semibold text-[var(--color-foreground)] mb-2">
-                No materials found
+                검색 결과가 없습니다
               </h2>
               <p className="text-[var(--color-muted-foreground)] mb-4 max-w-md">
-                No materials match your current filters. Try adjusting your
-                search or filters.
+                현재 필터에 일치하는 자료가 없습니다.
+                검색어나 필터를 조정해 보세요.
               </p>
               <Button variant="outline" onClick={handleClearFilters}>
-                Clear Filters
+                필터 초기화
               </Button>
             </>
           ) : isInstructor ? (
             <>
               <h2 className="text-xl font-semibold text-[var(--color-foreground)] mb-2">
-                No materials yet
+                아직 자료가 없습니다
               </h2>
               <p className="text-[var(--color-muted-foreground)] mb-4 max-w-md">
-                Upload your first material to start building your course content.
+                첫 번째 자료를 업로드하여 강의 콘텐츠를 만들어 보세요.
               </p>
               <Button asChild>
                 <Link href={`/courses/${courseId}/materials/upload`}>
                   <Plus className="mr-2 h-4 w-4" />
-                  Upload Material
+                  자료 업로드
                 </Link>
               </Button>
             </>
           ) : (
             <>
               <h2 className="text-xl font-semibold text-[var(--color-foreground)] mb-2">
-                No materials available
+                아직 자료가 없습니다
               </h2>
               <p className="text-[var(--color-muted-foreground)] mb-4 max-w-md">
-                The instructor has not uploaded any materials yet. Please check
-                back later.
+                강사가 아직 자료를 업로드하지 않았습니다. 나중에 다시 확인해 주세요.
               </p>
             </>
           )}
@@ -542,7 +541,7 @@ function MaterialsPageClient({
       {/* Results count */}
       {!isLoading && materials.length > 0 && (
         <div className="text-center text-sm text-[var(--color-muted-foreground)]">
-          Showing {materials.length} material{materials.length !== 1 ? "s" : ""}
+          {materials.length}개의 자료
         </div>
       )}
     </div>

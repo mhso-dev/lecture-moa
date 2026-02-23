@@ -18,9 +18,9 @@ interface QuizStatusBadgeProps {
  * Status label mapping
  */
 const STATUS_LABELS: Record<QuizStatus, string> = {
-  draft: "Draft",
-  published: "Published",
-  closed: "Closed",
+  draft: "초안",
+  published: "게시됨",
+  closed: "마감",
 };
 
 /**

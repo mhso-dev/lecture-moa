@@ -18,8 +18,8 @@ import type { Metadata } from "next";
  * Page metadata for SEO and browser tab
  */
 export const metadata: Metadata = {
-  title: "Instructor Dashboard | lecture-moa",
-  description: "Manage your courses, view student activity, and track quiz performance.",
+  title: "강사 대시보드 | lecture-moa",
+  description: "강의 관리, 학생 활동 확인, 퀴즈 성과 추적",
 };
 
 /**
@@ -50,14 +50,14 @@ export default async function InstructorDashboardPage() {
     redirect("/dashboard/student");
   }
 
-  const name = (user.user_metadata.name as string | undefined) ?? "Instructor";
+  const name = (user.user_metadata.name as string | undefined) ?? "강사";
 
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">Dashboard</h1>
+        <h1 className="text-2xl font-bold tracking-tight">대시보드</h1>
         <p className="text-muted-foreground">
-          Welcome back, {name}! Here&apos;s an overview of your teaching activity.
+          {name}님, 다시 오신 것을 환영합니다! 강의 활동 개요입니다.
         </p>
       </div>
 

@@ -4,8 +4,8 @@ import { AuthCard } from "~/components/auth/AuthCard";
 import { PasswordResetForm } from "~/components/auth/PasswordResetForm";
 
 export const metadata: Metadata = {
-  title: "Reset Password | Lecture Moa",
-  description: "Reset your password to regain access to your account",
+  title: "비밀번호 재설정 | Lecture Moa",
+  description: "계정에 다시 접근하려면 비밀번호를 재설정하세요",
 };
 
 /**
@@ -15,14 +15,14 @@ export const metadata: Metadata = {
 export default function ResetPasswordPage() {
   return (
     <AuthCard
-      title="Reset your password"
-      description="Enter your email to receive a reset link"
+      title="비밀번호 재설정"
+      description="재설정 링크를 받으려면 이메일을 입력하세요"
       footer={
         <Link
           href="/login"
           className="text-sm text-[var(--color-muted-foreground)] hover:underline"
         >
-          Back to login
+          로그인으로 돌아가기
         </Link>
       }
     >

@@ -92,7 +92,7 @@ export function GeneratedQuestionReview({
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
           <h3 className="text-lg font-medium">
-            Generated Questions ({questions.length})
+            생성된 문항 ({questions.length})
           </h3>
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <Checkbox
@@ -101,7 +101,7 @@ export function GeneratedQuestionReview({
               onCheckedChange={handleToggleAll}
             />
             <Label htmlFor="select-all" className="cursor-pointer">
-              {selectedCount} selected
+              {selectedCount}개 선택됨
             </Label>
           </div>
         </div>
@@ -111,7 +111,7 @@ export function GeneratedQuestionReview({
           {onRegenerate && (
             <Button type="button" variant="outline" onClick={onRegenerate}>
               <RefreshCw className="h-4 w-4 mr-2" />
-              Regenerate
+              다시 생성
             </Button>
           )}
           <Button
@@ -120,11 +120,11 @@ export function GeneratedQuestionReview({
             onClick={handleAcceptSelected}
             disabled={selectedCount === 0}
           >
-            Accept Selected ({selectedCount})
+            선택 항목 수락 ({selectedCount})
           </Button>
           <Button type="button" onClick={handleAcceptAll}>
             <Check className="h-4 w-4 mr-2" />
-            Accept All
+            전체 수락
           </Button>
         </div>
       </div>
@@ -156,7 +156,7 @@ export function GeneratedQuestionReview({
       {/* Empty State */}
       {questions.length === 0 && (
         <div className="text-center py-8 text-muted-foreground">
-          <p>No questions generated. Click Regenerate to try again.</p>
+          <p>생성된 문항이 없습니다. 다시 생성을 클릭하여 재시도하세요.</p>
         </div>
       )}
     </div>

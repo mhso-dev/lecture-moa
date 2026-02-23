@@ -41,15 +41,15 @@ export function TeamOverviewWidget({ teamId = "" }: TeamOverviewWidgetProps) {
 
   return (
     <DashboardWidget
-      title="Team Overview"
-      subtitle="Your team details"
+      title="팀 개요"
+      subtitle="나의 팀 정보"
       headerAction={
         overview ? (
           <Link
             href={`/teams/${overview.id}` as Route}
             className="text-sm text-primary hover:underline flex items-center gap-1"
           >
-            Manage Team
+            팀 관리
             <ChevronRight className="h-4 w-4" />
           </Link>
         ) : undefined
@@ -74,7 +74,7 @@ export function TeamOverviewWidget({ teamId = "" }: TeamOverviewWidgetProps) {
           <div className="flex items-center gap-4 text-sm">
             <div className="flex items-center gap-1.5 text-muted-foreground">
               <Users className="h-4 w-4" />
-              <span>{overview.memberCount} members</span>
+              <span>{overview.memberCount}명</span>
             </div>
           </div>
 
@@ -89,16 +89,16 @@ export function TeamOverviewWidget({ teamId = "" }: TeamOverviewWidgetProps) {
           <div className="flex items-center gap-1.5 text-xs text-muted-foreground pt-2 border-t">
             <Calendar className="h-3.5 w-3.5" />
             <span>
-              Created {formatDistanceToNow(new Date(overview.createdAt))} ago
+              {formatDistanceToNow(new Date(overview.createdAt))} 전 생성
             </span>
           </div>
         </div>
       ) : (
         <EmptyState
           icon={Users}
-          title="No team yet"
-          description="You are not a member of any team."
-          action={{ label: "Browse Teams", href: "/teams" as Route }}
+          title="아직 팀이 없습니다"
+          description="소속된 팀이 없습니다."
+          action={{ label: "팀 둘러보기", href: "/teams" as Route }}
         />
       )}
     </DashboardWidget>

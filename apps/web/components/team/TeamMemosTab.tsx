@@ -96,11 +96,11 @@ export function TeamMemosTab({ teamId, className }: TeamMemosTabProps) {
 
     try {
       await deleteMemo.mutateAsync(memoToDelete);
-      toast.success("Memo deleted successfully");
+      toast.success("메모가 삭제되었습니다");
       setShowDeleteDialog(false);
       setMemoToDelete(null);
     } catch (error) {
-      toast.error("Failed to delete memo");
+      toast.error("메모 삭제에 실패했습니다");
       console.error("[TeamMemosTab] Delete error:", error);
     }
   };
@@ -120,20 +120,19 @@ export function TeamMemosTab({ teamId, className }: TeamMemosTabProps) {
       <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Delete Memo?</AlertDialogTitle>
+            <AlertDialogTitle>메모를 삭제하시겠습니까?</AlertDialogTitle>
             <AlertDialogDescription>
-              This action cannot be undone. The memo will be permanently removed
-              from the team board.
+              이 작업은 되돌릴 수 없습니다. 메모가 팀 보드에서 영구적으로 삭제됩니다.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogCancel>취소</AlertDialogCancel>
             <AlertDialogAction
               onClick={confirmDelete}
               className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
               disabled={deleteMemo.isPending}
             >
-              {deleteMemo.isPending ? "Deleting..." : "Delete"}
+              {deleteMemo.isPending ? "삭제 중..." : "삭제"}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

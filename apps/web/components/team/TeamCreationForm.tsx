@@ -83,17 +83,17 @@ export function TeamCreationForm({
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Name *</FormLabel>
+              <FormLabel>이름 *</FormLabel>
               <FormControl>
                 <Input
                   {...field}
-                  placeholder="Enter team name"
+                  placeholder="팀 이름을 입력하세요"
                   maxLength={50}
                   data-testid="name-input"
                 />
               </FormControl>
               <FormDescription>
-                Team name must be 2-50 characters.
+                팀 이름은 2~50자여야 합니다.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -106,11 +106,11 @@ export function TeamCreationForm({
           name="description"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Description (optional)</FormLabel>
+              <FormLabel>설명 (선택사항)</FormLabel>
               <FormControl>
                 <Textarea
                   {...field}
-                  placeholder="Describe your team's purpose and goals..."
+                  placeholder="팀의 목적과 목표를 설명하세요..."
                   maxLength={500}
                   className="min-h-[100px]"
                   data-testid="description-input"
@@ -139,7 +139,7 @@ export function TeamCreationForm({
           name="maxMembers"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Max Members *</FormLabel>
+              <FormLabel>최대 인원 *</FormLabel>
               <FormControl>
                 <Input
                   {...field}
@@ -151,7 +151,7 @@ export function TeamCreationForm({
                 />
               </FormControl>
               <FormDescription>
-                Team can have 2-100 members.
+                팀 인원은 2~100명까지 설정할 수 있습니다.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -165,7 +165,7 @@ export function TeamCreationForm({
             name="courseId"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Course Association (optional)</FormLabel>
+                <FormLabel>강의 연결 (선택사항)</FormLabel>
                 <FormControl>
                   <Select
                     onValueChange={(value) => {
@@ -175,7 +175,7 @@ export function TeamCreationForm({
                     value={selectedCourseId}
                   >
                     <SelectTrigger data-testid="course-input">
-                      <SelectValue placeholder="Select associated course" />
+                      <SelectValue placeholder="연결할 강의를 선택하세요" />
                     </SelectTrigger>
                     <SelectContent>
                       {courses.map((course) => (
@@ -187,7 +187,7 @@ export function TeamCreationForm({
                   </Select>
                 </FormControl>
                 <FormDescription>
-                  Link this team to a course.
+                  이 팀을 강의에 연결합니다.
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -202,11 +202,11 @@ export function TeamCreationForm({
             disabled={isSubmitting}
             data-testid="submit-button"
           >
-            {isSubmitting ? "Creating..." : "Create Team"}
+            {isSubmitting ? "생성 중..." : "팀 만들기"}
           </Button>
           <Button type="button" variant="outline" asChild>
             <a href="/teams" data-testid="cancel-link">
-              Cancel
+              취소
             </a>
           </Button>
         </div>

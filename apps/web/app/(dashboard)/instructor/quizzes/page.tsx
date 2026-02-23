@@ -17,8 +17,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Quiz Management | lecture-moa",
-  description: "Manage your quizzes, view submissions, and track student performance.",
+  title: "퀴즈 관리 | lecture-moa",
+  description: "퀴즈를 관리하고, 제출 현황을 확인하고, 학생 성적을 추적하세요.",
 };
 
 /**
@@ -51,16 +51,16 @@ export default async function InstructorQuizzesPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Quiz Management</h1>
+          <h1 className="text-2xl font-bold tracking-tight">퀴즈 관리</h1>
           <p className="text-muted-foreground">
-            Create, edit, and manage your quizzes.
+            퀴즈를 생성, 편집, 관리하세요.
           </p>
         </div>
 
         <Link href="/instructor/quizzes/new">
           <Button>
             <Plus className="mr-2 h-4 w-4" />
-            Create Quiz
+            퀴즈 만들기
           </Button>
         </Link>
       </div>

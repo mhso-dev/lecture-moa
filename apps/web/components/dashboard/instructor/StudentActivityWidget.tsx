@@ -29,8 +29,8 @@ export function StudentActivityWidget() {
 
   return (
     <DashboardWidget
-      title="Student Activity"
-      subtitle="Enrollment and engagement"
+      title="학생 활동"
+      subtitle="등록 및 참여 현황"
       isLoading={isLoading}
       error={error?.message ?? null}
       onRetry={() => void refetch()}
@@ -44,7 +44,7 @@ export function StudentActivityWidget() {
               {stats?.totalStudents ?? 0}
             </span>
           </div>
-          <p className="text-xs text-muted-foreground">Total Students</p>
+          <p className="text-xs text-muted-foreground">전체 학생</p>
         </div>
 
         <div className="space-y-1">
@@ -54,7 +54,7 @@ export function StudentActivityWidget() {
               {stats?.activeStudents7d ?? 0}
             </span>
           </div>
-          <p className="text-xs text-muted-foreground">Active 7d</p>
+          <p className="text-xs text-muted-foreground">7일 활성</p>
         </div>
 
         <div className="space-y-1">
@@ -64,7 +64,7 @@ export function StudentActivityWidget() {
               {stats?.avgCompletionRate.toFixed(1) ?? 0}%
             </span>
           </div>
-          <p className="text-xs text-muted-foreground">Avg Completion</p>
+          <p className="text-xs text-muted-foreground">평균 완료율</p>
         </div>
 
         <div className="space-y-1">
@@ -74,7 +74,7 @@ export function StudentActivityWidget() {
               {stats?.studySessions7d ?? 0}
             </span>
           </div>
-          <p className="text-xs text-muted-foreground">Sessions 7d</p>
+          <p className="text-xs text-muted-foreground">7일 세션</p>
         </div>
       </div>
     </DashboardWidget>

@@ -64,7 +64,7 @@ export function SocialLoginButtons() {
         </div>
         <div className="relative flex justify-center text-xs uppercase">
           <span className="bg-[var(--color-background)] px-2 text-[var(--color-muted-foreground)]">
-            Or continue with
+            또는 다음으로 계속
           </span>
         </div>
       </div>

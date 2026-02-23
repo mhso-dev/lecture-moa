@@ -46,15 +46,15 @@ function getActivityIcon(type: ActivityFeedItemType) {
 function getActivityDescription(type: ActivityFeedItemType) {
   switch (type) {
     case "enrolled":
-      return "enrolled in";
+      return "에 등록했습니다:";
     case "studied":
-      return "studied in";
+      return "에서 학습했습니다:";
     case "asked":
-      return "asked a question in";
+      return "에서 질문했습니다:";
     case "quiz_completed":
-      return "completed a quiz in";
+      return "에서 퀴즈를 완료했습니다:";
     default:
-      return "acted in";
+      return "에서 활동했습니다:";
   }
 }
 
@@ -86,15 +86,15 @@ export function ActivityFeedWidget() {
 
   return (
     <DashboardWidget
-      title="Activity Feed"
-      subtitle="Recent student activity"
+      title="활동 피드"
+      subtitle="최근 학생 활동"
       headerAction={
         data?.items && data.items.length > 0 ? (
           <Link
             href={"/activity" as Route}
             className="text-sm text-primary hover:underline flex items-center gap-1"
           >
-            View all
+            전체 보기
             <ChevronRight className="h-4 w-4" />
           </Link>
         ) : undefined
@@ -140,10 +140,10 @@ export function ActivityFeedWidget() {
               {isFetching ? (
                 <>
                   <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                  Loading...
+                  로딩 중...
                 </>
               ) : (
-                "Load more"
+                "더 보기"
               )}
             </Button>
           )}
@@ -151,8 +151,8 @@ export function ActivityFeedWidget() {
       ) : (
         <EmptyState
           icon={UserPlus}
-          title="No recent activity"
-          description="Student activity will appear here."
+          title="최근 활동이 없습니다"
+          description="학생 활동이 여기에 표시됩니다."
         />
       )}
     </DashboardWidget>

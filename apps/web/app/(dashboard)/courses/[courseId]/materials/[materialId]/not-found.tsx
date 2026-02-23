@@ -25,11 +25,11 @@ export default function MaterialViewerNotFound({ params }: NotFoundProps) {
       <FileQuestion className="h-16 w-16 text-[var(--color-muted-foreground)] mb-4" />
 
       <h1 className="text-2xl font-bold text-[var(--color-foreground)] mb-2">
-        Material Not Found
+        자료를 찾을 수 없습니다
       </h1>
 
       <p className="text-[var(--color-muted-foreground)] mb-6 max-w-md">
-        The material you're looking for doesn't exist or has been removed.
+        찾으시는 자료가 존재하지 않거나 삭제되었습니다.
       </p>
 
       <Button
@@ -39,7 +39,7 @@ export default function MaterialViewerNotFound({ params }: NotFoundProps) {
       >
         <Link href={`/courses/${courseId}/materials`}>
           <ArrowLeft className="h-4 w-4" />
-          Back to Materials
+          자료 목록으로
         </Link>
       </Button>
     </div>

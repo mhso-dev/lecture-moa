@@ -74,16 +74,16 @@ export default function TeamDetailLayout({
   if (error || !teamDetail) {
     return (
       <div className="flex flex-col items-center justify-center p-8 text-center">
-        <h2 className="text-xl font-semibold">Team not found</h2>
+        <h2 className="text-xl font-semibold">팀을 찾을 수 없습니다</h2>
         <p className="text-muted-foreground mt-2">
-          This team may have been deleted or you don&apos;t have access.
+          이 팀이 삭제되었거나 접근 권한이 없습니다.
         </p>
         <Button
           variant="outline"
           className="mt-4"
           onClick={() => { router.push("/teams"); }}
         >
-          Back to Teams
+          팀 목록으로
         </Button>
       </div>
     );
@@ -98,11 +98,11 @@ export default function TeamDetailLayout({
   const handleLeaveTeam = () => {
     leaveTeam.mutate(undefined, {
       onSuccess: () => {
-        toast.success("You have left the team");
+        toast.success("팀에서 나갔습니다");
         router.push("/teams");
       },
       onError: () => {
-        toast.error("Failed to leave team");
+        toast.error("팀 나가기에 실패했습니다");
       },
     });
   };
@@ -143,7 +143,7 @@ export default function TeamDetailLayout({
                   {/* Member count chip */}
                   <Badge variant="secondary" className="flex items-center gap-1">
                     <Users className="h-3 w-3" />
-                    {team.memberCount} / {team.maxMembers} members
+                    {team.memberCount} / {team.maxMembers}명
                   </Badge>
                 </div>
               </div>
@@ -156,7 +156,7 @@ export default function TeamDetailLayout({
                   variant="outline"
                   size="icon"
                   onClick={() => { router.push(`/teams/${teamId}/settings` as any); }}
-                  aria-label="Team settings"
+                  aria-label="팀 설정"
                 >
                   <Settings className="h-4 w-4" />
                 </Button>
@@ -167,24 +167,23 @@ export default function TeamDetailLayout({
                   <AlertDialogTrigger asChild>
                     <Button variant="outline">
                       <LogOut className="h-4 w-4 mr-2" />
-                      Leave Team
+                      팀 나가기
                     </Button>
                   </AlertDialogTrigger>
                   <AlertDialogContent>
                     <AlertDialogHeader>
-                      <AlertDialogTitle>Leave Team?</AlertDialogTitle>
+                      <AlertDialogTitle>팀을 나가시겠습니까?</AlertDialogTitle>
                       <AlertDialogDescription>
-                        Are you sure you want to leave {team.name}? You will
-                        need to be invited again to rejoin.
+                        {team.name}에서 나가시겠습니까? 다시 참여하려면 초대를 받아야 합니다.
                       </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
-                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogCancel>취소</AlertDialogCancel>
                       <AlertDialogAction
                         onClick={handleLeaveTeam}
                         disabled={leaveTeam.isPending}
                       >
-                        {leaveTeam.isPending ? "Leaving..." : "Leave"}
+                        {leaveTeam.isPending ? "나가는 중..." : "나가기"}
                       </AlertDialogAction>
                     </AlertDialogFooter>
                   </AlertDialogContent>
@@ -194,11 +193,11 @@ export default function TeamDetailLayout({
               {!isMember && (
                 <Button disabled={isFull}>
                   {isFull ? (
-                    "Team Full"
+                    "정원 초과"
                   ) : (
                     <>
                       <UserPlus className="h-4 w-4 mr-2" />
-                      Join Team
+                      팀 가입
                     </>
                   )}
                 </Button>
@@ -212,9 +211,9 @@ export default function TeamDetailLayout({
           <CardContent className="border-t pt-4">
             <div className="flex items-center gap-2 flex-wrap">
               <BookOpen className="h-4 w-4 text-muted-foreground" />
-              <span className="text-sm text-muted-foreground">Associated with:</span>
+              <span className="text-sm text-muted-foreground">연결된 강의:</span>
               <Badge variant="outline">
-                Course
+                강의
               </Badge>
             </div>
           </CardContent>

@@ -81,13 +81,13 @@ const PaginationPrevious = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <PaginationLink
     ref={ref}
-    aria-label="Go to previous page"
+    aria-label="이전 페이지로 이동"
     size="default"
     className={cn("gap-1 pl-2.5", className)}
     {...props}
   >
     <ChevronLeft className="h-4 w-4" />
-    <span>Previous</span>
+    <span>이전</span>
   </PaginationLink>
 ));
 PaginationPrevious.displayName = "PaginationPrevious";
@@ -99,12 +99,12 @@ const PaginationNext = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <PaginationLink
     ref={ref}
-    aria-label="Go to next page"
+    aria-label="다음 페이지로 이동"
     size="default"
     className={cn("gap-1 pr-2.5", className)}
     {...props}
   >
-    <span>Next</span>
+    <span>다음</span>
     <ChevronRight className="h-4 w-4" />
   </PaginationLink>
 ));

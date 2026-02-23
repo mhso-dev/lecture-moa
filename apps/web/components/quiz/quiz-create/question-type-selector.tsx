@@ -20,10 +20,10 @@ interface QuestionTypeSelectorProps {
 }
 
 const QUESTION_TYPES: { value: QuestionType; label: string }[] = [
-  { value: "multiple_choice", label: "Multiple Choice" },
-  { value: "true_false", label: "True/False" },
-  { value: "short_answer", label: "Short Answer" },
-  { value: "fill_in_the_blank", label: "Fill in the Blank" },
+  { value: "multiple_choice", label: "객관식" },
+  { value: "true_false", label: "참/거짓" },
+  { value: "short_answer", label: "단답형" },
+  { value: "fill_in_the_blank", label: "빈칸 채우기" },
 ];
 
 /**
@@ -36,7 +36,7 @@ export function QuestionTypeSelector({
 }: QuestionTypeSelectorProps) {
   return (
     <div className="space-y-2">
-      <Label>Question Type</Label>
+      <Label>문항 유형</Label>
       <RadioGroup
         value={value}
         onValueChange={(v) => { onChange(v as QuestionType); }}

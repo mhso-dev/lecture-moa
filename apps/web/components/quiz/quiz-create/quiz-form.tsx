@@ -131,9 +131,9 @@ export function QuizForm({
         <div className="flex items-start gap-3 rounded-lg border border-yellow-500 bg-yellow-50 p-4">
           <AlertCircle className="h-5 w-5 text-yellow-600 flex-shrink-0" />
           <div>
-            <h4 className="font-medium text-yellow-800">Warning</h4>
+            <h4 className="font-medium text-yellow-800">경고</h4>
             <p className="text-sm text-yellow-700">
-              This quiz is already published. Changes may affect students who have already started the quiz.
+              이 퀴즈는 이미 게시되었습니다. 변경 사항이 이미 퀴즈를 시작한 학생에게 영향을 줄 수 있습니다.
             </p>
           </div>
         </div>
@@ -145,13 +145,13 @@ export function QuizForm({
           {saveStatus === "saving" && (
             <>
               <Loader2 className="h-3 w-3 animate-spin" />
-              <span>Saving...</span>
+              <span>저장 중...</span>
             </>
           )}
           {saveStatus === "saved" && (
             <>
               <Check className="h-3 w-3 text-green-600" />
-              <span className="text-green-600">Saved</span>
+              <span className="text-green-600">저장됨</span>
             </>
           )}
         </div>
@@ -165,15 +165,15 @@ export function QuizForm({
             name="title"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Title</FormLabel>
+                <FormLabel>제목</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="Enter quiz title"
+                    placeholder="퀴즈 제목을 입력하세요"
                     {...field}
                     aria-required="true"
                   />
                 </FormControl>
-                <FormDescription>3-200 characters</FormDescription>
+                <FormDescription>3-200자</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -185,16 +185,16 @@ export function QuizForm({
             name="description"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Description</FormLabel>
+                <FormLabel>설명</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="Enter quiz description (optional)"
+                    placeholder="퀴즈 설명을 입력하세요 (선택사항)"
                     rows={3}
                     {...field}
                     value={field.value ?? ""}
                   />
                 </FormControl>
-                <FormDescription>Maximum 1000 characters</FormDescription>
+                <FormDescription>최대 1000자</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -206,11 +206,11 @@ export function QuizForm({
             name="courseId"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Course</FormLabel>
+                <FormLabel>강의</FormLabel>
                 <Select onValueChange={field.onChange} value={field.value}>
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder="Select a course" />
+                      <SelectValue placeholder="강의를 선택하세요" />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
@@ -232,11 +232,11 @@ export function QuizForm({
             name="timeLimitMinutes"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Time Limit (minutes)</FormLabel>
+                <FormLabel>제한 시간 (분)</FormLabel>
                 <FormControl>
                   <Input
                     type="number"
-                    placeholder="No time limit"
+                    placeholder="제한 없음"
                     {...field}
                     value={field.value ?? ""}
                     onChange={(e) => {
@@ -245,7 +245,7 @@ export function QuizForm({
                     }}
                   />
                 </FormControl>
-                <FormDescription>1-300 minutes (leave empty for no limit)</FormDescription>
+                <FormDescription>1-300분 (비워두면 제한 없음)</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -257,11 +257,11 @@ export function QuizForm({
             name="passingScore"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Passing Score (%)</FormLabel>
+                <FormLabel>합격 점수 (%)</FormLabel>
                 <FormControl>
                   <Input
                     type="number"
-                    placeholder="No passing score"
+                    placeholder="합격 점수 없음"
                     {...field}
                     value={field.value ?? ""}
                     onChange={(e) => {
@@ -270,7 +270,7 @@ export function QuizForm({
                     }}
                   />
                 </FormControl>
-                <FormDescription>0-100 (leave empty for no minimum)</FormDescription>
+                <FormDescription>0-100 (비워두면 최소 점수 없음)</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -282,7 +282,7 @@ export function QuizForm({
             name="dueDate"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Due Date</FormLabel>
+                <FormLabel>마감일</FormLabel>
                 <FormControl>
                   <Input
                     type="datetime-local"
@@ -294,7 +294,7 @@ export function QuizForm({
                     }}
                   />
                 </FormControl>
-                <FormDescription>Optional deadline for quiz submission</FormDescription>
+                <FormDescription>퀴즈 제출 마감일 (선택사항)</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -302,7 +302,7 @@ export function QuizForm({
 
           {/* Toggle Switches */}
           <div className="space-y-4 rounded-lg border p-4">
-            <h3 className="font-medium">Quiz Settings</h3>
+            <h3 className="font-medium">퀴즈 설정</h3>
 
             <FormField
               control={form.control}
@@ -310,9 +310,9 @@ export function QuizForm({
               render={({ field }) => (
                 <FormItem className="flex items-center justify-between">
                   <div className="space-y-0.5">
-                    <FormLabel>Allow Reattempt</FormLabel>
+                    <FormLabel>재응시 허용</FormLabel>
                     <FormDescription>
-                      Allow students to retake the quiz
+                      학생이 퀴즈를 다시 풀 수 있도록 허용
                     </FormDescription>
                   </div>
                   <FormControl>
@@ -331,9 +331,9 @@ export function QuizForm({
               render={({ field }) => (
                 <FormItem className="flex items-center justify-between">
                   <div className="space-y-0.5">
-                    <FormLabel>Shuffle Questions</FormLabel>
+                    <FormLabel>문항 순서 섞기</FormLabel>
                     <FormDescription>
-                      Randomize question order for each attempt
+                      응시할 때마다 문항 순서를 무작위로 변경
                     </FormDescription>
                   </div>
                   <FormControl>
@@ -352,9 +352,9 @@ export function QuizForm({
               render={({ field }) => (
                 <FormItem className="flex items-center justify-between">
                   <div className="space-y-0.5">
-                    <FormLabel>Show Answers After Submit</FormLabel>
+                    <FormLabel>제출 후 정답 공개</FormLabel>
                     <FormDescription>
-                      Show correct answers after quiz submission
+                      퀴즈 제출 후 정답을 표시
                     </FormDescription>
                   </div>
                   <FormControl>
@@ -373,9 +373,9 @@ export function QuizForm({
               render={({ field }) => (
                 <FormItem className="flex items-center justify-between">
                   <div className="space-y-0.5">
-                    <FormLabel>Focus Loss Warning</FormLabel>
+                    <FormLabel>포커스 이탈 경고</FormLabel>
                     <FormDescription>
-                      Warn students when they leave the quiz tab
+                      학생이 퀴즈 탭을 벗어나면 경고 표시
                     </FormDescription>
                   </div>
                   <FormControl>
@@ -396,13 +396,13 @@ export function QuizForm({
               variant="outline"
               onClick={() => { router.back(); }}
             >
-              Cancel
+              취소
             </Button>
             <Button type="submit" disabled={isSubmitting}>
               {isSubmitting && (
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
               )}
-              Save as Draft
+              초안으로 저장
             </Button>
           </div>
         </form>

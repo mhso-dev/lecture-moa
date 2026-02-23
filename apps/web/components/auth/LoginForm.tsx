@@ -57,7 +57,7 @@ export function LoginForm() {
       const callbackUrl = searchParams.get("callbackUrl") ?? "/dashboard";
       router.push(callbackUrl as Route);
     } else {
-      toast.error(result.error ?? "Invalid email or password");
+      toast.error(result.error ?? "이메일 또는 비밀번호가 올바르지 않습니다");
     }
   };
 
@@ -66,14 +66,14 @@ export function LoginForm() {
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="space-y-4"
-        aria-label="Sign in form"
+        aria-label="로그인 양식"
       >
         <FormField
           control={form.control}
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>이메일</FormLabel>
               <FormControl>
                 <Input
                   type="email"
@@ -93,18 +93,18 @@ export function LoginForm() {
           render={({ field }) => (
             <FormItem>
               <div className="flex items-center justify-between">
-                <FormLabel>Password</FormLabel>
+                <FormLabel>비밀번호</FormLabel>
                 <Link
                   href="/reset-password"
                   className="text-xs text-[var(--color-primary-600)] hover:underline"
                 >
-                  Forgot password?
+                  비밀번호를 잊으셨나요?
                 </Link>
               </div>
               <FormControl>
                 <Input
                   type="password"
-                  placeholder="Enter your password"
+                  placeholder="비밀번호를 입력하세요"
                   autoComplete="current-password"
                   {...field}
                 />
@@ -120,7 +120,7 @@ export function LoginForm() {
           disabled={isSubmitting}
         >
           {isSubmitting && <Loader2 className="animate-spin" />}
-          Sign in
+          로그인
         </Button>
       </form>
     </Form>

@@ -25,21 +25,21 @@ export default function MaterialsError({
       </div>
 
       <h2 className="text-xl font-semibold text-[var(--color-foreground)] mb-2">
-        Failed to load materials
+        자료를 불러오지 못했습니다
       </h2>
 
       <p className="text-[var(--color-muted-foreground)] mb-6 max-w-md">
         {error.message ||
-          "An unexpected error occurred while loading the materials. Please try again."}
+          "자료를 불러오는 중 예기치 않은 오류가 발생했습니다. 다시 시도해 주세요."}
       </p>
 
       <div className="flex gap-3">
         <Button variant="outline" onClick={() => (window.location.href = "/")}>
-          Go Home
+          홈으로
         </Button>
         <Button onClick={reset}>
           <RefreshCw className="mr-2 h-4 w-4" />
-          Try Again
+          다시 시도
         </Button>
       </div>
     </div>

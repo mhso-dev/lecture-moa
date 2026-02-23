@@ -231,9 +231,9 @@ export function MaterialLinkDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className={cn("sm:max-w-[500px]", className)}>
         <DialogHeader>
-          <DialogTitle>Link to Material</DialogTitle>
+          <DialogTitle>자료 연결</DialogTitle>
           <DialogDescription>
-            Select a course material to link this memo to. You can optionally specify a section.
+            이 메모에 연결할 강의 자료를 선택하세요. 선택적으로 특정 섹션을 지정할 수 있습니다.
           </DialogDescription>
         </DialogHeader>
 
@@ -244,13 +244,13 @@ export function MaterialLinkDialog({
           {/* Step 1: Course Selection */}
           {step >= 1 && (
             <div className="space-y-2">
-              <label className="text-sm font-medium">1. Select Course</label>
+              <label className="text-sm font-medium">1. 강의 선택</label>
               <Select
                 value={selectedCourseId}
                 onValueChange={handleCourseSelect}
               >
                 <SelectTrigger>
-                  <SelectValue placeholder="Choose a course" />
+                  <SelectValue placeholder="강의를 선택하세요" />
                 </SelectTrigger>
                 <SelectContent>
                   {courses.map((course) => (
@@ -266,12 +266,12 @@ export function MaterialLinkDialog({
           {/* Step 2: Material Selection */}
           {step >= 2 && selectedCourseId && (
             <div className="space-y-2">
-              <label className="text-sm font-medium">2. Select Material</label>
+              <label className="text-sm font-medium">2. 자료 선택</label>
               <ScrollArea className="h-[200px] rounded-md border border-[var(--color-border)]">
                 <div className="p-2 space-y-1">
                   {filteredMaterials.length === 0 ? (
                     <p className="text-sm text-[var(--color-muted-foreground)] text-center py-8">
-                      No materials in this course
+                      이 강의에 자료가 없습니다
                     </p>
                   ) : (
                     filteredMaterials.map((material) => (
@@ -298,7 +298,7 @@ export function MaterialLinkDialog({
           {step >= 3 && selectedMaterialId && tocItems.length > 0 && (
             <div className="space-y-2">
               <label className="text-sm font-medium">
-                3. Select Section (Optional)
+                3. 섹션 선택 (선택사항)
               </label>
               <ScrollArea className="h-[150px] rounded-md border border-[var(--color-border)]">
                 <div className="p-2 space-y-1">
@@ -311,7 +311,7 @@ export function MaterialLinkDialog({
                         : "hover:bg-[var(--color-muted)]"
                     )}
                   >
-                    Entire material (no specific section)
+                    전체 자료 (특정 섹션 없음)
                   </button>
                   {tocItems.map((item) => (
                     <button
@@ -338,14 +338,14 @@ export function MaterialLinkDialog({
           {currentLink && (
             <Button variant="outline" onClick={handleClear} className="gap-2">
               <X className="h-4 w-4" />
-              Clear Link
+              연결 해제
             </Button>
           )}
           <Button variant="outline" onClick={() => { onOpenChange(false); }}>
-            Cancel
+            취소
           </Button>
           <Button onClick={handleLink} disabled={!selectedMaterialId}>
-            Link Material
+            자료 연결
           </Button>
         </DialogFooter>
       </DialogContent>

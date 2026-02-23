@@ -32,13 +32,13 @@ const getDueDateText = (dueDate: string | null): string | null => {
   const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
 
   if (diffDays < 0) {
-    return "Past due";
+    return "마감됨";
   } else if (diffDays === 0) {
-    return "Due today";
+    return "오늘 마감";
   } else if (diffDays === 1) {
-    return "Due in 1 day";
+    return "내일 마감";
   } else if (diffDays < 7) {
-    return `Due in ${String(diffDays)} days`;
+    return `${String(diffDays)}일 후 마감`;
   } else {
     return `Due ${formatDistanceToNow(date, { addSuffix: false })}`;
   }
@@ -75,9 +75,9 @@ export function QuizCard({
           variant="default"
           size="sm"
           onClick={() => { handleAction("view-results"); }}
-          aria-label={`View results for ${quiz.title}`}
+          aria-label={`${quiz.title} 결과 보기`}
         >
-          View Results
+          결과 보기
         </Button>
       );
     }
@@ -88,9 +88,9 @@ export function QuizCard({
         size="sm"
         onClick={() => { handleAction("take"); }}
         disabled={pastDue}
-        aria-label={`Take quiz ${quiz.title}`}
+        aria-label={`${quiz.title} 퀴즈 풀기`}
       >
-        Take Quiz
+        퀴즈 풀기
       </Button>
     );
   };
@@ -102,9 +102,9 @@ export function QuizCard({
           variant="default"
           size="sm"
           onClick={() => { handleAction("edit"); }}
-          aria-label={`Edit quiz ${quiz.title}`}
+          aria-label={`${quiz.title} 퀴즈 편집`}
         >
-          Edit
+          편집
         </Button>
       );
     }
@@ -114,9 +114,9 @@ export function QuizCard({
         variant="default"
         size="sm"
         onClick={() => { handleAction("manage"); }}
-        aria-label={`Manage quiz ${quiz.title}`}
+        aria-label={`${quiz.title} 퀴즈 관리`}
       >
-        Manage
+        관리
       </Button>
     );
   };
@@ -147,12 +147,12 @@ export function QuizCard({
         <div className="flex items-center gap-4 text-sm text-[var(--color-muted-foreground)]">
           <span className="flex items-center gap-1">
             <HelpCircle className="h-4 w-4" aria-hidden="true" />
-            {quiz.questionCount} questions
+            {quiz.questionCount}문항
           </span>
           {quiz.timeLimitMinutes && (
             <span className="flex items-center gap-1">
               <Clock className="h-4 w-4" aria-hidden="true" />
-              {quiz.timeLimitMinutes} min
+              {quiz.timeLimitMinutes}분
             </span>
           )}
         </div>
@@ -169,7 +169,7 @@ export function QuizCard({
           >
             {pastDue && <AlertTriangle className="h-4 w-4" aria-hidden="true" />}
             <Calendar className="h-4 w-4" aria-hidden="true" />
-            {pastDue && "Past due"}
+            {pastDue && "마감됨"}
             {!pastDue && dueDateText}
           </div>
         )}
@@ -182,13 +182,13 @@ export function QuizCard({
                 {quiz.myLastAttemptScore}%
               </Badge>
             ) : (
-              <Badge variant="secondary">Not attempted</Badge>
+              <Badge variant="secondary">미응시</Badge>
             )
           ) : (
             <>
               <QuizStatusBadge status={quiz.status} />
               <span className="text-sm text-[var(--color-muted-foreground)]">
-                {quiz.attemptCount} submissions
+                {quiz.attemptCount}건 제출
               </span>
             </>
           )}

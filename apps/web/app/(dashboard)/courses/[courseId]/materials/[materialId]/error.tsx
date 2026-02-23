@@ -38,20 +38,20 @@ export default function MaterialViewerError({ error, reset }: ErrorProps) {
       <AlertCircle className="h-16 w-16 text-[var(--color-error-500)] mb-4" />
 
       <h1 className="text-2xl font-bold text-[var(--color-foreground)] mb-2">
-        {isAccessDenied ? "Access Denied" : "Failed to Load Material"}
+        {isAccessDenied ? "접근 권한 없음" : "자료를 불러오지 못했습니다"}
       </h1>
 
       <p className="text-[var(--color-muted-foreground)] mb-6 max-w-md">
         {isAccessDenied
-          ? "This material is not yet published or you don't have permission to view it."
-          : error.message || "An error occurred while loading the material."}
+          ? "이 자료는 아직 게시되지 않았거나 열람 권한이 없습니다."
+          : error.message || "자료를 불러오는 중 오류가 발생했습니다."}
       </p>
 
       <div className="flex gap-4">
         {!isAccessDenied && (
           <Button onClick={reset} variant="default" className="gap-2">
             <RefreshCcw className="h-4 w-4" />
-            Try Again
+            다시 시도
           </Button>
         )}
 
@@ -62,7 +62,7 @@ export default function MaterialViewerError({ error, reset }: ErrorProps) {
         >
           <a href={`/courses/${courseId}/materials`}>
             <ArrowLeft className="h-4 w-4" />
-            Back to Materials
+            자료 목록으로
           </a>
         </Button>
       </div>

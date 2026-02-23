@@ -28,12 +28,12 @@ interface CourseCardProps {
  * Category label mapping
  */
 const CATEGORY_LABELS: Record<CourseCategory, string> = {
-  programming: "Programming",
-  design: "Design",
-  business: "Business",
-  science: "Science",
-  language: "Language",
-  other: "Other",
+  programming: "프로그래밍",
+  design: "디자인",
+  business: "비즈니스",
+  science: "과학",
+  language: "언어",
+  other: "기타",
 };
 
 /**
@@ -51,7 +51,7 @@ export function CourseCard({
     return (
       <Link
         href={`/courses/${course.id}`}
-        aria-label={`View course: ${course.title}`}
+        aria-label={`강의 보기: ${course.title}`}
         className="block h-full"
       >
         <Card className="h-full overflow-hidden transition-all hover:shadow-md group">
@@ -116,7 +116,7 @@ export function CourseCard({
   return (
     <Link
       href={`/courses/${course.id}`}
-      aria-label={`View course: ${course.title}`}
+      aria-label={`강의 보기: ${course.title}`}
       className="block"
     >
       <Card
@@ -158,7 +158,7 @@ export function CourseCard({
 
           {/* Instructor */}
           <p className="text-sm text-[var(--color-muted-foreground)] mb-3">
-            by {course.instructor.name}
+            {course.instructor.name}
           </p>
 
           {/* Stats */}

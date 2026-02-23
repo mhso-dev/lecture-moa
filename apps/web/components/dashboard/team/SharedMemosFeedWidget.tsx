@@ -69,15 +69,15 @@ export function SharedMemosFeedWidget({ teamId = "" }: SharedMemosFeedWidgetProp
 
   return (
     <DashboardWidget
-      title="Shared Memos"
-      subtitle="Team collaboration notes"
+      title="공유 메모"
+      subtitle="팀 협업 노트"
       headerAction={
         memoItems && memoItems.length > 0 ? (
           <Link
             href={`/teams/${overview?.id ?? ""}/memos` as Route}
             className="text-sm text-primary hover:underline flex items-center gap-1"
           >
-            View all memos
+            전체 보기
             <ChevronRight className="h-4 w-4" />
           </Link>
         ) : undefined
@@ -102,7 +102,7 @@ export function SharedMemosFeedWidget({ teamId = "" }: SharedMemosFeedWidgetProp
                 <div className="flex items-center gap-2 text-xs text-muted-foreground">
                   <span>{memo.authorName}</span>
                   <span>•</span>
-                  <span>{formatDistanceToNow(new Date(memo.updatedAt))} ago</span>
+                  <span>{formatDistanceToNow(new Date(memo.updatedAt))} 전</span>
                 </div>
                 <p className="text-xs text-muted-foreground line-clamp-2">
                   {truncateText(memo.excerpt, MAX_EXCERPT_LENGTH)}
@@ -116,7 +116,7 @@ export function SharedMemosFeedWidget({ teamId = "" }: SharedMemosFeedWidgetProp
               href={`/teams/${overview?.id ?? ""}/memos` as Route}
               className="block text-sm text-center text-primary hover:underline pt-2"
             >
-              View {memoItems.length - MAX_DISPLAYED_MEMOS} more memos
+              {memoItems.length - MAX_DISPLAYED_MEMOS}개의 메모 더 보기
             </Link>
           )}
 
@@ -126,22 +126,22 @@ export function SharedMemosFeedWidget({ teamId = "" }: SharedMemosFeedWidgetProp
             className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 w-full mt-2"
           >
             <Plus className="h-4 w-4" />
-            Create Memo
+            메모 작성
           </Link>
         </div>
       ) : (
         <div className="space-y-4">
           <EmptyState
             icon={FileText}
-            title="No shared memos yet"
-            description="Create a memo to share notes with your team."
+            title="아직 공유 메모가 없습니다"
+            description="메모를 작성하여 팀원들과 공유하세요."
           />
           <Link
             href={`/teams/${overview?.id ?? ""}/memos/new` as Route}
             className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-4 py-2 w-full"
           >
             <Plus className="h-4 w-4" />
-            Create the first memo
+            첫 번째 메모 작성하기
           </Link>
         </div>
       )}

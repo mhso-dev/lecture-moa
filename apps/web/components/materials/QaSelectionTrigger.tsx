@@ -213,10 +213,10 @@ export function QaSelectionTrigger({
         left: `${String(buttonPosition.left)}px`,
       }}
       onClick={handleClick}
-      aria-label="Ask a question about the selected text"
+      aria-label="선택한 텍스트에 대해 질문하기"
     >
       <MessageCircleQuestion className="h-4 w-4" />
-      <span className="hidden sm:inline">Ask</span>
+      <span className="hidden sm:inline">질문</span>
     </Button>
   );
 }

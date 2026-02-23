@@ -74,7 +74,7 @@ export function TeamCard({
 
         {/* Member count */}
         <div className="flex items-center gap-2 text-sm">
-          <span className="font-medium">Members:</span>
+          <span className="font-medium">멤버:</span>
           <span>
             {team.memberCount} / {team.maxMembers}
           </span>
@@ -85,7 +85,7 @@ export function TeamCard({
           <span className="text-sm font-medium">Members:</span>
           <div
             role="group"
-            aria-label="Team members"
+            aria-label="팀 멤버"
             className="flex -space-x-2"
           >
             {[0, 1, 2].slice(0, Math.min(3, team.memberCount)).map((index) => (
@@ -104,7 +104,7 @@ export function TeamCard({
               variant="outline"
               className="text-xs"
             >
-              Course
+              강의
             </Badge>
           </div>
         )}
@@ -113,7 +113,7 @@ export function TeamCard({
         <div className="flex gap-2 pt-2">
           {isTeamMember ? (
             <Button onClick={onView} className="flex-1">
-              View
+              보기
             </Button>
           ) : (
             <TooltipProvider>
@@ -124,12 +124,12 @@ export function TeamCard({
                     disabled={isFull}
                     className="flex-1"
                   >
-                    Join
+                    가입
                   </Button>
                 </TooltipTrigger>
                 {isFull && (
                   <TooltipContent>
-                    <p>Team is full</p>
+                    <p>팀 정원이 가득 찼습니다</p>
                   </TooltipContent>
                 )}
               </Tooltip>

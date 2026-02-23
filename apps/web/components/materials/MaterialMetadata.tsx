@@ -114,7 +114,7 @@ export function MaterialMetadata({
           <time dateTime={createdAt}>{formatDate(createdAt)}</time>
           {updatedAt !== createdAt && (
             <>
-              <span>(updated: </span>
+              <span>(수정: </span>
               <time dateTime={updatedAt}>{formatDate(updatedAt)}</time>
               <span>)</span>
             </>
@@ -125,7 +125,7 @@ export function MaterialMetadata({
         <span className="hidden sm:inline">|</span>
 
         {/* Read time */}
-        <span>{readTimeMinutes} min read</span>
+        <span>{readTimeMinutes}분 읽기</span>
       </div>
 
       {/* Tags */}
@@ -154,7 +154,7 @@ export function MaterialMetadata({
               : "border-[var(--color-warning-500)] text-[var(--color-warning-600)]"
           )}
         >
-          {status === "published" ? "Published" : "Draft"}
+          {status === "published" ? "게시됨" : "초안"}
         </Badge>
       )}
     </header>

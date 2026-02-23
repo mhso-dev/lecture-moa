@@ -57,10 +57,10 @@ export function MemoView() {
     try {
       await navigator.clipboard.writeText(window.location.href);
       setCopiedLink(true);
-      toast.success("Link copied to clipboard");
+      toast.success("링크가 클립보드에 복사되었습니다");
       setTimeout(() => { setCopiedLink(false); }, 2000);
     } catch {
-      toast.error("Failed to copy link");
+      toast.error("링크 복사에 실패했습니다");
     }
   };
 
@@ -108,12 +108,12 @@ export function MemoView() {
     return (
       <div className="container max-w-4xl py-6 px-4 md:px-6">
         <div className="text-center py-16">
-          <h2 className="text-xl font-semibold mb-2">Memo not found</h2>
+          <h2 className="text-xl font-semibold mb-2">메모를 찾을 수 없습니다</h2>
           <p className="text-[var(--color-muted-foreground)] mb-6">
-            The memo you're looking for doesn't exist or you don't have access to it.
+            찾으시는 메모가 존재하지 않거나 접근 권한이 없습니다.
           </p>
           <Button onClick={handleBack}>
-            Back to Memos
+            메모 목록으로
           </Button>
         </div>
       </div>
@@ -134,7 +134,7 @@ export function MemoView() {
           className="gap-2"
         >
           <ArrowLeft className="h-4 w-4" />
-          Back to Memos
+          메모 목록으로
         </Button>
       </div>
 
@@ -165,7 +165,7 @@ export function MemoView() {
                   ); }
                 }
               >
-                View Material
+                자료 보기
               </Button>
             </div>
           </CardContent>
@@ -188,12 +188,12 @@ export function MemoView() {
               {copiedLink ? (
                 <>
                   <Check className="h-4 w-4" />
-                  Copied!
+                  복사됨!
                 </>
               ) : (
                 <>
                   <Copy className="h-4 w-4" />
-                  Copy Link
+                  링크 복사
                 </>
               )}
             </Button>
@@ -207,7 +207,7 @@ export function MemoView() {
                 className="gap-2"
               >
                 <Edit className="h-4 w-4" />
-                Edit
+                수정
               </Button>
             )}
           </div>
@@ -241,7 +241,7 @@ export function MemoView() {
               </Badge>
             ))}
           <Badge variant="outline">
-            {memo.visibility === "team" ? "Team Memo" : "Personal"}
+            {memo.visibility === "team" ? "팀 메모" : "개인"}
           </Badge>
         </div>
       </div>
@@ -254,7 +254,7 @@ export function MemoView() {
       {/* Last Updated */}
       <div className="mt-8 pt-6 border-t border-[var(--color-border)]">
         <p className="text-xs text-[var(--color-muted-foreground)]">
-          Last updated: {formatDate(memo.updatedAt)}
+          마지막 수정: {formatDate(memo.updatedAt)}
         </p>
       </div>
     </div>

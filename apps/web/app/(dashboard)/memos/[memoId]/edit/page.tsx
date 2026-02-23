@@ -13,8 +13,8 @@ import { Metadata } from "next";
 import { EditMemoEditor } from "./_components/EditMemoEditor";
 
 export const metadata: Metadata = {
-  title: "Edit Memo | Lecture MoA",
-  description: "Edit your personal study memo",
+  title: "메모 편집 | Lecture MoA",
+  description: "개인 학습 메모를 편집하세요",
 };
 
 /**

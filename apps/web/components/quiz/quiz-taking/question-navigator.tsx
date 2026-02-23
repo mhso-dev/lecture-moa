@@ -138,7 +138,7 @@ function DesktopNavigator({
   return (
     <aside className={cn("w-60 flex-shrink-0", className)}>
       <div className="sticky top-4 space-y-4">
-        <h3 className="font-semibold text-lg">Questions</h3>
+        <h3 className="font-semibold text-lg">문항</h3>
         <QuestionGrid
           questions={questions}
           answers={answers}
@@ -178,12 +178,12 @@ function MobileNavigator({
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <Button variant="outline" className="w-full">
-          {answeredCount}/{questions.length} Questions
+          {answeredCount}/{questions.length} 문항
         </Button>
       </SheetTrigger>
       <SheetContent side="bottom" className={className}>
         <SheetHeader>
-          <SheetTitle>Questions ({answeredCount}/{questions.length} answered)</SheetTitle>
+          <SheetTitle>문항 ({answeredCount}/{questions.length} 응답 완료)</SheetTitle>
         </SheetHeader>
         <div className="mt-4">
           <QuestionGrid

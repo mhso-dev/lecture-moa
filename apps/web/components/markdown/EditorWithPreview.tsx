@@ -138,7 +138,7 @@ const EditorWithPreview = forwardRef<EditorWithPreviewRef, EditorWithPreviewProp
           )}
         >
           <Edit3 className="h-4 w-4" />
-          Edit
+          편집
         </button>
         <button
           type="button"
@@ -153,7 +153,7 @@ const EditorWithPreview = forwardRef<EditorWithPreviewRef, EditorWithPreviewProp
           )}
         >
           <Eye className="h-4 w-4" />
-          Preview
+          미리보기
         </button>
       </div>
     );
@@ -162,7 +162,7 @@ const EditorWithPreview = forwardRef<EditorWithPreviewRef, EditorWithPreviewProp
     const renderDesktopToolbar = () => (
       <div className="flex items-center justify-between border-b border-[var(--color-border)] bg-[var(--color-background)] px-4 py-2">
         <span className="text-sm font-medium text-[var(--color-muted-foreground)]">
-          {viewMode === "split" ? "Split View" : viewMode === "editor" ? "Editor" : "Preview"}
+          {viewMode === "split" ? "분할 보기" : viewMode === "editor" ? "편집기" : "미리보기"}
         </span>
         <div className="flex items-center gap-2">
           <Button
@@ -174,7 +174,7 @@ const EditorWithPreview = forwardRef<EditorWithPreviewRef, EditorWithPreviewProp
             className="h-8"
           >
             <Edit3 className="h-4 w-4 mr-1" />
-            Editor
+            편집기
           </Button>
           <Button
             variant={viewMode === "split" ? "secondary" : "ghost"}
@@ -185,7 +185,7 @@ const EditorWithPreview = forwardRef<EditorWithPreviewRef, EditorWithPreviewProp
             className="h-8"
           >
             <Columns className="h-4 w-4 mr-1" />
-            Split
+            분할
           </Button>
           <Button
             variant={viewMode === "preview" ? "secondary" : "ghost"}
@@ -196,7 +196,7 @@ const EditorWithPreview = forwardRef<EditorWithPreviewRef, EditorWithPreviewProp
             className="h-8"
           >
             <Eye className="h-4 w-4 mr-1" />
-            Preview
+            미리보기
           </Button>
         </div>
       </div>
@@ -260,7 +260,7 @@ const EditorWithPreview = forwardRef<EditorWithPreviewRef, EditorWithPreviewProp
                   <MarkdownRenderer content={debouncedContent} />
                 ) : (
                   <div className="text-[var(--color-muted-foreground)] italic">
-                    Preview will appear here...
+                    미리보기가 여기에 표시됩니다...
                   </div>
                 )}
               </div>

@@ -64,9 +64,9 @@ export function ActivityTab({ teamId }: ActivityTabProps) {
     return (
       <div className="flex flex-col items-center justify-center p-8 text-center">
         <Activity className="h-12 w-12 text-muted-foreground mb-4" />
-        <h3 className="font-semibold text-lg">Failed to load activities</h3>
+        <h3 className="font-semibold text-lg">활동을 불러오지 못했습니다</h3>
         <p className="text-muted-foreground">
-          Please try refreshing the page.
+          페이지를 새로고침해 주세요.
         </p>
       </div>
     );
@@ -76,9 +76,9 @@ export function ActivityTab({ teamId }: ActivityTabProps) {
     return (
       <div className="flex flex-col items-center justify-center p-8 text-center">
         <Activity className="h-12 w-12 text-muted-foreground mb-4" />
-        <h3 className="font-semibold text-lg">No activity yet</h3>
+        <h3 className="font-semibold text-lg">아직 활동이 없습니다</h3>
         <p className="text-muted-foreground">
-          Team activities will appear here as they happen.
+          팀 활동이 발생하면 여기에 표시됩니다.
         </p>
       </div>
     );
@@ -91,8 +91,7 @@ export function ActivityTab({ teamId }: ActivityTabProps) {
         <div className="flex items-center gap-2">
           <Activity className="h-5 w-5 text-muted-foreground" />
           <span className="font-medium">
-            {pagination?.total ?? activities.length} activit
-            {(pagination?.total ?? activities.length) !== 1 ? "ies" : "y"}
+            활동 {pagination?.total ?? activities.length}개
           </span>
         </div>
       </div>
@@ -115,10 +114,10 @@ export function ActivityTab({ teamId }: ActivityTabProps) {
             {isFetching ? (
               <>
                 <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                Loading...
+                불러오는 중...
               </>
             ) : (
-              "Load More"
+              "더 보기"
             )}
           </Button>
         </div>

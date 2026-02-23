@@ -147,9 +147,9 @@ export function QAInlinePopupMobile() {
         className="h-[90vh] max-h-[600px] px-4 pt-4 pb-6 overflow-y-auto"
       >
         <SheetHeader className="pb-4">
-          <SheetTitle className="text-left">Ask Question</SheetTitle>
+          <SheetTitle className="text-left">질문하기</SheetTitle>
           <SheetDescription className="text-left">
-            Create a question about the selected text
+            선택한 텍스트에 대해 질문을 작성하세요
           </SheetDescription>
         </SheetHeader>
 
@@ -171,10 +171,10 @@ export function QAInlinePopupMobile() {
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Title</FormLabel>
+                  <FormLabel>제목</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Enter a descriptive title for your question"
+                      placeholder="질문의 제목을 입력하세요"
                       {...field}
                       disabled={isPending}
                       className="h-12 text-base"
@@ -190,12 +190,12 @@ export function QAInlinePopupMobile() {
               name="content"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Content</FormLabel>
+                  <FormLabel>내용</FormLabel>
                   <FormControl>
                     <EditorWithPreview
                       value={field.value}
                       onChange={field.onChange}
-                      placeholder="Describe your question in detail (Markdown supported)"
+                      placeholder="질문 내용을 상세히 작성하세요 (마크다운 지원)"
                       initialTab="editor"
                       height={180}
                       disabled={isPending}
@@ -215,7 +215,7 @@ export function QAInlinePopupMobile() {
                 disabled={isPending}
                 className="w-full sm:w-auto h-12 sm:h-10"
               >
-                Cancel
+                취소
               </Button>
               <Button
                 type="submit"
@@ -225,10 +225,10 @@ export function QAInlinePopupMobile() {
                 {isPending ? (
                   <>
                     <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                    Submitting...
+                    등록 중...
                   </>
                 ) : (
-                  "Submit Question"
+                  "질문 등록"
                 )}
               </Button>
             </div>

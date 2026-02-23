@@ -40,15 +40,15 @@ export function QuizPerformanceWidget() {
 
   return (
     <DashboardWidget
-      title="Quiz Performance"
-      subtitle="Recent quiz statistics"
+      title="퀴즈 성과"
+      subtitle="최근 퀴즈 통계"
       headerAction={
         quizzes && quizzes.length > 0 ? (
           <Link
             href={"/quizzes" as Route}
             className="text-sm text-primary hover:underline flex items-center gap-1"
           >
-            View all
+            전체 보기
             <ChevronRight className="h-4 w-4" />
           </Link>
         ) : undefined
@@ -79,17 +79,17 @@ export function QuizPerformanceWidget() {
                   <span className="flex items-center gap-1">
                     <Percent className="h-3 w-3 text-muted-foreground" />
                     <span className="font-medium">{quiz.averageScore}%</span>
-                    <span className="text-muted-foreground">avg</span>
+                    <span className="text-muted-foreground">평균</span>
                   </span>
                   <span className="flex items-center gap-1">
                     <Users className="h-3 w-3 text-muted-foreground" />
                     <span className="font-medium">{quiz.submissionCount}</span>
-                    <span className="text-muted-foreground">submissions</span>
+                    <span className="text-muted-foreground">제출</span>
                   </span>
                   <span className="flex items-center gap-1">
                     <BarChart3 className="h-3 w-3 text-muted-foreground" />
                     <span className="font-medium">{quiz.passRate}%</span>
-                    <span className="text-muted-foreground">pass</span>
+                    <span className="text-muted-foreground">통과</span>
                   </span>
                 </div>
               </div>
@@ -101,16 +101,16 @@ export function QuizPerformanceWidget() {
               href={"/quizzes" as Route}
               className="block text-sm text-center text-primary hover:underline pt-2"
             >
-              View {quizzes.length - MAX_DISPLAYED_QUIZZES} more quizzes
+              {quizzes.length - MAX_DISPLAYED_QUIZZES}개의 퀴즈 더 보기
             </Link>
           )}
         </div>
       ) : (
         <EmptyState
           icon={ClipboardList}
-          title="No quiz data yet"
-          description="Create a quiz to see performance statistics."
-          action={{ label: "Create Quiz", href: "/quizzes/create" as Route }}
+          title="아직 퀴즈 데이터가 없습니다"
+          description="퀴즈를 만들면 성과 통계를 확인할 수 있습니다."
+          action={{ label: "퀴즈 만들기", href: "/quizzes/create" as Route }}
         />
       )}
     </DashboardWidget>

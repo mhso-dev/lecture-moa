@@ -43,15 +43,15 @@ export function PendingQAWidget() {
 
   return (
     <DashboardWidget
-      title="Pending Q&A"
-      subtitle="Questions awaiting response"
+      title="대기 중인 Q&A"
+      subtitle="답변 대기 중인 질문"
       headerAction={
         items && items.length > 0 ? (
           <Link
             href={"/qa" as Route}
             className="text-sm text-primary hover:underline flex items-center gap-1"
           >
-            View all
+            전체 보기
             <ChevronRight className="h-4 w-4" />
           </Link>
         ) : undefined
@@ -73,7 +73,7 @@ export function PendingQAWidget() {
                   {item.isUrgent && (
                     <Badge variant="destructive" className="text-xs">
                       <AlertTriangle className="h-3 w-3 mr-1" />
-                      Urgent
+                      긴급
                     </Badge>
                   )}
                 </div>
@@ -87,7 +87,7 @@ export function PendingQAWidget() {
                 href={`/qa/${item.id}` as Route}
                 className="text-sm text-primary hover:underline shrink-0"
               >
-                Answer
+                답변
               </Link>
             </div>
           ))}
@@ -97,15 +97,15 @@ export function PendingQAWidget() {
               href={"/qa" as Route}
               className="block text-sm text-center text-primary hover:underline pt-2"
             >
-              View {items.length - MAX_DISPLAYED_ITEMS} more questions
+              {items.length - MAX_DISPLAYED_ITEMS}개의 질문 더 보기
             </Link>
           )}
         </div>
       ) : (
         <EmptyState
           icon={CheckCircle}
-          title="No pending questions"
-          description="All questions have been answered."
+          title="대기 중인 질문이 없습니다"
+          description="모든 질문에 답변이 완료되었습니다."
         />
       )}
     </DashboardWidget>

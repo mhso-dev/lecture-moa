@@ -46,11 +46,11 @@ interface QuizManageTableProps {
  */
 function formatDueDate(dueDate: string | null): string {
   if (!dueDate) {
-    return "No due date";
+    return "마감일 없음";
   }
 
   const date = new Date(dueDate);
-  return date.toLocaleDateString("en-US", {
+  return date.toLocaleDateString("ko-KR", {
     year: "numeric",
     month: "short",
     day: "numeric",
@@ -108,8 +108,8 @@ function QuizActions({
         variant="ghost"
         size="icon"
         onClick={() => onEdit?.(quiz.id)}
-        aria-label="Edit quiz"
-        title="Edit"
+        aria-label="퀴즈 편집"
+        title="편집"
       >
         <Pencil className="h-4 w-4" data-testid="pencil-icon" />
       </Button>
@@ -118,8 +118,8 @@ function QuizActions({
         variant="ghost"
         size="icon"
         onClick={() => onManageSubmissions?.(quiz.id)}
-        aria-label="Manage submissions"
-        title="Submissions"
+        aria-label="제출 현황 관리"
+        title="제출 현황"
       >
         <Users className="h-4 w-4" data-testid="users-icon" />
       </Button>
@@ -128,8 +128,8 @@ function QuizActions({
         variant="ghost"
         size="icon"
         onClick={() => onDuplicate?.(quiz.id)}
-        aria-label="Duplicate quiz"
-        title="Duplicate"
+        aria-label="퀴즈 복제"
+        title="복제"
       >
         <Copy className="h-4 w-4" data-testid="copy-icon" />
       </Button>
@@ -138,8 +138,8 @@ function QuizActions({
         variant="ghost"
         size="icon"
         onClick={() => onDelete?.(quiz.id)}
-        aria-label="Delete quiz"
-        title="Delete"
+        aria-label="퀴즈 삭제"
+        title="삭제"
         className="text-destructive hover:text-destructive"
       >
         <Trash2 className="h-4 w-4" data-testid="trash-icon" />
@@ -154,9 +154,9 @@ function QuizActions({
 function EmptyState({ onCreateNew }: { onCreateNew?: () => void }) {
   return (
     <div className="flex flex-col items-center justify-center py-12 text-center">
-      <p className="text-muted-foreground mb-4">No quizzes yet</p>
+      <p className="text-muted-foreground mb-4">아직 퀴즈가 없습니다</p>
       {onCreateNew && (
-        <Button onClick={onCreateNew}>Create Quiz</Button>
+        <Button onClick={onCreateNew}>퀴즈 만들기</Button>
       )}
     </div>
   );
@@ -189,27 +189,27 @@ export function QuizManageTable({
           <TableRow>
             <TableHead>
               <SortableHeader column="title" onSort={onSort}>
-                Title
+                제목
               </SortableHeader>
             </TableHead>
-            <TableHead>Course</TableHead>
+            <TableHead>강의</TableHead>
             <TableHead>
               <SortableHeader column="status" onSort={onSort}>
-                Status
+                상태
               </SortableHeader>
             </TableHead>
-            <TableHead className="text-center">Questions</TableHead>
+            <TableHead className="text-center">문항</TableHead>
             <TableHead className="text-center">
               <SortableHeader column="submissions" onSort={onSort}>
-                Submissions
+                제출
               </SortableHeader>
             </TableHead>
             <TableHead>
               <SortableHeader column="dueDate" onSort={onSort}>
-                Due Date
+                마감일
               </SortableHeader>
             </TableHead>
-            <TableHead className="text-right">Actions</TableHead>
+            <TableHead className="text-right">작업</TableHead>
           </TableRow>
         </TableHeader>
 

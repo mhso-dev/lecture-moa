@@ -4,8 +4,8 @@ import { AuthCard } from "~/components/auth/AuthCard";
 import { PasswordResetConfirmForm } from "~/components/auth/PasswordResetConfirmForm";
 
 export const metadata: Metadata = {
-  title: "Set New Password | Lecture Moa",
-  description: "Set a new password for your account",
+  title: "새 비밀번호 설정 | Lecture Moa",
+  description: "계정의 새 비밀번호를 설정하세요",
 };
 
 /**
@@ -26,8 +26,8 @@ export default async function ResetPasswordConfirmPage({ searchParams }: PagePro
 
   return (
     <AuthCard
-      title="Set new password"
-      description="Enter your new password"
+      title="새 비밀번호 설정"
+      description="새 비밀번호를 입력하세요"
     >
       <PasswordResetConfirmForm token={token} />
     </AuthCard>

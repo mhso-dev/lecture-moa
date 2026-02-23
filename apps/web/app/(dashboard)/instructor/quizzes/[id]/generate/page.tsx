@@ -24,8 +24,8 @@ export async function generateMetadata({
 }: QuizGeneratePageProps): Promise<Metadata> {
   void await params; // params needed for dynamic route
   return {
-    title: `Generate Quiz Questions | lecture-moa`,
-    description: "Use AI to generate quiz questions from course materials.",
+    title: `퀴즈 문항 생성 | lecture-moa`,
+    description: "AI를 사용하여 강의 자료에서 퀴즈 문항을 생성하세요.",
   };
 }
 

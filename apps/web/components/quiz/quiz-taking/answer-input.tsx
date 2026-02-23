@@ -141,13 +141,13 @@ function TrueFalseInput({
       <div className="flex items-center space-x-3">
         <RadioGroupItem value="true" id={`${question.id}-true`} />
         <Label htmlFor={`${question.id}-true`} className="cursor-pointer">
-          True
+          참
         </Label>
       </div>
       <div className="flex items-center space-x-3">
         <RadioGroupItem value="false" id={`${question.id}-false`} />
         <Label htmlFor={`${question.id}-false`} className="cursor-pointer">
-          False
+          거짓
         </Label>
       </div>
     </RadioGroup>
@@ -184,7 +184,7 @@ function ShortAnswerInput({
     <Textarea
       value={answer?.text ?? ""}
       onChange={handleChange}
-      placeholder="Type your answer here..."
+      placeholder="답변을 입력하세요..."
       rows={3}
       aria-labelledby={labelId}
       className="min-h-[80px] resize-y"
@@ -242,8 +242,8 @@ function FillInBlankInput({
               key={`blank-${String(currentIndex)}`}
               value={answer?.filledAnswers[blank.id] ?? ""}
               onChange={(e) => { handleBlankChange(blank.id, e.target.value); }}
-              placeholder={`Blank ${String(currentIndex + 1)}`}
-              aria-label={`Blank ${String(currentIndex + 1)}`}
+              placeholder={`빈칸 ${String(currentIndex + 1)}`}
+              aria-label={`빈칸 ${String(currentIndex + 1)}`}
               className="inline-block w-32 mx-1 h-8 text-center"
             />
           );

@@ -27,16 +27,16 @@ const resetConfirmFormSchema = z
   .object({
     password: z
       .string()
-      .min(1, "Password is required")
-      .min(8, "Password must be at least 8 characters")
+      .min(1, "비밀번호를 입력해주세요")
+      .min(8, "비밀번호는 최소 8자 이상이어야 합니다")
       .regex(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
-        "Password must contain at least one uppercase letter, one lowercase letter, and one number"
+        "비밀번호에 대문자, 소문자, 숫자를 각각 하나 이상 포함해야 합니다"
       ),
-    confirmPassword: z.string().min(1, "Please confirm your password"),
+    confirmPassword: z.string().min(1, "비밀번호를 다시 입력해주세요"),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords do not match",
+    message: "비밀번호가 일치하지 않습니다",
     path: ["confirmPassword"],
   });
 
@@ -98,7 +98,7 @@ export function PasswordResetConfirmForm({ token }: PasswordResetConfirmFormProp
         const message =
           error instanceof ApiClientError
             ? error.message
-            : "An unexpected error occurred. Please try again.";
+            : "예상치 못한 오류가 발생했습니다. 다시 시도해 주세요.";
         toast.error(message);
       }
     }
@@ -111,16 +111,16 @@ export function PasswordResetConfirmForm({ token }: PasswordResetConfirmFormProp
           <CheckCircle2 className="h-6 w-6 text-[var(--color-success-600)]" />
         </div>
         <div>
-          <h3 className="text-sm font-medium">Password updated</h3>
+          <h3 className="text-sm font-medium">비밀번호가 변경되었습니다</h3>
           <p className="mt-1 text-sm text-[var(--color-muted-foreground)]">
-            Your password has been reset successfully. Redirecting to login...
+            비밀번호가 성공적으로 재설정되었습니다. 로그인 페이지로 이동합니다...
           </p>
         </div>
         <Link
           href="/login"
           className="inline-block text-sm font-medium text-[var(--color-primary-600)] hover:underline"
         >
-          Go to login
+          로그인으로 이동
         </Link>
       </div>
     );
@@ -133,16 +133,16 @@ export function PasswordResetConfirmForm({ token }: PasswordResetConfirmFormProp
           <AlertTriangle className="h-6 w-6 text-[var(--color-warning-600)]" />
         </div>
         <div>
-          <h3 className="text-sm font-medium">Link expired</h3>
+          <h3 className="text-sm font-medium">링크가 만료되었습니다</h3>
           <p className="mt-1 text-sm text-[var(--color-muted-foreground)]">
-            This reset link has expired. Please request a new one.
+            이 재설정 링크가 만료되었습니다. 새 링크를 요청해 주세요.
           </p>
         </div>
         <Link
           href="/reset-password"
           className="inline-block text-sm font-medium text-[var(--color-primary-600)] hover:underline"
         >
-          Request a new link
+          새 링크 요청하기
         </Link>
       </div>
     );
@@ -153,18 +153,18 @@ export function PasswordResetConfirmForm({ token }: PasswordResetConfirmFormProp
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="space-y-4"
-        aria-label="Set new password form"
+        aria-label="새 비밀번호 설정 양식"
       >
         <FormField
           control={form.control}
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>New Password</FormLabel>
+              <FormLabel>새 비밀번호</FormLabel>
               <FormControl>
                 <Input
                   type="password"
-                  placeholder="Enter your new password"
+                  placeholder="새 비밀번호를 입력하세요"
                   autoComplete="new-password"
                   {...field}
                 />
@@ -179,11 +179,11 @@ export function PasswordResetConfirmForm({ token }: PasswordResetConfirmFormProp
           name="confirmPassword"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Confirm Password</FormLabel>
+              <FormLabel>비밀번호 확인</FormLabel>
               <FormControl>
                 <Input
                   type="password"
-                  placeholder="Confirm your new password"
+                  placeholder="새 비밀번호를 다시 입력하세요"
                   autoComplete="new-password"
                   {...field}
                 />
@@ -195,7 +195,7 @@ export function PasswordResetConfirmForm({ token }: PasswordResetConfirmFormProp
 
         <Button type="submit" className="w-full" disabled={isSubmitting}>
           {isSubmitting && <Loader2 className="animate-spin" />}
-          Set new password
+          새 비밀번호 설정
         </Button>
       </form>
     </Form>

@@ -21,8 +21,8 @@ export async function generateMetadata({
 }: CourseQuizzesPageProps): Promise<Metadata> {
   const { courseId: _courseId } = await params;
   return {
-    title: `Course Quizzes | lecture-moa`,
-    description: "View quizzes for this course.",
+    title: `강의 퀴즈 | lecture-moa`,
+    description: "이 강의의 퀴즈를 확인하세요.",
   };
 }
 
@@ -54,9 +54,9 @@ export default async function CourseQuizzesPage({
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">Course Quizzes</h1>
+        <h1 className="text-2xl font-bold tracking-tight">강의 퀴즈</h1>
         <p className="text-muted-foreground">
-          View and take quizzes from this course.
+          이 강의의 퀴즈를 확인하고 풀어보세요.
         </p>
       </div>
 

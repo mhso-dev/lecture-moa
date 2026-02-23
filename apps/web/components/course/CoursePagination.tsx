@@ -124,7 +124,7 @@ export function CoursePagination({
                 onClick={() => { navigateToPage(page) }}
                 isActive={currentPage === page}
                 className="cursor-pointer"
-                aria-label={`Go to page ${String(page)}`}
+                aria-label={`${String(page)} 페이지로 이동`}
                 aria-current={currentPage === page ? "page" : undefined}
               >
                 {page}

@@ -63,17 +63,17 @@ function PasswordStrengthIndicator({ password }: { password: string }) {
     weak: {
       width: "w-1/3",
       color: "bg-[var(--color-error-500)]",
-      label: "Weak",
+      label: "약함",
     },
     medium: {
       width: "w-2/3",
       color: "bg-[var(--color-warning-500)]",
-      label: "Medium",
+      label: "보통",
     },
     strong: {
       width: "w-full",
       color: "bg-[var(--color-success-500)]",
-      label: "Strong",
+      label: "강함",
     },
   };
 
@@ -91,7 +91,7 @@ function PasswordStrengthIndicator({ password }: { password: string }) {
         />
       </div>
       <p className="text-xs text-[var(--color-muted-foreground)]">
-        Password strength: {current.label}
+        비밀번호 강도: {current.label}
       </p>
     </div>
   );
@@ -142,23 +142,23 @@ export function RegisterForm() {
       });
 
       if (result.success) {
-        toast.success("Welcome! Account created successfully.");
+        toast.success("환영합니다! 계정이 성공적으로 생성되었습니다.");
         router.push("/dashboard" as Route);
       } else {
         // Check for duplicate email error
         if (result.error?.includes("\uC774\uBBF8 \uB4F1\uB85D\uB41C")) {
           setError("email", {
-            message: "An account with this email already exists",
+            message: "이미 등록된 이메일입니다",
           });
         } else {
-          toast.error(result.error ?? "An unexpected error occurred. Please try again.");
+          toast.error(result.error ?? "예상치 못한 오류가 발생했습니다. 다시 시도해 주세요.");
         }
       }
     } catch (error) {
       const message =
         error instanceof ApiClientError
           ? error.message
-          : "An unexpected error occurred. Please try again.";
+          : "예상치 못한 오류가 발생했습니다. 다시 시도해 주세요.";
       toast.error(message);
     }
   };
@@ -168,17 +168,17 @@ export function RegisterForm() {
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="space-y-4"
-        aria-label="Create account form"
+        aria-label="회원가입 양식"
       >
         <FormField
           control={form.control}
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Name</FormLabel>
+              <FormLabel>이름</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="Your name"
+                  placeholder="이름을 입력하세요"
                   autoComplete="name"
                   {...field}
                 />
@@ -193,7 +193,7 @@ export function RegisterForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>이메일</FormLabel>
               <FormControl>
                 <Input
                   type="email"
@@ -212,11 +212,11 @@ export function RegisterForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Password</FormLabel>
+              <FormLabel>비밀번호</FormLabel>
               <FormControl>
                 <Input
                   type="password"
-                  placeholder="Create a password"
+                  placeholder="비밀번호를 입력하세요"
                   autoComplete="new-password"
                   {...field}
                 />
@@ -232,11 +232,11 @@ export function RegisterForm() {
           name="confirmPassword"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Confirm Password</FormLabel>
+              <FormLabel>비밀번호 확인</FormLabel>
               <FormControl>
                 <Input
                   type="password"
-                  placeholder="Confirm your password"
+                  placeholder="비밀번호를 다시 입력하세요"
                   autoComplete="new-password"
                   {...field}
                 />
@@ -251,7 +251,7 @@ export function RegisterForm() {
           name="role"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>I am a...</FormLabel>
+              <FormLabel>역할 선택</FormLabel>
               <FormControl>
                 <RoleSelector
                   value={field.value as string}
@@ -265,7 +265,7 @@ export function RegisterForm() {
 
         <Button type="submit" className="w-full" disabled={isSubmitting}>
           {isSubmitting && <Loader2 className="animate-spin" />}
-          Create account
+          계정 만들기
         </Button>
       </form>
     </Form>

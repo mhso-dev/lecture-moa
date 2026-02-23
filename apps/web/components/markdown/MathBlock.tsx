@@ -143,7 +143,7 @@ export function MathBlock({ math, inline = false, className }: MathBlockProps) {
       <span
         className={cn("katex-inline", className)}
         dangerouslySetInnerHTML={{ __html: result.html }}
-        aria-label={`Math: ${math}`}
+        aria-label={`수식: ${math}`}
       />
     );
   }
@@ -157,7 +157,7 @@ export function MathBlock({ math, inline = false, className }: MathBlockProps) {
         className
       )}
       dangerouslySetInnerHTML={{ __html: result.html }}
-      aria-label={`Math: ${math}`}
+      aria-label={`수식: ${math}`}
     />
   );
 }

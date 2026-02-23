@@ -5,8 +5,8 @@ import { RegisterForm } from "~/components/auth/RegisterForm";
 import { SocialLoginButtons } from "~/components/auth/SocialLoginButtons";
 
 export const metadata: Metadata = {
-  title: "Create Account | Lecture Moa",
-  description: "Create your account to start learning or teaching",
+  title: "회원가입 | Lecture Moa",
+  description: "학습 또는 강의를 시작하려면 계정을 만드세요",
 };
 
 /**
@@ -16,16 +16,16 @@ export const metadata: Metadata = {
 export default function RegisterPage() {
   return (
     <AuthCard
-      title="Create account"
-      description="Get started with Lecture MoA"
+      title="회원가입"
+      description="Lecture MoA 시작하기"
       footer={
         <p className="text-sm text-[var(--color-muted-foreground)]">
-          Already have an account?{" "}
+          이미 계정이 있으신가요?{" "}
           <Link
             href="/login"
             className="font-medium text-[var(--color-primary-600)] hover:underline"
           >
-            Sign in
+            로그인
           </Link>
         </p>
       }
