@@ -29,3 +29,6 @@ export { QAAIRequestButton } from "./QAAIRequestButton";
 // Inline Popup Components (REQ-FE-321)
 export { QAInlinePopup } from "./QAInlinePopup";
 export { QAInlinePopupMobile } from "./QAInlinePopupMobile";
+
+// Highlight Components (REQ-FE-009)
+export { QAHighlightTooltip } from "./QAHighlightTooltip";

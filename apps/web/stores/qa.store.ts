@@ -28,11 +28,24 @@ interface InlinePopupState {
 }
 
 /**
+ * Active highlight tooltip state for displaying Q&A questions on highlighted text
+ * REQ-FE-009: Q&A Highlight Rendering
+ */
+interface ActiveHighlightState {
+  highlightId: string;
+  anchorRect: DOMRect;
+  questionIds: string[];
+}
+
+/**
  * Q&A Store State
  */
 interface QAState {
   // Inline popup state
   inlinePopup: InlinePopupState;
+
+  // Highlight tooltip state (REQ-FE-009)
+  activeHighlight: ActiveHighlightState | null;
 
   // Navigation state
   activeQuestionId: string | null;
@@ -49,6 +62,10 @@ interface QAActions {
   // Actions - Inline Popup
   openInlinePopup: (anchorRect: DOMRect, context: InlinePopupContext) => void;
   closeInlinePopup: () => void;
+
+  // Actions - Highlight Tooltip (REQ-FE-009)
+  openHighlightTooltip: (highlightId: string, anchorRect: DOMRect, questionIds: string[]) => void;
+  closeHighlightTooltip: () => void;
 
   // Actions - Navigation
   setActiveQuestion: (id: string) => void;
@@ -72,6 +89,7 @@ const initialState: QAState = {
     anchorRect: null,
     context: null,
   },
+  activeHighlight: null,
   activeQuestionId: null,
   wsConnected: false,
   pendingNotifications: [],
@@ -119,6 +137,23 @@ export const useQAStore = create<QAStore>()(
           { inlinePopup: { isOpen: false, anchorRect: null, context: null } },
           false,
           "qa/closeInlinePopup"
+        );
+      },
+
+      // Actions - Highlight Tooltip (REQ-FE-009)
+      openHighlightTooltip: (highlightId, anchorRect, questionIds) => {
+        set(
+          { activeHighlight: { highlightId, anchorRect, questionIds } },
+          false,
+          "qa/openHighlightTooltip"
+        );
+      },
+
+      closeHighlightTooltip: () => {
+        set(
+          { activeHighlight: null },
+          false,
+          "qa/closeHighlightTooltip"
         );
       },
 
@@ -171,6 +206,8 @@ export const useQAStore = create<QAStore>()(
 
 // Selector hooks for common patterns
 export const useInlinePopup = () => useQAStore((state) => state.inlinePopup);
+export const useActiveHighlight = () =>
+  useQAStore((state) => state.activeHighlight);
 export const useActiveQuestionId = () =>
   useQAStore((state) => state.activeQuestionId);
 export const useWsConnected = () => useQAStore((state) => state.wsConnected);

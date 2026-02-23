@@ -121,6 +121,18 @@ export interface QAListFilter {
 }
 
 /**
+ * Lightweight highlight data for rendering Q&A highlights on material content
+ * REQ-FE-009: Q&A Highlight Rendering
+ */
+export interface QAHighlightData {
+  id: string;
+  selectedText: string;
+  headingId: string | null;
+  status: QAStatus;
+  title: string;
+}
+
+/**
  * WebSocket notification payload for real-time Q&A updates
  * Note: Named QAWebSocketNotification to avoid conflict with dashboard.types QANotification
  */

@@ -11,6 +11,7 @@ export { qaKeys } from './qa-keys';
 // Query Hooks
 export { useQAList, type UseQAListParams, type QAListResponse } from './useQAList';
 export { useQADetail } from './useQADetail';
+export { useQAHighlights } from './useQAHighlights';
 
 // Mutation Hooks
 export { useCreateQuestion } from './useCreateQuestion';

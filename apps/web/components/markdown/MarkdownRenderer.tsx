@@ -23,18 +23,24 @@ import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
 import type { Components } from "react-markdown";
 import Image from "next/image";
 
+import type { QAHighlightData } from "@shared";
 import { remarkCallout } from "~/lib/markdown/plugins/remark-callout";
+import { rehypeQAHighlights } from "~/lib/markdown/plugins/rehype-qa-highlights";
+import { SlugCounter } from "~/lib/markdown/utils/slug";
 import { CodeBlock } from "./CodeBlock";
 import { Callout, type CalloutType } from "./Callout";
 import { HeadingWithAnchor, extractTextFromChildren } from "./HeadingWithAnchor";
 import { MathBlock } from "./MathBlock";
 
 import "~/lib/markdown/highlight-theme.css";
+import "~/lib/markdown/highlight-qa.css";
 import "katex/dist/katex.min.css";
 
 interface MarkdownRendererProps {
   content: string;
   className?: string;
+  /** Q&A highlight data for rendering <mark> elements (REQ-FE-009) */
+  highlights?: QAHighlightData[];
 }
 
 /**
@@ -51,6 +57,7 @@ const customSanitizeSchema = {
     ...(defaultSchema.tagNames ?? []),
     "figure",
     "figcaption",
+    "mark",
   ],
   attributes: {
     ...defaultSchema.attributes,
@@ -58,6 +65,7 @@ const customSanitizeSchema = {
     code: [["className", { value: /language-\w+/ }]],
     span: [["className", { value: /katex|katex-.+/ }]],
     div: [["className", { value: /katex-display|katex/ }]],
+    mark: ["dataHighlightId", "dataQuestionCount", "dataStatus"],
     img: ["src", "alt", "title", "loading", "width", "height"],
     a: ["href", "title", "target", "rel"],
   },
@@ -68,24 +76,15 @@ const customSanitizeSchema = {
 };
 
 /**
- * Slug counter to ensure unique IDs
+ * @MX:NOTE: [AUTO] Slug generation uses shared SlugCounter for consistency
+ * @MX:SPEC: SPEC-FE-009
+ *
+ * The SlugCounter is shared between:
+ * - MarkdownRenderer (React component heading overrides)
+ * - rehype-qa-highlights (HAST-level plugin for section identification)
+ *
+ * Both MUST use the same algorithm to ensure heading IDs match.
  */
-const slugCache = new Map<string, number>();
-
-function generateUniqueSlug(text: string): string {
-  const baseSlug = text
-    .toLowerCase()
-    .trim()
-    .replace(/[^\w\s-]/g, "")
-    .replace(/\s+/g, "-")
-    .replace(/-+/g, "-")
-    .replace(/^-|-$/g, "");
-
-  const count = slugCache.get(baseSlug) ?? 0;
-  slugCache.set(baseSlug, count + 1);
-
-  return count === 0 ? baseSlug : `${baseSlug}-${String(count)}`;
-}
 
 /**
  * MarkdownRenderer Component
@@ -99,9 +98,9 @@ function generateUniqueSlug(text: string): string {
  * - Heading anchors
  * - XSS protection
  */
-export function MarkdownRenderer({ content, className }: MarkdownRendererProps) {
-  // Reset slug cache for each render
-  slugCache.clear();
+export function MarkdownRenderer({ content, className, highlights }: MarkdownRendererProps) {
+  // Create fresh slug counter for each render
+  const slugCounter = new SlugCounter();
 
   const components: Components = {
     // Code blocks
@@ -127,7 +126,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
     // Headings with anchors
     h2({ children, ...props }: React.ClassAttributes<HTMLHeadingElement> & React.HTMLAttributes<HTMLHeadingElement> & ExtraProps) {
       const text = extractTextFromChildren(children);
-      const id = generateUniqueSlug(text);
+      const id = slugCounter.generateUniqueSlug(text);
       return (
         <HeadingWithAnchor level="h2" id={id} {...props}>
           {children}
@@ -137,7 +136,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
 
     h3({ children, ...props }: React.ClassAttributes<HTMLHeadingElement> & React.HTMLAttributes<HTMLHeadingElement> & ExtraProps) {
       const text = extractTextFromChildren(children);
-      const id = generateUniqueSlug(text);
+      const id = slugCounter.generateUniqueSlug(text);
       return (
         <HeadingWithAnchor level="h3" id={id} {...props}>
           {children}
@@ -147,7 +146,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
 
     h4({ children, ...props }: React.ClassAttributes<HTMLHeadingElement> & React.HTMLAttributes<HTMLHeadingElement> & ExtraProps) {
       const text = extractTextFromChildren(children);
-      const id = generateUniqueSlug(text);
+      const id = slugCounter.generateUniqueSlug(text);
       return (
         <HeadingWithAnchor level="h4" id={id} {...props}>
           {children}
@@ -272,6 +271,10 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
         rehypePlugins={[
           [rehypeKatex, { strict: false, throwOnError: false }],
           [rehypeHighlight, { detect: true, ignoreMissing: true }],
+          // REQ-FE-009: Q&A highlights injected before sanitize
+          ...(highlights && highlights.length > 0
+            ? [[rehypeQAHighlights, { highlights }] as const]
+            : []),
           [rehypeSanitize, customSanitizeSchema],
         ]}
         components={components}

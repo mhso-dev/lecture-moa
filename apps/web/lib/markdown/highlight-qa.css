@@ -1,0 +1,107 @@
+/**
+ * Q&A Highlight Styles
+ * REQ-FE-009: Visual styling for Q&A highlighted text in markdown content
+ *
+ * Highlights are rendered as <mark> elements with data-* attributes.
+ * Three visual states based on data-status:
+ * - OPEN: Active question requiring attention (yellow/amber highlight)
+ * - RESOLVED: Answered question (green highlight)
+ * - CLOSED: Closed question (gray highlight)
+ */
+
+/* Base highlight style */
+mark[data-highlight-id] {
+  cursor: pointer;
+  border-radius: 2px;
+  padding: 0.05em 0;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* OPEN status: amber/yellow highlight */
+mark[data-status="OPEN"] {
+  background-color: rgba(251, 191, 36, 0.3);
+}
+
+mark[data-status="OPEN"]:hover {
+  background-color: rgba(251, 191, 36, 0.5);
+  box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.3);
+}
+
+/* RESOLVED status: green highlight */
+mark[data-status="RESOLVED"] {
+  background-color: rgba(16, 185, 129, 0.2);
+}
+
+mark[data-status="RESOLVED"]:hover {
+  background-color: rgba(16, 185, 129, 0.35);
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+}
+
+/* CLOSED status: gray highlight */
+mark[data-status="CLOSED"] {
+  background-color: rgba(148, 163, 184, 0.2);
+}
+
+mark[data-status="CLOSED"]:hover {
+  background-color: rgba(148, 163, 184, 0.35);
+  box-shadow: 0 0 0 2px rgba(148, 163, 184, 0.2);
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  mark[data-status="OPEN"] {
+    background-color: rgba(251, 191, 36, 0.2);
+  }
+
+  mark[data-status="OPEN"]:hover {
+    background-color: rgba(251, 191, 36, 0.35);
+  }
+
+  mark[data-status="RESOLVED"] {
+    background-color: rgba(16, 185, 129, 0.15);
+  }
+
+  mark[data-status="RESOLVED"]:hover {
+    background-color: rgba(16, 185, 129, 0.25);
+  }
+
+  mark[data-status="CLOSED"] {
+    background-color: rgba(148, 163, 184, 0.15);
+  }
+
+  mark[data-status="CLOSED"]:hover {
+    background-color: rgba(148, 163, 184, 0.25);
+  }
+}
+
+/* Accessibility: ensure sufficient contrast */
+mark[data-highlight-id]:focus-visible {
+  outline: 2px solid var(--primary, #3b82f6);
+  outline-offset: 1px;
+}
+
+/* Question count badge (shown on hover via CSS) */
+mark[data-highlight-id]::after {
+  content: attr(data-question-count);
+  display: none;
+  position: absolute;
+  top: -0.5em;
+  right: -0.5em;
+  background-color: #ef4444;
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 1px 4px;
+  border-radius: 9999px;
+  min-width: 14px;
+  text-align: center;
+}
+
+mark[data-highlight-id] {
+  position: relative;
+}
+
+mark[data-question-count]:not([data-question-count="1"]):hover::after {
+  display: inline-block;
+}

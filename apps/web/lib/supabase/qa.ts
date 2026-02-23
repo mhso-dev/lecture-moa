@@ -14,6 +14,7 @@ import type {
   QAAnswer,
   QAAuthorInfo,
   QAStatus,
+  QAHighlightData,
   QAListFilter,
   QACreateRequest,
   QAAnswerRequest,
@@ -663,4 +664,49 @@ export async function toggleAnswerVote(
 
     return { voted: true, newCount: answer?.upvote_count ?? 0 };
   }
+}
+
+// ---------------------------------------------------------------------------
+// Highlights
+// ---------------------------------------------------------------------------
+
+/**
+ * Fetch Q&A highlight data for a specific material.
+ * REQ-FE-009: Returns highlight data needed for rendering <mark> elements.
+ *
+ * Only fetches questions that have non-null selected_text (i.e., text-based questions).
+ * Returns minimal data needed for highlight rendering (no full content/answers).
+ */
+export async function getHighlightsForMaterial(
+  materialId: string,
+): Promise<QAHighlightData[]> {
+  const supabase = createClient();
+
+  const { data, error } = await supabase
+    .from("questions")
+    .select("id, selected_text, heading_id, status, title")
+    .eq("material_id", materialId)
+    .not("selected_text", "is", null)
+    .neq("selected_text", "")
+    .order("created_at", { ascending: true });
+
+  if (error) {
+    throw new Error(`Failed to fetch highlights: ${error.message}`);
+  }
+
+  return (data ?? []).map(
+    (row: {
+      id: string;
+      selected_text: string | null;
+      heading_id: string | null;
+      status: string;
+      title: string;
+    }): QAHighlightData => ({
+      id: row.id,
+      selectedText: row.selected_text ?? "",
+      headingId: row.heading_id,
+      status: row.status as QAStatus,
+      title: row.title,
+    }),
+  );
 }

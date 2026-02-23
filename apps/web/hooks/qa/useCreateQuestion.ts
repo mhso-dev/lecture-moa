@@ -47,9 +47,15 @@ export function useCreateQuestion(): UseMutationResult<
       }
       return createQuestion(data, user.id);
     },
-    onSuccess: () => {
+    onSuccess: (_data, variables) => {
       // Invalidate all list queries to refresh the list
       void queryClient.invalidateQueries({ queryKey: qaKeys.lists() });
+      // REQ-FE-009: Invalidate highlights for this material to refresh <mark> elements
+      if (variables.materialId) {
+        void queryClient.invalidateQueries({
+          queryKey: qaKeys.highlights(variables.materialId),
+        });
+      }
       toast.success('질문이 등록되었습니다');
     },
     onError: (error) => {

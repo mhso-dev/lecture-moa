@@ -25,10 +25,13 @@ vi.mock('~/stores/qa.store', () => ({
         anchorRect: null,
         context: null,
       },
+      activeHighlight: null,
       pendingNotifications: [],
       // Missing QAActions
       openInlinePopup: vi.fn(),
       closeInlinePopup: vi.fn(),
+      openHighlightTooltip: vi.fn(),
+      closeHighlightTooltip: vi.fn(),
       setActiveQuestion: vi.fn(),
       clearActiveQuestion: vi.fn(),
       clearNotification: vi.fn(),
@@ -82,6 +85,7 @@ describe('useQAWebSocket', () => {
         setWsConnected: vi.fn(),
         addNotification: vi.fn(),
         activeQuestionId: null,
+        activeHighlight: null,
         inlinePopup: {
           isOpen: false,
           anchorRect: null,
@@ -91,6 +95,8 @@ describe('useQAWebSocket', () => {
         // Missing QAActions
         openInlinePopup: vi.fn(),
         closeInlinePopup: vi.fn(),
+        openHighlightTooltip: vi.fn(),
+        closeHighlightTooltip: vi.fn(),
         setActiveQuestion: vi.fn(),
         clearActiveQuestion: vi.fn(),
         clearNotification: vi.fn(),

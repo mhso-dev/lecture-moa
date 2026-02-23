@@ -30,4 +30,8 @@ export const qaKeys = {
   /** Specific Q&A detail query by ID */
   detail: (questionId: string) =>
     [...qaKeys.details(), questionId] as const,
+
+  /** Highlights for a specific material */
+  highlights: (materialId: string) =>
+    [...qaKeys.all, 'highlights', materialId] as const,
 };

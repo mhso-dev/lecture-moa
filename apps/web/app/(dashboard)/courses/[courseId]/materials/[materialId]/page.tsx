@@ -6,6 +6,7 @@ import { cn } from "~/lib/utils";
 import { useScrollSpy, useReadingProgress, useMaterial } from "~/hooks/materials";
 import { useMaterialStore, useFontSize, useIsFullscreen } from "~/stores/material.store";
 import { useQAStore } from "~/stores/qa.store";
+import { useQAHighlights } from "~/hooks/qa";
 import { useCourse } from "~/hooks/useCourse";
 import { MarkdownRenderer } from "~/components/markdown/MarkdownRenderer";
 import { MaterialToolbar } from "~/components/materials/MaterialToolbar";
@@ -15,7 +16,7 @@ import { MaterialMetadata } from "~/components/materials/MaterialMetadata";
 import { MaterialNavigation } from "~/components/materials/MaterialNavigation";
 import { QaSelectionTrigger } from "~/components/materials/QaSelectionTrigger";
 import { MaterialViewerSkeleton } from "~/components/materials/MaterialViewerSkeleton";
-import { QAInlinePopup, QAInlinePopupMobile } from "~/components/qa";
+import { QAInlinePopup, QAInlinePopupMobile, QAHighlightTooltip } from "~/components/qa";
 import { extractHeadings } from "~/lib/markdown";
 
 /**
@@ -44,11 +45,14 @@ export default function MaterialViewerPage() {
   const fontSize = useFontSize();
   const isFullscreen = useIsFullscreen();
   const { toggleToc, toggleFullscreen } = useMaterialStore();
-  const { openInlinePopup } = useQAStore();
+  const { openInlinePopup, openHighlightTooltip } = useQAStore();
 
   // Fetch material and course data
   const { data: material, isLoading, error } = useMaterial(courseId, materialId);
   const { data: course } = useCourse(courseId);
+
+  // REQ-FE-009: Fetch Q&A highlight data for rendering <mark> elements
+  const { data: highlights } = useQAHighlights(materialId);
 
   // Extract headings for ToC
   const headings = useMemo(
@@ -168,6 +172,24 @@ export default function MaterialViewerPage() {
     };
   }, [handleKeyDown]);
 
+  // REQ-FE-009: Event delegation for highlight click -> open tooltip
+  const handleHighlightClick = useCallback(
+    (e: React.MouseEvent<HTMLElement>) => {
+      const target = e.target as HTMLElement;
+      const mark = target.closest("mark[data-highlight-id]") as HTMLElement | null;
+      if (!mark) return;
+
+      const highlightId = mark.getAttribute("data-highlight-id");
+      if (!highlightId) return;
+
+      const questionIds = highlightId.split(",");
+      const rect = mark.getBoundingClientRect();
+
+      openHighlightTooltip(highlightId, rect, questionIds);
+    },
+    [openHighlightTooltip]
+  );
+
   // Apply fullscreen class to body
   useEffect(() => {
     if (isFullscreen) {
@@ -256,9 +278,13 @@ export default function MaterialViewerPage() {
             className="mb-8"
           />
 
-          {/* Markdown content */}
-          <article className="prose prose-neutral dark:prose-invert max-w-none">
-            <MarkdownRenderer content={material.content} />
+          {/* Markdown content (REQ-FE-009: click delegation for highlight tooltips) */}
+          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
+          <article
+            className="prose prose-neutral dark:prose-invert max-w-none"
+            onClick={handleHighlightClick}
+          >
+            <MarkdownRenderer content={material.content} highlights={highlights} />
           </article>
 
           {/* Navigation */}
@@ -288,6 +314,9 @@ export default function MaterialViewerPage() {
       {/* Q&A Inline Popups (Desktop & Mobile) */}
       <QAInlinePopup />
       <QAInlinePopupMobile />
+
+      {/* Q&A Highlight Tooltip (REQ-FE-009) */}
+      <QAHighlightTooltip />
     </div>
   );
 }
