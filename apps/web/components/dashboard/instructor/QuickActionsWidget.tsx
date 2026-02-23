@@ -19,9 +19,9 @@ import { DashboardWidget } from "../DashboardWidget";
 const QUICK_ACTIONS = [
   {
     label: "자료 업로드",
-    href: "/materials/upload",
+    href: "/courses",
     icon: Upload,
-    description: "새 학습 자료 추가",
+    description: "강의 선택 후 자료 추가",
   },
   {
     label: "퀴즈 만들기",

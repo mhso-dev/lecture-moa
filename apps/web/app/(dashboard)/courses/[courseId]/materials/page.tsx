@@ -514,10 +514,10 @@ function MaterialsPageClient({
           ) : (
             <>
               <h2 className="text-xl font-semibold text-[var(--color-foreground)] mb-2">
-                아직 자료가 없습니다
+                아직 등록된 학습 자료가 없습니다
               </h2>
               <p className="text-[var(--color-muted-foreground)] mb-4 max-w-md">
-                강사가 아직 자료를 업로드하지 않았습니다. 나중에 다시 확인해 주세요.
+                강사가 아직 학습 자료를 등록하지 않았습니다. 나중에 다시 확인해 주세요.
               </p>
             </>
           )}

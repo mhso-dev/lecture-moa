@@ -12,9 +12,11 @@ import {
   User,
   ChevronLeft,
   ChevronRight,
+  LogOut,
 } from "lucide-react";
 import { cn } from "@shared/utils";
 import { useNavigationStore, useSidebarCollapsed } from "~/stores/navigation.store";
+import { useAuth } from "~/hooks/useAuth";
 import { ThemeToggle } from "~/components/theme-toggle";
 
 /**
@@ -58,6 +60,7 @@ export function Sidebar() {
   const pathname = usePathname();
   const isCollapsed = useSidebarCollapsed();
   const { toggleSidebar } = useNavigationStore();
+  const { signOut } = useAuth();
 
   // Check if nav item is active
   const isActive = (href: string) => {
@@ -155,6 +158,32 @@ export function Sidebar() {
           })}
         </ul>
       </nav>
+
+      {/* Logout Button */}
+      <div className="shrink-0 px-2">
+        <button
+          onClick={() => { void signOut(); }}
+          className={cn(
+            "flex w-full items-center gap-2 rounded-lg px-3 py-2",
+            "text-sidebar-foreground transition-colors duration-fast",
+            "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
+            isCollapsed && "justify-center px-0"
+          )}
+          aria-label="로그아웃"
+          title={isCollapsed ? "로그아웃" : undefined}
+        >
+          <LogOut className="h-5 w-5 shrink-0" />
+          <span
+            className={cn(
+              "text-sm transition-opacity duration-fast",
+              isCollapsed ? "opacity-0 w-0 overflow-hidden" : "opacity-100"
+            )}
+          >
+            로그아웃
+          </span>
+        </button>
+      </div>
 
       {/* Collapse Toggle Button - Desktop only */}
       <div className="shrink-0 border-t border-sidebar-border p-2">

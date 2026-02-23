@@ -8,6 +8,7 @@
 "use client";
 
 import { useParams, useRouter, notFound } from "next/navigation";
+import Link from "next/link";
 import { useAuth } from "~/hooks/useAuth";
 import { Calendar, Users, FileText, Settings, BookOpen } from "lucide-react";
 import { useCourse } from "~/hooks/useCourse";
@@ -161,6 +162,13 @@ function EnrollmentStatus({ isEnrolled, enrollment, course }: EnrollmentStatusPr
           </span>
         </div>
         <CourseProgressBar percent={enrollment.progressPercent} />
+        <Link
+          href={`/courses/${course.id}/materials` as never}
+          className="mt-4 inline-flex items-center gap-2 rounded-lg border border-border bg-card-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+        >
+          <BookOpen className="h-4 w-4" />
+          학습 자료 보기
+        </Link>
       </div>
     );
   }

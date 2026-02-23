@@ -6,6 +6,7 @@ import { cn } from "~/lib/utils";
 import { useScrollSpy, useReadingProgress, useMaterial } from "~/hooks/materials";
 import { useMaterialStore, useFontSize, useIsFullscreen } from "~/stores/material.store";
 import { useQAStore } from "~/stores/qa.store";
+import { useCourse } from "~/hooks/useCourse";
 import { MarkdownRenderer } from "~/components/markdown/MarkdownRenderer";
 import { MaterialToolbar } from "~/components/materials/MaterialToolbar";
 import { TableOfContents } from "~/components/materials/TableOfContents";
@@ -45,8 +46,9 @@ export default function MaterialViewerPage() {
   const { toggleToc, toggleFullscreen } = useMaterialStore();
   const { openInlinePopup } = useQAStore();
 
-  // Fetch material data
+  // Fetch material and course data
   const { data: material, isLoading, error } = useMaterial(courseId, materialId);
+  const { data: course } = useCourse(courseId);
 
   // Extract headings for ToC
   const headings = useMemo(
@@ -228,7 +230,7 @@ export default function MaterialViewerPage() {
       {/* Toolbar */}
       <MaterialToolbar
         courseId={courseId}
-        courseName={material.courseId} // TODO: Get course name from course data
+        courseName={course?.title ?? "강의"}
         materialTitle={material.title}
         readTimeMinutes={material.readTimeMinutes}
         materialId={materialId}

@@ -58,7 +58,6 @@ env/
 # Test Coverage
 # ===========================================
 .coverage
-coverage/
 coverage.json
 htmlcov/
 
@@ -165,10 +164,6 @@ secret-*.*
 .claude/local/
 .claude/plans/
 
-# Agent memory (local per-machine, not shared)
-.claude/agent-memory/
-.claude/agent-memory-local/
-
 # Skill-specific credentials
 .claude/skills/*/.env*
 .claude/skills/*/secrets/
@@ -201,7 +196,9 @@ dist-ssr/
 .netlify/
 .firebase/
 
-# ===========================================
-# Supabase Local Development
-# ===========================================
+# User Custom Patterns (preserved by moai update)
+coverage/
+.claude/agent-memory/
+.claude/agent-memory-local/
 .supabase/
+.vercel
