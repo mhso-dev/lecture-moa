@@ -71,6 +71,13 @@
   --bottom-tab-height: 64px;
   --bottom-tab-safe-area: env(safe-area-inset-bottom, 0px);
 
+  /* Tailwind v4 spacing namespace aliases for utility class generation */
+  --spacing-sidebar: 256px;
+  --spacing-sidebar-collapsed: 64px;
+  --spacing-header: 64px;
+  --spacing-header-mobile: 56px;
+  --spacing-bottom-tab: 64px;
+
   /* ========================================
    * Grid System
    * ======================================== */
