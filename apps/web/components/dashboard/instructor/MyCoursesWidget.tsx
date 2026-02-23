@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * MyCoursesWidget Component
  * REQ-FE-221: My Courses Overview Widget

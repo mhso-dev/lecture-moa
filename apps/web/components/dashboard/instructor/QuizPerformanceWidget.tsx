@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * QuizPerformanceWidget Component
  * REQ-FE-224: Quiz Performance Summary Widget

@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * StudentActivityWidget Component
  * REQ-FE-222: Student Enrollment & Activity Widget
@@ -61,7 +63,7 @@ export function StudentActivityWidget() {
           <div className="flex items-center gap-2">
             <BarChart3 className="h-4 w-4 text-muted-foreground" />
             <span className="text-2xl font-bold">
-              {stats?.avgCompletionRate.toFixed(1) ?? 0}%
+              {(stats?.avgCompletionRate ?? 0).toFixed(1)}%
             </span>
           </div>
           <p className="text-xs text-muted-foreground">평균 완료율</p>

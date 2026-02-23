@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * PendingQAWidget Component
  * REQ-FE-223: Pending Q&A Widget
