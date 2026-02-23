@@ -10,10 +10,12 @@ import { z } from "zod";
  */
 export const loginSchema = z.object({
   email: z.string().email("올바른 이메일 주소를 입력해주세요"),
-  password: z
-    .string()
-    .min(1, "비밀번호를 입력해주세요")
-    .min(8, "비밀번호는 최소 8자 이상이어야 합니다"),
+  // [테스트 모드] 비밀번호 정책 완화 - 운영 환경에서는 아래 주석을 해제하세요
+  password: z.string().min(1, "비밀번호를 입력해주세요"),
+  // password: z
+  //   .string()
+  //   .min(1, "비밀번호를 입력해주세요")
+  //   .min(8, "비밀번호는 최소 8자 이상이어야 합니다"),
 });
 
 export type LoginSchema = z.infer<typeof loginSchema>;
@@ -24,14 +26,16 @@ export type LoginSchema = z.infer<typeof loginSchema>;
 export const registerSchema = z
   .object({
     email: z.string().email("올바른 이메일 주소를 입력해주세요"),
-    password: z
-      .string()
-      .min(1, "비밀번호를 입력해주세요")
-      .min(8, "비밀번호는 최소 8자 이상이어야 합니다")
-      .regex(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
-        "비밀번호에 대문자, 소문자, 숫자를 각각 하나 이상 포함해야 합니다"
-      ),
+    // [테스트 모드] 비밀번호 정책 완화 - 운영 환경에서는 아래 주석을 해제하세요
+    password: z.string().min(1, "비밀번호를 입력해주세요"),
+    // password: z
+    //   .string()
+    //   .min(1, "비밀번호를 입력해주세요")
+    //   .min(8, "비밀번호는 최소 8자 이상이어야 합니다")
+    //   .regex(
+    //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
+    //     "비밀번호에 대문자, 소문자, 숫자를 각각 하나 이상 포함해야 합니다"
+    //   ),
     confirmPassword: z.string().min(1, "비밀번호를 다시 입력해주세요"),
     name: z
       .string()
@@ -62,14 +66,16 @@ export type PasswordResetRequestSchema = z.infer<typeof passwordResetRequestSche
 export const passwordResetSchema = z
   .object({
     token: z.string().min(1, "재설정 토큰이 필요합니다"),
-    password: z
-      .string()
-      .min(1, "비밀번호를 입력해주세요")
-      .min(8, "비밀번호는 최소 8자 이상이어야 합니다")
-      .regex(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
-        "비밀번호에 대문자, 소문자, 숫자를 각각 하나 이상 포함해야 합니다"
-      ),
+    // [테스트 모드] 비밀번호 정책 완화 - 운영 환경에서는 아래 주석을 해제하세요
+    password: z.string().min(1, "비밀번호를 입력해주세요"),
+    // password: z
+    //   .string()
+    //   .min(1, "비밀번호를 입력해주세요")
+    //   .min(8, "비밀번호는 최소 8자 이상이어야 합니다")
+    //   .regex(
+    //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
+    //     "비밀번호에 대문자, 소문자, 숫자를 각각 하나 이상 포함해야 합니다"
+    //   ),
     confirmPassword: z.string().min(1, "비밀번호를 다시 입력해주세요"),
   })
   .refine((data) => data.password === data.confirmPassword, {
@@ -99,14 +105,16 @@ export type UpdateProfileSchema = z.infer<typeof updateProfileSchema>;
 export const changePasswordSchema = z
   .object({
     currentPassword: z.string().min(1, "현재 비밀번호를 입력해주세요"),
-    newPassword: z
-      .string()
-      .min(1, "새 비밀번호를 입력해주세요")
-      .min(8, "비밀번호는 최소 8자 이상이어야 합니다")
-      .regex(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
-        "비밀번호에 대문자, 소문자, 숫자를 각각 하나 이상 포함해야 합니다"
-      ),
+    // [테스트 모드] 비밀번호 정책 완화 - 운영 환경에서는 아래 주석을 해제하세요
+    newPassword: z.string().min(1, "새 비밀번호를 입력해주세요"),
+    // newPassword: z
+    //   .string()
+    //   .min(1, "새 비밀번호를 입력해주세요")
+    //   .min(8, "비밀번호는 최소 8자 이상이어야 합니다")
+    //   .regex(
+    //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
+    //     "비밀번호에 대문자, 소문자, 숫자를 각각 하나 이상 포함해야 합니다"
+    //   ),
     confirmNewPassword: z
       .string()
       .min(1, "새 비밀번호를 다시 입력해주세요"),

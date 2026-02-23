@@ -138,6 +138,10 @@ export function useAuth() {
   /**
    * Sign up with email, password, name, and role.
    * Returns success/error result.
+   *
+   * [테스트 모드] 이메일 인증 비활성화
+   * - 로컬 개발: supabase/config.toml의 enable_confirmations = false 설정
+   * - 클라우드 Supabase: 대시보드 > Authentication > Providers > Email > "Confirm email" 비활성화 필요
    */
   const signUp = useCallback(
     async (credentials: SignUpCredentials): Promise<SignInResult> => {
@@ -161,6 +165,12 @@ export function useAuth() {
           };
         }
 
+        // [테스트 모드] 이메일 인증이 활성화된 경우 session이 null로 반환됨
+        // 클라우드 Supabase 대시보드에서 "Confirm email" 옵션을 비활성화해야 즉시 로그인됩니다
+        // const { data, error } = await supabase.auth.signUp({...})
+        // if (!data.session) {
+        //   return { success: false, error: "이메일 인증이 필요합니다. 이메일을 확인해주세요." };
+        // }
         return { success: true };
       } catch {
         return {
