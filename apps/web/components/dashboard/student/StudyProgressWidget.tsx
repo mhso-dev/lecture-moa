@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * StudyProgressWidget Component
  * REQ-FE-214: Study Progress Widget

@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * UpcomingQuizzesWidget Component
  * REQ-FE-215: Upcoming Quizzes Widget

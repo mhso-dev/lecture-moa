@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * QANotificationsWidget Component
  * REQ-FE-216: Q&A Notifications Widget

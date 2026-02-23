@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * RecentQAWidget Component
  * REQ-FE-212: Recent Q&A Activity Widget

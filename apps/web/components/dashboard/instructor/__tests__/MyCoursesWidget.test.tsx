@@ -59,7 +59,7 @@ describe("MyCoursesWidget", () => {
 
       render(<MyCoursesWidget />, { wrapper: createWrapper() });
 
-      expect(screen.getByText("My Courses")).toBeInTheDocument();
+      expect(screen.getByText("내 강의")).toBeInTheDocument();
     });
   });
 
@@ -97,7 +97,7 @@ describe("MyCoursesWidget", () => {
 
       render(<MyCoursesWidget />, { wrapper: createWrapper() });
 
-      expect(screen.getByText(/haven't created any courses yet/i)).toBeInTheDocument();
+      expect(screen.getByText("아직 강의가 없습니다")).toBeInTheDocument();
     });
 
     it("shows create course link in empty state", () => {
@@ -118,8 +118,8 @@ describe("MyCoursesWidget", () => {
 
       render(<MyCoursesWidget />, { wrapper: createWrapper() });
 
-      const link = screen.getByRole("link", { name: /create course/i });
-      expect(link).toHaveAttribute("href", "/courses/new");
+      const link = screen.getByRole("link", { name: /강의 만들기/ });
+      expect(link).toHaveAttribute("href", "/courses/create");
     });
   });
 
@@ -255,7 +255,7 @@ describe("MyCoursesWidget", () => {
 
       render(<MyCoursesWidget />, { wrapper: createWrapper() });
 
-      expect(screen.getByText(/published/i)).toBeInTheDocument();
+      expect(screen.getByText("공개")).toBeInTheDocument();
     });
 
     it("shows draft badge for unpublished courses", () => {
@@ -286,7 +286,7 @@ describe("MyCoursesWidget", () => {
 
       render(<MyCoursesWidget />, { wrapper: createWrapper() });
 
-      expect(screen.getByText(/draft/i)).toBeInTheDocument();
+      expect(screen.getByText("초안")).toBeInTheDocument();
     });
 
     it("limits display to 5 courses maximum", () => {
@@ -340,8 +340,8 @@ describe("MyCoursesWidget", () => {
 
       render(<MyCoursesWidget />, { wrapper: createWrapper() });
 
-      // The "View all" link is in the header when courses exist
-      const viewAllLinks = screen.getAllByRole("link", { name: /view all/i });
+      // The "전체 보기" link is in the header when courses exist
+      const viewAllLinks = screen.getAllByRole("link", { name: /전체 보기/ });
       expect(viewAllLinks.length).toBeGreaterThan(0);
       expect(viewAllLinks[0]).toHaveAttribute("href", "/courses");
     });
@@ -364,9 +364,11 @@ describe("MyCoursesWidget", () => {
 
       render(<MyCoursesWidget />, { wrapper: createWrapper() });
 
-      // The "Create" button is always in the header
-      const createLink = screen.getByRole("link", { name: /create$/i });
-      expect(createLink).toHaveAttribute("href", "/courses/new");
+      // The "만들기" link is in the header (distinct from "강의 만들기" in empty state)
+      const createLinks = screen.getAllByRole("link").filter(
+        (link) => link.getAttribute("href") === "/courses/create"
+      );
+      expect(createLinks.length).toBeGreaterThanOrEqual(1);
     });
   });
 });

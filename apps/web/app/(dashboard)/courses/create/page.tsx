@@ -27,10 +27,10 @@ export default function CourseCreatePage() {
 
   // Redirect non-instructors to courses list
   useEffect(() => {
-    if (isAuthenticated && role !== "instructor") {
+    if (!isLoading && isAuthenticated && role !== "instructor") {
       router.push("/courses");
     }
-  }, [isAuthenticated, role, router]);
+  }, [isLoading, isAuthenticated, role, router]);
 
   // Show loading while checking auth
   if (isLoading) {

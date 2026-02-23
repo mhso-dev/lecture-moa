@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * QuizScoresWidget Component
  * REQ-FE-213: Quiz Scores Summary Widget

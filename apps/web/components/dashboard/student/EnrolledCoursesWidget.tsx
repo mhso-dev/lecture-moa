@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * EnrolledCoursesWidget Component
  * REQ-FE-211: Enrolled Courses Progress Widget

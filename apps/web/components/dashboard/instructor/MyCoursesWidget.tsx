@@ -58,7 +58,7 @@ export function MyCoursesWidget() {
           </Link>
         ) : (
           <Link
-            href={"/courses/new" as Route}
+            href={"/courses/create" as Route}
             className="text-sm text-primary hover:underline flex items-center gap-1"
           >
             <Plus className="h-4 w-4" />
@@ -122,7 +122,7 @@ export function MyCoursesWidget() {
           icon={BookOpen}
           title="아직 강의가 없습니다"
           description="아직 생성한 강의가 없습니다."
-          action={{ label: "강의 만들기", href: "/courses/new" as Route }}
+          action={{ label: "강의 만들기", href: "/courses/create" as Route }}
         />
       )}
     </DashboardWidget>
