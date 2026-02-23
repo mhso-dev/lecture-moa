@@ -37,12 +37,17 @@ lecture-moa/
 │   │   │   │   └── MarkdownRenderer/ # Markdown rendering engine
 │   │   │   ├── memo/                 # Memo and note components
 │   │   │   ├── qa/                   # Q&A thread components
+│   │   │   │   └── QAHighlightTooltip.tsx  # Portal-based tooltip for highlight question navigation (SPEC-FE-009)
 │   │   │   ├── quiz/                 # Quiz display and submission
 │   │   │   ├── team/                 # Team management UI
 │   │   │   └── ui/                   # Shared UI primitives
 │   │   ├── hooks/                    # Custom React hooks
 │   │   │   ├── useAuth.ts            # Auth state and actions (signIn, signOut, updateUser)
-│   │   │   └── useCurrentUser.ts     # Current user profile data via TanStack Query
+│   │   │   ├── useCurrentUser.ts     # Current user profile data via TanStack Query
+│   │   │   └── qa/                   # Q&A domain hooks
+│   │   │       ├── useQAHighlights.ts # TanStack Query hook for highlight data (SPEC-FE-009)
+│   │   │       ├── useCreateQuestion.ts # Question creation with cache invalidation
+│   │   │       └── qa-keys.ts        # TanStack Query key factory for Q&A queries
 │   │   ├── middleware.ts             # Next.js middleware for route protection and role-based guards
 │   │   ├── lib/                      # Client-side utilities
 │   │   │   ├── supabase/             # Supabase client configuration and query layers
@@ -54,6 +59,13 @@ lecture-moa/
 │   │   │   │   ├── storage.ts        # Storage upload/download helpers (SPEC-BE-003)
 │   │   │   │   ├── qa.ts             # Q&A domain Supabase query functions with camelCase mapping (SPEC-BE-004)
 │   │   │   │   └── realtime.ts       # Supabase Realtime channel create/subscribe/unsubscribe utilities (SPEC-BE-004)
+│   │   │   ├── markdown/             # Markdown processing utilities and plugins (SPEC-FE-009)
+│   │   │   │   ├── plugins/          # Custom rehype/remark plugins
+│   │   │   │   │   ├── rehype-qa-highlights.ts  # HAST-level Q&A highlight transformation plugin
+│   │   │   │   │   └── highlight-text-matcher.ts # Text matching utility for highlight positioning
+│   │   │   │   ├── utils/            # Shared markdown utilities
+│   │   │   │   │   └── slug.ts       # Heading ID slug generation (shared between plugin and renderer)
+│   │   │   │   └── highlight-qa.css  # Q&A highlight styles (OPEN/RESOLVED/CLOSED states)
 │   │   │   └── api.ts                # API client helpers for Edge Function calls
 │   │   ├── providers/                # React context providers
 │   │   ├── styles/                   # Global styles and themes

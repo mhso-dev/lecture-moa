@@ -8,7 +8,7 @@ An educational platform designed to enhance the lecture experience for instructo
 
 - **Lecture Material Management** -- Upload and organize Markdown-based lecture materials with support for code blocks, mathematical expressions, images, and embedded media.
 
-- **Interactive Q&A System** -- Highlight any text within lecture materials to open an inline popup, write questions in Markdown, and receive answers from instructors or an AI assistant. All Q&A threads remain anchored to the original text.
+- **Interactive Q&A System** -- Highlight any text within lecture materials to open an inline popup, write questions in Markdown, and receive answers from instructors or an AI assistant. All Q&A threads remain anchored to the original text. Previously registered questions are visually highlighted in the Material Viewer with color-coded marks (yellow for open, green for resolved), enabling students to discover existing discussions at a glance.
 
 - **Team and Individual Memos** -- Create personal study notes or form team study groups for collaborative note-taking with shared memos and version tracking.
 
@@ -127,6 +127,16 @@ This project is in the **active development phase**. The frontend foundation and
   - Zustand auth store with session synchronization
   - React Hook Form + Zod validation for all forms
   - WCAG 2.1 AA accessibility compliance
+- **SPEC-FE-009: Q&A Highlight Rendering** -- Q&A highlight rendering in the Material Viewer implemented (2026-02-23):
+  - Custom rehype plugin (`rehype-qa-highlights`) for HAST-level text transformation
+  - Color-coded highlights by question status (OPEN: yellow, RESOLVED: green, CLOSED: gray)
+  - Portal-based `QAHighlightTooltip` component for question navigation
+  - `useQAHighlights` TanStack Query hook with Supabase Realtime auto-update
+  - Event delegation for performant click handling on `<mark>` elements
+  - Shared slug utility ensuring heading ID parity between plugin and renderer
+  - Graceful degradation: unmatched highlights are silently skipped
+  - Code block exclusion: highlight plugin skips `<code>` and `<pre>` nodes
+  - 34 unit and integration tests passing, 0 TypeScript errors
 
 ### SPEC Implementation Status
 
@@ -141,6 +151,7 @@ This project is in the **active development phase**. The frontend foundation and
 | SPEC-FE-006 | Q&A System | Planned |
 | SPEC-FE-007 | Quiz System | Planned |
 | SPEC-FE-008 | Team and Memo System | Planned |
+| SPEC-FE-009 | Q&A Highlight Rendering | Completed (2026-02-23) |
 
 ### Next Steps
 

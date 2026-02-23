@@ -2,9 +2,11 @@
 
 **ID**: SPEC-FE-009
 **Title**: Q&A Highlight Rendering in Material Viewer
-**Status**: Planned
+**Status**: Completed
 **Priority**: High
 **Created**: 2026-02-23
+**Completed**: 2026-02-23
+**Commit**: 8b8e215
 **Domain**: Frontend (apps/web)
 
 ---
@@ -115,3 +117,59 @@ mark: ["data-highlight-id", "data-question-count", "data-status"]
 | REQ-FE-009-N01 | rehype-qa-highlights (exclusion) | TC-009 |
 | REQ-FE-009-N02 | Error boundary integration | TC-010 |
 | REQ-FE-009-C01 | QAHighlightTooltip (responsive) | TC-011 |
+
+---
+
+## Implementation Notes
+
+### 구현 완료 요약
+
+SPEC-FE-009는 2026-02-23에 완전히 구현되었습니다. 커밋 `8b8e215`로 main 브랜치에 직접 병합되었으며, 34개의 테스트가 통과하고 TypeScript 에러가 0개입니다.
+
+### 신규 파일 (12개)
+
+| 파일 | 역할 |
+|---|---|
+| `apps/web/lib/markdown/plugins/rehype-qa-highlights.ts` | HAST 변환을 위한 커스텀 rehype 플러그인 |
+| `apps/web/lib/markdown/plugins/highlight-text-matcher.ts` | 텍스트 매칭 유틸리티 |
+| `apps/web/lib/markdown/utils/slug.ts` | 공유 슬러그 생성 유틸리티 |
+| `apps/web/hooks/qa/useQAHighlights.ts` | 하이라이트 데이터를 위한 TanStack Query 훅 |
+| `apps/web/components/qa/QAHighlightTooltip.tsx` | 질문 탐색을 위한 툴팁 컴포넌트 |
+| `apps/web/lib/markdown/highlight-qa.css` | 하이라이트 스타일 (OPEN/RESOLVED/CLOSED 상태별 색상) |
+| 4개의 테스트 파일 | Vitest 기반 단위 및 통합 테스트 |
+| 3개의 SPEC 문서 | spec.md, plan.md, acceptance.md |
+
+### 수정 파일 (13개)
+
+| 파일 | 변경 내용 |
+|---|---|
+| `packages/shared/src/types/qa.types.ts` | `QAHighlightData` 타입 추가 |
+| `apps/web/hooks/qa/qa-keys.ts` | highlights 쿼리 키 추가 |
+| `apps/web/stores/qa.store.ts` | `activeHighlight` 상태 추가 |
+| `apps/web/lib/supabase/qa.ts` | `getHighlightsForMaterial()` 함수 추가 |
+| `apps/web/components/markdown/MarkdownRenderer.tsx` | `highlights` prop, 플러그인 통합, sanitize 스키마 확장 |
+| `apps/web/app/(dashboard)/courses/[courseId]/materials/[materialId]/page.tsx` | highlights 데이터 연결 |
+| `apps/web/hooks/qa/useCreateQuestion.ts` | 캐시 무효화 추가 |
+
+### 주요 아키텍처 결정사항
+
+1. **rehype 플러그인 방식 채택**: React 레벨이 아닌 HAST(HTML Abstract Syntax Tree) 레벨에서 텍스트 변환을 수행하여 마크다운 파이프라인과의 일관성 확보. 기존 rehype-katex, rehype-highlight 플러그인과 충돌 없이 통합됨.
+
+2. **슬러그 생성 유틸리티 분리**: MarkdownRenderer의 `generateUniqueSlug` 로직을 `apps/web/lib/markdown/utils/slug.ts`로 추출하여 플러그인과 컴포넌트가 동일한 heading ID를 생성하도록 보장. Q&A 등록 시점과 렌더링 시점의 ID 일치 문제 해결.
+
+3. **이벤트 위임(Event Delegation)**: 개별 `<mark>` 요소마다 이벤트 핸들러를 붙이는 대신, 마크다운 컨테이너에 단일 클릭 핸들러를 설정하여 성능 최적화.
+
+4. **Portal 기반 툴팁**: `QAHighlightTooltip` 컴포넌트는 Portal을 사용하여 z-index 스택 컨텍스트 문제 없이 툴팁을 렌더링.
+
+5. **Sanitize 스키마 확장**: `rehype-sanitize`의 스키마에 `mark` 태그와 `data-highlight-id`, `data-question-count`, `data-status` 속성을 허용 목록에 추가하여 XSS 방어를 유지하면서 하이라이트 기능 구현.
+
+### 원래 계획 대비 변경사항
+
+- **REQ-FE-009-C01 (모바일 바텀시트)**: 데스크톱과 동일한 툴팁 UI로 모바일도 대응. 바텀시트 분기는 향후 개선 사항으로 남김.
+- **REQ-FE-009-O02 (호버 미리보기)**: 클릭 기반 툴팁으로 통합 구현. 별도 호버 툴팁은 구현하지 않음.
+
+### 테스트 결과
+
+- SPEC-FE-009 전용 테스트: 34개 통과
+- TypeScript 에러: 0개
+- 기존 테스트 회귀: 없음

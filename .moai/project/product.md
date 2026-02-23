@@ -31,6 +31,8 @@ Instructors upload and organize lecture materials written in Markdown format. Ma
 ### 3. Interactive Q&A System
 Students can highlight any text within lecture materials to open a comment-like popup. Within this popup, students write questions in Markdown format. Instructors review and answer questions, creating a contextual knowledge base tied to specific content sections. Questions and answers are visible to all students in the course for collaborative learning.
 
+**Q&A Highlight Rendering** (SPEC-FE-009, Completed 2026-02-23): Previously registered questions are visually highlighted in the Material Viewer. When a student or instructor opens lecture material, all text passages that have associated questions are rendered with color-coded highlights: yellow for OPEN questions, green for RESOLVED questions. Clicking a highlighted passage opens a tooltip showing the linked questions with navigation to the Q&A detail page. Multiple questions on the same text show a count badge. Highlights update in real time via Supabase Realtime when new questions are submitted. The feature is implemented as a custom rehype plugin (`rehype-qa-highlights`) that operates at the HAST level, ensuring compatibility with code blocks, math expressions, and other markdown elements.
+
 ### 4. Team and Individual Memo Management
 Students can create personal memos and notes while studying. Team study groups can be formed for collaborative note-taking and discussion. Shared team memos support real-time collaboration and version tracking.
 

@@ -27,6 +27,9 @@ Key plugins:
 - rehype-highlight or rehype-prism-plus: Code syntax highlighting
 - Custom rehype plugin: Text selection and highlight anchor support
 
+Custom rehype plugin pattern (SPEC-FE-009):
+The project implements HAST-level text transformation via custom rehype plugins. `rehype-qa-highlights` walks the HAST tree, locates text nodes within the target heading scope, wraps matched text in `<mark>` elements with `data-*` attributes, and skips code/pre blocks to prevent false positives. The sanitize schema is extended to allow `mark` tags with the custom `data-*` attributes while maintaining XSS protection. Slug generation logic is extracted to a shared utility (`lib/markdown/utils/slug.ts`) so the plugin and the MarkdownRenderer component produce identical heading IDs.
+
 ### State Management: Zustand
 **Rationale**: Lightweight, TypeScript-friendly state management with minimal boilerplate. Suitable for managing client-side state such as active highlights, popup visibility, memo drafts, and Supabase Realtime subscription state. Simpler than Redux for the scope of this application.
 
