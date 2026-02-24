@@ -176,7 +176,7 @@ export default function MaterialViewerPage() {
   const handleHighlightClick = useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
       const target = e.target as HTMLElement;
-      const mark = target.closest("mark[data-highlight-id]") as HTMLElement | null;
+      const mark = target.closest("mark[data-highlight-id]");
       if (!mark) return;
 
       const highlightId = mark.getAttribute("data-highlight-id");
@@ -279,7 +279,6 @@ export default function MaterialViewerPage() {
           />
 
           {/* Markdown content (REQ-FE-009: click delegation for highlight tooltips) */}
-          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
           <article
             className="prose prose-neutral dark:prose-invert max-w-none"
             onClick={handleHighlightClick}

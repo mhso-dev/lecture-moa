@@ -22,7 +22,7 @@ import { useActiveHighlight, useQAStore } from "~/stores/qa.store";
 import { useQADetail } from "~/hooks/qa";
 import { QAStatusBadge } from "./QAStatusBadge";
 import { cn } from "~/lib/utils";
-import type { QAStatus } from "@shared";
+
 
 const TOOLTIP_WIDTH = 320;
 const TOOLTIP_MAX_HEIGHT = 280;
@@ -53,9 +53,9 @@ function QuestionItem({ questionId }: { questionId: string }) {
       )}
     >
       <div className="flex items-center gap-2 mb-0.5">
-        <QAStatusBadge status={question.status as QAStatus} className="text-[10px] px-1.5 py-0" />
+        <QAStatusBadge status={question.status} className="text-[10px] px-1.5 py-0" />
         <span className="text-xs text-muted-foreground">
-          {question.upvoteCount > 0 && `+${question.upvoteCount}`}
+          {question.upvoteCount > 0 && `+${String(question.upvoteCount)}`}
         </span>
       </div>
       <p className="text-sm font-medium text-foreground line-clamp-2">
@@ -155,7 +155,7 @@ export function QAHighlightTooltip() {
     <div
       ref={tooltipRef}
       role="dialog"
-      aria-label={`${questionIds.length}개의 질문`}
+      aria-label={`${String(questionIds.length)}개의 질문`}
       className={cn(
         "fixed z-50 bg-popover text-popover-foreground",
         "border border-border rounded-lg shadow-lg",

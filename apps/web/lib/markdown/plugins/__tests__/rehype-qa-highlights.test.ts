@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /**
  * Tests for rehype-qa-highlights
  * REQ-FE-009: Rehype plugin that injects <mark> highlights into HAST
@@ -34,7 +35,7 @@ function root(...children: (HastText | Element)[]): Root {
 
 /** Build a heading element with text content */
 function heading(level: number, content: string): Element {
-  return el(`h${level}`, [text(content)]);
+  return el(`h${String(level)}`, [text(content)]);
 }
 
 /** Build a paragraph element with text content */
@@ -91,9 +92,9 @@ describe("rehypeQAHighlights", () => {
       expect(marks).toHaveLength(1);
 
       const mark = marks[0]!;
-      expect(mark.properties["dataHighlightId"]).toBe("q1");
-      expect(mark.properties["dataStatus"]).toBe("OPEN");
-      expect(mark.properties["dataQuestionCount"]).toBe("1");
+      expect(mark.properties.dataHighlightId).toBe("q1");
+      expect(mark.properties.dataStatus).toBe("OPEN");
+      expect(mark.properties.dataQuestionCount).toBe("1");
 
       // Check the marked text content
       const markText = mark.children[0] as HastText;
@@ -127,9 +128,9 @@ describe("rehypeQAHighlights", () => {
 
       const marks = findMarks(tree);
       expect(marks).toHaveLength(1);
-      expect(marks[0]!.properties["dataQuestionCount"]).toBe("2");
+      expect(marks[0]!.properties.dataQuestionCount).toBe("2");
       // Comma-separated IDs
-      expect(marks[0]!.properties["dataHighlightId"]).toBe("q1,q2");
+      expect(marks[0]!.properties.dataHighlightId).toBe("q1,q2");
     });
 
     it("should use highest-priority status when highlights share text (OPEN > RESOLVED > CLOSED)", () => {
@@ -160,7 +161,7 @@ describe("rehypeQAHighlights", () => {
       const marks = findMarks(tree);
       expect(marks).toHaveLength(1);
       // OPEN takes priority over ANSWERED
-      expect(marks[0]!.properties["dataStatus"]).toBe("OPEN");
+      expect(marks[0]!.properties.dataStatus).toBe("OPEN");
     });
   });
 
@@ -220,7 +221,7 @@ describe("rehypeQAHighlights", () => {
 
       const marks = findMarks(tree);
       expect(marks).toHaveLength(1);
-      expect(marks[0]!.properties["dataHighlightId"]).toBe("q1");
+      expect(marks[0]!.properties.dataHighlightId).toBe("q1");
     });
 
     it("should handle content before first heading (null section)", () => {
@@ -428,8 +429,8 @@ describe("rehypeQAHighlights", () => {
       const marks = findMarks(tree);
       expect(marks).toHaveLength(2);
 
-      expect(marks[0]!.properties["dataHighlightId"]).toBe("q1");
-      expect(marks[1]!.properties["dataHighlightId"]).toBe("q2");
+      expect(marks[0]!.properties.dataHighlightId).toBe("q1");
+      expect(marks[1]!.properties.dataHighlightId).toBe("q2");
     });
 
     it("should handle empty selectedText gracefully (skip it)", () => {

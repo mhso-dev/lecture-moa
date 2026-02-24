@@ -45,7 +45,7 @@ export function findTextInNodes(
       continue;
     }
 
-    const textNode = node as HastText;
+    const textNode = node;
     const idx = textNode.value.indexOf(searchText);
     if (idx !== -1) {
       return {

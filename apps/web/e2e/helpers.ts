@@ -8,8 +8,10 @@ try {
   const envPath = resolve(__dirname, "../.env.local");
   for (const line of readFileSync(envPath, "utf8").split("\n")) {
     const match = line.match(/^([^#=]+)=(.*)$/);
-    if (match && !process.env[match[1].trim()]) {
-      process.env[match[1].trim()] = match[2].trim();
+    const key = match?.[1]?.trim();
+    const value = match?.[2]?.trim();
+    if (key && !process.env[key]) {
+      process.env[key] = value ?? "";
     }
   }
 } catch {

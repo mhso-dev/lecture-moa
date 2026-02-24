@@ -68,7 +68,7 @@ function shouldSkipElement(node: Element): boolean {
     return true;
   }
 
-  const className = node.properties?.className;
+  const className = node.properties.className;
   if (Array.isArray(className)) {
     for (const cls of className) {
       if (typeof cls === "string" && SKIP_CLASSES.has(cls)) {
@@ -205,7 +205,7 @@ export function rehypeQAHighlights(
 
   return (tree: Root): void => {
     try {
-      if (!highlights || highlights.length === 0) return;
+      if (highlights.length === 0) return;
 
       // Group highlights by headingId
       const bySection = new Map<string | null, QAHighlightData[]>();
@@ -236,7 +236,7 @@ export function rehypeQAHighlights(
           if (!sectionElements.has(currentSectionSlug)) {
             sectionElements.set(currentSectionSlug, []);
           }
-          sectionElements.get(currentSectionSlug)!.push(child);
+          sectionElements.get(currentSectionSlug)?.push(child);
         }
       }
 

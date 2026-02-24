@@ -694,7 +694,7 @@ export async function getHighlightsForMaterial(
     throw new Error(`Failed to fetch highlights: ${error.message}`);
   }
 
-  return (data ?? []).map(
+  return data.map(
     (row: {
       id: string;
       selected_text: string | null;

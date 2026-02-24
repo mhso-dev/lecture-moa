@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /**
  * Tests for highlight-text-matcher
  * REQ-FE-009: HAST text node matching for Q&A highlights
